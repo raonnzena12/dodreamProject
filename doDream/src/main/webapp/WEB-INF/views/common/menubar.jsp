@@ -9,7 +9,10 @@
 <!-- ${contextPath} 선언부입니다  -->
 
 <c:set var="contextPath" value="${ pageContext.servletContext.contextPath }" scope="application"/>
-<script src="http://code.jquery.com/jquery-3.4.1.min.js"></script> 
+ 
+<script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
+<!-- 부트스트랩4.3 코어 삽입부입니다. -->
+<link rel="stylesheet" href="https://getbootstrap.com/docs/4.3/dist/css/bootstrap.min.css">
 </head>
 
 <body>
@@ -55,6 +58,7 @@
 	<div class="menubar">
 		<div class="nav">
 			<div class="menu"><a href="home.dr">HOME</a></div>
+			<div class="menu"><a href="insertFundForm.dr">펀딩 등록하기</a></div>
 		</div>
 	</div>
 	

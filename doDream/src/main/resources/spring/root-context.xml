@@ -5,16 +5,6 @@
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	
-	<!-- 1. DataSource 등록 
-		- DataSourece는 서버 구동 시 동시에 연결이 되어야 하며
-		  연결 정보 설정 시 root-context 제일 위쪽이 작성
-		   -> 그래야지만 아래 작성되는 설정들에서 DataSource를
-		         참조해서 사용 가능!
-	-->	
-	
-	
-	<!-- destroy-method="close" 
-	      -> 주어진 세션을 자동으로 close 하라는 의미 -->
 	<bean id="dataSource"
 	   class="org.apache.commons.dbcp.BasicDataSource"
 	   destroy-method="close">
@@ -26,10 +16,8 @@
 	   <property name="defaultAutoCommit" value="false"/>
 	</bean>
 	
-	<!-- 마이바티스 SqlSession 등록하기 -->
 	<bean id="sqlSession" 
 	      class="org.mybatis.spring.SqlSessionFactoryBean">
-		<!-- mybatis-config.xml 설정 불러오기 -->   
 		<property name="configLocation" 
 			value="classpath:mybatis-config.xml"/>  
 		<property name="dataSource" ref="dataSource"/> 
@@ -40,26 +28,11 @@
 		<constructor-arg ref="sqlSession"/>
 	</bean>
 	
-	
-	<!-- 파일  업로드 관련 Bean 등록-->
-	<!-- MutipartResolver -->
+
 	<bean id="multipartResolver"
 		  class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		 <property name="maxUploadSize" value="100000000"/>
 		 <property name="maxInMemorySize" value="100000000"/>
 	</bean>
-		<!-- 
-		maxUploadSize 
-			: 한 요청당 업로드가 허용되는 최대 용량을 바이트 단위로 설정.
-			-1 은 제한이 없다는 뜻으로 이 프로퍼티를 지정하지 않을때 기본값.
-		
-		maxInMemorySize 
-			: 디스크에 저장하지 않고 메모리에 유지하도록 
-			허용하는 바이트 단위의 최대 용량을 설정.
-			
-	 		사이즈가 이보다 클 경우 이 사이즈 이상의 데이터는 파일에 저장됩니다. 
-			 기본값은 10240 바이트.
-	 -->
-	
-	
+
 </beans>

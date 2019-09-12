@@ -23,14 +23,8 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<!-- 빈 스캐닝
-		지정된 패키지에 있는 @Component와 그 구체화 요소들을 스캔하여
-		bean으로 등록하는 기능을 가짐.
-	 -->
 	<context:component-scan base-package="com.dodream.spring" />
 	
-	<!-- AOP 사용 -->
-	<!-- 설정 끝 -->
 	<aop:aspectj-autoproxy/>
 	
 	
