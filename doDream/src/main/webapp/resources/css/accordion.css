@@ -1,10 +1,8 @@
-@import url("https://fonts.googleapis.com/css?family=Open+Sans");
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-
 
 html, body {
   height: 100%;
@@ -35,26 +33,34 @@ label {
   height: 100vh;
   width: 40px;
   overflow: hidden;
-  background: #30354a;
+  background: #eeda6c7c;
   text-align: center;
   font-size: 14px;
   line-height: 50px;
   transition: background 300ms ease;
 }
 
-li:nth-child(even) > input + label {
-  background: #3a4059;
+li:nth-child(2) > input + label {
+  background: #eeda6cc7;
+}
+
+li:nth-child(3) > input + label {
+  background: #eeda6cec;
+}
+
+li:nth-child(4) > input + label {
+  background: #eeda6c;
 }
 
 label:hover,
-li:nth-child(even) > input + label:hover {
-  background: #2196f3;
+li > input + label:hover {
+  background: #fffb12;
   color: #fff;
   cursor: pointer;
 }
 
 input[type="radio"]:checked ~ label {
-  background: #2196f3;
+ 
   color: #fff;
   cursor: default !important;
 }

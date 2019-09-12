@@ -28,48 +28,48 @@
 				<li>
 					<input id="rad1" type="radio" name="rad" checked="checked"/>
 					<label for="rad1">
-						<div>안녕안녕 안안녕</div>
+						<div>기본정보</div>
 					</label>
 					<div class="accslide">
 						<div class="content">
-							<h1>1</h1>
-							<p>열려라 참깨</p>
+							<h1>1.</h1>
+							<p>프로젝트 기본정보</p>
 						</div>
 					</div>
 				</li>
 				<li>
 					<input id="rad2" type="radio" name="rad"/>
 					<label for="rad2">
-						<div>Second panel</div>
+						<div>리워드</div>
 					</label>
 					<div class="accslide">	
 						<div class="content">
-							<h1>2</h1>
-							<p>열려라 참깨</p>
+							<h1>2.</h1>
+							<p>리워드 정보</p>
 						</div>
 					</div>
 				</li>
 				<li>
 					<input id="rad3" type="radio" name="rad"/>
 					<label for="rad3">
-						<div>Third panel</div>
+						<div>스토리</div>
 					</label>
 					<div class="accslide">
 						<div class="content">
-							<h1>3</h1>
-							<p>열려라 참깨</p>
+							<h1>3.</h1>
+							<p>스토리텔링</p>
 						</div>
 					</div>
 				</li>
 				<li>
 					<input id="rad4" type="radio" name="rad"/>
 					<label for="rad4">
-						<div>Fourth panel</div>
+						<div>아티스트정보</div>
 					</label>
 					<div class="accslide">
 						<div class="content">
 							<h1>4</h1>
-							<p>열려라 참깨</p>
+							<p>아티스트 정보</p>
 						</div>
 					</div>
 				</li>
