@@ -1,0 +1,88 @@
+#mainMenuBar {
+    margin-bottom: 20px;
+    box-shadow: 0px 0px 5px #ccc;
+}
+#mainLogoArea {
+    display: block;
+    text-align: center;
+}
+#mainLogoArea span {
+    display: inline-block;
+    line-height: 100px;
+    height: 100px;
+    border: 1px dashed #ccc;
+}
+#menuText, #loginMenuText {
+    vertical-align: super;
+}
+#mainMenuBar .loginInfoArea {
+    right: 10px;
+    padding: 10px;
+    width: 300px;
+}
+#login-menu {
+    border-radius: 5px;
+    position: absolute;
+    padding: 15px;
+    right: 10px;
+    width:290px;
+    height: 370px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+}
+#login-table {
+    width: 100%;
+    border-spacing: 5px;
+    border-collapse: separate;
+}
+#mainMenuBar .loginmenuText {
+    font-size: 14px;
+}
+/* 커스텀 체크박스 색 변경하는 CSS */
+#mainMenuBar .custom-control-input:checked~.custom-control-label::before {
+color: #fff;
+border-color: #8E44AD;
+background-color: #8E44AD;
+}
+#loginBtn {
+    background-color: #FFCD01;
+    color: #fff;
+    font-weight: 900;
+}
+#loginBtn:hover {
+    background-color: #F39C12;
+}
+#mainMenuBar .naverKakaoArea img {
+    width: 40px;
+    height: auto;
+}
+/* 마우스 오버 툴팁 색상 코드 지정 */
+.tooltip-inner {
+    background-color: #F39C12 !important;
+}
+.bs-tooltip-auto[x-placement^=left] .arrow::before, .bs-tooltip-left .arrow::before {
+    border-left-color: #F39C12;
+}
+/* 마우스 오버 툴팁 색상 지정 끝 */
+#veil {
+    display: none;
+    z-index: 5;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+.loginmenu {
+    z-index: 10;
+}
+#login-menu {
+    display: none;
+}
+#titleSearch  {
+    border:none;
+    text-align: right;
+}
+#titleSearchSubmit {
+    cursor: pointer;
+}
