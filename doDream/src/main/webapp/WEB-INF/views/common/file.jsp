@@ -5,9 +5,17 @@
 <head>
 <meta charset="UTF-8">
 <title>링크모음</title>
+<style>
+	.color {
+		display: inline-block;
+		width: 150px;
+		height: 150px;
+		line-height: 150px;
+		text-align: center;
+	}
+</style>
 </head>
 <body>
-	<br clear="both">
 	<!-- <a href="https://docs.google.com/presentation/d/1XkfuofeyWaXsZRmGucVAaBB-h3BEeO77g1T0EaC5KQc/edit#slide=id.g5de696b7fa_0_156" target="_blank"><button type="button" class="btn btn-light border" data-toggle="tooltip" data-placement="top" title="스토리보드 PPT" >스토리보드 PPT</button></a> -->
 	<a href="https://ovenapp.io/view/6PkJ9GJEJ4iv9eqJ7gJz2jDzuLfgXvIw/" target="_blank"><button type="button" class="btn btn-light border" data-toggle="tooltip" data-placement="top" title="오븐앱으로 만든 와이어프레임입니다. 화면구현 참고용으로 사용해주세요" >와이어프레임</button></a>
 	<a href="https://www.wadiz.kr/web/wreward/main?keyword=&endYn=ALL&order=recommend" target="_blank"><button type="button" class="btn btn-light border" data-toggle="tooltip" data-placement="top" title="참고사이트" >와디즈</button></a>
@@ -20,5 +28,11 @@
 	<a href="http://bootstrapk.com/" target="_blank"><button type="button" class="btn btn-light border" data-toggle="tooltip" data-placement="top" title="부트스트랩(한글/3버젼)" >부트스트랩</button></a>
 	<a href="https://getbootstrap.com/" target="_blank"><button type="button" class="btn btn-light border" data-toggle="tooltip" data-placement="top" title="부트스트랩(영어/4버젼) - 자료 많음" >BootStrap</button></a>
 	<a href="https://sweetalert2.github.io/" target="_blank"><button type="button" class="btn btn-light border" data-toggle="tooltip" data-placement="top" title="sweetalert - 디자인 얼럿창" >sweetalert2</button></a><br>
+
+	<hr>
+	<br>
+	<div class="color" style="background-color:#FFCD01;">#FFCD01</div>
+	<div class="color" style="background-color:#F39C12;">#F39C12</div>
+	<div class="color" style="background-color:#8E44AD;">#8E44AD</div>
 </body>
 </html>

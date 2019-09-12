@@ -5,10 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>SpringProject</title>
-<link rel="stylesheet" href="resources/css/accordion.css">
+<jsp:include page="common/menubar.jsp"/>
 </head>
 <body>
-	<jsp:include page="common/menubar.jsp"/>
 	<jsp:include page="common/file.jsp" />
 </body>
 </html>

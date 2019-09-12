@@ -17,12 +17,12 @@
 	
 	<!-- respository -->
 	<!-- ojdbc6 사설 저장소 -->
-	<repositories>
-	   <repository>
-	      <id>Spring Plugins</id>
-	      <url>http://repo.spring.io/plugins-release/</url>
-	   </repository>
-	</repositories>
+   <repositories>
+      <repository>
+         <id>Spring Plugins</id>
+         <url>http://repo.spring.io/plugins-release/</url>
+      </repository>
+   </repositories>
 	
 	
 	
