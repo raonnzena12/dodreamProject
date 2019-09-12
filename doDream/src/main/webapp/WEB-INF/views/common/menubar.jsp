@@ -5,7 +5,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title> 
 <!-- ${contextPath} 선언부입니다  -->
 <c:set var="contextPath" value="${ pageContext.servletContext.contextPath }" scope="application"/>
 <!-- jQuery 3.4.1 -->
@@ -31,7 +30,7 @@
 		font-family: 'Noto Sans KR', sans-serif;
 		color: #444;
 		text-decoration: none;
-		user-select: none;
+		/* user-select: none; */
 	}
 </style>
 </head>
@@ -70,8 +69,8 @@
 				</li>
 			</ul>
 		</div>
-		<div class="nav-item dropdown active">
-			<a class="nav-link dropdown" href="#" id="loginMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		<div class="float-right navbar-expand">
+			<a class="" href="#" id="loginMenuLink">
 				<span id="loginMenuText">
 					<!-- 비로그인 시 출력 -->
 					<c:if test="${ empty sessionScope.loginUser }">
@@ -135,5 +134,6 @@
 		</div>
 	</nav>
 	</section>
+	<jsp:include page="footer.jsp" />
 </body>
 </html>

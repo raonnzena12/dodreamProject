@@ -32,7 +32,7 @@
 	<hr>
 	<br>
 	<div class="color" style="background-color:#FFCD01;">#FFCD01</div>
-	<div class="color" style="background-color:#F39C12;">#F39C12</div>
-	<div class="color" style="background-color:#8E44AD;">#8E44AD</div>
+	<div class="color" style="background-color:#F39C12; color:#fff;">#F39C12</div>
+	<div class="color" style="background-color:#8E44AD; color:#fff;">#8E44AD</div>
 </body>
 </html>
