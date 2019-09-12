@@ -8,7 +8,7 @@
 <jsp:include page="common/menubar.jsp"/>
 </head>
 <body>
-	<jsp:include page="common/file.jsp" />
+    <jsp:include page="common/file.jsp" />
 </body>
 </html>
 
