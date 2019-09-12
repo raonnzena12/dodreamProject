@@ -16,11 +16,4 @@ public class MemberServiceImpl implements MemberService {
 	public Member loginMember(Member mem) {
 		return mDao.selectMember(mem);
 	}
-
-
-	@Override
-	public int checkIdDup(String id) {
-		return mDao.checkIdDup(id);
-	}
-	
 }

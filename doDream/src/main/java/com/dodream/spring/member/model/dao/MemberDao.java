@@ -15,9 +15,4 @@ public class MemberDao {
 	public Member selectMember(Member mem) {
 		return sqlSession.selectOne("memberMapper.selectOne", mem);
 	}
-
-	public int checkIdDup(String id) {
-		return sqlSession.selectOne("memberMapper.checkIdDup", id);
-	}
-
 }
