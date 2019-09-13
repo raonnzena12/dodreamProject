@@ -58,6 +58,9 @@
 			<li class="nav-item">
 				<a class="nav-link" href="insertFundForm.dr">펀딩 등록하기</a>
 			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="temp.dr">(temp) 펀딩 결제 INFO</a>
+			</li>
 			</ul>
 			<ul class="navbar-nav ml-auto mr-3">
 				<li>
