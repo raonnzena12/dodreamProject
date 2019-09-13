@@ -106,9 +106,11 @@
 							<td><button type="submit" class="btn btn-warning btn-block mb-2" id="loginBtn">L O G I N</button></td>
 						</tr>
 						<tr>
+						<!-- 소셜 로그인 아이콘 들어가는 부분 -->
 							<td class="text-center naverKakaoArea">
-								<img src="resources/images/naver_symbol_img.png" data-toggle="tooltip" data-placement="left" title="NAVER ID로 로그인">
-								<i class="material-icons mt-1 ml-2" data-toggle="tooltip" data-placement="left" title="KAKAO ID로 로그인">panorama_fish_eye</i>
+								<img src="resources/images/naver_sns_icon.png" data-toggle="tooltip" data-placement="left" title="NAVER ID로 로그인" class="mx-2">
+								<img src="resources/images/kakao_sns_icon.png" data-toggle="tooltip" data-placement="left" title="KAKAO ID로 로그인" class="mx-2">
+								<img src="resources/images/faceB_sns_icon.png" data-toggle="tooltip" data-placement="left" title="FACEBOOK ID로 로그인" class="mx-2">
 							</td>
 						</tr>
 						<tr>
