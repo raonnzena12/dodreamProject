@@ -29,7 +29,7 @@
 </style>
 </head>
 <body>
-    <!-- footer URL -->
+    <!-- footer URL --> 
     <c:url var="customerCenter" value="#" />
     <c:url var="facebook" value="#" />
     <c:url var="instargram" value="#" />
