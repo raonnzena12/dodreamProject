@@ -13,9 +13,14 @@
 		line-height: 150px;
 		text-align: center;
 	}
+	#fileSection {
+		min-height: 700px;
+		height: 100%;
+	}
 </style>
 </head>
 <body>
+	<section id="fileSection">
 	<!-- <a href="https://docs.google.com/presentation/d/1XkfuofeyWaXsZRmGucVAaBB-h3BEeO77g1T0EaC5KQc/edit#slide=id.g5de696b7fa_0_156" target="_blank"><button type="button" class="btn btn-light border" data-toggle="tooltip" data-placement="top" title="스토리보드 PPT" >스토리보드 PPT</button></a> -->
 	<a href="https://ovenapp.io/view/6PkJ9GJEJ4iv9eqJ7gJz2jDzuLfgXvIw/" target="_blank"><button type="button" class="btn btn-light border" data-toggle="tooltip" data-placement="top" title="오븐앱으로 만든 와이어프레임입니다. 화면구현 참고용으로 사용해주세요" >와이어프레임</button></a>
 	<a href="https://www.wadiz.kr/web/wreward/main?keyword=&endYn=ALL&order=recommend" target="_blank"><button type="button" class="btn btn-light border" data-toggle="tooltip" data-placement="top" title="참고사이트" >와디즈</button></a>
@@ -34,5 +39,6 @@
 	<div class="color" style="background-color:#FFCD01;">#FFCD01</div>
 	<div class="color" style="background-color:#F39C12; color:#fff;">#F39C12</div>
 	<div class="color" style="background-color:#8E44AD; color:#fff;">#8E44AD</div>
+	</section>
 </body>
 </html>
