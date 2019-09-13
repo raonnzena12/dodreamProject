@@ -32,7 +32,8 @@
 	<a href="https://www.cmsfactory.net/10035" target="_blank"><button type="button" class="btn btn-light border" data-toggle="tooltip" data-placement="top" title="간편하게 아이콘 삽입하기" >구글 웹 아이콘</button></a>
 	<a href="http://bootstrapk.com/" target="_blank"><button type="button" class="btn btn-light border" data-toggle="tooltip" data-placement="top" title="부트스트랩(한글/3버젼)" >부트스트랩</button></a>
 	<a href="https://getbootstrap.com/" target="_blank"><button type="button" class="btn btn-light border" data-toggle="tooltip" data-placement="top" title="부트스트랩(영어/4버젼) - 자료 많음" >BootStrap</button></a>
-	<a href="https://sweetalert2.github.io/" target="_blank"><button type="button" class="btn btn-light border" data-toggle="tooltip" data-placement="top" title="sweetalert - 디자인 얼럿창" >sweetalert2</button></a><br>
+	<a href="https://sweetalert2.github.io/" target="_blank"><button type="button" class="btn btn-light border" data-toggle="tooltip" data-placement="top" title="sweetalert - 디자인 얼럿창" >sweetalert2</button></a>
+	<a href="https://www.layoutit.com/en" target="_blank"><button type="button" class="btn btn-light border" data-toggle="tooltip" data-placement="top" title="부트스트랩 기반 레이아웃 잡아주는 홈페이지" >layoutit</button></a><br>
 
 	<hr>
 	<br>
