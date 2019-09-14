@@ -10,9 +10,17 @@
 <style>
 	#ac {
 		display: block;
+		width: 100%;
+		height: 100%;
+		border-bottom: 1px solid #ced4da;
+		margin-left: 0;
+		margin-right: 0;
 	}
 	#ac_container{
 		max-width: 1360px;
+	}
+	#ac ul, #ac label, #ac dl, #ac ol{
+		margin-bottom: 0;
 	}
 	.purplefont{
 		color: #8E44AD;
@@ -22,6 +30,23 @@
 	}
 	.content{
 		min-width: 1000px;
+	}
+	#insertformul{
+		width: 100%;
+	}
+	#fundnotice h2{
+		font-weight: 900;
+	}
+	#goSubmit, #goPreview{
+		margin-top: 40px;
+		opacity:0.85;
+	}
+	#goSubmit:hover, #goPreview:hover{
+		opacity:1;
+	}
+	.accoHead{
+		font-size: 22px;
+		font-weight: 600;
 	}
 </style>
 </head>
@@ -40,10 +65,10 @@
 					아래 사항들을 확인한 후 프로젝트를 등록해 주세요! 
 					</p>
 				</div>
-				<ul class="checklist">
+				<ul class="checklist" id="insertformul">
 					<li>
 						<div class="ui checkbox">
-							<input type="checkbox" id="reward-create-process-checklist1" value="Y">
+							<input type="checkbox" id="reward-create-process-checklist1">
 							<label for="reward-create-process-checklist1">
 								펀딩 진행 중에는 제공할 리워드를 <span class="orangemark">다른 온∙오프라인에서 펀딩하거나 판매하지 않습니다!</span>
 							</label>
@@ -51,7 +76,7 @@
 					</li>
 					<li>
 						<div class="ui checkbox">	
-							<input type="checkbox" id="reward-create-process-checklist2" value="Y">
+							<input type="checkbox" id="reward-create-process-checklist2">
 							<label for="reward-create-process-checklist2">
 								이미 시판된 제품, 현금이나 지분 등 수익 제공, 선물 없는 단순 기부, 성인 인증이 필요한 컨텐츠 등 <span class="orangemark">기준에 맞지 않는 리워드를 제공하지 않습니다!</span>
 							</label>
@@ -59,7 +84,7 @@
 					</li>
 					<li>
 						<div class="ui checkbox">
-							<input type="checkbox" id="reward-create-process-checklist3" value="Y">
+							<input type="checkbox" id="reward-create-process-checklist3">
 							<label for="reward-create-process-checklist3">
 								서포터에게 프로젝트 진행 과정을 <span class="orangemark">안내</span>하고, <span class="orangemark">배송 약속을 지킬 수 있습니다!</span>
 							</label>
@@ -67,7 +92,7 @@
 					</li>
 					<li>
 						<div class="ui checkbox">
-							<input type="checkbox" id="reward-create-process-checklist4" value="Y">
+							<input type="checkbox" id="reward-create-process-checklist4">
 							<label for="reward-create-process-checklist4">
 								서포터와의 신뢰를 위해 펀딩 진행∙제품 제작∙ 배송 등 모든 과정에서 겪는 어려움들을 <span class="orangemark">서포터에게 진솔하게 전달하고 문제를 해결합니다.</span>
 							</label>
@@ -76,9 +101,9 @@
 				</ul>
 				<div class="bottom" align="center">
 					<br>
-					<button type="button" class="btn btn-warning" style="background-color: #F39C12; border-color:#fff; color:#fff;">이전으로</button>
+					<button type="button" class="btn btn-primary" style="background-color: #F39C12; border-color:#fff; color:#fff;">이전으로</button>
 					&nbsp;&nbsp;&nbsp;&nbsp;
-					<button type="button" class="btn btn-warning" style="background-color: #8E44AD; border-color:#fff; color:#fff;" onclick="checkAgreement();">시작하기!</button>
+					<button type="button" id="goInsertForm" class="btn btn-primary" style="background-color: #8E44AD; border-color:#fff; color:#fff;" onclick="checkAgreement();" disabled>시작하기!</button>
 				</div>
 			</section>
 		</div>
@@ -87,24 +112,31 @@
 	<div id="insertFundForm">
 		<div class="clearfix"></div>
 		<div class="container" id="ac_container">
-			<div class="py-5 text-center">
-				<h2>펀딩 등록하기</h2>
-				<p class="lead">
-				빨리빨리 만들어야한다 이말이야
-				영상씨의 테스트
-				</p>
+			<div class="mt-5 mb-2 pt-5 pb-2 text-left clearfix" id="fundnotice">
+				<div style="float:left;">
+					<h2>펀드 <span class="purplefont">등록</span>하기</h2>
+					<p>
+					펀드의 검토는 평균 5~7일 정도 소요됩니다. 
+					</p>
+				</div>
+				<div style="float:right;">
+					<button type="button" id="goPreview" class="btn btn-primary" style="background-color: #F39C12; border-color:#fff; color:#fff;">미리보기</button>
+					&nbsp;&nbsp;&nbsp;
+					<button type="button" id="goSubmit" class="btn btn-primary" style="background-color: #8E44AD; border-color:#fff; color:#fff;">검토 요청 하기</button>
+				</div>
 			</div>
 			<!-- 아코디언메뉴 삽입부 -->
-			<div class="row" id="ac">
+			<div class="row clearfix" id="ac">
 				<ul>
 					<li>
 						<input id="rad1" type="radio" name="rad" checked="checked"/>
 						<label for="rad1">
-							<div>기본정보</div>
+							<div>기 본 정 보</div>
 						</label>
 				   		<div class="accslide">
-							<div class="content">
-								<h2>1. 프로젝트 기본정보</h2><br><br>
+							<div class="content py-5">
+								<span class="accoHead">1. 프로젝트 기본정보</span>
+								<br><br><br>
 				         		<form action="#" method="POST" enctype="multipart/form-data" id="insert1">
 					            	<table>
 										<tr>
@@ -186,11 +218,11 @@
 					<li>
 						<input id="rad2" type="radio" name="rad"/>
 						<label for="rad2">
-					   		<div>리워드</div>
+					   		<div>리 워 드</div>
 						</label>
 						<div class="accslide">   
-							<div class="content">
-								<h2>2. 리워드 정보</h2><br><br>
+							<div class="content py-5">
+								<span class="accoHead">2. 리워드 정보</span><br><br>
 								<form action="#" method="POST" enctype="multipart/form-data" id="insert1">
 							   		<table>
 							      		<tr>
@@ -217,11 +249,11 @@
 					<li>
 						<input id="rad3" type="radio" name="rad"/>
 						<label for="rad3">
-					   		<div>스토리</div>
+					   		<div>스 토 리</div>
 						</label>
 						<div class="accslide">
-							<div class="content">
-								<h2>3. 스토리텔링</h2><br><br>
+							<div class="content py-5">
+								<span class="accoHead">3. 스토리텔링</span><br><br>
 								<form action="#" method="POST" enctype="multipart/form-data" id="insert1">
 									<table>
 										<tr>
@@ -248,11 +280,11 @@
 					<li>
 						<input id="rad4" type="radio" name="rad"/>
 						<label for="rad4">
-					   		<div>아티스트정보</div>
+					   		<div>아 티 스 트 정 보</div>
 						</label>
 						<div class="accslide">
-							<div class="content">
-					  			<h2>4. 아티스트 정보</h2><br><br>
+							<div class="content py-5">
+					  			<span class="accoHead">4. 아티스트 정보</span><br><br>
 				  				<form action="#" method="POST" enctype="multipart/form-data" id="insert1">
 									<table>
 										<tr>
@@ -282,14 +314,32 @@
 		<div class="clearfix"></div>
 		<div class="mt-5 mb-5 pt-3 pb-3"></div>
 	</div>
-<script>
-	$(function(){
-		$("#insertFundForm").hide();
-	});
-	function checkAgreement(){
-		$("#agreementForm").hide();
-		$("#insertFundForm").show();
-	};
-</script>
+	<script>
+		$(".checklist input[type='checkbox']").change(function(){
+			validate();
+		});
+		
+		$(function(){
+			$("#insertFundForm").hide();
+		});
+		function validate(){
+			var result1, result2, result3, result4;
+			var $chk1 = $("#reward-create-process-checklist1");
+			var $chk2 = $("#reward-create-process-checklist2");
+			var $chk3 = $("#reward-create-process-checklist3");
+			var $chk4 = $("#reward-create-process-checklist4");
+			if($chk1.is(':checked')) result1 = true;
+			if($chk2.is(':checked')) result2 = true;
+			if($chk3.is(':checked')) result3 = true;
+			if($chk4.is(':checked')) result4 = true;
+			if(result1 && result2 && result3 && result4) $("#goInsertForm").attr('disabled',false);
+			else $("#goInsertForm").attr('disabled',true);
+		}
+		function checkAgreement(){
+			$("#agreementForm").hide();
+			$("#insertFundForm").show();
+	        $('html').animate({scrollTop : 0}, 300);
+		};
+	</script>
 </body>
 </html>
