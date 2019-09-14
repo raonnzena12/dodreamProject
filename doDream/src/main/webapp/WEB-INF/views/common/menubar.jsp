@@ -89,7 +89,7 @@
 			<div class="loginmenu" id="veil"></div>
 			<!-- 비로그인 시 메뉴창 출력 -->
 		<c:if test="${ empty sessionScope.loginUser }">
-			<div id="login-menu" class=" dropdown-menu-right loginmenu" aria-labelledby="loginMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			<div id="login-menu" class="loginmenu">
 				<div style="text-align:center;" class="mb-2"> LOGIN </div>
 				<form action="login.dr" method="POST">
 					<table id="login-table" class="form-group">
@@ -101,7 +101,7 @@
 						</tr>
 						<tr>
 							<td class="loginmenuText custom-control custom-checkbox my-1">
-								<input type="checkbox" class="custom-control-input" vlaue="autoLogin" id="autoLogin"><label class="custom-control-label" for="autoLogin" >자동 로그인</label>
+								<input type="checkbox" class="custom-control-input" value="autoLogin" id="autoLogin"><label class="custom-control-label" for="autoLogin" >자동 로그인</label>
 								<a href="#" class="gray float-right">비밀번호 찾기</a>
 							</td>
 						</tr>
