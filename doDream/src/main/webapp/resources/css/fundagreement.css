@@ -1,0 +1,347 @@
+@charset "UTF-8"; 
+@font-face {
+  font-family: 'wadizicon';
+  font-weight: normal;
+  font-style: normal;
+  src: url(https://static.wadiz.kr/web/media/wadizicon.3e3fefd2.eot?#iefix) format("embedded-opentype"), url(https://static.wadiz.kr/web/media/wadizicon.4d6700b5.woff2) format("woff2"), url(https://static.wadiz.kr/web/media/wadizicon.ce251d85.woff) format("woff"), url(https://static.wadiz.kr/web/media/wadizicon.804eb639.ttf) format("truetype"), url(https://static.wadiz.kr/web/media/wadizicon.09ef35af.svg#wadizicon) format("svg"); }
+.reward-create {
+	position: relative;
+	padding: 24px 24px;
+	min-height: calc(80vh - 56px);
+	line-height: 20px;
+	color: rgba(0, 0, 0, .54);
+	font-size: 15px;
+	font-weight: 400;
+	box-sizing: border-box
+}
+
+@media screen and (min-width:769px) {
+	.reward-create {
+		margin: 0 auto;
+		padding: 0;
+		max-width: 700px;
+		line-height: 36px;
+		font-size: 17px
+	}
+}
+
+@media screen and (min-width:1097px) {
+	.reward-create {
+		max-width: 1020px
+	}
+}
+
+@media screen and (min-width:769px) {
+	.reward-create-process {
+		margin: 0 auto;
+		padding: 112px 0 54px;
+		width: 100%;
+		text-align: center;
+	}
+}
+
+.reward-create .progress {
+	background: rgba(0, 0, 0, .06);
+	width: 100%
+}
+
+.reward-create .progress, .reward-create .progress div {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 4px;
+	line-height: 0;
+	font-size: 0
+}
+
+.reward-create .progress div {
+	transition: width .3s ease-in;
+	background: #00c4c4
+}
+
+@media screen and (min-width:769px) {
+	.reward-create .progress {
+		padding-top: 12px;
+		color: rgba(0, 0, 0, .84)
+	}
+	.reward-create .progress, .reward-create .progress div {
+		background: none;
+		line-height: 20px;
+		font-size: 15px
+	}
+	.reward-create .progress div {
+		display: inline;
+		position: static;
+		top: auto;
+		left: auto;
+		width: auto;
+		height: auto
+	}
+}
+
+.reward-create .process-title {
+	margin-bottom: 12px;
+	line-height: 32px;
+	color: rgba(0, 0, 0, .84);
+	font-size: 24px;
+	font-weight: 700
+}
+
+@media screen and (min-width:769px) {
+	.reward-create .process-title {
+		line-height: 36px;
+		font-size: 28px
+	}
+}
+
+.reward-create .process-desc {
+	margin-bottom: 24px;
+	word-break: keep-all
+}
+
+@media screen and (min-width:769px) {
+	.reward-create .process-desc {
+		margin-bottom: 40px
+	}
+}
+
+@media screen and (min-width:769px) {
+	.reward-create .process-desc, .reward-create .process-title {
+		text-align: center
+	}
+}
+
+.reward-create .wz-field {
+	margin: 32px 0
+}
+
+.reward-create .wz-field .ui.selectbox {
+	margin: 0
+}
+
+.reward-create .wz-field textarea {
+	min-height: 100px;
+	box-sizing: border-box
+}
+
+.reward-create .wz-field .helper-text {
+	margin-top: 6px;
+	line-height: 18px;
+	color: rgba(0, 0, 0, .54);
+	font-size: 13px;
+	font-weight: 400
+}
+
+.reward-create .wz-field.error .helper-text {
+	color: #f25555
+}
+
+.reward-create .wz-field.error .ui.selectbox, .reward-create .wz-field.error .wz-input-text,
+	.reward-create .wz-field.error .wz-textarea {
+	background-color: rgba(255, 155, 155, .06)
+}
+
+.reward-create .wz-field.error .ui.selectbox {
+	border-color: #ff7373
+}
+
+.reward-create .checklist {
+	list-style: none;
+	color: rgba(0, 0, 0, .84)
+}
+
+.reward-create .checklist .link {
+	display: inline-block;
+	margin-top: 2px;
+	text-decoration: underline;
+	color: rgba(0, 0, 0, .84);
+	font-size: 13px
+}
+
+.reward-create .ui.checkbox input[type=checkbox] {
+	display: none
+}
+
+.reward-create .ui.checkbox label {
+	display: block;
+	position: relative;
+	cursor: pointer;
+	padding: 8px 0 8px 40px;
+	word-break: keep-all
+}
+
+@media screen and (min-width:769px) {
+	.reward-create .ui.checkbox label {
+		padding: 12px 24px 12px 64px
+	}
+}
+
+.reward-create .ui.checkbox label:before {
+	display: inline-block;
+	vertical-align: middle;
+	text-transform: none;
+	line-height: 1;
+	font-family:wadizicon!important;
+	font-weight: 400;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	font-style: normal;
+	font-variant: normal;
+	speak: none;
+	content: "";
+	position: absolute;
+	top: 30px;
+	left: 0;
+	transition-property: background-color, border-color, opacity, color;
+	transition-duration: .2s;
+	opacity: .4;
+	margin-top: -12.5px;
+	border: 1px solid rgba(0, 0, 0, .54);
+	border-radius: 50%;
+	background-color: #fff;
+	padding: 3px;
+	width: 25px;
+	height: 25px;
+	color: rgba(0, 0, 0, .54);
+	font-size: 18px;
+	box-sizing: border-box
+}
+
+@media screen and (min-width:769px) {
+	.reward-create .ui.checkbox label:before {
+		left: 25px
+	}
+}
+
+.reward-create .ui.checkbox input[type=checkbox]:checked+label:before {
+	opacity: 1;
+	border-color: #F39C12;
+	background-color: #F39C12;
+	color: #fff;
+}
+
+.reward-create .bottom {
+	margin: 48px 0
+}
+
+.reward-create .bottom .wz-btn {
+	text-align: center
+}
+
+.reward-create .bottom:after {
+	display: block;
+	clear: both;
+	content: ""
+}
+
+@media screen and (min-width:769px) {
+	.reward-create .bottom {
+		border-top: 1px solid rgba(0, 0, 0, .1);
+		padding-top: 18px
+	}
+	.reward-create .bottom .wz.button.primary {
+		float: right
+	}
+	.reward-create .bottom .wz.button.less {
+		float: left;
+		margin-top: 6px
+	}
+}
+
+.ui.selectbox em {
+	display: block;
+	color: #f66;
+	font-size: 13px
+}
+
+.ui.selectbox {
+	position: relative;
+	margin: 24px 0;
+	border: 1px solid #e6eaed;
+	background: #fff;
+	height: auto;
+	font-size: 0
+}
+
+.ui.selectbox:after, .ui.selectbox select, .ui.selectbox span {
+	padding: 16px;
+	line-height: 25px
+}
+
+.ui.selectbox:after {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	z-index: 1;
+	line-height: 25px;
+	font-size: 24.99px;
+	display: inline-block;
+	margin-top: -.2em;
+	vertical-align: middle;
+	text-transform: none;
+	line-height: 1;
+	font-weight: 400;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	font-style: normal;
+	font-variant: normal;
+	speak: none;
+	content: " "
+}
+
+.ui.selectbox select {
+	position: relative;
+	z-index: 2;
+	outline: none;
+	border: 0;
+	border-radius: 0;
+	background: transparent;
+	width: 100%;
+	height: 100%;
+	font-size: 17px;
+	-webkit-appearance: none
+}
+
+.ui.selectbox select:disabled, .ui.selectbox select[disabled] {
+	z-index: 1;
+	background-color: #F39C12
+}
+
+.ui.selectbox span {
+	position: absolute;
+	top: 0;
+	left: 0;
+	padding-right: 43px;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	color: #60656a;
+	font-family: Roboto, Noto Sans KR, -apple-system, Dotum, sans-serif;
+	font-size: 17px;
+	box-sizing: border-box
+}
+
+.ui.selectbox.disabled {
+	background-color: #f0f2f5
+}
+
+.ui.selectbox.disabled span {
+	z-index: 3
+}
+
+.ui.selectbox em {
+	position: absolute;
+	bottom: -19px;
+	left: 0;
+	line-height: 1.3em
+}
+
+.msie .ui.selectbox span {
+	line-height: normal
+}
+
+.msie .ui.selectbox:after {
+	bottom: -5px
+}
