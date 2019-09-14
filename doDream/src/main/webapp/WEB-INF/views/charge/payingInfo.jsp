@@ -6,6 +6,9 @@
 <meta charset="UTF-8">
 <title>INFO</title>
 <%@ include file="../common/menubar.jsp" %>
+<!-- 가상 숫자패드 CSS/JS -->
+<link rel="stylesheet" type="text/css" href="resources/css/jquery.numberKeypad.css">
+<script type="text/javascript" src="resources/js/jquery.numberKeypad.js"></script>
 <style>
 	div {
 		/* border : 1px solid red; */
@@ -50,12 +53,23 @@
 		color: #777;
 		line-height: 10px;
 	}
+	#ship1, #ship2 {
+		display: none;
+	}
+	.borderRed {
+		border: 1px solid crimson;
+	}
+	.textRed {
+		color: crimson;
+		font-size: 13px;
+		display: none;
+	}
 </style>
 </head>
 <body>
-	<section id="payingInfo">
+	<section id="payingInfo" class="my-5">
 		<h1 align="center">뚝딱뚝딱</h1>
-		<div class="container-fluid">
+		<div class="container-fluid mb-5">
 			<div class="row">
 				<div class="col-md-3">
 				</div>
@@ -111,62 +125,70 @@
 							<h3>리워드 배송지</h3>
 							<!-- 회원정보에 주소지가 입력되어 있을 때 기존 배송지 정보 출력 -->
 							<c:if test="${ sessionScope.loginUser.address != null }">
-							<span class="custom-control custom-radio">
+							<span class="custom-control custom-radio mx-4 my-3">
 								<input type="radio" name="address" id="current" class="custom-control-input" checked><label class="custom-control-label mr-5" for="current">기본 배송지</label>
 							</span>
 							</c:if>
-							<span class="custom-control custom-radio">
+							<span class="custom-control custom-radio mx-4 my-3">
 								<input type="radio" name="address" id="newAddress" class="custom-control-input"><label class="custom-control-label" for="newAddress">새 배송지</label>
 							</span>
 							<div id="ship1">
 								<div class="row">
 									<div class="col-md-6">
-										<label>이름</label><input type="text" name="shipName" id="shipName" class="form-control" >
+										<label>이름</label><input type="text" name="ship1Name" id="ship1Name" class="form-control">
 									</div>
 									<div class="col-md-6">
-										<label>전화번호</label><input type="text" name="shipPhone" id="shipPhone" class="form-control" >
+										<label>전화번호</label><input type="text" name="ship1Phone" id="ship1Phone" class="form-control" >
 									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6"></div>
+									<div class="col-md-6" id="phoneTest"><span>하이픈(-)을 제외한 전화번호10~11자리를 입력해주세요</span></div>
 								</div>
 								<label class="mr-3">주소</label>
 								<div class="row mb-1">
 									<div class="col-md-9">
-										<input type="text" name="shipAddress1" id="shipAddress1" placeholder="주소" class="form-control" >
+										<input type="text" name="ship1Address1" id="ship1Address1" placeholder="주소" class="form-control" >
 									</div>
 									<div class="col-md-3">
 										<button class="btn btn-warning btn-block">우편번호 검색</button>
 									</div>
 								</div>
-								<input type="text" name="shipAddress2" id="shipAddress2" placeholder="상세주소" class="form-control">
+								<input type="text" name="ship1Address2" id="ship1Address2" placeholder="상세주소" class="form-control">
 								<hr>
-								<label>배송시 요청사항(선택)</label><br><input type="text" name="comment" id="comment" class="form-control" >
+								<label>배송시 요청사항(선택)</label><br><input type="text" name="comment1" id="comment1" class="form-control" >
 								<hr>
 							</div>
-							<!-- <div id="ship2">
+							<div id="ship2">
 								<div class="row">
 									<div class="col-md-6">
-										<label>이름</label><input type="text" name="shipName" id="shipName" class="form-control" >
+										<label>이름</label><input type="text" name="ship2Name" id="ship2Name" class="form-control" placeholder="받으실 분의 성함을 입력해주세요">
 									</div>
 									<div class="col-md-6">
-										<label>전화번호</label><input type="text" name="shipPhone" id="shipPhone" class="form-control" >
+										<label>전화번호</label><input type="text" name="ship2Phone" id="ship2Phone" class="form-control" placeholder="연락 가능한 번호를 입력해주세요">
 									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6"></div>
+									<div class="col-md-6"><span class="textRed">하이픈(-)을 제외한 전화번호10~11자리를 입력해주세요</span></div>
 								</div>
 								<label class="mr-3">주소</label>
 								<div class="row mb-1">
 									<div class="col-md-9">
-										<input type="text" name="shipAddress1" id="shipAddress1" placeholder="주소" class="form-control" >
+										<input type="text" name="ship2Address1" id="ship2Address1" placeholder="주소" class="form-control" >
 									</div>
 									<div class="col-md-3">
 										<button class="btn btn-warning btn-block">우편번호 검색</button>
 									</div>
 								</div>
-								<input type="text" name="shipAddress2" id="shipAddress2" placeholder="상세주소" class="form-control">
+								<input type="text" name="ship2Address2" id="ship2Address2" placeholder="상세주소를 입력해주세요" class="form-control">
 								<hr>
-								<label>배송시 요청사항(선택)</label><br><input type="text" name="comment" id="comment" class="form-control" >
+								<label>배송시 요청사항(선택)</label><br><input type="text" name="comment2" id="comment2" class="form-control" placeholder="배송시 요청사항을 입력해주세요">
 								<hr>
-							</div> -->
+							</div>
 						</div>
 					</div>
-					<div class="row">
+					<div class="row my-4">
 						<div class="col-md-12">
 						<h3>결제 정보</h3>
 							<div class="row">
@@ -178,10 +200,10 @@
 											</td>
 										</tr>
 										<tr>
-											<td><input type="text" name="card1" id="card1" class="form-control form-control-sm" ></td>
-											<td><input type="text" name="card2" id="card2" class="form-control form-control-sm" ></td>
-											<td><input type="text" name="card3" id="card3" class="form-control form-control-sm" ></td>
-											<td><input type="text" name="card4" id="card4" class="form-control form-control-sm" ></td>
+											<td><input type="text" name="card1" id="card1" class="form-control form-control-sm" maxlength="4"></td>
+											<td><input type="text" name="card2" id="card2" class="form-control form-control-sm" maxlength="4"></td>
+											<td><input type="text" name="card3" id="card3" class="form-control form-control-sm" maxlength="4"></td>
+											<td><input type="text" name="card4" id="card4" class="form-control form-control-sm" maxlength="4"></td>
 										</tr>
 										<tr>
 											<td colspan="2">
@@ -217,9 +239,26 @@
 							</div>
 						</div>
 					</div>
-					<div class="row">
+					<div class="row my-4">
+						<h3>약관 동의</h3>
 						<div class="col-md-12">
-							<h3>약관 동의</h3>
+							<hr>
+							<span class="custom-control custom-checkbox">
+								<input type="checkbox" class="custom-control-input" value="allCheck" id="allCheck"><label class="custom-control-label" for="allCheck" >전체 동의하기</label>
+							</span>
+							<hr>
+							<span class="custom-control custom-checkbox">
+								<input type="checkbox" class="custom-control-input" value="agree1" id="agree1"><label class="custom-control-label" for="agree1" >제 3자에 대한 개인정보 제공 동의</label>
+							</span>
+							<span class="custom-control custom-checkbox my-2">
+								<input type="checkbox" class="custom-control-input" value="agree2" id="agree2"><label class="custom-control-label" for="agree2" >책임 규정에 대한 동의</label>
+							</span>
+							<hr>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12 text-center">
+							<button class="btn btn-warning btn-lg">결제 예약하기</button>
 						</div>
 					</div>
 				</div>
@@ -228,5 +267,71 @@
 			</div>
 		</div>
 	</section>
+<script>
+	$(function(){
+		// 가상 키패드 LOADING
+		$('#card2').numberKeypad({
+			// wrap: $('.wrapper'),
+			arrKeys: [1, 2, 3, 4, 5, 6, 7, 8, 9, 'x', 0, 'ok'],
+			login: false // 이하 커스텀 스타일
+		});
+		// 전체동의하기 체크하면 전체 체크처리
+		$("#allCheck").on("click", function(){
+			if( $(this).is(":checked") ) {
+				$("#agree1").prop("checked","checked");
+				$("#agree2").prop("checked","checked");
+			} else {
+				$("#agree1").prop("checked", false);
+				$("#agree2").prop("checked", false);
+			}
+		});
+		// 각각의 동의문 전부 체크되면 전체동의하기 체크처리
+		$("input:checkbox").on("click", function(){
+			if ( $("#agree1").is(":checked") && $("#agree2").is(":checked") ) {
+				$("#allCheck").prop("checked","checked");
+			} else {
+				$("#allCheck").prop("checked",false);
+			}
+			console.log($("#allCheck").is(":checked"));
+			console.log($("#agree1").is(":checked"));
+			console.log($("#agree2").is(":checked"));
+		});
+		// 기존배송지 - 새 배송지 페이지 진입시 보여줄 페이지 선택
+		if ( $("input[type=radio]").length == 1 ) {
+			console.log("기존 배송지가 없음");
+			$("#ship2").show();
+		} else {
+			console.log("기존 배송지가 있음");
+			$("#ship1").show();
+		}
+		// 기존배송지 - 새배송지 전환시 입력Area 전환
+		$("input:radio").on("click", function(){
+			if ($("#current").is(":checked")) { 
+				// 기존 배송지가 체크할 경우 기존 배송지 출력
+				$("#ship1").show();
+				$("#ship2").hide();
+			}
+			if ($("#newAddress").is(":checked")) {
+				// 새 배송지 체크할 경우 새 배송지 출력
+				$("#ship1").hide();
+				$("#ship2").show();
+			}
+		});
+		// 전화번호 정규식 검사
+		$("input[id$=Phone]").on("blur",function(){
+			var regExp = /^\d{3}\d{3,4}\d{4}$/;
+			var pNum = $(this).val();
+			if ( regExp.test(pNum) ) {
+				// 정규식 통과할 경우 평범한 색으로 되돌림
+				$(this).removeClass("borderRed");
+				$(this).parent().parent().next().children().eq(1).children().hide();
+			} else {
+				// 정규식 통과하지 못할 경우 테두리를 빨간색으로 만듬
+				$(this).addClass("borderRed");
+				$(this).parent().parent().next().children().eq(1).children().show();
+			}
+		});
+	});
+</script>
 </body>
 </html>

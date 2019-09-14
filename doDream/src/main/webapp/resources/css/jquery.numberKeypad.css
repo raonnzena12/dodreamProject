@@ -1,0 +1,64 @@
+.keypad {
+  position:absolute;
+  top:0;
+  left:0;
+  padding: 20px;
+  width:100%;
+  max-width: 250px;
+  background-color:#eceef1;
+  z-index:100;
+  border-radius:20px;
+  transition:opacity .5s, left .2s;
+  /* IE 8 */
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  /* IE 5-7 */
+  filter: alpha(opacity=0);
+  /* Netscape */
+  -moz-opacity: 0;
+  /* Safari 1.x */
+  -khtml-opacity: 0;
+  /* Good browsers */
+  opacity: 0;
+  display:none;
+}
+.keypad.on {
+  /* IE 8 */  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+  /* IE 5-7 */  filter: alpha(opacity=100);
+  /* Netscape */  -moz-opacity: 1;
+  /* Safari 1.x */  -khtml-opacity: 1;
+  /* Good browsers */ opacity: 1;
+  display:block;
+}
+.keypad .item { margin-bottom:15px; }
+.keypad .item:last-child { margin-bottom:0; }
+.keypad .item a {
+  width: 60px;
+  height: 60px;
+  border:2px solid #fff;
+  border-radius: 10px;
+  box-shadow: 0 1px 5px rgba(0,0,0,.2);
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  text-decoration: none;
+  color:#172638;
+}
+.keypad .item a.n {font-size: 1.7rem;}
+.keypad .item a.ok {font-size: .8rem;}
+.keypad .item a.back span {position:relative;color:#fff;background-color:#172638;padding: 0 10px 0 5px;text-align:center;line-height: 24px;}
+.keypad .item a.back span::before {content: "";position: absolute;left: -12px;bottom: 0;width: 0;height: 0;border-right: 12px solid #172638;border-top: 12px solid transparent;border-bottom: 12px solid transparent;}
+
+.keypad .item a.hover { background-color:#c7daf4; }
+.keypad .item a:active { background-color:#829fc4; color:#fff; }
+/*.keypad .item a.back:active span { background-color:#fff; color:#829fc4; }*/
+/*.keypad .item a.back:active span::before { border-right: 12px solid #fff; }*/
+
+
+@media all and (max-width:767px){
+  .keypad { position:fixed; bottom:0; max-width:320px; padding:15px 20px; border-bottom-left-radius: 0; border-bottom-right-radius: 0; }
+  .keypad .item a { width:80px; height:80px; }
+
+  .web { display:none !important; }
+  .web-ib { display:none !important; }
+  .mob { display:block !important; }
+}
