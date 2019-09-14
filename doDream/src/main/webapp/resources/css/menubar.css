@@ -94,6 +94,9 @@ background-color: #8E44AD;
     border:none;
     text-align: right;
 }
+#titleSearch:focus  {
+    outline: none;
+}
 #titleSearchSubmit {
     cursor: pointer;
 }
