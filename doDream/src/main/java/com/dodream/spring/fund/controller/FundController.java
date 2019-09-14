@@ -12,7 +12,6 @@ public class FundController {
 	@Autowired
 	private FundService fService;
 
-	
 	/**
 	 * 메뉴바에서 펀드 등록하기 클릭시 프로젝트 동의 페이지로 이동
 	 * @return insertFundAgreement.jsp
