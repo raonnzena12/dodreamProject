@@ -52,9 +52,6 @@
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>*.dr</url-pattern>
 	</servlet-mapping>
-	
-
-	
 
 	
 	<!-- 한글 인코딩 처리용 필터 -->

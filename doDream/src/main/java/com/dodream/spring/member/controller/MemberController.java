@@ -36,4 +36,9 @@ public class MemberController {
 			return "common/errorPage";
 		}
 	}
+	@RequestMapping("cCenter.no")
+	public String cCenter() {
+		return "customerCenter/notice";
+	}
+	
 }

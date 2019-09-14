@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,7 +31,7 @@
 </head>
 <body>
     <!-- footer URL --> 
-    <c:url var="customerCenter" value="#" />
+    <c:url var="customerCenter" value="cCenter.dr" />
     <c:url var="facebook" value="#" />
     <c:url var="instargram" value="#" />
     <c:url var="twitter" value="#" />
