@@ -6,65 +6,11 @@
 <meta charset="UTF-8">
 <title>INFO</title>
 <%@ include file="../common/menubar.jsp" %>
-<!-- 가상 숫자패드 CSS/JS -->
+<link rel="stylesheet" type="text/css" href="resources/css/payingInfo.css">
+<script type="text/javascript" src="resources/js/payingInfo.js"></script>
+<!-- 가상 숫자패드 CSS/JS --> 
 <link rel="stylesheet" type="text/css" href="resources/css/jquery.numberKeypad.css">
 <script type="text/javascript" src="resources/js/jquery.numberKeypad.js"></script>
-<style>
-	div {
-		/* border : 1px solid red; */
-	}
-	#payingTable td:nth-child(2) {
-		text-align: right
-	}
-	#rewardTitle {
-		color: #8E44AD;
-		font-weight: 900;
-		font-size: 17px;
-	}
-	#payingInfo .textSize-15 {
-		font-size: 15px;
-	}
-	#payingTable input[type=text] {
-		border: none;
-		background-color: rgba(255,255,255,0);
-		text-align: right;
-		padding-right: 5px;
-	}
-	#payingTable input[type=text]:focus {
-		outline: none;
-	}
-	#payingInfo .textHl-p {
-		color: #8E44AD;
-		font-weight: 900;
-		font-size: 1.15em;
-	}
-	/* 커스텀 라디오 버튼 색상 변경 */
-	#payingInfo .custom-control-input:checked~.custom-control-label::before {
-		color: #fff;
-		border-color: #8E44AD;
-		background-color: #8E44AD;
-	}
-	#creditCard {
-		border-collapse: separate;
-		border-spacing: 2px;
-	}
-	#payingInfo .graytext{
-		font-size: 13px;
-		color: #777;
-		line-height: 10px;
-	}
-	#ship1, #ship2 {
-		display: none;
-	}
-	.borderRed {
-		border: 1px solid crimson;
-	}
-	.textRed {
-		color: crimson;
-		font-size: 13px;
-		display: none;
-	}
-</style>
 </head>
 <body>
 	<section id="payingInfo" class="my-5">
@@ -145,7 +91,7 @@
 									<div class="col-md-6"></div>
 									<div class="col-md-6" id="phoneTest"><span>하이픈(-)을 제외한 전화번호10~11자리를 입력해주세요</span></div>
 								</div>
-								<label class="mr-3">주소</label>
+								<label class="mr-3 mt-4">주소</label>
 								<div class="row mb-1">
 									<div class="col-md-9">
 										<input type="text" name="ship1Address1" id="ship1Address1" placeholder="주소" class="form-control" >
@@ -172,7 +118,7 @@
 									<div class="col-md-6"></div>
 									<div class="col-md-6"><span class="textRed">하이픈(-)을 제외한 전화번호10~11자리를 입력해주세요</span></div>
 								</div>
-								<label class="mr-3">주소</label>
+								<label class="mr-3 mt-4">주소</label>
 								<div class="row mb-1">
 									<div class="col-md-9">
 										<input type="text" name="ship2Address1" id="ship2Address1" placeholder="주소" class="form-control" >
@@ -200,10 +146,10 @@
 											</td>
 										</tr>
 										<tr>
-											<td><input type="text" name="card1" id="card1" class="form-control form-control-sm" maxlength="4"></td>
-											<td><input type="text" name="card2" id="card2" class="form-control form-control-sm" maxlength="4"></td>
-											<td><input type="text" name="card3" id="card3" class="form-control form-control-sm" maxlength="4"></td>
-											<td><input type="text" name="card4" id="card4" class="form-control form-control-sm" maxlength="4"></td>
+											<td><input type="number" name="card1" id="card1" class="form-control form-control-sm" maxlength="4"></td>
+											<td><input type="number" name="card2" id="card2" class="form-control form-control-sm" maxlength="4"></td>
+											<td><input type="number" name="card3" id="card3" class="form-control form-control-sm" maxlength="4"></td>
+											<td><input type="number" name="card4" id="card4" class="form-control form-control-sm" maxlength="4"></td>
 										</tr>
 										<tr>
 											<td colspan="2">
@@ -215,7 +161,7 @@
 										</tr>
 										<tr>
 											<td colspan="2"><input type="text" name="validity" id="validity" class="form-control form-control-sm" placeholder="MM/YY"></td>
-											<td colspan="2"><input type="text" name="cPassword" id="cPassword" class="form-control form-control-sm" placeholder="앞 2자리"></td>
+											<td colspan="2"><input type="number" name="cPassword" id="cPassword" class="form-control form-control-sm" placeholder="앞 2자리"></td>
 										</tr>
 										<tr>
 											<td colspan="4">
@@ -225,7 +171,7 @@
 										</tr>
 										<tr>
 											<td colspan="4">
-												<input type="text" name="birthYND" id="birthYND" class="form-control form-control-sm" >
+												<input type="number" name="birthYND" id="birthYND" class="form-control form-control-sm" >
 											</td>
 										</tr>
 									</table>
@@ -267,71 +213,5 @@
 			</div>
 		</div>
 	</section>
-<script>
-	$(function(){
-		// 가상 키패드 LOADING
-		$('#card2').numberKeypad({
-			// wrap: $('.wrapper'),
-			arrKeys: [1, 2, 3, 4, 5, 6, 7, 8, 9, 'x', 0, 'ok'],
-			login: false // 이하 커스텀 스타일
-		});
-		// 전체동의하기 체크하면 전체 체크처리
-		$("#allCheck").on("click", function(){
-			if( $(this).is(":checked") ) {
-				$("#agree1").prop("checked","checked");
-				$("#agree2").prop("checked","checked");
-			} else {
-				$("#agree1").prop("checked", false);
-				$("#agree2").prop("checked", false);
-			}
-		});
-		// 각각의 동의문 전부 체크되면 전체동의하기 체크처리
-		$("input:checkbox").on("click", function(){
-			if ( $("#agree1").is(":checked") && $("#agree2").is(":checked") ) {
-				$("#allCheck").prop("checked","checked");
-			} else {
-				$("#allCheck").prop("checked",false);
-			}
-			console.log($("#allCheck").is(":checked"));
-			console.log($("#agree1").is(":checked"));
-			console.log($("#agree2").is(":checked"));
-		});
-		// 기존배송지 - 새 배송지 페이지 진입시 보여줄 페이지 선택
-		if ( $("input[type=radio]").length == 1 ) {
-			console.log("기존 배송지가 없음");
-			$("#ship2").show();
-		} else {
-			console.log("기존 배송지가 있음");
-			$("#ship1").show();
-		}
-		// 기존배송지 - 새배송지 전환시 입력Area 전환
-		$("input:radio").on("click", function(){
-			if ($("#current").is(":checked")) { 
-				// 기존 배송지가 체크할 경우 기존 배송지 출력
-				$("#ship1").show();
-				$("#ship2").hide();
-			}
-			if ($("#newAddress").is(":checked")) {
-				// 새 배송지 체크할 경우 새 배송지 출력
-				$("#ship1").hide();
-				$("#ship2").show();
-			}
-		});
-		// 전화번호 정규식 검사
-		$("input[id$=Phone]").on("blur",function(){
-			var regExp = /^\d{3}\d{3,4}\d{4}$/;
-			var pNum = $(this).val();
-			if ( regExp.test(pNum) ) {
-				// 정규식 통과할 경우 평범한 색으로 되돌림
-				$(this).removeClass("borderRed");
-				$(this).parent().parent().next().children().eq(1).children().hide();
-			} else {
-				// 정규식 통과하지 못할 경우 테두리를 빨간색으로 만듬
-				$(this).addClass("borderRed");
-				$(this).parent().parent().next().children().eq(1).children().show();
-			}
-		});
-	});
-</script>
 </body>
 </html>
