@@ -77,7 +77,7 @@
 					<!-- 비로그인 시 출력 -->
 					<c:if test="${ empty sessionScope.loginUser }">
 						로그인 / 회원가입
-					</c:if>
+					</c:if>  
 					<!-- 로그인 시 출력 -->
 					<c:if test="${ !empty sessionScope.loginUser }">
 						<c:out value="${ loginUser.userNickname }님 환영합니다"/>

@@ -2,6 +2,12 @@
 var $padActive = false; // is active keypad visible :: global
 
 (function ($) {
+    // 셔플함수
+    $.shuffle = function(arr) {
+      for(var j, x, i = arr.length; i; j = parseInt(Math.random() * i), x = arr[--i], arr[i] = arr[j], arr[j] = x);
+      return arr;
+    }
+
     $.fn.numberKeypad = function (options) {
         var $this = this;
         var $wrapper; // parent container
@@ -9,6 +15,13 @@ var $padActive = false; // is active keypad visible :: global
         return $this.each(function (i, elem) {
             var self = $(elem);
             var strItem = '';
+            var tmpArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+            $.shuffle(tmpArr);
+
+// 집에가서 여기 작성하시오
+// 여기여기
+// 여기여기
+
             var settings = $.extend({
                 wrap: 'body',
                 arrKeys: [1, 2, 3, 4, 5, 6, 7, 8, 9, 'x', 0, 'ok'],
