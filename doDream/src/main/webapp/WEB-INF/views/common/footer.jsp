@@ -30,7 +30,7 @@
 </head>
 <body>
     <!-- footer URL --> 
-    <c:url var="customerCenter" value="#" />
+    <c:url var="customerCenter" value="cCenter.dr" />
     <c:url var="facebook" value="#" />
     <c:url var="instargram" value="#" />
     <c:url var="twitter" value="#" />
