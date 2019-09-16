@@ -19,7 +19,7 @@
 #ac label {
   display: block;
   float: left;
-  height: 1000px;
+  height: auto;
   width: 40px;
   overflow: hidden;	
   background: #8E44AD40;
