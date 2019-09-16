@@ -1,0 +1,33 @@
+@charset "UTF-8";
+#insert-table {
+    width: 70%;
+    border-spacing: 10px;
+    border-collapse: separate;
+    margin: auto;
+    padding: auto;
+}
+/* #emailauthbtn{
+	width: 80px;
+	height: 40px;
+} */
+#insertbtn, #emailauthbtn {
+    background-color: #FFCD01;
+    color: #fff;
+    font-weight: 900;
+}
+
+#insertbtn:hover{
+    background-color: #F39C12;
+}
+#emailauthbtn:hover{
+    background-color: #F39C12;
+}
+
+.custom-control-input:checked~.custom-control-label::before {
+	color: #fff;
+	border-color: #8E44AD;
+	background-color: #8E44AD;
+}
+#joinFormOuter ::placeholder {
+  font-size: 13px;
+}
