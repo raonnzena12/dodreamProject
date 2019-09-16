@@ -35,7 +35,7 @@
 </head>
 <body>
 	<section id="mainMenuBar">
-	<div class="mainLogoArea" id="mainLogoArea"><span>두드림 로고 들어가는부분</span></div>
+	<div class="mainLogoArea" id="mainLogoArea"><img src="resources/images/DoDream-2e.png" alt="두드림" id="mainLogo"></div>
 	<nav class="navbar navbar-expand-lg navbar-light" id="naviBar">
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
@@ -49,7 +49,7 @@
 				</a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 					<a class="dropdown-item" href="home.dr">홈</a>
-					<a class="dropdown-item" href="#">카테고리</a>
+					<a class="dropdown-item" href="category.dr">카테고리</a>
 					<!-- 카테고리 소분류 입력할것 -->
 					<a class="dropdown-item" href="#">Something else here</a>
 				</div>
