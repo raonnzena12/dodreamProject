@@ -1,11 +1,14 @@
 package com.dodream.spring.member.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import com.dodream.spring.member.model.service.MemberService;
 import com.dodream.spring.member.model.vo.Member;
@@ -17,8 +20,9 @@ public class MemberController {
 	@Autowired
 	private MemberService mService;
 
-	/** 
+	/**
 	 * 로그인 Controller
+	 * 
 	 * @param member
 	 * @param model
 	 * @return page
@@ -36,9 +40,19 @@ public class MemberController {
 			return "common/errorPage";
 		}
 	}
-	@RequestMapping("cCenter.no")
-	public String cCenter() {
-		return "customerCenter/notice";
+
+
+	/**
+	 * 로그아웃 Controller
+	 * 
+	 * @param status
+	 * @param session
+	 * @return page
+	 */
+	@RequestMapping("logout.dr")
+	public String memberLogout(SessionStatus status, HttpSession session) {
+		status.setComplete();
+		return "redirect:home.dr";
 	}
-	
+
 }

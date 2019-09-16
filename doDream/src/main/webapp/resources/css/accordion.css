@@ -4,62 +4,51 @@
   box-sizing: border-box;
 }
 
-html, body {
-  height: 100%;
-  margin: 0;
-}
-
-body {
-  background: #1C1F2B;
-  color: #fff;
-  font-family: 'Open Sans', sans-serif;
-}
-
 /* LIST */
-ul {
+#ac ul {
   list-style: none;
 }
 
 /* FORM */
-input {
+#ac input {
   position: absolute;
   top: -9999px;
   left: -9999px;
 }
 
-label {
+#ac label {
   display: block;
   float: left;
-  height: 100vh;
+  height: 1000px;
   width: 40px;
-  overflow: hidden;
-  background: #eeda6c7c;
+  overflow: hidden;	
+  background: #8E44AD40;
   text-align: center;
   font-size: 14px;
   line-height: 50px;
   transition: background 300ms ease;
 }
 
-li:nth-child(2) > input + label {
-  background: #eeda6cc7;
+#ac li:nth-child(2) > input + label {
+  background: #8E44AD50;
 }
 
-li:nth-child(3) > input + label {
-  background: #eeda6cec;
+#ac li:nth-child(3) > input + label {
+  background: #8E44AD60;
 }
 
-li:nth-child(4) > input + label {
-  background: #eeda6c;
+#ac li:nth-child(4) > input + label {
+  background: #8E44AD70;
 }
 
-label:hover,
-li > input + label:hover {
-  background: #fffb12;
+#ac label:hover,
+#ac li > input + label:hover {
+  background: #8E44AD;	
   color: #fff;
   cursor: pointer;
 }
 
-input[type="radio"]:checked ~ label {
+#ac input[type="radio"]:checked ~ label {
  
   color: #fff;
   cursor: default !important;
@@ -84,7 +73,7 @@ input[type="radio"]:checked ~ label {
   margin-top: 10px;
 }
 
-input[type="radio"]:not(:checked) ~ label > * {
+#ac input[type="radio"]:not(:checked) ~ label > * {
   padding-left: 7px;
   font-size: 1.2em;
   white-space: nowrap;
@@ -92,146 +81,146 @@ input[type="radio"]:not(:checked) ~ label > * {
           transform: rotate(90deg);
 }
 
-input[type="radio"]:checked ~ label > * {
+#ac input[type="radio"]:checked ~ label > * {
   display: none;
 }
 
-li:nth-child(1):nth-last-child(2) input[type="radio"]:checked ~ .accslide {
+#ac li:nth-child(1):nth-last-child(2) input[type="radio"]:checked ~ .accslide {
   width: calc(100% - 80px);
 }
 
-li:nth-child(2):nth-last-child(1) input[type="radio"]:checked ~ .accslide {
+#ac li:nth-child(2):nth-last-child(1) input[type="radio"]:checked ~ .accslide {
   width: calc(100% - 80px);
 }
 
-li:nth-child(1):nth-last-child(3) input[type="radio"]:checked ~ .accslide {
+#ac li:nth-child(1):nth-last-child(3) input[type="radio"]:checked ~ .accslide {
   width: calc(100% - 120px);
 }
 
-li:nth-child(2):nth-last-child(2) input[type="radio"]:checked ~ .accslide {
+#ac li:nth-child(2):nth-last-child(2) input[type="radio"]:checked ~ .accslide {
   width: calc(100% - 120px);
 }
 
-li:nth-child(3):nth-last-child(1) input[type="radio"]:checked ~ .accslide {
+#ac li:nth-child(3):nth-last-child(1) input[type="radio"]:checked ~ .accslide {
   width: calc(100% - 120px);
 }
 
-li:nth-child(1):nth-last-child(4) input[type="radio"]:checked ~ .accslide {
+#ac li:nth-child(1):nth-last-child(4) input[type="radio"]:checked ~ .accslide {
   width: calc(100% - 160px);
 }
 
-li:nth-child(2):nth-last-child(3) input[type="radio"]:checked ~ .accslide {
+#ac li:nth-child(2):nth-last-child(3) input[type="radio"]:checked ~ .accslide {
   width: calc(100% - 160px);
 }
 
-li:nth-child(3):nth-last-child(2) input[type="radio"]:checked ~ .accslide {
+#ac li:nth-child(3):nth-last-child(2) input[type="radio"]:checked ~ .accslide {
   width: calc(100% - 160px);
 }
 
-li:nth-child(4):nth-last-child(1) input[type="radio"]:checked ~ .accslide {
+#ac li:nth-child(4):nth-last-child(1) input[type="radio"]:checked ~ .accslide {
   width: calc(100% - 160px);
 }
 
-li:nth-child(1):nth-last-child(5) input[type="radio"]:checked ~ .accslide {
+#ac li:nth-child(1):nth-last-child(5) input[type="radio"]:checked ~ .accslide {
   width: calc(100% - 200px);
 }
 
-li:nth-child(2):nth-last-child(4) input[type="radio"]:checked ~ .accslide {
+#ac li:nth-child(2):nth-last-child(4) input[type="radio"]:checked ~ .accslide {
   width: calc(100% - 200px);
 }
 
-li:nth-child(3):nth-last-child(3) input[type="radio"]:checked ~ .accslide {
+#ac li:nth-child(3):nth-last-child(3) input[type="radio"]:checked ~ .accslide {
   width: calc(100% - 200px);
 }
 
-li:nth-child(4):nth-last-child(2) input[type="radio"]:checked ~ .accslide {
+#ac li:nth-child(4):nth-last-child(2) input[type="radio"]:checked ~ .accslide {
   width: calc(100% - 200px);
 }
 
-li:nth-child(5):nth-last-child(1) input[type="radio"]:checked ~ .accslide {
+#ac li:nth-child(5):nth-last-child(1) input[type="radio"]:checked ~ .accslide {
   width: calc(100% - 200px);
 }
 
-li:nth-child(1):nth-last-child(6) input[type="radio"]:checked ~ .accslide {
+#ac li:nth-child(1):nth-last-child(6) input[type="radio"]:checked ~ .accslide {
   width: calc(100% - 240px);
 }
 
-li:nth-child(2):nth-last-child(5) input[type="radio"]:checked ~ .accslide {
+#ac li:nth-child(2):nth-last-child(5) input[type="radio"]:checked ~ .accslide {
   width: calc(100% - 240px);
 }
 
-li:nth-child(3):nth-last-child(4) input[type="radio"]:checked ~ .accslide {
+#ac li:nth-child(3):nth-last-child(4) input[type="radio"]:checked ~ .accslide {
   width: calc(100% - 240px);
 }
 
-li:nth-child(4):nth-last-child(3) input[type="radio"]:checked ~ .accslide {
+#ac li:nth-child(4):nth-last-child(3) input[type="radio"]:checked ~ .accslide {
   width: calc(100% - 240px);
 }
 
-li:nth-child(5):nth-last-child(2) input[type="radio"]:checked ~ .accslide {
+#ac li:nth-child(5):nth-last-child(2) input[type="radio"]:checked ~ .accslide {
   width: calc(100% - 240px);
 }
 
-li:nth-child(6):nth-last-child(1) input[type="radio"]:checked ~ .accslide {
+#ac li:nth-child(6):nth-last-child(1) input[type="radio"]:checked ~ .accslide {
   width: calc(100% - 240px);
 }
 
-li:nth-child(1):nth-last-child(7) input[type="radio"]:checked ~ .accslide {
+#ac li:nth-child(1):nth-last-child(7) input[type="radio"]:checked ~ .accslide {
   width: calc(100% - 280px);
 }
 
-li:nth-child(2):nth-last-child(6) input[type="radio"]:checked ~ .accslide {
+#ac li:nth-child(2):nth-last-child(6) input[type="radio"]:checked ~ .accslide {
   width: calc(100% - 280px);
 }
 
-li:nth-child(3):nth-last-child(5) input[type="radio"]:checked ~ .accslide {
+#ac li:nth-child(3):nth-last-child(5) input[type="radio"]:checked ~ .accslide {
   width: calc(100% - 280px);
 }
 
-li:nth-child(4):nth-last-child(4) input[type="radio"]:checked ~ .accslide {
+#ac li:nth-child(4):nth-last-child(4) input[type="radio"]:checked ~ .accslide {
   width: calc(100% - 280px);
 }
 
-li:nth-child(5):nth-last-child(3) input[type="radio"]:checked ~ .accslide {
+#ac li:nth-child(5):nth-last-child(3) input[type="radio"]:checked ~ .accslide {
   width: calc(100% - 280px);
 }
 
-li:nth-child(6):nth-last-child(2) input[type="radio"]:checked ~ .accslide {
+#ac li:nth-child(6):nth-last-child(2) input[type="radio"]:checked ~ .accslide {
   width: calc(100% - 280px);
 }
 
-li:nth-child(7):nth-last-child(1) input[type="radio"]:checked ~ .accslide {
+#ac li:nth-child(7):nth-last-child(1) input[type="radio"]:checked ~ .accslide {
   width: calc(100% - 280px);
 }
 
-li:nth-child(1):nth-last-child(8) input[type="radio"]:checked ~ .accslide {
+#ac li:nth-child(1):nth-last-child(8) input[type="radio"]:checked ~ .accslide {
   width: calc(100% - 320px);
 }
 
-li:nth-child(2):nth-last-child(7) input[type="radio"]:checked ~ .accslide {
+#ac li:nth-child(2):nth-last-child(7) input[type="radio"]:checked ~ .accslide {
   width: calc(100% - 320px);
 }
 
-li:nth-child(3):nth-last-child(6) input[type="radio"]:checked ~ .accslide {
+#ac li:nth-child(3):nth-last-child(6) input[type="radio"]:checked ~ .accslide {
   width: calc(100% - 320px);
 }
 
-li:nth-child(4):nth-last-child(5) input[type="radio"]:checked ~ .accslide {
+#ac li:nth-child(4):nth-last-child(5) input[type="radio"]:checked ~ .accslide {
   width: calc(100% - 320px);
 }
 
-li:nth-child(5):nth-last-child(4) input[type="radio"]:checked ~ .accslide {
+#ac li:nth-child(5):nth-last-child(4) input[type="radio"]:checked ~ .accslide {
   width: calc(100% - 320px);
 }
 
-li:nth-child(6):nth-last-child(3) input[type="radio"]:checked ~ .accslide {
+#ac li:nth-child(6):nth-last-child(3) input[type="radio"]:checked ~ .accslide {
   width: calc(100% - 320px);
 }
 
-li:nth-child(7):nth-last-child(2) input[type="radio"]:checked ~ .accslide {
+#ac li:nth-child(7):nth-last-child(2) input[type="radio"]:checked ~ .accslide {
   width: calc(100% - 320px);
 }
 
-li:nth-child(8):nth-last-child(1) input[type="radio"]:checked ~ .accslide {
+#ac li:nth-child(8):nth-last-child(1) input[type="radio"]:checked ~ .accslide {
   width: calc(100% - 320px);
 }

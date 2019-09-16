@@ -1,0 +1,62 @@
+div {
+    /* border : 1px solid red; */
+}
+#payingTable td:nth-child(2) {
+    text-align: right
+}
+#rewardTitle {
+    color: #8E44AD;
+    font-weight: 900;
+    font-size: 17px;
+} 
+#payingInfo .textSize-15 {
+    font-size: 15px;
+}
+#payingTable input[type=text] {
+    border: none;
+    background-color: rgba(255,255,255,0);
+    text-align: right;
+    padding-right: 5px;
+}
+#payingTable input[type=text]:focus {
+    outline: none;
+}
+#payingInfo .textHl-p {
+    color: #8E44AD;
+    font-weight: 900;
+    font-size: 1.15em;
+}
+/* 커스텀 라디오 버튼 색상 변경 */
+#payingInfo .custom-control-input:checked~.custom-control-label::before {
+    color: #fff;
+    border-color: #8E44AD;
+    background-color: #8E44AD;
+}
+#creditCard {
+    border-collapse: separate;
+    border-spacing: 2px;
+}
+#payingInfo .graytext{
+    font-size: 13px;
+    color: #777;
+    line-height: 10px;
+}
+#ship1, #ship2 {
+    display: none;
+}
+#payingInfo .borderRed {
+    border: 1px solid crimson;
+}
+#payingInfo .textRed {
+    color: crimson;
+    font-size: 13px;
+    display: none;
+}
+#payingInfo input[type="number"]::-webkit-outer-spin-button,
+#payingInfo input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+#payingInfo input[type=number] {
+    background-color: #fff;
+}

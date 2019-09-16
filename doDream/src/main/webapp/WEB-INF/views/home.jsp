@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>SpringProject</title>
-<jsp:include page="common/menubar.jsp"/>
+<%@ include file="common/menubar.jsp" %>
 </head>
 <body>
     <jsp:include page="common/file.jsp" />

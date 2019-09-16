@@ -11,7 +11,6 @@
 <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
 <!-- 부트스트랩4.3 코어 삽입부입니다. -->
 <link rel="stylesheet" href="https://getbootstrap.com/docs/4.3/dist/css/bootstrap.min.css">
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <!-- google웹폰트 -->
@@ -66,7 +65,7 @@
 				<li>
 					<!-- FORM ACTION 지정할것 -->
 					<form class="form-inline" id="titleSearchForm" action="#" method="GET">
-						<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="titleSearch">
+						<input class="mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="titleSearch">
 						<i class="material-icons" id="titleSearchSubmit">search</i>
 					</form>
 				</li>
@@ -78,7 +77,7 @@
 					<!-- 비로그인 시 출력 -->
 					<c:if test="${ empty sessionScope.loginUser }">
 						로그인 / 회원가입
-					</c:if>
+					</c:if>  
 					<!-- 로그인 시 출력 -->
 					<c:if test="${ !empty sessionScope.loginUser }">
 						<c:out value="${ loginUser.userNickname }님 환영합니다"/>
@@ -89,7 +88,7 @@
 			<div class="loginmenu" id="veil"></div>
 			<!-- 비로그인 시 메뉴창 출력 -->
 		<c:if test="${ empty sessionScope.loginUser }">
-			<div id="login-menu" class=" dropdown-menu-right loginmenu" aria-labelledby="loginMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			<div id="login-menu" class="loginmenu">
 				<div style="text-align:center;" class="mb-2"> LOGIN </div>
 				<form action="login.dr" method="POST">
 					<table id="login-table" class="form-group">
@@ -101,7 +100,7 @@
 						</tr>
 						<tr>
 							<td class="loginmenuText custom-control custom-checkbox my-1">
-								<input type="checkbox" class="custom-control-input" vlaue="autoLogin" id="autoLogin"><label class="custom-control-label" for="autoLogin" >자동 로그인</label>
+								<input type="checkbox" class="custom-control-input" value="autoLogin" id="autoLogin"><label class="custom-control-label" for="autoLogin" >자동 로그인</label>
 								<a href="#" class="gray float-right">비밀번호 찾기</a>
 							</td>
 						</tr>
@@ -136,9 +135,10 @@
 			</div>
 		</c:if>	   
 		</div>
-		</div>
+		<!-- </div> -->
+		<!-- ↑??? -->
 	</nav>
 	</section>
-	<jsp:include page="footer.jsp" />
+	<%@ include file="footer.jsp" %>
 </body>
 </html>
