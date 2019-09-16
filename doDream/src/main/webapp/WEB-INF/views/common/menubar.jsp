@@ -65,7 +65,7 @@
 				<li>
 					<!-- FORM ACTION 지정할것 -->
 					<form class="form-inline" id="titleSearchForm" action="#" method="GET">
-						<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="titleSearch">
+						<input class="mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="titleSearch">
 						<i class="material-icons" id="titleSearchSubmit">search</i>
 					</form>
 				</li>
@@ -135,7 +135,8 @@
 			</div>
 		</c:if>	   
 		</div>
-		</div>
+		<!-- </div> -->
+		<!-- ↑??? -->
 	</nav>
 	</section>
 	<%@ include file="footer.jsp" %>
