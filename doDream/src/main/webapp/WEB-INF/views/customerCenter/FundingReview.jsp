@@ -21,7 +21,7 @@
 	min-height: 900px;
 	height: auto;
 }
-
+ 
 #Review_bar {
 	border-bottom: 3px solid #8E44AD;
 }

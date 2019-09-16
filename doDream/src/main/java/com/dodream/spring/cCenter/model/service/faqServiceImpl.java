@@ -11,3 +11,4 @@ public class faqServiceImpl implements faqService {
 	@Autowired
 	private faqDao faqDao;
 }
+ 

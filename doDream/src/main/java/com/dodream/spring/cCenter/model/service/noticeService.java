@@ -8,5 +8,5 @@ public interface noticeService {
 
 	/* ArrayList<notice> selectList(); */
 
-
+ 
 }

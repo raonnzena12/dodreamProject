@@ -43,7 +43,7 @@
 <body>
 
 	<div class="container-fluid" id="noticeCon">
-		<div class="row">
+		<div class="row"> 
 			<div class="col-md-12">
 				<div class="jumbotron">
 					<h2>Hello, world!</h2>

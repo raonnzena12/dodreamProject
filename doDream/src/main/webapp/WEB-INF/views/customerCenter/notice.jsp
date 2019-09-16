@@ -25,7 +25,7 @@
 #notice_bar {
 	border-bottom: 3px solid #8E44AD;
 }
-
+ 
 #notice_table {
 	width: 95%;
 	margin: auto;

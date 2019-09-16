@@ -24,5 +24,5 @@ public class FReviewController {
 	@RequestMapping("FundingReview.dr")
 	public String noticeList() {
 		return "customerCenter/FundingReview";
-	}
+	} 
 }
