@@ -11,6 +11,8 @@
 <!-- 가상 숫자패드 CSS/JS --> 
 <link rel="stylesheet" type="text/css" href="resources/css/jquery.numberKeypad.css">
 <script type="text/javascript" src="resources/js/jquery.numberKeypad.js"></script>
+<!-- postcodify(주소검색) API -->
+<script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
 </head>
 <body>
 	<section id="payingInfo" class="my-5">
@@ -93,14 +95,17 @@
 								</div>
 								<label class="mr-3 mt-4">주소</label>
 								<div class="row mb-1">
-									<div class="col-md-9">
-										<input type="text" name="ship1Address1" id="ship1Address1" placeholder="주소" class="form-control" >
+									<div class="col-md-7">
+										<input type="text" name="ship1Address1" id="ship1Address1" placeholder="주소" class="form-control postcodify_address" >
+									</div>
+									<div class="col-md-2">
+										<input type="text" name="postCode1" id="postCode1" placeholder="우편번호" class="form-control postcodify_postcode5" >
 									</div>
 									<div class="col-md-3">
 										<button class="btn btn-warning btn-block">우편번호 검색</button>
 									</div>
 								</div>
-								<input type="text" name="ship1Address2" id="ship1Address2" placeholder="상세주소" class="form-control">
+								<input type="text" name="ship1Address2" id="ship1Address2" placeholder="상세주소" class="form-control postcodify_details">
 								<hr>
 								<label>배송시 요청사항(선택)</label><br><input type="text" name="comment1" id="comment1" class="form-control" >
 								<hr>
@@ -120,14 +125,17 @@
 								</div>
 								<label class="mr-3 mt-4">주소</label>
 								<div class="row mb-1">
-									<div class="col-md-9">
-										<input type="text" name="ship2Address1" id="ship2Address1" placeholder="주소" class="form-control" >
+									<div class="col-md-7">
+										<input type="text" name="ship1Address2" id="ship1Address2" placeholder="주소" class="form-control postcodify_address" >
+									</div>
+									<div class="col-md-2 px-0">
+										<input type="text" name="postCode2" id="postCode2" placeholder="우편번호" class="form-control postcodify_postcode5" >
 									</div>
 									<div class="col-md-3">
-										<button class="btn btn-warning btn-block">우편번호 검색</button>
+										<button class="btn btn-warning btn-block" id="postcodify_search_button2">우편번호 검색</button>
 									</div>
 								</div>
-								<input type="text" name="ship2Address2" id="ship2Address2" placeholder="상세주소를 입력해주세요" class="form-control">
+								<input type="text" name="ship2Address2" id="ship2Address2" placeholder="상세주소를 입력해주세요" class="form-control postcodify_details" >
 								<hr>
 								<label>배송시 요청사항(선택)</label><br><input type="text" name="comment2" id="comment2" class="form-control" placeholder="배송시 요청사항을 입력해주세요">
 								<hr>
