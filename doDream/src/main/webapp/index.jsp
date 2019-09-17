@@ -12,6 +12,8 @@
 	
 	<div>
 		<button onclick="javascript:location.href='home.dr';">당신 마음 두드림</button>
+		
+		<button onclick="javascript:location.href='temp.dr';">관리자쓰</button>
 	</div>
 	
 </body>
