@@ -40,8 +40,8 @@ public class MemberController {
 			return "common/errorPage";
 		}
 	}
-
-	/**
+  
+ 	/**
 	 * 로그아웃 Controller
 	 * 
 	 * @param status
@@ -52,6 +52,29 @@ public class MemberController {
 	public String memberLogout(SessionStatus status, HttpSession session) {
 		status.setComplete();
 		return "redirect:home.dr";
+	}
+	
+	/**
+	 * 회원가입페이지 이동 Controller
+	 * @return 회원가입페이지
+	 */
+	@RequestMapping("insertForm.dr")
+	public String insertMember() {
+		return "member/insertMemberForm";
+	}
+	
+	/**
+	 * 비밀번호찾기 페이지 이동 Controller
+	 * @return 비밀번호찾기 페이지
+	 */
+	@RequestMapping("findPwd.dr")
+	public String findPwd() {
+		return "member/findPwdForm";
+	}
+	
+	@RequestMapping("changePwd.dr")
+	public String changePwd() {
+		return "member/changePwdForm";
 	}
 
 }

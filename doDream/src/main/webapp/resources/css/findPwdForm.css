@@ -1,0 +1,28 @@
+@charset "UTF-8";
+#findPwd-table {
+    width: 70%;
+    border-spacing: 10px;
+    border-collapse: separate;
+    margin: auto;
+    padding: auto;
+}
+/* #emailauthbtn{
+	width: 80px;
+	height: 40px;
+} */
+#clearPwdbtn, #emailauthbtn {
+    background-color: #FFCD01;
+    color: #fff;
+    font-weight: 900;
+}
+
+#clearPwdbtn:hover{
+    background-color: #F39C12;
+}
+#emailauthbtn:hover{
+    background-color: #F39C12;
+}
+
+#findPwd-table ::placeholder {
+  font-size: 13px;
+}

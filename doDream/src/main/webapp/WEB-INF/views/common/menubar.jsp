@@ -101,7 +101,7 @@
 						<tr>
 							<td class="loginmenuText custom-control custom-checkbox my-1">
 								<input type="checkbox" class="custom-control-input" value="autoLogin" id="autoLogin"><label class="custom-control-label" for="autoLogin" >자동 로그인</label>
-								<a href="#" class="gray float-right">비밀번호 찾기</a>
+								<a href="findPwd.dr" class="gray float-right">비밀번호 찾기</a>
 							</td>
 						</tr>
 						<tr>
@@ -117,7 +117,7 @@
 						</tr>
 						<tr>
 							<td class="loginmenuText text-center">
-								<hr>회원이 아니신가요?<br> <a href="#" class="emp blue">가입하기</a>
+								<hr>회원이 아니신가요?<br> <a href="insertForm.dr" class="emp blue">가입하기</a>
 							</td> 
 						</tr>
 					</table>
