@@ -17,12 +17,11 @@ public class FReviewController {
 	public String home() {
 		return "fund/insertFundForm";
 	}
-	
-	// 펀딩 결제창 확인용 임시 매핑
-	// 지우지 말아주세요 (HSH)
 	*/
 	@RequestMapping("FundingReview.dr")
 	public String noticeList() {
 		return "customerCenter/FundingReview";
 	}
+	
+	
 }

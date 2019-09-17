@@ -21,13 +21,15 @@
 	min-height:900px;
 	height: auto;
 }
-
+#cCenter_menu{
+	padding: 0;
+}
 #notice_bar {
 	border-bottom: 3px solid #8E44AD;
 }
 
 #notice_table {
-	width: 95%;
+	width: 100%;
 	margin: auto;
 }
 </STYLE>
@@ -51,7 +53,7 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-md-12" id="cCenter_menu">
+			<div class="col-md-12">
 				<ul class="nav">
 					<li class="nav-item"><a class="nav-link active" href="notice.dr">공지사항</a>
 					</li>
@@ -64,7 +66,7 @@
 		</div>
 		<hr style="background-color: black;">
 		<div class="row" id="notice_table">
-			<div class="col-md-12">
+			<div class="col-md-12" id="cCenter_menu">
 				<h3>공지사항</h3>
 				<hr id=notice_bar>
 				<!-- 공지사항 제목, 내용부분 / 악코디언 부분 -->
