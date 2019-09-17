@@ -11,6 +11,9 @@
 <!-- 가상 숫자패드 CSS/JS --> 
 <link rel="stylesheet" type="text/css" href="resources/css/jquery.numberKeypad.css">
 <script type="text/javascript" src="resources/js/jquery.numberKeypad.js"></script>
+<!-- postcodify(주소검색) API -->
+<!-- <script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script> -->
+<script src="resources/js/postcodifySearch.js"></script>
 </head>
 <body>
 	<section id="payingInfo" class="my-5">
@@ -70,7 +73,7 @@
 						<div class="col-md-12">
 							<h3>리워드 배송지</h3>
 							<!-- 회원정보에 주소지가 입력되어 있을 때 기존 배송지 정보 출력 -->
-							<c:if test="${ sessionScope.loginUser.address != null }">
+							<c:if test="${ !sessionScope.loginUser.address != null }">
 							<span class="custom-control custom-radio mx-4 my-3">
 								<input type="radio" name="address" id="current" class="custom-control-input" checked><label class="custom-control-label mr-5" for="current">기본 배송지</label>
 							</span>
@@ -89,15 +92,18 @@
 								</div>
 								<div class="row">
 									<div class="col-md-6"></div>
-									<div class="col-md-6" id="phoneTest"><span>하이픈(-)을 제외한 전화번호10~11자리를 입력해주세요</span></div>
+									<div class="col-md-6 pr-0" id="phoneTest"><span class="textRed">하이픈(-)을 제외한 전화번호10~11자리를 입력해주세요</span></div>
 								</div>
 								<label class="mr-3 mt-4">주소</label>
 								<div class="row mb-1">
-									<div class="col-md-9">
+									<div class="col-md-7">
 										<input type="text" name="ship1Address1" id="ship1Address1" placeholder="주소" class="form-control" >
 									</div>
+									<div class="col-md-2 px-0">
+										<input type="text" name="postCode1" id="postCode1" placeholder="우편번호" class="form-control" >
+									</div>
 									<div class="col-md-3">
-										<button class="btn btn-warning btn-block">우편번호 검색</button>
+										<button class="btn btn-warning btn-block" id="postcodify_search_button1">우편번호 검색</button>
 									</div>
 								</div>
 								<input type="text" name="ship1Address2" id="ship1Address2" placeholder="상세주소" class="form-control">
@@ -116,18 +122,21 @@
 								</div>
 								<div class="row">
 									<div class="col-md-6"></div>
-									<div class="col-md-6"><span class="textRed">하이픈(-)을 제외한 전화번호10~11자리를 입력해주세요</span></div>
+									<div class="col-md-6 pr-0"><span class="textRed">하이픈(-)을 제외한 전화번호10~11자리를 입력해주세요</span></div>
 								</div>
 								<label class="mr-3 mt-4">주소</label>
 								<div class="row mb-1">
-									<div class="col-md-9">
+									<div class="col-md-7">
 										<input type="text" name="ship2Address1" id="ship2Address1" placeholder="주소" class="form-control" >
 									</div>
+									<div class="col-md-2 px-0">
+										<input type="text" name="postCode2" id="postCode2" placeholder="우편번호" class="form-control" >
+									</div>
 									<div class="col-md-3">
-										<button class="btn btn-warning btn-block">우편번호 검색</button>
+										<button class="btn btn-warning btn-block" id="postcodify_search_button2">우편번호 검색</button>
 									</div>
 								</div>
-								<input type="text" name="ship2Address2" id="ship2Address2" placeholder="상세주소를 입력해주세요" class="form-control">
+								<input type="text" name="ship2Address2" id="ship2Address2" placeholder="상세주소를 입력해주세요" class="form-control" >
 								<hr>
 								<label>배송시 요청사항(선택)</label><br><input type="text" name="comment2" id="comment2" class="form-control" placeholder="배송시 요청사항을 입력해주세요">
 								<hr>

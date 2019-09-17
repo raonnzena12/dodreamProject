@@ -224,7 +224,7 @@
 							<div class="content py-5">
 								<span class="accoHead">2. 리워드 정보</span><br><br>
 								<form action="#" method="POST" enctype="multipart/form-data" id="insert1">
-							   		<table>
+							   		<table style="height: 3000px;">
 							      		<tr>
 							         		<th>
 									            <div><h5>프로젝트 번호</h5> 
@@ -255,7 +255,7 @@
 							<div class="content py-5">
 								<span class="accoHead">3. 스토리텔링</span><br><br>
 								<form action="#" method="POST" enctype="multipart/form-data" id="insert1">
-									<table>
+									<table style="height: 1200px;">
 										<tr>
 											<th>
 												<div><h5>프로젝트 번호</h5> 
@@ -286,7 +286,7 @@
 							<div class="content py-5">
 					  			<span class="accoHead">4. 아티스트 정보</span><br><br>
 				  				<form action="#" method="POST" enctype="multipart/form-data" id="insert1">
-									<table>
+									<table style="height: 200px;">
 										<tr>
 											<th>
 												<div><h5>프로젝트 번호</h5> 
@@ -339,7 +339,16 @@
 			$("#agreementForm").hide();
 			$("#insertFundForm").show();
 	        $('html').animate({scrollTop : 0}, 300);
+			if ( $("#rad1").is(":checked") ) {
+				$("#ac label").css("height",$("#rad1").next().next().outerHeight());
+				$("#ac").css("height",$("#rad1").next().next().outerHeight());
+			}
 		};
+		$("input:radio").on("change",function(){
+	        $('html').animate({scrollTop : 0}, 300);
+			$("#ac label").css("height",$(this).next().next().outerHeight());
+			$("#ac").css("height",$(this).next().next().outerHeight());
+		});
 	</script>
 </body>
 </html>
