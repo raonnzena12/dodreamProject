@@ -57,6 +57,6 @@ div {
     -webkit-appearance: none;
     margin: 0;
 }
-#payingInfo input[type=number] {
+#payingInfo input[type=number], #payingInfo input[type=password] {
     background-color: #fff;
 }
