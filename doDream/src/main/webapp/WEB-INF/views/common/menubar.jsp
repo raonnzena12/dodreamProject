@@ -23,9 +23,6 @@
 <script src="resources/js/menubar.js"></script>
 <!-- Swal 추가 -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
-<!-- mojs(좋아요 클릭시 효과) 추가 -->
-<!-- <script src="https://cdn.jsdelivr.net/npm/@mojs/core"></script> -->
-<script src="https://cdn.jsdelivr.net/mojs/latest/mo.min.js"></script>
 <style>
 	* {
 		box-sizing: border-box;
@@ -61,6 +58,27 @@
 			</li>
 			<li class="nav-item">
 				<a class="nav-link" href="insertFundForm.dr">펀딩 등록하기</a>
+			</li>
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown" href="#" id="nbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<span id="">링크페이지</span>
+				</a>
+				<div class="dropdown-menu" aria-labelledby="nbarDropdownMenuLink">
+					<a href="https://ovenapp.io/view/6PkJ9GJEJ4iv9eqJ7gJz2jDzuLfgXvIw/" target="_blank" class="dropdown-item">와이어프레임</a>
+					<a href="https://www.wadiz.kr/web/wreward/main?keyword=&endYn=ALL&order=recommend" target="_blank" class="dropdown-item">와디즈</a>
+					<a href="https://tumblbug.com/" target="_blank" class="dropdown-item">텀블벅</a>
+					<a href="https://opentutorials.org/course/3424" target="_blank" class="dropdown-item">구글로그인 API</a>
+					<a href="https://www.erdcloud.com/d/uytgmtPeSSvxrS49E" target="_blank" class="dropdown-item">erdCloud</a>
+					<a href="https://www.cmsfactory.net/10035" target="_blank" class="dropdown-item">구글 웹 아이콘</a>
+					<a href="http://bootstrapk.com/" target="_blank" class="dropdown-item">부트스트랩</a>
+					<a href="https://getbootstrap.com/" target="_blank" class="dropdown-item">BootStrap</a>
+					<a href="https://sweetalert2.github.io/" target="_blank" class="dropdown-item">sweetalert2</a>
+					<a href="https://www.layoutit.com/en" target="_blank" class="dropdown-item">layoutit</a>
+					<hr>
+					<div class="color" style="background-color:#FFCD01; text-align:center;">#FFCD01</div>
+					<div class="color" style="background-color:#F39C12; text-align:center; color:#fff;">#F39C12</div>
+					<div class="color" style="background-color:#8E44AD; text-align:center; color:#fff;">#8E44AD</div>
+				</div>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link" href="temp.dr">(temp) 펀딩 결제 INFO</a>
