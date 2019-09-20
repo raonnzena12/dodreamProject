@@ -27,12 +27,14 @@
 }
 
 #Review_table {
+	padding-top: 20px;
 	width: 100%;
 	margin: auto;
 }
 
 #FReview_title {
-	position: absolute;
+	/* position: absolute; */
+	align-content: center;
 	right: 0;
 	left: 0;
 	margin: 0 auto;
@@ -46,20 +48,21 @@
 		<div class="row">
 			<div class="col-md-12" align="center">
 				<div class="jumbotron">
-					<h2>Hello, world!</h2>
+				<img src="resources/img/영화간판3.PNG" style="width: 100%">
+					<!-- <h2>Hello, world!</h2>
 					<p>This is a template for a simple marketing or informational
 						website. It includes a large callout called the hero unit and
 						three supporting pieces of content. Use it as a starting point to
 						create something more unique.</p>
 					<p>
 						<a class="btn btn-primary btn-large" href="#">Learn more</a>
-					</p>
+					</p> -->
 				</div>
 			</div>
 		</div>
-		<div class="row">
+		<div class="sticky-top row" style="background-color: white;">
 			<div class="col-md-12" id="cCenter_menu">
-				<ul class="nav">
+				<ul class="nav" style="background-color: #E1F5A9; ">
 					<li class="nav-item"><a class="nav-link active"
 						href="notice.dr">공지사항</a></li>
 					<li class="nav-item"><a class="nav-link" href="T_O_Service.dr">이용약관</a></li>
@@ -70,7 +73,6 @@
 				</ul>
 			</div>
 		</div>
-		<hr style="background-color: black;">
 		<div class="row" id="Review_table">
 			<div class="col-md-12"></div>
 		</div>
@@ -89,17 +91,14 @@
 						<button class="btn btn-secondary" type="button">ETC</button>
 					</div>
 				</div>
-				<div class="row">
+				<div class="row" style="margin-bottom: 50px">
 					<div class="col-md-4">
-						<div class="card">
+						<div class="card" style="height: 500px">
 							<img class="card-img-top" alt="Bootstrap Thumbnail First"
-								src="https://www.layoutit.com/img/people-q-c-600-200-1.jpg">
+								src="resources/img/아이콘1.PNG" style="padding: 10px; height: 100%"">
 							<div class="card-block">
-								<h5 class="card-title">Card title</h5>
-								<p class="card-text">Cras justo odio, dapibus ac facilisis
-									in, egestas eget quam. Donec id elit non mi porta gravida at
-									eget metus. Nullam id dolor id nibh ultricies vehicula ut id
-									elit.</p>
+								<h5 class="card-title">인디밴드 공연</h5>
+								<p class="card-text">보람있는 펀딩!</p>
 								<p>
 									<a class="btn btn-primary" href="#">Action</a> <a class="btn"
 										href="#">Action</a>
@@ -108,32 +107,26 @@
 						</div>
 					</div>
 					<div class="col-md-4">
-						<div class="card">
+						<div class="card" style="height: 500px">
 							<img class="card-img-top" alt="Bootstrap Thumbnail Second"
-								src="https://www.layoutit.com/img/city-q-c-600-200-1.jpg">
+								src="resources/img/아이콘2.PNG" style="padding: 10px; height: 100%">
 							<div class="card-block">
-								<h5 class="card-title">Card title</h5>
-								<p class="card-text">Cras justo odio, dapibus ac facilisis
-									in, egestas eget quam. Donec id elit non mi porta gravida at
-									eget metus. Nullam id dolor id nibh ultricies vehicula ut id
-									elit.</p>
+								<h5 class="card-title">연극 공연</h5>
+								<p class="card-text">나의 아티스트에게 기회를</p>
 								<p>
-									<a class="btn btn-primary" href="#">Action</a> <a class="btn"
-										href="#">Action</a>
+									<a class="btn btn-primary" href="#">Action</a> 
+									<a class="btn" href="#">Action</a>
 								</p>
 							</div>
 						</div>
 					</div>
 					<div class="col-md-4">
-						<div class="card">
+						<div class="card" style="height: 500px">
 							<img class="card-img-top" alt="Bootstrap Thumbnail Third"
-								src="https://www.layoutit.com/img/sports-q-c-600-200-1.jpg">
+								src="resources/img/아이콘3.PNG" style="padding: 10px; height: 100%"">
 							<div class="card-block">
-								<h5 class="card-title">Card title</h5>
-								<p class="card-text">Cras justo odio, dapibus ac facilisis
-									in, egestas eget quam. Donec id elit non mi porta gravida at
-									eget metus. Nullam id dolor id nibh ultricies vehicula ut id
-									elit.</p>
+								<h5 class="card-title">시진전</h5>
+								<p class="card-text">힐링되는 시간</p>
 								<p>
 									<a class="btn btn-primary" href="#">Action</a> <a class="btn"
 										href="#">Action</a>

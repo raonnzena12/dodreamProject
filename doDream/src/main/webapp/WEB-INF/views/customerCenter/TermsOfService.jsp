@@ -28,6 +28,7 @@
 }
 
 #Terms_table {
+	padding-top: 20px;
 	width: 100%;
 	margin: auto;
 }
@@ -49,20 +50,21 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="jumbotron">
-					<h2>Hello, world!</h2>
+					<img src="resources/img/영화간판2.PNG" style="width: 100%">
+					<!-- <h2>Hello, world!</h2>
 					<p>This is a template for a simple marketing or informational
 						website. It includes a large callout called the hero unit and
 						three supporting pieces of content. Use it as a starting point to
 						create something more unique.</p>
 					<p>
 						<a class="btn btn-primary btn-large" href="#">Learn more</a>
-					</p>
+					</p> -->
 				</div>
 			</div>
 		</div>
-		<div class="row">
+		<div class="sticky-top row" style="background-color: white;">
 			<div class="col-md-12" id="cCenter_menu">
-				<ul class="nav">
+				<ul class="nav" style="background-color: #E1F5A9; ">
 					<li class="nav-item"><a class="nav-link active"
 						href="notice.dr">공지사항</a></li>
 					<li class="nav-item"><a class="nav-link" href="T_O_Service.dr">이용약관</a></li>
