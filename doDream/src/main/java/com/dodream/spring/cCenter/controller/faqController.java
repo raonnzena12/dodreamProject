@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.dodream.spring.cCenter.model.service.faqService;
-
+ 
 @Controller
 public class faqController {
 
@@ -17,7 +17,12 @@ public class faqController {
 		return "fund/insertFundForm";
 	}
 	
-	// 펀딩 결제창 확인용 임시 매핑
-	// 지우지 말아주세요 (HSH)
+	// ���뵫 寃곗젣李� �솗�씤�슜 �엫�떆 留ㅽ븨
+	// 吏��슦吏� 留먯븘二쇱꽭�슂 (HSH)
 	*/
+	
+	@RequestMapping("faq.dr")
+	public String noticeList() {
+		return "customerCenter/faq";
+	}
 }

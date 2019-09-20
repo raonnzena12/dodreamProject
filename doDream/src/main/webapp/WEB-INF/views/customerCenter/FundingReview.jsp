@@ -6,7 +6,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
- 
+
 <title>펀딩후기</title>
 <jsp:include page="../common/menubar.jsp"></jsp:include>
 <meta name="description"
@@ -27,11 +27,12 @@
 }
 
 #Review_table {
-	width: 95%;
+	width: 100%;
 	margin: auto;
 }
-#FReview_title{
-	position:absolute;
+
+#FReview_title {
+	position: absolute;
 	right: 0;
 	left: 0;
 	margin: 0 auto;
@@ -59,10 +60,11 @@
 		<div class="row">
 			<div class="col-md-12" id="cCenter_menu">
 				<ul class="nav">
-					<li class="nav-item"><a class="nav-link active" href="notice.dr">공지사항</a>
-					</li>
+					<li class="nav-item"><a class="nav-link active"
+						href="notice.dr">공지사항</a></li>
 					<li class="nav-item"><a class="nav-link" href="T_O_Service.dr">이용약관</a></li>
-					<li class="nav-item"><a class="nav-link " href="FundingReview.dr">펀딩후기</a></li>
+					<li class="nav-item"><a class="nav-link "
+						href="FundingReview.dr">펀딩후기</a></li>
 					<li class="nav-item"><a class="nav-link " href="faq.dr">FAQ</a></li>
 
 				</ul>
@@ -76,16 +78,16 @@
 			<div class="col-md-12">
 				<h3>펀딩후기</h3>
 				<hr id=Review_bar>
-				<div style="position:relative;" class="clearfix">
-				<div class="btn-group btn-group-md" role="group" id="FReview_title">
+				<div style="position: relative;" class="clearfix">
+					<div class="btn-group btn-group-md" role="group" id="FReview_title">
 
-					<button class="btn btn-secondary" type="button">전체</button>
-					<button class="btn btn-secondary" type="button">음악</button>
-					<button class="btn btn-secondary" type="button">영화</button>
-					<button class="btn btn-secondary" type="button">연극</button>
-					<button class="btn btn-secondary" type="button">미술</button>
-					<button class="btn btn-secondary" type="button">ETC</button>
-				</div>
+						<button class="btn btn-secondary" type="button">전체</button>
+						<button class="btn btn-secondary" type="button">음악</button>
+						<button class="btn btn-secondary" type="button">영화</button>
+						<button class="btn btn-secondary" type="button">연극</button>
+						<button class="btn btn-secondary" type="button">미술</button>
+						<button class="btn btn-secondary" type="button">ETC</button>
+					</div>
 				</div>
 				<div class="row">
 					<div class="col-md-4">
