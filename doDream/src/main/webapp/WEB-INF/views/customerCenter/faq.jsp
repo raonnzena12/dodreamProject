@@ -47,7 +47,7 @@
 <body>
 
 
-	<div class="container-fluid" id="noticeCon">
+	<div class="container-fluid" id="noticeCon"> 
 		<div class="row">
 			<div class="col-md-12" align="center">
 				<div class="jumbotron">
