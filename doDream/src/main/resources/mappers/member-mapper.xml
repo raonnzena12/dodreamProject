@@ -7,16 +7,21 @@
 		<result property="userEmail" column="USER_EMAIL"/>
 		<result property="userNickname" column="USER_NICKNAME"/>
 		<result property="userPwd" column="USER_PWD"/>
-		<result property="userEmailAuthYn" column="USER_EMAILAUTH_YN"/>
+		<result property="userEmailAuthYn" column="USER_EM_AUTH_YN"/>
 		<result property="userAdminYn" column="USER_ADMIN_YN"/>
 		<result property="userStatus" column="USER_STATUS"/>
-		<result property="userEnrollDate" column="USER_ENROLL_DATE"/>
-		<result property="userUpdateDate" column="USER_UPDATE_DATE"/>
+		<result property="userEnrollDate" column="USER_ER_DT"/>
+		<result property="userLoginDate" column="USER_LOGIN_DATE"/>
+		<result property="userModifyDate" column="USER_MF_DT"/>
+		<result property="userAddress" column="USER_ADDR"/>
+		<result property="userPhone" column="USER_PHONE"/>
+		<result property="userProfileImage" column="USER_PF_IMG"/>
+		<result property="userSelf" column="USER_SELF"/>
 	</resultMap>
 	
 	<!-- 로그인용 쿼리 -->
 	<select id="selectOne" parameterType="Member" resultMap="memberResultSet">
-		SELECT * FROM MEMBER
+		SELECT * FROM USER_TB
 		WHERE USER_EMAIL = #{userEmail} 
 		AND USER_PWD = #{userPwd} 
 		AND USER_STATUS = 'Y'
