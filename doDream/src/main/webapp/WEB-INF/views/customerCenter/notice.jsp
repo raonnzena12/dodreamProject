@@ -32,6 +32,9 @@
 	width: 100%;
 	margin: auto;
 }
+#row{
+position: fixed;
+}
 </STYLE>
 </head>
 <body>
@@ -52,7 +55,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="row">
+		<div class="row" id="row">
 			<div class="col-md-12">
 				<ul class="nav">
 					<li class="nav-item"><a class="nav-link active" href="notice.dr">공지사항</a>
@@ -64,7 +67,6 @@
 				</ul>
 			</div>
 		</div>
-		<hr style="background-color: black;">
 		<div class="row" id="notice_table">
 			<div class="col-md-12" id="cCenter_menu">
 				<h3>공지사항</h3>
@@ -73,11 +75,11 @@
 				<div id="card-611390"><!-- 내용을 묶는 틀 -->
 					<div class="card">
 						<div class="card-header">
-							<a class="card-link collapsed" href="#card-element-281213"
+							<a class="card-link collapsed" href="#card-element-01"
 								data-toggle="collapse" data-parent="#card-611390"> [투자]
 								함께하고, 떠나세요. 가을 한정 특별 이벤트!</a>
 						</div>
-						<div class="collapse" id="card-element-281213">
+						<div class="collapse" id="card-element-01">
 							<div class="card-body">Anim pariatur cliche...</div>
 						</div>
 					</div>
@@ -93,11 +95,111 @@
 					</div>
 					<div class="card">
 						<div class="card-header">
-							<a class="card-link" href="#" data-toggle="collapse"
+							<a class="card-link" href="#card-element-474853" data-toggle="collapse"
 								data-parent="#card-611390">
 								[투자] 제 2회 뉴딜로 희망드림 투자형 크라우드펀딩 지원사업!</a>
 						</div>
 						<div class="collapse show" id="card-element-474853">
+							<div class="card-body">Anim pariatur cliche...</div>
+						</div>
+					</div>
+					<div class="card">
+						<div class="card-header">
+							<a class="card-link" href="#" data-toggle="collapse"
+								data-parent="#card-611390">
+								[리워드] 메이커들을 위한 9월	앵콜펀딩 혜택전 1차</a>
+						</div>
+						<div class="collapse show" id="card-element-474854">
+							<div class="card-body">Anim pariatur cliche...</div>
+						</div>
+					</div>
+					<div class="card">
+						<div class="card-header">
+							<a class="card-link" href="#" data-toggle="collapse"
+								data-parent="#card-611390">
+								[리워드] 메이커들을 위한 9월	앵콜펀딩 혜택전 1차</a>
+						</div>
+						<div class="collapse show" id="card-element-474854">
+							<div class="card-body">Anim pariatur cliche...</div>
+						</div>
+					</div>
+					<div class="card">
+						<div class="card-header">
+							<a class="card-link" href="#" data-toggle="collapse"
+								data-parent="#card-611390">
+								[리워드] 메이커들을 위한 9월	앵콜펀딩 혜택전 1차</a>
+						</div>
+						<div class="collapse show" id="card-element-474854">
+							<div class="card-body">Anim pariatur cliche...</div>
+						</div>
+					</div>
+					<div class="card">
+						<div class="card-header">
+							<a class="card-link" href="#" data-toggle="collapse"
+								data-parent="#card-611390">
+								[리워드] 메이커들을 위한 9월	앵콜펀딩 혜택전 1차</a>
+						</div>
+						<div class="collapse show" id="card-element-474854">
+							<div class="card-body">Anim pariatur cliche...</div>
+						</div>
+					</div>
+					<div class="card">
+						<div class="card-header">
+							<a class="card-link" href="#" data-toggle="collapse"
+								data-parent="#card-611390">
+								[리워드] 메이커들을 위한 9월	앵콜펀딩 혜택전 1차</a>
+						</div>
+						<div class="collapse show" id="card-element-474854">
+							<div class="card-body">Anim pariatur cliche...</div>
+						</div>
+					</div>
+					<div class="card">
+						<div class="card-header">
+							<a class="card-link" href="#" data-toggle="collapse"
+								data-parent="#card-611390">
+								[리워드] 메이커들을 위한 9월	앵콜펀딩 혜택전 1차</a>
+						</div>
+						<div class="collapse show" id="card-element-474854">
+							<div class="card-body">Anim pariatur cliche...</div>
+						</div>
+					</div>
+					<div class="card">
+						<div class="card-header">
+							<a class="card-link" href="#" data-toggle="collapse"
+								data-parent="#card-611390">
+								[리워드] 메이커들을 위한 9월	앵콜펀딩 혜택전 1차</a>
+						</div>
+						<div class="collapse show" id="card-element-474854">
+							<div class="card-body">Anim pariatur cliche...</div>
+						</div>
+					</div>
+					<div class="card">
+						<div class="card-header">
+							<a class="card-link" href="#" data-toggle="collapse"
+								data-parent="#card-611390">
+								[리워드] 메이커들을 위한 9월	앵콜펀딩 혜택전 1차</a>
+						</div>
+						<div class="collapse show" id="card-element-474854">
+							<div class="card-body">Anim pariatur cliche...</div>
+						</div>
+					</div>
+					<div class="card">
+						<div class="card-header">
+							<a class="card-link" href="#" data-toggle="collapse"
+								data-parent="#card-611390">
+								[리워드] 메이커들을 위한 9월	앵콜펀딩 혜택전 1차</a>
+						</div>
+						<div class="collapse show" id="card-element-474854">
+							<div class="card-body">Anim pariatur cliche...</div>
+						</div>
+					</div>
+					<div class="card">
+						<div class="card-header">
+							<a class="card-link" href="#" data-toggle="collapse"
+								data-parent="#card-611390">
+								[리워드] 메이커들을 위한 9월	앵콜펀딩 혜택전 1차</a>
+						</div>
+						<div class="collapse show" id="card-element-474854">
 							<div class="card-body">Anim pariatur cliche...</div>
 						</div>
 					</div>
