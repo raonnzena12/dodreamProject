@@ -13,7 +13,7 @@
 			${msg} <br>
 			<%= request.getAttribute("javax.servlet.error.khssage")%>
 		</h2>
-		<a href="home.kh">시작페이지로 이동</a>	
+		<a href="home.dr">시작페이지로 이동</a>	
 	</div>
 
 </body>

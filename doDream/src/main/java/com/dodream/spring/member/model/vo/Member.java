@@ -8,16 +8,22 @@ public class Member {
 	private String userEmail;
 	private String userNickname;
 	private String userPwd;
-	private char userEmailAuthYn;
-	private char userAdminYn;
-	private char userStatus;
+	private String userEmailAuthYn;
+	private String userAdminYn;
+	private String userStatus;
 	private Date userEnrollDate;
-	private Date userUpdateDate;
+	private Date userLoginDate;
+	private Date userModifyDate;
+	private String userAddress;
+	private String userPhone;
+	private String userProfileImage;
+	private String userSelf;
 	
 	public Member() {}
-	
-	public Member(int userNo, String userEmail, String userNickname, String userPwd, char userEmailAuthYn,
-			char userAdminYn, char userStatus, Date userEnrollDate, Date userUpdateDate) {
+
+	public Member(int userNo, String userEmail, String userNickname, String userPwd, String userEmailAuthYn,
+			String userAdminYn, String userStatus, Date userEnrollDate, Date userLoginDate, Date userModifyDate,
+			String userAddress, String userPhone, String userProfileImage, String userSelf) {
 		super();
 		this.userNo = userNo;
 		this.userEmail = userEmail;
@@ -27,7 +33,12 @@ public class Member {
 		this.userAdminYn = userAdminYn;
 		this.userStatus = userStatus;
 		this.userEnrollDate = userEnrollDate;
-		this.userUpdateDate = userUpdateDate;
+		this.userLoginDate = userLoginDate;
+		this.userModifyDate = userModifyDate;
+		this.userAddress = userAddress;
+		this.userPhone = userPhone;
+		this.userProfileImage = userProfileImage;
+		this.userSelf = userSelf;
 	}
 
 	public int getUserNo() {
@@ -62,27 +73,27 @@ public class Member {
 		this.userPwd = userPwd;
 	}
 
-	public char getUserEmailAuthYn() {
+	public String getUserEmailAuthYn() {
 		return userEmailAuthYn;
 	}
 
-	public void setUserEmailAuthYn(char userEmailAuthYn) {
+	public void setUserEmailAuthYn(String userEmailAuthYn) {
 		this.userEmailAuthYn = userEmailAuthYn;
 	}
 
-	public char getUserAdminYn() {
+	public String getUserAdminYn() {
 		return userAdminYn;
 	}
 
-	public void setUserAdminYn(char userAdminYn) {
+	public void setUserAdminYn(String userAdminYn) {
 		this.userAdminYn = userAdminYn;
 	}
 
-	public char getUserStatus() {
+	public String getUserStatus() {
 		return userStatus;
 	}
 
-	public void setUserStatus(char userStatus) {
+	public void setUserStatus(String userStatus) {
 		this.userStatus = userStatus;
 	}
 
@@ -94,20 +105,61 @@ public class Member {
 		this.userEnrollDate = userEnrollDate;
 	}
 
-	public Date getUserUpdateDate() {
-		return userUpdateDate;
+	public Date getUserLoginDate() {
+		return userLoginDate;
 	}
 
-	public void setUserUpdateDate(Date userUpdateDate) {
-		this.userUpdateDate = userUpdateDate;
+	public void setUserLoginDate(Date userLoginDate) {
+		this.userLoginDate = userLoginDate;
+	}
+
+	public Date getUserModifyDate() {
+		return userModifyDate;
+	}
+
+	public void setUserModifyDate(Date userModifyDate) {
+		this.userModifyDate = userModifyDate;
+	}
+
+	public String getUserAddress() {
+		return userAddress;
+	}
+
+	public void setUserAddress(String userAddress) {
+		this.userAddress = userAddress;
+	}
+
+	public String getUserPhone() {
+		return userPhone;
+	}
+
+	public void setUserPhone(String userPhone) {
+		this.userPhone = userPhone;
+	}
+
+	public String getUserProfileImage() {
+		return userProfileImage;
+	}
+
+	public void setUserProfileImage(String userProfileImage) {
+		this.userProfileImage = userProfileImage;
+	}
+
+	public String getUserSelf() {
+		return userSelf;
+	}
+
+	public void setUserSelf(String userSelf) {
+		this.userSelf = userSelf;
 	}
 
 	@Override
 	public String toString() {
 		return "Member [userNo=" + userNo + ", userEmail=" + userEmail + ", userNickname=" + userNickname + ", userPwd="
 				+ userPwd + ", userEmailAuthYn=" + userEmailAuthYn + ", userAdminYn=" + userAdminYn + ", userStatus="
-				+ userStatus + ", userEnrollDate=" + userEnrollDate + ", userUpdateDate=" + userUpdateDate + "]";
+				+ userStatus + ", userEnrollDate=" + userEnrollDate + ", userLoginDate=" + userLoginDate
+				+ ", userModifyDate=" + userModifyDate + ", userAddress=" + userAddress + ", userPhone=" + userPhone
+				+ ", userProfileImage=" + userProfileImage + ", userSelf=" + userSelf + "]";
 	}
-	
 	
 }
