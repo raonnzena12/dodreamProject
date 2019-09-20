@@ -76,5 +76,10 @@ public class MemberController {
 	public String changePwd() {
 		return "member/changePwdForm";
 	}
+	
+	@RequestMapping("mypage.dr")
+	public String mypage() {
+		return "member/mypageHeader";
+	}
 
 }
