@@ -21,11 +21,5 @@ public class ProjectController {
 	public String home() {
 		return "project/insertFundForm";
 	}
-	
-	// 펀딩 결제창 확인용 임시 매핑
-	// 지우지 말아주세요 (HSH)
-	@RequestMapping("temp.dr")
-	public String tmp() {
-		return "project/payingInfo";
-	}
+
 }

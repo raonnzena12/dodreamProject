@@ -25,13 +25,14 @@ public class Project {
 	private int pWritter;
 	private int pCategoryNum;
 	private int pStatusNum;
+	private int pCount;
 	
 	public Project() {}
 
 	public Project(int pNo, String pTitle, String pSTitle, int pGoal, String pThumbImage, Date pStartDate,
 			Date pCloseDate, String pHashTag, String pMainImage, String pSummaryText, String pStory, String pArtistName,
 			String pArtistPFImage, String pArtistSns1, String pArtistSns2, String pArtistPhone, String pArtistEmail,
-			Date pEnrollDate, Date pModifyDate, int pWritter, int pCategoryNum, int pStatusNum) {
+			Date pEnrollDate, Date pModifyDate, int pWritter, int pCategoryNum, int pStatusNum, int pCount) {
 		super();
 		this.pNo = pNo;
 		this.pTitle = pTitle;
@@ -55,6 +56,7 @@ public class Project {
 		this.pWritter = pWritter;
 		this.pCategoryNum = pCategoryNum;
 		this.pStatusNum = pStatusNum;
+		this.pCount = pCount;
 	}
 
 	public int getpNo() {
@@ -233,6 +235,14 @@ public class Project {
 		this.pStatusNum = pStatusNum;
 	}
 
+	public int getpCount() {
+		return pCount;
+	}
+
+	public void setpCount(int pCount) {
+		this.pCount = pCount;
+	}
+
 	@Override
 	public String toString() {
 		return "Project [pNo=" + pNo + ", pTitle=" + pTitle + ", pSTitle=" + pSTitle + ", pGoal=" + pGoal
@@ -241,7 +251,7 @@ public class Project {
 				+ ", pStory=" + pStory + ", pArtistName=" + pArtistName + ", pArtistPFImage=" + pArtistPFImage
 				+ ", pArtistSns1=" + pArtistSns1 + ", pArtistSns2=" + pArtistSns2 + ", pArtistPhone=" + pArtistPhone
 				+ ", pArtistEmail=" + pArtistEmail + ", pEnrollDate=" + pEnrollDate + ", pModifyDate=" + pModifyDate
-				+ ", pWritter=" + pWritter + ", pCategoryNum=" + pCategoryNum + ", pStatusNum=" + pStatusNum + "]";
+				+ ", pWritter=" + pWritter + ", pCategoryNum=" + pCategoryNum + ", pStatusNum=" + pStatusNum
+				+ ", pCount=" + pCount + "]";
 	}
-	
 }

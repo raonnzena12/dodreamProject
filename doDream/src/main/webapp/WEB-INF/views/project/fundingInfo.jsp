@@ -6,8 +6,8 @@
 <meta charset="UTF-8">
 <title>INFO</title>
 <%@ include file="../common/menubar.jsp" %>
-<link rel="stylesheet" type="text/css" href="resources/css/payingInfo.css">
-<script type="text/javascript" src="resources/js/payingInfo.js"></script>
+<link rel="stylesheet" type="text/css" href="resources/css/fundingInfo.css">
+<script type="text/javascript" src="resources/js/fundingInfo.js"></script>
 <!-- 가상 숫자패드 CSS/JS --> 
 <link rel="stylesheet" type="text/css" href="resources/css/jquery.numberKeypad.css">
 <script type="text/javascript" src="resources/js/jquery.numberKeypad.js"></script>
@@ -16,6 +16,7 @@
 <script src="resources/js/postcodifySearch.js"></script>
 </head>
 <body>
+<c:url var="fundingComplete" value="temp2.dr" />
 	<section id="payingInfo" class="my-5">
 		<h1 align="center">뚝딱뚝딱</h1>
 		<div class="container-fluid mb-5">
@@ -213,7 +214,7 @@
 					</div>
 					<div class="row">
 						<div class="col-md-12 text-center">
-							<button class="btn btn-warning btn-lg">결제 예약하기</button>
+							<button class="btn btn-warning btn-lg" id="toComplete">결제 예약하기</button>
 						</div>
 					</div>
 				</div>
@@ -222,5 +223,13 @@
 			</div>
 		</div>
 	</section>
+<script>
+$(function(){
+	$("#toComplete").on("click", function(){
+		// 이것 저것 확인하고 뒤로 넘기기
+		location.href='${ fundingComplete }';
+	});
+});
+</script>
 </body>
 </html>
