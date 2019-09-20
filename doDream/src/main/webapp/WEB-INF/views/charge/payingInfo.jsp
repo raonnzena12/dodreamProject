@@ -106,7 +106,7 @@
 										<button class="btn btn-warning btn-block" id="postcodify_search_button1">우편번호 검색</button>
 									</div>
 								</div>
-								<input type="text" name="ship1Address2" id="ship1Address2" placeholder="상세주소" class="form-control">
+								<input type="text" name="ship1Address2" id="ship1Address2" placeholder="상세주소" class="form-control postcodify_details">
 								<hr>
 								<label>배송시 요청사항(선택)</label><br><input type="text" name="comment1" id="comment1" class="form-control" >
 								<hr>
