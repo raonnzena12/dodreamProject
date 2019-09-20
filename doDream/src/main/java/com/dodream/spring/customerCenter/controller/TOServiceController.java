@@ -32,8 +32,6 @@ public class TOServiceController {
 		return mv;
 	}*/
 
-	// 펀딩 결제창 확인용 임시 매핑
-	// 지우지 말아주세요 (HSH)
 
 	@RequestMapping("T_O_Service.dr")
 	public String tmp() {

@@ -12,12 +12,6 @@ public class FReviewController {
 	/*
 	 * @Autowired private FReviewService FReviewService;
 	 */
-	/*
-	@RequestMapping("insertFundForm.dr")
-	public String home() {
-		return "fund/insertFundForm";
-	}
-	*/
 	@RequestMapping("FundingReview.dr")
 	public String noticeList() {
 		return "customerCenter/FundingReview";
