@@ -24,7 +24,7 @@
 <!-- Swal 추가 -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 <!-- mojs(좋아요 클릭시 효과) 추가 -->
-<script src="https://cdn.jsdelivr.net/npm/@mojs/core"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/@mojs/core"></script> -->
 <script src="https://cdn.jsdelivr.net/mojs/latest/mo.min.js"></script>
 <style>
 	* {

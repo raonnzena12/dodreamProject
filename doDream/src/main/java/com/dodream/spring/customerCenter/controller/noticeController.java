@@ -15,23 +15,6 @@ public class noticeController {
 	@Autowired
 	private noticeService nService;
 
-	/*
-	@RequestMapping("notice.dr")
-	public ModelAndView noticeList(ModelAndView mv) {
-
-		ArrayList<notice> list = nService.selectList();
-
-		if (list != null) {
-			mv.addObject("list", list);
-			mv.setViewName("customerCenter/notice");
-		} else {
-			mv.addObject("msg", "공지사항 목록 조회 실패");
-			mv.setViewName("common/errorPage");
-		}
-
-		return mv;
-	}*/
-
 	@RequestMapping("cCenter.dr")
 	public String tmp() {
 		return "customerCenter/notice";

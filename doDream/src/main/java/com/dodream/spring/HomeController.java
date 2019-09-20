@@ -11,7 +11,7 @@ public class HomeController {
 	public String home() {
 		return "home";
 	}
-	@RequestMapping(value = "temp.dr", method = RequestMethod.GET)
+	@RequestMapping(value = "adminHome.dr", method = RequestMethod.GET)
 	public String temp() {
 		return "admin/adminMain";
 	}
