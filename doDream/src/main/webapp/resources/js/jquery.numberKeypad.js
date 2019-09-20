@@ -17,14 +17,14 @@ var $padActive = false; // is active keypad visible :: global
             var strItem = '';
             var tmpArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
             $.shuffle(tmpArr);
-
-// 집에가서 여기 작성하시오
-// 여기여기
-// 여기여기
+            tmpArr.push('x','ok');
+            var temp = tmpArr[9];
+            tmpArr[9] = tmpArr[10];
+            tmpArr[10] = temp;
 
             var settings = $.extend({
                 wrap: 'body',
-                arrKeys: [1, 2, 3, 4, 5, 6, 7, 8, 9, 'x', 0, 'ok'],
+                arrKeys: tmpArr,
                 login: false // custom page style :: padding
             }, options);
 
@@ -95,11 +95,11 @@ var $padActive = false; // is active keypad visible :: global
             $keypad.find("a.ok").on("click", function (e) {
                 e.preventDefault();
 
-                if (settings.login) {
-                    $wrapper.css("padding-bottom", '40px');
-                } else {
-                    $wrapper.css("padding-bottom", 0);
-                }
+//                if (settings.login) {
+//                    $wrapper.css("padding-bottom", '40px');
+//                } else {
+//                    $wrapper.css("padding-bottom", 0);
+//                }
                 $keypad.fadeOut(200, function () {
 					$padActive = false;
                     $(this).find(".keypad").hide();
@@ -132,11 +132,11 @@ var $padActive = false; // is active keypad visible :: global
                             $keyWrap.show();
                             fnSetKeypadHeight($el, $keyWrap);
                         } else {
-                            if (settings.login) {
-                                $wrapper.css("padding-bottom", '40px');
-                            } else {
-                                $wrapper.css("padding-bottom", 0);
-                            }
+//                            if (settings.login) {
+//                                $wrapper.css("padding-bottom", '40px');
+//                            } else {
+//                                $wrapper.css("padding-bottom", 0);
+//                            }
                         }
                     }
                 }

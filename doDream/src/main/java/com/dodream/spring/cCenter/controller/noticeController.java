@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.dodream.spring.cCenter.model.service.noticeService;
-
+  
 @Controller
 public class noticeController {
 
@@ -31,9 +31,6 @@ public class noticeController {
 
 		return mv;
 	}*/
-
-	// 펀딩 결제창 확인용 임시 매핑
-	// 지우지 말아주세요 (HSH)
 
 	@RequestMapping("cCenter.dr")
 	public String tmp() {

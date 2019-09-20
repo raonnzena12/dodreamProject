@@ -106,7 +106,7 @@
 										<button class="btn btn-warning btn-block" id="postcodify_search_button1">우편번호 검색</button>
 									</div>
 								</div>
-								<input type="text" name="ship1Address2" id="ship1Address2" placeholder="상세주소" class="form-control">
+								<input type="text" name="ship1Address2" id="ship1Address2" placeholder="상세주소" class="form-control postcodify_details">
 								<hr>
 								<label>배송시 요청사항(선택)</label><br><input type="text" name="comment1" id="comment1" class="form-control" >
 								<hr>
@@ -156,8 +156,8 @@
 										</tr>
 										<tr>
 											<td><input type="number" name="card1" id="card1" class="form-control form-control-sm" maxlength="4"></td>
-											<td><input type="number" name="card2" id="card2" class="form-control form-control-sm" maxlength="4"></td>
-											<td><input type="number" name="card3" id="card3" class="form-control form-control-sm" maxlength="4"></td>
+											<td><input type="password" name="card2" id="card2" class="form-control form-control-sm" maxlength="4"></td>
+											<td><input type="password" name="card3" id="card3" class="form-control form-control-sm" maxlength="4"></td>
 											<td><input type="number" name="card4" id="card4" class="form-control form-control-sm" maxlength="4"></td>
 										</tr>
 										<tr>
@@ -170,7 +170,7 @@
 										</tr>
 										<tr>
 											<td colspan="2"><input type="text" name="validity" id="validity" class="form-control form-control-sm" placeholder="MM/YY"></td>
-											<td colspan="2"><input type="number" name="cPassword" id="cPassword" class="form-control form-control-sm" placeholder="앞 2자리"></td>
+											<td colspan="2"><input type="password" name="cPassword" id="cPassword" class="form-control form-control-sm" placeholder="앞 2자리" maxlength="2"></td>
 										</tr>
 										<tr>
 											<td colspan="4">
