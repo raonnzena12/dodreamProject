@@ -5,16 +5,18 @@
 <head>
 <meta charset="UTF-8">
 <title>ProjectDetailHeader</title>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<!-- 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> -->
+  <!--   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"> -->
        <style>
-           #section{
+           #HeaderSection{
                width: 1000px;
-               height: auto;
+              /*  height: auto; */
+              /*  min-height:1000px; */
                margin: auto;
+               
            }
            /* #content{
                width: 100%;
@@ -42,7 +44,7 @@
                padding-top: 25px;
                /* border-bottom: 1px solid #ced4da; */
            }
-           #detailContent{
+           #headerContent{
                height: 500px;
 
            }
@@ -136,6 +138,11 @@
                margin: 20px 0 0 15px; 
                float: left;
                display: block;
+               
+           }
+           #supportbtn:hover{
+           		cursor: pointer;
+           		background-color: #8E44AD;
            }
            #icon{
                 width: 50px;
@@ -154,6 +161,14 @@
                 border: 1px solid #ddd;
                 margin: 20px 0 0 10px;
                 border-radius: 5px;
+           }
+           #favorite:hover{
+           		cursor: pointer;
+           		color: #8E44AD;
+           }
+           #share:hover{
+           		cursor: pointer;
+           		color: #8E44AD;
            }
            #favorite{
                font-size: 50px;
@@ -178,7 +193,7 @@
                display: block;
                
            }
-           #detailnav > div{
+			#detailnav > div{
                width: 100px;
                height: 70px;
                display: block;
@@ -190,18 +205,39 @@
                padding-top:20px; 
                font-weight: bold;
            }
+           #detailnav > div:hover{
+           		color: #8E44AD;
+           		cursor: pointer;
+           }
+           #detailDday{
+           		width: 80px;
+           		height: 40px;
+           		/* border: 1px solid black; */
+           		float: right;
+           		font-size:25px;
+           		font-weight: bold;
+           		text-align: center;
+           		padding: auto;
+           		background-color: #8E44AD;
+           		color: white;
+           	
+           }
            
        </style>
 </head>
 <body>
-	<section id="section">
+	<section id="HeaderSection">
             <section id="detailTitle">
                 <p>"제목이 들어간다아"</p>
             </section>
 
-            <section id="detailContent">
+            <section id="headerContent">
                 <article id="detailimg">
-                    <article id=img> 사진 들어가요<img src="" alt=""></article>
+                    <article id="img">
+                    	 사진 들어가요<img src="" alt="">
+                    	 <div id="detailDday">D-26</div>
+                   	</article>
+                    
                 </article>
 
                 <article id="detailcon">
@@ -241,9 +277,11 @@
                        
                 </article>
             </section>
-
-            <nav class="nav sticky-top navbar-light">
-                <nav>
+    
+            
+            <div class="row sticky-top">
+            	<div class="col-md-12">
+                <nav class="nav">
                     <div class="container-fluid" id="detailnav">
                       <div id="story">스토리</div>
                       <div id="guide">펀딩 안내</div>
@@ -251,10 +289,30 @@
                       <div id="reward">리워드</div>
                     </div>
                 </nav>
-            </nav>
-            
-    </section>
-	
+                </div>
+            </div>
+	</section>
+	<!-- <div class="container-fluid">
+		<div class="row sticky-top" id="navOuter">
+
+
+			<div class="col-md-2"></div>
+			<div class="col-md-6">
+				<ul class="nav">
+					<li class="nav-item"><a class="nav-link" href="#">펀딩</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">♥</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">알림</a></li>
+				</ul>
+			</div>
+			<div class="col-md-4">
+				<ul class="nav">
+					<li class="nav-item"><a class="nav-link" href="#">펀딩로그</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+ -->
+
 
 </body>
 </html>

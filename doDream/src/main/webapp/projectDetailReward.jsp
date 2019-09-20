@@ -23,7 +23,14 @@
                min-height: 1000px;
               /*  border: 1px solid black; */
            }
-           
+           #detailContent2{
+                width:70%;
+                height: auto;
+                min-height: 1000px;
+                border: 1px solid black;
+                display: block;
+                float: left;
+           }
            section{
                width: 100%;
                /*height: 50px;*/
@@ -37,24 +44,34 @@
                /* border: 1px solid black; */
                display: block;
                float: right;
-
+           }
+           #detailReward{
+           		width:100%;
+                height: auto;
+                min-height: 990px;
+                border: 1px solid #ddd;
+                display: block;
+                float: left;
+                margin: 10px 0 0 0;
+                border-radius: 3px;
            }
        </style>
 </head>
 <body>
 	<section id="section">
-            <section id="header">
-            	<%@ include file = "projectDetailHeader.jsp" %>
-            </section>
+		<%@ include file = "projectDetailHeader.jsp" %>
             
-            <section id="content">
-                <section id="detailContent2">
-                
-                </section>
-                <aside id="aside">
-                	<%@ include file = "projectDetailAside.jsp" %>
-                </aside>
-            </section>  
+		<section id="content">
+			<section id="detailContent2">
+			     <div id="detailReward">
+					
+				</div>              
+			</section>
+			
+			<aside id="aside">
+				<%@ include file = "projectDetailAside.jsp" %>
+			</aside>
+		</section>  
 
 
    	</section>
