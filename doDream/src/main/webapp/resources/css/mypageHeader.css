@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+#navOuter {
+	border-top: 1px solid lightgrey;
+	border-bottom: 1px solid lightgrey;
+	height: 50px;
+}
+
+#navOuter ul li a {
+	color: #444;
+}
+
+

@@ -40,7 +40,7 @@
 </head>
 <body>
 	<section id="mainMenuBar">
-	<div class="mainLogoArea" id="mainLogoArea"><img src="resources/images/DoDream-2e.png" alt="두드림" id="mainLogo"></div>
+	<div class="mainLogoArea" id="mainLogoArea"><a href="home.dr"><img src="${contextPath}/resources/images/DoDream-2e.png" alt="두드림" id="mainLogo"></a></div>
 	<nav class="navbar navbar-expand-lg navbar-light" id="naviBar">
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
@@ -92,7 +92,7 @@
 			</a>
 			<div class="loginmenu" id="veil"></div>
 			<!-- 비로그인 시 메뉴창 출력 -->
-		<c:if test="${ empty sessionScope.loginUser }">
+			<c:if test="${ empty sessionScope.loginUser }">
 			<div id="login-menu" class="loginmenu">
 				<div style="text-align:center;" class="mb-2"> LOGIN </div>
 				<form action="login.dr" method="POST">
@@ -131,15 +131,51 @@
 		</c:if>
 		<!-- 로그인 시 메뉴창 출력 -->
 		<c:if test="${ !empty sessionScope.loginUser }">
-			<div id="mypageMenu" class="dropdown-menu dropdown-menu-right loginmenu" aria-labelledby="loginMenuLink">
-				작업중<br>
-					<c:url var="myinfo" value="#"/>
-					<c:url var="logout" value="logout.dr"/>
-				<button onclick="location.href='${myinfo}'">정보수정</button>
-				<button onclick="location.href='${logout}'">로그아웃</button>
-			</div>
-		</c:if>	   
-		</div>
+					<div id="mypageMenu" class="dropdown-menu dropdown-menu-right loginmenu" aria-labelledby="loginMenuLink">
+						<div class="container-fluid" id="myinfoOuter">
+							<div class="row">
+								<div class="hr-sect">MY INFO</div>
+								<div class="col-md-12">
+									<h4 class="text-center">${ loginUser.userNickname }님 
+										<img alt="프로필사진" src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg" class="rounded-circle rounded-circle float-sm ml-3" id="userProfileImage"/>
+									</h4>
+									<!-- ${loginUser.userProfileImage } -->
+								</div>
+							</div>
+						</div>
+							<div class="row">
+								<div class="hr-sect">SUB MENU</div>
+								<div class="col-md-12" id="myinfosub">
+									<div class="row text-center">
+										<div class="col-md-4">
+											<i class="material-icons">supervisor_account</i>
+											<br>
+											<a href="#">팔로잉</a>
+										</div>
+										<div class="col-md-4">
+											<i class="material-icons">favorite</i>
+											<br>
+											<a href="#">찜</a>
+										</div>
+										<div class="col-md-4">
+											<i class="material-icons">folder</i>
+											<br>
+											<a href="#">펀딩로그</a>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row" id="myinfobtn">
+								<div class="col-md-12 text-center">
+								<c:url var="mypage" value="mypage.dr"/>
+								<c:url var="logout" value="logout.dr"/>
+								<button class="btn btn-sm mb-2" id="mypagebtn"onclick="location.href='${mypage}'">정보수정</button>
+								&nbsp; &nbsp;
+								<button class="btn btn-sm mb-2" id="logoutbtn" onclick="location.href='${logout}'">로그아웃</button>
+								</div>
+							</div>
+						</div>
+				</c:if>	   
 		<!-- </div> -->
 		<!-- ↑??? -->
 	</nav>
