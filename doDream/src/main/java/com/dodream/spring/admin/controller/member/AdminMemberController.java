@@ -5,13 +5,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-public class MemeberListController {
+public class AdminMemberController {
 
-	@RequestMapping(value= "mList.dr", method= RequestMethod.GET)
+	@RequestMapping(value= "adminMlist.dr", method= RequestMethod.GET)
 	public String selectMemberList() {
-		return "admin/memberViewList";
+		return "admin/member/memberViewList";
 	}
 	
+	@RequestMapping(value="adminBlist.dr", method= RequestMethod.GET)
+	public String selectBlackList() {
+		return "admin/member/memberBlackList";
+	} 
 	
 	
 }
