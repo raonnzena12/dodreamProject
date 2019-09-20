@@ -5,10 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-</head>
+</head> 
 <body>
 	<%@ include file="adminTop.jsp" %>
-
+"target/m2e-wtp/web-resources/META-INF/maven/com.kh/spring/pom.properties"
 	<!-- Begin Page Content -->
 	<div class="container-fluid">
 
