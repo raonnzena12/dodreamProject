@@ -67,7 +67,7 @@
 						href="notice.dr">공지사항</a></li>
 					<li class="nav-item"><a class="nav-link" href="T_O_Service.dr">이용약관</a></li>
 					<li class="nav-item"><a class="nav-link "
-						href="FundingReview.dr">펀딩후기</a></li>
+						href="fReview.dr">펀딩후기</a></li>
 					<li class="nav-item"><a class="nav-link " href="faq.dr">FAQ</a></li>
 
 				</ul>
