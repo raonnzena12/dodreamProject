@@ -11,7 +11,7 @@ import com.dodream.spring.customerCenter.model.service.noticeService;
   
 @Controller
 public class noticeController {
-
+ 
 	@Autowired
 	private noticeService nService;
 
