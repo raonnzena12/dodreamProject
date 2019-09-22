@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>INFO</title>
+<title>두드림 - 프로젝트 펀딩안내</title>
 <%@ include file="../common/menubar.jsp" %>
 <link rel="stylesheet" type="text/css" href="resources/css/fundingInfo.css">
 <script type="text/javascript" src="resources/js/fundingInfo.js"></script>
@@ -26,8 +26,8 @@
 				<div class="col-md-6">
 					<h3 class="text-center">결제창입니다</h3>
 					<div class="row">
-						<div class="col-md-12">
-							<h3 class="text-left">h3. Lorem ipsum dolor sit amet.</h3>
+						<div class="col-md-12 mx-auto innerMain">
+							<h3 class="text-left">리워드 구성</h3>
 							<table class="table" id="payingTable">
 								<thead>
 									<tr>
@@ -71,7 +71,7 @@
 						</div>
 					</div>
 					<div class="row my-4">
-						<div class="col-md-12">
+						<div class="col-md-12 innerMain mx-auto">
 							<h3>리워드 배송지</h3>
 							<!-- 회원정보에 주소지가 입력되어 있을 때 기존 배송지 정보 출력 -->
 							<c:if test="${ !sessionScope.loginUser.address != null }">
@@ -145,7 +145,7 @@
 						</div>
 					</div>
 					<div class="row my-4">
-						<div class="col-md-12">
+						<div class="col-md-12 innerMain mx-auto">
 						<h3>결제 정보</h3>
 							<div class="row">
 								<div class="col-md-8">
@@ -186,7 +186,7 @@
 										</tr>
 									</table>
 								</div>
-								<div class="col-md-4"> 
+								<div class="col-md-4 containGray"> 
 									결제 예약시 유의사항<br><br>
 									<span class="graytext">- 결제실행일에 결제자 귀책사유(한도초과, 이용정지 등)로 인하여 결제가 실패할 수 있으니, 결제수단이 유효한지 한번 확인하세요.<br>
 									- 1차 결제 실패 시 실패일로부터 3 영업일 동안 재 결제를 실행합니다.<br>
@@ -196,8 +196,8 @@
 						</div>
 					</div>
 					<div class="row my-4">
-						<h3>약관 동의</h3>
-						<div class="col-md-12">
+						<div class="col-md-12 innerMain mx-auto">
+							<h3>약관 동의</h3>
 							<hr>
 							<span class="custom-control custom-checkbox">
 								<input type="checkbox" class="custom-control-input" value="allCheck" id="allCheck"><label class="custom-control-label" for="allCheck" >전체 동의하기</label>
