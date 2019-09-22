@@ -4,39 +4,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>THANK YOU!</title>
+<title>두드림 - 프로젝트 펀딩완료</title>
 <%@ include file="../common/menubar.jsp" %>
-<style>
-#fdComplete #innerCon {
-    max-width: 600px;
-    margin: 20px auto;
-}
-#fdComplete .thanksText {
-    text-align: center;
-    border: 1px solid #8E44AD;
-    border-radius: 5px;
-    color: #8E44AD;
-    font-weight: 600;
-    padding: 30px;
-    font-size: 20px;
-}
-#shareBtn {
-    width: 40px;
-    height: 40px;
-    padding: 0;
-}
-.font-14 {
-    font-size: 14px;
-}
-.infoText {
-    font-size: 13px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 20px;
-}
-</style>
+<link rel="stylesheet" href="resources/css/fundingInfo.css">
 </head>
 <body>
+<c:url var="myFundingStatus" value="temp3.dr" />
 <section id="fdComplete">
     <div class="container-fluid">
         <div class="row">
@@ -70,7 +43,22 @@
                                 </ul>
                             </div>
                         </div>
-                        
+                        <div class="mt-5 mb-4 px-4 row">
+                            <div class="col-md-8 text-center font-14">
+                                결제예약결과 및 배송예상일 조회는<br>나의 펀딩현황에서 확인하세요.
+                            </div>
+                            <div class="col-md-4 text-center">
+                                <button class="btn btn-light" id="myFund">나의 펀딩현황</button>
+                            </div>
+                        </div>
+                        <div class="mb-5 px-4 row">
+                            <div class="col-md-8 text-center font-14">
+                                이런 프로젝트는 어떠세요?
+                            </div>
+                            <div class="col-md-4 text-center">
+                                <button class="btn btn-light" id="myFund">다른 프로젝트 찾기</button>
+                            </div>
+                        </div>
                     </div>
                     </div>
                 </div>
@@ -81,5 +69,16 @@
         </div>
     </div>
 </section>
+<script>
+$(function(){
+    $("#myFund").on("click",function(){
+        // if( ${ empty loginUser } ) {
+        //     Swal.fire( '로그인이 필요합니다!', '좋아요를 누르기 전 로그인을 해주세요!', 'warning' );
+        //     return false;
+        // }
+        location.href="${ myFundingStatus }";
+    });
+});
+</script>
 </body>
 </html>

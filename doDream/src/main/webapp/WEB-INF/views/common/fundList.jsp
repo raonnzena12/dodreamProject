@@ -187,10 +187,10 @@
    $(function() {
         // 리뷰 좋아요 체크하는 함수
         $(document).on("click",".heartIcon", function(e){
-            if ( ${ empty loginUser } ) {
-                Swal.fire( '로그인이 필요합니다!', '좋아요를 누르기 전 로그인을 해주세요!', 'warning' );
-                return false;
-         	}
+            // if ( ${ empty loginUser } ) {
+            //     Swal.fire( '로그인이 필요합니다!', '좋아요를 누르기 전 로그인을 해주세요!', 'warning' );
+            //     return false;
+         	// }
             var icheck = $(this).children().text();
             var fno = $(this).parent().parent().attr("id");
             if ( icheck == 'favorite_border') {
@@ -287,19 +287,6 @@
        easing:       'quint.out'
      }
    });
-
-/*    const heart = new mojs.Shape({
-     left: 0, top: 2,
-     shape:    'heart',
-     fill:     '#E5214A',
-     scale:    { 0 : 1 },
-     easing:   'elastic.out',
-     duration: 1600,
-     delay:    300,
-     radius:   11
-   });
- */
-
 </script>
 </body>
 </html>

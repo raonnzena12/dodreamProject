@@ -25,4 +25,10 @@ public class ProjectController3 {
 	public String tmp2() {
 		return "project/fundingComplete";
 	}
+
+	// 펀딩 현황 확인용 임시 매핑
+	@RequestMapping("temp3.dr")
+	public String tmp3() {
+		return "project/fundingStatus";
+	}
 }
