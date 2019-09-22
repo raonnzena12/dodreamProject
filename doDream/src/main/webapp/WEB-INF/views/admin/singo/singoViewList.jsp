@@ -10,7 +10,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>회원관리</title>
+<title>신고 게시판</title>
 
 <!-- Custom fonts for this template -->
 <link href="resources/vendor/fontawesome-free/css/all.min.css"
@@ -54,7 +54,7 @@
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-2 text-gray-800"># 일반회원 관리</h1>
+					<h1 class="h3 mb-2 text-gray-800">#  신고 접수 현황</h1>
 					<br>
 					<!-- DataTales Example -->
 					<div class="card shadow mb-4">

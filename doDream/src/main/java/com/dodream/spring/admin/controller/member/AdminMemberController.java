@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class AdminMemberController {
 
 	@RequestMapping(value= "adminMlist.dr", method= RequestMethod.GET)
-	public String selectMemberList() {
+	public String MemberListView() {
 		return "admin/member/memberViewList";
 	}
 	
 	@RequestMapping(value="adminBlist.dr", method= RequestMethod.GET)
-	public String selectBlackList() {
+	public String BlackListView() {
 		return "admin/member/memberBlackList";
 	} 
 	
