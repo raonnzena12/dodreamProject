@@ -113,7 +113,8 @@
 			<c:if test="${ empty sessionScope.loginUser }">
 			<div id="login-menu" class="loginmenu">
 				<div style="text-align:center;" class="mb-2"> LOGIN </div>
-				<form action="login.dr" method="POST">
+				<form action="login.dr" method="POST" id="loginFrm">
+					<input type="hidden" value="" name="prevPage" id="prevPage">
 					<table id="login-table" class="form-group">
 						<tr>
 							<td><input class="form-control" type="email" name="userEmail" id="user-email" placeholder="이메일 주소" autocomplete="off" required></td>
@@ -128,7 +129,7 @@
 							</td>
 						</tr>
 						<tr>
-							<td><button type="submit" class="btn btn-warning btn-block mb-2" id="loginBtn">L O G I N</button></td>
+							<td><button type="button" class="btn btn-warning btn-block mb-2" id="loginBtn" onclick="beforeLogin()">L O G I N</button></td>
 						</tr>
 						<tr>
 						<!-- 소셜 로그인 아이콘 들어가는 부분 -->
@@ -198,6 +199,15 @@
 		<!-- ↑??? -->
 	</nav>
 	</section>
+	<script>
+		function beforeLogin(){
+			var frm = $("#loginFrm");
+			var path = window.location.pathname;
+			var arr = path.split("/");
+			$("#prevPage").val(arr[2]);
+			frm.submit();
+		}
+	</script>
 	<%@ include file="footer.jsp" %>
 </body>
 </html>
