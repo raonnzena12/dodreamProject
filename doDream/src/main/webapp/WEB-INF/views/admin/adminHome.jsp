@@ -59,7 +59,7 @@
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800"> # 메인</h1>
-            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i></a>
           </div>
 
           <!-- Content Row -->
@@ -113,12 +113,12 @@
                 <div class="card-body"> 
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">신규 회원 </div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800" id="member_Newmember">10 명</div><br>
-                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">탈퇴 회원</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">20 명</div><br>
-                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">블랙리스트 회원</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">1 명</div> 
+                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">주문 예약 현황 </div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800" id="member_Newmember">10 개</div><br>
+                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">결제 완료 현황</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">20 개</div><br>
+                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">취소 및 환불 현황</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">1 개</div> 
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -156,7 +156,7 @@
               <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <p class="m-0 font-weight-bold text-primary">Earnings Overview</p>
+                  <p class="m-0 font-weight-bold text-primary">누적 방문자 수</p>
                   <div class="dropdown no-arrow">
                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
@@ -434,9 +434,12 @@
 		// 관리자 페이지 심사 대기 중인 프로젝트 수
 		$.ajax({
 			url: "adminCountProject1.dr",
+			error: function(e){
+				console.log(e);
+			},
 			success : function(result){
 				console.log(result);
-				$("#CountProject1").text(result + "개");
+				$("#countProject1").text(result + "개");
 			}
 		});
 		
@@ -445,7 +448,7 @@
 			url: "adminCountProject2.dr",
 			success : function(result){
 				console.log(result);
-				$("#CountProject2").text(result + "개");
+				$("#countProject2").text(result + "개");
 			}
 		});
 		
@@ -454,7 +457,7 @@
 			url: "adminCountProject3.dr",
 			success : function(result){
 				console.log(result);
-				$("#CountProject3").text(result + "개");
+				$("#countProject3").text(result + "개");
 			}
 		});
 		

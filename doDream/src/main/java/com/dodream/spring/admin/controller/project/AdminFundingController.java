@@ -39,7 +39,7 @@ public class AdminFundingController {
 	@RequestMapping("adminCountProject2.dr")
 	public int countProject2() {
 		return aService.countProject2();
-	}
+	} 
 	
 	@ResponseBody
 	@RequestMapping("adminCountProject3.dr")
