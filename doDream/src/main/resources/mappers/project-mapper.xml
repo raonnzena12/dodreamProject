@@ -43,7 +43,7 @@
 	
 	<!-- 선택한 카테고리에 따라 프로젝트 리스트 조회용 쿼리 -->
 	<select id="selectPrjList" resultMap="projectResultSet" parameterType="string">
-	 	SELECT * FROM PRJ_COUNT_DESC
+	 	SELECT P.*, FLOOR(PROJECT_CLOSE_DT - SYSDATE) AS D_DAY FROM PRJ_COUNT_DESC P
 	 	<choose>
 	 		<when test="category == 'music'">
 		 	WHERE PROJECT_CT_NO = 1

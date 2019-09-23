@@ -25,7 +25,6 @@ public class ProjectController3 {
 		int currentPage = ( page == null ) ? 1 : page;
 		
 		ArrayList<Project> pList = pService.selectPrjList(category, currentPage);
-		System.out.println(pList.size());
 		model.addAttribute("pList", pList);
 		return "common/fundList";
 	}
@@ -40,7 +39,6 @@ public class ProjectController3 {
 		int addtionalFunding = 10000;
 		
 		Project prj = pService.selectProject(pNo);
-		System.out.println(prj);
 		
 		return "project/fundingInfo";
 	}
