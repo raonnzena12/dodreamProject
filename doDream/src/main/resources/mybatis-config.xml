@@ -18,6 +18,7 @@
 		<mapper resource="mappers/member-mapper.xml"/>
 		<mapper resource="mappers/project-mapper.xml"/>
     <mapper resource="mappers/adminMember-mapper.xml"/>
+    <mapper resource="mappers/adminFunding-mapper.xml"/>
  	</mappers>
 	
 </configuration>

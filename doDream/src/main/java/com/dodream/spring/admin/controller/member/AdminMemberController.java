@@ -26,9 +26,21 @@ public class AdminMemberController {
 	} 
 	
 	@ResponseBody
-	@RequestMapping("adminCountNewMember")
+	@RequestMapping("adminCountNewMember.dr")
 	public int countNewMember() {
 		return aService.countNewMember();
+	}
+	
+	@ResponseBody
+	@RequestMapping("adminCountLeaveMember.dr")
+	public int countLeaveMember() {
+		return aService.countLeaveMember();
+	}
+	
+	@ResponseBody
+	@RequestMapping("adminCountBlackListMember.dr")
+	public int countBlackListMember() {
+		return aService.countBlackListMember();
 	}
 	
 	

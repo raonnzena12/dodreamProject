@@ -19,8 +19,8 @@
 		<result property="userSelf" column="USER_SELF" />
 	</resultMap>
 
+	<!-- 신규 회원 관련 쿼리 -->
 	<select id="countNewMember" resultType="_int">
-
 		SELECT COUNT(*) FROM USER_TB
 		WHERE TO_CHAR(SYSDATE,'YYYYMMDD') - TO_CHAR(USER_ER_DT,'YYYYMMDD') 
 		<![CDATA[
@@ -28,7 +28,19 @@
 		
 		]]> 
 		1
-
 	</select>
+	
+	<!-- 탈퇴 회원 관련 쿼리 -->
+	<select id="countLeaveMember" resultType="_int">
+		SELECT COUNT(*) FROM USER_TB
+		WHERE USER_STATUS = 'N'
+	</select>
+
+	<!-- 블랙리스트 회원 관련 쿼리 -->
+	<select id="countBlackListMember" resultType="_int">
+		SELECT COUNT(*) FROM USER_TB
+		WHERE USER_STATUS = 'B'
+	</select>
+	
 
 </mapper>
