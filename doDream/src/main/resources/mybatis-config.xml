@@ -15,6 +15,7 @@
 	<!-- mapper 파일 등록 부분 -->
 	<mappers>
 		<mapper resource="mappers/member-mapper.xml"/>
+		<mapper resource="mappers/adminMember-mapper.xml"/>
  	</mappers>
 	
 </configuration>

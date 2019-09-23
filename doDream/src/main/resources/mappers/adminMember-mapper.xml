@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="adminMemberMapper">
+
+	<resultMap id="memberResultSet" type="Member">
+		<id property="userNo" column="USER_NO" />
+		<result property="userEmail" column="USER_EMAIL" />
+		<result property="userNickname" column="USER_NICKNAME" />
+		<result property="userPwd" column="USER_PWD" />
+		<result property="userEmailAuthYn" column="USER_EM_AUTH_YN" />
+		<result property="userAdminYn" column="USER_ADMIN_YN" />
+		<result property="userStatus" column="USER_STATUS" />
+		<result property="userEnrollDate" column="USER_ER_DT" />
+		<result property="userLoginDate" column="USER_LOGIN_DATE" />
+		<result property="userModifyDate" column="USER_MF_DT" />
+		<result property="userAddress" column="USER_ADDR" />
+		<result property="userPhone" column="USER_PHONE" />
+		<result property="userProfileImage" column="USER_PF_IMG" />
+		<result property="userSelf" column="USER_SELF" />
+	</resultMap>
+
+	<select id="countNewMember" resultType="_int">
+
+		SELECT COUNT(*) FROM USER_TB
+		WHERE TO_CHAR(SYSDATE,'YYYYMMDD') - TO_CHAR(USER_ER_DT,'YYYYMMDD') 
+		<![CDATA[
+		<= 
+		
+		]]> 
+		1
+
+	</select>
+
+</mapper>
