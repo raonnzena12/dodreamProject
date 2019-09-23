@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -56,7 +57,7 @@
            #detailStory{
            		width:100%;
                 height: auto;
-                min-height: 990px;
+                min-height: 930px;
                 border: 1px solid #ddd;
                 display: block;
                 float: left;
@@ -89,7 +90,7 @@
            #detailTag{
            		width: 680px;
                 height: auto;
-                min-height: 130px;
+                min-height: 60px;
                /*  border: 1px solid black; */
                 display: block;
                 float: left;
@@ -113,6 +114,7 @@
            		background-color: white;
            		font-weight: bold;
            		cursor: pointer;
+           		text-align: center;
            }
            .projectTag:hover{
            		cursor: pointer;
@@ -129,18 +131,13 @@
 			<section id="detailContent2">
 				<div id="detailStory">
 					<div id="storyContent">
-						스토리 내용이 들어갑니다.
+						${project.pStory }
 					</div>
 					<div id="projectInformation">
 						프로젝트 안내가 들어갑니다.
 					</div>
 					<div id="detailTag">
-						<div class="projectTag">#프로젝트 해시태그</div>
-						<div class="projectTag">#프로젝트 해시태그</div>
-						<div class="projectTag">#프로젝트 해시태그</div>
-						<div class="projectTag">#프로젝트 해시태그</div>
-						<div class="projectTag">#프로젝트 해시태그</div>
-						<div class="projectTag">#프로젝트 해시태그</div>
+						<!-- <div class="projectTag"></div> -->
 					</div>
 				</div>                
 			</section>
@@ -153,6 +150,18 @@
 
    	</section>
 	<script>
+	
+		$(function(){
+			var ht = "${project.pHashTag}";
+			var hashTag = ht.split(",");
+			var $detailTag = $("#detailTag");
+			for ( var i = 0 ; i < hashTag.length ; i++ ) {
+				var $prjTag = $("<div>").addClass("projectTag").text("#"+hashTag[i]);
+				$detailTag.append($prjTag);
+			}
+			
+		});
+	
 		$("#story").on("click", function(){
 			location.href="#detailcontent";
 		});

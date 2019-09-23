@@ -247,7 +247,7 @@
             <section id="headerContent">
                 <article id="detailimg">
                     <article id="img">
-                    	<div id="detailDday"></div>
+                    	<div id="detailDday">D-${project.pDDay}</div>
                     	<img src="resources/projectImg/mainImage/${project.pMainImage}" alt="" id="mainImg">
                    	</article>
                 </article>
@@ -301,6 +301,14 @@
                 </div>
             </div>
 	</section>
+	
+	<script>
+		$("#supportbtn").on("click", function(){
+			location.href="project/projectDetailStory.jsp";
+			
+		});
+	
+	</script>
 	<!-- <div class="container-fluid">
 		<div class="row sticky-top" id="navOuter">
 
