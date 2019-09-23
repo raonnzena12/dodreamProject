@@ -16,5 +16,30 @@ public class AdminServiceImpl implements AdminService {
 		return aDao.countNewMember();
 	}
 
+	@Override
+	public int countLeaveMember() {
+		return aDao.countLeaveMember();
+	}
+
+	@Override
+	public int countBlackListMember() {
+		return aDao.countBlackListMember(); 
+	}
+
+	@Override
+	public int countProject1() {
+		return aDao.countProject1();
+	}
+
+	@Override
+	public int countProject2() {
+		return aDao.countProject2();
+	}
+	
+	@Override
+	public int countProject3() {
+		return aDao.countProject3();
+	}
+	
 
 }

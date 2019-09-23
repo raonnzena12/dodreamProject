@@ -74,9 +74,9 @@
                       <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">신규 회원 </div>
                       <div class="h5 mb-0 font-weight-bold text-gray-800" id="memberNewMember"></div><br>
                       <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">탈퇴 회원</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">20 명</div><br>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800" id="memberLeaveMember"></div><br>
                       <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">블랙리스트 회원</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">1 명</div> 
+                      <div class="h5 mb-0 font-weight-bold text-gray-800" id="blackListMember"></div> 
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -92,12 +92,12 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">심사 대기중 프로젝트</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">18 개</div>
-                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">심사  프로젝트</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">18 개</div>
-                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">심사 대기중 프로젝트</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">18 개</div>
+                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">심사 대기 중인 프로젝트</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800" id="countProject1"></div><br>
+                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">오픈 중인  프로젝트</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800" id="countProject2"></div><br>
+                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">마감된 프로젝트</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800" id="countProject3"></div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-comments fa-2x text-gray-300"></i>
@@ -404,6 +404,7 @@
 	
 	
 	<script>
+		// 관리자 페이지 신규 회원 수
 		$.ajax({
 			url : "adminCountNewMember.dr",
 			success : function(result){
@@ -411,7 +412,52 @@
 				$("#memberNewMember").text(result+"명");
 			}
 		});
-	
+		
+		// 관리자 페이지 탈퇴 회원 수
+		$.ajax({
+			url : "adminCountLeaveMember.dr",
+			success : function(result){
+				console.log(result);
+				$("#memberLeaveMember").text(result+"명");
+			}
+		});
+		
+		// 관리자 페이지 블랙리스트 회원 수
+		$.ajax({
+			url: "adminCountBlackListMember.dr",
+			success : function(result){
+				console.log(result);
+				$("#blackListMember").text(result + "명");
+			}
+		});
+		
+		// 관리자 페이지 심사 대기 중인 프로젝트 수
+		$.ajax({
+			url: "adminCountProject1.dr",
+			success : function(result){
+				console.log(result);
+				$("#CountProject1").text(result + "개");
+			}
+		});
+		
+		// 관리자 페이지 오픈 중인 프로젝트 수
+		$.ajax({
+			url: "adminCountProject2.dr",
+			success : function(result){
+				console.log(result);
+				$("#CountProject2").text(result + "개");
+			}
+		});
+		
+		// 관리자 페이지 마감 된 프로젝트 수
+		$.ajax({
+			url: "adminCountProject3.dr",
+			success : function(result){
+				console.log(result);
+				$("#CountProject3").text(result + "개");
+			}
+		});
+		
 	</script>
 </body>
 

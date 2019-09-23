@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="adminFundingMapper">
+	
+	<resultMap type="Project" id="projectResultSet">
+		<id property="pNo" column="PROJECT_NO"/>
+		<result property="pTitle" column="PROJECT_TITLE"/>
+		<result property="pSTitle" column="PROJECT_STITLE"/>
+		<result property="pGoal" column="PROJECT_GOAL"/>
+		<result property="pThumbImage" column="PROJECT_THUMB_IMG"/>
+		<result property="pStartDate" column="PROJECT_START_DT"/>
+		<result property="pCloseDate" column="PROJECT_CLOSE_DT"/>
+		<result property="pHashTag" column="PROJECT_HASHTAG"/>
+		<result property="pMainImage" column="PROJECT_MAIN_IMG"/>
+		<result property="pSummaryText" column="PROJECT_SUMMARY"/>
+		<result property="pStory" column="PROJECT_STORY"/>
+		<result property="pArtistName" column="PROJECT_AT_NM"/>
+		<result property="pArtistPFImage" column="PROJECT_AT_PF"/>
+		<result property="pArtistSns1" column="PROJECT_AT_SNS1"/>
+		<result property="pArtistSns2" column="PROJECT_AT_SNS2"/>
+		<result property="pArtistPhone" column="PROJECT_AT_CONT"/>
+		<result property="pArtistEmail" column="PROJECT_AT_EM"/>
+		<result property="pEnrollDate" column="PROJECT_ER_DT"/>
+		<result property="pModifyDate" column="PROJECT_MF_DT"/>
+		<result property="pWritter" column="PROJECT_WRITER"/>
+		<result property="pCategoryNum" column="PROJECT_CT_NO"/>
+		<result property="pStatusNum" column="PROJECT_ST_NO"/>
+		<result property="pCount" column="PROJECT_COUNT"/>
+	</resultMap>
+	
+	<!-- 심사중인 프로젝트 개수 관련 쿼리 -->
+	<select id="countProject1" resultType="_int">
+		SELECT COUNT(*) FROM PROJECT_TB
+		WHERE PROJECT_ST_NO = 2
+	</select>
+	
+	<!-- 심사중인 프로젝트 개수 관련 쿼리 -->
+	<select id="countProject2" resultType="_int">
+		SELECT COUNT(*) FROM PROJECT_TB
+		WHERE PROJECT_ST_NO = 4
+	</select>
+	
+	<!-- 심사중인 프로젝트 개수 관련 쿼리 -->
+	<select id="countProject3" resultType="_int">
+		SELECT COUNT(*) FROM PROJECT_TB
+		WHERE PROJECT_ST_NO = 5
+	</select>
+	
+</mapper>
