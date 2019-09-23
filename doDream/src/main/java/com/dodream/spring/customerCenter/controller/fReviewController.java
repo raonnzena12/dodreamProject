@@ -7,14 +7,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.dodream.spring.customerCenter.model.service.faqService;
  
 @Controller
-public class FReviewController {
+public class fReviewController {
 
 	/*
 	 * @Autowired private FReviewService FReviewService;
 	 */
-	@RequestMapping("FundingReview.dr")
+	@RequestMapping("fReview.dr")
 	public String noticeList() {
-		return "customerCenter/FundingReview";
+		return "customerCenter/fReview";
 	}
 	
 	

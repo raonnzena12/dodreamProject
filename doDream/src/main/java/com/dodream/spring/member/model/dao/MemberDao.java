@@ -15,4 +15,12 @@ public class MemberDao {
 	public Member selectMember(Member mem) {
 		return sqlSession.selectOne("memberMapper.selectOne", mem);
 	}
+
+	public int countVisitToday(int userNo) {
+		return sqlSession.insert("memberMapper.countVisitToday",userNo);
+	}
+
+	public int checkVisitToday(int userNo) {
+		return sqlSession.selectOne("memberMapper.checkVisitToday",userNo);
+	}
 }

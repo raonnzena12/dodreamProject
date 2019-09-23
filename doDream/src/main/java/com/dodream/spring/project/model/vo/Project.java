@@ -1,4 +1,4 @@
-package com.dodream.spring.project.vo;
+package com.dodream.spring.project.model.vo;
 
 import java.sql.Date;
 
@@ -6,10 +6,12 @@ public class Project {
 	private int pNo;
 	private String pTitle;
 	private String pSTitle;
-	private int pGoal;
+	private int pGoal;// 목표금액
+	private String pCommaGoal;// 목표금액 ,구분된것
 	private String pThumbImage;
 	private Date pStartDate;
 	private Date pCloseDate;
+	private String pDDay;
 	private String pHashTag;
 	private String pMainImage;
 	private String pSummaryText;
@@ -29,18 +31,21 @@ public class Project {
 	
 	public Project() {}
 
-	public Project(int pNo, String pTitle, String pSTitle, int pGoal, String pThumbImage, Date pStartDate,
-			Date pCloseDate, String pHashTag, String pMainImage, String pSummaryText, String pStory, String pArtistName,
-			String pArtistPFImage, String pArtistSns1, String pArtistSns2, String pArtistPhone, String pArtistEmail,
-			Date pEnrollDate, Date pModifyDate, int pWritter, int pCategoryNum, int pStatusNum, int pCount) {
+	public Project(int pNo, String pTitle, String pSTitle, int pGoal, String pCommaGoal, String pThumbImage,
+			Date pStartDate, Date pCloseDate, String pDDay, String pHashTag, String pMainImage, String pSummaryText,
+			String pStory, String pArtistName, String pArtistPFImage, String pArtistSns1, String pArtistSns2,
+			String pArtistPhone, String pArtistEmail, Date pEnrollDate, Date pModifyDate, int pWritter,
+			int pCategoryNum, int pStatusNum, int pCount) {
 		super();
 		this.pNo = pNo;
 		this.pTitle = pTitle;
 		this.pSTitle = pSTitle;
 		this.pGoal = pGoal;
+		this.pCommaGoal = pCommaGoal;
 		this.pThumbImage = pThumbImage;
 		this.pStartDate = pStartDate;
 		this.pCloseDate = pCloseDate;
+		this.pDDay = pDDay;
 		this.pHashTag = pHashTag;
 		this.pMainImage = pMainImage;
 		this.pSummaryText = pSummaryText;
@@ -58,6 +63,9 @@ public class Project {
 		this.pStatusNum = pStatusNum;
 		this.pCount = pCount;
 	}
+	
+	
+	
 
 	public int getpNo() {
 		return pNo;
@@ -91,6 +99,14 @@ public class Project {
 		this.pGoal = pGoal;
 	}
 
+	public String getpCommaGoal() {
+		return pCommaGoal;
+	}
+
+	public void setpCommaGoal(String pCommaGoal) {
+		this.pCommaGoal = pCommaGoal;
+	}
+
 	public String getpThumbImage() {
 		return pThumbImage;
 	}
@@ -113,6 +129,14 @@ public class Project {
 
 	public void setpCloseDate(Date pCloseDate) {
 		this.pCloseDate = pCloseDate;
+	}
+
+	public String getpDDay() {
+		return pDDay;
+	}
+
+	public void setpDDay(String pDDay) {
+		this.pDDay = pDDay;
 	}
 
 	public String getpHashTag() {
@@ -246,12 +270,20 @@ public class Project {
 	@Override
 	public String toString() {
 		return "Project [pNo=" + pNo + ", pTitle=" + pTitle + ", pSTitle=" + pSTitle + ", pGoal=" + pGoal
-				+ ", pThumbImage=" + pThumbImage + ", pStartDate=" + pStartDate + ", pCloseDate=" + pCloseDate
-				+ ", pHashTag=" + pHashTag + ", pMainImage=" + pMainImage + ", pSummaryText=" + pSummaryText
-				+ ", pStory=" + pStory + ", pArtistName=" + pArtistName + ", pArtistPFImage=" + pArtistPFImage
-				+ ", pArtistSns1=" + pArtistSns1 + ", pArtistSns2=" + pArtistSns2 + ", pArtistPhone=" + pArtistPhone
-				+ ", pArtistEmail=" + pArtistEmail + ", pEnrollDate=" + pEnrollDate + ", pModifyDate=" + pModifyDate
-				+ ", pWritter=" + pWritter + ", pCategoryNum=" + pCategoryNum + ", pStatusNum=" + pStatusNum
-				+ ", pCount=" + pCount + "]";
+				+ ", pCommaGoal=" + pCommaGoal + ", pThumbImage=" + pThumbImage + ", pStartDate=" + pStartDate
+				+ ", pCloseDate=" + pCloseDate + ", pDDay=" + pDDay + ", pHashTag=" + pHashTag + ", pMainImage="
+				+ pMainImage + ", pSummaryText=" + pSummaryText + ", pStory=" + pStory + ", pArtistName=" + pArtistName
+				+ ", pArtistPFImage=" + pArtistPFImage + ", pArtistSns1=" + pArtistSns1 + ", pArtistSns2=" + pArtistSns2
+				+ ", pArtistPhone=" + pArtistPhone + ", pArtistEmail=" + pArtistEmail + ", pEnrollDate=" + pEnrollDate
+				+ ", pModifyDate=" + pModifyDate + ", pWritter=" + pWritter + ", pCategoryNum=" + pCategoryNum
+				+ ", pStatusNum=" + pStatusNum + ", pCount=" + pCount + "]";
 	}
+
+	
+
+	
+	
+
+
+	
 }

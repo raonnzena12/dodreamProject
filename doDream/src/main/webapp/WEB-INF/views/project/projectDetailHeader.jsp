@@ -71,7 +71,15 @@
                height: 350px;
                margin: 70px 15px 0 0;
                float: right;
-               border: 1px solid black;
+               clear: both;
+               position:relative;
+               
+              /*  border: 1px solid black; */
+           }
+           #mainImg{
+               width: 450px;
+               height: 350px;
+               clear: both;
            }
            #detailcon > #text1{
                margin: 60px 0 0 13px;
@@ -210,16 +218,21 @@
            		cursor: pointer;
            }
            #detailDday{
-           		width: 80px;
+           		width:auto;
+           		min-width: 80px;
            		height: 40px;
            		/* border: 1px solid black; */
            		float: right;
+           		display:inline-block;
            		font-size:25px;
            		font-weight: bold;
            		text-align: center;
-           		padding: auto;
+           		padding: 0 5px 0 5px;
            		background-color: #8E44AD;
            		color: white;
+           		position:absolute;
+           		top:0;
+           		right:0;
            	
            }
            
@@ -228,42 +241,38 @@
 <body>
 	<section id="HeaderSection">
             <section id="detailTitle">
-                <p>"제목이 들어간다아"</p>
+                <p>${project.pTitle}</p>
             </section>
 
             <section id="headerContent">
                 <article id="detailimg">
                     <article id="img">
-                    	 사진 들어가요<img src="" alt="">
-                    	 <div id="detailDday">D-26</div>
+                    	<div id="detailDday"></div>
+                    	<img src="resources/projectImg/mainImage/${project.pMainImage}" alt="" id="mainImg">
                    	</article>
-                    
                 </article>
-
                 <article id="detailcon">
                     <p id="text1">
-                        프로젝트 간략한 설명
-                        주저리 주저리 주저리이이잉이이.. <br>
-                        이이이이이이..
+                       ${project.pSummaryText}
                     </p>
                     <div id="profile">
-                        <img src="" alt="" id="profileimg" width="60px" height="60px">
-                        <p id="text2">아티스트 닉네임 님 </p>
+                        <img src="resources/projectImg/artistImg/${project.pArtistPFImage}" alt="" id="profileimg" width="60px" height="60px">
+                        <p id="text2">${project.pArtistName }님 </p>
                     </div>
                     
                         
                         <div id="text3">
-                            총 30명이 300,000원을 후원하셨습니다.
+                            	총 30명이 300,000원을 후원하셨습니다.
                         </div>
                         <br>
                         <div id="text4">
-                            달성률 50%
+                            달성률 50% 
                         </div>
                         
                         <br>
                         <div id="text5">
-                            목표금액인 ￦500,000원이 모이면 펀딩이 성공합니다. <br>
-                            펀딩 성공시 예상 결제일은 X월 X일 입니다.
+				                            목표금액인 ${project.pCommaGoal}원이 모이면 펀딩이 성공합니다. <br>
+				                            펀딩 성공시 예상 결제일은 ${project.pCloseDate } 입니다.
                         </div>
                         
                         <button type="button" class="btn btn-primary btn-lg btn-block" id="supportbtn">후 원 하 기</button>

@@ -16,4 +16,14 @@ public class MemberServiceImpl implements MemberService {
 	public Member loginMember(Member mem) {
 		return mDao.selectMember(mem);
 	}
+
+	@Override
+	public int countVisitToday(int userNo) {
+		return mDao.countVisitToday(userNo);
+	}
+
+	@Override
+	public int checkVisitToday(int userNo) {
+		return mDao.checkVisitToday(userNo);
+	}
 }

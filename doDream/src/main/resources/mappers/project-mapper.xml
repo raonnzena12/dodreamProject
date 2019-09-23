@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="projectMapper">
+
+	<resultMap id="projectResultSet" type="Project">
+		<id property="pNo" column="PROJECT_NO" />
+		<result property="pTitle" column="PROJECT_TITLE" />
+		<result property="pSTitle" column="PROJECT_STITLE" />
+		<result property="pGoal" column="PROJECT_GOAL" />
+		<result property="pThumbImage" column="PROJECT_THUMB_IMG" />
+		<result property="pStartDate" column="PROJECT_START_DT" />
+		<result property="pCloseDate" column="PROJECT_CLOSE_DT" />
+		<result property="pHashTag" column="PROJECT_HASHTAG" />
+		<result property="pMainImage" column="PROJECT_MAIN_IMG" />
+		<result property="pSummaryText" column="PROJECT_SUMMARY" />
+		<result property="pStory" column="PROJECT_STORY" />
+		<result property="pArtistName" column="PROJECT_AT_NM" />
+		<result property="pArtistPFImage" column="PROJECT_AT_PF" />
+		<result property="pArtistSns1" column="PROJECT_AT_SNS1" />
+		<result property="pArtistSns2" column="PROJECT_AT_SNS2" />
+		<result property="pArtistPhone" column="PROJECT_AT_CONT" />
+		<result property="pArtistEmail" column="PROJECT_AT_EM" />
+		<result property="pEnrollDate" column="PROJECT_ER_DT" />
+		<result property="pModifyDate" column="PROJECT_MF_DT" />
+		<result property="pWritter" column="PROJECT_WRITER" />
+		<result property="pCategoryNum" column="PROJECT_CT_NO" />
+		<result property="pStatusNum" column="PROJECT_ST_NO" />
+		<result property="pCount" column="PROJECT_COUNT" />
+		<result property="pDDay" column="D_DAY"/>
+	</resultMap>
+	
+	<!-- 프로젝트 디테일 조회용 쿼리 -->
+	<select id="selectProject" parameterType="_int" resultMap="projectResultSet">
+		SELECT P.*, FLOOR(PROJECT_CLOSE_DT - SYSDATE) AS D_DAY FROM PROJECT_TB P
+		WHERE PROJECT_NO = #{ pNo } 
+	</select>
+	
+	<!-- 진행중/종료된 프로젝트 갯수 조회용 쿼리 -->
+	<select id="countList" resultType="_int">
+		SELECT COUNT(*) FROM PROJECT_TB
+		WHERE PROJECT_ST_NO IN ( 4, 5 )
+	</select>
+	
+	<!-- 선택한 카테고리에 따라 프로젝트 리스트 조회용 쿼리 -->
+	<select id="selectPrjList" resultMap="projectResultSet" parameterType="string">
+	 	SELECT * FROM PRJ_COUNT_DESC
+	 	<choose>
+	 		<when test="category == 'music'">
+		 	WHERE PROJECT_CT_NO = 1
+	 		</when>
+	 		<when test="category == 'movie'">
+	 		WHERE PROJECT_CT_NO = 2
+	 		</when>
+	 		<when test="category == 'play'">
+	 		WHERE PROJECT_CT_NO = 3
+	 		</when>
+	 		<when test="category == 'art'">
+	 		WHERE PROJECT_CT_NO = 4
+	 		</when>
+	 		<when test="category == 'etc'">
+	 		WHERE PROJECT_CT_NO = 5
+	 		</when>
+	 	</choose>
+	</select>
+	
+	<!-- 조회된 프로젝트 조회수 올리는 쿼리 -->
+	<update id="updatePrjCount" parameterType="_int">
+		UPDATE PROJECT_TB 
+		SET PROJECT_COUNT = PROJECT_COUNT+1
+		WHERE PROJECT_NO = #{ pNo }
+	</update>
+	
+</mapper>

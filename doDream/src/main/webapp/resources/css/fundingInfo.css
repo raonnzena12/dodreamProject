@@ -60,3 +60,42 @@ div {
 #payingInfo input[type=number], #payingInfo input[type=password] {
     background-color: #fff;
 }
+#fdComplete #innerCon {
+    max-width: 600px;
+    margin: 20px auto;
+}
+#fdComplete .thanksText {
+    text-align: center;
+    border: 1px solid #8E44AD;
+    border-radius: 5px;
+    color: #8E44AD;
+    font-weight: 600;
+    padding: 30px;
+    font-size: 20px;
+}
+#fdComplete #shareBtn {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+}
+#fdComplete .font-14 {
+    font-size: 14px;
+    font-weight: bold;
+}
+#fdComplete .infoText {
+    font-size: 13px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    padding-left: 45px;
+}
+#fdComplete #myFund {
+    background-color: #F39C12;
+    color: #fff;
+}
+#payingInfo .innerMain {
+    max-width: 600px;
+}
+#payingInfo .containGray {
+    line-height: 20px;
+}
