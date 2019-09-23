@@ -51,3 +51,13 @@ END;
 /
 commit;
 
+-- 진행중/진행완료 상태인 프로젝트 갯수 받아오기
+SELECT COUNT(*) FROM PROJECT_TB WHERE PROJECT_ST_NO IN ( 4, 5 );
+
+
+-- REWARD PROJECT JOIN
+SELECT * FROM PROJECT_TB
+JOIN REWARD ON ( PROJECT_NO = REWARD_REF_PNO )
+WHERE PROJECT_NO = 54;
+
+-- 진행중 결과가 먼저 보이도록 리스트 조회문 쿼리를 짜볼까 말까

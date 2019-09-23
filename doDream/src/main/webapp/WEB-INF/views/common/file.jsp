@@ -149,18 +149,6 @@ $(function(){
 		var chk = $(".table input[name^="+cha+"]:checked").length;
 		var calc = Math.round((chk/total)*100);
 		$(this).parent().next().children().eq(0).text(calc);
-		var str = $("input[name^=h]:checked");
-		console.log(str);
-		$.ajax({
-			url: "ptemp4.dr",
-			data: {check: str},
-			error: function(e){
-				console.log(e);
-			},
-			success: function(result){
-				console.log(result);
-			}
-		});
 	});
 });
 </script>
