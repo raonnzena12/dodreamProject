@@ -19,7 +19,11 @@ public class ProjectServiceImpl implements ProjectService {
 
 	@Override
 	public Project selectProject(int pNo) {
-		return pDao.selectProject(pNo);
+		Project prj = pDao.selectProject(pNo);
+		if ( prj != null ) { // 프로젝트가 성공적으로 조회되면 조회수를 1올린다
+			pDao.updatePrjCount(pNo);
+		}
+		return prj;
 	}
 
 	@Override

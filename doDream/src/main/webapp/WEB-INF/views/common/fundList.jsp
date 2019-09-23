@@ -93,21 +93,40 @@
                         </div>
                      </div>
                   </div>
+                  <c:forEach var="prj" items="${ pList }" >
                   <div>
                      <div class="fundCon">
-                        <div class="fundItem">
+                        <div class="fundItem" id="${ prj.pNo }">
                            <div class="fundImg">
-                              <img src="resources/images/testImg/testImg(2).jpg">
+                              <img src="resources/projectImg/thumbnail/${ prj.pThumbImage }">
                            </div>
                            <div class="nameArea">
-                              <span class="categoryName">카테고리 이름</span><br>
-                              <span class="fundName">펀드이름들어가는곳</span>
+                              <span class="categoryName">${ prj.pCategoryNum }</span><br>
+                              <span class="fundName">
+                                 <c:choose>
+                                    <c:when test="${ fn:length(prj.pTitle) > 10 }">
+                                    ${ fn:substring(prj.pTitle,0,10) }…
+                                    </c:when>
+                                    <c:otherwise>
+                                    ${ prj.pTitle }
+                                    </c:otherwise>
+                                 </c:choose>
+                              </span>
                            </div>
                            <div class="heartIcon">
                               <i class="material-icons heart-fund">favorite_border</i>
                            </div>
                            <div class="detailArea my-1">
-                              <span class="detailText">펀드 소개 텍스트가 들어간다 이런식으로 보임 두줄도 잘보이고 아마 세줄까지도 아슬아슬하게 될것같음</span>
+                              <span class="detailText">
+                                 <c:choose>
+                                    <c:when test="${ fn:length(prj.pSummaryText) > 45 }">
+                                    ${ fn:substring(prj.pSummaryText,0,60) }…
+                                    </c:when>
+                                    <c:otherwise>
+                                    ${ prj.pSummaryText }
+                                    </c:otherwise>
+                                 </c:choose>
+                              </span>
                            </div>
                            <div class="chartArea px-3 mt-2">
                               <div class="chartInfo clearfix">
@@ -122,6 +141,7 @@
                         </div>
                      </div>
                   </div>
+                  </c:forEach>
                   <div>
                      <div class="fundCon">
                         <div class="fundItem">
@@ -216,54 +236,58 @@ $(function() {
       // console.log($(this).parent().attr("id"));
       location.href='detailSt.dr?pNo='+$(this).parent().attr("id");
    });
-});
-   function printFunds(list) {
-      var $resultPrint = $(".resultPrint");
-      $resultPrint.html("");
 
-      $.each(list, function(i){
-         var $conDiv = $("<div>");
-         // 펀딩 인덱스 아이디로 추가할 것
-         var $fundCon = $("<div>").addClass("fundCon").attr("id",list[i]);
-         var $fundItem = $("<div>").addClass("fundItem");
-         var $fundImg = $("<div>").addClass("fundImg");
-         // 이미지 url 지정할것
-         var $img = $("<img>").attr("src", list[i]);
-         $fundImg.append($img);
-         var $nameArea = $("<div>").addClass("nameArea");
-         // 들어갈 텍스트들 지정할 것
-         var $categoryName = $("<span>").addClass("categoryName").text(list[i]);
-         var $fundName = $("<span>").addClass("fundName").text(list[i]);
-         $nameArea.append($categoryName,$fundName);
-         // 하트 누른 값에따라 채워진 하트/빈하트 구분
-         var $heartIcon = $("<div>").addClass("heartIcon");
-         var $heart_fund = $("<i>").addClass("material-icons heart-fund")
-         if ( list[i].heart == 1 ) { // 좋아요 찍은 내력이 있을 시 꽉찬 하트를 프린트한다
-            $heart_fund.text("favorite");
-         } else { // 내역이 없을 시 빈하트를 프린트한다
-            $heart_fund.text("favorite_border");
-         }
-         $heartIcon.append($heart_fund);
-         var $detailArea = $("<div>").addClass("detailArea my-1");
-         var $detailText = $("<span>").addClass("detailText").text(list[i]);
-         $detailArea.append($detailText);
-         var $chartArea = $("<div>").addClass("chartArea px-3 mt-2");
-         var $chartInfo = $("<div>").addClass("chartInfo clearfix")
-         var $chartInfo1 = $("<span>").addClass("chartInfo1").text(list[i]);
-         var $chartInfo2 = $("<span>").addClass("chartInfo2").text(list[i]);
-         $chartInfo.append($chartInfo1, $chartInfo2);
-         var $chartBar = $("<div>").addClass("chartBar");
-         // 진행바 가로길이 지정
-         var $purpleBar = $("<div>").addClass("purpleBar").css("width", list[i]);
-         $chartBar.append($purpleBar);
-         var $chartDate = $("<div>").addClass("chartDate").text(list[i]);
-         $chartArea.append($chartInfo,$chartBar,$chartDate);
-         $fundItem.append($fundImg,$nameArea,$heartIcon,$detailArea,$chartArea);
-         $fundCon.append($fundItem);
-         $conDiv.append($fundCon);
-         $resultPrint.append($conDiv);
-      });
-   }
+});
+function loadList() {
+
+}
+function printFunds(list) {
+   var $resultPrint = $(".resultPrint");
+   $resultPrint.html("");
+
+   $.each(list, function(i){
+      var $conDiv = $("<div>");
+      // 펀딩 인덱스 아이디로 추가할 것
+      var $fundCon = $("<div>").addClass("fundCon").attr("id",list[i]);
+      var $fundItem = $("<div>").addClass("fundItem");
+      var $fundImg = $("<div>").addClass("fundImg");
+      // 이미지 url 지정할것
+      var $img = $("<img>").attr("src", list[i]);
+      $fundImg.append($img);
+      var $nameArea = $("<div>").addClass("nameArea");
+      // 들어갈 텍스트들 지정할 것
+      var $categoryName = $("<span>").addClass("categoryName").text(list[i]);
+      var $fundName = $("<span>").addClass("fundName").text(list[i]);
+      $nameArea.append($categoryName,$fundName);
+      // 하트 누른 값에따라 채워진 하트/빈하트 구분
+      var $heartIcon = $("<div>").addClass("heartIcon");
+      var $heart_fund = $("<i>").addClass("material-icons heart-fund")
+      if ( list[i].heart == 1 ) { // 좋아요 찍은 내력이 있을 시 꽉찬 하트를 프린트한다
+         $heart_fund.text("favorite");
+      } else { // 내역이 없을 시 빈하트를 프린트한다
+         $heart_fund.text("favorite_border");
+      }
+      $heartIcon.append($heart_fund);
+      var $detailArea = $("<div>").addClass("detailArea my-1");
+      var $detailText = $("<span>").addClass("detailText").text(list[i]);
+      $detailArea.append($detailText);
+      var $chartArea = $("<div>").addClass("chartArea px-3 mt-2");
+      var $chartInfo = $("<div>").addClass("chartInfo clearfix")
+      var $chartInfo1 = $("<span>").addClass("chartInfo1").text(list[i]);
+      var $chartInfo2 = $("<span>").addClass("chartInfo2").text(list[i]);
+      $chartInfo.append($chartInfo1, $chartInfo2);
+      var $chartBar = $("<div>").addClass("chartBar");
+      // 진행바 가로길이 지정
+      var $purpleBar = $("<div>").addClass("purpleBar").css("width", list[i]);
+      $chartBar.append($purpleBar);
+      var $chartDate = $("<div>").addClass("chartDate").text(list[i]);
+      $chartArea.append($chartInfo,$chartBar,$chartDate);
+      $fundItem.append($fundImg,$nameArea,$heartIcon,$detailArea,$chartArea);
+      $fundCon.append($fundItem);
+      $conDiv.append($fundCon);
+      $resultPrint.append($conDiv);
+   });
+}
 </script>
 
 <script>
