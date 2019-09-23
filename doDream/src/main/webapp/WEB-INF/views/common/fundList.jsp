@@ -136,7 +136,7 @@
                               <div class="chartBar">
                                  <div class="purpleBar"></div>
                               </div>
-                              <div class="chartDate">28일 남음</div>
+                              <div class="chartDate">${ prj.pDDay }일 남음</div>
                            </div>
                         </div>
                      </div>
