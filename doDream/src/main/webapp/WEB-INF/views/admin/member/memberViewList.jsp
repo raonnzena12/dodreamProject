@@ -97,7 +97,7 @@
 															aria-controls="dataTable" rowspan="1" colspan="1"
 															aria-sort="ascending"
 															aria-label="Name: activate to sort column descending"
-															style="width: 57px;">회원번호</th>
+															style="width: 29px;">회원번호</th>
 														<th class="sorting" tabindex="0" aria-controls="dataTable"
 															rowspan="1" colspan="1"
 															aria-label="Position: activate to sort column ascending"
@@ -118,16 +118,26 @@
 															rowspan="1" colspan="1"
 															aria-label="Salary: activate to sort column ascending"
 															style="width: 67px;">가입일</th>
+														<th class="sorting" tabindex="0" aria-controls="dataTable"
+															rowspan="1" colspan="1"
+															aria-label="Salary: activate to sort column ascending"
+															style="width: 67px;">회원상태</th>
+														<th class="sorting" tabindex="0" aria-controls="dataTable"
+															rowspan="1" colspan="1"
+															aria-label="Salary: activate to sort column ascending"
+															style="width: 67px;">블랙리스트 처리</th>
 													</tr>
 												</thead>
 												<tfoot>
 													<tr>
-														<th rowspan="1" colspan="1">회원 번호</th>
+														<th rowspan="1" colspan="1">회원번호</th>
 														<th rowspan="1" colspan="1">이름</th>
 														<th rowspan="1" colspan="1">아이디</th>
 														<th rowspan="1" colspan="1">전화번호</th>
 														<th rowspan="1" colspan="1">이메일</th>
 														<th rowspan="1" colspan="1">가입일</th>
+														<th rowspan="1" colspan="1">회원상태</th>
+														<th rowspan="1" colspan="1">블랙리스트 처리</th>
 													</tr>
 												</tfoot>
 												<tbody>
@@ -138,6 +148,10 @@
 														<td>33</td>
 														<td>2008/11/28</td>
 														<td>$162,700</td>
+														<td>
+															
+														</td>
+														<td>$162,700</td>
 													</tr>
 													<tr role="row" class="even">
 														<td class="sorting_1">Angelica Ramos</td>
@@ -145,6 +159,8 @@
 														<td>London</td>
 														<td>47</td>
 														<td>2009/10/09</td>
+														<td>$1,200,000</td>
+														<td>$1,200,000</td>
 														<td>$1,200,000</td>
 													</tr>
 													<tr role="row" class="odd">
@@ -154,6 +170,8 @@
 														<td>66</td>
 														<td>2009/01/12</td>
 														<td>$86,000</td>
+														<td>$86,000</td>
+														<td>$86,000</td>
 													</tr>
 													<tr role="row" class="even">
 														<td class="sorting_1">Bradley Greer</td>
@@ -161,12 +179,16 @@
 														<td>London</td>
 														<td>41</td>
 														<td>2012/10/13</td>
+														<td>2012/10/13</td>
+														<td>2012/10/13</td>
 														<td>$132,000</td>
 													</tr>
 													<tr role="row" class="odd">
 														<td class="sorting_1">Brenden Wagner</td>
 														<td>Software Engineer</td>
 														<td>San Francisco</td>
+														<td>28</td>
+														<td>28</td>
 														<td>28</td>
 														<td>2011/06/07</td>
 														<td>$206,850</td>
@@ -178,6 +200,8 @@
 														<td>61</td>
 														<td>2012/12/02</td>
 														<td>$372,000</td>
+														<td>$372,000</td>
+														<td>$372,000</td>
 													</tr>
 													<tr role="row" class="odd">
 														<td class="sorting_1">Bruno Nash</td>
@@ -186,12 +210,16 @@
 														<td>38</td>
 														<td>2011/05/03</td>
 														<td>$163,500</td>
+														<td>$163,500</td>
+														<td>$163,500</td>
 													</tr>
 													<tr role="row" class="even">
 														<td class="sorting_1">Caesar Vance</td>
 														<td>Pre-Sales Support</td>
 														<td>New York</td>
 														<td>21</td>
+														<td>2011/12/12</td>
+														<td>2011/12/12</td>
 														<td>2011/12/12</td>
 														<td>$106,450</td>
 													</tr>
@@ -201,6 +229,8 @@
 														<td>New York</td>
 														<td>46</td>
 														<td>2011/12/06</td>
+														<td>2011/12/06</td>
+														<td>2011/12/06</td>
 														<td>$145,600</td>
 													</tr>
 													<tr role="row" class="even">
@@ -209,6 +239,8 @@
 														<td>Edinburgh</td>
 														<td>22</td>
 														<td>2012/03/29</td>
+														<td>$433,060</td>
+														<td>$433,060</td>
 														<td>$433,060</td>
 													</tr>
 												</tbody>
