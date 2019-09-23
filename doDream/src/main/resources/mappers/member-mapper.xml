@@ -27,14 +27,38 @@
 		AND USER_PWD = #{userPwd}
 		AND USER_STATUS = 'Y'
 	</select>
+	
+	<!-- 이메일 중복검사 -->
+	<select id="selectCheckEmail" parameterType="Member" resultMap="memberResultSet">
+		SELECT USER_EMAIL FROM USER_TB
+		WHERE USER_EMAIL = #{userEmail}
+		AND USER_STATUS = 'Y'
+	</select>
+	
+	<!-- 닉네임 중복검사 -->
+	<select id="selectCheckNickname" parameterType="Member" resultMap="memberResultSet">
+		SELECT USER_NICKNAME FROM USER_TB
+		WHERE USER_NICKNAME = #{userNickname}
+		AND USER_STATUS = 'Y'
+	</select>
+	
+	<!-- 회원가입 -->
+	<insert id="insertMember" parameterType="Member">
+		INSERT INTO USER_TB
+		VALUES(SEQ_USER_NO.NEXTVAL, #{userEmail}, #{userNickname}, #{userPwd}, DEFAULT, 
+		DEFAULT, DEFAULT, SYSDATE, SYSDATE, SYSDATE, NULL, NULL, NULL, NULL)
+	</insert>
+
 	<insert id="countVisitToday" parameterType="_int">
 		INSERT INTO DAYCOUNT
 		VALUES(
 		TO_CHAR(SYSDATE), #{userNo}
 		)
 	</insert>
+  
 	<select id="checkVisitToday" parameterType="_int" resultType="_int">
 		SELECT COUNT(*) FROM DAYCOUNT
 		WHERE USER_NO = #{userNo}
 	</select>
+  
 </mapper>

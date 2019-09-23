@@ -1,5 +1,7 @@
 package com.dodream.spring.member.model.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,21 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
+	public List<Member> checkEmail(String userEmail) {
+		return mDao.selectCheckEmail(userEmail);
+	}
+
+	@Override
+	public List<Member> checkNickname(String userNickname) {
+		return mDao.selectCheckNickname(userNickname);
+	}
+
+	@Override
+	public int insertMember(Member member) {
+		return mDao.insertMember(member);
+  }
+  
+  @Override
 	public int countVisitToday(int userNo) {
 		return mDao.countVisitToday(userNo);
 	}

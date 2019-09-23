@@ -1,5 +1,7 @@
 package com.dodream.spring.member.model.service;
 
+import java.util.List;
+
 import com.dodream.spring.member.model.vo.Member;
 
 public interface MemberService {
@@ -11,7 +13,13 @@ public interface MemberService {
 	 */
 	public abstract Member loginMember(Member mem);
 
-	/**
+	public abstract List<Member> checkEmail(String userEmail);
+
+	public abstract List<Member> checkNickname(String userNickname);
+
+	public abstract int insertMember(Member member);
+
+  /**
 	 * 로그인 시 DAYCOUNT에 카운트 해주는 Service
 	 * @param userNo
 	 * @return result
@@ -24,5 +32,4 @@ public interface MemberService {
 	 * @return result
 	 */
 	public abstract int checkVisitToday(int userNo);
-
 }

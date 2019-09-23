@@ -1,5 +1,7 @@
 package com.dodream.spring.member.model.dao;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -16,7 +18,19 @@ public class MemberDao {
 		return sqlSession.selectOne("memberMapper.selectOne", mem);
 	}
 
-	public int countVisitToday(int userNo) {
+	public List<Member> selectCheckEmail(String userEmail) {
+		return sqlSession.selectList("memberMapper.selectCheckEmail", userEmail);
+	}
+
+	public List<Member> selectCheckNickname(String userNickname) {
+		return sqlSession.selectList("memberMapper.selectCheckNickname", userNickname);
+	}
+
+	public int insertMember(Member member) {
+		return sqlSession.insert("memberMapper.insertMember", member);
+  }
+  
+  public int countVisitToday(int userNo) {
 		return sqlSession.insert("memberMapper.countVisitToday",userNo);
 	}
 
