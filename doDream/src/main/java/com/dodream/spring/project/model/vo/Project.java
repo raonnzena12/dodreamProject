@@ -1,4 +1,4 @@
-package com.dodream.spring.project.vo;
+package com.dodream.spring.project.model.vo;
 
 import java.sql.Date;
 
