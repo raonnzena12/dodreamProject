@@ -21,7 +21,7 @@ public class ProjectController2 {
 		Project prj = pService.selectProject(pno);
 		
 		model.addAttribute("project", prj);
-		return "project/projectDetailStoty";
+		return "project/projectDetailStory";
 	}
 
 }

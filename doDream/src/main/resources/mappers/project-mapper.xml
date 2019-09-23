@@ -33,4 +33,16 @@
 		WHERE PROJECT_NO = #{ pNo } 
 	</select>
 	
+	<select id="countList" resultType="_int">
+		SELECT COUNT(*) FROM PROJECT_TB
+		WHERE PROJECT_ST_NO IN ( 4, 5 )
+	</select>
+	
+	<select id="selectPrjList" resultMap="projectResultSet" parameterType="string">
+	 	SELECT * FROM PRJ_COUNT_DESC
+	 	<if test="category == 'music'">
+	 	
+	 	</if>
+	</select>
+	
 </mapper>

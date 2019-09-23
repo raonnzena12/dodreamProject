@@ -1,5 +1,7 @@
 package com.dodream.spring.project.controller;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,7 +20,11 @@ public class ProjectController3 {
 	
 	// 카테고리 전체 출력 임시 매핑
 	@RequestMapping("category.dr")
-	public String fundListView() {
+	public String fundListView(String cate, Integer page) {
+		String category = ( cate == null ) ? "total" : cate;
+		int currentPage = ( page == null ) ? 1 : page;
+		
+		ArrayList<Project> pList = pService.selectPrjList(category, currentPage);
 		return "common/fundList";
 	}
 	

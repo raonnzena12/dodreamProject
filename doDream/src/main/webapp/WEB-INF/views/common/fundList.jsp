@@ -7,6 +7,11 @@
 <title>Insert title here</title>
 <%@ include file = "../common/menubar.jsp" %>
 <link rel="stylesheet" href="resources/css/fundList.css">
+<style>
+.fundItem {
+   cursor: pointer;
+}
+</style>
 <!-- mojs(좋아요 클릭시 효과) 추가 -->
 <script src="https://cdn.jsdelivr.net/npm/@mojs/core"></script>
 </head>
@@ -61,7 +66,7 @@
                <div class="resultPrint">
                   <div>
                      <div class="fundCon">
-                        <div class="fundItem">
+                        <div class="fundItem" id="54">
                            <div class="fundImg">
                               <img src="resources/images/testImg/testImg(1).jpg">
                            </div>
@@ -184,30 +189,34 @@
 </section>
 <script>
    // 좋아요 누르는 함수 만들것
-   $(function() {
-        // 리뷰 좋아요 체크하는 함수
-        $(document).on("click",".heartIcon", function(e){
-            // if ( ${ empty loginUser } ) {
-            //     Swal.fire( '로그인이 필요합니다!', '좋아요를 누르기 전 로그인을 해주세요!', 'warning' );
-            //     return false;
-         	// }
-            var icheck = $(this).children().text();
-            var fno = $(this).parent().parent().attr("id");
-            if ( icheck == 'favorite_border') {
-                $(this).children().text('favorite');
-                $("body div[data-name='mojs-shape']").css({"z-index":"0","cursor":"pointer"});
-                const coords = { x: $(this).offset().left+28, y: $(this).offset().top+18};
-                burst.tune(coords).replay();
-                circle.tune( coords ).replay();
-                /* 이펙트 실행후 이펙트 플레이 div를 아래로 숨겨준다 */
-                setTimeout(function(){
-                	$("body div[data-name='mojs-shape']").css({"z-index":"-10","cursor":"pointer"});
-                },800);
-            } else {
-                $(this).children().text('favorite_border');
-            }
-        });
-    });
+$(function() {
+   // 리뷰 좋아요 체크하는 함수
+   $(document).on("click",".heartIcon", function(e){
+      // if ( ${ empty loginUser } ) {
+      //     Swal.fire( '로그인이 필요합니다!', '좋아요를 누르기 전 로그인을 해주세요!', 'warning' );
+      //     return false;
+      // }
+      var icheck = $(this).children().text();
+      var fno = $(this).parent().parent().attr("id");
+      if ( icheck == 'favorite_border') {
+            $(this).children().text('favorite');
+            $("body div[data-name='mojs-shape']").css({"z-index":"0","cursor":"pointer"});
+            const coords = { x: $(this).offset().left+28, y: $(this).offset().top+18};
+            burst.tune(coords).replay();
+            circle.tune( coords ).replay();
+            /* 이펙트 실행후 이펙트 플레이 div를 아래로 숨겨준다 */
+            setTimeout(function(){
+            $("body div[data-name='mojs-shape']").css({"z-index":"-10","cursor":"pointer"});
+            },800);
+      } else {
+            $(this).children().text('favorite_border');
+      }
+   });
+   $(document).on("click",".fundItem div:not(.heartIcon)", function(){
+      // console.log($(this).parent().attr("id"));
+      location.href='detailSt.dr?pNo='+$(this).parent().attr("id");
+   });
+});
    function printFunds(list) {
       var $resultPrint = $(".resultPrint");
       $resultPrint.html("");
