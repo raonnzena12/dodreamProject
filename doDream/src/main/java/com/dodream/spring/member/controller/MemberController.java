@@ -28,7 +28,7 @@ public class MemberController {
 	 * @return page
 	 */
 	@RequestMapping(value = "login.dr", method = RequestMethod.POST)
-	public String memberLogin(Member member, Model model) {
+	public String memberLogin(Member member, Model model, String prevPage) {
 
 		Member loginUser = mService.loginMember(member);
 
@@ -40,7 +40,7 @@ public class MemberController {
 				result = mService.countVisitToday(loginUser.getUserNo());
 				if(result > 0) System.out.println("userNo : " + loginUser.getUserNo() + "번 회원이 DAYCOUNT 테이블에 삽입됨");
 			}
-			return "redirect:home.dr";
+			return "redirect:"+prevPage;
 		} else {
 			model.addAttribute("msg", "로그인 실패");
 			return "common/errorPage";
