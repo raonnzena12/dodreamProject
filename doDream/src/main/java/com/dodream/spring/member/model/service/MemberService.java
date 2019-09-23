@@ -1,5 +1,7 @@
 package com.dodream.spring.member.model.service;
 
+import java.util.List;
+
 import com.dodream.spring.member.model.vo.Member;
 
 public interface MemberService {
@@ -10,5 +12,7 @@ public interface MemberService {
 	 * @return loginUser
 	 */
 	public abstract Member loginMember(Member mem);
+
+	public abstract List<Member> checkEmail(String userEmail);
 
 }

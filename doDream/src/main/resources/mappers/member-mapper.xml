@@ -27,5 +27,11 @@
 		AND USER_STATUS = 'Y'
 	</select>
 	
+	<!-- 이메일 중복검사 -->
+	<select id="selectCheckEmail" parameterType="userEmail" resultMap="memberResultSet">
+		SELECT USEREMAIL FROM USER_TB
+		WHERE EMAIL = #{userEmail}
+	</select>
+	
 
 </mapper>

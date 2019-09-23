@@ -25,7 +25,6 @@
    </repositories>
 	
 	
-	
 	<dependencies>
 		<!-- JDBC 드라이버 -->
 		<!-- https://mvnrepository.com/artifact/com.oracle/ojdbc6 -->
@@ -129,8 +128,21 @@
 		    <version>${org.aspectj-version}</version>
 		</dependency>
 		
-	
-	
+		<!-- https://mvnrepository.com/artifact/com.sun.mail/javax.mail -->
+		<!-- 메일 인증 -->
+		<dependency>
+			<groupId>com.sun.mail</groupId>
+			<artifactId>javax.mail</artifactId>
+			<version>1.6.2</version>
+		</dependency>
+		
+		<!-- 이메일인증 Spring context support -->
+		<dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+            <version>${org.springframework-version}</version>
+        </dependency>
+		
 	
 	
 		<!-- Spring -->
