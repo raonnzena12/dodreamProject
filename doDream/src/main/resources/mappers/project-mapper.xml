@@ -26,23 +26,48 @@
 		<result property="pCategoryNum" column="PROJECT_CT_NO" />
 		<result property="pStatusNum" column="PROJECT_ST_NO" />
 		<result property="pCount" column="PROJECT_COUNT" />
+		<result property="pDDay" column="D_DAY"/>
 	</resultMap>
 	
+	<!-- 프로젝트 디테일 조회용 쿼리 -->
 	<select id="selectProject" parameterType="_int" resultMap="projectResultSet">
-		SELECT * FROM PROJECT_TB
+		SELECT P.*, FLOOR(PROJECT_CLOSE_DT - SYSDATE) AS D_DAY FROM PROJECT_TB P
 		WHERE PROJECT_NO = #{ pNo } 
 	</select>
 	
+	<!-- 진행중/종료된 프로젝트 갯수 조회용 쿼리 -->
 	<select id="countList" resultType="_int">
 		SELECT COUNT(*) FROM PROJECT_TB
 		WHERE PROJECT_ST_NO IN ( 4, 5 )
 	</select>
 	
+	<!-- 선택한 카테고리에 따라 프로젝트 리스트 조회용 쿼리 -->
 	<select id="selectPrjList" resultMap="projectResultSet" parameterType="string">
 	 	SELECT * FROM PRJ_COUNT_DESC
-	 	<if test="category == 'music'">
-	 	
-	 	</if>
+	 	<choose>
+	 		<when test="category == 'music'">
+		 	WHERE PROJECT_CT_NO = 1
+	 		</when>
+	 		<when test="category == 'movie'">
+	 		WHERE PROJECT_CT_NO = 2
+	 		</when>
+	 		<when test="category == 'play'">
+	 		WHERE PROJECT_CT_NO = 3
+	 		</when>
+	 		<when test="category == 'art'">
+	 		WHERE PROJECT_CT_NO = 4
+	 		</when>
+	 		<when test="category == 'etc'">
+	 		WHERE PROJECT_CT_NO = 5
+	 		</when>
+	 	</choose>
 	</select>
+	
+	<!-- 조회된 프로젝트 조회수 올리는 쿼리 -->
+	<update id="updatePrjCount" parameterType="_int">
+		UPDATE PROJECT_TB 
+		SET PROJECT_COUNT = PROJECT_COUNT+1
+		WHERE PROJECT_NO = #{ pNo }
+	</update>
 	
 </mapper>

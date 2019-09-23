@@ -51,4 +51,12 @@ public class ProjectDao {
 		
 		return (ArrayList)sqlSession.selectList("projectMapper.selectPrjList", null, rowBounds);
 	}
+
+	/**
+	 * 선택된 프로젝트의 조회수를 올리는 DAO
+	 * @param pNo
+	 */
+	public void updatePrjCount(int pNo) {
+		sqlSession.update("projectMapper.updatePrjCount", pNo);
+	}
 }
