@@ -34,6 +34,12 @@ public class MemberController {
 
 		if (loginUser != null) {
 			model.addAttribute("loginUser", loginUser);
+			// 로그인 카운트 해주는 함수 호출;
+			int result = mService.checkVisitToday(loginUser.getUserNo());
+			if(result == 0) {
+				result = mService.countVisitToday(loginUser.getUserNo());
+				if(result > 0) System.out.println("userNo : " + loginUser.getUserNo() + "번 회원이 DAYCOUNT 테이블에 삽입됨");
+			}
 			return "redirect:home.dr";
 		} else {
 			model.addAttribute("msg", "로그인 실패");
@@ -81,5 +87,5 @@ public class MemberController {
 	public String mypage() {
 		return "member/mypageHeader";
 	}
-
+	
 }
