@@ -28,10 +28,17 @@
 	</select>
 	
 	<!-- 이메일 중복검사 -->
-	<select id="selectCheckEmail" parameterType="userEmail" resultMap="memberResultSet">
-		SELECT USEREMAIL FROM USER_TB
-		WHERE EMAIL = #{userEmail}
+	<select id="selectCheckEmail" parameterType="Member" resultMap="memberResultSet">
+		SELECT USER_EMAIL FROM USER_TB
+		WHERE USER_EMAIL = #{userEmail}
+		AND USER_STATUS = 'Y'
 	</select>
 	
+	<!-- 닉네임 중복검사 -->
+	<select id="selectCheckNickname" parameterType="Member" resultMap="memberResultSet">
+		SELECT USER_NICKNAME FROM USER_TB
+		WHERE USER_NICKNAME = #{userNickname}
+		AND USER_STATUS = 'Y'
+	</select>
 
 </mapper>

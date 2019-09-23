@@ -15,4 +15,6 @@ public interface MemberService {
 
 	public abstract List<Member> checkEmail(String userEmail);
 
+	public abstract List<Member> checkNickname(String userNickname);
+
 }

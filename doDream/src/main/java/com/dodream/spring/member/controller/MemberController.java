@@ -1,5 +1,7 @@
 package com.dodream.spring.member.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
@@ -80,6 +83,22 @@ public class MemberController {
 	@RequestMapping("mypage.dr")
 	public String mypage() {
 		return "member/mypageHeader";
+	}
+	
+	@ResponseBody
+	@RequestMapping("checkNickname.dr")
+	public String checkNickname(String userNickname) {
+		
+		String result = null;
+		List<Member> mList = mService.checkNickname(userNickname);
+		if(!mList.isEmpty()) {
+			result = "1"; //닉네임있음
+		}else {
+			result = "0";
+		}
+		
+		return result;
+		
 	}
 
 }

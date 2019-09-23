@@ -24,4 +24,10 @@ public class MemberServiceImpl implements MemberService {
 		
 		return mDao.selectCheckEmail(userEmail);
 	}
+
+	@Override
+	public List<Member> checkNickname(String userNickname) {
+		
+		return mDao.selectCheckNickname(userNickname);
+	}
 }

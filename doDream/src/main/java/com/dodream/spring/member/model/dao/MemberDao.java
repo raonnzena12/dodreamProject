@@ -22,4 +22,9 @@ public class MemberDao {
 		
 		return sqlSession.selectList("memberMapper.selectCheckEmail", userEmail);
 	}
+
+	public List<Member> selectCheckNickname(String userNickname) {
+		
+		return sqlSession.selectList("memberMapper.selectCheckNickname", userNickname);
+	}
 }
