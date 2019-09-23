@@ -19,17 +19,22 @@ public class MemberDao {
 	}
 
 	public List<Member> selectCheckEmail(String userEmail) {
-		
 		return sqlSession.selectList("memberMapper.selectCheckEmail", userEmail);
 	}
 
 	public List<Member> selectCheckNickname(String userNickname) {
-		
 		return sqlSession.selectList("memberMapper.selectCheckNickname", userNickname);
 	}
 
 	public int insertMember(Member member) {
-		
 		return sqlSession.insert("memberMapper.insertMember", member);
+  }
+  
+  public int countVisitToday(int userNo) {
+		return sqlSession.insert("memberMapper.countVisitToday",userNo);
+	}
+
+	public int checkVisitToday(int userNo) {
+		return sqlSession.selectOne("memberMapper.checkVisitToday",userNo);
 	}
 }

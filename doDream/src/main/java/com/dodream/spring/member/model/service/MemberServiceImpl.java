@@ -21,19 +21,26 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public List<Member> checkEmail(String userEmail) {
-		
 		return mDao.selectCheckEmail(userEmail);
 	}
 
 	@Override
 	public List<Member> checkNickname(String userNickname) {
-		
 		return mDao.selectCheckNickname(userNickname);
 	}
 
 	@Override
 	public int insertMember(Member member) {
-		
 		return mDao.insertMember(member);
+  }
+  
+  @Override
+	public int countVisitToday(int userNo) {
+		return mDao.countVisitToday(userNo);
+	}
+
+	@Override
+	public int checkVisitToday(int userNo) {
+		return mDao.checkVisitToday(userNo);
 	}
 }

@@ -28,6 +28,7 @@
 }
 
 #notice_table {
+	padding-top: 20px;
 	width: 100%;
 	margin: auto;
 }
@@ -37,6 +38,7 @@
 	float: left;
 	padding: 0;
 }
+
 #faqSearch {
 	/* width: 50%; */
 	float: right;
@@ -47,30 +49,32 @@
 <body>
 
 
-	<div class="container-fluid" id="noticeCon"> 
+	<div class="container-fluid" id="noticeCon">
 		<div class="row">
-			<div class="col-md-12" align="center">
+			<div class="col-md-12" align="center" style="padding: 0;">
 				<div class="jumbotron">
-					<h2>Hello, world!</h2>
+					<img src="resources/img/영화간판4.PNG" style="width: 100%">
+					<!-- <h2>Hello, world!</h2>
 					<p>This is a template for a simple marketing or informational
 						website. It includes a large callout called the hero unit and
 						three supporting pieces of content. Use it as a starting point to
 						create something more unique.</p>
 					<p>
 						<a class="btn btn-primary btn-large" href="#">Learn more</a>
-					</p>
+					</p> -->
 				</div>
-			</div> 
-		<div class="row">
-				<ul class="nav">
-					<li class="nav-item"><a class="nav-link active" href="notice.dr">공지사항</a></li>
+			</div>
+		</div>
+		<div class="sticky-top row">
+			<div class="col-md-12 ">
+				<ul class="nav" style="background-color: #E1F5A9;">
+					<li class="nav-item"><a class="nav-link" href="notice.dr">공지사항</a></li>
 					<li class="nav-item"><a class="nav-link" href="T_O_Service.dr">이용약관</a></li>
-					<li class="nav-item"><a class="nav-link " href="FundingReview.dr">펀딩후기</a></li>
-					<li class="nav-item"><a class="nav-link " href="faq.dr">FAQ</a></li>
+					<li class="nav-item"><a class="nav-link" href="fReview.dr">펀딩후기</a></li>
+					<li class="nav-item"><a class="nav-link" href="faq.dr">FAQ</a></li>
 				</ul>
 			</div>
 		</div>
-		<hr style="background-color: black;">
 		<div class="row" id="notice_table">
 			<div class="col-md-12" style="padding: 0;">
 				<div>
@@ -95,40 +99,40 @@
 					<!-- 내용을 묶는 틀 -->
 					<div class="card">
 						<div class="card-header">
-							<a class="card-link collapsed" href="#card-element-281213"
+							<a class="card-link collapsed" href="#card-element-01"
 								data-toggle="collapse" data-parent="#card-611390"> [투자]
 								함께하고, 떠나세요. 가을 한정 특별 이벤트!</a>
 						</div>
-						<div class="collapse" id="card-element-281213">
+						<div class="collapse" id="card-element-01">
 							<div class="card-body">Anim pariatur cliche...</div>
 						</div>
 					</div>
 					<div class="card">
 						<div class="card-header">
-							<a class="card-link" href="#card-element-474852"
+							<a class="card-link" href="#card-element-02"
 								data-toggle="collapse" data-parent="#card-611390"> [W9] 전세계가
 								사랑한 아티스트 데이비드 호크니 작품을 프라이빗하게 즐겨보세요!</a>
 						</div>
-						<div class="collapse show" id="card-element-474852">
+						<div class="collapse show" id="card-element-02">
 							<div class="card-body">Anim pariatur cliche...</div>
 						</div>
 					</div>
 					<div class="card">
 						<div class="card-header">
-							<a class="card-link" href="#" data-toggle="collapse"
+							<a class="card-link" href="#card-element-03" data-toggle="collapse"
 								data-parent="#card-611390"> [투자] 제 2회 뉴딜로 희망드림 투자형 크라우드펀딩
 								지원사업!</a>
 						</div>
-						<div class="collapse show" id="card-element-474853">
+						<div class="collapse" id="card-element-03">
 							<div class="card-body">Anim pariatur cliche...</div>
 						</div>
 					</div>
 					<div class="card">
 						<div class="card-header">
-							<a class="card-link" href="#" data-toggle="collapse"
+							<a class="card-link" href="#card-element-04" data-toggle="collapse"
 								data-parent="#card-611390"> [리워드] 메이커들을 위한 9월 앵콜펀딩 혜택전 1차</a>
 						</div>
-						<div class="collapse show" id="card-element-474854">
+						<div class="collapse" id="card-element-04">
 							<div class="card-body">Anim pariatur cliche...</div>
 						</div>
 					</div>
