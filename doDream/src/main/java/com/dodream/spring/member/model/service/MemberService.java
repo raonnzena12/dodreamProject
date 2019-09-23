@@ -17,4 +17,6 @@ public interface MemberService {
 
 	public abstract List<Member> checkNickname(String userNickname);
 
+	public abstract int insertMember(Member member);
+
 }

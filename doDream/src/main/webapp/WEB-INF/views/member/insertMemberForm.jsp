@@ -43,7 +43,7 @@
 							</tr>
 							<tr>
 								<td colspan="2">
-									<span style="display: none" id="alertMsg"></span>
+									<span style="display: none" id="emailAuthAlert"></span>
 								</td>
 							</tr>
 
@@ -158,24 +158,46 @@
 	
 	$("#userNickname").blur(function(){
 		var userNickname = $("#userNickname").val().trim();
-		if(userNinckname.length > this.attr("maxlength")){
-			alert("닉네임은 20자 이내로 작성해주세요! ^^");
-			$(this).val($(this).val().substr(0, $(this).attr('maxlength')));
+		if(userNickname.length > $("#userNickname").attr("maxlength")){
+			alert("닉네임은 20자 이내로 작성해주세요!^_^");
+			$("#userNickname").focus();
 		}else{
 			$.ajax({
 				type : "post",
 				url : "checkNickname.dr",
-				data : {userNickname:userNickname},
+				data : {userNickname : userNickname},
 				success: function(data) {
 					if(data == "1"){
 						$("#nicknameAlert").show().text("이미 사용 중인 닉네임입니다.").css("color", "#8E44AD");
-						$(this).val("").focus();
+						$("#userNickname").val("").focus();
 					}else{
 						$("#nicknameAlert").show().text("사용 가능한 이메일입니다.").css("color", "#F39C12");
-						if(comfirm("이 닉네임을 사용하시겠습니까? 회원가입 후 정보 변경에서 변경할 수 있습니다!")){
-							$("$userPwd").focus();
-						}
+						
+						if(confirm("이 닉네임을 사용하시겠습니까? 회원가입 후 정보 변경에서 변경할 수 있습니다!")){
+							$("#userPwd").focus();
+						};
 					}
+				}
+			});
+		}
+	});
+	
+	var userPwd;
+	var userPwdCk;
+	
+	$("#userPwd").blur(function() {
+		userPwd = $("#userPwd").val().trim();
+		var pwdRegex = /^[A-Za-z0-9]{6,12}$/;
+		
+		if(pwdRegex.test(userPwd)){
+			alert("비밀번호는 숫자와 문자 포함 형태의 6~12자리 이내로 작성해주세요.");
+			$("#userPwd").val("").focus();
+		}else{
+			$("#userPwdCk").focus();
+			$("#userPwdCk").blur(function() {
+				userPwdCk = $("#userPwdCk").val().trim();
+				if(userPwdCk != userPwd){
+					alert("비밀번호를 다시 입력해주세요.");
 				}
 			});
 		}

@@ -27,4 +27,9 @@ public class MemberDao {
 		
 		return sqlSession.selectList("memberMapper.selectCheckNickname", userNickname);
 	}
+
+	public int insertMember(Member member) {
+		
+		return sqlSession.insert("memberMapper.insertMember", member);
+	}
 }

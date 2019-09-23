@@ -30,4 +30,10 @@ public class MemberServiceImpl implements MemberService {
 		
 		return mDao.selectCheckNickname(userNickname);
 	}
+
+	@Override
+	public int insertMember(Member member) {
+		
+		return mDao.insertMember(member);
+	}
 }

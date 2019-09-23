@@ -40,5 +40,12 @@
 		WHERE USER_NICKNAME = #{userNickname}
 		AND USER_STATUS = 'Y'
 	</select>
+	
+	<!-- 회원가입 -->
+	<insert id="insertMember" parameterType="Member">
+		INSERT INTO USER_TB
+		VALUES(SEQ_USER_NO.NEXTVAL, #{userEmail}, #{userNickname}, #{userPwd}, DEFAULT, 
+		DEFAULT, DEFAULT, SYSDATE, SYSDATE, SYSDATE, NULL, NULL, NULL, NULL)
+	</insert>
 
 </mapper>

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dodream.spring.member.model.service.MemberService;
 import com.dodream.spring.member.model.vo.Member;
@@ -62,8 +63,26 @@ public class MemberController {
 	 * @return 회원가입페이지
 	 */
 	@RequestMapping("insertForm.dr")
-	public String insertMember() {
+	public String insertMemberView() {
 		return "member/insertMemberForm";
+	}
+	
+	/** 회원가입
+	 * @param member
+	 * @param model
+	 * @return page
+	 */
+	@RequestMapping("insertMember.dr")
+	public String insertMember(Member member, Model model, RedirectAttributes rd) {
+		
+		int result = mService.insertMember(member);
+		if(result>0) {
+			rd.addFlashAttribute("msg", "회원가입 완료!만나서 반갑습니다!");
+			return "redirect:home.dr";
+		}else {
+			model.addAttribute("msg", "회원가입에 실패하였습니다.");
+			return "common/errorPage";
+		}
 	}
 	
 	/**
@@ -96,9 +115,7 @@ public class MemberController {
 		}else {
 			result = "0";
 		}
-		
 		return result;
-		
 	}
 
 }
