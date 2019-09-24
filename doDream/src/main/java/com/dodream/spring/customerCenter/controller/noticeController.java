@@ -20,7 +20,7 @@ public class noticeController {
 	public String tmp() {
 		return "customerCenter/notice";
 	}
- 
+  
 	@RequestMapping("notice.dr")
 	public ModelAndView noticeList(ModelAndView mv) {
 

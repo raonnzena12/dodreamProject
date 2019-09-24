@@ -22,7 +22,7 @@
 	min-height: 900px;
 	height: auto;
 }
-
+ 
 #notice_bar {
 	border-bottom: 3px solid #8E44AD;
 }

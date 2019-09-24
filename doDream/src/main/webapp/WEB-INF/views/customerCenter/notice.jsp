@@ -97,7 +97,7 @@
 					<tr>
 						<td align="center">${ n.nId }</td>
 						<td>
-						 
+						  
 						<!-- 로그인 상태에서만 상세보기 가능 -->
 						<c:if test="${ !empty loginUser }">
 							<c:url var="ndetail" value="ndetail.kh">

@@ -19,3 +19,4 @@ public class noticeDao {
 		return (ArrayList)sqlSession.selectList("centerMapper.selectList");
 	}
 } 
+ 

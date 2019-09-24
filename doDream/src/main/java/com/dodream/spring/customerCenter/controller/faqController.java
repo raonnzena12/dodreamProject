@@ -15,5 +15,5 @@ public class faqController {
 	@RequestMapping("faq.dr")
 	public String noticeList() {
 		return "customerCenter/faq"; 
-	}
+	} 
 }

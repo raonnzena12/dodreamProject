@@ -13,7 +13,7 @@ public class Review {
 	private int nWriter;
 	public Review() {
 		// TODO Auto-generated constructor stub
-	}
+	} 
 	public Review(int rNo, String rTitle, String rContent, Date rEnrollDate, Date rModifyDate, String rStatus, int rPNo,
 			int nWriter) {
 		super(); 
