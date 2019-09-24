@@ -44,9 +44,8 @@
 	
 	<!-- 회원가입 -->
 	<insert id="insertMember" parameterType="Member">
-		INSERT INTO USER_TB
-		VALUES(SEQ_USER_NO.NEXTVAL, #{userEmail}, #{userNickname}, #{userPwd}, DEFAULT, 
-		DEFAULT, DEFAULT, SYSDATE, SYSDATE, SYSDATE, NULL, NULL, NULL, NULL)
+		INSERT INTO USER_TB(USER_NO, USER_EMAIL, USER_NICKNAME, USER_PWD)
+		VALUES(SEQ_USER_NO.NEXTVAL, #{userEmail}, #{userNickname}, #{userPwd})
 	</insert>
 
 	<insert id="countVisitToday" parameterType="_int">
