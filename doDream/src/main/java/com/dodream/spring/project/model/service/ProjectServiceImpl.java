@@ -22,7 +22,18 @@ public class ProjectServiceImpl implements ProjectService {
 		Project prj = pDao.selectProject(pNo);
 		if ( prj != null ) { // 프로젝트가 성공적으로 조회되면 조회수를 1올린다
 			pDao.updatePrjCount(pNo);
+			
+			int goal = prj.getpGoal();
+			
+			String comma_goal = String.format("%,d", goal);
+			
+			prj.setpCommaGoal(comma_goal);
+			
+			System.out.println(prj);
 		}
+		
+		
+		
 		return prj;
 	}
 

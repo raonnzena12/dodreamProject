@@ -304,7 +304,7 @@
 	
 	<script>
 		$("#supportbtn").on("click", function(){
-			location.href="project/projectDetailStory.jsp";
+			location.href="project/projectDetailReward.jsp";
 			
 		});
 	
