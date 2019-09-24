@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,6 +34,17 @@
 	font-weight: bold;
 } 
 
+.rewardBtn{
+	width: auto;
+	height: auto;
+	background-color: #F39C12;
+	border: #F39C12;
+	font-size: 15px;
+}
+.rewardBtn:hover{
+	background-color: #8E44AD;
+	cursor: pointer;
+}
 </style>
 
 </head>
@@ -100,12 +112,8 @@
 															style="width: 29px;">회원번호</th>
 														<th class="sorting" tabindex="0" aria-controls="dataTable"
 															rowspan="1" colspan="1"
-															aria-label="Position: activate to sort column ascending"
-															style="width: 62px;">이름</th>
-														<th class="sorting" tabindex="0" aria-controls="dataTable"
-															rowspan="1" colspan="1"
 															aria-label="Office: activate to sort column ascending"
-															style="width: 50px;">아이디</th>
+															style="width: 50px;">닉네임</th>
 														<th class="sorting" tabindex="0" aria-controls="dataTable"
 															rowspan="1" colspan="1"
 															aria-label="Age: activate to sort column ascending"
@@ -131,8 +139,7 @@
 												<tfoot>
 													<tr>
 														<th rowspan="1" colspan="1">회원번호</th>
-														<th rowspan="1" colspan="1">이름</th>
-														<th rowspan="1" colspan="1">아이디</th>
+														<th rowspan="1" colspan="1">닉네임</th>
 														<th rowspan="1" colspan="1">전화번호</th>
 														<th rowspan="1" colspan="1">이메일</th>
 														<th rowspan="1" colspan="1">가입일</th>
@@ -141,108 +148,26 @@
 													</tr>
 												</tfoot>
 												<tbody>
-													<tr role="row" class="odd">
-														<td class="sorting_1">Airi Satou</td>
-														<td>Accountant</td>
-														<td>Tokyo</td>
-														<td>33</td>
-														<td>2008/11/28</td>
-														<td>$162,700</td>
-														<td>
-															
-														</td>
-														<td>$162,700</td>
-													</tr>
-													<tr role="row" class="even">
-														<td class="sorting_1">Angelica Ramos</td>
-														<td>Chief Executive Officer (CEO)</td>
-														<td>London</td>
-														<td>47</td>
-														<td>2009/10/09</td>
-														<td>$1,200,000</td>
-														<td>$1,200,000</td>
-														<td>$1,200,000</td>
-													</tr>
-													<tr role="row" class="odd">
-														<td class="sorting_1">Ashton Cox</td>
-														<td>Junior Technical Author</td>
-														<td>San Francisco</td>
-														<td>66</td>
-														<td>2009/01/12</td>
-														<td>$86,000</td>
-														<td>$86,000</td>
-														<td>$86,000</td>
-													</tr>
-													<tr role="row" class="even">
-														<td class="sorting_1">Bradley Greer</td>
-														<td>Software Engineer</td>
-														<td>London</td>
-														<td>41</td>
-														<td>2012/10/13</td>
-														<td>2012/10/13</td>
-														<td>2012/10/13</td>
-														<td>$132,000</td>
-													</tr>
-													<tr role="row" class="odd">
-														<td class="sorting_1">Brenden Wagner</td>
-														<td>Software Engineer</td>
-														<td>San Francisco</td>
-														<td>28</td>
-														<td>28</td>
-														<td>28</td>
-														<td>2011/06/07</td>
-														<td>$206,850</td>
-													</tr>
-													<tr role="row" class="even">
-														<td class="sorting_1">Brielle Williamson</td>
-														<td>Integration Specialist</td>
-														<td>New York</td>
-														<td>61</td>
-														<td>2012/12/02</td>
-														<td>$372,000</td>
-														<td>$372,000</td>
-														<td>$372,000</td>
-													</tr>
-													<tr role="row" class="odd">
-														<td class="sorting_1">Bruno Nash</td>
-														<td>Software Engineer</td>
-														<td>London</td>
-														<td>38</td>
-														<td>2011/05/03</td>
-														<td>$163,500</td>
-														<td>$163,500</td>
-														<td>$163,500</td>
-													</tr>
-													<tr role="row" class="even">
-														<td class="sorting_1">Caesar Vance</td>
-														<td>Pre-Sales Support</td>
-														<td>New York</td>
-														<td>21</td>
-														<td>2011/12/12</td>
-														<td>2011/12/12</td>
-														<td>2011/12/12</td>
-														<td>$106,450</td>
-													</tr>
-													<tr role="row" class="odd">
-														<td class="sorting_1">Cara Stevens</td>
-														<td>Sales Assistant</td>
-														<td>New York</td>
-														<td>46</td>
-														<td>2011/12/06</td>
-														<td>2011/12/06</td>
-														<td>2011/12/06</td>
-														<td>$145,600</td>
-													</tr>
-													<tr role="row" class="even">
-														<td class="sorting_1">Cedric Kelly</td>
-														<td>Senior Javascript Developer</td>
-														<td>Edinburgh</td>
-														<td>22</td>
-														<td>2012/03/29</td>
-														<td>$433,060</td>
-														<td>$433,060</td>
-														<td>$433,060</td>
-													</tr>
+													<c:forEach var="m" items="${ list }">
+														<tr role="row" class="odd">
+															<td class="sorting_1">${ m.userNo }</td>
+															<td>${ m.userNickname }</td>
+															<td>${ m.userPhone}</td>
+															<td>${ m.userEmail}</td>
+															<td>${ m.userEnrollDate }</td>
+															<td>
+																<c:if test="${ m.userStatus eq 'Y'}">
+																	일반 회원
+																</c:if>
+																<c:if test="${ m.userStatus eq 'N'}">
+																	탈퇴 회원
+																</c:if>
+															</td>
+															<td>
+																<button type="button" class="btn btn-primary btn-lg btn-block rewardBtn">블랙리스트 등록</button>
+															</td>
+														</tr>
+													</c:forEach>
 												</tbody>
 											</table>
 										</div>

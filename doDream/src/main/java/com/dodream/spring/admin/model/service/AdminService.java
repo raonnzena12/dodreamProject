@@ -1,5 +1,9 @@
 package com.dodream.spring.admin.model.service;
 
+import java.util.ArrayList;
+
+import com.dodream.spring.member.model.vo.Member;
+
 public interface AdminService {
 
 	/** 관리자페이지에서 신규회원의 수를 세주는 Service
@@ -31,6 +35,18 @@ public interface AdminService {
 	 * @return result
 	 */
 	public abstract int countProject3();
+
+	/** 회원 리스트 Service (페이징 처리)
+	 * @param currentPage
+	 * @return ArrayList
+	 */
+	public abstract ArrayList<Member> selectMemberList(int currentPage);
+
+	/** 블랙리스트 Service( 페이징 처리)
+	 * @param currentPage
+	 * @return ArrayList
+	 */
+	public abstract ArrayList<Member> selectBlackList(int currentPage);
 
 
 }
