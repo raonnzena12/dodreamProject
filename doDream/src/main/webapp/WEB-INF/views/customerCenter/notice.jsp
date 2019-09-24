@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -85,12 +85,46 @@
 						<div class="card-header">
 							<a class="card-link collapsed" href="#card-element-01"
 								data-toggle="collapse" data-parent="#card-611390"> 
-								게시글 1 [투자] 함께하고, 떠나세요. 가을 한정 특별 이벤트!</a>
+								${n.nTitle}
+							</a>
 						</div>
 						<div class="collapse" id="card-element-01">
 							<div class="card-body">Anim pariatur cliche...</div>
 						</div>
 					</div>
+					
+					<c:forEach var="n" items="${ nList }">
+					<tr>
+						<td align="center">${ n.nId }</td>
+						<td>
+						
+						<!-- 로그인 상태에서만 상세보기 가능 -->
+						<c:if test="${ !empty loginUser }">
+							<c:url var="ndetail" value="ndetail.kh">
+								<c:param name="nId" value="${ n.nId }"/> 
+							</c:url>
+							<a href="${ ndetail }">${ n.nTitle }</a>
+						</c:if>
+						
+						<!-- 로그인 상태가 아닌 경우 공지사항 제목만 출력 -->
+						<c:if test="${ empty loginUser }">
+							${ n.nTitle }
+						</c:if>
+						</td>
+						
+						<td align="center">${ n.nWriter }</td>
+						<td align="center">${ n.nCreateDate }</td>
+						<td align="center">
+						<c:if test="${ !empty n.filePath }">
+							◎
+						</c:if>
+						<c:if test="${ empty n.filePath }">
+							&nbsp;
+						</c:if>
+						</td>
+					</tr>
+					</c:forEach>
+					
 					<div class="card">
 						<div class="card-header">
 							<a class="card-link" href="#card-element-02"
