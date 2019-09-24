@@ -63,6 +63,9 @@
     left: 0;
     box-shadow: 1px 1px 3px #ccc;
 }
+#category .fundCon:hover {
+    box-shadow: 1px 1px 4px #aaa;
+}
 #category .fundItem {
     display: grid;
     grid-template-columns: 200px 50px;
@@ -117,7 +120,7 @@
     border-radius: 5px;
     background-color:#8E44AD;
     height: 100%;
-    width: 25%;
+    /* width: 25%; */
 }
 #category .chartInfo1 {
     float: left;

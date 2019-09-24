@@ -24,15 +24,38 @@
 		<result property="pModifyDate" column="PROJECT_MF_DT" />
 		<result property="pWritter" column="PROJECT_WRITER" />
 		<result property="pCategoryNum" column="PROJECT_CT_NO" />
+		<result property="pCategoryName" column="PROJECT_CT_NAME" />
 		<result property="pStatusNum" column="PROJECT_ST_NO" />
 		<result property="pCount" column="PROJECT_COUNT" />
 		<result property="pDDay" column="D_DAY"/>
+		<result property="pCurrentFunding" column="TOTAL" />
+		<result property="pOpenCount" column="PROJECT_OPEN_COUNT" />
+	</resultMap>
+	
+	<resultMap type="Reward" id="rewardResultSet">
+		<id property="rNo" column="REWARD_NO"/>
+		<result property="rPrice" column="REWARD_PRICE"/>
+		<result property="rName" column="REWARD_NAME"/>
+		<result property="rExplain" column="REWARD_EXPLAIN"/>
+		<result property="rLimit" column="REWARD_LIMIT"/>
+		<result property="rShipCDT" column="REWARD_SHIP_CDT"/>
+		<result property="rShipDate" column="REWARD_SHIP_DT"/>
+		<result property="rOptionAdd" column="REWARD_OP_ADD"/>
+		<result property="rRefPno" column="REWARD_REF_PNO"/>
+		<result property="rOptionNo" column="REWARD_OP_NO"/>
+	</resultMap>
+	
+	<resultMap type="Like" id="likeResultSet">
+		<id property="likeNo" column="LIKE_USER"/>
+		<result property="likePrNo" column="LIKE_PRJ"/>
 	</resultMap>
 	
 	<!-- 프로젝트 디테일 조회용 쿼리 -->
 	<select id="selectProject" parameterType="_int" resultMap="projectResultSet">
-		SELECT P.*, FLOOR(PROJECT_CLOSE_DT - SYSDATE) AS D_DAY FROM PROJECT_TB P
-		WHERE PROJECT_NO = #{ pNo } 
+		<!-- SELECT P.*, FLOOR(PROJECT_CLOSE_DT - SYSDATE) AS D_DAY FROM PROJECT_TB P
+		WHERE PROJECT_NO = #{ pNo }  -->
+		SELECT * FROM PROJECT_DETAIL_VIEW
+		WHERE PROJECT_NO = #{ pNo }
 	</select>
 	
 	<!-- 진행중/종료된 프로젝트 갯수 조회용 쿼리 -->
@@ -43,7 +66,7 @@
 	
 	<!-- 선택한 카테고리에 따라 프로젝트 리스트 조회용 쿼리 -->
 	<select id="selectPrjList" resultMap="projectResultSet" parameterType="string">
-	 	SELECT P.*, FLOOR(PROJECT_CLOSE_DT - SYSDATE) AS D_DAY FROM PRJ_COUNT_DESC P
+	 	SELECT * FROM PROJECT_LIST_VIEW
 	 	<choose>
 	 		<when test="category == 'music'">
 		 	WHERE PROJECT_CT_NO = 1
@@ -69,5 +92,18 @@
 		SET PROJECT_COUNT = PROJECT_COUNT+1
 		WHERE PROJECT_NO = #{ pNo }
 	</update>
+	
+	<!-- =======================리워드=========================== -->
+	
+	<!-- 리워드 조회 쿼리 -->
+	<select id="selectReward" parameterType="_int" resultMap="rewardResultSet">
+		SELECT * FROM REWARD WHERE REWARD_REF_PNO=#{pno}
+	</select>
+	
+	<!-- ========================Like============================ -->
+	
+	<insert id="insertProjectLike" parameterType="Like">
+		INSERT INTO LIKE_TB VALUES(#{likeNo}, #{likePrNo})
+	</insert>
 	
 </mapper>

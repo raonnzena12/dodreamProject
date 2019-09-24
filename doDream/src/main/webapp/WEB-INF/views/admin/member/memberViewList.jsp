@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,6 +34,27 @@
 	font-weight: bold;
 } 
 
+.rewardBtn{
+	width: auto;
+	height: auto;
+	background-color: #F39C12;
+	border: #F39C12;
+	font-size: 15px;
+}
+.rewardBtn:hover{
+	background-color: #8E44AD;
+	cursor: pointer;
+}
+
+.pagination {
+	font-size: 20px;
+	padding-right: 10px;
+	padding-left: 10px; 
+}
+
+.pagination a{ 
+	font-size: 20px;
+}
 </style>
 
 </head>
@@ -100,12 +122,8 @@
 															style="width: 29px;">회원번호</th>
 														<th class="sorting" tabindex="0" aria-controls="dataTable"
 															rowspan="1" colspan="1"
-															aria-label="Position: activate to sort column ascending"
-															style="width: 62px;">이름</th>
-														<th class="sorting" tabindex="0" aria-controls="dataTable"
-															rowspan="1" colspan="1"
 															aria-label="Office: activate to sort column ascending"
-															style="width: 50px;">아이디</th>
+															style="width: 50px;">닉네임</th>
 														<th class="sorting" tabindex="0" aria-controls="dataTable"
 															rowspan="1" colspan="1"
 															aria-label="Age: activate to sort column ascending"
@@ -131,8 +149,7 @@
 												<tfoot>
 													<tr>
 														<th rowspan="1" colspan="1">회원번호</th>
-														<th rowspan="1" colspan="1">이름</th>
-														<th rowspan="1" colspan="1">아이디</th>
+														<th rowspan="1" colspan="1">닉네임</th>
 														<th rowspan="1" colspan="1">전화번호</th>
 														<th rowspan="1" colspan="1">이메일</th>
 														<th rowspan="1" colspan="1">가입일</th>
@@ -141,108 +158,26 @@
 													</tr>
 												</tfoot>
 												<tbody>
-													<tr role="row" class="odd">
-														<td class="sorting_1">Airi Satou</td>
-														<td>Accountant</td>
-														<td>Tokyo</td>
-														<td>33</td>
-														<td>2008/11/28</td>
-														<td>$162,700</td>
-														<td>
-															
-														</td>
-														<td>$162,700</td>
-													</tr>
-													<tr role="row" class="even">
-														<td class="sorting_1">Angelica Ramos</td>
-														<td>Chief Executive Officer (CEO)</td>
-														<td>London</td>
-														<td>47</td>
-														<td>2009/10/09</td>
-														<td>$1,200,000</td>
-														<td>$1,200,000</td>
-														<td>$1,200,000</td>
-													</tr>
-													<tr role="row" class="odd">
-														<td class="sorting_1">Ashton Cox</td>
-														<td>Junior Technical Author</td>
-														<td>San Francisco</td>
-														<td>66</td>
-														<td>2009/01/12</td>
-														<td>$86,000</td>
-														<td>$86,000</td>
-														<td>$86,000</td>
-													</tr>
-													<tr role="row" class="even">
-														<td class="sorting_1">Bradley Greer</td>
-														<td>Software Engineer</td>
-														<td>London</td>
-														<td>41</td>
-														<td>2012/10/13</td>
-														<td>2012/10/13</td>
-														<td>2012/10/13</td>
-														<td>$132,000</td>
-													</tr>
-													<tr role="row" class="odd">
-														<td class="sorting_1">Brenden Wagner</td>
-														<td>Software Engineer</td>
-														<td>San Francisco</td>
-														<td>28</td>
-														<td>28</td>
-														<td>28</td>
-														<td>2011/06/07</td>
-														<td>$206,850</td>
-													</tr>
-													<tr role="row" class="even">
-														<td class="sorting_1">Brielle Williamson</td>
-														<td>Integration Specialist</td>
-														<td>New York</td>
-														<td>61</td>
-														<td>2012/12/02</td>
-														<td>$372,000</td>
-														<td>$372,000</td>
-														<td>$372,000</td>
-													</tr>
-													<tr role="row" class="odd">
-														<td class="sorting_1">Bruno Nash</td>
-														<td>Software Engineer</td>
-														<td>London</td>
-														<td>38</td>
-														<td>2011/05/03</td>
-														<td>$163,500</td>
-														<td>$163,500</td>
-														<td>$163,500</td>
-													</tr>
-													<tr role="row" class="even">
-														<td class="sorting_1">Caesar Vance</td>
-														<td>Pre-Sales Support</td>
-														<td>New York</td>
-														<td>21</td>
-														<td>2011/12/12</td>
-														<td>2011/12/12</td>
-														<td>2011/12/12</td>
-														<td>$106,450</td>
-													</tr>
-													<tr role="row" class="odd">
-														<td class="sorting_1">Cara Stevens</td>
-														<td>Sales Assistant</td>
-														<td>New York</td>
-														<td>46</td>
-														<td>2011/12/06</td>
-														<td>2011/12/06</td>
-														<td>2011/12/06</td>
-														<td>$145,600</td>
-													</tr>
-													<tr role="row" class="even">
-														<td class="sorting_1">Cedric Kelly</td>
-														<td>Senior Javascript Developer</td>
-														<td>Edinburgh</td>
-														<td>22</td>
-														<td>2012/03/29</td>
-														<td>$433,060</td>
-														<td>$433,060</td>
-														<td>$433,060</td>
-													</tr>
+													<c:forEach var="m" items="${ list }">
+														<tr role="row" class="odd">
+															<td class="sorting_1">${ m.userNo }</td>
+															<td>${ m.userNickname }</td>
+															<td>${ m.userPhone}</td>
+															<td>${ m.userEmail}</td>
+															<td>${ m.userEnrollDate }</td>
+															<td>
+																<c:if test="${ m.userStatus eq 'Y'}">
+																	일반 회원
+																</c:if>
+																<c:if test="${ m.userStatus eq 'N'}">
+																	탈퇴 회원
+																</c:if>
+															</td>
+															<td>
+																<button type="button" id="blackListBtn" class="btn btn-primary btn-lg btn-block rewardBtn">블랙리스트 등록</button>
+															</td>
+														</tr>
+													</c:forEach>
 												</tbody>
 											</table>
 										</div>
@@ -250,40 +185,53 @@
 									<div class="row">
 										<div class="col-sm-12 col-md-5">
 											<div class="dataTables_info" id="dataTable_info"
-												role="status" aria-live="polite">Showing 1 to 10 of 57
-												entries</div>
+												role="status" aria-live="polite">   ${pi.startPage } / ${pi.maxPage } 페이지 </div>
 										</div>
 										<div class="col-sm-12 col-md-7">
 											<div class="dataTables_paginate paging_simple_numbers"
 												id="dataTable_paginate">
-												<ul class="pagination">
-													<li class="paginate_button page-item previous disabled"
-														id="dataTable_previous"><a href="#"
-														aria-controls="dataTable" data-dt-idx="0" tabindex="0"
-														class="page-link">Previous</a></li>
-													<li class="paginate_button page-item active"><a
-														href="#" aria-controls="dataTable" data-dt-idx="1"
-														tabindex="0" class="page-link">1</a></li>
-													<li class="paginate_button page-item "><a href="#"
-														aria-controls="dataTable" data-dt-idx="2" tabindex="0"
-														class="page-link">2</a></li>
-													<li class="paginate_button page-item "><a href="#"
-														aria-controls="dataTable" data-dt-idx="3" tabindex="0"
-														class="page-link">3</a></li>
-													<li class="paginate_button page-item "><a href="#"
-														aria-controls="dataTable" data-dt-idx="4" tabindex="0"
-														class="page-link">4</a></li>
-													<li class="paginate_button page-item "><a href="#"
-														aria-controls="dataTable" data-dt-idx="5" tabindex="0"
-														class="page-link">5</a></li>
-													<li class="paginate_button page-item "><a href="#"
-														aria-controls="dataTable" data-dt-idx="6" tabindex="0"
-														class="page-link">6</a></li>
-													<li class="paginate_button page-item next"
-														id="dataTable_next"><a href="#"
-														aria-controls="dataTable" data-dt-idx="7" tabindex="0"
-														class="page-link">Next</a></li>
-												</ul>
+												<table class="pagination" style="float: right; margin-top: 10px;">
+													<!-- 페이징 처리 -->
+													<tr align="center" height="20">
+														<td colspan="7" >
+															<!-- [이전] -->
+															<c:if test="${ pi.currentPage <= 1 }">
+																[이전] &nbsp;
+															</c:if>
+															<c:if test="${ pi.currentPage > 1 }">
+																<c:url var="before" value="adminMlist.dr">
+																	<c:param name="page" value="${ pi.currentPage - 1 }"/>
+																</c:url>
+																<a href="${ before }">[이전]</a> &nbsp;
+															</c:if>
+															
+															<!-- 페이지 -->
+															<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+																<c:if test="${ p eq currentPage }">
+																	<font color="red" size="4"><b>[${ p }]</b></font>
+																</c:if>
+																
+																<c:if test="${ p ne currentPage }">
+																	<c:url var="pagination" value="adminMlist.dr">
+																		<c:param name="page" value="${ p }"/>
+																	</c:url>
+																	<a href="${ pagination }">${ p }</a> &nbsp;
+																</c:if>
+															</c:forEach>
+															
+															<!-- [다음] -->
+															<c:if test="${ pi.currentPage >= pi.maxPage }">
+																[다음]
+															</c:if>
+															<c:if test="${ pi.currentPage < pi.maxPage }">
+																<c:url var="after" value="adminMlist.dr">
+																	<c:param name="page" value="${ pi.currentPage + 1 }"/>
+																</c:url> 
+																<a href="${ after }">[다음]</a>
+															</c:if>
+														</td>
+													</tr>
+												</table>
 											</div>
 										</div>
 									</div>
@@ -341,7 +289,6 @@
 			</div>
 		</div>
 	</div>
-
 	<!-- Bootstrap core JavaScript-->
 	<script src="resources/vendor/jquery/jquery.min.js"></script>
 	<script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -359,6 +306,14 @@
 	<script src="resources/js/demo/chart-area-demo.js"></script>
 	<script src="resources/js/demo/chart-pie-demo.js"></script>
 
+	<script>
+		$(function(){
+			$("#blackListBtn").on("click", function(){
+				if(confirm("블랙리스트로 등록 하시겠습니까?")){
+				}
+			});		
+		});
+	</script>
 
 </body>
 

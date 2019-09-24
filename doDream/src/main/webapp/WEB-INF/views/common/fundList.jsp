@@ -64,35 +64,6 @@
                   </span>
                </div>
                <div class="resultPrint">
-                  <div>
-                     <div class="fundCon">
-                        <div class="fundItem" id="54">
-                           <div class="fundImg">
-                              <img src="resources/images/testImg/testImg(1).jpg">
-                           </div>
-                           <div class="nameArea">
-                              <span class="categoryName">카테고리 이름</span><br>
-                              <span class="fundName">펀드이름들어가는곳</span>
-                           </div>
-                           <div class="heartIcon">
-                              <i class="material-icons heart-fund">favorite_border</i>
-                           </div>
-                           <div class="detailArea my-1">
-                              <span class="detailText">펀드 소개 텍스트가 들어간다 이런식으로 보임 두줄도 잘보이고 아마 세줄까지도 아슬아슬하게 될것같음</span>
-                           </div>
-                           <div class="chartArea px-3 mt-2">
-                              <div class="chartInfo clearfix">
-                                 <span class="chartInfo1">￦200,000</span>
-                                 <span class="chartInfo2">25%</span>
-                              </div>
-                              <div class="chartBar">
-                                 <div class="purpleBar"></div>
-                              </div>
-                              <div class="chartDate">28일 남음</div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
                   <c:forEach var="prj" items="${ pList }" >
                   <div>
                      <div class="fundCon">
@@ -101,7 +72,7 @@
                               <img src="resources/projectImg/thumbnail/${ prj.pThumbImage }">
                            </div>
                            <div class="nameArea">
-                              <span class="categoryName">${ prj.pCategoryNum }</span><br>
+                              <span class="categoryName">${ prj.pCategoryName }</span><br>
                               <span class="fundName">
                                  <c:choose>
                                     <c:when test="${ fn:length(prj.pTitle) > 10 }">
@@ -130,76 +101,32 @@
                            </div>
                            <div class="chartArea px-3 mt-2">
                               <div class="chartInfo clearfix">
-                                 <span class="chartInfo1">￦200,000</span>
-                                 <span class="chartInfo2">25%</span>
+                                 <span class="chartInfo1">￦<fmt:formatNumber value="${ prj.pCurrentFunding }" groupingUsed="true" /></span>
+                                 <span class="chartInfo2"><fmt:parseNumber value="${ (prj.pCurrentFunding / prj.pGoal) * 100 }" integerOnly="true" />%</span>
                               </div>
                               <div class="chartBar">
-                                 <div class="purpleBar"></div>
+                              <c:choose>
+                                 <c:when test="${ ((prj.pCurrentFunding / prj.pGoal) * 100) < 100 }">
+                                 <div class="purpleBar" style="width:${ (prj.pCurrentFunding / prj.pGoal) * 100 }%"></div>
+                                 </c:when>
+                                 <c:otherwise>
+                                 <div class="purpleBar"></div>                                       
+                                 </c:otherwise>
+                              </c:choose>
                               </div>
-                              <div class="chartDate">${ prj.pDDay }일 남음</div>
+                              <c:choose>
+                                 <c:when test="${ prj.pDDay > 0 }">
+                                 <div class="chartDate">${ prj.pDDay }일 남음</div>
+                                 </c:when>
+                                 <c:otherwise>
+                                 <div class="chartDate">펀딩 종료</div>
+                                 </c:otherwise>
+                              </c:choose>
                            </div>
                         </div>
                      </div>
                   </div>
                   </c:forEach>
-                  <div>
-                     <div class="fundCon">
-                        <div class="fundItem">
-                           <div class="fundImg">
-                              <img src="resources/images/testImg/testImg(3).jpg">
-                           </div>
-                           <div class="nameArea">
-                              <span class="categoryName">카테고리 이름</span><br>
-                              <span class="fundName">펀드이름들어가는곳</span>
-                           </div>
-                           <div class="heartIcon">
-                              <i class="material-icons heart-fund">favorite_border</i>
-                           </div>
-                           <div class="detailArea my-1">
-                              <span class="detailText">펀드 소개 텍스트가 들어간다 이런식으로 보임 두줄도 잘보이고 아마 세줄까지도 아슬아슬하게 될것같음</span>
-                           </div>
-                           <div class="chartArea px-3 mt-2">
-                              <div class="chartInfo clearfix">
-                                 <span class="chartInfo1">￦200,000</span>
-                                 <span class="chartInfo2">25%</span>
-                              </div>
-                              <div class="chartBar">
-                                 <div class="purpleBar"></div>
-                              </div>
-                              <div class="chartDate">28일 남음</div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div>
-                     <div class="fundCon">
-                        <div class="fundItem">
-                           <div class="fundImg">
-                              <img src="resources/images/testImg/testImg(4).jpg">
-                           </div>
-                           <div class="nameArea">
-                              <span class="categoryName">카테고리 이름</span><br>
-                              <span class="fundName">펀드이름들어가는곳</span>
-                           </div>
-                           <div class="heartIcon">
-                              <i class="material-icons heart-fund">favorite_border</i>
-                           </div>
-                           <div class="detailArea my-1">
-                              <span class="detailText">펀드 소개 텍스트가 들어간다 이런식으로 보임 두줄도 잘보이고 아마 세줄까지도 아슬아슬하게 될것같음</span>
-                           </div>
-                           <div class="chartArea px-3 mt-2">
-                              <div class="chartInfo clearfix">
-                                 <span class="chartInfo1">￦200,000</span>
-                                 <span class="chartInfo2">25%</span>
-                              </div>
-                              <div class="chartBar">
-                                 <div class="purpleBar"></div>
-                              </div>
-                              <div class="chartDate">28일 남음</div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
                </div>
             </div>
             <div class="col-md-1">
@@ -208,6 +135,10 @@
       </div>
 </section>
 <script>
+// 페이지 접속하면 currentPage = 1;
+var currentPage = 1;
+var maxPage = ${ pi.maxPage };
+
    // 좋아요 누르는 함수 만들것
 $(function() {
    // 리뷰 좋아요 체크하는 함수
@@ -241,6 +172,7 @@ $(function() {
 function loadList() {
 
 }
+// 펀드 리스트 출력하는 함수(수정중)
 function printFunds(list) {
    var $resultPrint = $(".resultPrint");
    $resultPrint.html("");
@@ -288,6 +220,49 @@ function printFunds(list) {
       $resultPrint.append($conDiv);
    });
 }
+function listLoading() {
+   if ( currentPage == maxPage ) {
+      console.log(currentPage);
+      return false;
+   }
+   console.log("curP: " +currentPage);
+   console.log("maxP: " +maxPage);
+   currentPage += 1;
+   
+   $.ajax({
+      url: "loadListByAjax.dr",
+      type: "GET",
+      data: { page: currentPage,
+              cate: "total" },
+      dataType: "json",
+      error: function(e){
+         console.log(e);
+      },
+      success: function(pList){
+         console.log(pList);
+         printList(pList);
+      }
+   });
+}
+$(function(){
+   $(window).scroll(function(){   //스크롤이 최하단 으로 내려가면 리스트를 조회하고 page를 증가시킨다.
+      // console.log($(window).scrollTop());
+      // console.log($(document).height());
+      // console.log($(window).height());
+      // console.log($(document).height() - $(window).height());
+      // console.log($(window).scrollTop() >= ($(document).height() - $(window).height() - 0.5));
+      if($(window).scrollTop() >= ($(document).height() - $(window).height()-0.5 ) ) {
+         if ( currentPage == maxPage ) return false;
+         console.log("aaa");
+         // $("#loadingImg").css("opacity","1");
+         // setTimeout(function(){
+         listLoading();
+         //    $("#loadingImg").css("opacity","0");
+         // },500);
+      } 
+   });
+})
+
 </script>
 
 <script>

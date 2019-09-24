@@ -34,7 +34,7 @@
 }
 
 #FReview_title {
-	/* position: absolute; */
+	position: absolute;
 	align-content: center;
 	right: 0;
 	left: 0;
@@ -105,7 +105,7 @@
 									for="art">미술</label> <input type="radio" name="category"
 									id="etc" value="etc"><label for="etc">ETC</label>
 							</div>
-						</div>
+						</div>  
 					</div>
 				</div>
 				<div class="row" style="margin-bottom: 50px">

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -90,13 +92,14 @@
                 font-size: 17px;
            }
            .rewardBadge{
-           		width:70px;
+           		width:auto;
+           		min-width:70px;
            		height:25px;
            		background-color: #8E44AD;
            		display:block;
            		float:right;
            		margin:3px 10px 0 0;
-           		padding:5px 0 0 0;
+           		padding:5px 5px 0 5px;
            		font-size: 14px;
            }
            .rewardIconBox{
@@ -132,9 +135,10 @@
                 display: block;
            }
            .rewardMo{
-           		width: 100px;
+           		width:auto;
+           		min-width: 80px;
                 height: 40px;
-                margin: 0 10px 0 15px;
+                margin: 0 5px 0 15px;
                 float: left;
                 display: block;
            }
@@ -175,9 +179,9 @@
            }
            .rewardText6{
            		font-size: 15px;
-           		width: 300px;
+           		width: 500px;
                 height: 50px;
-                /* border: 1px solid black; */
+                /* order: 1px solid black; */
                 float: left;
                 display: block;
                 padding:13px 0 0 0;
@@ -243,7 +247,7 @@
 			<section id="detailContent2">
 			     <div id="detailReward">
 					<div id="rewardText1">
-                        	선택할수 있는 총 5종의 리워드가 있습니다.
+                        	선택할수 있는 총 ${fn:length(reward) }종의 리워드가 있습니다.
                     </div>
                     <div class="rewardBox">
                     	<div class="textBox">
@@ -265,10 +269,11 @@
                             	리워드 없이 후원하기 <br>
                             -리워드 수령없이 아티스트를 후원합니다.
                         </div>
-                        <div class="rewardText4"></div>
-                        <div class="rewardText5"></div>
+                        <!-- <div class="rewardText4"></div>
+                        <div class="rewardText5"></div> -->
                     </div>
                     <!-- ================================= -->
+                    <c:forEach var="r" items="${reward }">
                     <div class="rewardBox">
                             <div class="textBox">
 		                    	<div class="rewardIconBox">
@@ -277,7 +282,8 @@
 			                    
 		                        <div class="rewardText2">
 			                        5명선택
-			                        <span class="badge badge-primary rewardBadge">5개 남음</span>
+			                        <span class="badge badge-primary rewardBadge">${r.rLimit }개 남음</span>
+			                        <!-- 재고가 없으면 선택 안되게 스크립트 처리하기 -->
 		                        </div>
 		                         <!-- ==========체크박스=========== -->
 		                        <input type="checkbox" class="check"id="check">
@@ -285,22 +291,22 @@
                         	
                             <div class="inputBox">
 	                            <div class="rewardMobox">
-	                            	<div class="rewardMo">10,000</div>원
+	                            	<div class="rewardMo">${r.rPrice }</div>원
 	                            </div>
-                            	<div class="rewardText6">1번 (실속형리워드)</div>
+                            	<div class="rewardText6">${r.rName}</div>
                             </div>
                             
                             <div class="rewardText3">
-                                리워드 설명 설명
+                                ${r.rExplain }
                             </div>
-                            <div class="rewardText4">
+                           <!--  <div class="rewardText4">
                                 리워드 추가 설명
                             </div>
                             <div class="rewardText5">
                                 수령 관련 설명
-                            </div>
+                            </div> -->
                         </div>
-                        
+                     </c:forEach>
                         <!-- ========================test========================== -->
                      </div>   
                        

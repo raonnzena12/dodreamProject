@@ -11,7 +11,7 @@ import com.dodream.spring.customerCenter.model.service.noticeService;
  
 @Controller
 public class TOServiceController {
-
+ 
 	@Autowired
 	private noticeService nService;
 
@@ -19,7 +19,7 @@ public class TOServiceController {
 	@RequestMapping("notice.dr")
 	public ModelAndView noticeList(ModelAndView mv) {
 
-		ArrayList<notice> list = nService.selectList();
+	 	ArrayList<notice> list = nService.selectList();
 
 		if (list != null) {
 			mv.addObject("list", list);

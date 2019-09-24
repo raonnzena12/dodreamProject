@@ -10,6 +10,8 @@
 	<typeAliases>
 		<typeAlias type="com.dodream.spring.member.model.vo.Member" alias="Member"/>
 		<typeAlias type="com.dodream.spring.project.model.vo.Project" alias="Project"/>
+		<typeAlias type="com.dodream.spring.project.model.vo.Reward" alias="Reward"/>
+		<typeAlias type="com.dodream.spring.project.model.vo.Like" alias="Like"/>
 	</typeAliases>
 	
 	

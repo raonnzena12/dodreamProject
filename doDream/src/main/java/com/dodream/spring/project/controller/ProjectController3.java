@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.dodream.spring.common.Pagination;
 import com.dodream.spring.project.model.service.ProjectService;
 import com.dodream.spring.project.model.vo.Project;
 
@@ -25,7 +26,9 @@ public class ProjectController3 {
 		int currentPage = ( page == null ) ? 1 : page;
 		
 		ArrayList<Project> pList = pService.selectPrjList(category, currentPage);
+		System.out.println(pList.get(0).toString());
 		model.addAttribute("pList", pList);
+		model.addAttribute("pi", Pagination.getPageInfo());
 		return "common/fundList";
 	}
 	
@@ -60,5 +63,16 @@ public class ProjectController3 {
 	public String tmp4(String check) {
 		System.out.println(check);
 		return check;
+	}
+	
+	@ResponseBody
+	@RequestMapping("loadListByAjax.dr")
+	public ArrayList<Project> loadListByAjax(Integer page, String cate) {
+		String category = ( cate == null ) ? "total" : cate;
+		int currentPage = ( page == null ) ? 1 : page;
+		
+		ArrayList<Project> pList = pService.selectPrjList(category, currentPage);
+		
+		return pList;
 	}
 }

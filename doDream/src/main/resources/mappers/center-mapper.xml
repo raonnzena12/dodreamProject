@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="CenterMapper">
+	
+	<!-- 공지사항 -->
+	<resultMap id="NoticeResultSet" type="Notice">
+		<id     property="nNo"         column="NOTICE_NO" />
+		<result property="nTitle"      column="NOTICE_TITLE" />
+		<result property="nContent"    column="NOTICE_CONTENT" />
+		<result property="nEnrollDate" column="NOTICE_ER_DT" />
+		<result property="nModifyDate" column="NOTICE_MF_DT" />
+		<result property="nStatus"     column="NOTICE_STATUS" />
+		<result property="nWriter"     column="NOTICE_WRITER" />
+	</resultMap>
+
+	<!-- 프로젝트 리뷰 -->
+	<resultMap id="ReviewResultSet" type="Review">
+		<id     property="rNo"         column="REVIEW_NO" />
+		<result property="rTitle"      column="REVIEW_TITLE" />
+		<result property="rContent"    column="REVIEW_CONTENT" />
+		<result property="rEnrollDate" column="REVIEW_ER_DT" />
+		<result property="rModifyDate" column="REVIEW_MF_DT" />
+		<result property="rStatus"     column="REVIEW_STATUS" />
+		<result property="rPNO"        column="REVIEW_REF_PNO" />
+		<result property="nWriter"     column="REVIEW_WRITER" />
+	</resultMap>
+	  
+	<!-- FAQ -->
+	<resultMap id="FaqResultSet" type="Faq">
+		<id     property="fNo"         column="FAQ_NO" />
+		<result property="fTitle"      column="FAQ_TITLE" />
+		<result property="fContent"    column="FAQ_CONTENT" />
+		<result property="fEnrollDate" column="FAQ_ENROLL_DATE" />
+		<result property="fModifyDate" column="FAQ_MODIFY_DATE" />
+		<result property="fStatus"     column="FAQ_STATUS" />
+		<result property="fWriter"     column="FAQ_WRITER" />
+	</resultMap>
+
+	<!-- 공지사항 리스트 쿼리 -->
+	<select id="selectList" resultMap="NoticeResultSet">
+		SELECT * FROM NOTICE
+		ORDER BY NOTICE_ER_DT DESC
+	</select>
+
+
+</mapper>

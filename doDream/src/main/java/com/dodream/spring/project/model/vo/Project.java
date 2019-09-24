@@ -8,6 +8,7 @@ public class Project {
 	private String pSTitle;
 	private int pGoal;// 목표금액
 	private String pCommaGoal;// 목표금액 ,구분된것
+	private int pCurrentFunding; // 현재 펀딩된 금액
 	private String pThumbImage;
 	private Date pStartDate;
 	private Date pCloseDate;
@@ -26,22 +27,25 @@ public class Project {
 	private Date pModifyDate;
 	private int pWritter;
 	private int pCategoryNum;
+	private String pCategoryName;
 	private int pStatusNum;
 	private int pCount;
+	private int pOpenCount; // 프로젝트 작성자가 오픈한 프로젝트 개수
 	
 	public Project() {}
 
-	public Project(int pNo, String pTitle, String pSTitle, int pGoal, String pCommaGoal, String pThumbImage,
-			Date pStartDate, Date pCloseDate, String pDDay, String pHashTag, String pMainImage, String pSummaryText,
-			String pStory, String pArtistName, String pArtistPFImage, String pArtistSns1, String pArtistSns2,
-			String pArtistPhone, String pArtistEmail, Date pEnrollDate, Date pModifyDate, int pWritter,
-			int pCategoryNum, int pStatusNum, int pCount) {
+	public Project(int pNo, String pTitle, String pSTitle, int pGoal, String pCommaGoal, int pCurrentFunding,
+			String pThumbImage, Date pStartDate, Date pCloseDate, String pDDay, String pHashTag, String pMainImage,
+			String pSummaryText, String pStory, String pArtistName, String pArtistPFImage, String pArtistSns1,
+			String pArtistSns2, String pArtistPhone, String pArtistEmail, Date pEnrollDate, Date pModifyDate,
+			int pWritter, int pCategoryNum, String pCategoryName, int pStatusNum, int pCount, int pOpenCount) {
 		super();
 		this.pNo = pNo;
 		this.pTitle = pTitle;
 		this.pSTitle = pSTitle;
 		this.pGoal = pGoal;
 		this.pCommaGoal = pCommaGoal;
+		this.pCurrentFunding = pCurrentFunding;
 		this.pThumbImage = pThumbImage;
 		this.pStartDate = pStartDate;
 		this.pCloseDate = pCloseDate;
@@ -60,12 +64,11 @@ public class Project {
 		this.pModifyDate = pModifyDate;
 		this.pWritter = pWritter;
 		this.pCategoryNum = pCategoryNum;
+		this.pCategoryName = pCategoryName;
 		this.pStatusNum = pStatusNum;
 		this.pCount = pCount;
+		this.pOpenCount = pOpenCount;
 	}
-	
-	
-	
 
 	public int getpNo() {
 		return pNo;
@@ -105,6 +108,14 @@ public class Project {
 
 	public void setpCommaGoal(String pCommaGoal) {
 		this.pCommaGoal = pCommaGoal;
+	}
+
+	public int getpCurrentFunding() {
+		return pCurrentFunding;
+	}
+
+	public void setpCurrentFunding(int pCurrentFunding) {
+		this.pCurrentFunding = pCurrentFunding;
 	}
 
 	public String getpThumbImage() {
@@ -251,6 +262,14 @@ public class Project {
 		this.pCategoryNum = pCategoryNum;
 	}
 
+	public String getpCategoryName() {
+		return pCategoryName;
+	}
+
+	public void setpCategoryName(String pCategoryName) {
+		this.pCategoryName = pCategoryName;
+	}
+
 	public int getpStatusNum() {
 		return pStatusNum;
 	}
@@ -267,23 +286,26 @@ public class Project {
 		this.pCount = pCount;
 	}
 
+	public int getpOpenCount() {
+		return pOpenCount;
+	}
+
+	public void setpOpenCount(int pOpenCount) {
+		this.pOpenCount = pOpenCount;
+	}
+
 	@Override
 	public String toString() {
 		return "Project [pNo=" + pNo + ", pTitle=" + pTitle + ", pSTitle=" + pSTitle + ", pGoal=" + pGoal
-				+ ", pCommaGoal=" + pCommaGoal + ", pThumbImage=" + pThumbImage + ", pStartDate=" + pStartDate
-				+ ", pCloseDate=" + pCloseDate + ", pDDay=" + pDDay + ", pHashTag=" + pHashTag + ", pMainImage="
-				+ pMainImage + ", pSummaryText=" + pSummaryText + ", pStory=" + pStory + ", pArtistName=" + pArtistName
-				+ ", pArtistPFImage=" + pArtistPFImage + ", pArtistSns1=" + pArtistSns1 + ", pArtistSns2=" + pArtistSns2
-				+ ", pArtistPhone=" + pArtistPhone + ", pArtistEmail=" + pArtistEmail + ", pEnrollDate=" + pEnrollDate
-				+ ", pModifyDate=" + pModifyDate + ", pWritter=" + pWritter + ", pCategoryNum=" + pCategoryNum
-				+ ", pStatusNum=" + pStatusNum + ", pCount=" + pCount + "]";
+				+ ", pCommaGoal=" + pCommaGoal + ", pCurrentFunding=" + pCurrentFunding + ", pThumbImage=" + pThumbImage
+				+ ", pStartDate=" + pStartDate + ", pCloseDate=" + pCloseDate + ", pDDay=" + pDDay + ", pHashTag="
+				+ pHashTag + ", pMainImage=" + pMainImage + ", pSummaryText=" + pSummaryText + ", pStory=" + pStory
+				+ ", pArtistName=" + pArtistName + ", pArtistPFImage=" + pArtistPFImage + ", pArtistSns1=" + pArtistSns1
+				+ ", pArtistSns2=" + pArtistSns2 + ", pArtistPhone=" + pArtistPhone + ", pArtistEmail=" + pArtistEmail
+				+ ", pEnrollDate=" + pEnrollDate + ", pModifyDate=" + pModifyDate + ", pWritter=" + pWritter
+				+ ", pCategoryNum=" + pCategoryNum + ", pCategoryName=" + pCategoryName + ", pStatusNum=" + pStatusNum
+				+ ", pCount=" + pCount + ", pOpenCount=" + pOpenCount + "]";
 	}
-
-	
-
-	
-	
-
 
 	
 }

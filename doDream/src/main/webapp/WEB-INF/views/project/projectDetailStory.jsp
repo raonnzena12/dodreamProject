@@ -162,12 +162,15 @@
 			
 		});
 	
-		$("#story").on("click", function(){
+		/* $("#story").on("click", function(){
 			location.href="#detailcontent";
-		});
+		}); */
 		$("#guide").on("click", function(){
 			location.href="#projectInformation";
 		});
+		
+		
+		
 	</script>
 
 </body>

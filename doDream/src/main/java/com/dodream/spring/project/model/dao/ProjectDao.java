@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.dodream.spring.common.model.vo.PageInfo;
 import com.dodream.spring.project.model.vo.Project;
+import com.dodream.spring.project.model.vo.Reward;
 
 
 @Repository("pDao")
@@ -59,4 +60,8 @@ public class ProjectDao {
 	public void updatePrjCount(int pNo) {
 		sqlSession.update("projectMapper.updatePrjCount", pNo);
 	}
+
+	
+
+	
 }
