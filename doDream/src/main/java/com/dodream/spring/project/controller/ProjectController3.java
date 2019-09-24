@@ -25,6 +25,7 @@ public class ProjectController3 {
 		int currentPage = ( page == null ) ? 1 : page;
 		
 		ArrayList<Project> pList = pService.selectPrjList(category, currentPage);
+		System.out.println(pList.get(0).toString());
 		model.addAttribute("pList", pList);
 		return "common/fundList";
 	}
