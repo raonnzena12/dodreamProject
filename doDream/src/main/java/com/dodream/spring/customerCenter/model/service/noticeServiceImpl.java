@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dodream.spring.customerCenter.model.dao.noticeDao;
+import com.dodream.spring.customerCenter.model.vo.Notice;
  
 @Service("noticeService")
 public class noticeServiceImpl implements noticeService {
@@ -13,6 +14,11 @@ public class noticeServiceImpl implements noticeService {
 	@Autowired
 	private noticeDao noticeDao;
 
+	@Override
+	public ArrayList<Notice> selectList() {
+		return noticeDao.selectList();
+	}
+  
 	/*
 	@Override
 	public ArrayList<notice> selectList() {

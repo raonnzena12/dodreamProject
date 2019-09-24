@@ -11,9 +11,9 @@ public class faqController {
 
 	@Autowired
 	private faqService faqService;
-	
+	 
 	@RequestMapping("faq.dr")
 	public String noticeList() {
-		return "customerCenter/faq";
-	}
+		return "customerCenter/faq"; 
+	} 
 }
