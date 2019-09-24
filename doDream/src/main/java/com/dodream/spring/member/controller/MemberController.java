@@ -90,7 +90,7 @@ public class MemberController {
 			int result2 = mService.countVisitToday(loginUser.getUserNo());
 			if(result2 > 0) {
 			System.out.println("userNo : " + loginUser.getUserNo() + "번 회원이 DAYCOUNT 테이블에 삽입됨");
-			}			
+			}
 			return "redirect:home.dr";
 		}else {
 			model.addAttribute("msg", "회원가입에 실패하였습니다.");
@@ -112,11 +112,19 @@ public class MemberController {
 		return "member/changePwdForm";
 	}
 	
+	/**
+	 * 로그인 후 마이페이지 메뉴 레이어팝업
+	 * @return
+	 */
 	@RequestMapping("mypage.dr")
 	public String mypage() {
 		return "member/mypageHeader";
 	}
 	
+	/** 회원가입 시 닉네임 중복 검사
+	 * @param userNickname
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping("checkNickname.dr")
 	public String checkNickname(String userNickname) {
@@ -130,4 +138,10 @@ public class MemberController {
 		}
 		return result;
 	}
+	
+	@RequestMapping("myInfo.dr")
+	public String myInfoView() {
+		return "member/mypageSetting";
+	}
+	
 }
