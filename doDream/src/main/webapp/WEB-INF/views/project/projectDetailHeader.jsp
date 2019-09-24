@@ -266,7 +266,7 @@
                         </div>
                         <br>
                         <div id="text4">
-                            달성률 50% 
+                   			달성률 <fmt:parseNumber value="${(project.pCurrentFunding / project.pGoal) * 100 }" integerOnly = "true"/>% 
                         </div>
                         
                         <br>
@@ -304,8 +304,25 @@
 	
 	<script>
 		$("#supportbtn").on("click", function(){
-			location.href="project/projectDetailReward.jsp";
-			
+			location.href="detailSt.dr?page=2&pNo=" + ${project.pNo};
+		});
+		
+		$("#reward").on("click", function(){
+			location.href="detailSt.dr?page=2&pNo=" + ${project.pNo};
+		});
+		
+		$("#community").on("click", function(){
+			location.href="detailSt.dr?page=3&pNo=" + ${project.pNo};
+		});
+		
+		$("#story").on("click", function(){
+			location.href="detailSt.dr?pNo=" + ${project.pNo};
+		});
+		
+		/* ===========================좋아요 버튼=========================== */
+		
+		$("#icon").on("click", function(){
+			location.href = "detailLike.dr?pNo"+ ${project.pNo} +"&userNo"+${loginUser.userNo};//로그인 유저 번호 넣기
 		});
 	
 	</script>

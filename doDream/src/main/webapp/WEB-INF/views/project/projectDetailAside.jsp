@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -101,20 +103,22 @@
            		/* border: 1px solid black; */
            		display: block;
            		float: right;
-           		margin:10px 0 0 0;
+           		margin: 10px 0 0 0;
+           		
            }
            .projectReward{
            		width:290px;
            		height:auto;
-           		min-height: 225px;
+           		min-height: 190px;
            		border: 1px solid #ddd;
            		float: right;
-           		margin: 0;
+           		margin: 2px 0 0 0;
            		border-radius: 3px;
+           		padding:  0 0 10px 0;
            }
            #RewardText1{
            		font-size:14px;
-           		margin: 0 0 3px 0;
+           		margin: 0 0 0 0;
            		color: #495057;
            }
            .rewardTitle{
@@ -203,30 +207,31 @@
             		${project.pArtistPhone} <br>
             		${project.pArtistEmail}
             	</div>
-            	<div id="artistText4">진행한 프로젝트 2개</div><!-- 진행프로젝트 개수 불러오기 -->
+            	<div id="artistText4">진행한 프로젝트 ${project.pOpenCount }개</div><!-- 진행프로젝트 개수 불러오기 -->
             </div>
 		</section>
 		
 		<section id="asideReward">
-			<p id="RewardText1">선택 할 수 있는 총 5종의 리워드가 있습니다.</p><!-- 리워드 정보 불러오기 -->
-			
+		
+			<p id="RewardText1">선택 할 수 있는 총 ${fn:length(reward) }종의 리워드가 있습니다.</p><!-- 리워드 정보 불러오기 -->
+		<c:forEach var="r" items="${reward }">
 			<section class="projectReward">
 				<div class="rewardTitle">
 					<i class="material-icons rewardIcon">keyboard_arrow_right</i>
-					<p class="RewardText2">5명 선택</p><!-- 리워드 정보 불러오기 -->
-					<span class="badge badge-primary rewardBadge">4개 남음</span><!-- 리워드 정보 불러오기 -->
+					<p class="RewardText2">5명 선택</p> <!-- 리워드 정보 불러오기 -->
+					<span class="badge badge-primary rewardBadge">${r.rLimit }개 남음</span><!-- 리워드 정보 불러오기 -->
 				</div>
-				<p class="RewardText3">20,000원</p><!-- 리워드 정보 불러오기 -->
-				<div class="rewardIntroduce"><!-- 리워드 정보 불러오기 -->
-	            	리워드 소개<br>
-	            	소개<br>
-	            	소개<br>
-	            	소개<br>
+				<p class="RewardText3">${r.rPrice }원</p> <!-- 리워드 정보 불러오기 -->
+				<div class="rewardIntroduce"> <!-- 리워드 정보 불러오기 -->
+	            	${r.rExplain }
             	</div>
             	<button type="button" class="btn btn-primary btn-lg btn-block rewardBtn">리워드 선택하고 후원하기</button><!-- 리워드 정보 불러오기 -->
+            	
 			</section>
+		</c:forEach>
 		</section>
 	</section>
+	
              
 
 

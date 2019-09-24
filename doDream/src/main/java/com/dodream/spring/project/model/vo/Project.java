@@ -30,6 +30,7 @@ public class Project {
 	private String pCategoryName;
 	private int pStatusNum;
 	private int pCount;
+	private int pOpenCount; // 프로젝트 작성자가 오픈한 프로젝트 개수
 	
 	public Project() {}
 
@@ -37,7 +38,7 @@ public class Project {
 			String pThumbImage, Date pStartDate, Date pCloseDate, String pDDay, String pHashTag, String pMainImage,
 			String pSummaryText, String pStory, String pArtistName, String pArtistPFImage, String pArtistSns1,
 			String pArtistSns2, String pArtistPhone, String pArtistEmail, Date pEnrollDate, Date pModifyDate,
-			int pWritter, int pCategoryNum, String pCategoryName, int pStatusNum, int pCount) {
+			int pWritter, int pCategoryNum, String pCategoryName, int pStatusNum, int pCount, int pOpenCount) {
 		super();
 		this.pNo = pNo;
 		this.pTitle = pTitle;
@@ -66,6 +67,7 @@ public class Project {
 		this.pCategoryName = pCategoryName;
 		this.pStatusNum = pStatusNum;
 		this.pCount = pCount;
+		this.pOpenCount = pOpenCount;
 	}
 
 	public int getpNo() {
@@ -284,6 +286,14 @@ public class Project {
 		this.pCount = pCount;
 	}
 
+	public int getpOpenCount() {
+		return pOpenCount;
+	}
+
+	public void setpOpenCount(int pOpenCount) {
+		this.pOpenCount = pOpenCount;
+	}
+
 	@Override
 	public String toString() {
 		return "Project [pNo=" + pNo + ", pTitle=" + pTitle + ", pSTitle=" + pSTitle + ", pGoal=" + pGoal
@@ -294,6 +304,8 @@ public class Project {
 				+ ", pArtistSns2=" + pArtistSns2 + ", pArtistPhone=" + pArtistPhone + ", pArtistEmail=" + pArtistEmail
 				+ ", pEnrollDate=" + pEnrollDate + ", pModifyDate=" + pModifyDate + ", pWritter=" + pWritter
 				+ ", pCategoryNum=" + pCategoryNum + ", pCategoryName=" + pCategoryName + ", pStatusNum=" + pStatusNum
-				+ ", pCount=" + pCount + "]";
+				+ ", pCount=" + pCount + ", pOpenCount=" + pOpenCount + "]";
 	}
+
+	
 }
