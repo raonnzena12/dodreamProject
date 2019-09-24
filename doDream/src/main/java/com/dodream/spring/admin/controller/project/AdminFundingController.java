@@ -1,12 +1,17 @@
 package com.dodream.spring.admin.controller.project;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.dodream.spring.admin.model.service.AdminService;
+import com.dodream.spring.common.AdminPagination;
+import com.dodream.spring.project.model.vo.Project;
 
 @Controller
 public class AdminFundingController {
@@ -14,17 +19,32 @@ public class AdminFundingController {
 	@Autowired
 	private AdminService aService;
 	
-	@RequestMapping(value = "adminFlist1.dr", method = RequestMethod.GET)
-	public String FundingListView1() {
-		return "admin/project/fundingViewList1";
+	// 심사 대기 중 목록 보여주기
+	@RequestMapping("adminFlist1.dr")
+	public ModelAndView FundingListView1(ModelAndView mv, Integer page) {
+		
+		int currentPage = page == null ? 1 : page;
+		
+		// 프로젝트 목록 조회
+		ArrayList<Project> list = aService.selectProjectList(currentPage);
+		
+		if(list != null) {
+			mv.addObject("list", list).
+			addObject("pi", AdminPagination.getPageInfo()).
+			setViewName("admin/project/fundingViewList1");
+		} else {
+			mv.addObject("msg", "등록된 프로젝트가 없습니다.").
+			setViewName("admin/project/fundingViewList1");
+		}
+		return mv;
 	}
 	
-	@RequestMapping(value = "adminFlist2.dr", method = RequestMethod.GET)
+	@RequestMapping("adminFlist2.dr")
 	public String FundingListView2() {
 		return "admin/project/fundingViewList2";
 	}
 	
-	@RequestMapping(value = "adminFlist3.dr", method = RequestMethod.GET)
+	@RequestMapping("adminFlist3.dr")
 	public String FundingListView3() {
 		return "admin/project/fundingViewList3";
 	}
