@@ -11,3 +11,4 @@ public class faqDao {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 }
+ 

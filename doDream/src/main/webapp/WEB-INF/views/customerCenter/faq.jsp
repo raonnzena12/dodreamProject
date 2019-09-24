@@ -16,7 +16,7 @@
 
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet">
-<STYLE>
+<STYLE> 
 #noticeCon {
 	width: 1200px;
 	min-height: 900px;

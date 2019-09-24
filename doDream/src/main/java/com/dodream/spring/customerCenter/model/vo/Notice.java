@@ -14,7 +14,7 @@ public class Notice {
 	public Notice() {
 		// TODO Auto-generated constructor stub
 	}
-
+ 
 	public Notice(int nNo, String nTitle, String nContent, Date nEnrollDate, Date nModifyDate, String nStatus,
 			int nWriter) {
 		super();

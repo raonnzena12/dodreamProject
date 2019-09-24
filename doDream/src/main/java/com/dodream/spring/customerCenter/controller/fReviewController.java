@@ -15,7 +15,7 @@ public class fReviewController {
 	@RequestMapping("fReview.dr")
 	public String noticeList() {
 		return "customerCenter/fReview";
-	}
-	
+	} 
+	 
 	
 }
