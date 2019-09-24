@@ -187,45 +187,43 @@
 		<section id="artist">
 			<div id="artProfile">
 				 <p id="artistText1">창작자 소개</p>
-                 <img src="" alt="" id="artProfileImg">
-                 <p id="artistText2">아티스트 닉네임 님 </p>
+                 <img src="resources/projectImg/artistImg/${project.pArtistPFImage}" alt="" id="artProfileImg">
+                 <p id="artistText2">${project.pArtistName }님 </p>
                  <div id="iconbox">
                  	<i class="material-icons" id="asideFavorite">favorite_border</i>
                  </div>
             </div>
             <div id="introduce">
-            	아티스트 소개<br>
-            	소개<br>
-            	소개<br>
-            	소개<br>
+            	아티스트 소개
             </div>
             <div id="artInformation">
             	<div id="artistText3">
-            		아티스트 정보 전화번호나 이메일
-            		<br>
-            		아티스트 정보 전화번호나 이메일
+            		${project.pArtistSns1 } <br>
+            		${project.pArtistSns2 } <br>
+            		${project.pArtistPhone} <br>
+            		${project.pArtistEmail}
             	</div>
-            	<div id="artistText4">진행한 프로젝트 2개</div>
+            	<div id="artistText4">진행한 프로젝트 2개</div><!-- 진행프로젝트 개수 불러오기 -->
             </div>
 		</section>
 		
 		<section id="asideReward">
-			<p id="RewardText1">선택 할 수 있는 총 5종의 리워드가 있습니다.</p>
+			<p id="RewardText1">선택 할 수 있는 총 5종의 리워드가 있습니다.</p><!-- 리워드 정보 불러오기 -->
 			
 			<section class="projectReward">
 				<div class="rewardTitle">
 					<i class="material-icons rewardIcon">keyboard_arrow_right</i>
-					<p class="RewardText2">5명 선택</p>
-					<span class="badge badge-primary rewardBadge">5개 남음</span>
+					<p class="RewardText2">5명 선택</p><!-- 리워드 정보 불러오기 -->
+					<span class="badge badge-primary rewardBadge">4개 남음</span><!-- 리워드 정보 불러오기 -->
 				</div>
-				<p class="RewardText3">20,000원</p>
-				<div class="rewardIntroduce">
+				<p class="RewardText3">20,000원</p><!-- 리워드 정보 불러오기 -->
+				<div class="rewardIntroduce"><!-- 리워드 정보 불러오기 -->
 	            	리워드 소개<br>
 	            	소개<br>
 	            	소개<br>
 	            	소개<br>
             	</div>
-            	<button type="button" class="btn btn-primary btn-lg btn-block rewardBtn">리워드 선택하고 후원하기</button>
+            	<button type="button" class="btn btn-primary btn-lg btn-block rewardBtn">리워드 선택하고 후원하기</button><!-- 리워드 정보 불러오기 -->
 			</section>
 		</section>
 	</section>

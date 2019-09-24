@@ -72,4 +72,8 @@
 		WHERE PROJECT_NO = #{ pNo }
 	</update>
 	
+	<select id="selectReward" parameterType="_int">
+		SELECT * FROM REWARD WHERE REWARD_REF_PNO=#{pno}
+	</select>
+	
 </mapper>
