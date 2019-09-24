@@ -6,18 +6,19 @@
 <meta charset="UTF-8">
 <title>펀드 등록하기</title>
 <link rel="stylesheet" href="resources/css/fundagreement.css">
+<link rel="stylesheet" href="resources/css/fundinginsertform.css">
 <link rel="stylesheet" href="resources/css/accordion.css">
 <style>
 	#ac {
 		display: block;
 		width: 100%;
 		height: 100%;
-		border-bottom: 1px solid #ced4da;
+		border: 1px solid #ced4da;
 		margin-left: 0;
 		margin-right: 0;
 	}
 	#ac_container{
-		max-width: 1360px;
+		max-width: 1560px;
 	}
 	#ac ul, #ac label, #ac dl, #ac ol{
 		margin-bottom: 0;
@@ -138,33 +139,35 @@
 								<span class="accoHead">1. 프로젝트 기본정보</span>
 								<br><br><br>
 				         		<form action="#" method="POST" enctype="multipart/form-data" id="insert1">
+				         		<input type="hidden" id="" name="" value="">
 					            	<table>
 										<tr>
 											<th>
-												<div><h5>프로젝트 번호</h5> 
+												<div class="accInnerHeader">
+													<h5>프로젝트 번호</h5> 
 													<p>두드림 담당자와의 소통은 프로젝트 번호로 진행됩니다.</p>
 					                     		</div>
 					               			</th>
 					                  		<td>
-					                      		<div class="insertBox">
+					                      		<div class="accInnerContent">
 													<p>
 					                           		프로젝트 번호 : 46346 <br><br>
 					                            	https://dodream.com/web/campaign/detail/46346 로 프로젝트가 오픈되며,
-					                            	<br>프로젝트 오픈 이후 진입 가능합니다
+					                            	<br>프로젝트 오픈 이후 진입 가능합니다. <br><br>
 					                         		</p>
 					                      		</div>
 					                   		</td>
 					               		</tr>
 					               		<tr>
 					                  		<th>
-												<div>
+												<div class="accInnerHeader">
 													<h5>카테고리</h5>
 													<p>오픈 후, 노출될 카테고리를 <br>선택해주세요.</p>
 												</div>
 					                  		</th>
 					                  		<td>
-												<div>
-					                        		<select required>
+					                  			<div class="accInnerContent nonborder" style="padding-left: 0;">
+					                        		<select class="accCategory">
 													   	<option value="0">카테고리 선택</option>
 														<option value="1">인디밴드</option>
 														<option value="2">뮤지컬</option>
@@ -172,42 +175,48 @@
 														<option value="4">예예</option>
 														<option value="5">여여</option>
 													</select>
-					                     		</div>
+												</div>
 					                  		</td>
 					               		</tr>
 					               		<tr>
 											<th>
-										   		<div>
+										   		<div class="accInnerHeader">
 													<h5>프로젝트 제목</h5>
 													<p>프로젝트의 성격과 리워드를 <br>짐작할 수 있게 간결하고 개성있게 <br>작성해주세요.</p>
 										   		</div>
 											</th>
 					                  		<td>
-										   		<textarea class="insertBox" rows="5" placeholder="예) 누구나 방방 뛸 수 있는 흠뻑쇼 " required>
-										   		</textarea>
+					                  			<div class="accInnerContent">
+										   			<textarea class="insertBox" rows="5" placeholder="예) 누구나 방방 뛸 수 있는 흠뻑쇼 " required>
+										   			</textarea>
+										   		</div>
 											</td>
 					               		</tr>
 										<tr>
 									   		<th>
-												<div>
+												<div class="accInnerHeader">
 													<h5>짧은 제목</h5>
 													<p>검색, 알림 등에 사용되는 <br>짧은 제목도 함께 작성해주세요.</p>
 										   		</div>
 											</th>
 											<td>
-												<textarea class="insertBox" rows="2" placeholder="예) ★ 흠뻑쇼 ★ " required>
-												</textarea>
+												<div class="accInnerContent">
+													<textarea class="insertBox" rows="2" placeholder="예) ★ 흠뻑쇼 ★ " required>
+													</textarea>
+												</div>
 											</td>
 										</tr>
 										<tr>
 									   		<th>
-								      			<div>
+								      			<div class="accInnerHeader">
 													<h5>목표 금액</h5>
 													<p>마감일 자정 기준 목표금액 <br>미달성 시, 펀딩은 취소됩니다.</p>
 										      	</div>
 										   	</th>
 									   		<td>
-									      		<input type="text" id="price" name="price" placeholder="0" required> 원
+									   			<div class="accInnerContent">
+									      			<input type="text" id="price" name="price" placeholder="0" required> 원
+									      		</div>
 										   	</td>
 										</tr>
 									</table>
