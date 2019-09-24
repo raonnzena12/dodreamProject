@@ -38,6 +38,7 @@ public class MemberController {
 
 		if (loginUser != null) {
 			model.addAttribute("loginUser", loginUser);
+			System.out.println(loginUser);
 			// 로그인 카운트 해주는 함수 호출;
 			int result = mService.checkVisitToday(loginUser.getUserNo());
 			if(result == 0) {
