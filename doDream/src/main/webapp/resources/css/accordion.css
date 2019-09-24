@@ -22,7 +22,7 @@
   height: auto;
   width: 40px;
   overflow: hidden;	
-  background: #8E44AD40;
+  background: #f2d5a2;
   text-align: center;
   font-size: 14px;
   line-height: 50px;
@@ -30,20 +30,20 @@
 }
 
 #ac li:nth-child(2) > input + label {
-  background: #8E44AD50;
+  background: #f2c67e;
 }
 
 #ac li:nth-child(3) > input + label {
-  background: #8E44AD60;
+  background: #f2b85a;
 }
 
 #ac li:nth-child(4) > input + label {
-  background: #8E44AD70;
+  background: #f2aa35;
 }
 
 #ac label:hover,
 #ac li > input + label:hover {
-  background: #8E44AD;	
+  background: #F39C12;	
   color: #fff;
   cursor: pointer;
 }
