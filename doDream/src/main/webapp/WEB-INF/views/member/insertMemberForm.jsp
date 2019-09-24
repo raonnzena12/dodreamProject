@@ -127,7 +127,8 @@
 		$.ajax({
 			type : "post",
 			url : "authEmail.dr",
-			data : {userEmail : userEmail},			
+			data : {userEmail : userEmail},
+			/* 이메일 인증버튼 클릭 시 이메일 중복검사 수행 및 인증번호 발송 */
 			success: function(data) {
 				if(data == "1"){
 					$("#alertMsg").show().text("이미 가입된 이메일입니다. 다시 입력해주세요.").css("color", "#8E44AD");
@@ -171,7 +172,7 @@
 						$("#nicknameAlert").show().text("이미 사용 중인 닉네임입니다.").css("color", "#8E44AD");
 						$("#userNickname").val("").focus();
 					}else{
-						$("#nicknameAlert").show().text("사용 가능한 이메일입니다.").css("color", "#F39C12");
+						$("#nicknameAlert").show().text("사용 가능한 닉네임입니다.").css("color", "#F39C12");
 						
 						if(confirm("이 닉네임을 사용하시겠습니까? 회원가입 후 정보 변경에서 변경할 수 있습니다!")){
 							$("#userPwd").focus();
@@ -205,10 +206,7 @@
 		
 });
 
-	
-	
-		
-	
+
 	</script>
 	
 	

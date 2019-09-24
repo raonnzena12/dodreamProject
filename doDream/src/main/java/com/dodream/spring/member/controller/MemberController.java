@@ -42,7 +42,8 @@ public class MemberController {
 			int result = mService.checkVisitToday(loginUser.getUserNo());
 			if(result == 0) {
 				result = mService.countVisitToday(loginUser.getUserNo());
-				if(result > 0) System.out.println("userNo : " + loginUser.getUserNo() + "번 회원이 DAYCOUNT 테이블에 삽입됨");
+				if(result > 0) 
+				System.out.println("userNo : " + loginUser.getUserNo() + "번 회원이 DAYCOUNT 테이블에 삽입됨");
 			}
 			return "redirect:"+prevPage;
 		} else {
@@ -84,6 +85,12 @@ public class MemberController {
 		int result = mService.insertMember(member);
 		if(result>0) {
 			rd.addFlashAttribute("msg", "회원가입 완료!만나서 반갑습니다!");
+			Member loginUser= mService.loginMember(member);
+			model.addAttribute("loginUser", loginUser);
+			int result2 = mService.countVisitToday(loginUser.getUserNo());
+			if(result2 > 0) {
+			System.out.println("userNo : " + loginUser.getUserNo() + "번 회원이 DAYCOUNT 테이블에 삽입됨");
+			}			
 			return "redirect:home.dr";
 		}else {
 			model.addAttribute("msg", "회원가입에 실패하였습니다.");
