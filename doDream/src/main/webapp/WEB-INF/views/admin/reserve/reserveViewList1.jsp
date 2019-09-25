@@ -138,14 +138,14 @@
 												<tbody>
 													<c:forEach var="r" items="${ list }">
 														<tr role="row" class="odd">
-															<td class="sorting_1">${ r.pNo }</td>
-															<td>${ r.pTitle }</td>
-															<td>${ r.pGoal}</td>
-															<td>${ r.pStartDate}</td>
-															<td>${ r.pCloseDate }</td>
-															<td>${ r.pArtistName }</td>
-															<td>${ r.pArtistPhone }</td>
-															<td>${ r.pArtistEmail }</td>
+															<td class="sorting_1">${ r.rNo }</td>
+															<td>${ r.bKey}</td>
+															<td>${ r.addi}</td>
+															<td>${ r.rDate}</td>
+															<td>${ r.rName}</td>
+															<td>${ r.rContract}</td>
+															<td>${ r.rAddress}</td>
+															<td>${ r.rRequest}</td>
 															<td>
 																<button type="button" id="projectBtn1" class="btn btn-primary btn-lg btn-block rewardBtn">심사 통과</button>
 															</td>

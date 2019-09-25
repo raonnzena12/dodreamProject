@@ -74,10 +74,9 @@
 			<div id="dropDown3" class="collapse" aria-labelledby="headingTwo"
 				data-parent="#accordionSidebar">
 				<div class="bg-white py-2 collapse-inner rounded">
-					<a class="collapse-item" href="adminPlist1.dr"><p>〉 주문 예약
-							현황</p></a> <a class="collapse-item" href="adminPlist2.dr"><p>〉 결제
-							완료 현황</p></a> <a class="collapse-item" href="adminPlist3.dr"><p>〉
-							취소 및 환불 현황</p></a>
+					<a class="collapse-item" href="adminRlist1.dr"><p>〉 주문 예약 현황</p></a> 
+					<a class="collapse-item" href="adminRlist2.dr"><p>〉 결제 완료 현황</p></a> 
+					<a class="collapse-item" href="adminRlist3.dr"><p>〉 취소 및 환불 현황</p></a>
 				</div>
 			</div></li>
 
