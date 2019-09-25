@@ -74,8 +74,9 @@ public class MemberServiceImpl implements MemberService {
 		// '년월실시분초.확장자'로 파일명 변경
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
 		String originFileName = uploadImg.getOriginalFilename();
-		String renameFileName = sdf.format(new Date()) + "."
-				+ originFileName.substring(originFileName.lastIndexOf(".") + 1);
+		String renameFileName = sdf.format(new Date()) + "."+ originFileName.substring(originFileName.lastIndexOf(".") + 1);
+		
+		System.out.println(originFileName);
 
 		return renameFileName;
 	}

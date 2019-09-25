@@ -44,6 +44,7 @@
 					<form action="myInfoUpdate.dr" id="myInfoForm" method="post" class="form-group" enctype="multipart/form-data">
 					<input type="hidden" value="${loginUser.userNo}" name="userNo">
 					<input type="hidden" value="${loginUser.userEmail}" name="userEmail">
+					<input type="hidden" value="${loginUser.userProfileImage}" name="userProfileImage">
 						<table>
 							<tr>
 								<td style="width: 20%">
@@ -52,7 +53,7 @@
 								<td style="width: 60%">
 									<div class="text-center">
 										<c:if test="${ !empty loginUser.userProfileImage}">
-										<img alt="프로필사진" src="resources/images/userProfileImage/${loginUser.userProfileImage}" class="rounded-circle userProfileImage" id="userProfileImage"  name="userProfileImage"/>
+										<img alt="프로필사진" src="resources/userProfileImage/${loginUser.userProfileImage}" class="rounded-circle userProfileImage" id="userProfileImage"  name="userProfileImage"/>
 										</c:if>
 										<c:if test="${empty loginUser.userProfileImage}">
 										<img alt="프로필사진" src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg" class="rounded-circle userProfileImage" id="userProfileImage" name="userProfileImage"/>
@@ -92,12 +93,11 @@
 								<td><input type="file" id="changbtn" style="display:none;" name="uploadImg"></td>
 							</tr>
 							<tr>
-							<td>
+							<td></td>
+							<td colspan="2">
 								<div class="row">
 								<div class="col-md-12 text-center">
-								<button class="btn btn-sm mb-2" id="mypagebtn">수정하기</button>
-								&nbsp; &nbsp;
-								<button class="btn btn-sm mb-2" type="button" onclick="location.href='mypage.dr'">돌아가기</button>
+								<button class="btn btn-sm mb-2 btn-warning">수정하기</button> <button class="btn btn-sm mb-2 btn-warning" onclick="location.href='home.dr'">돌아가기</button>
 								</div>
 								</div>
 							</td>
@@ -127,9 +127,13 @@
 		});
 		
 		var sel_file;
+/* 		var origin = "${empty loginUser.userProfileImage}"; */
+		
 		$("#changbtn").on("change", handleImgSelect);
+
 		
 		function handleImgSelect(e) {
+			
 			var file = e.target.files;
 			var fileArr = Array.prototype.slice.call(file);
 			
@@ -149,7 +153,7 @@
 				
 				reader.readAsDataURL(f);
 			});
-		}
+		};
 		
 		$("#userNickname").blur(function(){
 			var ogrinNickname = "${loginUser.userNickname}";

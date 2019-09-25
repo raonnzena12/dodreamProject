@@ -109,15 +109,17 @@
 					</c:if>  
 					<!-- 로그인 시 출력 -->
 					<c:if test="${ !empty sessionScope.loginUser }">
-						<c:out value="${ loginUser.userNickname }님 환영합니다"/>
+						<c:out value="${ loginUser.userNickname }님 환영합니다!"/>
 					</c:if>
 				</span>
-				<c:if test="${empty loginUser.userProfileImage}">
-				<i class="material-icons">account_circle</i>
-				</c:if>
-				<c:if test="${! empty loginUser.userProfileImage }">
-					<img alt="프로필사진" src="resources/images/userProfileImage/${loginUser.userProfileImage}" class="rounded-circle float-sm ml-3" id="userProfileImage_sm" name="userProfileImage"/>
-				</c:if>
+					<div style="display: inline-block;">
+					<c:if test="${empty loginUser.userProfileImage}">
+					<i class="material-icons">account_circle</i>
+					</c:if>
+					<c:if test="${! empty loginUser.userProfileImage }">
+						<img alt="프로필사진" src="resources/userProfileImage/${loginUser.userProfileImage}" class="rounded-circle float-sm" style="width: 24px; height: 24px;" id="userProfileImage_sm" name="userProfileImage"/>
+					</c:if>
+					</div>
 			</a>
 			<div class="loginmenu" id="veil"></div>
 			<!-- 비로그인 시 메뉴창 출력 -->
@@ -165,11 +167,16 @@
 						<div class="container-fluid" id="myinfoOuter">
 							<div class="row">
 								<div class="hr-sect">MY INFO</div>
-								<div class="col-md-12">
-									<h4 class="text-center">${ loginUser.userNickname }님 
-										<img alt="프로필사진" src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg" class="rounded-circle float-sm ml-3" id="userProfileImage"/>
-									</h4>
-									<!-- ${loginUser.userProfileImage } -->
+								<div class="col-md-12 text-center">
+									<span class="text-left">${ loginUser.userNickname }님</span>
+									<div style="display: inline-block;">
+									<c:if test="${empty loginUser.userProfileImage}">
+									<img alt="프로필사진" src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg" class="rounded-circle float-sm ml-3"/>
+									</c:if>
+									<c:if test="${! empty loginUser.userProfileImage}">
+									<img alt="프로필사진" src="resources/userProfileImage/${loginUser.userProfileImage}" class="rounded-circle float-sm" style="width: 40px; height: 40px;"/>
+									</c:if>
+									</div>
 								</div>
 							</div>
 						</div>
