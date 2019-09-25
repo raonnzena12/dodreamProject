@@ -10,13 +10,13 @@
 }
 
 /* FORM */
-#ac input {
+#rad1, #rad2, #rad3, #rad4{
   position: absolute;
   top: -9999px;
   left: -9999px;
 }
 
-#ac label {
+#lab1, #lab2, #lab3, #lab4{
   display: block;
   float: left;
   height: auto;
@@ -41,7 +41,7 @@
   background: #f2aa35;
 }
 
-#ac label:hover,
+#lab1:hover, #lab2:hover, #lab3:hover, #lab4:hover,
 #ac li > input + label:hover {
   background: #F39C12;	
   color: #fff;

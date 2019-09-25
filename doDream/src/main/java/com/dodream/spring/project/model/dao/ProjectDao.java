@@ -61,6 +61,14 @@ public class ProjectDao {
 		sqlSession.update("projectMapper.updatePrjCount", pNo);
 	}
 
+	/**
+	 * 프로젝트 등록 페이지로 넘어가기 전 pNo를 생성해주는 DAO
+	 * @return pNo
+	 */
+	public int createProjectNumber() {
+		return sqlSession.selectOne("projectMapper.createProjectNumber");
+	}
+
 	
 
 	

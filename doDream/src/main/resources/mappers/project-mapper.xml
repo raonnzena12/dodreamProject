@@ -100,10 +100,14 @@
 		SELECT * FROM REWARD WHERE REWARD_REF_PNO=#{pno}
 	</select>
 	
+	<!-- 프로젝트 등록 페이지 이동시 pNo를 생성해주는 쿼리  -->
+	<select id="createProjectNumber" resultType="_int">
+		SELECT SEQ_PROJ_NO.NEXTVAL FROM DUAL
+	</select>
+  
 	<!-- ========================Like============================ -->
 	
 	<insert id="insertProjectLike" parameterType="Like">
 		INSERT INTO LIKE_TB VALUES(#{likeNo}, #{likePrNo})
 	</insert>
-	
 </mapper>
