@@ -152,6 +152,7 @@ public class Member {
 	public void setUserSelf(String userSelf) {
 		this.userSelf = userSelf;
 	}
+	
 
 	@Override
 	public String toString() {
@@ -159,7 +160,10 @@ public class Member {
 				+ userPwd + ", userEmailAuthYn=" + userEmailAuthYn + ", userAdminYn=" + userAdminYn + ", userStatus="
 				+ userStatus + ", userEnrollDate=" + userEnrollDate + ", userLoginDate=" + userLoginDate
 				+ ", userModifyDate=" + userModifyDate + ", userAddress=" + userAddress + ", userPhone=" + userPhone
-				+ ", userProfileImage=" + userProfileImage + ", userSelf=" + userSelf + "]";
+				+ ", userProfileImage=" + userProfileImage + ", userSelf=" + userSelf
+				+ "]";
 	}
+
+
 	
 }

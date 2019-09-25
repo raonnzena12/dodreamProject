@@ -60,6 +60,7 @@ $(function(){
             $(this).parent().parent().next().children().eq(1).children().show();
         }
     });
+    
     // 주소검색 API 팝업 호출
     $("#postcodify_search_button1").postcodifyPopUp({
         insertPostcode5 :"#postCode1",

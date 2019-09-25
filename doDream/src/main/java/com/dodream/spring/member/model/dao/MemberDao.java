@@ -1,6 +1,9 @@
 package com.dodream.spring.member.model.dao;
 
+//import java.util.Date;
+//import java.util.HashMap;
 import java.util.List;
+//import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,4 +40,22 @@ public class MemberDao {
 	public int checkVisitToday(int userNo) {
 		return sqlSession.selectOne("memberMapper.checkVisitToday",userNo);
 	}
+
+	public int updateMember(Member mem) {
+		
+		return sqlSession.update("memberMapper.updateMember", mem);
+	}
+
+	/*
+	 * public Object keepLogin(int userNo, String sessionid, Date limit) {
+	 * 
+	 * Map<String, Object> param = new HashMap<String, Object>();
+	 * param.put("userNo", userNo); param.put("sessionId", sessionid);
+	 * param.put("limit", limit);
+	 * 
+	 * return sqlSession.update("memberMapper.keepLogin", param); }
+	 */
+	
+
+	
 }

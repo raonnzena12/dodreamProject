@@ -159,11 +159,14 @@ body {
 
 #logoutbtn{
 	background-color: #8E44AD;
-	color: white;
+	color: #fff;
+   /*  font-weight: 900; */
 }
 
 #mypagebtn{
 	background-color: #F39C12;
+	color: #fff;
+    /* font-weight: 900; */
 }
 
 #myinfosub i{
@@ -174,6 +177,11 @@ body {
 #myinfosub a{
 	/* text-decoration: none; */
 	color: #444;
+}
+
+#userProfileImage_ms{
+	width: 20px;
+	height: 20px;
 }
 
 
