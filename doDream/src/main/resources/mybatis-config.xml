@@ -16,7 +16,7 @@
 		<typeAlias type="com.dodream.spring.customerCenter.model.vo.Notice" alias="Notice"/>
 		<typeAlias type="com.dodream.spring.customerCenter.model.vo.Faq" alias="Faq"/>
 		<typeAlias type="com.dodream.spring.customerCenter.model.vo.Search" alias="Search"/>
-		<typeAlias type="com.dodream.spring.reserve.model.vo.Reserve" alias="Reserve"/>
+		<!-- <typeAlias type="com.dodream.spring.reserve.model.vo.Reserve" alias="Reserve"/> -->
 	</typeAliases>
 	
 	
@@ -27,7 +27,7 @@
 		<mapper resource="mappers/project-mapper.xml"/>
     	<mapper resource="mappers/adminMember-mapper.xml"/>
     	<mapper resource="mappers/adminFunding-mapper.xml"/>
-    	<mapper resource="mappers/adminReserve-mapper.xml"/>
+    	<!-- <mapper resource="mappers/adminReserve-mapper.xml"/> -->
  	</mappers>
 	
 </configuration>
