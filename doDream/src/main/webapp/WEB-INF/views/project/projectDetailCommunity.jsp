@@ -5,12 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>ProjectDetailCommunity</title>
-<%@ include file = "../common/menubar.jsp" %>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+	
        <style>
            
            #section{
@@ -43,7 +39,6 @@
                width: 30%;
                height: auto;
                min-height: 1000px;
-               /* border: 1px solid black; */
                display: block;
                float: right;
 
@@ -118,7 +113,7 @@
                	margin: 15px 0 0 5px; 
            }
            
-           .subConBadge{
+           .profileBox > .subConBadge{
            		width:70px;
            		height:25px;
            		background-color: #8E44AD;
@@ -173,7 +168,7 @@
            		float:left;
            		border-radius: 3px;
            }
-           .subwritebtn{
+            .subInputBox > .subwrite{
            		width: 60px;
            		height: 50px;
            		display:block;
@@ -212,7 +207,7 @@
            		margin: 0 10px 0 10px;
            		display:block;
            }
-           .subBadge{
+			.subBox > .subBadge{
            		width:70px;
            		height:25px;
            		background-color: #8E44AD;
@@ -233,9 +228,8 @@
        </style>
 </head>
 <body>
+<%@ include file = "projectDetailHeader.jsp" %>
 	<section id="section">
-		<%@ include file = "projectDetailHeader.jsp" %>
-            
 		<section id="content" class="clearfix">
 			<section id="detailContent2" class="clearfix">
 			    <div id="detailCommunity" class="clearfix">
@@ -264,10 +258,10 @@
 				    	</div>
 				    	
 				    	<!-- ======================대댓글 입력====================== -->
-				    	<div class="subInputBox" class="clearfix">
+				    	<div class="subInputBox" >
 				    		<img src="" alt="" class="subArtImg">
 				    		<textarea class="subTextarea" rows="3" style=" resize:none;"  placeholder="댓글을 입력해주세요."></textarea>
-				    		<button type="button" class="btn btn-primary btn-lg btn-block subwritebtn">등록</button>
+				    		<button type="button" class="btn btn-primary btn-lg btn-block subwrite">등록</button>
 				    	</div>
 				    	
 				    	<!-- ========================대댓글 내용============================== -->

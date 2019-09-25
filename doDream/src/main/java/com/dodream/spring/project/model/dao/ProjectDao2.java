@@ -37,4 +37,21 @@ public class ProjectDao2 {
 		
 		return sqlSession.insert("projectMapper.insertProjectLike", like);
 	}
+
+
+	/**
+	 * 프로젝트 좋아요 select용 DAO
+	 * @param pno
+	 * @return like
+	 */
+	public Like selectLike(Like like) {
+		
+		return sqlSession.selectOne("projectMapper.selectLike", like);
+	}
+
+
+	public int deleteLike(Like like) {
+		
+		return sqlSession.delete("projectMapper.deleteLike", like);
+	}
 }

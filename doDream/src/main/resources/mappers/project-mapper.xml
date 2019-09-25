@@ -110,9 +110,20 @@
   
 	<!-- ========================Like============================ -->
 	
+	<!-- 좋아요 등록 -->
 	<insert id="insertProjectLike" parameterType="Like">
 		INSERT INTO LIKE_TB VALUES(#{likeNo}, #{likePrNo})
 	</insert>
+	
+	<!-- 좋아요 조회 -->
+	<select id="selectLike" parameterType="Like" resultMap="likeResultSet">
+		SELECT * FROM LIKE_TB WHERE LIKE_USER=#{likeNo} AND LIKE_PRJ=#{likePrNo}
+	</select>
+	
+	<!-- 좋아요 취소 -->
+	<delete id="deleteLike" parameterType="Like">
+		DELETE FROM LIKE_TB WHERE LIKE_USER=#{likeNo} AND LIKE_PRJ=#{likePrNo}
+	</delete>
 	
 	<!-- 리워드 리스트 셀렉하는 쿼리문 -->
 	<select id="selectRewardList" parameterType="java.util.HashMap" resultMap="rewardResultSet">

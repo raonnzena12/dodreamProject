@@ -7,12 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>ProjectDetailReward</title>
-<%@ include file = "../common/menubar.jsp" %>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	
        <style>
            
            #rewardSection{
@@ -26,7 +21,7 @@
                min-height: 1000px;
                height:auto;
                clear: both;
-              /*  border: 1px solid black; */
+              
            }
            #detailContent2{
                 width:70%;
@@ -91,7 +86,7 @@
                 display:block;
                 font-size: 17px;
            }
-           .rewardBadge{
+           .rewardText2 > .rewardBadge{
            		width:auto;
            		min-width:70px;
            		height:25px;
@@ -109,7 +104,7 @@
                 display:block;
                 float:left;
                 margin: 0 0 0 10px;
-                padding:10px 0 5px 0;
+                padding:13px 0 5px 0;
            }
            .rewardIcon{
            		font-size: 30px;
@@ -203,14 +198,15 @@
                 font-size: 20px;
            }
            #rewardSum{
-                border-bottom: 2px solid #ced4ba;
+             	border-bottom: 2px solid #ced4ba;
                 width: 270px;
                 height: 80px;
                 font-size: 40px;
                 text-align: right;
                 font-weight: bold;
-                padding-right: 20px;
+                padding: 12px 20px 0 0;
                 margin-left: 7px;
+                /* border: 1px solid black; */
            }
            #asideText2{
                 /* border: 1px solid black; */
@@ -226,7 +222,7 @@
                 height: 30px;
                 padding:  0 0 0 20px;
            }
-           .rewardBtn{
+          #asideReward > .rewardBtn{
                 width: 270px;
                 height: 50px;
                 margin: 15px 0 0 7px;
@@ -240,8 +236,9 @@
        </style>
 </head>
 <body>
+	<%@ include file = "projectDetailHeader.jsp" %>
 	<section id="rewardSection">
-		<%@ include file = "projectDetailHeader.jsp" %>
+		
             
 		<section id="content" class="clearfix">
 			<section id="detailContent2">
@@ -258,8 +255,12 @@
 		                        5명선택
 		                        <!-- <span class="badge badge-primary rewardBadge">5개 남음</span> -->
 	                        </div>
+	                        
+	                     
 	                        <!-- ==========체크박스=========== -->
-	                        <input type="checkbox" class="check"id="check">
+	                        <input type="checkbox" class="check" id="check">
+	                    
+	                    
                         </div>
                         <div class="inputBox">
                             <input type="text" class="rewardInput">원
@@ -274,7 +275,7 @@
                     </div>
                     <!-- ================================= -->
                     <c:forEach var="r" items="${reward }">
-                    <div class="rewardBox">
+                    <div class="rewardBox" id="${r.rNo }">
                             <div class="textBox">
 		                    	<div class="rewardIconBox">
 			                    	<i class="material-icons rewardIcon">check_circle</i>
@@ -327,12 +328,35 @@
                             1번(실속형 리워드)
                         </div>
                         <button type="button" class="btn btn-primary btn-lg btn-block rewardBtn">후원하기</button>
-                    </div>
+               </div>
 			</aside>
 		</section>  
 
-
    	</section>
+   	
+   	<script>
+   		$(function(){
+   			
+   			var rNo = ${subReward};// aside 리워드 번호
+   			var mainRNo = $("#"+rNo).attr("id");// 리워드 detail에 있는 리워드 번호
+   			console.log(rNo);
+   			console.log(mainRNo);
+   			if(rNo > "0"){
+   				if(rNo == mainRNo){
+   					
+   		   			console.log(mainRNo);
+   		   			
+   					$("#"+rNo +" .check").prop("checked", true);
+   					$("#"+rNo +" .rewardIcon").css("color","#F39C12");
+   				}else{
+   					$(".check").prop("checked", false);
+   				}
+   				
+   			}
+   			
+   		});
+   	
+   	</script>
 	
 
 </body>
