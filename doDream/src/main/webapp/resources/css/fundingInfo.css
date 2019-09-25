@@ -1,10 +1,7 @@
-div {
-    /* border : 1px solid red; */
-}
 #payingTable td:nth-child(2) {
     text-align: right
 }
-#rewardTitle {
+#payingTable .rewardTitle {
     color: #8E44AD;
     font-weight: 900;
     font-size: 17px;

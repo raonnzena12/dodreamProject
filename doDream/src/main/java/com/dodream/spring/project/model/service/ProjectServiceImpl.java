@@ -1,6 +1,7 @@
 package com.dodream.spring.project.model.service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,9 +35,6 @@ public class ProjectServiceImpl implements ProjectService {
 			
 			System.out.println(prj);
 		}
-		
-		
-		
 		return prj;
 	}
 
@@ -69,5 +67,12 @@ public class ProjectServiceImpl implements ProjectService {
 		System.out.println(uploadfile1);
 		System.out.println(uploadfile2);
 		return 0;
+	}
+
+	@Override
+	public ArrayList<Reward> selectRewardList(String rewardStr) {
+		String[] rewardTmp = rewardStr.split("/");
+		ArrayList<String> rewardList = new ArrayList<>(Arrays.asList(rewardTmp));
+		return pDao.selectRewardList(rewardList);
 	}
 }
