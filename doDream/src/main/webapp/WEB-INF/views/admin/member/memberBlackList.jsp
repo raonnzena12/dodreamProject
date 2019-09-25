@@ -24,7 +24,7 @@
 <link href="resources/css/sb-admin-2.min.css" rel="stylesheet">
 
 <!-- Custom styles for this page -->
-<link href="resources/vendor/datatables/dataTables.bootstrap4.min.css"
+<link href="resources/vendor/datatables/dataTables.bootstrap4.css"
 	rel="stylesheet">
 
 <style>
@@ -44,9 +44,6 @@
 .rewardBtn:hover{
 	background-color: #8E44AD;
 	cursor: pointer;
-}
-.pagination {
-	font-size: 20px;
 }
 </style>
 
@@ -81,27 +78,6 @@
 								<div id="dataTable_wrapper"
 									class="dataTables_wrapper dt-bootstrap4">
 									<div class="row">
-										<div class="col-sm-12 col-md-6">
-											<div class="dataTables_length" id="dataTable_length">
-												<label><select name="dataTable_length"
-													aria-controls="dataTable"
-													class="custom-select custom-select-sm form-control form-control-sm"><option
-															value="10">전체회원</option>
-														<option value="25">일반회원</option>
-														<option value="50">아티스트회원</option>
-														<option value="100">탈퇴회원</option></select> 
-												</label>
-											</div>
-										</div>
-										<div class="col-sm-12 col-md-6">
-											<div id="dataTable_filter" class="dataTables_filter">
-												<label>Search:<input type="search"
-													class="form-control form-control-sm" placeholder=""
-													aria-controls="dataTable"></label>
-											</div>
-										</div>
-									</div>
-									<div class="row">
 										<div class="col-sm-12">
 											<table class="table table-bordered dataTable" id="dataTable"
 												role="grid"	aria-describedby="dataTable_info" style="width: 100%;">
@@ -111,31 +87,31 @@
 															aria-controls="dataTable" rowspan="1" colspan="1"
 															aria-sort="ascending"
 															aria-label="Name: activate to sort column descending"
-															style="width: 29px;">회원번호</th>
+															style="width: 10px;">회원번호</th>
 														<th class="sorting" tabindex="0" aria-controls="dataTable"
 															rowspan="1" colspan="1"
 															aria-label="Office: activate to sort column ascending"
-															style="width: 50px;">닉네임</th>
+															style="width: 20px;">닉네임</th>
 														<th class="sorting" tabindex="0" aria-controls="dataTable"
 															rowspan="1" colspan="1"
 															aria-label="Age: activate to sort column ascending"
-															style="width: 31px;">전화번호</th>
+															style="width: 30px;">전화번호</th>
 														<th class="sorting" tabindex="0" aria-controls="dataTable"
 															rowspan="1" colspan="1"
 															aria-label="Start date: activate to sort column ascending"
-															style="width: 68px;">이메일</th>
+															style="width: 50px;">이메일</th>
 														<th class="sorting" tabindex="0" aria-controls="dataTable"
 															rowspan="1" colspan="1"
 															aria-label="Salary: activate to sort column ascending"
-															style="width: 67px;">가입일</th>
+															style="width: 30px;">가입일</th>
 														<th class="sorting" tabindex="0" aria-controls="dataTable"
 															rowspan="1" colspan="1"
 															aria-label="Salary: activate to sort column ascending"
-															style="width: 67px;">회원상태</th>
+															style="width: 30px;">회원상태</th>
 														<th class="sorting" tabindex="0" aria-controls="dataTable"
 															rowspan="1" colspan="1"
 															aria-label="Salary: activate to sort column ascending"
-															style="width: 67px;">일반회원 처리</th>
+															style="width: 30px;">일반회원 처리</th>
 													</tr>
 												</thead>
 												<tfoot>
@@ -165,59 +141,6 @@
 													</c:forEach>
 												</tbody>
 											</table>
-										</div>
-									</div>
-									<div class="row">
-										<div class="col-sm-12 col-md-5">
-											<div class="dataTables_info" id="dataTable_info"
-												role="status" aria-live="polite">  ${pi.startPage } / ${pi.maxPage } 페이지 </div>
-										</div>
-										<div class="col-sm-12 col-md-7">
-											<div class="dataTables_paginate paging_simple_numbers"
-												id="dataTable_paginate">
-												<table class="pagination" style="float: right; margin-top: 10px; border: 1px soild gray;">
-													<!-- 페이징 처리 -->
-													<tr align="center" height="20">
-														<td colspan="7" >
-															<!-- [이전] -->
-															<c:if test="${ pi.currentPage <= 1 }">
-																[이전] &nbsp;
-															</c:if>
-															<c:if test="${ pi.currentPage > 1 }">
-																<c:url var="before" value="adminBlist.dr">
-																	<c:param name="page" value="${ pi.currentPage - 1 }"/>
-																</c:url>
-																<a href="${ before }">[이전]</a> &nbsp;
-															</c:if>
-															
-															<!-- 페이지 -->
-															<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
-																<c:if test="${ p eq currentPage }">
-																	<font color="red" size="4"><b>[${ p }]</b></font>
-																</c:if>
-																
-																<c:if test="${ p ne currentPage }">
-																	<c:url var="pagination" value="adminBlist.dr">
-																		<c:param name="page" value="${ p }"/>
-																	</c:url>
-																	<a href="${ pagination }">${ p }</a> &nbsp;
-																</c:if>
-															</c:forEach>
-															
-															<!-- [다음] -->
-															<c:if test="${ pi.currentPage >= pi.maxPage }">
-																[다음]
-															</c:if>
-															<c:if test="${ pi.currentPage < pi.maxPage }">
-																<c:url var="after" value="adminBlist.dr">
-																	<c:param name="page" value="${ pi.currentPage + 1 }"/>
-																</c:url> 
-																<a href="${ after }">[다음]</a>
-															</c:if>
-														</td>
-													</tr>
-												</table>
-											</div>
 										</div>
 									</div>
 								</div>
@@ -287,11 +210,15 @@
 
 	<!-- Page level plugins -->
 	<script src="resources/vendor/chart.js/Chart.min.js"></script>
+	<script src="resources/vendor/datatables/jquery.dataTables.js"></script>
+	<script src="resources/vendor/datatables/dataTables.bootstrap4.js"></script>
 
 	<!-- Page level custom scripts -->
 	<script src="resources/js/demo/chart-area-demo.js"></script>
 	<script src="resources/js/demo/chart-pie-demo.js"></script>
 
+	<!-- Demo scripts for this page-->
+	<script src="resources/js/demo/datatables-demo.js"></script>
 
 </body>
 

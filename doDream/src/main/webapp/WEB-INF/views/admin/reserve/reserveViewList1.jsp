@@ -11,7 +11,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>프로젝트 관리 (심사완료)</title>
+<title>결제 관리 (예약 주문 현황)</title>
 
 <!-- Custom fonts for this template -->
 <link href="resources/vendor/fontawesome-free/css/all.min.css"
@@ -70,7 +70,7 @@
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-2 text-gray-800"># 프로젝트 관리 (심사완료)</h1>
+					<h1 class="h3 mb-2 text-gray-800"># 결제 관리 (예약 주문 현황)</h1>
 					<br>
 					<!-- DataTales Example -->
 					<div class="card shadow mb-4">
@@ -136,16 +136,16 @@
 													</tr>
 												</tfoot>
 												<tbody>
-													<c:forEach var="p" items="${ list }">
+													<c:forEach var="r" items="${ list }">
 														<tr role="row" class="odd">
-															<td class="sorting_1">${ p.pNo }</td>
-															<td>${ p.pTitle }</td>
-															<td>${ p.pGoal}</td>
-															<td>${ p.pStartDate}</td>
-															<td>${ p.pCloseDate }</td>
-															<td>${ p.pArtistName }</td>
-															<td>${ p.pArtistPhone }</td>
-															<td>${ p.pArtistEmail }</td>
+															<td class="sorting_1">${ r.pNo }</td>
+															<td>${ r.pTitle }</td>
+															<td>${ r.pGoal}</td>
+															<td>${ r.pStartDate}</td>
+															<td>${ r.pCloseDate }</td>
+															<td>${ r.pArtistName }</td>
+															<td>${ r.pArtistPhone }</td>
+															<td>${ r.pArtistEmail }</td>
 															<td>
 																<button type="button" id="projectBtn1" class="btn btn-primary btn-lg btn-block rewardBtn">심사 통과</button>
 															</td>
