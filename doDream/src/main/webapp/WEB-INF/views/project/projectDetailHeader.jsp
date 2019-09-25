@@ -1,15 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>ProjectDetailHeader</title>
-<!-- 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> -->
-  <!--   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"> -->
+<%@ include file = "../common/menubar.jsp" %>
        <style>
            #HeaderSection{
                width: 1000px;
@@ -23,12 +20,12 @@
                min-height: 1000px;
                border: 1px solid black;
            } */
-           section, nav{
+           /* section, nav{
                width: 100%;
-               /*height: 50px;*/
-               /* border: 1px solid black; */
+               height: 50px;
+               border: 1px solid black;
                display: block;
-           }
+           } */
            /* #detailContent2{
                 width:70%;
                 height: auto;
@@ -161,6 +158,7 @@
                 margin: 20px  0 0 10px;
                 border-radius: 5px;
            }
+           
            #icon2{
                 width: 50px;
                 height: 50px;
@@ -174,6 +172,11 @@
            		cursor: pointer;
            		color: #8E44AD;
            }
+           #favorite2:hover{
+           		cursor: pointer;
+           		color: #8E44AD;
+           }
+           
            #share:hover{
            		cursor: pointer;
            		color: #8E44AD;
@@ -184,6 +187,12 @@
                color: #F39C12;
                /* margin-left: 10px; */
            }
+           #favorite2{
+           		font-size: 50px;
+               	text-align: center;
+               	color: #8E44AD;
+           }
+           
            #share{
                 font-size: 50px;
                 text-align: center;
@@ -237,6 +246,7 @@
            }
            
        </style>
+       
 </head>
 <body>
 	<section id="HeaderSection">
@@ -275,11 +285,31 @@
 				                            펀딩 성공시 예상 결제일은 ${project.pCloseDate } 입니다.
                         </div>
                         
-                        <button type="button" class="btn btn-primary btn-lg btn-block" id="supportbtn">후 원 하 기</button>
-                        
-                        <div id="icon">
-                                <i class="material-icons" id="favorite">favorite_border</i>
-                        </div>
+                        <button type="button" class="btn btn-primary btn-lg btn-block" id="supportbtn" onclick="location.href='detailSt.dr?page=2&pNo='+${project.pNo};">후 원 하 기</button>
+                     
+                     <!-- 로그인 했을 때 -->
+                      <c:if test="${!empty sessionScope.loginUser}">
+                      		
+                      		<!-- 로그인 유저와 좋아요 한사람이 같을 때 -->
+	                        <c:if test="${loginUser.userNo eq like.likeNo}">
+		                        <div id="icon">
+		                                <i class="material-icons" id="favorite2" onclick="LikeDelete();">favorite_border</i>
+		                        </div>
+	                        </c:if>
+	                        <!-- 로그인 유저와 좋아요 한사람이 다를 때 -->
+	                        <c:if test="${loginUser.userNo ne like.likeNo}">
+	                        	<div id="icon">
+		                                <i class="material-icons" id="favorite" onclick="detailLike();">favorite_border</i>
+		                        </div>
+	                        </c:if>
+                     </c:if>
+                     <!-- 로그인 안했을 때 -->
+                     <c:if test="${empty sessionScope.loginUser}">
+	                     	<div id="icon">
+		                          <i class="material-icons" id="favorite" onclick='alert("로그인이 필요합니다.");'>favorite_border</i>
+		                    </div>
+                     </c:if>
+                         
                         <div id="icon2">
                             <i class="material-icons" id="share">share</i>
                         </div>
@@ -292,10 +322,10 @@
             	<div class="col-md-12">
                 <nav class="nav">
                     <div class="container-fluid" id="detailnav">
-                      <div id="story">스토리</div>
+                      <div id="story" onclick="location.href='detailSt.dr?pNo='+${project.pNo};">스토리</div>
                       <div id="guide">펀딩 안내</div>
-                      <div id="community">커뮤니티</div>
-                      <div id="reward">리워드</div>
+                      <div id="community" onclick="location.href='detailSt.dr?page=3&pNo='+${project.pNo};">커뮤니티</div>
+                      <div id="reward" onclick="location.href='detailSt.dr?page=2&pNo='+${project.pNo};">리워드</div>
                     </div>
                 </nav>
                 </div>
@@ -303,29 +333,81 @@
 	</section>
 	
 	<script>
-		$("#supportbtn").on("click", function(){
-			location.href="detailSt.dr?page=2&pNo=" + ${project.pNo};
-		});
+	
+	
 		
-		$("#reward").on("click", function(){
-			location.href="detailSt.dr?page=2&pNo=" + ${project.pNo};
-		});
+	
+	/* ===========================좋아요 버튼 취소=========================== */
+		function LikeDelete(){
+			
 		
-		$("#community").on("click", function(){
-			location.href="detailSt.dr?page=3&pNo=" + ${project.pNo};
-		});
-		
-		$("#story").on("click", function(){
-			location.href="detailSt.dr?pNo=" + ${project.pNo};
-		});
+			if(${!empty sessionScope.loginUser}){
+				
+				var uno = ${loginUser.userNo};
+				var pNo = ${project.pNo};
+				
+				//$("#favorite2").on("click", function(){
+					if (confirm("프로젝트 좋아요를 취소하시겠습니까?")) {
+					
+					$.ajax({
+						url:"detailLikeDelete.dr",
+						data:{pNo:pNo, userNo:uno},
+						type: "post",
+						success: function(result){
+							if(result == 1){
+								$("#favorite2").css("color","#F39C12");
+								alert("좋아요가 취소되었습니다.");
+							}else{
+								alert("좋아요 취소 실패");
+							}
+							
+						},
+						error: function(e){
+							console.log(e);
+						}
+					});
+				}
+				//});
+			}
+		}	
 		
 		/* ===========================좋아요 버튼=========================== */
-		
-		$("#icon").on("click", function(){
-			location.href = "detailLike.dr?pNo"+ ${project.pNo} +"&userNo"+${loginUser.userNo};//로그인 유저 번호 넣기
-		});
 	
+		function detailLike(){
+			
+			//$("#favorite").on("click", function(){
+				
+				if(${!empty sessionScope.loginUser}){
+	
+					var uno = ${loginUser.userNo};
+					var pNo = ${project.pNo};
+					
+					$.ajax({
+						url: "detailLike.dr",
+						data: {pNo:pNo, userNo:uno},
+						type: "post",
+						success: function(result){
+							if(result == 1){
+								$("#favorite").css("color", "#8E44AD");
+								alert("좋아요를 성공했습니다.");
+							}else{
+								alert("좋아요 실패");
+							}
+							
+						},
+						error: function(e){
+							console.log(e);
+						}
+						
+					});
+					
+				}
+				
+			//});
+		}
 	</script>
+	
+	
 	<!-- <div class="container-fluid">
 		<div class="row sticky-top" id="navOuter">
 
