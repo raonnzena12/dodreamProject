@@ -3,6 +3,7 @@ package com.dodream.spring.admin.model.service;
 import java.util.ArrayList;
 
 import com.dodream.spring.member.model.vo.Member;
+import com.dodream.spring.project.model.vo.Project;
 
 public interface AdminService {
 
@@ -47,6 +48,12 @@ public interface AdminService {
 	 * @return ArrayList
 	 */
 	public abstract ArrayList<Member> selectBlackList(int currentPage);
+
+	/** 프로젝트 목록 Service(심사중)
+	 * @param currentPage
+	 * @return ArrayList
+	 */
+	public abstract ArrayList<Project> selectProjectList(int currentPage);
 
 
 }

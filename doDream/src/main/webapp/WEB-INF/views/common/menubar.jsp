@@ -108,7 +108,9 @@
 						<c:out value="${ loginUser.userNickname }님 환영합니다"/>
 					</c:if>
 				</span>
+				<c:if test="${empty loginUser.userProfileImage}">
 				<i class="material-icons">account_circle</i>
+				</c:if>
 			</a>
 			<div class="loginmenu" id="veil"></div>
 			<!-- 비로그인 시 메뉴창 출력 -->

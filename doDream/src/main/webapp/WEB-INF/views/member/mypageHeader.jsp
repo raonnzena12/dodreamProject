@@ -16,16 +16,15 @@
 			<%-- <c:if test="${ !empty loginUser }"> --%>
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-md-2"></div>
-			<div class="col-md-10">
-				<h4 class="mb-5">My Page</h4>
-			</div>
+			<div class="col-md-12"></div>
 		</div>
+		<div></div>			
 		<div class="row">
-			<div class="col-md-2"></div>
 			<c:if test="${ !empty sessionScope.loginUser }">
-			<div class="col-md-5">
-				<h4 class="text-left mb-4">
+			<div class="col-md-4"></div>
+			<div class="col-md-4 myPagehead">
+				<h4 class="mb-3">My Page</h4>
+				<h4 class="text-left">
 						<c:out value="${ loginUser.userNickname }님 환영합니다"/>
 					<img src="" class="rounded-circle float-sm" />
 				</h4>
@@ -37,14 +36,18 @@
 				</div>
 			</div>
 			</c:if>
-			<div class="col-md-5">
-				<img alt="Bootstrap Image Preview"
-					src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg"
-					class="rounded-circle" id="userProfileImage"/>
-				<img
-					src="resources/images/settings_icon.png"
-					class="float-sm align-top"
-					id="setting" style="width: 35px;" />
+			<div class="col-md-4">
+				<div id="pfImgOuter">
+					<a href="myInfo.dr">
+					<c:if test="${ empty loginUser.userProfileImage }">
+					<img alt="프로필사진" src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg" class="rounded-circle " id="userProfileImage"/>
+					</c:if>
+					<c:if test="${ !empty loginUser.userProfileImage }">
+					<img alt="프로필사진" src="${loginUser.userProfileImage}" class="rounded-circle " id="userProfileImage"/>
+					</c:if>					
+					<img src="resources/images/settings_icon.png" class="float-sm align-top" id="setting" style="width: 35px;"/>
+					</a>
+				</div>
 			</div>
 		</div>
 		<div style="height: 20px;"></div>
@@ -67,7 +70,7 @@
 				</div>
 			</div>
 		</div>
-		<div style="height: 2000px;"></div>
+		<!-- <div style="height: 2000px;"></div> -->
 	</div>
 	<%-- </c:if> --%>
 </body>

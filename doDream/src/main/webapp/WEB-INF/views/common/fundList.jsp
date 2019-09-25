@@ -135,6 +135,10 @@
       </div>
 </section>
 <script>
+// 페이지 접속하면 currentPage = 1;
+var currentPage = 1;
+var maxPage = ${ pi.maxPage };
+
    // 좋아요 누르는 함수 만들것
 $(function() {
    // 리뷰 좋아요 체크하는 함수
@@ -168,6 +172,7 @@ $(function() {
 function loadList() {
 
 }
+// 펀드 리스트 출력하는 함수(수정중)
 function printFunds(list) {
    var $resultPrint = $(".resultPrint");
    $resultPrint.html("");
@@ -215,9 +220,49 @@ function printFunds(list) {
       $resultPrint.append($conDiv);
    });
 }
-function percentBar(e, percent) {
-   console.log(e)
+function listLoading() {
+   if ( currentPage == maxPage ) {
+      console.log(currentPage);
+      return false;
+   }
+   console.log("curP: " +currentPage);
+   console.log("maxP: " +maxPage);
+   currentPage += 1;
+   
+   $.ajax({
+      url: "loadListByAjax.dr",
+      type: "GET",
+      data: { page: currentPage,
+              cate: "total" },
+      dataType: "json",
+      error: function(e){
+         console.log(e);
+      },
+      success: function(pList){
+         console.log(pList);
+         printList(pList);
+      }
+   });
 }
+$(function(){
+   $(window).scroll(function(){   //스크롤이 최하단 으로 내려가면 리스트를 조회하고 page를 증가시킨다.
+      // console.log($(window).scrollTop());
+      // console.log($(document).height());
+      // console.log($(window).height());
+      // console.log($(document).height() - $(window).height());
+      // console.log($(window).scrollTop() >= ($(document).height() - $(window).height() - 0.5));
+      if($(window).scrollTop() >= ($(document).height() - $(window).height()-0.5 ) ) {
+         if ( currentPage == maxPage ) return false;
+         console.log("aaa");
+         // $("#loadingImg").css("opacity","1");
+         // setTimeout(function(){
+         listLoading();
+         //    $("#loadingImg").css("opacity","0");
+         // },500);
+      } 
+   });
+})
+
 </script>
 
 <script>

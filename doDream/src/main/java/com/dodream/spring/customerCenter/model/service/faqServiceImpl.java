@@ -9,5 +9,5 @@ import com.dodream.spring.customerCenter.model.dao.faqDao;
 public class faqServiceImpl implements faqService {
 
 	@Autowired
-	private faqDao faqDao;
+	private faqDao faqDao; 
 }

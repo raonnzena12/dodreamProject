@@ -18,7 +18,7 @@ public class Member {
 	private String userPhone;
 	private String userProfileImage;
 	private String userSelf;
-	
+		
 	public Member() {}
 
 	public Member(int userNo, String userEmail, String userNickname, String userPwd, String userEmailAuthYn,

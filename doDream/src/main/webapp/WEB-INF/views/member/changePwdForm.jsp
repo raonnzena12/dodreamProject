@@ -16,11 +16,9 @@
 				<div class="col-md-4"></div>
 				<div class="col-md-4">
 					<h3 align="center">
-						비밀번호변경 <br> <small class="text-muted">새로운 비밀번호를
-							설정해주세요.</small>
+						비밀번호변경 <br> <small class="text-muted">새로운 비밀번호를 설정해주세요.</small>
 					</h3>
-					<form action="${contextPath}" method="POST" class="form-group"
-						align="center">
+					<form action="${contextPath}/home.dr" method="POST" class="form-group" align="center">
 						<table id="changePwd-table">
 							<tr>
 								<td colspan="2"><input type="password" class="form-control"
@@ -35,9 +33,7 @@
 							<tr>
 								<td colspan="2">
 									<div>
-										<button type="submit"
-											class="btn btn-warning btn-lg btn-block mb-2" id="changePwdbtn"
-											>비밀번호변경</button>
+										<button type="submit" class="btn btn-warning btn-lg btn-block mb-2" id="changePwdbtn">비밀번호변경</button>
 									</div>
 								</td>
 							</tr>

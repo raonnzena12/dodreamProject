@@ -31,6 +31,7 @@ public class Project {
 	private String pCategoryName;
 	private int pStatusNum;
 	private int pCount;
+	private int pOpenCount; // 프로젝트 작성자가 오픈한 프로젝트 개수
 	
 	public Project() {}
 
@@ -68,6 +69,7 @@ public class Project {
 		this.pCategoryName = pCategoryName;
 		this.pStatusNum = pStatusNum;
 		this.pCount = pCount;
+		this.pOpenCount = pOpenCount;
 	}
 
 	public int getpNo() {
@@ -292,6 +294,14 @@ public class Project {
 
 	public void setpCount(int pCount) {
 		this.pCount = pCount;
+	}
+
+	public int getpOpenCount() {
+		return pOpenCount;
+	}
+
+	public void setpOpenCount(int pOpenCount) {
+		this.pOpenCount = pOpenCount;
 	}
 
 	@Override

@@ -45,6 +45,9 @@
 	background-color: #8E44AD;
 	cursor: pointer;
 }
+.pagination {
+	font-size: 20px;
+}
 </style>
 
 </head>
@@ -167,40 +170,53 @@
 									<div class="row">
 										<div class="col-sm-12 col-md-5">
 											<div class="dataTables_info" id="dataTable_info"
-												role="status" aria-live="polite">Showing 1 to 10 of 57
-												entries</div>
+												role="status" aria-live="polite">  ${pi.startPage } / ${pi.maxPage } 페이지 </div>
 										</div>
 										<div class="col-sm-12 col-md-7">
 											<div class="dataTables_paginate paging_simple_numbers"
 												id="dataTable_paginate">
-												<ul class="pagination">
-													<li class="paginate_button page-item previous disabled"
-														id="dataTable_previous"><a href="#"
-														aria-controls="dataTable" data-dt-idx="0" tabindex="0"
-														class="page-link">Previous</a></li>
-													<li class="paginate_button page-item active"><a
-														href="#" aria-controls="dataTable" data-dt-idx="1"
-														tabindex="0" class="page-link">1</a></li>
-													<li class="paginate_button page-item "><a href="#"
-														aria-controls="dataTable" data-dt-idx="2" tabindex="0"
-														class="page-link">2</a></li>
-													<li class="paginate_button page-item "><a href="#"
-														aria-controls="dataTable" data-dt-idx="3" tabindex="0"
-														class="page-link">3</a></li>
-													<li class="paginate_button page-item "><a href="#"
-														aria-controls="dataTable" data-dt-idx="4" tabindex="0"
-														class="page-link">4</a></li>
-													<li class="paginate_button page-item "><a href="#"
-														aria-controls="dataTable" data-dt-idx="5" tabindex="0"
-														class="page-link">5</a></li>
-													<li class="paginate_button page-item "><a href="#"
-														aria-controls="dataTable" data-dt-idx="6" tabindex="0"
-														class="page-link">6</a></li>
-													<li class="paginate_button page-item next"
-														id="dataTable_next"><a href="#"
-														aria-controls="dataTable" data-dt-idx="7" tabindex="0"
-														class="page-link">Next</a></li>
-												</ul>
+												<table class="pagination" style="float: right; margin-top: 10px; border: 1px soild gray;">
+													<!-- 페이징 처리 -->
+													<tr align="center" height="20">
+														<td colspan="7" >
+															<!-- [이전] -->
+															<c:if test="${ pi.currentPage <= 1 }">
+																[이전] &nbsp;
+															</c:if>
+															<c:if test="${ pi.currentPage > 1 }">
+																<c:url var="before" value="adminBlist.dr">
+																	<c:param name="page" value="${ pi.currentPage - 1 }"/>
+																</c:url>
+																<a href="${ before }">[이전]</a> &nbsp;
+															</c:if>
+															
+															<!-- 페이지 -->
+															<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
+																<c:if test="${ p eq currentPage }">
+																	<font color="red" size="4"><b>[${ p }]</b></font>
+																</c:if>
+																
+																<c:if test="${ p ne currentPage }">
+																	<c:url var="pagination" value="adminBlist.dr">
+																		<c:param name="page" value="${ p }"/>
+																	</c:url>
+																	<a href="${ pagination }">${ p }</a> &nbsp;
+																</c:if>
+															</c:forEach>
+															
+															<!-- [다음] -->
+															<c:if test="${ pi.currentPage >= pi.maxPage }">
+																[다음]
+															</c:if>
+															<c:if test="${ pi.currentPage < pi.maxPage }">
+																<c:url var="after" value="adminBlist.dr">
+																	<c:param name="page" value="${ pi.currentPage + 1 }"/>
+																</c:url> 
+																<a href="${ after }">[다음]</a>
+															</c:if>
+														</td>
+													</tr>
+												</table>
 											</div>
 										</div>
 									</div>
