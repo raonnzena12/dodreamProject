@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.dodream.spring.common.model.vo.PageInfo;
 import com.dodream.spring.member.model.vo.Member;
 import com.dodream.spring.project.model.vo.Project;
+import com.dodream.spring.reserve.model.vo.Reserve;
 
 @Repository("aDao")
 public class AdminDao {
@@ -87,6 +88,31 @@ public class AdminDao {
 	public ArrayList<Project> selectProjectList4() {
 		
 		return (ArrayList)sqlSession.selectList("adminFundingMapper.selectProjectList4");
+	}
+
+	/** 주문 예약 개수 Dao
+	 * @return
+	 */
+	public int countReserve1() {
+		return sqlSession.selectOne("adminReserveMapper.countReserve1");
+	}
+	
+	/** 결제 완료 개수 Dao
+	 * @return
+	 */
+	public int countReserve2() {
+		return sqlSession.selectOne("adminReserveMapper.countReserve2");
+	}
+	
+	/** 예약 취소 개수 Dao
+	 * @return
+	 */
+	public int countReserve3() {
+		return sqlSession.selectOne("adminReserveMapper.countReserve3");
+	}
+
+	public ArrayList<Reserve> selectReserveList1() {
+		return (ArrayList)sqlSession.selectList("adminReserveMapper.selectReserveList1");
 	}
 	
 

@@ -113,11 +113,11 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">주문 예약 현황 </div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800" id="member_Newmember">10 개</div><br>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800" id="countReserve1"></div><br>
                       <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">결제 완료 현황</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">20 개</div><br>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800" id="countReserve2"></div><br>
                       <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">취소 및 환불 현황</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">1 개</div> 
+                      <div class="h5 mb-0 font-weight-bold text-gray-800" id="countReserve3"></div> 
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -457,6 +457,33 @@
 			success : function(result){
 				console.log(result);
 				$("#countProject3").text(result + "개");
+			}
+		});
+		
+		// 관리자 페이지 주문 예약 개수 
+		$.ajax({
+			url: "adminCountReserve1.dr",
+			success: function(result){
+				console.log(result);
+				$("#countReserve1").text(result + "개");
+			}
+		});
+		
+		// 관리자 페이지  결제 완료 개수 
+		$.ajax({
+			url: "adminCountReserve2.dr",
+			success: function(result){
+				console.log(result);
+				$("#countReserve2").text(result + "개");
+			}
+		});
+		
+		// 관리자 페이지 예약 취소 개수 
+		$.ajax({
+			url: "adminCountReserve3.dr",
+			success: function(result){
+				console.log(result);
+				$("#countReserve3").text(result + "개");
 			}
 		});
 		
