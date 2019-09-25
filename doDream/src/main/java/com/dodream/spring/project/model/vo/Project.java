@@ -18,6 +18,7 @@ public class Project {
 	private String pSummaryText;
 	private String pStory;
 	private String pArtistName;
+	private String pArtistIntroduction;
 	private String pArtistPFImage;
 	private String pArtistSns1;
 	private String pArtistSns2;
@@ -35,9 +36,9 @@ public class Project {
 
 	public Project(int pNo, String pTitle, String pSTitle, int pGoal, String pCommaGoal, int pCurrentFunding,
 			String pThumbImage, Date pStartDate, Date pCloseDate, String pDDay, String pHashTag, String pMainImage,
-			String pSummaryText, String pStory, String pArtistName, String pArtistPFImage, String pArtistSns1,
-			String pArtistSns2, String pArtistPhone, String pArtistEmail, Date pEnrollDate, Date pModifyDate,
-			int pWritter, int pCategoryNum, String pCategoryName, int pStatusNum, int pCount) {
+			String pSummaryText, String pStory, String pArtistName, String pArtistIntroduction, String pArtistPFImage,
+			String pArtistSns1, String pArtistSns2, String pArtistPhone, String pArtistEmail, Date pEnrollDate,
+			Date pModifyDate, int pWritter, int pCategoryNum, String pCategoryName, int pStatusNum, int pCount) {
 		super();
 		this.pNo = pNo;
 		this.pTitle = pTitle;
@@ -54,6 +55,7 @@ public class Project {
 		this.pSummaryText = pSummaryText;
 		this.pStory = pStory;
 		this.pArtistName = pArtistName;
+		this.pArtistIntroduction = pArtistIntroduction;
 		this.pArtistPFImage = pArtistPFImage;
 		this.pArtistSns1 = pArtistSns1;
 		this.pArtistSns2 = pArtistSns2;
@@ -188,6 +190,14 @@ public class Project {
 		this.pArtistName = pArtistName;
 	}
 
+	public String getpArtistIntroduction() {
+		return pArtistIntroduction;
+	}
+
+	public void setpArtistIntroduction(String pArtistIntroduction) {
+		this.pArtistIntroduction = pArtistIntroduction;
+	}
+
 	public String getpArtistPFImage() {
 		return pArtistPFImage;
 	}
@@ -290,10 +300,11 @@ public class Project {
 				+ ", pCommaGoal=" + pCommaGoal + ", pCurrentFunding=" + pCurrentFunding + ", pThumbImage=" + pThumbImage
 				+ ", pStartDate=" + pStartDate + ", pCloseDate=" + pCloseDate + ", pDDay=" + pDDay + ", pHashTag="
 				+ pHashTag + ", pMainImage=" + pMainImage + ", pSummaryText=" + pSummaryText + ", pStory=" + pStory
-				+ ", pArtistName=" + pArtistName + ", pArtistPFImage=" + pArtistPFImage + ", pArtistSns1=" + pArtistSns1
-				+ ", pArtistSns2=" + pArtistSns2 + ", pArtistPhone=" + pArtistPhone + ", pArtistEmail=" + pArtistEmail
-				+ ", pEnrollDate=" + pEnrollDate + ", pModifyDate=" + pModifyDate + ", pWritter=" + pWritter
-				+ ", pCategoryNum=" + pCategoryNum + ", pCategoryName=" + pCategoryName + ", pStatusNum=" + pStatusNum
-				+ ", pCount=" + pCount + "]";
+				+ ", pArtistName=" + pArtistName + ", pArtistIntroduction=" + pArtistIntroduction + ", pArtistPFImage="
+				+ pArtistPFImage + ", pArtistSns1=" + pArtistSns1 + ", pArtistSns2=" + pArtistSns2 + ", pArtistPhone="
+				+ pArtistPhone + ", pArtistEmail=" + pArtistEmail + ", pEnrollDate=" + pEnrollDate + ", pModifyDate="
+				+ pModifyDate + ", pWritter=" + pWritter + ", pCategoryNum=" + pCategoryNum + ", pCategoryName="
+				+ pCategoryName + ", pStatusNum=" + pStatusNum + ", pCount=" + pCount + "]";
 	}
+	
 }
