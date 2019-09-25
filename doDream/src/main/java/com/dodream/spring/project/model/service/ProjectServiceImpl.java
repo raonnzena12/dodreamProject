@@ -1,14 +1,18 @@
 package com.dodream.spring.project.model.service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.dodream.spring.common.Pagination;
 import com.dodream.spring.common.model.vo.PageInfo;
 import com.dodream.spring.project.model.dao.ProjectDao;
 import com.dodream.spring.project.model.vo.Project;
+import com.dodream.spring.project.model.vo.Reward;
+import com.dodream.spring.project.model.vo.RewardList;
 
 @Service("pService")
 public class ProjectServiceImpl implements ProjectService {
@@ -31,9 +35,6 @@ public class ProjectServiceImpl implements ProjectService {
 			
 			System.out.println(prj);
 		}
-		
-		
-		
 		return prj;
 	}
 
@@ -49,5 +50,29 @@ public class ProjectServiceImpl implements ProjectService {
 		// 목록 조회 후 리턴
 		ArrayList<Project> pList = pDao.selectPrjList(category, pi);
 		return pList;
+	}
+
+	@Override
+	public int createProjectNumber() {
+		return pDao.createProjectNumber();
+	}
+
+	@Override
+	public int insertProject(Project project, RewardList rList, MultipartFile uploadfile1,
+			MultipartFile uploadfile2) {
+		System.out.println(project);
+		for (Reward reward : rList.getrList()) {
+			System.out.println(reward);
+		}
+		System.out.println(uploadfile1);
+		System.out.println(uploadfile2);
+		return 0;
+	}
+
+	@Override
+	public ArrayList<Reward> selectRewardList(String rewardStr) {
+		String[] rewardTmp = rewardStr.split("/");
+		ArrayList<String> rewardList = new ArrayList<>(Arrays.asList(rewardTmp));
+		return pDao.selectRewardList(rewardList);
 	}
 }

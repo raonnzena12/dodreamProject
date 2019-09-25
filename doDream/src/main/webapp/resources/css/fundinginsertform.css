@@ -1,0 +1,27 @@
+.accInnerHeader{
+	margin-right: 30px;
+}
+.accInnerContent{
+    border: 1px solid #dddddd;
+    margin-bottom: 50px;
+    margin-left: 20px;
+    padding: 25px;
+}
+.accInnerContent p{
+	padding-left: 0;
+	margin-bottom: 0;
+}
+.accslide th{
+	vertical-align: top;
+}
+
+.accCategory{
+    border: 1px solid #dddddd;
+}
+.nonborder{
+	border: none;
+}
+.accRewardBox{
+	border: 1px solid #dddddd;
+	width: 1000px;
+}

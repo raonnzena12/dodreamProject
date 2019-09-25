@@ -32,12 +32,15 @@
 								<thead>
 									<tr>
 										<td colspan="2">
-											<span id="rewardTitle">리워드 구성 제목 들어가는 부분</span><br>
-											<span id="rewardDetail" class="textSize-15">디테일한 리워드 설명 블라블라 블라블라</span><br>
-											<span id="rewardOption" class="textSize-15">리워드에 옵션이 있다면 여기에 들어감</span><br>
-											<div id="rewardPriceArea" class="text-right">
-												<input type="text" name="rewardPrice" id="rewardPrice" readonly> 원
-											</div> 
+											<c:forEach var="rwd" items="${ rList }" >
+											<span class="rewardTitle" id="${ rwd.rNo }">${ rwd.rName } _ n개</span><br>
+											<span class="rewardDetail textSize-15">${ rwd.rExplain}</span><br>
+											<c:if test="${ !empty rwd.rOptionAdd }" >
+											<span class="rewardOption textSize-15">${ rwd.rOptionAdd }</span><br>
+											</c:if>
+											<div class="rewardPriceArea text-right">
+												<input type="text" name="rewardPrice${ rwd.rNo }" id="rewardPrice${ rwd.rNo }" value="${ rwd.rPrice }" readonly>* n 원</div>
+											</c:forEach>
 										</td>
 									</tr>
 								</thead>
@@ -74,7 +77,7 @@
 						<div class="col-md-12 innerMain mx-auto">
 							<h3>리워드 배송지</h3>
 							<!-- 회원정보에 주소지가 입력되어 있을 때 기존 배송지 정보 출력 -->
-							<c:if test="${ !sessionScope.loginUser.address != null }">
+							<c:if test="${ sessionScope.loginUser.userAddress != null }">
 							<span class="custom-control custom-radio mx-4 my-3">
 								<input type="radio" name="address" id="current" class="custom-control-input" checked><label class="custom-control-label mr-5" for="current">기본 배송지</label>
 							</span>
@@ -96,12 +99,12 @@
 									<div class="col-md-6 pr-0" id="phoneTest"><span class="textRed">하이픈(-)을 제외한 전화번호10~11자리를 입력해주세요</span></div>
 								</div>
 								<label class="mr-3 mt-4">주소</label>
-								<div class="row mb-1">
+								<div class="row mb-1 inputAddr1">
 									<div class="col-md-7">
-										<input type="text" name="ship1Address1" id="ship1Address1" placeholder="주소" class="form-control" >
+										<input type="text" name="ship1Address1" id="ship1Address1" placeholder="주소" class="form-control" autocomplete="off">
 									</div>
 									<div class="col-md-2 px-0">
-										<input type="text" name="postCode1" id="postCode1" placeholder="우편번호" class="form-control" >
+										<input type="text" name="postCode1" id="postCode1" placeholder="우편번호" class="form-control" autocomplete="off">
 									</div>
 									<div class="col-md-3">
 										<button class="btn btn-warning btn-block" id="postcodify_search_button1">우편번호 검색</button>
@@ -126,12 +129,12 @@
 									<div class="col-md-6 pr-0"><span class="textRed">하이픈(-)을 제외한 전화번호10~11자리를 입력해주세요</span></div>
 								</div>
 								<label class="mr-3 mt-4">주소</label>
-								<div class="row mb-1">
+								<div class="row mb-1 inputAddr2">
 									<div class="col-md-7">
-										<input type="text" name="ship2Address1" id="ship2Address1" placeholder="주소" class="form-control" >
+										<input type="text" name="ship2Address1" id="ship2Address1" placeholder="주소" class="form-control" autocomplete="off">
 									</div>
 									<div class="col-md-2 px-0">
-										<input type="text" name="postCode2" id="postCode2" placeholder="우편번호" class="form-control" >
+										<input type="text" name="postCode2" id="postCode2" placeholder="우편번호" class="form-control" autocomplete="off">
 									</div>
 									<div class="col-md-3">
 										<button class="btn btn-warning btn-block" id="postcodify_search_button2">우편번호 검색</button>
