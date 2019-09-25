@@ -66,7 +66,7 @@
 		<div class="sticky-top row">
 			<div class="col-md-12 " >
 				<ul class="nav" style="background-color: #E1F5A9; ">
-					<li class="nav-item"><a class="nav-link active" href="notice.dr">공지사항</a>
+					<li class="nav-item"><a class="nav-link active" href="cCenter.dr">공지사항</a>
 					</li>
 					<li class="nav-item"><a class="nav-link" href="T_O_Service.dr">이용약관</a></li>
 					<li class="nav-item"><a class="nav-link " href="fReview.dr">펀딩후기</a></li>
@@ -81,50 +81,8 @@
 				<hr id=notice_bar>
 				<!-- 공지사항 제목, 내용부분 / 악코디언 부분 -->
 				<div id="card-611390"><!-- 내용을 묶는 틀 -->
-					<div class="card">
-						<div class="card-header">
-							<a class="card-link collapsed" href="#card-element-01"
-								data-toggle="collapse" data-parent="#card-611390"> 
-								${n.nTitle}
-							</a>
-						</div>
-						<div class="collapse" id="card-element-01">
-							<div class="card-body">Anim pariatur cliche...</div>
-						</div>
-					</div>
-					
-					<c:forEach var="n" items="${ nList }">
-					<tr>
-						<td align="center">${ n.nId }</td>
-						<td>
-						  
-						<!-- 로그인 상태에서만 상세보기 가능 -->
-						<c:if test="${ !empty loginUser }">
-							<c:url var="ndetail" value="ndetail.kh">
-								<c:param name="nId" value="${ n.nId }"/> 
-							</c:url>
-							<a href="${ ndetail }">${ n.nTitle }</a>
-						</c:if>
-						
-						<!-- 로그인 상태가 아닌 경우 공지사항 제목만 출력 -->
-						<c:if test="${ empty loginUser }">
-							${ n.nTitle }
-						</c:if>
-						</td>
-						
-						<td align="center">${ n.nWriter }</td>
-						<td align="center">${ n.nCreateDate }</td>
-						<td align="center">
-						<c:if test="${ !empty n.filePath }">
-							◎
-						</c:if>
-						<c:if test="${ empty n.filePath }">
-							&nbsp;
-						</c:if>
-						</td>
-					</tr>
-					</c:forEach>
-					
+				
+					<!--
 					<div class="card">
 						<div class="card-header">
 							<a class="card-link" href="#card-element-02"
@@ -145,82 +103,44 @@
 							<div class="card-body">Anim pariatur cliche...</div>
 						</div>
 					</div>
-					<div class="card">
-						<div class="card-header">
-							<a class="card-link" href="#card-element-04" data-toggle="collapse"
-								data-parent="#card-611390">
-								게시글 4 [리워드] 메이커들을 위한 9월	앵콜펀딩 혜택전 1차</a>
+					-->
+				
+					<c:forEach var="n" items="${ nList }">
+						<div class="card">
+						
+							<div class="card-header">
+								<a class="card-link collapsed" href="#card-${n.nNo}" target="#card-${n.nNo}"
+									data-toggle="collapse"> 
+									${n.nTitle}
+								</a>
+							</div>
+							<div class="collapse content" id="card-${n.nNo}">
+								<div class="card-body">${n.nContent }</div>
+							</div>
 						</div>
-						<div class="collapse" id="card-element-04">
-							<div class="card-body">Anim pariatur cliche...</div>
-						</div>
-					</div>
-					<div class="card">
-						<div class="card-header">
-							<a class="card-link" href="#card-element-05" data-toggle="collapse"
-								data-parent="#card-611390">
-								게시글 5 [리워드] 메이커들을 위한 9월	앵콜펀딩 혜택전 1차</a>
-						</div>
-						<div class="collapse" id="card-element-05">
-							<div class="card-body">Anim pariatur cliche...</div>
-						</div>
-					</div>
-					<div class="card">
-						<div class="card-header">
-							<a class="card-link" href="#card-element-06" data-toggle="collapse"
-								data-parent="#card-611390">
-								게시글 6 [리워드] 메이커들을 위한 9월	앵콜펀딩 혜택전 1차</a>
-						</div>
-						<div class="collapse" id="card-element-06">
-							<div class="card-body">Anim pariatur cliche...</div>
-						</div>
-					</div>
-					<div class="card">
-						<div class="card-header">
-							<a class="card-link" href="#card-element-07" data-toggle="collapse"
-								data-parent="#card-611390">
-								게시글 7 [투자] 제 2회 뉴딜로 희망드림 투자형 크라우드펀딩 지원사업!</a>
-						</div>
-						<div class="collapse" id="card-element-07">
-							<div class="card-body">Anim pariatur cliche...</div>
-						</div>
-					</div>
-					<div class="card">
-						<div class="card-header">
-							<a class="card-link" href="#card-element-08" data-toggle="collapse"
-								data-parent="#card-611390">
-								게시글 8 [리워드] 메이커들을 위한 9월	앵콜펀딩 혜택전 1차</a>
-						</div>
-						<div class="collapse" id="card-element-08">
-							<div class="card-body">Anim pariatur cliche...</div>
-						</div>
-					</div>
-					<div class="card">
-						<div class="card-header">
-							<a class="card-link" href="#card-element-09" data-toggle="collapse"
-								data-parent="#card-611390">
-								게시글 9 [리워드] 메이커들을 위한 9월	앵콜펀딩 혜택전 1차</a>
-						</div>
-						<div class="collapse" id="card-element-09">
-							<div class="card-body">Anim pariatur cliche...</div>
-						</div>
-					</div>
-					<div class="card">
-						<div class="card-header">
-							<a class="card-link" href="#card-element-10" data-toggle="collapse"
-								data-parent="#card-611390">
-								게시글 10 [리워드] 메이커들을 위한 9월	앵콜펀딩 혜택전 1차</a>
-						</div>
-						<div class="collapse" id="card-element-10">
-							<div class="card-body">Anim pariatur cliche...</div>
-						</div>
-					</div>
+					</c:forEach>
 				</div>
 			</div>
 		</div>
 	</div>
 
-
+	<!-- <script type="text/javascript">
+	
+		$card.click(function() {
+			var obj = $(this);
+			var target = $(this).attr("target");
+	
+/* 			$card.find("a").removeClass("on");
+			obj.addClass("on"); */
+	
+			$card.find(".content").hide();
+			if (tab_urls[target] != null) {
+				loadPage(target, 1);
+			}
+			$card.find(target).show();
+		});
+		
+	</script> -->
 	<script src="webapp/resources/js/Center-js/jquery.min.js"></script>
 	<script src="webapp/resources/js/Center-js/bootstrap.min.js"></script>
 	<script src="webapp/resources/js/Center-js/scripts.js"></script>
