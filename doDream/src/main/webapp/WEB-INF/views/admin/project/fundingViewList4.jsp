@@ -11,7 +11,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>프로젝트 관리 (심사완료)</title>
+<title>프로젝트 관리 (마감된)</title>
 
 <!-- Custom fonts for this template -->
 <link href="resources/vendor/fontawesome-free/css/all.min.css"
@@ -70,7 +70,7 @@
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-2 text-gray-800"># 프로젝트 관리 (심사완료)</h1>
+					<h1 class="h3 mb-2 text-gray-800"># 프로젝트 관리 (마감된)</h1>
 					<br>
 					<!-- DataTales Example -->
 					<div class="card shadow mb-4">

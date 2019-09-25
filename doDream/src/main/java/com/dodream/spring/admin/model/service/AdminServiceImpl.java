@@ -48,35 +48,39 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public ArrayList<Member> selectMemberList(int currentPage) {
+	public ArrayList<Member> selectMemberList() {
 		
-		int listCount = aDao.getListCount();
-		
-		// 1. 페이지 정보 저장 
-		PageInfo pi = AdminPagination.getPageInfo(currentPage,listCount);
-		
-		// 2. 목록 조회 후 리턴
-		return aDao.selectMemberList(pi);
+		return aDao.selectMemberList();
 	}
 
 	@Override
-	public ArrayList<Member> selectBlackList(int currentPage) {
+	public ArrayList<Member> selectBlackList() {
 		
-		int listCount = aDao.getBlackListCount();
-		
-		// 1. 페이지 정보 저장 
-		PageInfo pi = AdminPagination.getPageInfo(currentPage,listCount);
-		
-		// 2. 목록 조회 후 리턴
-		return aDao.selectBlackList(pi);
+		return aDao.selectBlackList();
 	}
 
 	@Override
-	public ArrayList<Project> selectProjectList(int currentPage) {
+	public ArrayList<Project> selectProjectList1() {
 		
+		return aDao.selectProjectList1();
+	}
+	 
+	@Override
+	public ArrayList<Project> selectProjectList2() {
 		
+		return aDao.selectProjectList2();
+	}
+	
+	@Override
+	public ArrayList<Project> selectProjectList3() {
 		
-		return null;
+		return aDao.selectProjectList3();
+	}
+	
+	@Override
+	public ArrayList<Project> selectProjectList4() {
+		
+		return aDao.selectProjectList4();
 	}
 	
 
