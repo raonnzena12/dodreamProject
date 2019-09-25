@@ -16,7 +16,9 @@ public class noticeServiceImpl implements noticeService {
 
 	@Override
 	public ArrayList<Notice> selectList() {
+		
 		return noticeDao.selectList();
+		
 	}
   
 	/*

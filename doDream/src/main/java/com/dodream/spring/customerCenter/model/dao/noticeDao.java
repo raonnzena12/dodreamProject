@@ -16,7 +16,9 @@ public class noticeDao {
 	private SqlSessionTemplate sqlSession;
 
 	public ArrayList<Notice> selectList() {
-		return (ArrayList)sqlSession.selectList("centerMapper.selectList");
+		
+		return (ArrayList)sqlSession.selectList("centerMapper.noticeSelect");
+	
 	}
 } 
  

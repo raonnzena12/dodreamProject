@@ -3,13 +3,13 @@ package com.dodream.spring.customerCenter.model.vo;
 import java.sql.Date;
 
 public class Notice {
-	private int nNo;
-	private String nTitle;
-	private String nContent;
-	private Date nEnrollDate;
-	private Date nModifyDate;
-	private String nStatus;
-	private int nWriter;
+	private int nNo;          // 번호
+	private String nTitle;    // 제목
+	private String nContent;  // 내용
+	private Date nEnrollDate; // 작성일
+	private Date nModifyDate; // 수정일
+	private String nStatus;   // 상태
+	private int nWriter;      // 작성자(관리자번호)
 
 	public Notice() {
 		// TODO Auto-generated constructor stub

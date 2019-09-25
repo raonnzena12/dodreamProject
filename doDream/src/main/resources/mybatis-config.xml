@@ -12,6 +12,10 @@
 		<typeAlias type="com.dodream.spring.project.model.vo.Project" alias="Project"/>
 		<typeAlias type="com.dodream.spring.project.model.vo.Reward" alias="Reward"/>
 		<typeAlias type="com.dodream.spring.project.model.vo.Like" alias="Like"/>
+		<typeAlias type="com.dodream.spring.customerCenter.model.vo.Review" alias="Review"/>
+		<typeAlias type="com.dodream.spring.customerCenter.model.vo.Notice" alias="Notice"/>
+		<typeAlias type="com.dodream.spring.customerCenter.model.vo.Faq" alias="Faq"/>
+		<typeAlias type="com.dodream.spring.customerCenter.model.vo.Search" alias="Search"/>
 		<!-- <typeAlias type="com.dodream.spring.reserve.model.vo.Reserve" alias="Reserve"/> -->
 	</typeAliases>
 	
@@ -19,6 +23,7 @@
 	<!-- mapper 파일 등록 부분 -->
 	<mappers>
 		<mapper resource="mappers/member-mapper.xml"/>
+		<mapper resource="mappers/center-mapper.xml"/> <!-- 공지사항, 프로젝트리뷰, FAQ -->
 		<mapper resource="mappers/project-mapper.xml"/>
     	<mapper resource="mappers/adminMember-mapper.xml"/>
     	<mapper resource="mappers/adminFunding-mapper.xml"/>

@@ -3,15 +3,16 @@ package com.dodream.spring.customerCenter.model.vo;
 import java.sql.Date;
 
 public class Review {
-	private int rNo;
-	private String rTitle;
-	private String rContent;
-	private Date rEnrollDate;
-	private Date rModifyDate;
-	private String rStatus;
-	private int rPNo;
-	private int nWriter;
-	public Review() {
+	private int rNo;          // 번호
+	private String rTitle;    // 제목
+	private String rContent;  // 내용
+	private Date rEnrollDate; // 작성일
+	private Date rModifyDate; // 수정일
+	private String rStatus;   // 상태
+	private int rPNo;         // 프로젝트 번호
+	private int nWriter;      // 작성자번호(관리자)
+	
+	public Review() {  
 		// TODO Auto-generated constructor stub
 	} 
 	public Review(int rNo, String rTitle, String rContent, Date rEnrollDate, Date rModifyDate, String rStatus, int rPNo,
