@@ -50,7 +50,7 @@ public class ProjectDao {
 		int offset = ( pi.getCurrentPage() - 1 ) * pi.getLimit();
 		RowBounds rowBounds = new RowBounds(offset, pi.getLimit());
 		
-		return (ArrayList)sqlSession.selectList("projectMapper.selectPrjList", null, rowBounds);
+		return (ArrayList)sqlSession.selectList("projectMapper.selectPrjList", category, rowBounds);
 	}
 
 	/**
@@ -67,6 +67,15 @@ public class ProjectDao {
 	 */
 	public int createProjectNumber() {
 		return sqlSession.selectOne("projectMapper.createProjectNumber");
+	}
+
+	/**
+	 * reward번호 list로 리워드 리스트를 반환하는 DAO
+	 * @param rewardList
+	 * @return rList
+	 */
+	public ArrayList<Reward> selectRewardList(ArrayList<String> rewardList) {
+		return (ArrayList)sqlSession.selectList("projectMapper.selectRewardList", rewardList);
 	}
 
 	
