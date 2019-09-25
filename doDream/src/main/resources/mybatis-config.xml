@@ -12,7 +12,7 @@
 		<typeAlias type="com.dodream.spring.project.model.vo.Project" alias="Project"/>
 		<typeAlias type="com.dodream.spring.project.model.vo.Reward" alias="Reward"/>
 		<typeAlias type="com.dodream.spring.project.model.vo.Like" alias="Like"/>
-		<typeAlias type="com.dodream.spring.reserve.model.vo.Reserve" alias="Reserve"/>
+		<!-- <typeAlias type="com.dodream.spring.reserve.model.vo.Reserve" alias="Reserve"/> -->
 	</typeAliases>
 	
 	
@@ -22,7 +22,7 @@
 		<mapper resource="mappers/project-mapper.xml"/>
     	<mapper resource="mappers/adminMember-mapper.xml"/>
     	<mapper resource="mappers/adminFunding-mapper.xml"/>
-    	<mapper resource="mappers/adminReserve-mapper.xml"/>
+    	<!-- <mapper resource="mappers/adminReserve-mapper.xml"/> -->
  	</mappers>
 	
 </configuration>
