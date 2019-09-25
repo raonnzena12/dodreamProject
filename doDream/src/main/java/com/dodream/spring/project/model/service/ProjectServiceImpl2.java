@@ -30,5 +30,23 @@ public class ProjectServiceImpl2 implements ProjectService2{
 		return pDao2.insertProjectLike(like);
 	}
 	
+	//프로젝트 좋아요 select용 Service
+	@Override
+	public Like selectLike(Like like) {
+		
+		
+		
+		System.out.println(like);
+		
+		return pDao2.selectLike(like);
+	}
+
+	//프로젝트 좋아요 취소 Service
+	@Override
+	public int deleteLike(Like like) {
+		
+		return pDao2.deleteLike(like);
+	}
+	
 	
 }

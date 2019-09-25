@@ -1,7 +1,9 @@
 package com.dodream.spring.member.controller;
 
+import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dodream.spring.member.model.service.MemberService;
+//import com.dodream.spring.member.model.vo.AutoLogin;
 import com.dodream.spring.member.model.vo.Member;
 
 @SessionAttributes({ "loginUser", "msg" })
@@ -32,7 +36,7 @@ public class MemberController {
 	 * @return page
 	 */
 	@RequestMapping(value = "login.dr", method = RequestMethod.POST)
-	public String memberLogin(Member member, Model model, String prevPage) {
+	public String memberLogin(Member member, Model model, String prevPage, HttpSession session) {
 
 		Member loginUser = mService.loginMember(member);
 
@@ -46,13 +50,23 @@ public class MemberController {
 				if(result > 0) 
 				System.out.println("userNo : " + loginUser.getUserNo() + "번 회원이 DAYCOUNT 테이블에 삽입됨");
 			}
+			
+//			AutoLogin auto = new AutoLogin();
+//			if(auto.isUseCookie()) {
+//				int amount = 60 * 60 * 24 * 24;
+//				Date limit = new Date(System.currentTimeMillis() + (1000 * amount));
+//				mService.keepLogin(member.getUserNo(), session.getId(), limit);
+//				
+//			} 지우지 마세요.
+			
+			
 			return "redirect:"+prevPage;
 		} else {
 			model.addAttribute("msg", "로그인 실패");
 			return "common/errorPage";
 		}
 	}
-  
+	  
  	/**
 	 * 로그아웃 Controller
 	 * 
@@ -140,9 +154,43 @@ public class MemberController {
 		return result;
 	}
 	
+	/** 내 정보 수정 페이지 이동
+	 * @return
+	 */
 	@RequestMapping("myInfo.dr")
 	public String myInfoView() {
 		return "member/mypageSetting";
 	}
+	
+	/** 회원정보 수정
+	 * @param mem
+	 * @param address
+	 * @param detail
+	 * @param postcode
+	 * @param request
+	 * @param model
+	 * @param userProfileImage
+	 * @param rd
+	 * @return 
+	 */
+	@RequestMapping("myInfoUpdate.dr")
+	public String memberUpdate(Member mem, String address, String details, String postcode, HttpServletRequest request, Model model, MultipartFile uploadImg, RedirectAttributes rd) {
+		
+		mem.setUserAddress(address+","+details+","+postcode);
+		int result = mService.updateMember(mem, request, uploadImg);
+		
+		System.out.println(result);
+				
+		if(result >0) {
+			model.addAttribute("loginUser", mem);
+			rd.addFlashAttribute("msg", "회원정보를 수정하였습니다!");
+			return "redirect:home.dr";
+		}else {
+			model.addAttribute("msg", "회원정보 수정에 실패하였습니다.");
+			return "common/errorPage";
+		}
+		
+	}
+	
 	
 }

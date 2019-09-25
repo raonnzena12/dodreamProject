@@ -144,13 +144,14 @@
            		float:left;
            }
            .rewardBadge{
-           		width:70px;
+           		width: auto;
+           		min-width:70px;
            		height:25px;
            		background-color: #8E44AD;
            		display:block;
            		float:right;
            		margin:5px 10px 0 0;
-           		padding:5px 0 0 0;
+           		padding:5px 5px 0 5px;
            		font-size: 14px;
            }
            .RewardText3{
@@ -214,21 +215,27 @@
 		<section id="asideReward">
 		
 			<p id="RewardText1">선택 할 수 있는 총 ${fn:length(reward) }종의 리워드가 있습니다.</p><!-- 리워드 정보 불러오기 -->
+			
 		<c:forEach var="r" items="${reward }">
-			<section class="projectReward">
-				<div class="rewardTitle">
-					<i class="material-icons rewardIcon">keyboard_arrow_right</i>
-					<p class="RewardText2">5명 선택</p> <!-- 리워드 정보 불러오기 -->
-					<span class="badge badge-primary rewardBadge">${r.rLimit }개 남음</span><!-- 리워드 정보 불러오기 -->
-				</div>
-				<p class="RewardText3">${r.rPrice }원</p> <!-- 리워드 정보 불러오기 -->
-				<div class="rewardIntroduce"> <!-- 리워드 정보 불러오기 -->
-	            	${r.rExplain }
-            	</div>
-            	<button type="button" class="btn btn-primary btn-lg btn-block rewardBtn">리워드 선택하고 후원하기</button><!-- 리워드 정보 불러오기 -->
-            	
-			</section>
+			<form action="detailSubReward.dr" method="post">
+				<section class="projectReward">
+					<div class="rewardTitle">
+						<i class="material-icons rewardIcon">keyboard_arrow_right</i>
+						<p class="RewardText2">5명 선택</p> <!-- 리워드 정보 불러오기 -->
+						<span class="badge badge-primary rewardBadge">${r.rLimit }개 남음</span><!-- 리워드 정보 불러오기 -->
+					</div>
+					<p class="RewardText3">${r.rPrice }원</p> <!-- 리워드 정보 불러오기 -->
+					<div class="rewardIntroduce"> <!-- 리워드 정보 불러오기 -->
+		            	${r.rExplain }
+	            	</div>
+	            	<input type="hidden" name="rNo" value="${r.rNo }">
+	            	<input type="hidden" name="pNo" value="${project.pNo }">
+	            	
+	            	<button type="submit" class="btn btn-primary btn-lg btn-block rewardBtn">리워드 선택하고 후원하기</button><!-- 리워드 정보 불러오기 -->
+				</section>
+			</form>
 		</c:forEach>
+		
 		</section>
 	</section>
 	

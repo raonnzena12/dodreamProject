@@ -11,6 +11,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
+
 <title>프로젝트 관리 (심사중)</title>
 
 <!-- Custom fonts for this template -->
@@ -33,6 +34,21 @@
 	color: gray;
 	font-weight: bold;
 } 
+.rewardBtn {
+	width: auto;
+	height: auto;
+	background-color: #F39C12;
+	border: #F39C12;
+	font-size: 15px;
+}
+
+.rewardBtn:hover {
+	background-color: #8E44AD;
+	cursor: pointer;
+}
+.sorting{
+	width: auto;
+}
 
 </style>
 
@@ -67,27 +83,6 @@
 								<div id="dataTable_wrapper"
 									class="dataTables_wrapper dt-bootstrap4">
 									<div class="row">
-										<div class="col-sm-12 col-md-6">
-											<div class="dataTables_length" id="dataTable_length">
-												<label><select name="dataTable_length"
-													aria-controls="dataTable"
-													class="custom-select custom-select-sm form-control form-control-sm"><option
-															value="10">전체회원</option>
-														<option value="25">일반회원</option>
-														<option value="50">아티스트회원</option>
-														<option value="100">탈퇴회원</option></select> 
-												</label>
-											</div>
-										</div>
-										<div class="col-sm-12 col-md-6">
-											<div id="dataTable_filter" class="dataTables_filter">
-												<label>Search:<input type="search"
-													class="form-control form-control-sm" placeholder=""
-													aria-controls="dataTable"></label>
-											</div>
-										</div>
-									</div>
-									<div class="row">
 										<div class="col-sm-12">
 											<table class="table table-bordered dataTable" id="dataTable"
 												role="grid"
@@ -97,122 +92,71 @@
 														<th class="sorting_asc" tabindex="0"
 															aria-controls="dataTable" rowspan="1" colspan="1"
 															aria-sort="ascending"
-															aria-label="Name: activate to sort column descending"
-															style="width: 29px;">회원번호</th>
+															aria-label="Name: activate to sort column descending">프로젝트 번호</th>
 														<th class="sorting" tabindex="0" aria-controls="dataTable"
 															rowspan="1" colspan="1"
-															aria-label="Office: activate to sort column ascending"
-															style="width: 50px;">닉네임</th>
+															aria-label="Office: activate to sort column ascending">프로젝트 제목</th>
 														<th class="sorting" tabindex="0" aria-controls="dataTable"
 															rowspan="1" colspan="1"
-															aria-label="Age: activate to sort column ascending"
-															style="width: 31px;">전화번호</th>
+															aria-label="Age: activate to sort column ascending">목표 금액</th>
 														<th class="sorting" tabindex="0" aria-controls="dataTable"
 															rowspan="1" colspan="1"
-															aria-label="Start date: activate to sort column ascending"
-															style="width: 68px;">이메일</th>
+															aria-label="Start date: activate to sort column ascending">프로젝트 시작일</th>
 														<th class="sorting" tabindex="0" aria-controls="dataTable"
 															rowspan="1" colspan="1"
-															aria-label="Salary: activate to sort column ascending"
-															style="width: 67px;">가입일</th>
+															aria-label="Salary: activate to sort column ascending">프로젝트 종료일</th>
 														<th class="sorting" tabindex="0" aria-controls="dataTable"
 															rowspan="1" colspan="1"
-															aria-label="Salary: activate to sort column ascending"
-															style="width: 67px;">회원상태</th>
+															aria-label="Salary: activate to sort column ascending">아티스트 이름</th>
 														<th class="sorting" tabindex="0" aria-controls="dataTable"
 															rowspan="1" colspan="1"
-															aria-label="Salary: activate to sort column ascending"
-															style="width: 67px;">블랙리스트 처리</th>
+															aria-label="Salary: activate to sort column ascending">아티스트 연락처</th>
+														<th class="sorting" tabindex="0" aria-controls="dataTable"
+															rowspan="1" colspan="1"
+															aria-label="Salary: activate to sort column ascending">아티스트 이메일</th>
+														<th class="sorting" tabindex="0" aria-controls="dataTable"
+															rowspan="1" colspan="1"
+															aria-label="Salary: activate to sort column ascending">심사 통과 처리</th>
+														<th class="sorting" tabindex="0" aria-controls="dataTable"
+															rowspan="1" colspan="1"
+															aria-label="Salary: activate to sort column ascending">심사 탈락 처리</th>
 													</tr>
 												</thead>
 												<tfoot>
 													<tr>
-														<th rowspan="1" colspan="1">회원번호</th>
-														<th rowspan="1" colspan="1">닉네임</th>
-														<th rowspan="1" colspan="1">전화번호</th>
-														<th rowspan="1" colspan="1">이메일</th>
-														<th rowspan="1" colspan="1">가입일</th>
-														<th rowspan="1" colspan="1">회원상태</th>
-														<th rowspan="1" colspan="1">블랙리스트 처리</th>
+														<th rowspan="1" colspan="1">프로젝트 번호</th>
+														<th rowspan="1" colspan="1">프로젝트 제목</th>
+														<th rowspan="1" colspan="1">목표 금액</th>
+														<th rowspan="1" colspan="1">프로젝트 시작일</th>
+														<th rowspan="1" colspan="1">프로젝트 종료일</th>
+														<th rowspan="1" colspan="1">아티스트 이름</th>
+														<th rowspan="1" colspan="1">아티스트 연락처</th>
+														<th rowspan="1" colspan="1">아티스트 이메일</th>
+														<th rowspan="1" colspan="1">심사 통과 처리</th>
+														<th rowspan="1" colspan="1">심사 탈락 처리</th>
 													</tr>
 												</tfoot>
 												<tbody>
 													<c:forEach var="p" items="${ list }">
 														<tr role="row" class="odd">
-															<td class="sorting_1">${ p.userNo }</td>
-															<td>${ p.userNickname }</td>
-															<td>${ p.userPhone}</td>
-															<td>${ p.userEmail}</td>
-															<td>${ p.userEnrollDate }</td>
+															<td class="sorting_1">${ p.pNo }</td>
+															<td>${ p.pTitle }</td>
+															<td>${ p.pGoal}</td>
+															<td>${ p.pStartDate}</td>
+															<td>${ p.pCloseDate }</td>
+															<td>${ p.pArtistName }</td>
+															<td>${ p.pArtistPhone }</td>
+															<td>${ p.pArtistEmail }</td>
 															<td>
-																<c:if test="${ p.userStatus eq 'Y'}">
-																	일반 회원
-																</c:if>
-																<c:if test="${ p.userStatus eq 'N'}">
-																	탈퇴 회원
-																</c:if>
+																<button type="button" id="projectBtn1" class="btn btn-primary btn-lg btn-block rewardBtn">심사 통과</button>
 															</td>
 															<td>
-																<button type="button" id="blackListBtn" class="btn btn-primary btn-lg btn-block rewardBtn">블랙리스트 등록</button>
+																<button type="button" id="projectBtn2" class="btn btn-primary btn-lg btn-block rewardBtn">심사 탈락</button>
 															</td>
 														</tr>
 													</c:forEach>
 												</tbody>
 											</table>
-										</div>
-									</div>
-									<div class="row">
-										<div class="col-sm-12 col-md-5">
-											<div class="dataTables_info" id="dataTable_info"
-												role="status" aria-live="polite">Showing 1 to 10 of 57
-												entries</div>
-										</div>
-										<div class="col-sm-12 col-md-7">
-											<div class="dataTables_paginate paging_simple_numbers"
-												id="dataTable_paginate">
-												<table class="pagination" style="float: right; margin-top: 10px;">
-													<!-- 페이징 처리 -->
-													<tr align="center" height="20">
-														<td colspan="7" >
-															<!-- [이전] -->
-															<c:if test="${ pi.currentPage <= 1 }">
-																[이전] &nbsp;
-															</c:if>
-															<c:if test="${ pi.currentPage > 1 }">
-																<c:url var="before" value="adminFlist1.dr">
-																	<c:param name="page" value="${ pi.currentPage - 1 }"/>
-																</c:url>
-																<a href="${ before }">[이전]</a> &nbsp;
-															</c:if>
-															
-															<!-- 페이지 -->
-															<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
-																<c:if test="${ p eq currentPage }">
-																	<font color="red" size="4"><b>[${ p }]</b></font>
-																</c:if>
-																
-																<c:if test="${ p ne currentPage }">
-																	<c:url var="pagination" value="adminFlist1.dr">
-																		<c:param name="page" value="${ p }"/>
-																	</c:url>
-																	<a href="${ pagination }">${ p }</a> &nbsp;
-																</c:if>
-															</c:forEach>
-															
-															<!-- [다음] -->
-															<c:if test="${ pi.currentPage >= pi.maxPage }">
-																[다음]
-															</c:if>
-															<c:if test="${ pi.currentPage < pi.maxPage }">
-																<c:url var="after" value="adminFlist1.dr">
-																	<c:param name="page" value="${ pi.currentPage + 1 }"/>
-																</c:url> 
-																<a href="${ after }">[다음]</a>
-															</c:if>
-														</td>
-													</tr>
-												</table>
-											</div>
 										</div>
 									</div>
 								</div>
@@ -282,11 +226,15 @@
 
 	<!-- Page level plugins -->
 	<script src="resources/vendor/chart.js/Chart.min.js"></script>
+	<script src="resources/vendor/datatables/jquery.dataTables.js"></script>
+	<script src="resources/vendor/datatables/dataTables.bootstrap4.js"></script>
 
 	<!-- Page level custom scripts -->
 	<script src="resources/js/demo/chart-area-demo.js"></script>
 	<script src="resources/js/demo/chart-pie-demo.js"></script>
 
+	<!-- Demo scripts for this page-->
+	<script src="resources/js/demo/datatables-demo.js"></script>
 
 </body>
 

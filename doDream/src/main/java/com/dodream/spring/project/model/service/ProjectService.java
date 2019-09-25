@@ -2,7 +2,11 @@ package com.dodream.spring.project.model.service;
 
 import java.util.ArrayList;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.dodream.spring.project.model.vo.Project;
+import com.dodream.spring.project.model.vo.Reward;
+import com.dodream.spring.project.model.vo.RewardList;
 
 public interface ProjectService {
 /// 공동사용
@@ -21,6 +25,31 @@ public interface ProjectService {
 	 * @return pList
 	 */
 	public abstract ArrayList<Project> selectPrjList(String category, int currentPage);
+
+	/**
+	 * 펀딩 등록페이지로 넘어가기 전에 프로젝트번호를 생성해주는 Service입니다.
+	 * @return pNo
+	 */
+	public abstract int createProjectNumber();
+
+	/**
+	 * 프로젝트 등록을 수행해주는 Service입니다.
+	 * @param project
+	 * @param rList
+	 * @param uploadfile1
+	 * @param uploadfile2
+	 * @return result
+	 */
+	public abstract int insertProject(Project project, RewardList rList, MultipartFile uploadfile1,
+			MultipartFile uploadfile2);
+
+	/**
+	 * 리워드 번호 스트링으로 해당하는 리워드 리스트를 반환하는 Service
+	 * (스트링 복수개일 경우 '/'(슬래쉬)로 구분하여 보낼 것)
+	 * @param rewardStr
+	 * @return rList
+	 */
+	public abstract ArrayList<Reward> selectRewardList(String rewardStr);
 
 
 }

@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 
 import com.dodream.spring.common.model.vo.PageInfo;
 import com.dodream.spring.member.model.vo.Member;
+import com.dodream.spring.project.model.vo.Project;
+import com.dodream.spring.reserve.model.vo.Reserve;
 
 @Repository("aDao")
 public class AdminDao {
@@ -40,49 +42,78 @@ public class AdminDao {
 		return sqlSession.selectOne("adminFundingMapper.countProject3");
 	}
 
-	/** 전체 회원 수 조회 Dao
-	 * @return listCount
-	 */
-	public int getListCount() {
-		// adminMemberMapper.xml 에 getListCount 이름을 가진 쿼리문을 호출한다.
-		return sqlSession.selectOne("adminMemberMapper.getListCount");
-	}
-
 	/** 회원 목록 조회 Dao
-	 * @param pi
 	 * @return list 
 	 */
-	public ArrayList<Member> selectMemberList(PageInfo pi) {
+	public ArrayList<Member> selectMemberList() {
 
-		int offset = (pi.getCurrentPage() -1) * pi.getLimit();
-		RowBounds rowBounds = new RowBounds(offset, pi.getLimit());
-		
-		// 매개변수는 없기 때문에 null 
-		// 마지막은 계산해놓은 rowBounds 사용 
-		return (ArrayList)sqlSession.selectList("adminMemberMapper.selectMemberList", null, rowBounds);
+		return (ArrayList)sqlSession.selectList("adminMemberMapper.selectMemberList");
 	}
 
-	/** 블랙리스트  회원 수 조회 Dao
-	 * @return listCount
-	 */
-	public int getBlackListCount() {
-		// adminMemberMapper.xml 에 getListCount 이름을 가진 쿼리문을 호출한다.
-		return sqlSession.selectOne("adminMemberMapper.getBlackListCount");
-	}
-	
 	/** 블랙리스트 회원 목록 조회 Dao
-	 * @param pi
+	 * @return list
+	 */
+	public ArrayList<Member> selectBlackList() {
+		
+		return (ArrayList)sqlSession.selectList("adminMemberMapper.selectBlackList");
+	}
+
+	/** 심사 대기 중인 프로젝트 목록 조회 Dao
 	 * @return
 	 */
-	public ArrayList<Member> selectBlackList(PageInfo pi) {
-		
-		int offset = (pi.getCurrentPage() -1) * pi.getLimit();
-		RowBounds rowBounds = new RowBounds(offset, pi.getLimit());
-		
-		// 매개변수는 없기 때문에 null 
-		// 마지막은 계산해놓은 rowBounds 사용 
-		return (ArrayList)sqlSession.selectList("adminMemberMapper.selectBlackList", null, rowBounds);
+	public ArrayList<Project> selectProjectList1() {
+
+		return (ArrayList)sqlSession.selectList("adminFundingMapper.selectProjectList1");
 	}
 
+	/** 심사 완료된 프로젝트 목록 조회 Dao
+	 * @return
+	 */
+	public ArrayList<Project> selectProjectList2() {
+		
+		return (ArrayList)sqlSession.selectList("adminFundingMapper.selectProjectList2");
+	}
+	
+	/** 오픈 중인 프로젝트 목록 조회 Dao
+	 * @return
+	 */
+	public ArrayList<Project> selectProjectList3() {
+		
+		return (ArrayList)sqlSession.selectList("adminFundingMapper.selectProjectList3");
+	}
+	
+	/** 마감된 프로젝트 목록 조회 Dao
+	 * @return
+	 */
+	public ArrayList<Project> selectProjectList4() {
+		
+		return (ArrayList)sqlSession.selectList("adminFundingMapper.selectProjectList4");
+	}
+
+	/** 주문 예약 개수 Dao
+	 * @return
+	 */
+	public int countReserve1() {
+		return sqlSession.selectOne("adminReserveMapper.countReserve1");
+	}
+	
+	/** 결제 완료 개수 Dao
+	 * @return
+	 */
+	public int countReserve2() {
+		return sqlSession.selectOne("adminReserveMapper.countReserve2");
+	}
+	
+	/** 예약 취소 개수 Dao
+	 * @return
+	 */
+	public int countReserve3() {
+		return sqlSession.selectOne("adminReserveMapper.countReserve3");
+	}
+
+	public ArrayList<Reserve> selectReserveList1() {
+		return (ArrayList)sqlSession.selectList("adminReserveMapper.selectReserveList1");
+	}
+	
 
 }

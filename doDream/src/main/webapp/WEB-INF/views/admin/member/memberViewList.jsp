@@ -1,59 +1,48 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<title>회원관리</title>
+
+<meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>회원관리</title>
 
-<!-- Custom fonts for this template -->
+<!-- Custom fonts for this template-->
 <link href="resources/vendor/fontawesome-free/css/all.min.css"
 	rel="stylesheet" type="text/css">
 <link
 	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
 	rel="stylesheet">
-
-<!-- Custom styles for this template -->
+<!-- Custom styles for this template-->
 <link href="resources/css/sb-admin-2.min.css" rel="stylesheet">
-
-<!-- Custom styles for this page -->
+<!-- Page level plugin CSS-->
 <link href="resources/vendor/datatables/dataTables.bootstrap4.min.css"
 	rel="stylesheet">
 
 <style>
-
 .collapse-item p{
 	color: gray;
 	font-weight: bold;
 } 
 
-.rewardBtn{
+.rewardBtn {
 	width: auto;
 	height: auto;
 	background-color: #F39C12;
 	border: #F39C12;
 	font-size: 15px;
 }
-.rewardBtn:hover{
+
+.rewardBtn:hover {
 	background-color: #8E44AD;
 	cursor: pointer;
-}
-
-.pagination {
-	font-size: 20px;
-	padding-right: 10px;
-	padding-left: 10px; 
-}
-
-.pagination a{ 
-	font-size: 20px;
 }
 </style>
 
@@ -62,7 +51,7 @@
 
 	<!-- Page Wrapper -->
 	<div id="wrapper">
-		<jsp:include page="../common/sidebar.jsp"/>
+		<jsp:include page="../common/sidebar.jsp" />
 
 		<!-- Content Wrapper -->
 		<div id="content-wrapper" class="d-flex flex-column">
@@ -70,7 +59,7 @@
 			<!-- Main Content -->
 			<div id="content">
 
-				<jsp:include page="../common/topbar.jsp"/>
+				<jsp:include page="../common/topbar.jsp" />
 
 				<!-- Begin Page Content -->
 				<div class="container-fluid">
@@ -87,32 +76,12 @@
 							<div class="table-responsive">
 								<div id="dataTable_wrapper"
 									class="dataTables_wrapper dt-bootstrap4">
-									<div class="row">
-										<div class="col-sm-12 col-md-6">
-											<div class="dataTables_length" id="dataTable_length">
-												<label><select name="dataTable_length"
-													aria-controls="dataTable"
-													class="custom-select custom-select-sm form-control form-control-sm"><option
-															value="10">전체회원</option>
-														<option value="25">일반회원</option>
-														<option value="50">아티스트회원</option>
-														<option value="100">탈퇴회원</option></select> 
-												</label>
-											</div>
-										</div>
-										<div class="col-sm-12 col-md-6">
-											<div id="dataTable_filter" class="dataTables_filter">
-												<label>Search:<input type="search"
-													class="form-control form-control-sm" placeholder=""
-													aria-controls="dataTable"></label>
-											</div>
-										</div>
-									</div>
+
 									<div class="row">
 										<div class="col-sm-12">
 											<table class="table table-bordered dataTable" id="dataTable"
 												width="100%" cellspacing="0" role="grid"
-												aria-describedby="dataTable_info" style="width: 100%;">
+												aria-describedby="dataTable_info">
 												<thead>
 													<tr role="row">
 														<th class="sorting_asc" tabindex="0"
@@ -165,76 +134,23 @@
 															<td>${ m.userPhone}</td>
 															<td>${ m.userEmail}</td>
 															<td>${ m.userEnrollDate }</td>
-															<td>
-																<c:if test="${ m.userStatus eq 'Y'}">
+															<td><c:if test="${ m.userStatus eq 'Y'}">
 																	일반 회원
-																</c:if>
-																<c:if test="${ m.userStatus eq 'N'}">
+																</c:if> <c:if test="${ m.userStatus eq 'N'}">
 																	탈퇴 회원
-																</c:if>
-															</td>
+																</c:if></td>
 															<td>
-																<button type="button" id="blackListBtn" class="btn btn-primary btn-lg btn-block rewardBtn">블랙리스트 등록</button>
+																<button type="button" id="blackListBtn"
+																	class="btn btn-primary btn-lg btn-block rewardBtn">블랙리스트
+																	등록</button>
 															</td>
 														</tr>
 													</c:forEach>
 												</tbody>
-											</table>
+											</table> 
 										</div>
 									</div>
-									<div class="row">
-										<div class="col-sm-12 col-md-5">
-											<div class="dataTables_info" id="dataTable_info"
-												role="status" aria-live="polite">   ${pi.startPage } / ${pi.maxPage } 페이지 </div>
-										</div>
-										<div class="col-sm-12 col-md-7">
-											<div class="dataTables_paginate paging_simple_numbers"
-												id="dataTable_paginate">
-												<table class="pagination" style="float: right; margin-top: 10px;">
-													<!-- 페이징 처리 -->
-													<tr align="center" height="20">
-														<td colspan="7" >
-															<!-- [이전] -->
-															<c:if test="${ pi.currentPage <= 1 }">
-																[이전] &nbsp;
-															</c:if>
-															<c:if test="${ pi.currentPage > 1 }">
-																<c:url var="before" value="adminMlist.dr">
-																	<c:param name="page" value="${ pi.currentPage - 1 }"/>
-																</c:url>
-																<a href="${ before }">[이전]</a> &nbsp;
-															</c:if>
-															
-															<!-- 페이지 -->
-															<c:forEach var="p" begin="${ pi.startPage }" end="${ pi.endPage }">
-																<c:if test="${ p eq currentPage }">
-																	<font color="red" size="4"><b>[${ p }]</b></font>
-																</c:if>
-																
-																<c:if test="${ p ne currentPage }">
-																	<c:url var="pagination" value="adminMlist.dr">
-																		<c:param name="page" value="${ p }"/>
-																	</c:url>
-																	<a href="${ pagination }">${ p }</a> &nbsp;
-																</c:if>
-															</c:forEach>
-															
-															<!-- [다음] -->
-															<c:if test="${ pi.currentPage >= pi.maxPage }">
-																[다음]
-															</c:if>
-															<c:if test="${ pi.currentPage < pi.maxPage }">
-																<c:url var="after" value="adminMlist.dr">
-																	<c:param name="page" value="${ pi.currentPage + 1 }"/>
-																</c:url> 
-																<a href="${ after }">[다음]</a>
-															</c:if>
-														</td>
-													</tr>
-												</table>
-											</div>
-										</div>
-									</div>
+
 								</div>
 							</div>
 						</div>
@@ -301,17 +217,21 @@
 
 	<!-- Page level plugins -->
 	<script src="resources/vendor/chart.js/Chart.min.js"></script>
+	<script src="resources/vendor/datatables/jquery.dataTables.js"></script>
+	<script src="resources/vendor/datatables/dataTables.bootstrap4.js"></script>
 
 	<!-- Page level custom scripts -->
 	<script src="resources/js/demo/chart-area-demo.js"></script>
 	<script src="resources/js/demo/chart-pie-demo.js"></script>
 
+	<!-- Demo scripts for this page-->
+	<script src="resources/js/demo/datatables-demo.js"></script>
 	<script>
-		$(function(){
-			$("#blackListBtn").on("click", function(){
-				if(confirm("블랙리스트로 등록 하시겠습니까?")){
+		$(function() {
+			$("#blackListBtn").on("click", function() {
+				if (confirm("블랙리스트로 등록 하시겠습니까?")) {
 				}
-			});		
+			});
 		});
 	</script>
 

@@ -60,13 +60,14 @@ $(function(){
             $(this).parent().parent().next().children().eq(1).children().show();
         }
     });
+    
     // 주소검색 API 팝업 호출
-    $("#postcodify_search_button1").postcodifyPopUp({
+    $(".inputAddr1 *").postcodifyPopUp({
         insertPostcode5 :"#postCode1",
         insertAddress : "#ship1Address1",
         insertDetails: "#ship1Address2"
     });
-    $("#postcodify_search_button2").postcodifyPopUp({
+    $(".inputAddr2 *").postcodifyPopUp({
         insertPostcode5 :"#postCode2",
         insertAddress : "#ship2Address1",
         insertDetails: "#ship2Address2"

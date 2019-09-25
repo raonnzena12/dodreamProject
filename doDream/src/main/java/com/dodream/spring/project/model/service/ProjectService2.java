@@ -22,4 +22,18 @@ public interface ProjectService2 {
 	 */
 	int insertProjectLike(Like like);
 
+	/**
+	 * 프로젝트 좋아요 조회
+	 * @param pno
+	 * @return like
+	 */
+	Like selectLike(Like like);
+
+	/**
+	 * 프로젝트 좋아요 취소
+	 * @param like
+	 * @return like
+	 */
+	int deleteLike(Like like);
+
 }

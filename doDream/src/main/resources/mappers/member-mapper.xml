@@ -47,6 +47,28 @@
 		INSERT INTO USER_TB(USER_NO, USER_EMAIL, USER_NICKNAME, USER_PWD)
 		VALUES(SEQ_USER_NO.NEXTVAL, #{userEmail}, #{userNickname}, #{userPwd})
 	</insert>
+	
+	<!-- 로그인 유지 -->
+<!-- 	<update id="keepLogin">
+		UPDATE AUTOLOGIN
+		SET AUTO_SESSIONKEY = #{sessionid},
+		AUTO_SESSIONLIMIT = #{limit}
+		WHERE USER_NO = #{userNo}		
+	</update> -->
+
+	<!-- 회원정보 수정 -->
+	<update id="updateMember" parameterType="Member">
+		UPDATE USER_TB
+		SET USER_NICKNAME = #{userNickname},
+		USER_ADDR = #{userAddress},
+		USER_PHONE = #{userPhone},
+		<if test = "userProfileImage != userProfileImage">
+		USER_PF_IMG = #{userProfileImage},
+		</if>
+		USER_SELF = #{userSelf},
+		USER_MF_DT = SYSDATE	
+		WHERE USER_NO = #{userNo}
+	</update>
 
 	<insert id="countVisitToday" parameterType="_int">
 		INSERT INTO DAYCOUNT
@@ -57,7 +79,8 @@
   
 	<select id="checkVisitToday" parameterType="_int" resultType="_int">
 		SELECT COUNT(*) FROM DAYCOUNT
-		WHERE USER_NO = #{userNo}
+		WHERE USER_NO = #{userNo}		
 	</select>
+	
   
 </mapper>

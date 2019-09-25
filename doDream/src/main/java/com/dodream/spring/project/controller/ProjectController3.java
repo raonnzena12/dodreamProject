@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.dodream.spring.common.Pagination;
 import com.dodream.spring.project.model.service.ProjectService;
 import com.dodream.spring.project.model.vo.Project;
+import com.dodream.spring.project.model.vo.Reward;
 
 @Controller
 public class ProjectController3 {
@@ -33,15 +34,16 @@ public class ProjectController3 {
 	}
 	
 	// 펀딩 결제창 확인용 임시 매핑
-	// 지우지 말아주세요 (HSH)
-	@RequestMapping("temp.dr")
+	@RequestMapping("letsFunding.dr")
 	public String tmp(Model model) {
 		int pNo = 54; // projectNumber
-		int selectReward1 = 2;
-		int selectReward2 = 7;
+		String rewardStr = "4/6/7/";
 		int addtionalFunding = 10000;
 		
 		Project prj = pService.selectProject(pNo);
+		ArrayList<Reward> rList = pService.selectRewardList(rewardStr);
+		
+		model.addAttribute("rList", rList);
 		
 		return "project/fundingInfo";
 	}
