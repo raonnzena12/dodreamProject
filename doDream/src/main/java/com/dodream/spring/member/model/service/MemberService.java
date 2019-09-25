@@ -1,6 +1,11 @@
 package com.dodream.spring.member.model.service;
 
+
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.web.multipart.MultipartFile;
 
 import com.dodream.spring.member.model.vo.Member;
 
@@ -32,4 +37,10 @@ public interface MemberService {
 	 * @return result
 	 */
 	public abstract int checkVisitToday(int userNo);
+
+	public abstract int updateMember(Member mem, HttpServletRequest request, MultipartFile userProfileImage);
+
+	
+
+	/* public abstract void keepLogin(int userNo, String sessionid, Date limit); */
 }

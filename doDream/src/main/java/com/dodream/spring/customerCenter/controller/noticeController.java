@@ -27,7 +27,7 @@ public class noticeController {
 		ArrayList<Notice> list = nService.selectList();
 
 		if (list != null) {
-			mv.addObject("nList", nList);
+			mv.addObject("nList", list);
 			mv.setViewName("customerCenter/notice");
 		} else {
 			mv.addObject("msg", "공지사항 목록 조회 실패");

@@ -24,21 +24,21 @@
 	</beans:bean>
 	
 		<!-- 로그인 인터셉터 적용 -->
- 		<interceptors>
+<!--  		<interceptors>
        		<interceptor>
             <mapping path="/login.dr"/>
             <beans:bean class="com.dodream.spring.common.interceptor.LoginInterceptor" id="loginInterceptor"/>
          	</interceptor>
-      </interceptors>
+      </interceptors> -->
       
       <!-- 로그인이 필요한 권한 인터셉터 작동 매핑하기 -->
-      <interceptors>
+<!--       <interceptors>
        		<interceptor>
             <mapping path="/mypage.dr"/>
-            <!-- 추가추가 -->
+            추가추가
             <beans:bean class="com.dodream.spring.common.interceptor.AuthInterceptor" id="authInterceptor"/>
          	</interceptor>
-      </interceptors>
+      </interceptors> -->
 
 	<context:component-scan base-package="com.dodream.spring" />
 	

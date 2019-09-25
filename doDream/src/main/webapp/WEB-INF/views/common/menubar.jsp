@@ -25,6 +25,10 @@
 <script src="resources/js/menubar.js"></script>
 <!-- Swal 추가 -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+
+	<!-- 주소 api -->
+	<script src="//cdn.poesis.kr/post/search.min.js"></script>
+
 <style>
 	* {
 		box-sizing: border-box;
@@ -105,12 +109,17 @@
 					</c:if>  
 					<!-- 로그인 시 출력 -->
 					<c:if test="${ !empty sessionScope.loginUser }">
-						<c:out value="${ loginUser.userNickname }님 환영합니다"/>
+						<c:out value="${ loginUser.userNickname }님 환영합니다!"/>
 					</c:if>
 				</span>
-				<c:if test="${empty loginUser.userProfileImage}">
-				<i class="material-icons">account_circle</i>
-				</c:if>
+					<div style="display: inline-block;">
+					<c:if test="${empty loginUser.userProfileImage}">
+					<i class="material-icons">account_circle</i>
+					</c:if>
+					<c:if test="${! empty loginUser.userProfileImage }">
+						<img alt="프로필사진" src="resources/userProfileImage/${loginUser.userProfileImage}" class="rounded-circle float-sm" style="width: 24px; height: 24px;" id="userProfileImage_sm" name="userProfileImage"/>
+					</c:if>
+					</div>
 			</a>
 			<div class="loginmenu" id="veil"></div>
 			<!-- 비로그인 시 메뉴창 출력 -->
@@ -158,11 +167,16 @@
 						<div class="container-fluid" id="myinfoOuter">
 							<div class="row">
 								<div class="hr-sect">MY INFO</div>
-								<div class="col-md-12">
-									<h4 class="text-center">${ loginUser.userNickname }님 
-										<img alt="프로필사진" src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg" class="rounded-circle rounded-circle float-sm ml-3" id="userProfileImage"/>
-									</h4>
-									<!-- ${loginUser.userProfileImage } -->
+								<div class="col-md-12 text-center">
+									<span class="text-left">${ loginUser.userNickname }님</span>
+									<div style="display: inline-block;">
+									<c:if test="${empty loginUser.userProfileImage}">
+									<img alt="프로필사진" src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg" class="rounded-circle float-sm ml-3"/>
+									</c:if>
+									<c:if test="${! empty loginUser.userProfileImage}">
+									<img alt="프로필사진" src="resources/userProfileImage/${loginUser.userProfileImage}" class="rounded-circle float-sm" style="width: 40px; height: 40px;"/>
+									</c:if>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -192,7 +206,7 @@
 								<div class="col-md-12 text-center">
 								<c:url var="mypage" value="mypage.dr"/>
 								<c:url var="logout" value="logout.dr"/>
-								<button class="btn btn-sm mb-2" id="mypagebtn"onclick="location.href='${mypage}'">정보수정</button>
+								<button class="btn btn-sm mb-2" id="mypagebtn"onclick="location.href='${mypage}'">My Page</button>
 								&nbsp; &nbsp;
 								<button class="btn btn-sm mb-2" id="logoutbtn" onclick="location.href='${logout}'">로그아웃</button>
 								</div>

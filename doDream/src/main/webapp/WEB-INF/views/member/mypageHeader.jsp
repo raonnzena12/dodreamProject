@@ -10,6 +10,8 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"/>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"/> -->
 	<link rel="stylesheet" href="resources/css/mypageHeader.css">
+	
+
 </head>
 <body>
 	<jsp:include page="../common/menubar.jsp" /> <!-- 페이지위치 변경하기 -->
@@ -40,10 +42,10 @@
 				<div id="pfImgOuter">
 					<a href="myInfo.dr">
 					<c:if test="${ empty loginUser.userProfileImage }">
-					<img alt="프로필사진" src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg" class="rounded-circle " id="userProfileImage"/>
+					<img alt="프로필사진" src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg" class="rounded-circle " id="userProfileImage" name="userProfileImage" />
 					</c:if>
 					<c:if test="${ !empty loginUser.userProfileImage }">
-					<img alt="프로필사진" src="${loginUser.userProfileImage}" class="rounded-circle " id="userProfileImage"/>
+					<img alt="프로필사진" src="${contextPath}/resources/userProfileImage/${loginUser.userProfileImage}" class="rounded-circle" id="userProfileImage" name="userProfileImage"/>
 					</c:if>					
 					<img src="resources/images/settings_icon.png" class="float-sm align-top" id="setting" style="width: 35px;"/>
 					</a>
