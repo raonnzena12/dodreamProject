@@ -2,9 +2,12 @@ package com.dodream.spring.project.model.service;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.web.multipart.MultipartFile;
 
 import com.dodream.spring.project.model.vo.Project;
+import com.dodream.spring.project.model.vo.Reward;
 import com.dodream.spring.project.model.vo.RewardList;
 
 public interface ProjectService {
@@ -30,17 +33,22 @@ public interface ProjectService {
 	 * @return pNo
 	 */
 	public abstract int createProjectNumber();
-
+	
 	/**
-	 * 프로젝트 등록을 수행해주는 Service입니다.
-	 * @param project
-	 * @param rList
-	 * @param uploadfile1
-	 * @param uploadfile2
+	 * 리워드를 DB에 저장시키기 위한 Service입니다.
+	 * @param reward
 	 * @return result
 	 */
-	public abstract int insertProject(Project project, RewardList rList, MultipartFile uploadfile1,
-			MultipartFile uploadfile2);
+	public abstract int insertReward(Reward reward);
+
+	/**
+	 * 프로젝트를 DB에 저장시키기 위한 Service입니다.
+	 * @param project
+	 * @param request
+	 * @return result;
+	 */
+	public abstract int insertProject(Project project, HttpServletRequest request);
+
 
 
 }

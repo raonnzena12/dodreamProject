@@ -30,6 +30,7 @@
 		<result property="pDDay" column="D_DAY"/>
 		<result property="pCurrentFunding" column="TOTAL" />
 		<result property="pOpenCount" column="PROJECT_OPEN_COUNT" />
+		<result property="pArtistIntroduction" column="PROJECT_AT_INT" />
 	</resultMap>
 	
 	<resultMap type="Reward" id="rewardResultSet">
@@ -49,6 +50,16 @@
 		<id property="likeNo" column="LIKE_USER"/>
 		<result property="likePrNo" column="LIKE_PRJ"/>
 	</resultMap>
+	
+	<!-- 프로젝트 등록  -->
+	<insert id="insertProject" parameterType="Project">
+		INSERT INTO PROJECT_TB VALUES( 
+			#{pNo}, #{pTitle}, #{pSTitle}, #{pGoal}, #{pThumbImage}, #{pStartDate}, #{pCloseDate},
+			#{pHashTag}, #{pMainImage}, #{pSummaryText}, #{pStory}, #{pArtistName}, #{pArtistPFImage},
+			#{pArtistSns1}, #{pArtistSns2}, #{pArtistPhone}, #{pArtistEmail}, SYSDATE, SYSDATE, #{pWritter}, #{pCategoryNum}, 
+			#{pStatusNum}, DEFAULT, #{pArtistIntroduction}
+		)
+	</insert>
 	
 	<!-- 프로젝트 디테일 조회용 쿼리 -->
 	<select id="selectProject" parameterType="_int" resultMap="projectResultSet">
@@ -104,10 +115,20 @@
 	<select id="createProjectNumber" resultType="_int">
 		SELECT SEQ_PROJ_NO.NEXTVAL FROM DUAL
 	</select>
-  
+	
+	<!-- 리워드 등록 -->
+  	<insert id="insertReward" parameterType="Reward">
+  		INSERT INTO REWARD VALUES( 
+  		SEQ_RWD_NO.NEXTVAL, #{rPrice}, #{rName}, #{rExplain},
+  		#{rLimit}, #{rShipCDT}, #{rShipDate}, #{rOptionAdd},
+  		#{rRefPno}, #{rOptionNo}, #{rLimit}  
+  		)
+  	</insert>
 	<!-- ========================Like============================ -->
 	
 	<insert id="insertProjectLike" parameterType="Like">
 		INSERT INTO LIKE_TB VALUES(#{likeNo}, #{likePrNo})
 	</insert>
+	
+	
 </mapper>
