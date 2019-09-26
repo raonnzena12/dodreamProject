@@ -1,6 +1,7 @@
 package com.dodream.spring.project.model.service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -36,9 +37,6 @@ public class ProjectServiceImpl implements ProjectService {
 			
 			System.out.println(prj);
 		}
-		
-		
-		
 		return prj;
 	}
 
@@ -70,5 +68,12 @@ public class ProjectServiceImpl implements ProjectService {
 	public int insertProject(Project project, HttpServletRequest request) {
 		// 파일 저장 해야함
 		return pDao.insertProject(project);
+	}
+
+	@Override
+	public ArrayList<Reward> selectRewardList(String rewardStr) {
+		String[] rewardTmp = rewardStr.split("/");
+		ArrayList<String> rewardList = new ArrayList<>(Arrays.asList(rewardTmp));
+		return pDao.selectRewardList(rewardList);
 	}
 }

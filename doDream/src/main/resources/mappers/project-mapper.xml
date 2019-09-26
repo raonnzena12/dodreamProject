@@ -22,7 +22,7 @@
 		<result property="pArtistEmail" column="PROJECT_AT_EM" />
 		<result property="pEnrollDate" column="PROJECT_ER_DT" />
 		<result property="pModifyDate" column="PROJECT_MF_DT" />
-		<result property="pWritter" column="PROJECT_WRITER" />
+		<result property="pWriter" column="PROJECT_WRITER" />
 		<result property="pCategoryNum" column="PROJECT_CT_NO" />
 		<result property="pCategoryName" column="PROJECT_CT_NAME" />
 		<result property="pStatusNum" column="PROJECT_ST_NO" />
@@ -79,19 +79,22 @@
 	<select id="selectPrjList" resultMap="projectResultSet" parameterType="string">
 	 	SELECT * FROM PROJECT_LIST_VIEW
 	 	<choose>
-	 		<when test="category == 'music'">
+	 		<when test="_parameter.equals('total')">
+	 		WHERE PROJECT_CT_NO IN ( 1, 2, 3, 4, 5 )
+	 		</when>
+	 		<when test="_parameter.equals('music')">
 		 	WHERE PROJECT_CT_NO = 1
 	 		</when>
-	 		<when test="category == 'movie'">
+	 		<when test="_parameter.equals('movie')">
 	 		WHERE PROJECT_CT_NO = 2
 	 		</when>
-	 		<when test="category == 'play'">
+	 		<when test="_parameter.equals('play')">
 	 		WHERE PROJECT_CT_NO = 3
 	 		</when>
-	 		<when test="category == 'art'">
+	 		<when test="_parameter.equals('art')">
 	 		WHERE PROJECT_CT_NO = 4
 	 		</when>
-	 		<when test="category == 'etc'">
+	 		<when test="_parameter.equals('etc')">
 	 		WHERE PROJECT_CT_NO = 5
 	 		</when>
 	 	</choose>
@@ -126,9 +129,29 @@
   	</insert>
 	<!-- ========================Like============================ -->
 	
+	<!-- 좋아요 등록 -->
 	<insert id="insertProjectLike" parameterType="Like">
 		INSERT INTO LIKE_TB VALUES(#{likeNo}, #{likePrNo})
 	</insert>
 	
+	<!-- 좋아요 조회 -->
+	<select id="selectLike" parameterType="Like" resultMap="likeResultSet">
+		SELECT * FROM LIKE_TB WHERE LIKE_USER=#{likeNo} AND LIKE_PRJ=#{likePrNo}
+	</select>
 	
+	<!-- 좋아요 취소 -->
+	<delete id="deleteLike" parameterType="Like">
+		DELETE FROM LIKE_TB WHERE LIKE_USER=#{likeNo} AND LIKE_PRJ=#{likePrNo}
+	</delete>
+	
+	<!-- 리워드 리스트 셀렉하는 쿼리문 -->
+	<select id="selectRewardList" parameterType="java.util.HashMap" resultMap="rewardResultSet">
+		SELECT * FROM REWARD
+		WHERE REWARD_AMOUNT > 0 AND
+		REWARD_NO IN
+		<foreach collection="list" item="num" index="index" open="(" close=")" separator=",">
+			#{ num }
+		</foreach>
+		ORDER BY REWARD_NO ASC
+	</select>
 </mapper>

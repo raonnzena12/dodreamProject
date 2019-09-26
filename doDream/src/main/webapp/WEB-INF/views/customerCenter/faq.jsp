@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -8,7 +9,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>공지사항</title>
+<title>FAQ</title>
 <jsp:include page="../common/menubar.jsp"></jsp:include>
 <meta name="description"
 	content="Source code generated using layoutit.com">
@@ -68,7 +69,7 @@
 		<div class="sticky-top row">
 			<div class="col-md-12 ">
 				<ul class="nav" style="background-color: #E1F5A9;">
-					<li class="nav-item"><a class="nav-link" href="notice.dr">공지사항</a></li>
+					<li class="nav-item"><a class="nav-link" href="cCenter.dr">공지사항</a></li>
 					<li class="nav-item"><a class="nav-link" href="T_O_Service.dr">이용약관</a></li>
 					<li class="nav-item"><a class="nav-link" href="fReview.dr">펀딩후기</a></li>
 					<li class="nav-item"><a class="nav-link" href="faq.dr">FAQ</a></li>
@@ -81,11 +82,18 @@
 					<div class="col-md-12" id="faqTitle">
 						<h3>FAQ</h3>
 					</div>
-					<div id="faqSearch">
-						<form class="form-inline">
-							<input class="form-control mr-sm-2" type="text" />
-							<button class="btn btn-primary my-2 my-sm-0" type="submit">
-								Search</button>
+					<!-- 검색 창 -->
+					<div id="faqSearch">	
+						<form class="form-inline" action="nsearch.dr" name="searchForm" method="get">
+			
+							<select id="searchCondition" name="searchCondition">
+								<option value="all" <c:if test="${search.searchCondition == 'all'}">selected</c:if> >전체</option>
+								<option value="title" <c:if test="${search.searchCondition == 'title'}">selected</c:if> >제목</option>
+								<option value="content" <c:if test="${search.searchCondition == 'content'}">selected</c:if> >내용</option>
+							</select>
+							
+							<input class="form-control mr-sm-2" type="search" name="searchValue" value="${search.searchValue}">
+							<button class="btn btn-primary my-2 my-sm-0">검색</button><br>
 						</form>
 					</div>
 				</div>
@@ -97,45 +105,37 @@
 				<!-- 공지사항 제목, 내용부분 / 악코디언 부분 -->
 				<div id="card-611390">
 					<!-- 내용을 묶는 틀 -->
+					<c:if test="${ !empty fList }">
+					<c:forEach var="f" items="${ fList }">
+						<div class="card">
+						
+							<div class="card-header">
+								<a class="card-link collapsed" href="#card-${f.fNo}"
+									data-toggle="collapse"> 
+									${f.fTitle}
+								</a>
+							</div>
+							<div class="collapse content" id="card-${f.fNo}">
+								<div class="card-body">${f.fContent }</div>
+							</div>
+						</div>
+					</c:forEach>
+					</c:if>
+					<c:if test="${ empty fList }">
 					<div class="card">
-						<div class="card-header">
-							<a class="card-link collapsed" href="#card-element-01"
-								data-toggle="collapse" data-parent="#card-611390"> [투자]
-								함께하고, 떠나세요. 가을 한정 특별 이벤트!</a>
+						
+							<div class="card-header">
+								<a class="card-link collapsed" href="#card-01"
+									data-toggle="collapse"> 
+									해당 검색 내용이 없습니다.
+								</a>
+							</div>
+							<div class="collapse content show" id="card-01">
+								<div class="card-body">다시 입력하시기 바랍니다.</div>
+							</div>
 						</div>
-						<div class="collapse" id="card-element-01">
-							<div class="card-body">Anim pariatur cliche...</div>
-						</div>
-					</div>
-					<div class="card">
-						<div class="card-header">
-							<a class="card-link" href="#card-element-02"
-								data-toggle="collapse" data-parent="#card-611390"> [W9] 전세계가
-								사랑한 아티스트 데이비드 호크니 작품을 프라이빗하게 즐겨보세요!</a>
-						</div>
-						<div class="collapse show" id="card-element-02">
-							<div class="card-body">Anim pariatur cliche...</div>
-						</div>
-					</div>
-					<div class="card">
-						<div class="card-header">
-							<a class="card-link" href="#card-element-03" data-toggle="collapse"
-								data-parent="#card-611390"> [투자] 제 2회 뉴딜로 희망드림 투자형 크라우드펀딩
-								지원사업!</a>
-						</div>
-						<div class="collapse" id="card-element-03">
-							<div class="card-body">Anim pariatur cliche...</div>
-						</div>
-					</div>
-					<div class="card">
-						<div class="card-header">
-							<a class="card-link" href="#card-element-04" data-toggle="collapse"
-								data-parent="#card-611390"> [리워드] 메이커들을 위한 9월 앵콜펀딩 혜택전 1차</a>
-						</div>
-						<div class="collapse" id="card-element-04">
-							<div class="card-body">Anim pariatur cliche...</div>
-						</div>
-					</div>
+					</c:if>
+					
 				</div>
 			</div>
 		</div>

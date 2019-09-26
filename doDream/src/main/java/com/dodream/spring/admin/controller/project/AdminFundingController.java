@@ -23,14 +23,11 @@ public class AdminFundingController {
 	@RequestMapping("adminFlist1.dr")
 	public ModelAndView FundingListView1(ModelAndView mv, Integer page) {
 		
-		int currentPage = page == null ? 1 : page;
-		
 		// 프로젝트 목록 조회
-		ArrayList<Project> list = aService.selectProjectList(currentPage);
+		ArrayList<Project> list = aService.selectProjectList1();
 		
 		if(list != null) {
 			mv.addObject("list", list).
-			addObject("pi", AdminPagination.getPageInfo()).
 			setViewName("admin/project/fundingViewList1");
 		} else {
 			mv.addObject("msg", "등록된 프로젝트가 없습니다.").
@@ -39,14 +36,55 @@ public class AdminFundingController {
 		return mv;
 	}
 	
+	// 심사 완료된 목록 보여주기
 	@RequestMapping("adminFlist2.dr")
-	public String FundingListView2() {
-		return "admin/project/fundingViewList2";
+	public ModelAndView FundingListView2(ModelAndView mv, Integer page) {
+		
+		// 프로젝트 목록 조회 
+		ArrayList<Project> list = aService.selectProjectList2();
+		
+		if(list != null) {
+			mv.addObject("list", list).
+			setViewName("admin/project/fundingViewList2");
+		} else {
+			mv.addObject("msg", "등록된 프로젝트가 없습니다.").
+			setViewName("admin/project/fundingViewList2");
+		}
+		return mv;
 	}
 	
+	// 오픈 중 목록 보여주기
 	@RequestMapping("adminFlist3.dr")
-	public String FundingListView3() {
-		return "admin/project/fundingViewList3";
+	public ModelAndView FundingListView3(ModelAndView mv, Integer page) {
+		
+		// 프로젝트 목록 조회
+		ArrayList<Project> list = aService.selectProjectList3();
+		
+		if(list != null) {
+			mv.addObject("list", list).
+			setViewName("admin/project/fundingViewList3");
+		} else {
+			mv.addObject("msg", "등록된 프로젝트가 없습니다.").
+			setViewName("admin/project/fundingViewList3");
+		}
+		return mv;
+	}
+	
+	// 마감된 목록 보여주기
+	@RequestMapping("adminFlist4.dr")
+	public ModelAndView FundingListView4(ModelAndView mv, Integer page) {
+		
+		// 프로젝트 목록 조회
+		ArrayList<Project> list = aService.selectProjectList4();
+		
+		if(list != null) {
+			mv.addObject("list", list).
+			setViewName("admin/project/fundingViewList4");
+		} else {
+			mv.addObject("msg", "등록된 프로젝트가 없습니다.").
+			setViewName("admin/project/fundingViewList4");
+		}
+		return mv;
 	}
 	
 	@ResponseBody

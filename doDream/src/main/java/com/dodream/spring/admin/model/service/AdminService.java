@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.dodream.spring.member.model.vo.Member;
 import com.dodream.spring.project.model.vo.Project;
+import com.dodream.spring.reserve.model.vo.Reserve;
 
 public interface AdminService {
 
@@ -41,19 +42,53 @@ public interface AdminService {
 	 * @param currentPage
 	 * @return ArrayList
 	 */
-	public abstract ArrayList<Member> selectMemberList(int currentPage);
+	public abstract ArrayList<Member> selectMemberList();
 
 	/** 블랙리스트 Service( 페이징 처리)
-	 * @param currentPage
 	 * @return ArrayList
 	 */
-	public abstract ArrayList<Member> selectBlackList(int currentPage);
+	public abstract ArrayList<Member> selectBlackList();
 
-	/** 프로젝트 목록 Service(심사중)
-	 * @param currentPage
+	/** 프로젝트 목록 Service(심사 대기 중)
 	 * @return ArrayList
 	 */
-	public abstract ArrayList<Project> selectProjectList(int currentPage);
+	public abstract ArrayList<Project> selectProjectList1();
+
+	/** 프로젝트 목록 Service(심사 완료된)
+	 * @return ArrayList
+	 */
+	public abstract ArrayList<Project> selectProjectList2();
+	
+	/** 프로젝트 목록 Service(오픈중)
+	 * @return ArrayList
+	 */
+	public abstract ArrayList<Project> selectProjectList3();
+	
+	/** 프로젝트 목록 Service(마감된)
+	 * @return ArrayList
+	 */
+	public abstract ArrayList<Project> selectProjectList4();
+
+	/** 주문 예약 개수 Service
+	 * @return int
+	 */
+	public abstract int countReserve1();
+	
+	/** 결제 완료 개수 Service
+	 * @return int
+	 */
+	public abstract int countReserve2();
+	
+	/** 예약 취소 개수 Service
+	 * @return int
+	 */
+	public abstract int countReserve3();
+
+	/** 주문 예약 현황 Service
+	 * @return list
+	 */
+	public abstract ArrayList<Reserve> selectReserveList1();
+	
 
 
 }

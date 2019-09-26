@@ -39,7 +39,7 @@ public class Project {
 			String pThumbImage, Date pStartDate, Date pCloseDate, String pDDay, String pHashTag, String pMainImage,
 			String pSummaryText, String pStory, String pArtistName, String pArtistIntroduction, String pArtistPFImage,
 			String pArtistSns1, String pArtistSns2, String pArtistPhone, String pArtistEmail, Date pEnrollDate,
-			Date pModifyDate, int pWritter, int pCategoryNum, String pCategoryName, int pStatusNum, int pCount) {
+			Date pModifyDate, int pWritter, int pCategoryNum, String pCategoryName, int pStatusNum, int pCount, int pOpenCount) {
 		super();
 		this.pNo = pNo;
 		this.pTitle = pTitle;

@@ -25,7 +25,7 @@
          <div class="col-md-10" id="categoryTopMenu">
             <span class="font15">당신의 마음을 두드릴 아티스트를 찾아보세요</span>
             <div id="categoryArea" class="my-5">
-               <input type="radio" name="category" id="all" value="all" checked><label for="all">전체</label>
+               <input type="radio" name="category" id="total" value="total" checked><label for="total">전체</label>
                <input type="radio" name="category" id="music" value="music"><label for="music">음악</label>
                <input type="radio" name="category" id="movie" value="movie"><label for="movie">영화</label>
                <input type="radio" name="category" id="play" value="play"><label for="play">연극</label>
@@ -72,23 +72,16 @@
                               <img src="resources/projectImg/thumbnail/${ prj.pThumbImage }">
                            </div>
                            <div class="nameArea">
-                              <span class="categoryName">${ prj.pCategoryName }</span><br>
+                              <p class="categoryName mb-0">${ prj.pCategoryName }</p>
                               <span class="fundName">
-                                 <c:choose>
-                                    <c:when test="${ fn:length(prj.pTitle) > 10 }">
-                                    ${ fn:substring(prj.pTitle,0,10) }…
-                                    </c:when>
-                                    <c:otherwise>
-                                    ${ prj.pTitle }
-                                    </c:otherwise>
-                                 </c:choose>
+                                 ${ prj.pTitle }
                               </span>
                            </div>
                            <div class="heartIcon">
                               <i class="material-icons heart-fund">favorite_border</i>
                            </div>
                            <div class="detailArea my-1">
-                              <span class="detailText">
+                              <!-- <span class="detailText">
                                  <c:choose>
                                     <c:when test="${ fn:length(prj.pSummaryText) > 45 }">
                                     ${ fn:substring(prj.pSummaryText,0,60) }…
@@ -97,7 +90,7 @@
                                     ${ prj.pSummaryText }
                                     </c:otherwise>
                                  </c:choose>
-                              </span>
+                              </span> -->
                            </div>
                            <div class="chartArea px-3 mt-2">
                               <div class="chartInfo clearfix">
@@ -128,6 +121,9 @@
                   </div>
                   </c:forEach>
                </div>
+               <div class="text-center">
+                  <img src="resources/images/loadingSpin.gif" id="loadingImg">
+               </div>
             </div>
             <div class="col-md-1">
             </div>
@@ -152,7 +148,7 @@ $(function() {
       if ( icheck == 'favorite_border') {
             $(this).children().text('favorite');
             $("body div[data-name='mojs-shape']").css({"z-index":"0","cursor":"pointer"});
-            const coords = { x: $(this).offset().left+28, y: $(this).offset().top+18};
+            const coords = { x: $(this).offset().left+15, y: $(this).offset().top+18};
             burst.tune(coords).replay();
             circle.tune( coords ).replay();
             /* 이펙트 실행후 이펙트 플레이 div를 아래로 숨겨준다 */
@@ -175,21 +171,20 @@ function loadList() {
 // 펀드 리스트 출력하는 함수(수정중)
 function printFunds(list) {
    var $resultPrint = $(".resultPrint");
-   $resultPrint.html("");
 
    $.each(list, function(i){
       var $conDiv = $("<div>");
       // 펀딩 인덱스 아이디로 추가할 것
-      var $fundCon = $("<div>").addClass("fundCon").attr("id",list[i]);
-      var $fundItem = $("<div>").addClass("fundItem");
+      var $fundCon = $("<div>").addClass("fundCon");
+      var $fundItem = $("<div>").addClass("fundItem").attr("id",list[i].pNo);
       var $fundImg = $("<div>").addClass("fundImg");
       // 이미지 url 지정할것
-      var $img = $("<img>").attr("src", list[i]);
+      var $img = $("<img>").attr("src", "resources/projectImg/thumbnail/"+list[i].pThumbImage);
       $fundImg.append($img);
       var $nameArea = $("<div>").addClass("nameArea");
       // 들어갈 텍스트들 지정할 것
-      var $categoryName = $("<span>").addClass("categoryName").text(list[i]);
-      var $fundName = $("<span>").addClass("fundName").text(list[i]);
+      var $categoryName = $("<p>").addClass("categoryName mb-0").text(list[i].pCategoryName);
+      var $fundName = $("<span>").addClass("fundName").text(list[i].pTitle);
       $nameArea.append($categoryName,$fundName);
       // 하트 누른 값에따라 채워진 하트/빈하트 구분
       var $heartIcon = $("<div>").addClass("heartIcon");
@@ -201,18 +196,18 @@ function printFunds(list) {
       }
       $heartIcon.append($heart_fund);
       var $detailArea = $("<div>").addClass("detailArea my-1");
-      var $detailText = $("<span>").addClass("detailText").text(list[i]);
+      var $detailText = $("<span>").addClass("detailText")/*.text(list[i].pSummaryText)*/;
       $detailArea.append($detailText);
       var $chartArea = $("<div>").addClass("chartArea px-3 mt-2");
       var $chartInfo = $("<div>").addClass("chartInfo clearfix")
-      var $chartInfo1 = $("<span>").addClass("chartInfo1").text(list[i]);
-      var $chartInfo2 = $("<span>").addClass("chartInfo2").text(list[i]);
+      var $chartInfo1 = $("<span>").addClass("chartInfo1").text("￦"+addComma(list[i].pCurrentFunding));
+      var $chartInfo2 = $("<span>").addClass("chartInfo2").text(Math.floor((list[i].pCurrentFunding/list[i].pGoal)*100)+"%");
       $chartInfo.append($chartInfo1, $chartInfo2);
       var $chartBar = $("<div>").addClass("chartBar");
       // 진행바 가로길이 지정
-      var $purpleBar = $("<div>").addClass("purpleBar").css("width", list[i]);
+      var $purpleBar = $("<div>").addClass("purpleBar").css("width", (list[i].pCurrentFunding/list[i].pGoal)*100+"%");
       $chartBar.append($purpleBar);
-      var $chartDate = $("<div>").addClass("chartDate").text(list[i]);
+      var $chartDate = $("<div>").addClass("chartDate").text(list[i].pDDay+"일 남음");
       $chartArea.append($chartInfo,$chartBar,$chartDate);
       $fundItem.append($fundImg,$nameArea,$heartIcon,$detailArea,$chartArea);
       $fundCon.append($fundItem);
@@ -220,27 +215,35 @@ function printFunds(list) {
       $resultPrint.append($conDiv);
    });
 }
+// 컴마 추가하는 함수
+function addComma(num) { 
+  var regexp = /\B(?=(\d{3})+(?!\d))/g;
+  return num.toString().replace(regexp, ',');
+}
+
 function listLoading() {
    if ( currentPage == maxPage ) {
       console.log(currentPage);
       return false;
    }
-   console.log("curP: " +currentPage);
-   console.log("maxP: " +maxPage);
+   // console.log("curP: " +currentPage);
+   // console.log("maxP: " +maxPage);
    currentPage += 1;
+   var selectCate = $("input[name=category]:checked").val();
+
+   console.log("리스트 로딩중 " + selectCate);
    
    $.ajax({
       url: "loadListByAjax.dr",
       type: "GET",
       data: { page: currentPage,
-              cate: "total" },
+              cate: selectCate },
       dataType: "json",
       error: function(e){
          console.log(e);
       },
       success: function(pList){
-         console.log(pList);
-         printList(pList);
+         printFunds(pList);
       }
    });
 }
@@ -253,14 +256,31 @@ $(function(){
       // console.log($(window).scrollTop() >= ($(document).height() - $(window).height() - 0.5));
       if($(window).scrollTop() >= ($(document).height() - $(window).height()-0.5 ) ) {
          if ( currentPage == maxPage ) return false;
-         console.log("aaa");
-         // $("#loadingImg").css("opacity","1");
-         // setTimeout(function(){
+         var oldDocHei = $(document).height();
+         $("#loadingImg").css("opacity","1");
+         setTimeout(function(){
          listLoading();
-         //    $("#loadingImg").css("opacity","0");
-         // },500);
+         $("#loadingImg").css("opacity","0");
+         $(window).scrollTop(oldDocHei-($(window).height()+($(window).height()/4)));
+         },500);
       } 
    });
+   $("#categoryArea input").on("change", function(){
+      var selectCate = $("input[name=category]:checked").val();
+      currentPage = 1;
+      $.ajax({
+         url: "loadListByAjax.dr",
+         data: { cate: selectCate,
+                 page: currentPage },
+         dataType: "JSON",
+         error: function(e){ console.log(e); },
+         success: function(pList) {
+            $(".resultPrint").html("");
+            printFunds(pList);
+         }
+      });
+   });
+
 })
 
 </script>

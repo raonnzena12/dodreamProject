@@ -14,19 +14,14 @@ import com.dodream.spring.customerCenter.model.vo.Notice;
 public class noticeController {
 
 	@Autowired
-	private noticeService nService;
-
-	@RequestMapping("cCenter.dr")
-	public String tmp() {
-		return "customerCenter/notice";
-	}
+	private noticeService noticeService;
   
-	@RequestMapping("notice.dr")
+	@RequestMapping("cCenter.dr")
 	public ModelAndView noticeList(ModelAndView mv) {
 
-		ArrayList<Notice> list = nService.selectList();
-
-		if (list != null) {
+		ArrayList<Notice> nList = noticeService.selectList();
+		
+		if (nList != null) {
 			mv.addObject("nList", nList);
 			mv.setViewName("customerCenter/notice");
 		} else {

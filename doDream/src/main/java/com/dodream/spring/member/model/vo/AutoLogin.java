@@ -40,7 +40,7 @@ public class AutoLogin {
 	
 	@Override
 	public String toString() {
-		return "LoginDTO [userEmail=" + userEmail + ", userPwd=" + userPwd + ", useCookie=" + useCookie + "]";
+		return "autoLogin [userEmail=" + userEmail + ", userPwd=" + userPwd + ", useCookie=" + useCookie + "]";
 	}
 
 	

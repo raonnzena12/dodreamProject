@@ -81,17 +81,14 @@
     padding-left: 15px;
     padding-right: 15px;
     line-height: 15px;
+    padding-top: 3px;
 }
 #category .nameArea {
     grid-column-start: 1;
-    grid-column-end: 2;
+    grid-column-end: 3;
     padding-left: 15px;
     line-height: 21px;
-    padding-top: 6px;
-}
-#category .heartIcon {
-    grid-column-start: 2;
-    grid-column-end: 3;
+    padding-top: 12px;
 }
 #category .fundImg>img {
     width: 100%;
@@ -144,8 +141,17 @@
     padding-right: 7px;
     padding-top: 5px;
     cursor: pointer;
+    position: absolute;
+    float: right;
+    top:180px;
+    right: 0;
 }
 #category .heart-fund {
     color: #F39C12;
     font-size: 30px;
+}
+#loadingImg {
+    width: 40px;
+    height: auto;
+    opacity: 0;
 }

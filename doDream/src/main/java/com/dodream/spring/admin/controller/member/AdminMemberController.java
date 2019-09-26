@@ -24,14 +24,11 @@ public class AdminMemberController {
 	@RequestMapping("adminMlist.dr")
 	public ModelAndView selectMemberList(ModelAndView mv, Integer page) {
 		
-		int currentPage = page == null ? 1 : page;
-		
 		// 회원 목록 조회
-		ArrayList<Member> list = aService.selectMemberList(currentPage); 
+		ArrayList<Member> list = aService.selectMemberList(); 
 		
 		if(list != null) {
 			mv.addObject("list", list).
-			addObject("pi", AdminPagination.getPageInfo()).
 			setViewName("admin/member/memberViewList");
 		} else {
 			mv.addObject("msg","등록된 회원이 없습니다.").
@@ -44,14 +41,11 @@ public class AdminMemberController {
 	@RequestMapping("adminBlist.dr")
 	public ModelAndView selectBlackList(ModelAndView mv, Integer page) {
 		
-		int currentPage = page == null ? 1 : page;
-		
 		// 회원 목록 조회
-		ArrayList<Member> list = aService.selectBlackList(currentPage); 
+		ArrayList<Member> list = aService.selectBlackList(); 
 		
 		if(list != null) {
 			mv.addObject("list", list).
-			addObject("pi", AdminPagination.getPageInfo()).
 			setViewName("admin/member/memberBlackList");
 		} else {
 			mv.addObject("msg","등록된 회원이 없습니다.").

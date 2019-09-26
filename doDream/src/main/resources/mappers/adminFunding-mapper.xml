@@ -34,15 +34,39 @@
 		WHERE PROJECT_ST_NO = 2
 	</select>
 	
-	<!-- 심사중인 프로젝트 개수 관련 쿼리 -->
+	<!-- 오픈중인 프로젝트 개수 관련 쿼리 -->
 	<select id="countProject2" resultType="_int">
 		SELECT COUNT(*) FROM PROJECT_TB
 		WHERE PROJECT_ST_NO = 4
 	</select>
 	
-	<!-- 심사중인 프로젝트 개수 관련 쿼리 -->
+	<!-- 마감된 프로젝트 개수 관련 쿼리 -->
 	<select id="countProject3" resultType="_int">
 		SELECT COUNT(*) FROM PROJECT_TB
+		WHERE PROJECT_ST_NO = 5
+	</select>
+	
+	<!-- 심사 대기중인 프로젝트 목록 조회 -->
+	<select id="selectProjectList1" resultMap="projectResultSet">
+		SELECT * FROM PROJECT_TB
+		WHERE PROJECT_ST_NO = 2
+	</select>
+	
+	<!-- 심사 완료된 프로젝트 목록 조회 -->
+	<select id="selectProjectList2" resultMap="projectResultSet">
+		SELECT * FROM PROJECT_TB
+		WHERE PROJECT_ST_NO = 3
+	</select>
+	
+	<!-- 오픈 중인 프로젝트 목록 조회 -->
+	<select id="selectProjectList3" resultMap="projectResultSet">
+		SELECT * FROM PROJECT_TB
+		WHERE PROJECT_ST_NO = 4
+	</select>
+	
+	<!-- 마감된 프로젝트 목록 조회 -->
+	<select id="selectProjectList4" resultMap="projectResultSet">
+		SELECT * FROM PROJECT_TB
 		WHERE PROJECT_ST_NO = 5
 	</select>
 	
