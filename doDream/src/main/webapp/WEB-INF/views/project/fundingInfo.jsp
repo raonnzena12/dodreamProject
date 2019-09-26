@@ -32,14 +32,18 @@
 								<thead>
 									<tr>
 										<td colspan="2">
-											<c:forEach var="rwd" items="${ rList }" >
-											<span class="rewardTitle" id="${ rwd.rNo }">${ rwd.rName } _ n개</span><br>
+											<form action="${ fundingComplete }" method="post" id="fndInsert2">
+											<c:forEach var="rwd" items="${ rList }" varStatus="status" >
+												<input type="hidden" name="hList[${ status.index }].rwdNo" value="${ rwd.rNo }">
+											<span class="rewardTitle" id="${ rwd.rNo }">${ rwd.rName } _ <input type="number" name="hList[${ status.index }].rwdAmount" maxlength="3" oninput="maxLengthCheck(this);"> 개</span><br>
 											<span class="rewardDetail textSize-15">${ rwd.rExplain}</span><br>
 											<c:if test="${ !empty rwd.rOptionAdd }" >
 											<span class="rewardOption textSize-15">${ rwd.rOptionAdd }</span><br>
 											</c:if>
 											<div class="rewardPriceArea text-right">
-												<input type="text" name="rewardPrice${ rwd.rNo }" id="rewardPrice${ rwd.rNo }" value="${ rwd.rPrice }" readonly>* n 원</div>
+												<input type="text" name="rewardPrice${ rwd.rNo }" id="rewardPrice${ rwd.rNo }" value="${ rwd.rPrice }" readonly>* <span></span> 원</div>
+												<!-- 여기 하세요~~~~ span 태그 안에 amount input 블러 될때마다 체크해서 값 넣어줄거고 옆에 계산값 뿌려줄거임용 -->
+												<!--  -->
 											</c:forEach>
 										</td>
 									</tr>
@@ -50,17 +54,17 @@
 											추가 후원금
 										</td>
 										<td>
-											<input type="text" name="additionalFund" id="additionalFund" readonly> 원
+											<input type="text" name="additionalFund" id="additionalFund" value="${ additionalCost }" readonly> 원
 										</td>
 									</tr>
-									<tr>
+									<!-- <tr>
 										<td>
 											배송비
 										</td>
 										<td>
 											<input type="text" name="shippingFee" id="shippingFee" readonly> 원
 										</td>
-									</tr>
+									</tr> -->
 									<tr class="table-warning">
 										<td class="textHl-p">
 											최종 결제금액
@@ -73,6 +77,15 @@
 							</table>
 						</div>
 					</div>
+					<script>
+						$(function() {
+							var sum = 0;
+							$("input[name^=rewardPrice]").each(function(){
+								sum += $(this).val()*1;
+							})
+							$("#fundingPrice").val(sum+${ additionalCost });
+						})
+					</script>
 					<div class="row my-4">
 						<div class="col-md-12 innerMain mx-auto">
 							<h3>리워드 배송지</h3>
@@ -97,7 +110,7 @@
 										<label>이름</label><input type="text" name="ship1Name" id="ship1Name" class="form-control">
 									</div>
 									<div class="col-md-6">
-										<label>전화번호</label><input type="text" name="ship1Phone" id="ship1Phone" class="form-control" >
+										<label>전화번호</label><input type="text" name="ship1Phone" id="ship1Phone" class="form-control" value="${ loginUser.userPhone }">
 									</div>
 								</div>
 								<div class="row">
@@ -231,13 +244,12 @@
 				</div>
 			</div>
 		</div>
-		<form action="${ fundingComplete }" method="post" id="fndInsert">
 			<input type="hidden" name="addi" value="${ additionalCost }">
 			<input type="hidden" name="rName">
 			<input type="hidden" name="rContract">
 			<input type="hidden" name="rAddress">
 			<input type="hidden" name="rRequest">
-			<input type="hidden" name="rUser" value="${ loginUser.userNo }">
+			<input type="hidden" name="rUser" value="0">
 			<input type="hidden" name="rRefPno" value="${ pNo }">
 		</form>
 	</section>
@@ -288,7 +300,7 @@ $(function(){
 		console.log($("input[id=allCheck]").is("checked"));
 		// if ( $("input[id=allCheck]:checked") ) {
 		// 	alert("1");
-			return false;
+			// return false;
 		// }
 
 		console.log("addi : " + $("input[name=addi]").val());
@@ -299,9 +311,16 @@ $(function(){
 		console.log("rUser : " + $("input[name=rUser]").val());
 		console.log("rRefPno : " + $("input[name=rRefPno]").val());
 		// 뒤로 넘기기
-		// $("#fndInsert").submit();
+		$("#fndInsert").submit();
+		$("#fndInsert2").submit();
 	});
 });
+// amount maxLength 체크해주는 함수
+function maxLengthCheck(object){
+    if (object.value.length > object.maxLength){
+      object.value = object.value.slice(0, object.maxLength);
+    }    
+}
 </script>
 </body>
 </html>

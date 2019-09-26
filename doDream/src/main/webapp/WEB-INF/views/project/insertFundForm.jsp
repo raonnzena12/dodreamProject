@@ -109,7 +109,7 @@
 				enctype="multipart/form-data">
 				<input type="hidden" name="pNo" value="${pNo }">
 				<input type="hidden" name="pStatusNum" id="pStatusNum" value="0">
-				<input type="hidden" name="pWritter" value="${loginUser.userNo}">
+				<input type="hidden" name="pWriter" value="${loginUser.userNo}">
 				<div class="accBtn active">
 					<span>기본정보</span>
 				</div>
