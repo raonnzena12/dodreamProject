@@ -69,16 +69,33 @@ public class ProjectDao {
 		return sqlSession.selectOne("projectMapper.createProjectNumber");
 	}
 
+  
 	/**
-	 * reward번호 list로 리워드 리스트를 반환하는 DAO
+	 * 리워드를 DB에 저장하는 DAO
+	 * @param reward
+	 * @return result
+	 */
+	public int insertReward(Reward reward) {
+		return sqlSession.insert("projectMapper.insertReward", reward);
+	}
+
+	/**
+	 * 프로젝트를 DB에 저장하는 DAO
+	 * @param project
+	 * @return result
+	 */
+	public int insertProject(Project project) {
+		return sqlSession.insert("projectMapper.insertProject", project);
+	}
+
+  /*
+  * reward번호 list로 리워드 리스트를 반환하는 DAO
 	 * @param rewardList
 	 * @return rList
 	 */
 	public ArrayList<Reward> selectRewardList(ArrayList<String> rewardList) {
 		return (ArrayList)sqlSession.selectList("projectMapper.selectRewardList", rewardList);
 	}
-
-	
 
 	
 }
