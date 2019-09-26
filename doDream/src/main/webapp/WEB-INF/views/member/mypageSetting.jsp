@@ -56,7 +56,7 @@
 								<td style="width: 60%">
 									<div class="text-center">
 										<c:if test="${ !empty loginUser.userProfileImage}">
-										<img alt="프로필사진" src="resources/userProfileImage/${loginUser.userProfileImage}" class="rounded-circle userProfileImage" id="userProfileImage"  name="userProfileImage"/>
+										<img alt="프로필사진" src="resources/images/userProfileImage/${loginUser.userProfileImage}" class="rounded-circle userProfileImage" id="userProfileImage"  name="userProfileImage"/>
 										</c:if>
 										<c:if test="${empty loginUser.userProfileImage}">
 										<img alt="프로필사진" src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg" class="rounded-circle userProfileImage" id="userProfileImage" name="userProfileImage"/>

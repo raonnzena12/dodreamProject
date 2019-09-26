@@ -183,7 +183,7 @@ public class MemberController {
 		if(result >0) {
 			model.addAttribute("loginUser", mem);
 			rd.addFlashAttribute("msg", "회원정보를 수정하였습니다!");
-			return "redirect:home.dr";
+			return "redirect:mypage.dr";
 		}else {
 			model.addAttribute("msg", "회원정보 수정에 실패하였습니다.");
 			return "common/errorPage";
