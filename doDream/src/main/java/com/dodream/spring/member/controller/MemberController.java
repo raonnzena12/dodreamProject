@@ -1,6 +1,6 @@
 package com.dodream.spring.member.controller;
 
-import java.util.Date;
+//import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -177,6 +177,7 @@ public class MemberController {
 	public String memberUpdate(Member mem, String address, String details, String postcode, HttpServletRequest request, Model model, MultipartFile uploadImg, RedirectAttributes rd) {
 		
 		mem.setUserAddress(address+","+details+","+postcode);
+		
 		int result = mService.updateMember(mem, request, uploadImg);
 		
 		System.out.println(result);

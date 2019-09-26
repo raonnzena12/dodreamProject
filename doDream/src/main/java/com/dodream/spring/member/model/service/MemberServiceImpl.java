@@ -54,16 +54,21 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public int updateMember(Member mem, HttpServletRequest request, MultipartFile uploadImg) {
 		
+		int result = 0; 
 		String rename = null;
-		rename = renameFile(uploadImg, request);
-		mem.setUserProfileImage(rename);
-		System.out.println(mem);
-				
-		int result = mDao.updateMember(mem);
 		
-		if (rename != null && result == 1) {
-			result = saveFile(rename, uploadImg, request);
+		if(uploadImg.getOriginalFilename() != null){
+			
+			rename = renameFile(uploadImg, request);
+			mem.setUserProfileImage(rename);
 		}
+			System.out.println(mem);
+			
+			result = mDao.updateMember(mem);
+			
+			if (rename != null && result == 1) {
+				result += saveFile(rename, uploadImg, request);
+			}
 				
 		return result;
 		
@@ -74,18 +79,18 @@ public class MemberServiceImpl implements MemberService {
 		// '년월실시분초.확장자'로 파일명 변경
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
 		String originFileName = uploadImg.getOriginalFilename();
-		String renameFileName = sdf.format(new Date()) + "."+ originFileName.substring(originFileName.lastIndexOf(".") + 1);
+		String renameFile = sdf.format(new Date()) + "."+ originFileName.substring(originFileName.lastIndexOf(".") + 1);
 		
 		System.out.println(originFileName);
 
-		return renameFileName;
+		return renameFile;
 	}
 	
-	public int saveFile(String renameFileName, MultipartFile uploadImg, HttpServletRequest request) {
+	public int saveFile(String renameFile, MultipartFile uploadImg, HttpServletRequest request) {
 
 		// 파일 저장경로 설정
 		String root = request.getSession().getServletContext().getRealPath("resources");
-		String savePath = root + "\\userProfileImage";
+		String savePath = root + "\\images\\userProfileImage";
 		
 		System.out.println(savePath);
 
@@ -96,7 +101,7 @@ public class MemberServiceImpl implements MemberService {
 			folder.mkdir(); // 폴더가 존재하지 않는다면, 폴더 생성
 		}
 
-		String filePath = folder + "\\" + renameFileName;
+		String filePath = folder + "\\" + renameFile;
 		
 		// 파일 저장 성공 여부(성공 1, 실패 0)
 		int result = 0;
