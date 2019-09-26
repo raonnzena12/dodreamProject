@@ -12,6 +12,7 @@ import com.dodream.spring.common.Pagination;
 import com.dodream.spring.project.model.service.ProjectService;
 import com.dodream.spring.project.model.vo.Project;
 import com.dodream.spring.project.model.vo.Reward;
+import com.dodream.spring.reserve.model.vo.HistoryList;
 import com.dodream.spring.reserve.model.vo.Reserve;
 
 @Controller
@@ -52,9 +53,10 @@ public class ProjectController3 {
 	
 	// 펀딩 결제 성공 확인용 임시 매핑
 	@RequestMapping("thankYou.dr")
-	public String tmp2(Reserve reserve) {
+	public String tmp2(Reserve reserve, HistoryList hList) {
 		
 		System.out.println(reserve);
+		System.out.println(hList);
 		
 		return "project/fundingComplete";
 	}

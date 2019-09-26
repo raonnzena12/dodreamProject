@@ -96,3 +96,13 @@
 #payingInfo .containGray {
     line-height: 20px;
 }
+#payingTable input[type="number"]::-webkit-outer-spin-button,
+#payingTable input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+#payingTable input[type="number"] {
+    width: 35px;
+    text-align: right;
+    padding-right: 4px;
+}

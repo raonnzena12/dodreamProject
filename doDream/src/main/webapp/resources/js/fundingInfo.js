@@ -1,4 +1,5 @@
 $(function(){
+
     // 가상 키패드 LOADING
     $('#card2').numberKeypad({
         // wrap: $('.wrapper'),
@@ -49,6 +50,7 @@ $(function(){
     // 전화번호 정규식 검사
     $("input[id$=Phone]").on("blur",function(){
         var regExp = /^\d{3}\d{3,4}\d{4}$/;
+        // 전화번호 정규식
         var pNum = $(this).val();
         if ( regExp.test(pNum) ) {
             // 정규식 통과할 경우 평범한 색으로 되돌림
@@ -62,12 +64,12 @@ $(function(){
     });
     
     // 주소검색 API 팝업 호출
-    $(".inputAddr1 *").postcodifyPopUp({
+    $(".inputAddr1 input, .inputAddr1 button").postcodifyPopUp({
         insertPostcode5 :"#postCode1",
         insertAddress : "#ship1Address1",
         insertDetails: "#ship1Address2"
     });
-    $(".inputAddr2 *").postcodifyPopUp({
+    $(".inputAddr2 input, .inputAddr2 button").postcodifyPopUp({
         insertPostcode5 :"#postCode2",
         insertAddress : "#ship2Address1",
         insertDetails: "#ship2Address2"
