@@ -69,7 +69,7 @@
                      <div class="fundCon">
                         <div class="fundItem" id="${ prj.pNo }">
                            <div class="fundImg">
-                              <img src="resources/projectImg/thumbnail/${ prj.pThumbImage }">
+                              <img src="resources/images/projectImg/thumbnail/${ prj.pThumbImage }">
                            </div>
                            <div class="nameArea">
                               <p class="categoryName mb-0">${ prj.pCategoryName }</p>
@@ -179,7 +179,7 @@ function printFunds(list) {
       var $fundItem = $("<div>").addClass("fundItem").attr("id",list[i].pNo);
       var $fundImg = $("<div>").addClass("fundImg");
       // 이미지 url 지정할것
-      var $img = $("<img>").attr("src", "resources/projectImg/thumbnail/"+list[i].pThumbImage);
+      var $img = $("<img>").attr("src", "resources/images/projectImg/thumbnail/"+list[i].pThumbImage);
       $fundImg.append($img);
       var $nameArea = $("<div>").addClass("nameArea");
       // 들어갈 텍스트들 지정할 것

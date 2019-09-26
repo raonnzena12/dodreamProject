@@ -13,10 +13,10 @@
 <script type="text/javascript" src="resources/js/jquery.numberKeypad.js"></script>
 <!-- postcodify(주소검색) API -->
 <!-- <script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script> -->
-<script src="resources/js/postcodifySearch.js"></script>
+<!-- <script src="resources/js/postcodifySearch.js"></script> -->
 </head>
 <body>
-<c:url var="fundingComplete" value="temp2.dr" />
+<c:url var="fundingComplete" value="thankYou.dr" />
 	<section id="payingInfo" class="my-5">
 		<h1 align="center">뚝딱뚝딱</h1>
 		<div class="container-fluid mb-5">
@@ -78,13 +78,19 @@
 							<h3>리워드 배송지</h3>
 							<!-- 회원정보에 주소지가 입력되어 있을 때 기존 배송지 정보 출력 -->
 							<c:if test="${ sessionScope.loginUser.userAddress != null }">
+							<c:set var="addr" value="${ loginUser.userAddress }" />
 							<span class="custom-control custom-radio mx-4 my-3">
 								<input type="radio" name="address" id="current" class="custom-control-input" checked><label class="custom-control-label mr-5" for="current">기본 배송지</label>
 							</span>
-							</c:if>
 							<span class="custom-control custom-radio mx-4 my-3">
 								<input type="radio" name="address" id="newAddress" class="custom-control-input"><label class="custom-control-label" for="newAddress">새 배송지</label>
 							</span>
+							</c:if>
+							<c:if test="${ sessionScope.loginUser.userAddress == null }">
+							<span class="custom-control custom-radio mx-4 my-3">
+								<input type="radio" name="address" id="newAddress" class="custom-control-input" checked><label class="custom-control-label" for="newAddress">새 배송지</label>
+							</span>
+							</c:if>
 							<div id="ship1">
 								<div class="row">
 									<div class="col-md-6">
@@ -101,16 +107,16 @@
 								<label class="mr-3 mt-4">주소</label>
 								<div class="row mb-1 inputAddr1">
 									<div class="col-md-7">
-										<input type="text" name="ship1Address1" id="ship1Address1" placeholder="주소" class="form-control" autocomplete="off">
+										<input type="text" name="ship1Address1" id="ship1Address1" placeholder="주소" class="form-control" autocomplete="off" value="${ fn:split(addr,',')[0] }">
 									</div>
 									<div class="col-md-2 px-0">
-										<input type="text" name="postCode1" id="postCode1" placeholder="우편번호" class="form-control" autocomplete="off">
+										<input type="text" name="postCode1" id="postCode1" placeholder="우편번호" class="form-control" autocomplete="off" value="${ fn:split(addr,',')[2] }">
 									</div>
 									<div class="col-md-3">
 										<button class="btn btn-warning btn-block" id="postcodify_search_button1">우편번호 검색</button>
 									</div>
 								</div>
-								<input type="text" name="ship1Address2" id="ship1Address2" placeholder="상세주소" class="form-control postcodify_details">
+								<input type="text" name="ship1Address2" id="ship1Address2" placeholder="상세주소" class="form-control postcodify_details" value="${ fn:split(addr,',')[1] }">
 								<hr>
 								<label>배송시 요청사항(선택)</label><br><input type="text" name="comment1" id="comment1" class="form-control" >
 								<hr>
@@ -203,7 +209,7 @@
 							<h3>약관 동의</h3>
 							<hr>
 							<span class="custom-control custom-checkbox">
-								<input type="checkbox" class="custom-control-input" value="allCheck" id="allCheck"><label class="custom-control-label" for="allCheck" >전체 동의하기</label>
+								<input type="checkbox" class="custom-control-input" id="allCheck"><label class="custom-control-label" for="allCheck" >전체 동의하기</label>
 							</span>
 							<hr>
 							<span class="custom-control custom-checkbox">
@@ -225,12 +231,75 @@
 				</div>
 			</div>
 		</div>
+		<form action="${ fundingComplete }" method="post" id="fndInsert">
+			<input type="hidden" name="addi" value="${ additionalCost }">
+			<input type="hidden" name="rName">
+			<input type="hidden" name="rContract">
+			<input type="hidden" name="rAddress">
+			<input type="hidden" name="rRequest">
+			<input type="hidden" name="rUser" value="${ loginUser.userNo }">
+			<input type="hidden" name="rRefPno" value="${ pNo }">
+		</form>
 	</section>
 <script>
 $(function(){
+	// 결제 예약하기 버튼을 클릭했을시 실행되는 코드
 	$("#toComplete").on("click", function(){
-		// 이것 저것 확인하고 뒤로 넘기기
-		location.href='${ fundingComplete }';
+		
+		// console.log($("input[name=address]:checked").attr("id"));
+		// 라디오박스가 어디 체크되어있는지 확인하고, 알맞은 값을 hidden 태그의 value로 저장
+		if ( $("input[name=address]:checked").attr("id") == "newAddress" ) {
+		// 새 배송지가 체크 되어 있을 때
+			$("input[name=rName]").val($("#ship2Name").val());
+			$("input[name=rContract").val($("#ship2Phone").val());
+			$("input[name=rAddress").val($("#ship2Address1").val()+ "," +$("#ship2Address2").val()+ "," +$("#postCode2").val());
+			$("input[name=rRequest").val($("#comment2").val());
+		} else {
+			// 기본 배송지가 체크 되어 있을 때
+			$("input[name=rName]").val($("#ship1Name").val());
+			$("input[name=rContract").val($("#ship1Phone").val());
+			$("input[name=rAddress").val($("#ship1Address1").val()+ "," +$("#ship1Address2").val()+ "," +$("#postCode1").val());
+			$("input[name=rRequest").val($("#comment1").val());
+		}
+		var nameCK = true;
+		var addrCK = true;
+		var contCK = true;
+		var regExp = /^\d{3}\d{3,4}\d{4}$/;
+        // 전화번호 정규식
+		var infoMsg = "";
+		if ( $("input[name=rName]").val() == "" ) {
+			nameCK = false;
+			infoMsg += "수령자 이름을 적어주세요.<br>"
+		}
+		if ( $("input[name=rAddress]").val().match(",,") || $("input[name=rAddress]").val().length < 8 ) {
+			addrCK = false;
+			infoMsg += "주소를 정확하게 입력 해주세요.<br>";
+		}
+		if ( $("input[name=rContract]").val() == "" || !regExp.test($("input[name=rContract]").val()) ) {
+			contCK = false;
+			infoMsg += "연락처를 정확하게 입력 해주세요."
+		}
+		// if ( !(nameCK && addrCK && contCK) ) {
+		// 	Swal.fire( '작성란을 기입해주세요!', infoMsg, 'warning' );
+		// 	return false;
+		// }
+
+		var allCK = false;
+		console.log($("input[id=allCheck]").is("checked"));
+		// if ( $("input[id=allCheck]:checked") ) {
+		// 	alert("1");
+			return false;
+		// }
+
+		console.log("addi : " + $("input[name=addi]").val());
+		console.log("rName : " + $("input[name=rName]").val());
+		console.log("rContract : " + $("input[name=rContract]").val());
+		console.log("rAddress : " + $("input[name=rAddress]").val());
+		console.log("rRequest : " + $("input[name=rRequest]").val());
+		console.log("rUser : " + $("input[name=rUser]").val());
+		console.log("rRefPno : " + $("input[name=rRefPno]").val());
+		// 뒤로 넘기기
+		// $("#fndInsert").submit();
 	});
 });
 </script>
