@@ -1,6 +1,6 @@
 package com.dodream.spring.member.controller;
 
-import java.util.Date;
+//import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -177,12 +177,13 @@ public class MemberController {
 	public String memberUpdate(Member mem, String address, String details, String postcode, HttpServletRequest request, Model model, MultipartFile uploadImg, RedirectAttributes rd) {
 		
 		mem.setUserAddress(address+","+details+","+postcode);
+		
 		int result = mService.updateMember(mem, request, uploadImg);
 				
 		if(result >0) {
 			model.addAttribute("loginUser", mem);
 			rd.addFlashAttribute("msg", "회원정보를 수정하였습니다!");
-			return "redirect:home.dr";
+			return "redirect:mypage.dr";
 		}else {
 			model.addAttribute("msg", "회원정보 수정에 실패하였습니다.");
 			return "common/errorPage";

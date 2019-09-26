@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,6 +46,8 @@
 					<input type="hidden" value="${loginUser.userNo}" name="userNo">
 					<input type="hidden" value="${loginUser.userEmail}" name="userEmail">
 					<input type="hidden" value="${loginUser.userProfileImage}" name="userProfileImage">
+					<input type="hidden" value="${loginUser.userAddress}" name="userAddress" id="userAddress">
+					
 						<table>
 							<tr>
 								<td style="width: 20%">
@@ -53,7 +56,7 @@
 								<td style="width: 60%">
 									<div class="text-center">
 										<c:if test="${ !empty loginUser.userProfileImage}">
-										<img alt="프로필사진" src="resources/userProfileImage/${loginUser.userProfileImage}" class="rounded-circle userProfileImage" id="userProfileImage"  name="userProfileImage"/>
+										<img alt="프로필사진" src="resources/images/userProfileImage/${loginUser.userProfileImage}" class="rounded-circle userProfileImage" id="userProfileImage"  name="userProfileImage"/>
 										</c:if>
 										<c:if test="${empty loginUser.userProfileImage}">
 										<img alt="프로필사진" src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg" class="rounded-circle userProfileImage" id="userProfileImage" name="userProfileImage"/>
@@ -76,12 +79,12 @@
 							</tr>
 							<tr>
 								<td class="text-center" rowspan="2">주소</td>
-								<td class="pr-2"><input type="text" class="form-control" name="address" id="address" value="${loginUser.userAddress}" placeholder="리워드 수령시 기본 주소"></td>
+								<td class="pr-2"><input type="text" class="form-control" name="address" id="address" placeholder="리워드 수령시 기본 주소"></td>
 								<td class="text-center"><button type="button" class="btn btn-warning btn-sm" id="postcodify_search_button">주소검색</button></td>
 							</tr>
 							<tr>
-								<td><input type="text" class="form-control" name="details" id="details" <%-- value="${addr}" --%> placeholder="상세 주소 입력"></td>
-								<td><input type="text" class="form-control" name="postcode" id="postcode" <%-- value="${addr}" --%> placeholder="우편번호"></td>
+								<td><input type="text" class="form-control" name="details" id="details"  placeholder="상세 주소 입력"></td>
+								<td><input type="text" class="form-control" name="postcode" id="postcode" placeholder="우편번호"></td>
 							</tr>
 							<tr>
 								<td class="text-center">전화번호</td>
@@ -181,6 +184,20 @@
 		});
 		
 	});
+	
+	
+	//주소분할입력
+ 	$(document).ready(function(){
+ 		
+ 		var address = "${loginUser.userAddress}";
+ 		var res = address.split(",");
+ 		$("#address").attr("value",res[0]);
+ 		$("#details").attr("value",res[1]);
+ 		$("#postcode").attr("value",res[2]);
+ 		 		
+ 	});
+	
+	
 	
 	
 	
