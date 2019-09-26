@@ -22,7 +22,7 @@
 		<result property="pArtistEmail" column="PROJECT_AT_EM" />
 		<result property="pEnrollDate" column="PROJECT_ER_DT" />
 		<result property="pModifyDate" column="PROJECT_MF_DT" />
-		<result property="pWritter" column="PROJECT_WRITER" />
+		<result property="pWriter" column="PROJECT_WRITER" />
 		<result property="pCategoryNum" column="PROJECT_CT_NO" />
 		<result property="pCategoryName" column="PROJECT_CT_NAME" />
 		<result property="pStatusNum" column="PROJECT_ST_NO" />
