@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="adminReserveMapper">
+	
+	<resultMap type="Reserve" id="reserveResultSet">
+		<id property="rNo" column="RESERVE_NO"/>
+		<result property="bKey" column="BILLINGKEY"/>
+		<result property="addi" column="ADDITIONAL"/>
+		<result property="rDate" column="RESERVE_DATE"/>
+		<result property="rName" column="RESERVE_NAME"/>
+		<result property="rContract" column="RESERVE_CONTRACT"/>
+		<result property="rAddress" column="RESERVE_ADDRESS"/>
+		<result property="rRequest" column="RESERVE_REQUEST"/>
+		<result property="rUser" column="RESERVE_USER"/>
+		<result property="rRefPno" column="RESERVE_REF_PNO"/>
+		<result property="rStatusNo" column="RESERVE_STATUS_NO"/>
+	</resultMap>
+	
+	<!-- 주문 예약 개수 관련 쿼리  -->
+	<select id="countReserve1" resultType="_int">
+		SELECT COUNT(*) 
+		FROM RESERVE
+		WHERE RESERVE_STATUS_NO= 1
+	</select>
+
+	<!-- 결제 완료 개수 관련 쿼리  -->
+	<select id="countReserve2" resultType="_int">
+		SELECT COUNT(*) 
+		FROM RESERVE
+		WHERE RESERVE_STATUS_NO= 2
+	</select>
+
+	<!-- 예약 취소 개수 관련 쿼리  -->
+	<select id="countReserve3" resultType="_int">
+		SELECT COUNT(*) 
+		FROM RESERVE
+		WHERE RESERVE_STATUS_NO= 3
+	</select>
+	
+	<!-- 주문 예약 현황 쿼리 -->
+	<select id="selectReserveList1" resultMap="reserveResultSet">
+		SELECT * FROM RESERVE
+		WHERE RESERVE_STATUS_NO = 1
+	</select>
+
+
+</mapper>
