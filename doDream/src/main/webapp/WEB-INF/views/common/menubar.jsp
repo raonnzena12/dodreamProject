@@ -28,6 +28,7 @@
 
 	<!-- 주소 api -->
 	<script src="//cdn.poesis.kr/post/search.min.js"></script>
+	
 
 <style>
 	* {
@@ -137,7 +138,7 @@
 						</tr>
 						<tr>
 							<td class="loginmenuText custom-control custom-checkbox my-1">
-								<input type="checkbox" class="custom-control-input" value="autoLogin" id="autoLogin"><label class="custom-control-label" for="autoLogin" >자동 로그인</label>
+								<input type="checkbox" class="custom-control-input" value="autoLogin" id="autoLogin" name="useCookie"><label class="custom-control-label" for="autoLogin" >자동 로그인</label>
 								<a href="findPwd.dr" class="gray float-right">비밀번호 찾기</a>
 							</td>
 						</tr>
@@ -148,7 +149,7 @@
 						<!-- 소셜 로그인 아이콘 들어가는 부분 -->
 							<td class="text-center naverKakaoArea">
 								<img src="resources/images/naver_sns_icon.png" data-toggle="tooltip" data-placement="left" title="NAVER ID로 로그인" class="mx-2">
-								<img src="resources/images/kakao_sns_icon.png" data-toggle="tooltip" data-placement="left" title="KAKAO ID로 로그인" class="mx-2">
+								<a href="javascript:loginWithKakao()"><img src="resources/images/kakao_sns_icon.png" data-toggle="tooltip" data-placement="left" title="KAKAO ID로 로그인" class="mx-2"></a>
 								<img src="resources/images/faceB_sns_icon.png" data-toggle="tooltip" data-placement="left" title="FACEBOOK ID로 로그인" class="mx-2">
 							</td>
 						</tr>
@@ -218,13 +219,17 @@
 	</nav>
 	</section>
 	<script>
+	
 		function beforeLogin(){
 			var frm = $("#loginFrm");
 			var path = window.location.pathname;
 			var arr = path.split("/");
 			$("#prevPage").val(arr[2]);
 			frm.submit();
-		}
+		};
+			
+			
+
 	</script>
 	<%@ include file="footer.jsp" %>
 </body>

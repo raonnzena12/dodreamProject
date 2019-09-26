@@ -19,18 +19,22 @@
 	  					<small class="text-muted">비밀번호를 잊으셨나요?</small>
 					</h3>
 					<form action="changePwd.dr" method="POST" class="form-group" align="center">
+					<!-- class="form-control" -->
 						<table id="findPwd-table">
 							<tr>
 								<td>
-									<input type="email" class="form-control" id="userEmail" name="userEmail" placeholder="email을 입력해 주세요">
+									<input type="email"  id="userEmail" name="userEmail" placeholder="email을 입력해 주세요" required>
 								</td>
 								<td>
 									<button class="btn btn-warning" id="emailauthbtn">인증하기</button>
 								</td>
 							</tr>
 							<tr>
+								<td colspan="2"><span id="alertmsg" style="display: none"></span></td>
+							</tr>
+							<tr>
 								<td colspan="2">
-									<input type="text" class="form-control" id="userEmailAuthYn" name="userEmailAuthYn" placeholder="인증코드를 입력해주세요">
+									<input type="password"  id="userEmailAuthYn" name="userEmailAuthYn" placeholder="인증코드를 입력해주세요" required>
 								</td>
 							</tr>
 							<tr>
@@ -47,5 +51,45 @@
 			</div>
 		</div>
 	</div>
+	
+	<script>
+		$(function() {
+			
+		/* 	var userEmail;
+			var auth; */
+			
+			$("#userEmail").blur(function() {
+				var userEmail = $("#userEmail").val().trim();
+				$.ajax({
+					type: "post",
+					url: "checkEmail.dr",
+					data : {userEmail : userEmail},
+					/* 가입된 이메일 확인 */
+					success: function(result) {
+						if(result == "1"){
+							$("#alertMsg").show().text("가입된 이메일입니다.").css("color", "#8E44AD");
+							/* $("#userEmailAuthYn").focus(); */
+						} else if(result == "0"){
+							$("#alertMsg").show().text("정보를 찾지 못했습니다.").css("color", "#8E44AD");
+							$("#userEmail").val("").focus();
+						}
+					}
+				});
+			});
+						
+		/* 	$("#userEmailAuthYn").blur(function() {
+				var emailAuth =$("#userEmailAuthYn").val().trim(); 
+				console.log(auth);
+				if(auth == emailAuth){
+					$("#emailAuthAlert").show().text("인증이 완료되었습니다.").css("color", "#F39C12");
+				}else{
+					$("#emailAuthAlert").show().text("인증에 실패하였습니다. 다시 입력해주세요.").css("color", "#8E44AD");
+					$("#userEmailAuthYn").val("").focus();
+				}
+			}); */
+			
+		})
+	</script>
+	
 </body>
 </html>

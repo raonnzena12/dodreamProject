@@ -17,7 +17,10 @@
 		<result property="userPhone" column="USER_PHONE" />
 		<result property="userProfileImage" column="USER_PF_IMG" />
 		<result property="userSelf" column="USER_SELF" />
+		<result property="sessionId" column="AUTO_SESSIONKEY" />
+		<result property="limit" column="AUTO_EXPIRYDATE" />
 	</resultMap>
+	
 
 	<!-- 로그인용 쿼리 -->
 	<select id="selectOne" parameterType="Member"
@@ -79,6 +82,19 @@
 		SELECT COUNT(*) FROM DAYCOUNT
 		WHERE USER_NO = #{userNo}		
 	</select>
+
+	<!-- 자동로그인 값 저장-->	
+	<update id="keepLogin">
+		UPDATE USER_TB SET AUTO_SESSIONKEY = #{sessionId}, AUTO_EXPIRYDATE =${limit}
+		WHERE USER_NO = #{userNo}
+    </update>
+    
+    <select id="checkUserWithSessionKey" resultType="Member">
+    	SELECT * FROM USER_TB
+    	WHERE AUTO_SESSIONKEY= #{sessionId}
+    	AND AUTO_EXPIRYDATE > now()
+    </select>
+    
 	
   
 </mapper>
