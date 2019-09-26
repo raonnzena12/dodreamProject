@@ -179,8 +179,6 @@ public class MemberController {
 		mem.setUserAddress(address+","+details+","+postcode);
 		
 		int result = mService.updateMember(mem, request, uploadImg);
-		
-		System.out.println(result);
 				
 		if(result >0) {
 			model.addAttribute("loginUser", mem);
@@ -190,7 +188,6 @@ public class MemberController {
 			model.addAttribute("msg", "회원정보 수정에 실패하였습니다.");
 			return "common/errorPage";
 		}
-		
 	}
 	
 	

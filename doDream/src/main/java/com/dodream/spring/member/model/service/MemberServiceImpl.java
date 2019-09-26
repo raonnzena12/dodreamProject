@@ -56,19 +56,21 @@ public class MemberServiceImpl implements MemberService {
 		
 		int result = 0; 
 		String rename = null;
-		
-		if(uploadImg.getOriginalFilename() != null){
-			
+
+		if ( !uploadImg.getOriginalFilename().equals("") ) {
 			rename = renameFile(uploadImg, request);
 			mem.setUserProfileImage(rename);
 		}
-			System.out.println(mem);
-			
-			result = mDao.updateMember(mem);
-			
-			if (rename != null && result == 1) {
-				result += saveFile(rename, uploadImg, request);
-			}
+		System.out.println(mem);
+				
+		result = mDao.updateMember(mem);
+		
+
+		if (rename != null && result == 1) {
+			result += saveFile(rename, uploadImg, request);
+
+		}
+		
 				
 		return result;
 		
