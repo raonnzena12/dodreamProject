@@ -11,7 +11,8 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>결제 관리 (예약 취소 현황)</title>
+
+<title>프로젝트 관리 (마감)</title>
 
 <!-- Custom fonts for this template -->
 <link href="resources/vendor/fontawesome-free/css/all.min.css"
@@ -70,7 +71,7 @@
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-2 text-gray-800"># 결제 관리 (예약 취소 현황)</h1>
+					<h1 class="h3 mb-2 text-gray-800"># 프로젝트 관리 (마감)</h1>
 					<br>
 					<!-- DataTales Example -->
 					<div class="card shadow mb-4">
@@ -91,53 +92,53 @@
 														<th class="sorting_asc" tabindex="0"
 															aria-controls="dataTable" rowspan="1" colspan="1"
 															aria-sort="ascending"
-															aria-label="Name: activate to sort column descending">주문 예약 번호</th>
+															aria-label="Name: activate to sort column descending">프로젝트 번호</th>
 														<th class="sorting" tabindex="0" aria-controls="dataTable"
 															rowspan="1" colspan="1"
-															aria-label="Office: activate to sort column ascending">프로젝트 이름</th>
+															aria-label="Office: activate to sort column ascending">프로젝트 제목</th>
 														<th class="sorting" tabindex="0" aria-controls="dataTable"
 															rowspan="1" colspan="1"
-															aria-label="Age: activate to sort column ascending">회원 이름</th>
+															aria-label="Age: activate to sort column ascending">목표 금액</th>
 														<th class="sorting" tabindex="0" aria-controls="dataTable"
 															rowspan="1" colspan="1"
-															aria-label="Start date: activate to sort column ascending">주문일자</th>
+															aria-label="Start date: activate to sort column ascending">프로젝트 시작일</th>
 														<th class="sorting" tabindex="0" aria-controls="dataTable"
 															rowspan="1" colspan="1"
-															aria-label="Salary: activate to sort column ascending">추가 후원금</th>
+															aria-label="Salary: activate to sort column ascending">프로젝트 종료일</th>
 														<th class="sorting" tabindex="0" aria-controls="dataTable"
 															rowspan="1" colspan="1"
-															aria-label="Salary: activate to sort column ascending">배송 이름</th>
+															aria-label="Salary: activate to sort column ascending">아티스트 이름</th>
 														<th class="sorting" tabindex="0" aria-controls="dataTable"
 															rowspan="1" colspan="1"
-															aria-label="Salary: activate to sort column ascending">배송 전화번호</th>
+															aria-label="Salary: activate to sort column ascending">아티스트 연락처</th>
 														<th class="sorting" tabindex="0" aria-controls="dataTable"
 															rowspan="1" colspan="1"
-															aria-label="Salary: activate to sort column ascending">배송 주소</th>
+															aria-label="Salary: activate to sort column ascending">아티스트 이메일</th>
 													</tr>
 												</thead>
 												<tfoot>
 													<tr>
-														<th rowspan="1" colspan="1">주문 예약 번호</th>
-														<th rowspan="1" colspan="1">프로젝트 이름</th>
-														<th rowspan="1" colspan="1">회원 이름</th>
-														<th rowspan="1" colspan="1">주문일자 </th>
-														<th rowspan="1" colspan="1">추가 후원금</th>
-														<th rowspan="1" colspan="1">배송 이름</th>
-														<th rowspan="1" colspan="1">배송 전화번호</th>
-														<th rowspan="1" colspan="1">배송 주소</th>
+														<th rowspan="1" colspan="1">프로젝트 번호</th>
+														<th rowspan="1" colspan="1">프로젝트 제목</th>
+														<th rowspan="1" colspan="1">목표 금액</th>
+														<th rowspan="1" colspan="1">프로젝트 시작일</th>
+														<th rowspan="1" colspan="1">프로젝트 종료일</th>
+														<th rowspan="1" colspan="1">아티스트 이름</th>
+														<th rowspan="1" colspan="1">아티스트 연락처</th>
+														<th rowspan="1" colspan="1">아티스트 이메일</th>
 													</tr>
 												</tfoot>
 												<tbody>
-													<c:forEach var="r" items="${ list }">
+													<c:forEach var="p" items="${ list }">
 														<tr role="row" class="odd">
-															<td class="sorting_1">${ r.rNo }</td>
-															<td>${ r.pTitle}</td>
-															<td>${ r.userNickname}</td>
-															<td>${ r.rDate}</td>
-															<td>${ r.addi}</td>
-															<td>${ r.rName}</td>
-															<td>${ r.rContract}</td>
-															<td>${ r.rAddress}</td>
+															<td class="sorting_1">${ p.pNo }</td>
+															<td>${ p.pTitle }</td>
+															<td>${ p.pGoal}</td>
+															<td>${ p.pStartDate}</td>
+															<td>${ p.pCloseDate }</td>
+															<td>${ p.pArtistName }</td>
+															<td>${ p.pArtistPhone }</td>
+															<td>${ p.pArtistEmail }</td>
 														</tr>
 													</c:forEach>
 												</tbody>

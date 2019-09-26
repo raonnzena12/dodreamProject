@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="adminReportMapper">
+
+	<resultMap type="Report" id="reportResultSet">
+		<id property="repNo" column="REPORT_NO"/>
+		<result property="repDate" column="REPORT_DATE"/>
+		<result property="repContent" column="REPORT_CONTENT"/>
+		<result property="repRefPno" column="REPORT_REF_PNO"/>
+		<result property="repWriter" column="REPORT_WRITER"/>
+		<result property="repStatus" column="REPORT_STATUS"/>
+		<result property="pTitle" column="PROJECT_TITLE"/>
+		<result property="userNickname" column="USER_NICKNAME"/>
+	</resultMap>
+
+	<!-- 신고 개수 관련 쿼리 -->
+	<select id="countReport" resultType="_int">
+		SELECT COUNT(*) FROM REPORT_TB
+		WHERE REPORT_STATUS = 'Y'
+	</select>
+	
+	<!-- 신고 목록 관련 쿼리 -->
+	<select id="selectReportView" resultMap="reportResultSet">
+		SELECT REPORT_NO,REPORT_DATE,REPORT_CONTENT,REPORT_REF_PNO,REPORT_WRITER,REPORT_STATUS
+        ,USER_NICKNAME, PROJECT_TITLE
+		FROM REPORT_TB
+		JOIN USER_TB ON(REPORT_WRITER = USER_NO)
+		JOIN PROJECT_TB ON(REPORT_REF_PNO = PROJECT_NO)
+		WHERE REPORT_STATUS = 'Y'
+	</select>
+
+</mapper>

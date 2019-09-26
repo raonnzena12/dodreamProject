@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.dodream.spring.member.model.vo.Member;
 import com.dodream.spring.project.model.vo.Project;
+import com.dodream.spring.report.model.vo.Report;
 import com.dodream.spring.reserve.model.vo.Reserve;
 
 public interface AdminService {
@@ -88,6 +89,41 @@ public interface AdminService {
 	 * @return list
 	 */
 	public abstract ArrayList<Reserve> selectReserveList1();
+
+	/** 결제 현황 Service
+	 * @return list
+	 */
+	public abstract ArrayList<Reserve> selectReserveList2();
+
+	/** 주문 예약 취소 Service
+	 * @return list
+	 */
+	public abstract ArrayList<Reserve> selectReserveList3();
+
+	/** 신고 개수 관련 Service
+	 * @return count
+	 */
+	public abstract int countReport();
+ 
+	/** 신고 목록 관련 Service
+	 * @return list
+	 */
+	public abstract ArrayList<Report> selectReportList();
+
+	/** 방문자수 구하는 Service
+	 * @return list
+	 */
+	public abstract ArrayList<Integer> countVisit();
+
+	/** 오늘 방문자수 구하는 Service
+	 * @return result
+	 */
+	public abstract int countToday();
+
+	/** 카테고리 분포 관련 Service
+	 * @return list
+	 */
+	public abstract ArrayList<Integer> countCategory();
 	
 
 

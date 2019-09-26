@@ -14,64 +14,64 @@ import com.dodream.spring.common.AdminPagination;
 import com.dodream.spring.project.model.vo.Project;
 
 @Controller
-public class AdminFundingController {
+public class AdminProjectController {
 
 	@Autowired
 	private AdminService aService;
 	
 	// 심사 대기 중 목록 보여주기
-	@RequestMapping("adminFlist1.dr")
-	public ModelAndView FundingListView1(ModelAndView mv, Integer page) {
+	@RequestMapping("adminPlist1.dr")
+	public ModelAndView projectListView1(ModelAndView mv) {
 		
 		// 프로젝트 목록 조회
 		ArrayList<Project> list = aService.selectProjectList1();
 		
 		if(list != null) {
 			mv.addObject("list", list).
-			setViewName("admin/project/fundingViewList1");
+			setViewName("admin/project/projectViewList1");
 		} else {
 			mv.addObject("msg", "등록된 프로젝트가 없습니다.").
-			setViewName("admin/project/fundingViewList1");
+			setViewName("admin/project/projectViewList1");
 		}
 		return mv;
 	}
 	
 	// 심사 완료된 목록 보여주기
-	@RequestMapping("adminFlist2.dr")
-	public ModelAndView FundingListView2(ModelAndView mv, Integer page) {
+	@RequestMapping("adminPlist2.dr")
+	public ModelAndView projectListView2(ModelAndView mv) {
 		
 		// 프로젝트 목록 조회 
 		ArrayList<Project> list = aService.selectProjectList2();
 		
 		if(list != null) {
 			mv.addObject("list", list).
-			setViewName("admin/project/fundingViewList2");
+			setViewName("admin/project/projectViewList2");
 		} else {
 			mv.addObject("msg", "등록된 프로젝트가 없습니다.").
-			setViewName("admin/project/fundingViewList2");
+			setViewName("admin/project/projectViewList2");
 		}
 		return mv;
 	}
 	
 	// 오픈 중 목록 보여주기
-	@RequestMapping("adminFlist3.dr")
-	public ModelAndView FundingListView3(ModelAndView mv, Integer page) {
+	@RequestMapping("adminPlist3.dr")
+	public ModelAndView projectListView3(ModelAndView mv) {
 		
 		// 프로젝트 목록 조회
 		ArrayList<Project> list = aService.selectProjectList3();
 		
 		if(list != null) {
 			mv.addObject("list", list).
-			setViewName("admin/project/fundingViewList3");
+			setViewName("admin/project/projectViewList3");
 		} else {
 			mv.addObject("msg", "등록된 프로젝트가 없습니다.").
-			setViewName("admin/project/fundingViewList3");
+			setViewName("admin/project/projectViewList3");
 		}
 		return mv;
 	}
 	
 	// 마감된 목록 보여주기
-	@RequestMapping("adminFlist4.dr")
+	@RequestMapping("adminPlist4.dr")
 	public ModelAndView FundingListView4(ModelAndView mv, Integer page) {
 		
 		// 프로젝트 목록 조회
@@ -79,10 +79,10 @@ public class AdminFundingController {
 		
 		if(list != null) {
 			mv.addObject("list", list).
-			setViewName("admin/project/fundingViewList4");
+			setViewName("admin/project/projectViewList4");
 		} else {
 			mv.addObject("msg", "등록된 프로젝트가 없습니다.").
-			setViewName("admin/project/fundingViewList4");
+			setViewName("admin/project/projectViewList4");
 		}
 		return mv;
 	}
@@ -105,6 +105,12 @@ public class AdminFundingController {
 		return aService.countProject3();
 	}
 	
+	// 카테고리 분포 관련 메소드
+	@ResponseBody
+	@RequestMapping("countCategory.dr")
+	public ArrayList<Integer> countCategory() {
+		return aService.countCategory();
+	}
 	
 	
 }

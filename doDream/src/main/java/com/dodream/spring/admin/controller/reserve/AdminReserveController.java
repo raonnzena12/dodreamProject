@@ -39,7 +39,7 @@ public class AdminReserveController {
 	
 	// 주문 예약 현황 
 	@RequestMapping("adminRlist1.dr")
-	public ModelAndView selectResultList(ModelAndView mv) {
+	public ModelAndView selectResultList1(ModelAndView mv) {
 		
 		ArrayList<Reserve> list = aService.selectReserveList1();
 		 
@@ -52,6 +52,42 @@ public class AdminReserveController {
 		} 
 		return mv;
 	}
+	
+	// 결제 현황 
+	@RequestMapping("adminRlist2.dr")
+	public ModelAndView selectReserveList2(ModelAndView mv) {
+		
+		ArrayList<Reserve> list = aService.selectReserveList2();
+		 
+		if(list != null) {
+			mv.addObject("list", list).
+			setViewName("admin/reserve/reserveViewList2");
+		} else {
+			mv.addObject("msg", "주문 예약이 없습니다.").
+			setViewName("admin/reserve/reserveViewList2");
+		}
+		
+		return mv;
+	}
+	
+	// 주문 취소 현황 
+	@RequestMapping("adminRlist3.dr")
+	public ModelAndView selectReserveList3(ModelAndView mv) {
+		
+		ArrayList<Reserve> list = aService.selectReserveList3();
+		
+		if(list != null) {
+			mv.addObject("list", list).
+			setViewName("admin/reserve/reserveViewList3");
+		} else {
+			mv.addObject("msg", "주문 예약이 없습니다.").
+			setViewName("admin/reserve/reserveViewList3");
+		}
+		
+		return mv;
+	}
+	
+	
 	
 	
 	

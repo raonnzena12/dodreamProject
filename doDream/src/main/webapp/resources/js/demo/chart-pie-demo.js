@@ -3,15 +3,33 @@ Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,Bli
 Chart.defaults.global.defaultFontColor = '#858796';
 
 // Pie Chart Example
+var cat1 = 0;
+var cat2 = 0;
+var cat3 = 0;
+var cat4 = 0;
+var cat5 = 0;
+
+$.ajax({
+	url : "countCategory.dr",
+	async : false,
+	success : function(result){
+		cat1 = result[0];
+		cat2 = result[1];
+		cat3 = result[2];
+		cat4 = result[3];
+		cat5 = result[4];
+	}
+});
+
 var ctx = document.getElementById("myPieChart");
 var myPieChart = new Chart(ctx, {
   type: 'doughnut',
   data: {
-    labels: ["Direct", "Referral", "Social"],
+    labels: ["음악", "영화", "연극", "미술 ", "기타"],
     datasets: [{
-      data: [55, 30, 15],
-      backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],
-      hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
+      data: [cat1, cat2, cat3, cat4, cat5],
+      backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc', '#36b9cc','#36b9cc'],
+      hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf','#2c9faf','#2c9faf'],
       hoverBorderColor: "rgba(234, 236, 244, 1)",
     }],
   },

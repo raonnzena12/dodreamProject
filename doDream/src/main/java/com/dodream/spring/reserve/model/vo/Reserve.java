@@ -15,12 +15,14 @@ public class Reserve {
 	private int rUser;
 	private int rRefPno;
 	private int rStatusNo;
+	private String pTitle;  			// 조인 시 필요한 프로젝트명
+	private String userNickname;		// 조인 시 필요한 유저 닉네임
 	
 	public Reserve() {
 	}
 
 	public Reserve(int rNo, String bKey, int addi, Date rDate, String rName, int rContract, String rAddress,
-			String rRequest, int rUser, int rRefPno, int rStatusNo) {
+			String rRequest, int rUser, int rRefPno, int rStatusNo, String pTitle, String userNickname) {
 		super();
 		this.rNo = rNo;
 		this.bKey = bKey;
@@ -33,6 +35,8 @@ public class Reserve {
 		this.rUser = rUser;
 		this.rRefPno = rRefPno;
 		this.rStatusNo = rStatusNo;
+		this.pTitle = pTitle;
+		this.userNickname = userNickname;
 	}
 
 	public int getrNo() {
@@ -123,13 +127,31 @@ public class Reserve {
 		this.rStatusNo = rStatusNo;
 	}
 
+	public String getpTitle() {
+		return pTitle;
+	}
+
+	public void setpTitle(String pTitle) {
+		this.pTitle = pTitle;
+	}
+
+	public String getUserNickname() {
+		return userNickname;
+	}
+
+	public void setUserNickname(String userNickname) {
+		this.userNickname = userNickname;
+	}
+
 	@Override
 	public String toString() {
 		return "Reserve [rNo=" + rNo + ", bKey=" + bKey + ", addi=" + addi + ", rDate=" + rDate + ", rName=" + rName
 				+ ", rContract=" + rContract + ", rAddress=" + rAddress + ", rRequest=" + rRequest + ", rUser=" + rUser
-				+ ", rRefPno=" + rRefPno + ", rStatusNo=" + rStatusNo + "]";
+				+ ", rRefPno=" + rRefPno + ", rStatusNo=" + rStatusNo + ", pTitle=" + pTitle + ", userNickname="
+				+ userNickname + "]";
 	}
-
+	
+	
 	
 	
 }

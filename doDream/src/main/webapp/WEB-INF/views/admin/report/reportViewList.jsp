@@ -11,8 +11,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-
-<title>프로젝트 관리 (심사중)</title>
+<title>신고 관리 (신고 접수 현황)</title>
 
 <!-- Custom fonts for this template -->
 <link href="resources/vendor/fontawesome-free/css/all.min.css"
@@ -71,7 +70,7 @@
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-2 text-gray-800"># 프로젝트 관리 (심사중)</h1>
+					<h1 class="h3 mb-2 text-gray-800"># 신고 관리 (신고 접수 현황)</h1>
 					<br>
 					<!-- DataTales Example -->
 					<div class="card shadow mb-4">
@@ -92,66 +91,44 @@
 														<th class="sorting_asc" tabindex="0"
 															aria-controls="dataTable" rowspan="1" colspan="1"
 															aria-sort="ascending"
-															aria-label="Name: activate to sort column descending">프로젝트 번호</th>
+															aria-label="Name: activate to sort column descending">신고 번호</th>
 														<th class="sorting" tabindex="0" aria-controls="dataTable"
 															rowspan="1" colspan="1"
-															aria-label="Office: activate to sort column ascending">프로젝트 제목</th>
+															aria-label="Office: activate to sort column ascending">신고자</th>
 														<th class="sorting" tabindex="0" aria-controls="dataTable"
 															rowspan="1" colspan="1"
-															aria-label="Age: activate to sort column ascending">목표 금액</th>
+															aria-label="Age: activate to sort column ascending">신고 내용</th>
 														<th class="sorting" tabindex="0" aria-controls="dataTable"
 															rowspan="1" colspan="1"
-															aria-label="Start date: activate to sort column ascending">프로젝트 시작일</th>
+															aria-label="Start date: activate to sort column ascending">프로젝트 제목</th>
 														<th class="sorting" tabindex="0" aria-controls="dataTable"
 															rowspan="1" colspan="1"
-															aria-label="Salary: activate to sort column ascending">프로젝트 종료일</th>
+															aria-label="Salary: activate to sort column ascending">신고일자</th>
 														<th class="sorting" tabindex="0" aria-controls="dataTable"
 															rowspan="1" colspan="1"
-															aria-label="Salary: activate to sort column ascending">아티스트 이름</th>
-														<th class="sorting" tabindex="0" aria-controls="dataTable"
-															rowspan="1" colspan="1"
-															aria-label="Salary: activate to sort column ascending">아티스트 연락처</th>
-														<th class="sorting" tabindex="0" aria-controls="dataTable"
-															rowspan="1" colspan="1"
-															aria-label="Salary: activate to sort column ascending">아티스트 이메일</th>
-														<th class="sorting" tabindex="0" aria-controls="dataTable"
-															rowspan="1" colspan="1"
-															aria-label="Salary: activate to sort column ascending">심사 통과 처리</th>
-														<th class="sorting" tabindex="0" aria-controls="dataTable"
-															rowspan="1" colspan="1"
-															aria-label="Salary: activate to sort column ascending">심사 탈락 처리</th>
+															aria-label="Salary: activate to sort column ascending">신고 처리</th>
 													</tr>
 												</thead>
 												<tfoot>
 													<tr>
-														<th rowspan="1" colspan="1">프로젝트 번호</th>
+														<th rowspan="1" colspan="1">신고 번호</th>
+														<th rowspan="1" colspan="1">신고자</th>
+														<th rowspan="1" colspan="1">신고내용</th>
 														<th rowspan="1" colspan="1">프로젝트 제목</th>
-														<th rowspan="1" colspan="1">목표 금액</th>
-														<th rowspan="1" colspan="1">프로젝트 시작일</th>
-														<th rowspan="1" colspan="1">프로젝트 종료일</th>
-														<th rowspan="1" colspan="1">아티스트 이름</th>
-														<th rowspan="1" colspan="1">아티스트 연락처</th>
-														<th rowspan="1" colspan="1">아티스트 이메일</th>
-														<th rowspan="1" colspan="1">심사 통과 처리</th>
-														<th rowspan="1" colspan="1">심사 탈락 처리</th>
+														<th rowspan="1" colspan="1">신고일자</th>
+														<th rowspan="1" colspan="1">신고 처리</th>
 													</tr>
 												</tfoot>
 												<tbody>
-													<c:forEach var="p" items="${ list }">
+													<c:forEach var="r" items="${ list }">
 														<tr role="row" class="odd">
-															<td class="sorting_1">${ p.pNo }</td>
-															<td>${ p.pTitle }</td>
-															<td>${ p.pGoal}</td>
-															<td>${ p.pStartDate}</td>
-															<td>${ p.pCloseDate }</td>
-															<td>${ p.pArtistName }</td>
-															<td>${ p.pArtistPhone }</td>
-															<td>${ p.pArtistEmail }</td>
+															<td class="sorting_1">${ r.repNo }</td>
+															<td>${ r.userNickname}</td>
+															<td>${ r.repContent}</td>
+															<td>${ r.pTitle}</td>
+															<td>${ r.repDate}</td>
 															<td>
 																<button type="button" id="projectBtn1" class="btn btn-primary btn-lg btn-block rewardBtn">심사 통과</button>
-															</td>
-															<td>
-																<button type="button" id="projectBtn2" class="btn btn-primary btn-lg btn-block rewardBtn">심사 탈락</button>
 															</td>
 														</tr>
 													</c:forEach>

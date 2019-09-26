@@ -10,6 +10,7 @@ import com.dodream.spring.common.AdminPagination;
 import com.dodream.spring.common.model.vo.PageInfo;
 import com.dodream.spring.member.model.vo.Member;
 import com.dodream.spring.project.model.vo.Project;
+import com.dodream.spring.report.model.vo.Report;
 import com.dodream.spring.reserve.model.vo.Reserve;
 
 @Service("aService")
@@ -102,6 +103,41 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public ArrayList<Reserve> selectReserveList1() {
 		return aDao.selectReserveList1(); 
+	}
+
+	@Override
+	public ArrayList<Reserve> selectReserveList2() {
+		return aDao.selectReserveList2();
+	}
+
+	@Override
+	public ArrayList<Reserve> selectReserveList3() {
+		return aDao.selectReserveList3();
+	}
+
+	@Override
+	public int countReport() {
+		return aDao.countReport();
+	}
+
+	@Override
+	public ArrayList<Report> selectReportList() {
+		return aDao.selectReportView();
+	}
+
+	@Override
+	public ArrayList<Integer> countVisit() {
+		return aDao.countVisit();
+	}
+
+	@Override
+	public int countToday() {
+		return aDao.countToday();
+	}
+
+	@Override
+	public ArrayList<Integer> countCategory() {
+		return aDao.countCategory();
 	}
 	
 

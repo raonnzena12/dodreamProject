@@ -72,5 +72,17 @@ public class AdminMemberController {
 		return aService.countBlackListMember();
 	}
 	
+	// 방문자수 관련 메소드
+	@ResponseBody
+	@RequestMapping("countVisit.dr")
+	public ArrayList<Integer> countVisit() {
+		return aService.countVisit();
+	}
 	
+	// 방문자수 관련 메소드
+	@ResponseBody
+	@RequestMapping("countToday.dr")
+	public int countToday() {
+		return aService.countToday();
+	}
 }
