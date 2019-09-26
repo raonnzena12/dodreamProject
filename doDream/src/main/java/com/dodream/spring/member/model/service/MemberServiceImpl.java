@@ -55,14 +55,16 @@ public class MemberServiceImpl implements MemberService {
 	public int updateMember(Member mem, HttpServletRequest request, MultipartFile uploadImg) {
 		
 		String rename = null;
-		rename = renameFile(uploadImg, request);
-		mem.setUserProfileImage(rename);
+		if ( !uploadImg.getOriginalFilename().equals("") ) {
+			rename = renameFile(uploadImg, request);
+			mem.setUserProfileImage(rename);
+		}
 		System.out.println(mem);
 				
 		int result = mDao.updateMember(mem);
 		
 		if (rename != null && result == 1) {
-			result = saveFile(rename, uploadImg, request);
+			result += saveFile(rename, uploadImg, request);
 		}
 				
 		return result;
@@ -85,7 +87,7 @@ public class MemberServiceImpl implements MemberService {
 
 		// 파일 저장경로 설정
 		String root = request.getSession().getServletContext().getRealPath("resources");
-		String savePath = root + "\\userProfileImage";
+		String savePath = root + "\\images\\userProfileImage";
 		
 		System.out.println(savePath);
 

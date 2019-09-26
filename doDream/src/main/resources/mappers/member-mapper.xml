@@ -62,9 +62,7 @@
 		SET USER_NICKNAME = #{userNickname},
 		USER_ADDR = #{userAddress},
 		USER_PHONE = #{userPhone},
-		<if test = "userProfileImage != userProfileImage">
 		USER_PF_IMG = #{userProfileImage},
-		</if>
 		USER_SELF = #{userSelf},
 		USER_MF_DT = SYSDATE	
 		WHERE USER_NO = #{userNo}
