@@ -166,9 +166,7 @@
 			location.href="#detailcontent";
 		}); */
 		
-		$("#guide").click(function(){
-			location.href="#projectInformation";
-		});
+		
 		/* 페이지마다 넣기 */
 		
 		

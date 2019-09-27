@@ -14,13 +14,14 @@ public class Reward {
 	private String rOptionAdd;// 옵션추가작성
 	private int rRefPno;//참조 프로젝트 번호
 	private int rOptionNo;// 옵션 번호
+	private int rAmount;// 리워드 재고 수량  
 	
 	public Reward() {
 
 	}
 
 	public Reward(int rNo, int rPrice, String rName, String rExplain, int rLimit, String rShipCDT, Date rShipDate,
-			String rOptionAdd, int rRefPno, int rOptionNo) {
+			String rOptionAdd, int rRefPno, int rOptionNo, int rAmount) {
 		super();
 		this.rNo = rNo;
 		this.rPrice = rPrice;
@@ -32,6 +33,7 @@ public class Reward {
 		this.rOptionAdd = rOptionAdd;
 		this.rRefPno = rRefPno;
 		this.rOptionNo = rOptionNo;
+		this.rAmount = rAmount;
 	}
 
 	public int getrNo() {
@@ -114,12 +116,21 @@ public class Reward {
 		this.rOptionNo = rOptionNo;
 	}
 
+	public int getrAmount() {
+		return rAmount;
+	}
+
+	public void setrAmount(int rAmount) {
+		this.rAmount = rAmount;
+	}
+
 	@Override
 	public String toString() {
 		return "Reward [rNo=" + rNo + ", rPrice=" + rPrice + ", rName=" + rName + ", rExplain=" + rExplain + ", rLimit="
 				+ rLimit + ", rShipCDT=" + rShipCDT + ", rShipDate=" + rShipDate + ", rOptionAdd=" + rOptionAdd
-				+ ", rRefPno=" + rRefPno + ", rOptionNo=" + rOptionNo + "]";
+				+ ", rRefPno=" + rRefPno + ", rOptionNo=" + rOptionNo + ", rAmount=" + rAmount + "]";
 	}
+
 	
 	
 	
