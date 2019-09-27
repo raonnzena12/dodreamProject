@@ -26,7 +26,7 @@ public class Project {
 	private String pArtistEmail;
 	private Date pEnrollDate;
 	private Date pModifyDate;
-	private int pWritter;
+	private int pWriter;
 	private int pCategoryNum;
 	private String pCategoryName;
 	private int pStatusNum;
@@ -39,7 +39,8 @@ public class Project {
 			String pThumbImage, Date pStartDate, Date pCloseDate, String pDDay, String pHashTag, String pMainImage,
 			String pSummaryText, String pStory, String pArtistName, String pArtistIntroduction, String pArtistPFImage,
 			String pArtistSns1, String pArtistSns2, String pArtistPhone, String pArtistEmail, Date pEnrollDate,
-			Date pModifyDate, int pWritter, int pCategoryNum, String pCategoryName, int pStatusNum, int pCount, int pOpenCount) {
+			Date pModifyDate, int pWriter, int pCategoryNum, String pCategoryName, int pStatusNum, int pCount,
+			int pOpenCount) {
 		super();
 		this.pNo = pNo;
 		this.pTitle = pTitle;
@@ -64,7 +65,7 @@ public class Project {
 		this.pArtistEmail = pArtistEmail;
 		this.pEnrollDate = pEnrollDate;
 		this.pModifyDate = pModifyDate;
-		this.pWritter = pWritter;
+		this.pWriter = pWriter;
 		this.pCategoryNum = pCategoryNum;
 		this.pCategoryName = pCategoryName;
 		this.pStatusNum = pStatusNum;
@@ -256,12 +257,12 @@ public class Project {
 		this.pModifyDate = pModifyDate;
 	}
 
-	public int getpWritter() {
-		return pWritter;
+	public int getpWriter() {
+		return pWriter;
 	}
 
-	public void setpWritter(int pWritter) {
-		this.pWritter = pWritter;
+	public void setpWriter(int pWriter) {
+		this.pWriter = pWriter;
 	}
 
 	public int getpCategoryNum() {
@@ -313,8 +314,8 @@ public class Project {
 				+ ", pArtistName=" + pArtistName + ", pArtistIntroduction=" + pArtistIntroduction + ", pArtistPFImage="
 				+ pArtistPFImage + ", pArtistSns1=" + pArtistSns1 + ", pArtistSns2=" + pArtistSns2 + ", pArtistPhone="
 				+ pArtistPhone + ", pArtistEmail=" + pArtistEmail + ", pEnrollDate=" + pEnrollDate + ", pModifyDate="
-				+ pModifyDate + ", pWritter=" + pWritter + ", pCategoryNum=" + pCategoryNum + ", pCategoryName="
-				+ pCategoryName + ", pStatusNum=" + pStatusNum + ", pCount=" + pCount + "]";
+				+ pModifyDate + ", pWriter=" + pWriter + ", pCategoryNum=" + pCategoryNum + ", pCategoryName="
+				+ pCategoryName + ", pStatusNum=" + pStatusNum + ", pCount=" + pCount + ", pOpenCount=" + pOpenCount
+				+ "]";
 	}
-	
 }

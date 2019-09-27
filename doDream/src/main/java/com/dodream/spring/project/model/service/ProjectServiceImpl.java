@@ -3,6 +3,8 @@ package com.dodream.spring.project.model.service;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -58,15 +60,14 @@ public class ProjectServiceImpl implements ProjectService {
 	}
 
 	@Override
-	public int insertProject(Project project, RewardList rList, MultipartFile uploadfile1,
-			MultipartFile uploadfile2) {
-		System.out.println(project);
-		for (Reward reward : rList.getrList()) {
-			System.out.println(reward);
-		}
-		System.out.println(uploadfile1);
-		System.out.println(uploadfile2);
-		return 0;
+	public int insertReward(Reward reward) {
+		return pDao.insertReward(reward);
+	}
+
+	@Override
+	public int insertProject(Project project, HttpServletRequest request) {
+		// 파일 저장 해야함
+		return pDao.insertProject(project);
 	}
 
 	@Override

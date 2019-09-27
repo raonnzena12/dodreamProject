@@ -45,7 +45,7 @@
 					<img alt="프로필사진" src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg" class="rounded-circle " id="userProfileImage" name="userProfileImage" />
 					</c:if>
 					<c:if test="${ !empty loginUser.userProfileImage }">
-					<img alt="프로필사진" src="${contextPath}/resources/userProfileImage/${loginUser.userProfileImage}" class="rounded-circle" id="userProfileImage" name="userProfileImage"/>
+					<img alt="프로필사진" src="resources/images/userProfileImage/${loginUser.userProfileImage}" class="rounded-circle" id="userProfileImage" name="userProfileImage"/>
 					</c:if>					
 					<img src="resources/images/settings_icon.png" class="float-sm align-top" id="setting" style="width: 35px;"/>
 					</a>

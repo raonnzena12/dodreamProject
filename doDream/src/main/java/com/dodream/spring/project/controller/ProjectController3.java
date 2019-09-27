@@ -12,6 +12,8 @@ import com.dodream.spring.common.Pagination;
 import com.dodream.spring.project.model.service.ProjectService;
 import com.dodream.spring.project.model.vo.Project;
 import com.dodream.spring.project.model.vo.Reward;
+import com.dodream.spring.reserve.model.vo.HistoryList;
+import com.dodream.spring.reserve.model.vo.Reserve;
 
 @Controller
 public class ProjectController3 {
@@ -27,7 +29,6 @@ public class ProjectController3 {
 		int currentPage = ( page == null ) ? 1 : page;
 		
 		ArrayList<Project> pList = pService.selectPrjList(category, currentPage);
-		System.out.println(pList.get(0).toString());
 		model.addAttribute("pList", pList);
 		model.addAttribute("pi", Pagination.getPageInfo());
 		return "common/fundList";
@@ -38,19 +39,25 @@ public class ProjectController3 {
 	public String tmp(Model model) {
 		int pNo = 54; // projectNumber
 		String rewardStr = "4/6/7/";
-		int addtionalFunding = 10000;
+		int addtionalCost = 10000;
 		
 		Project prj = pService.selectProject(pNo);
 		ArrayList<Reward> rList = pService.selectRewardList(rewardStr);
 		
 		model.addAttribute("rList", rList);
+		model.addAttribute("additionalCost",addtionalCost);
+		model.addAttribute("pNo", pNo);
 		
 		return "project/fundingInfo";
 	}
 	
 	// 펀딩 결제 성공 확인용 임시 매핑
-	@RequestMapping("temp2.dr")
-	public String tmp2() {
+	@RequestMapping("thankYou.dr")
+	public String tmp2(Reserve reserve, HistoryList hList) {
+		
+		System.out.println(reserve);
+		System.out.println(hList);
+		
 		return "project/fundingComplete";
 	}
 

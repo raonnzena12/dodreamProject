@@ -117,7 +117,7 @@
 					<i class="material-icons">account_circle</i>
 					</c:if>
 					<c:if test="${! empty loginUser.userProfileImage }">
-						<img alt="프로필사진" src="resources/userProfileImage/${loginUser.userProfileImage}" class="rounded-circle float-sm" style="width: 24px; height: 24px;" id="userProfileImage_sm" name="userProfileImage"/>
+						<img alt="프로필사진" src="resources/images/userProfileImage/${loginUser.userProfileImage}" class="rounded-circle float-sm" style="width: 24px; height: 24px;" id="userProfileImage_sm" name="userProfileImage"/>
 					</c:if>
 					</div>
 			</a>
@@ -174,7 +174,7 @@
 									<img alt="프로필사진" src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg" class="rounded-circle float-sm ml-3"/>
 									</c:if>
 									<c:if test="${! empty loginUser.userProfileImage}">
-									<img alt="프로필사진" src="resources/userProfileImage/${loginUser.userProfileImage}" class="rounded-circle float-sm" style="width: 40px; height: 40px;"/>
+									<img alt="프로필사진" src="resources/images/userProfileImage/${loginUser.userProfileImage}" class="rounded-circle float-sm" style="width: 40px; height: 40px;"/>
 									</c:if>
 									</div>
 								</div>
