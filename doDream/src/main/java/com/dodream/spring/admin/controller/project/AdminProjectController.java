@@ -112,5 +112,34 @@ public class AdminProjectController {
 		return aService.countCategory();
 	}
 	
+	// 심사 대기중  -> 심사 완료 
+	@ResponseBody
+	@RequestMapping("passProjectBtn.dr")
+	public int passProject(int pNo) {
+		return aService.passProject(pNo);
+	}
+	
+	// 심사 대기중  -> 심사 탈락 
+	@ResponseBody
+	@RequestMapping("dropOutProjectBtn.dr")
+	public int dropOutProject(int pNo) {
+		return aService.dropOutProject(pNo);
+	}
+	
+	// 심사 완료 -> 프로젝트 오픈 
+	@ResponseBody
+	@RequestMapping("openProjectBtn.dr")
+	public int openProject(int pNo) {
+		return aService.openProject(pNo);
+	}
+	
+	// 오픈 중 -> 심사 대기중
+	@ResponseBody
+	@RequestMapping("stopProjectBtn.dr")
+	public int stopProject(int pNo) {
+		return aService.stopProject(pNo);
+	}
+	
+	
 	
 }

@@ -4,24 +4,27 @@ import java.sql.Date;
 
 public class Reserve {
 
-	private int rNo; // 예약번호
+	private int resNo; // 예약번호
 	private String bKey; // 빌링키
 	private int addi; // 추가 후원금
-	private Date rDate; // 예약한 날짜
-	private String rName; // 리워드 수령인 이름
-	private String rContract; // 리워드 수령인 연락처
-	private String rAddress; // 리워드 수령 주소
-	private String rRequest; // 리워드 배송시 요청사항
-	private int rUser; // 예약한 유저번호
-	private int rRefPno; // 참조하는 프로젝트 번호
-	private int rStatusNo; // 예약 스테이터스 ( 1 결제대기 2 결제완료 3 결제예약 취소 )
+	private Date resDate; // 예약한 날짜
+	private String resName; // 리워드 수령인 이름
+	private int resContract; // 리워드 수령인 연락처
+	private String resAddress; // 리워드 수령 주소
+	private String resRequest; // 리워드 배송시 요청사항
+	private int resUser; // 예약한 유저번호
+	private int resRefPno; // 참조하는 프로젝트 번호
+	private int resStatusNo; // 예약 스테이터스 ( 1 결제대기 2 결제완료 3 결제예약 취소 )
 	private String pTitle;  			// 조인 시 필요한 프로젝트명
 	private String userNickname;		// 조인 시 필요한 유저 닉네임
 	
 	public Reserve() {
 	}
 
-	public Reserve(int rNo, String bKey, int addi, Date rDate, String rName, String rContract, String rAddress,
+	public int getResNo() {
+		return resNo;
+
+    public Reserve(int rNo, String bKey, int addi, Date rDate, String rName, String rContract, String rAddress,
 			String rRequest, int rUser, int rRefPno, int rStatusNo, String pTitle, String userNickname) {
 		super();
 		this.rNo = rNo;
@@ -39,12 +42,8 @@ public class Reserve {
 		this.userNickname = userNickname;
 	}
 
-	public int getrNo() {
-		return rNo;
-	}
-
-	public void setrNo(int rNo) {
-		this.rNo = rNo;
+	public void setResNo(int resNo) {
+		this.resNo = resNo;
 	}
 
 	public String getbKey() {
@@ -63,20 +62,20 @@ public class Reserve {
 		this.addi = addi;
 	}
 
-	public Date getrDate() {
-		return rDate;
+	public Date getResDate() {
+		return resDate;
 	}
 
-	public void setrDate(Date rDate) {
-		this.rDate = rDate;
+	public void setResDate(Date resDate) {
+		this.resDate = resDate;
 	}
 
-	public String getrName() {
-		return rName;
+	public String getResName() {
+		return resName;
 	}
 
-	public void setrName(String rName) {
-		this.rName = rName;
+	public void setResName(String resName) {
+		this.resName = resName;
 	}
 
 	public String getrContract() {
@@ -87,44 +86,44 @@ public class Reserve {
 		this.rContract = rContract;
 	}
 
-	public String getrAddress() {
-		return rAddress;
+	public String getResAddress() {
+		return resAddress;
 	}
 
-	public void setrAddress(String rAddress) {
-		this.rAddress = rAddress;
+	public void setResAddress(String resAddress) {
+		this.resAddress = resAddress;
 	}
 
-	public String getrRequest() {
-		return rRequest;
+	public String getResRequest() {
+		return resRequest;
 	}
 
-	public void setrRequest(String rRequest) {
-		this.rRequest = rRequest;
+	public void setResRequest(String resRequest) {
+		this.resRequest = resRequest;
 	}
 
-	public int getrUser() {
-		return rUser;
+	public int getResUser() {
+		return resUser;
 	}
 
-	public void setrUser(int rUser) {
-		this.rUser = rUser;
+	public void setResUser(int resUser) {
+		this.resUser = resUser;
 	}
 
-	public int getrRefPno() {
-		return rRefPno;
+	public int getResRefPno() {
+		return resRefPno;
 	}
 
-	public void setrRefPno(int rRefPno) {
-		this.rRefPno = rRefPno;
+	public void setResRefPno(int resRefPno) {
+		this.resRefPno = resRefPno;
 	}
 
-	public int getrStatusNo() {
-		return rStatusNo;
+	public int getResStatusNo() {
+		return resStatusNo;
 	}
 
-	public void setrStatusNo(int rStatusNo) {
-		this.rStatusNo = rStatusNo;
+	public void setResStatusNo(int resStatusNo) {
+		this.resStatusNo = resStatusNo;
 	}
 
 	public String getpTitle() {
@@ -145,10 +144,9 @@ public class Reserve {
 
 	@Override
 	public String toString() {
-		return "Reserve [rNo=" + rNo + ", bKey=" + bKey + ", addi=" + addi + ", rDate=" + rDate + ", rName=" + rName
-				+ ", rContract=" + rContract + ", rAddress=" + rAddress + ", rRequest=" + rRequest + ", rUser=" + rUser
-				+ ", rRefPno=" + rRefPno + ", rStatusNo=" + rStatusNo + ", pTitle=" + pTitle + ", userNickname="
-				+ userNickname + "]";
+		return "Reserve [resNo=" + resNo + ", bKey=" + bKey + ", addi=" + addi + ", resDate=" + resDate + ", resName="
+				+ resName + ", resContract=" + resContract + ", resAddress=" + resAddress + ", resRequest=" + resRequest
+				+ ", resUser=" + resUser + ", resRefPno=" + resRefPno + ", resStatusNo=" + resStatusNo + ", pTitle="
+				+ pTitle + ", userNickname=" + userNickname + "]";
 	}
-	
 }

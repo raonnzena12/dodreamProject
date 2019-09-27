@@ -22,7 +22,7 @@
 		<result property="pArtistEmail" column="PROJECT_AT_EM"/>
 		<result property="pEnrollDate" column="PROJECT_ER_DT"/>
 		<result property="pModifyDate" column="PROJECT_MF_DT"/>
-		<result property="pWritter" column="PROJECT_WRITER"/>
+		<result property="pWriter" column="PROJECT_WRITER"/>
 		<result property="pCategoryNum" column="PROJECT_CT_NO"/>
 		<result property="pStatusNum" column="PROJECT_ST_NO"/>
 		<result property="pCount" column="PROJECT_COUNT"/>
@@ -77,5 +77,33 @@
 		GROUP BY PROJECT_CT_NO 
 		ORDER BY PROJECT_CT_NO ASC
 	</select>
+	
+	<!-- 심사 대기중  > 심사 완료 -->
+	<update id="passProject" parameterType="_int">
+		UPDATE PROJECT_TB SET
+		PROJECT_ST_NO = 3
+		WHERE PROJECT_NO = #{pNo}
+	</update>
+	
+	<!-- 심사 대기중 > 심사 탈락 -->
+	<delete id="dropOutProject" parameterType="_int">
+		DELETE FROM PROJECT_TB
+		WHERE PROJECT_NO = #{pNo}
+	</delete>
+	
+	<!-- 심사 완료 > 프로젝트 오픈 -->	
+	<update id="openProject" parameterType="_int">
+		UPDATE PROJECT_TB SET 
+		PROJECT_ST_NO = 4
+		WHERE PROJECT_NO = #{pNo}
+	</update>
+	
+	<!-- 오픈 중 > 심사 대기중 -->
+	<update id="stopProject" parameterType="_int">
+		UPDATE PROJECT_TB SET
+		PROJECT_ST_NO = 2
+		WHERE PROJECT_NO = #{pNo}
+	</update>
+	
 	
 </mapper>

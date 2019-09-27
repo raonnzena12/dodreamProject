@@ -124,6 +124,42 @@ public interface AdminService {
 	 * @return list
 	 */
 	public abstract ArrayList<Integer> countCategory();
+
+	/** 일반 회원 > 블랙리스트 처리 Service 
+	 * @param userNo
+	 * @return result
+	 */
+	public abstract int goBlackList(int userNo);
+
+	/** 블랙리스트 > 일반 회원 처리 Service
+	 * @param userNo
+	 * @return result
+	 */
+	public abstract int goReturnuser(int userNo);
+
+	/** 심사 대기중 > 심사 완료
+	 * @param pNo
+	 * @return result
+	 */
+	public abstract int passProject(int pNo);
+
+	/** 심사 대기중  > 심사 탈락
+	 * @param pNo
+	 * @return result
+	 */
+	public abstract int dropOutProject(int pNo);
+
+	/** 심사 완료  > 프로젝트 오픈
+	 * @param pNo
+	 * @return result
+	 */
+	public abstract int openProject(int pNo);
+
+	/** 오픈 중 > 심사 대기 중
+	 * @param pNo
+	 * @return result
+	 */
+	public abstract int stopProject(int pNo);
 	
 
 

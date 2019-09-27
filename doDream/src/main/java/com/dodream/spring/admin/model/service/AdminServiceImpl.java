@@ -139,6 +139,36 @@ public class AdminServiceImpl implements AdminService {
 	public ArrayList<Integer> countCategory() {
 		return aDao.countCategory();
 	}
+
+	@Override
+	public int goBlackList(int userNo) {
+		return aDao.goBlackList(userNo);
+	}
+
+	@Override
+	public int goReturnuser(int userNo) {
+		return aDao.goReturnUser(userNo);
+	}
+
+	@Override
+	public int passProject(int pNo) {
+		return aDao.passProject(pNo);
+	}
+
+	@Override
+	public int dropOutProject(int pNo) {
+		return aDao.dropOutProject(pNo);
+	}
+
+	@Override
+	public int openProject(int pNo) {
+		return aDao.openProject(pNo);
+	}
+
+	@Override
+	public int stopProject(int pNo) {
+		return aDao.stopProject(pNo);
+	}
 	
 
 }

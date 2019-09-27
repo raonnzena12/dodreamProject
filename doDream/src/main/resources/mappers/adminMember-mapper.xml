@@ -66,4 +66,18 @@
 		<![CDATA[ <= ]]> 7 
 		ORDER BY VISIT_DATE DESC 
 	</select>
+	
+	<!-- 일반 회원 > 블랙리스트 처리 쿼리  -->
+	<update id="goBlackList" parameterType="_int">
+		UPDATE USER_TB SET  
+		USER_STATUS = 'B' 
+		WHERE USER_NO = #{userNo} 
+	</update>
+	
+	<!-- 블랙리스트 > 일반회원 처리 쿼리 -->
+	<update id="goReturnUser" parameterType="_int">
+		UPDATE USER_TB SET
+		USER_STATUS = 'Y'
+		WHERE USER_NO = #{userNo}	
+	</update>
 </mapper>

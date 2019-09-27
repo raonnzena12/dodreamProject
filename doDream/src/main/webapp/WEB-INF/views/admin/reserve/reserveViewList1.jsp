@@ -134,14 +134,14 @@
 												<tbody>
 													<c:forEach var="r" items="${ list }">
 														<tr role="row" class="odd">
-															<td class="sorting_1">${ r.rNo }</td>
+															<td class="sorting_1">${ r.resNo }</td>
 															<td>${ r.pTitle}</td>
 															<td>${ r.userNickname}</td>
-															<td>${ r.rDate}</td>
+															<td>${ r.resDate}</td>
 															<td>${ r.addi}</td>
-															<td>${ r.rName}</td>
-															<td>${ r.rContract}</td>
-															<td>${ r.rAddress}</td>
+															<td>${ r.resName}</td>
+															<td>${ r.resContract}</td>
+															<td>${ r.resAddress}</td>
 															<td>
 																<button type="button" id="projectBtn1" class="btn btn-primary btn-lg btn-block rewardBtn">예약 취소</button>
 															</td>

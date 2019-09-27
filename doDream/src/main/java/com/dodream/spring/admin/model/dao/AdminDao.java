@@ -164,6 +164,54 @@ public class AdminDao {
 	public ArrayList<Integer> countCategory() {
 		return (ArrayList)sqlSession.selectList("adminProjectMapper.countCategory");
 	}
+
+	/** 일반 회원 > 블랙리스트
+	 * @param userNo
+	 * @return result
+	 */
+	public int goBlackList(int userNo) {
+		return sqlSession.update("adminMemberMapper.goBlackList",userNo);
+	}
+
+	/** 블랙리스트 > 일반회원
+	 * @param userNo
+	 * @return result
+	 */
+	public int goReturnUser(int userNo) {
+		return sqlSession.update("adminMemberMapper.goReturnUser",userNo);
+	}
+
+	/** 심사 대기중 > 심사 완료 
+	 * @param pNo
+	 * @return result
+	 */
+	public int passProject(int pNo) {
+		return sqlSession.update("adminProjectMapper.passProject", pNo);
+	}
+
+	/** 심사 대기중 > 심사 탈락
+	 * @param pNo
+	 * @return result
+	 */
+	public int dropOutProject(int pNo) {
+		return sqlSession.delete("adminProjectMapper.dropOutProject", pNo);
+	}
+
+	/** 심사 완료 > 프로젝트 오픈
+	 * @param pNo
+	 * @return result 
+	 */
+	public int openProject(int pNo) {
+		return sqlSession.update("adminProjectMapper.openProject", pNo);
+	}
+
+	/** 오픈 중 > 심사 대기 중
+	 * @param pNo
+	 * @return result
+	 */
+	public int stopProject(int pNo) {
+		return sqlSession.update("adminProjectMapper.stopProject", pNo);
+	}
 	
 
 }
