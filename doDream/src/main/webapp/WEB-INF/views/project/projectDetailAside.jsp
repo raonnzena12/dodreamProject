@@ -99,7 +99,7 @@
            		
            }
            #artistText2{
-           		min-width:130px;
+           		min-width:50px;
            		width:auto;
            		height:auto;
            		min-height:30px;

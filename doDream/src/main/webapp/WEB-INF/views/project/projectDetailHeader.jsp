@@ -341,7 +341,7 @@
 		function LikeDelete(){
 			
 		
-			if(${!empty sessionScope.loginUser}){
+			if(${sessionScope.loginUser ne '-1'}){
 				
 				var uno = ${loginUser.userNo};
 				var pNo = ${project.pNo};
