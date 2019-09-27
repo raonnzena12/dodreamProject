@@ -35,14 +35,34 @@
            #artistText1{
            		font-size: 20px;
            		font-weight:bold;
-           		margin: 5px 0 0 10px;
+           		margin: 5px 0 0 0;
+           		padding: 0 0 0 10px;
            		display:block;
            		float:left;
+           		/* border: 1px solid black; */
+           		width:100%;
+           		height:30px;
+           		
+           		left: 0;
            }
            #artProfile{
            		width:100%;
-           		height: 90px;
-           		/* border: 1px solid black; */
+           		height:auto;
+           		min-height: 90px;
+           		border: 1px solid black;
+           		position: relative;
+           		/* 프로필 전체 감싼 박스 */
+           }
+           #artistImg{
+           		/* 아티스트 이미지 박스 */
+           		/*  border: 1px solid black; */
+           		width: 60px;
+           		height: 60px;
+           		float:right;
+           		display:block;
+           		position: absolute;
+           		bottom: 0;
+           		right: 0;
            }
            #artProfileImg{
            		border: 1px solid #495057;
@@ -50,20 +70,71 @@
            		height: 60px;
            		float:right;
            		border-radius: 50%;
-           		margin: 25px 10px 0 0;
            		display:block;
+           		/* position: absolute; */
+           		/* 이미지 */
+           }
+          
+           #artistName{
+           		width:226px;
+           		height:auto;
+           		min-height:60px;
+           		/* border: 1px solid black; */
+           	/* 	margin:10px 0 0 0; */
+           		float:left;
+           		
+           		bottom: 0;
+           		left: 0;
+           		
+           		/* 아티스트 이름, 아이콘 감싼것 */
+           }
+           #nameBox{
+           		width:auto;	
+           		min-width:162px;
+           		height:auto;
+           		min-height:30px;
+           		/* border: 1px solid black; */
+           		position: relative;
+           		
+           		
            }
            #artistText2{
+           		min-width:130px;
+           		width:auto;
+           		height:auto;
+           		min-height:30px;
            		font-size: 17px;
                	display: block;
               	float: left;
-               	margin: 10px 0 0 10px; 
+               	padding: 0 32px 0 10px;
+               	margin:15px 0 0 0;
+               /* 	border: 1px solid black; */
+               	position: relative;
+               	
+               	/* 아티스트 이름 */
+           }
+            #iconbox{
+           		/* border: 1px solid black; */
+           		width: 30px;
+           		height: 30px;
+           		/* margin-top: 13%; */
+           		margin:0;
+           		display:block;
+           		float:right;
+           		position: absolute;
+           		bottom:0;
+           		right: 0;
+           		
+           		
+           		/* 프로필이미지 감싼거 */
            }
            #asideFavorite{
            		font-size: 30px;
                 text-align: center;
                 color:#F39C12;
-                margin:43px 0 0 3px;
+               /*  margin:43px 0 0 3px; */
+                /* position: absolute; */
+                /* 하트 아이콘 */
            }
            #introduce{
            		width:270px;
@@ -73,6 +144,7 @@
            		margin: 0 0 0 10px;
            		padding: 0 0 10px 0;
            		font-size:14px;
+           		/* border: 1px solid black; */
            }
            #artInformation{
            		width:270px;
@@ -154,6 +226,17 @@
            		padding:5px 5px 0 5px;
            		font-size: 14px;
            }
+           .rewardBadge1{
+           		width: auto;
+           		min-width:70px;
+           		height:25px;
+           		background-color: #adb5bd;
+           		display:block;
+           		float:right;
+           		margin:5px 10px 0 0;
+           		padding:5px 5px 0 5px;
+           		font-size: 14px;
+           }
            .RewardText3{
            		font-size: 25px;
            		font-weight: bold;
@@ -180,8 +263,25 @@
 	            padding: 0 0 5px 0;
 	            
            }
+           
            .rewardBtn:hover{
            		background-color: #8E44AD;
+           		cursor: pointer;
+           }
+           .rewardBtn2{
+           		width: 272px;
+	            height: 50px;
+	            background-color: #adb5bd;
+	            border: #adb5bd;
+	            margin: 7px 0 0 8px; 
+	            float: left;
+	            display: block;
+	            font-size:18px;
+	            padding: 0 0 5px 0;
+           
+           }
+           .rewardBtn2:hover{
+           		background-color: #adb5bd;
            		cursor: pointer;
            }
        </style>
@@ -190,12 +290,17 @@
 	
 	<section id="detailAside">
 		<section id="artist">
-			<div id="artProfile">
-				 <p id="artistText1">창작자 소개</p>
-                 <img src="resources/projectImg/artistImg/${project.pArtistPFImage}" alt="" id="artProfileImg">
-                 <p id="artistText2">${project.pArtistName }님 </p>
-                 <div id="iconbox">
-                 	<i class="material-icons" id="asideFavorite">favorite_border</i>
+			<div id="artProfile" class="clearfix">
+				 <div id="artistText1">창작자 소개</div>
+				 <div id="artistImg">
+                 	<img src="resources/images/projectImg/artistImg/${project.pArtistPFImage}" alt="" id="artProfileImg">
+                 </div>
+                 <div id="artistName">
+		                 <div id="artistText2">${project.pArtistName }님
+			                 <div id="iconbox" class="clearfix">
+				                 	<i class="material-icons" id="asideFavorite">favorite_border</i>
+				             </div>
+			             </div>
                  </div>
             </div>
             <div id="introduce">
@@ -203,8 +308,8 @@
             </div>
             <div id="artInformation">
             	<div id="artistText3">
-            		${project.pArtistSns1 } <br>
-            		${project.pArtistSns2 } <br>
+            		<a href="https://www.facebook.com/${project.pArtistSns1 }"><img src="resources/images/faceB_gray_icon.png" width="20px" height="20px"></a> <br>
+            		<a href="https://www.instagram.com/${project.pArtistSns2 }"><img src="resources/images/inStar_gray_icon.png" width="20px" height="20px"></a> <br>
             		${project.pArtistPhone} <br>
             		${project.pArtistEmail}
             	</div>
@@ -218,11 +323,26 @@
 			
 		<c:forEach var="r" items="${reward }">
 			<form action="detailSubReward.dr" method="post">
+			
 				<section class="projectReward">
 					<div class="rewardTitle">
 						<i class="material-icons rewardIcon">keyboard_arrow_right</i>
 						<p class="RewardText2">5명 선택</p> <!-- 리워드 정보 불러오기 -->
-						<span class="badge badge-primary rewardBadge">${r.rLimit }개 남음</span><!-- 리워드 정보 불러오기 -->
+					<c:if test="${r.rLimit ne '-1'}">
+					
+						<c:if test="${r.rAmount eq '0' }">
+		            		<span class="badge badge-primary rewardBadge1">${r.rAmount }개 남음</span><!-- 리워드 정보 불러오기 -->
+		            	</c:if>
+		            	<c:if test="${r.rAmount ne '0' }">
+		            		<span class="badge badge-primary rewardBadge">${r.rAmount }개 남음</span><!-- 리워드 정보 불러오기 -->
+		            	</c:if>
+						
+					</c:if>
+					<c:if test="${r.rLimit eq '-1'}">
+						
+					</c:if>
+					
+					
 					</div>
 					<p class="RewardText3">${r.rPrice }원</p> <!-- 리워드 정보 불러오기 -->
 					<div class="rewardIntroduce"> <!-- 리워드 정보 불러오기 -->
@@ -230,15 +350,23 @@
 	            	</div>
 	            	<input type="hidden" name="rNo" value="${r.rNo }">
 	            	<input type="hidden" name="pNo" value="${project.pNo }">
+	            	<c:if test="${r.rAmount eq '0' }">
+	            		<button type="button" class="btn btn-primary btn-lg btn-block rewardBtn2">리워드 선택하고 후원하기</button><!-- 리워드 정보 불러오기 -->
+	            	</c:if>
+	            	<c:if test="${r.rAmount ne '0' }">
+	            		<button type="submit" class="btn btn-primary btn-lg btn-block rewardBtn">리워드 선택하고 후원하기</button><!-- 리워드 정보 불러오기 -->
+	            	</c:if>
 	            	
-	            	<button type="submit" class="btn btn-primary btn-lg btn-block rewardBtn">리워드 선택하고 후원하기</button><!-- 리워드 정보 불러오기 -->
 				</section>
+			
 			</form>
 		</c:forEach>
 		
 		</section>
 	</section>
-	
+	<script>
+		
+	</script>
              
 
 

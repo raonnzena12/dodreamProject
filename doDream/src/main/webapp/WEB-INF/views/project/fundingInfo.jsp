@@ -35,13 +35,13 @@
 											<form action="${ fundingComplete }" method="post" id="fndInsert2">
 											<c:forEach var="rwd" items="${ rList }" varStatus="status" >
 												<input type="hidden" name="hList[${ status.index }].rwdNo" value="${ rwd.rNo }">
-											<span class="rewardTitle" id="${ rwd.rNo }">${ rwd.rName } _ <input type="number" name="hList[${ status.index }].rwdAmount" maxlength="3" oninput="maxLengthCheck(this);"> 개</span><br>
+											<span class="rewardTitle" id="${ rwd.rNo }">${ rwd.rName } _ <input type="number" name="hList[${ status.index }].rwdAmount" class="rwd-amount${ status.index }" maxlength="3" oninput="maxLengthCheck(this);" idx="${ status.index }"> 개</span><br>
 											<span class="rewardDetail textSize-15">${ rwd.rExplain}</span><br>
 											<c:if test="${ !empty rwd.rOptionAdd }" >
 											<span class="rewardOption textSize-15">${ rwd.rOptionAdd }</span><br>
 											</c:if>
 											<div class="rewardPriceArea text-right">
-												<input type="text" name="rewardPrice${ rwd.rNo }" id="rewardPrice${ rwd.rNo }" value="${ rwd.rPrice }" readonly>* <span></span> 원</div>
+												<input type="text" name="rewardPrice${ rwd.rNo }" id="rewardPrice${ rwd.rNo }" value="${ rwd.rPrice }" readonly>* <span class="rwd-aPrint${ status.index }"></span> 원</div>
 												<!-- 여기 하세요~~~~ span 태그 안에 amount input 블러 될때마다 체크해서 값 넣어줄거고 옆에 계산값 뿌려줄거임용 -->
 												<!--  -->
 											</c:forEach>
@@ -255,6 +255,11 @@
 	</section>
 <script>
 $(function(){
+	// 리워드 양을 변경했을때 실행되는 코드
+	$("input[class^=rwd-amount]").on("input", function(){
+		var index = $(this).attr("idx");
+		$(".rwd-aPrint"+index).text($(this).val());
+	});
 	// 결제 예약하기 버튼을 클릭했을시 실행되는 코드
 	$("#toComplete").on("click", function(){
 		

@@ -64,6 +64,10 @@ public class ProjectController2 {
 			int rno = rNo;
 			System.out.println("detail : " + rno);
 			model.addAttribute("subReward", rno);
+		}else {
+			int rno = 0;
+			System.out.println("detail : " + rno);
+			model.addAttribute("subReward", rno);
 		}
 		model.addAttribute("reward", rw);
 		model.addAttribute("project", prj);

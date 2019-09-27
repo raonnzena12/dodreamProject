@@ -258,7 +258,7 @@
                 <article id="detailimg">
                     <article id="img">
                     	<div id="detailDday">D-${project.pDDay}</div>
-                    	<img src="resources/projectImg/mainImage/${project.pMainImage}" alt="" id="mainImg">
+                    	<img src="resources/images/projectImg/mainImg/${project.pMainImage}" alt="" id="mainImg">
                    	</article>
                 </article>
                 <article id="detailcon">
@@ -266,7 +266,7 @@
                        ${project.pSummaryText}
                     </p>
                     <div id="profile">
-                        <img src="resources/projectImg/artistImg/${project.pArtistPFImage}" alt="" id="profileimg" width="60px" height="60px">
+                        <img src="resources/images/projectImg/artistImg/${project.pArtistPFImage}" alt="" id="profileimg" width="60px" height="60px">
                         <p id="text2">${project.pArtistName }님 </p>
                     </div>
                     
@@ -347,7 +347,7 @@
 				var pNo = ${project.pNo};
 				
 				//$("#favorite2").on("click", function(){
-					if (confirm("프로젝트 좋아요를 취소하시겠습니까?")) {
+					if(confirm("프로젝트 좋아요를 취소하시겠습니까?")){
 					
 					$.ajax({
 						url:"detailLikeDelete.dr",
@@ -379,7 +379,7 @@
 				
 				if(${!empty sessionScope.loginUser}){
 	
-					var uno = ${loginUser.userNo};
+					/* var uno = ${loginUser.userNo}; */
 					var pNo = ${project.pNo};
 					
 					$.ajax({
@@ -405,6 +405,8 @@
 				
 			//});
 		}
+		
+		
 	</script>
 	
 	

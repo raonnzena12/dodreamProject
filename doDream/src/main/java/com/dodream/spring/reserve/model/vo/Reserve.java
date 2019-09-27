@@ -23,6 +23,23 @@ public class Reserve {
 
 	public int getResNo() {
 		return resNo;
+
+    public Reserve(int rNo, String bKey, int addi, Date rDate, String rName, String rContract, String rAddress,
+			String rRequest, int rUser, int rRefPno, int rStatusNo, String pTitle, String userNickname) {
+		super();
+		this.rNo = rNo;
+		this.bKey = bKey;
+		this.addi = addi;
+		this.rDate = rDate;
+		this.rName = rName;
+		this.rContract = rContract;
+		this.rAddress = rAddress;
+		this.rRequest = rRequest;
+		this.rUser = rUser;
+		this.rRefPno = rRefPno;
+		this.rStatusNo = rStatusNo;
+		this.pTitle = pTitle;
+		this.userNickname = userNickname;
 	}
 
 	public void setResNo(int resNo) {
@@ -61,12 +78,12 @@ public class Reserve {
 		this.resName = resName;
 	}
 
-	public int getResContract() {
-		return resContract;
+	public String getrContract() {
+		return rContract;
 	}
 
-	public void setResContract(int resContract) {
-		this.resContract = resContract;
+	public void setrContract(String rContract) {
+		this.rContract = rContract;
 	}
 
 	public String getResAddress() {
@@ -132,7 +149,4 @@ public class Reserve {
 				+ ", resUser=" + resUser + ", resRefPno=" + resRefPno + ", resStatusNo=" + resStatusNo + ", pTitle="
 				+ pTitle + ", userNickname=" + userNickname + "]";
 	}
-
-	
-	
 }
