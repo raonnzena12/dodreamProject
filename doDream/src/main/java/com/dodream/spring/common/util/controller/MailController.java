@@ -58,7 +58,7 @@ public class MailController {
 				 
 				 msgHelper.setFrom(username);
 				 System.out.println(username);
-				 msgHelper.setSubject("Do Dream 회원가입 인증번호 발송 메일입니다.");
+				 msgHelper.setSubject("Do Dream 비밀번호 초기화 인증번호 발송 메일입니다.");
 				 
 				 String htmlContent = "<h3 style=\"text-align: center\"><u>Welcome! Do Dream</u></h3><div align=\"center\"><br>"
 						 	+"<div align=\"center\"><img src=\"https://i.imgur.com/2wVLUA0.png\" style=\"width: 10%;\"><br></div>"
@@ -81,6 +81,46 @@ public class MailController {
 		 
 		return code;
 
+	}
+	
+	@ResponseBody
+	@RequestMapping("sendAuth.dr")
+	public String sendEmail(@RequestParam(value = "userEmail") String userEmail) throws MessagingException, IOException {
+		String code = cm.setCode();
+		List<Member> mList = mService.checkEmail(userEmail);
+		
+		try {
+			if(!mList.isEmpty()) {
+				 MimeMessage msg = mailSender.createMimeMessage();
+				 MimeMessageHelper msgHelper = new MimeMessageHelper(msg, true, "UTF-8");
+				 
+				 msgHelper.setFrom(username);
+				 System.out.println(username);
+				 msgHelper.setSubject("Do Dream 회원가입 인증번호 발송 메일입니다.");
+				 
+				 String htmlContent = "<h3 style=\"text-align: center\"><u>Welcome! Do Dream</u></h3><div align=\"center\"><br>"
+						 	+"<div align=\"center\"><img src=\"https://i.imgur.com/2wVLUA0.png\" style=\"width: 10%;\"><br></div>"
+						 	+" 본 메일은 발신 전용 메일입니다.<br> 아래의 인증번호를 정확히 입력해주세요. <br>"
+						 	+"인증번호 "+"<u><mark>"+code +"</mark></u>"+" 를 입력해주세요"+"</div>";
+//				 msgHelper.addInline("main", new FileDataSource("https://i.imgur.com/2wVLUA0.png"));
+				 
+				 msgHelper.setText(htmlContent, true);
+				 
+				 msgHelper.setTo(userEmail);
+				 			 
+				 mailSender.send(msg);	 
+				 
+			 }else {
+				 throw new ExistsEmailException();
+			 }
+		} catch (ExistsEmailException e) {
+			code = "1"; //없는 이메일
+		}catch (Exception e) {
+			e.printStackTrace();
+			code = "0"; //인증메일발송이 실패
+		}
+		
+		return code;
 	}
 
 }

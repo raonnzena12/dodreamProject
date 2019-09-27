@@ -169,13 +169,13 @@
 							<div class="row">
 								<div class="hr-sect">MY INFO</div>
 								<div class="col-md-12 text-center">
-									<span class="text-left">${ loginUser.userNickname }님</span>
+									<span class="text-left">${ loginUser.userNickname }님 환영합니다!</span>
 									<div style="display: inline-block;">
 									<c:if test="${empty loginUser.userProfileImage}">
-									<img alt="프로필사진" src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg" class="rounded-circle float-sm ml-3"/>
+									<img alt="프로필사진" src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg" class="rounded-circle float-sm ml-3" style="width: 50px; height: 50px;"/>
 									</c:if>
 									<c:if test="${! empty loginUser.userProfileImage}">
-									<img alt="프로필사진" src="resources/images/userProfileImage/${loginUser.userProfileImage}" class="rounded-circle float-sm" style="width: 40px; height: 40px;"/>
+									<img alt="프로필사진" src="resources/images/userProfileImage/${loginUser.userProfileImage}" class="rounded-circle float-sm" style="width: 50px; height: 50px;"/>
 									</c:if>
 									</div>
 								</div>

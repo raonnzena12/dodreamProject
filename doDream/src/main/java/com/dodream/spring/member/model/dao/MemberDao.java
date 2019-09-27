@@ -49,6 +49,11 @@ public class MemberDao {
 		return sqlSession.update("memberMapper.updateMember", mem);
 	}
 
+	public int updatePwd(Member mem) {
+		
+		return sqlSession.update("memberMapper.updatePwd", mem);
+	}
+
 //	public void keepLogin(int userNo, String sessionId, Date limit) {
 //		return sqlSession.update("memberMapper.keepLogin", mem);
 //	}

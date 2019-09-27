@@ -41,6 +41,8 @@ public interface MemberService {
 
 	public abstract int updateMember(Member mem, HttpServletRequest request, MultipartFile userProfileImage);
 
+	public abstract int updatePwd(Member mem);
+
 //	public abstract void keepLogin(int userNo, String sessionId, Date next);
 
 //	public abstract Member checkUserWithSessionKey(String sessionId);

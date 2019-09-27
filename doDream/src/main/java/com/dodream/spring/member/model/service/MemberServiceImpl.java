@@ -130,6 +130,12 @@ public class MemberServiceImpl implements MemberService {
 		return result;
 	}
 
+	@Override
+	public int updatePwd(Member mem) {
+		
+		return mDao.updatePwd(mem);
+	}
+
 
 
 
