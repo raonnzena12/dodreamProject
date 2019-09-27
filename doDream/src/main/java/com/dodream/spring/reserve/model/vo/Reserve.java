@@ -21,7 +21,7 @@ public class Reserve {
 	public Reserve() {
 	}
 
-	public Reserve(int rNo, String bKey, int addi, Date rDate, String rName, int rContract, String rAddress,
+	public Reserve(int rNo, String bKey, int addi, Date rDate, String rName, String rContract, String rAddress,
 			String rRequest, int rUser, int rRefPno, int rStatusNo, String pTitle, String userNickname) {
 		super();
 		this.rNo = rNo;
@@ -79,11 +79,11 @@ public class Reserve {
 		this.rName = rName;
 	}
 
-	public int getrContract() {
+	public String getrContract() {
 		return rContract;
 	}
 
-	public void setrContract(int rContract) {
+	public void setrContract(String rContract) {
 		this.rContract = rContract;
 	}
 
