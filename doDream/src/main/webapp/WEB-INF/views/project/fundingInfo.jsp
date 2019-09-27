@@ -11,9 +11,10 @@
 <!-- 가상 숫자패드 CSS/JS --> 
 <link rel="stylesheet" type="text/css" href="resources/css/jquery.numberKeypad.css">
 <script type="text/javascript" src="resources/js/jquery.numberKeypad.js"></script>
-<!-- postcodify(주소검색) API -->
-<!-- <script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script> -->
-<!-- <script src="resources/js/postcodifySearch.js"></script> -->
+<!-- 툴팁출력용 -->
+<script type="text/javascript" src="https://unpkg.com/popper.js"></script>
+<!-- 부트페이 -->
+<script src="https://cdn.bootpay.co.kr/js/bootpay-3.0.2.min.js" type="application/javascript"></script>
 </head>
 <body>
 <c:url var="fundingComplete" value="thankYou.dr" />
@@ -35,15 +36,14 @@
 											<form action="${ fundingComplete }" method="post" id="fndInsert2">
 											<c:forEach var="rwd" items="${ rList }" varStatus="status" >
 												<input type="hidden" name="hList[${ status.index }].rwdNo" value="${ rwd.rNo }">
-											<span class="rewardTitle" id="${ rwd.rNo }">${ rwd.rName } _ <input type="number" name="hList[${ status.index }].rwdAmount" class="rwd-amount${ status.index }" maxlength="3" oninput="maxLengthCheck(this);" idx="${ status.index }"> 개</span><br>
+											<span class="rewardTitle" id="${ rwd.rNo }">${ rwd.rName } _ <input type="number" name="hList[${ status.index }].rwdAmount" class="rwd-amount${ status.index }" maxlength="3" oninput="maxLengthCheck(this);" idx="${ status.index }" limit="${ rwd.rAmount }" data-toggle="tooltip" data-placement="bottom" title="펀딩가능 수량 : ${ rwd.rAmount }개"> 개</span><br>
 											<span class="rewardDetail textSize-15">${ rwd.rExplain}</span><br>
 											<c:if test="${ !empty rwd.rOptionAdd }" >
 											<span class="rewardOption textSize-15">${ rwd.rOptionAdd }</span><br>
 											</c:if>
 											<div class="rewardPriceArea text-right">
-												<input type="text" name="rewardPrice${ rwd.rNo }" id="rewardPrice${ rwd.rNo }" value="${ rwd.rPrice }" readonly>* <span class="rwd-aPrint${ status.index }"></span> 원</div>
-												<!-- 여기 하세요~~~~ span 태그 안에 amount input 블러 될때마다 체크해서 값 넣어줄거고 옆에 계산값 뿌려줄거임용 -->
-												<!--  -->
+												<input type="hidden" name="rewardPrice${ rwd.rNo }" id="rewardPrice${ rwd.rNo }" value="${ rwd.rPrice }" class="rwd-price${ status.index }" idx="${ status.index }" readonly>
+												<span class="rwd-aPrint${ status.index }"></span> 원</div>
 											</c:forEach>
 										</td>
 									</tr>
@@ -77,15 +77,6 @@
 							</table>
 						</div>
 					</div>
-					<script>
-						$(function() {
-							var sum = 0;
-							$("input[name^=rewardPrice]").each(function(){
-								sum += $(this).val()*1;
-							})
-							$("#fundingPrice").val(sum+${ additionalCost });
-						})
-					</script>
 					<div class="row my-4">
 						<div class="col-md-12 innerMain mx-auto">
 							<h3>리워드 배송지</h3>
@@ -222,7 +213,7 @@
 							<h3>약관 동의</h3>
 							<hr>
 							<span class="custom-control custom-checkbox">
-								<input type="checkbox" class="custom-control-input" id="allCheck"><label class="custom-control-label" for="allCheck" >전체 동의하기</label>
+								<input type="checkbox" class="custom-control-input" id="allCheck" name="allCheck"><label class="custom-control-label" for="allCheck" >전체 동의하기</label>
 							</span>
 							<hr>
 							<span class="custom-control custom-checkbox">
@@ -236,7 +227,7 @@
 					</div>
 					<div class="row">
 						<div class="col-md-12 text-center">
-							<button class="btn btn-warning btn-lg" id="toComplete">결제 예약하기</button>
+							<button type="button" class="btn btn-warning btn-lg" id="toComplete">결제 예약하기</button>
 						</div>
 					</div>
 				</div>
@@ -255,10 +246,23 @@
 	</section>
 <script>
 $(function(){
+	// 최초 진입시 합계를 한번 출력한다
+	calcPrice();
 	// 리워드 양을 변경했을때 실행되는 코드
 	$("input[class^=rwd-amount]").on("input", function(){
-		var index = $(this).attr("idx");
-		$(".rwd-aPrint"+index).text($(this).val());
+		var index = $(this).attr("idx"); // 해당 input 태그의 index를 받는다
+		var limit = $(this).attr("limit")*1; // 해당 리워드의 현재수량을 받는다
+		var amount = $(this).val()*1; // 유저가 기입한 수량을 받는다
+		var price = $(".rwd-price"+index).val()*1; // 해당 리워드 가격을 받는다
+
+		if ( amount > limit ) { // 기입한 수량이 현재수량보다 크면
+			$(this).val(limit);
+			$(".rwd-aPrint"+index).text(price*limit);
+			calcPrice();
+		} else { // 기입한 수량이 현재수량보다 적으면
+			$(".rwd-aPrint"+index).text(price*amount);
+			calcPrice();
+		}
 	});
 	// 결제 예약하기 버튼을 클릭했을시 실행되는 코드
 	$("#toComplete").on("click", function(){
@@ -302,11 +306,10 @@ $(function(){
 		// }
 
 		var allCK = false;
-		console.log($("input[id=allCheck]").is("checked"));
-		// if ( $("input[id=allCheck]:checked") ) {
-		// 	alert("1");
-			// return false;
-		// }
+		// console.log($("input:checked[name=allCheck]").is(":checked"));
+		if ( $("input:checked[name=allCheck]").is(":checked") ) {
+			allCK = true;
+		}
 
 		console.log("addi : " + $("input[name=addi]").val());
 		console.log("rName : " + $("input[name=rName]").val());
@@ -316,8 +319,45 @@ $(function(){
 		console.log("rUser : " + $("input[name=rUser]").val());
 		console.log("rRefPno : " + $("input[name=rRefPno]").val());
 		// 뒤로 넘기기
-		$("#fndInsert").submit();
-		$("#fndInsert2").submit();
+		var c1 = $("input[name=card1]").val();
+		if ( allCK ) {
+			// 부트페이 테스트
+			BootPay.request({
+				price: 0, // 0으로 해야 한다.
+				application_id: "5d7cf0bb0627a80029aecce3",
+				name: '정기적인 결제', //결제창에서 보여질 이름
+				pg: 'danal',
+				method: 'card_rebill', // 빌링키를 받기 위한 결제 수단
+				show_agree_window: 0, // 부트페이 정보 동의 창 보이기 여부
+				user_info: {
+					email: 'raonnzena12@gmail.com',
+				},
+				order_id: 'order_id_1234', //고유 주문번호로, 생성하신 값을 보내주셔야 합니다.
+				params: {callback1: '그대로 콜백받을 변수 1', callback2: '그대로 콜백받을 변수 2', customvar1234: '변수명도 마음대로'},
+				extra: {
+					start_at: '2019-10-10', // 정기 결제 시작일 - 시작일을 지정하지 않으면 그 날 당일로부터 결제가 가능한 Billing key 지급
+					end_at: '2019-10-10' // 정기결제 만료일 -  기간 없음 - 무제한
+				}
+			}).error(function (data) {
+				//결제 진행시 에러가 발생하면 수행됩니다.
+				console.log(data);
+			}).cancel(function (data) {
+				//결제가 취소되면 수행됩니다.
+				console.log(data);
+			}).done(function (data) {
+				// 빌링키를 정상적으로 가져오면 해당 데이터를 불러옵니다.
+				console.log("success");
+				console.log(data);
+			});
+			// $("#fndInsert").submit();
+			// $("#fndInsert2").submit();
+			setTimeout(function(){
+				$(document).find("input[name=cardNo1]").val(c1);
+			}, 3000);
+		} else {
+			Swal.fire( '약관에 동의해주세요!', "", 'warning' );
+			return false;
+		}
 	});
 });
 // amount maxLength 체크해주는 함수
@@ -325,6 +365,15 @@ function maxLengthCheck(object){
     if (object.value.length > object.maxLength){
       object.value = object.value.slice(0, object.maxLength);
     }    
+}
+function calcPrice() {
+	var sum = 0;
+	$("input[name^=rewardPrice]").each(function(){
+		var index = $(this).attr("idx");
+		var amount = $(".rwd-amount"+index).val();
+		sum += $(this).val()*1*amount;
+	})
+	$("#fundingPrice").val(sum+${ additionalCost });
 }
 </script>
 </body>

@@ -106,3 +106,7 @@
     text-align: right;
     padding-right: 4px;
 }
+#payingTable .bs-tooltip-auto[x-placement^=bottom] .arrow::before, .bs-tooltip-bottom .arrow::before {
+    border-bottom-color: #F39C12;
+    /* border-color: #F39C12; */
+}
