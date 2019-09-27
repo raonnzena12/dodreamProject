@@ -407,7 +407,7 @@
 	                            </div>
 	                            <div class="hiddenBox">
 		                           	<div class="rewardText4">
-		                                	<input type="number" class="form-control reCount" placeholder="수량을 입력하세요.">
+		                                	<input type="number" class="form-control reCount" placeholder="수량을 입력하세요." value="1">
 		                            </div>
 		                            
 		                            <div class="rewardText5">
@@ -482,9 +482,11 @@
 	   		   			
 	   					$("#"+rNo +" .check").prop("checked", true);
 	   					$("#"+rNo +" .rewardIcon").css("color","#F39C12");
+	   					$("#"+rNo +" .hiddenBox").css("display","block");
 	   					rewardsum();
 	   				}else{
 	   					$(".check").prop("checked", false);
+	   					$("#"+ ch +" .hiddenBox").css("display","none");
 	   				}
 	   				
 	   			}
@@ -593,9 +595,11 @@
    				});
    				console.log("pNo=" + pNo +" rNo="+ rNo + " addReward="+ addReward +" select=" + select + " input=" + input +" count=" +count);
    				
-   				return false;
-   				
-   				location.href="";
+   				//return false;
+   				if(count == ""){
+   					alert("리워드 수량을 입력해주세요.");
+   				}
+   				location.href="letsFunding.dr?pNo="+ pNo +"&rNo="+ rNo + "&addReward="+ addReward +"&select=" + select + "&input=" + input +"&count=" +count;
    					
    				/* $("input:checkbox[name='reCheck']:checked").
    					var rno =  $(this).parent().parent().attr("id");
