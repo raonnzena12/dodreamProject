@@ -15,12 +15,14 @@ public class Reserve {
 	private int rUser; // 예약한 유저번호
 	private int rRefPno; // 참조하는 프로젝트 번호
 	private int rStatusNo; // 예약 스테이터스 ( 1 결제대기 2 결제완료 3 결제예약 취소 )
+	private String pTitle;  			// 조인 시 필요한 프로젝트명
+	private String userNickname;		// 조인 시 필요한 유저 닉네임
 	
 	public Reserve() {
 	}
 
-	public Reserve(int rNo, String bKey, int addi, Date rDate, String rName, String rContract, String rAddress,
-			String rRequest, int rUser, int rRefPno, int rStatusNo) {
+	public Reserve(int rNo, String bKey, int addi, Date rDate, String rName, int rContract, String rAddress,
+			String rRequest, int rUser, int rRefPno, int rStatusNo, String pTitle, String userNickname) {
 		super();
 		this.rNo = rNo;
 		this.bKey = bKey;
@@ -33,6 +35,8 @@ public class Reserve {
 		this.rUser = rUser;
 		this.rRefPno = rRefPno;
 		this.rStatusNo = rStatusNo;
+		this.pTitle = pTitle;
+		this.userNickname = userNickname;
 	}
 
 	public int getrNo() {
@@ -75,11 +79,11 @@ public class Reserve {
 		this.rName = rName;
 	}
 
-	public String getrContract() {
+	public int getrContract() {
 		return rContract;
 	}
 
-	public void setrContract(String rContract) {
+	public void setrContract(int rContract) {
 		this.rContract = rContract;
 	}
 
@@ -123,13 +127,28 @@ public class Reserve {
 		this.rStatusNo = rStatusNo;
 	}
 
+	public String getpTitle() {
+		return pTitle;
+	}
+
+	public void setpTitle(String pTitle) {
+		this.pTitle = pTitle;
+	}
+
+	public String getUserNickname() {
+		return userNickname;
+	}
+
+	public void setUserNickname(String userNickname) {
+		this.userNickname = userNickname;
+	}
+
 	@Override
 	public String toString() {
 		return "Reserve [rNo=" + rNo + ", bKey=" + bKey + ", addi=" + addi + ", rDate=" + rDate + ", rName=" + rName
 				+ ", rContract=" + rContract + ", rAddress=" + rAddress + ", rRequest=" + rRequest + ", rUser=" + rUser
-				+ ", rRefPno=" + rRefPno + ", rStatusNo=" + rStatusNo + "]";
+				+ ", rRefPno=" + rRefPno + ", rStatusNo=" + rStatusNo + ", pTitle=" + pTitle + ", userNickname="
+				+ userNickname + "]";
 	}
-
-	
 	
 }

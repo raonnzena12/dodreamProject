@@ -23,10 +23,7 @@
 	<select id="countNewMember" resultType="_int">
 		SELECT COUNT(*) FROM USER_TB
 		WHERE TO_CHAR(SYSDATE,'YYYYMMDD') - TO_CHAR(USER_ER_DT,'YYYYMMDD') 
-		<![CDATA[
-		<= 
-		
-		]]> 
+		<![CDATA[ <= ]]> 
 		1
 	</select>
 	
@@ -56,5 +53,17 @@
 		ORDER BY USER_NO
 	</select>
 	
+	<!-- 오늘 방문자 수 구하는 쿼리 -->
+	<select id="countToday" resultType="_int">
+		SELECT COUNT(*) FROM DAYCOUNT
+	</select>
 	
+	<!-- 7일 방문자 수 구하는 쿼리 -->
+	<select id="countVisit" resultType="_int">
+		SELECT TOTAL_COUNT  
+		FROM DAYTOTAL 
+		WHERE TO_CHAR(SYSDATE,'YYYYMMDD') - TO_CHAR(VISIT_DATE,'YYYYMMDD') 
+		<![CDATA[ <= ]]> 7 
+		ORDER BY VISIT_DATE DESC 
+	</select>
 </mapper>

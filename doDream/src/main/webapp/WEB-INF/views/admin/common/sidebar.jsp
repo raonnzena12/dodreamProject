@@ -59,10 +59,10 @@
 			<div id="dropDown2" class="collapse" aria-labelledby="headingTwo"
 				data-parent="#accordionSidebar">
 				<div class="bg-white py-2 collapse-inner rounded">
-					<a class="collapse-item" href="adminFlist1.dr"><p>〉 심사 대기 중 프로젝트</p></a>
-					<a class="collapse-item" href="adminFlist2.dr"><p>〉 심사 완료된 프로젝트</p></a> <a
-						class="collapse-item" href="adminFlist3.dr"><p>〉 오픈 중인 프로젝트</p></a> <a
-						class="collapse-item" href="adminFlist4.dr"><p>〉 마감된 프로젝트</p></a>
+					<a class="collapse-item" href="adminPlist1.dr"><p>〉 심사 대기 프로젝트</p></a>
+					<a class="collapse-item" href="adminPlist2.dr"><p>〉 심사 완료 프로젝트</p></a> <a
+						class="collapse-item" href="adminPlist3.dr"><p>〉 오픈 중인 프로젝트</p></a> <a
+						class="collapse-item" href="adminPlist4.dr"><p>〉 마감된 프로젝트</p></a>
 				</div>
 			</div></li>
 
@@ -76,7 +76,7 @@
 				<div class="bg-white py-2 collapse-inner rounded">
 					<a class="collapse-item" href="adminRlist1.dr"><p>〉 주문 예약 현황</p></a> 
 					<a class="collapse-item" href="adminRlist2.dr"><p>〉 결제 완료 현황</p></a> 
-					<a class="collapse-item" href="adminRlist3.dr"><p>〉 취소 및 환불 현황</p></a>
+					<a class="collapse-item" href="adminRlist3.dr"><p>〉 주문 취소 현황</p></a>
 				</div>
 			</div></li>
 
@@ -88,7 +88,7 @@
 			<div id="dropDown4" class="collapse" aria-labelledby="headingTwo"
 				data-parent="#accordionSidebar">
 				<div class="bg-white py-2 collapse-inner rounded">
-					<a class="collapse-item" href="adminSlist.dr"><p>〉 신고 접수 현황</p></a>
+					<a class="collapse-item" href="adminReplist.dr"><p>〉 신고 접수 현황</p></a>
 				</div>
 			</div></li>
 

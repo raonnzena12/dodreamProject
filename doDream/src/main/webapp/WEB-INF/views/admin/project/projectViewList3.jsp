@@ -11,7 +11,8 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>프로젝트 관리 (심사완료)</title>
+
+<title>프로젝트 관리 (오픈중)</title>
 
 <!-- Custom fonts for this template -->
 <link href="resources/vendor/fontawesome-free/css/all.min.css"
@@ -70,7 +71,7 @@
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-2 text-gray-800"># 프로젝트 관리 (심사완료)</h1>
+					<h1 class="h3 mb-2 text-gray-800"># 프로젝트 관리 (오픈중)</h1>
 					<br>
 					<!-- DataTales Example -->
 					<div class="card shadow mb-4">
@@ -115,10 +116,7 @@
 															aria-label="Salary: activate to sort column ascending">아티스트 이메일</th>
 														<th class="sorting" tabindex="0" aria-controls="dataTable"
 															rowspan="1" colspan="1"
-															aria-label="Salary: activate to sort column ascending">심사 통과 처리</th>
-														<th class="sorting" tabindex="0" aria-controls="dataTable"
-															rowspan="1" colspan="1"
-															aria-label="Salary: activate to sort column ascending">심사 탈락 처리</th>
+															aria-label="Salary: activate to sort column ascending">마감 처리</th>
 													</tr>
 												</thead>
 												<tfoot>
@@ -131,8 +129,7 @@
 														<th rowspan="1" colspan="1">아티스트 이름</th>
 														<th rowspan="1" colspan="1">아티스트 연락처</th>
 														<th rowspan="1" colspan="1">아티스트 이메일</th>
-														<th rowspan="1" colspan="1">심사 통과 처리</th>
-														<th rowspan="1" colspan="1">심사 탈락 처리</th>
+														<th rowspan="1" colspan="1">마감 처리</th>
 													</tr>
 												</tfoot>
 												<tbody>
@@ -147,10 +144,7 @@
 															<td>${ p.pArtistPhone }</td>
 															<td>${ p.pArtistEmail }</td>
 															<td>
-																<button type="button" id="projectBtn1" class="btn btn-primary btn-lg btn-block rewardBtn">심사 통과</button>
-															</td>
-															<td>
-																<button type="button" id="projectBtn2" class="btn btn-primary btn-lg btn-block rewardBtn">심사 탈락</button>
+																<button type="button" id="projectBtn1" class="btn btn-primary btn-lg btn-block rewardBtn">마감 처리</button>
 															</td>
 														</tr>
 													</c:forEach>
