@@ -43,6 +43,7 @@
 		<result property="rOptionAdd" column="REWARD_OP_ADD"/>
 		<result property="rRefPno" column="REWARD_REF_PNO"/>
 		<result property="rOptionNo" column="REWARD_OP_NO"/>
+		<result property="rAmount" column="REWARD_AMOUNT"/>
 	</resultMap>
 	
 	<resultMap type="Like" id="likeResultSet">
