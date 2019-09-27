@@ -135,7 +135,8 @@
 															<td>${ b.userEnrollDate }</td>
 															<td> 블랙리스트 회원</td>
 															<td>
-																<button type="button" class="btn btn-primary btn-lg btn-block rewardBtn">일반회원 처리</button>
+																<button type="button" onclick="goReturnUser(${b.userNo})" 
+																class="btn btn-primary btn-lg btn-block rewardBtn">일반회원 처리</button>
 															</td>
 														</tr>
 													</c:forEach>
@@ -219,7 +220,23 @@
 
 	<!-- Demo scripts for this page-->
 	<script src="resources/js/demo/datatables-demo.js"></script>
-
+	
+	<script>
+		function goReturnUser(num){
+			if(confirm("일반회원 처리 하시겠습니까? ")){
+				$.ajax({
+					url : "returnUser.dr",
+					data : {userNo : num},
+					type : "POST",
+					async : true,
+					success : function(result){
+					}
+				});
+			}
+		} 
+	</script>
+	
+	
+	
 </body>
-
 </html>

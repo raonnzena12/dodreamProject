@@ -28,8 +28,8 @@ var myPieChart = new Chart(ctx, {
     labels: ["음악", "영화", "연극", "미술 ", "기타"],
     datasets: [{
       data: [cat1, cat2, cat3, cat4, cat5],
-      backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc', '#36b9cc','#36b9cc'],
-      hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf','#2c9faf','#2c9faf'],
+      backgroundColor: ['#8E44AD', '#F39C12', '#FFCD01', '#F39C12', '#FFCD01'],
+      hoverBackgroundColor: ['#8E44AD', '#F39C12', '#FFCD01',  '#F39C12', '#FFCD01'],
       hoverBorderColor: "rgba(234, 236, 244, 1)",
     }],
   },

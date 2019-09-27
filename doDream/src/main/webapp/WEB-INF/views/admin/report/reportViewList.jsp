@@ -128,7 +128,7 @@
 															<td>${ r.pTitle}</td>
 															<td>${ r.repDate}</td>
 															<td>
-																<button type="button" id="projectBtn1" class="btn btn-primary btn-lg btn-block rewardBtn">심사 통과</button>
+																<button type="button" id="projectBtn1" class="btn btn-primary btn-lg btn-block rewardBtn">답변 하기</button>
 															</td>
 														</tr>
 													</c:forEach>

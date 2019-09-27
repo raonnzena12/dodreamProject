@@ -3,17 +3,17 @@
 <mapper namespace="adminReserveMapper">
 	
 	<resultMap type="Reserve" id="reserveResultSet">
-		<id property="rNo" column="RESERVE_NO"/>
+		<id property="resNo" column="RESERVE_NO"/>
 		<result property="bKey" column="BILLINGKEY"/>
 		<result property="addi" column="ADDITIONAL"/>
-		<result property="rDate" column="RESERVE_DATE"/>
-		<result property="rName" column="RESERVE_NAME"/>
-		<result property="rContract" column="RESERVE_CONTRACT"/>
-		<result property="rAddress" column="RESERVE_ADDRESS"/>
-		<result property="rRequest" column="RESERVE_REQUEST"/>
-		<result property="rUser" column="RESERVE_USER"/>
-		<result property="rRefPno" column="RESERVE_REF_PNO"/>
-		<result property="rStatusNo" column="RESERVE_STATUS_NO"/>
+		<result property="resDate" column="RESERVE_DATE"/>
+		<result property="resName" column="RESERVE_NAME"/>
+		<result property="resContract" column="RESERVE_CONTRACT"/>
+		<result property="resAddress" column="RESERVE_ADDRESS"/>
+		<result property="resRequest" column="RESERVE_REQUEST"/>
+		<result property="resUser" column="RESERVE_USER"/>
+		<result property="resRefPno" column="RESERVE_REF_PNO"/>
+		<result property="resStatusNo" column="RESERVE_STATUS_NO"/>
 		<result property="userNickname" column="USER_NICKNAME"/>
 		<result property="pTitle" column="PROJECT_TITLE"/>
 	</resultMap>

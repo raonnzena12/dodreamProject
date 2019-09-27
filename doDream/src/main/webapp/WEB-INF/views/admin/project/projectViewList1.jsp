@@ -148,10 +148,12 @@
 															<td>${ p.pArtistPhone }</td>
 															<td>${ p.pArtistEmail }</td>
 															<td>
-																<button type="button" id="projectBtn1" class="btn btn-primary btn-lg btn-block rewardBtn">심사 통과</button>
+																<button type="button" onclick="passProject(${p.pNo})"
+																 class="btn btn-primary btn-lg btn-block rewardBtn">심사 통과</button>
 															</td>
 															<td>
-																<button type="button" id="projectBtn2" class="btn btn-primary btn-lg btn-block rewardBtn">심사 탈락</button>
+																<button type="button" onclick="dropOutProject(${p.pNo})"
+																class="btn btn-primary btn-lg btn-block rewardBtn">심사 탈락</button>
 															</td>
 														</tr>
 													</c:forEach>
@@ -202,6 +204,7 @@
 						aria-label="Close">
 						<span aria-hidden="true">×</span>
 					</button>
+					
 				</div>
 				<div class="modal-body">Select "Logout" below if you are ready
 					to end your current session.</div>
@@ -235,11 +238,35 @@
 
 	<!-- Demo scripts for this page-->
 	<script src="resources/js/demo/datatables-demo.js"></script>
-
+	
+	<script>
+		function passProject(num){
+			if(confirm("해당 프로젝트 심사 합격을 진행하시겠습니까?")){
+				$.ajax({
+					url:"passProjectBtn.dr",
+					data:{pNo : num},
+					type:"POST",
+					success:function(result){
+						
+					}
+				});
+			}
+		}
+		
+		function dropOutProject(num){
+			if(confirm("해당 프로젝트 심사 탈락을 진행하시겠습니까?")){
+				$.ajax({
+					url:"dropOutProjectBtn.dr",
+					data:{pNo : num},
+					type:"POST",
+					success:function(result){
+						
+					}
+				});
+			}
+		}
+		
+	</script>
 </body>
 
-</html>
-
-
-</body>
 </html>

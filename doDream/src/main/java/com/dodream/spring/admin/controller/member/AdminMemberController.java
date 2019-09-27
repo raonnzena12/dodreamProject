@@ -85,4 +85,23 @@ public class AdminMemberController {
 	public int countToday() {
 		return aService.countToday();
 	}
+	
+	// 일반회원 -> 블랙리스트 처리
+	@ResponseBody
+	@RequestMapping("blackListBtn.dr")
+	public int goBlackList(int userNo) {
+		return aService.goBlackList(userNo);
+	}
+	
+	// 블랙리스트-> 일반회원 처리
+	@ResponseBody
+	@RequestMapping("returnUser.dr")
+	public int goReturnUser(int userNo) {
+		return aService.goReturnuser(userNo);
+	}
+	
+	
+	
+	
+	
 }

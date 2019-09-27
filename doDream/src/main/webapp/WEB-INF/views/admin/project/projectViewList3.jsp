@@ -116,7 +116,7 @@
 															aria-label="Salary: activate to sort column ascending">아티스트 이메일</th>
 														<th class="sorting" tabindex="0" aria-controls="dataTable"
 															rowspan="1" colspan="1"
-															aria-label="Salary: activate to sort column ascending">마감 처리</th>
+															aria-label="Salary: activate to sort column ascending">프로젝트 처리</th>
 													</tr>
 												</thead>
 												<tfoot>
@@ -129,7 +129,7 @@
 														<th rowspan="1" colspan="1">아티스트 이름</th>
 														<th rowspan="1" colspan="1">아티스트 연락처</th>
 														<th rowspan="1" colspan="1">아티스트 이메일</th>
-														<th rowspan="1" colspan="1">마감 처리</th>
+														<th rowspan="1" colspan="1">프로젝트 처리</th>
 													</tr>
 												</tfoot>
 												<tbody>
@@ -144,7 +144,8 @@
 															<td>${ p.pArtistPhone }</td>
 															<td>${ p.pArtistEmail }</td>
 															<td>
-																<button type="button" id="projectBtn1" class="btn btn-primary btn-lg btn-block rewardBtn">마감 처리</button>
+																<button type="button" onclick="stopProject(${p.pNo})"
+																class="btn btn-primary btn-lg btn-block rewardBtn">프로젝트 내리기</button>
 															</td>
 														</tr>
 													</c:forEach>
@@ -228,11 +229,21 @@
 
 	<!-- Demo scripts for this page-->
 	<script src="resources/js/demo/datatables-demo.js"></script>
+	
+	<script>
+		function stopProject(num){
+			if(confirm("해당 프로젝트를 내리시겠습니까?")){
+				$.ajax({
+					url:"stopProjectBtn.dr",
+					data: {pNo : num},
+					type: "POST",
+					success:function(result){}
+				});
+			}
+		}
+	</script>
+
 
 </body>
 
-</html>
-
-
-</body>
 </html>

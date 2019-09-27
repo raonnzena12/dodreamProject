@@ -130,14 +130,14 @@
 												<tbody>
 													<c:forEach var="r" items="${ list }">
 														<tr role="row" class="odd">
-															<td class="sorting_1">${ r.rNo }</td>
+															<td class="sorting_1">${ r.resNo }</td>
 															<td>${ r.pTitle}</td>
 															<td>${ r.userNickname}</td>
-															<td>${ r.rDate}</td>
+															<td>${ r.resDate}</td>
 															<td>${ r.addi}</td>
-															<td>${ r.rName}</td>
-															<td>${ r.rContract}</td>
-															<td>${ r.rAddress}</td>
+															<td>${ r.resName}</td>
+															<td>${ r.resContract}</td>
+															<td>${ r.resAddress}</td>
 														</tr>
 													</c:forEach>
 												</tbody>

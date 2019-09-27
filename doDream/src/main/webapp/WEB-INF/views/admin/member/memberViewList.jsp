@@ -140,7 +140,7 @@
 																	탈퇴 회원
 																</c:if></td>
 															<td>
-																<button type="button" id="blackListBtn"
+																<button type="button" onclick="goblacklist(${m.userNo});"
 																	class="btn btn-primary btn-lg btn-block rewardBtn">블랙리스트
 																	등록</button>
 															</td>
@@ -227,12 +227,18 @@
 	<!-- Demo scripts for this page-->
 	<script src="resources/js/demo/datatables-demo.js"></script>
 	<script>
-		$(function() {
-			$("#blackListBtn").on("click", function() {
-				if (confirm("블랙리스트로 등록 하시겠습니까?")) {
-				}
-			});
-		});
+		function goblacklist(num){
+			if(confirm("블랙리스트 처리 하시겠습니까? ")){
+				$.ajax({
+					url : "blackListBtn.dr",
+					data : {userNo : num},
+					type : "POST",
+					async : true,
+					success : function(result){
+					}
+				});
+			}
+		} 
 	</script>
 
 </body>
@@ -240,5 +246,3 @@
 </html>
 
 
-</body>
-</html>
