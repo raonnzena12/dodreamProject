@@ -1,9 +1,12 @@
 package com.dodream.spring.member.controller;
 
+//import java.sql.Date;
 //import java.util.Date;
 import java.util.List;
 
+//import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
@@ -36,11 +40,17 @@ public class MemberController {
 	 * @return page
 	 */
 	@RequestMapping(value = "login.dr", method = RequestMethod.POST)
-	public String memberLogin(Member member, Model model, String prevPage, HttpSession session) {
+	public String memberLogin(Member member, Model model, String prevPage, HttpSession session, HttpServletResponse response) {
 
 		Member loginUser = mService.loginMember(member);
+		
+		
+		 if(session.getAttribute("loginUser") != null) {
+		 session.removeAttribute("loginUser"); }
+		
 
 		if (loginUser != null) {
+			session.setAttribute("loginUser", loginUser);
 			model.addAttribute("loginUser", loginUser);
 			System.out.println(loginUser);
 			// 로그인 카운트 해주는 함수 호출;
@@ -50,15 +60,16 @@ public class MemberController {
 				if(result > 0) 
 				System.out.println("userNo : " + loginUser.getUserNo() + "번 회원이 DAYCOUNT 테이블에 삽입됨");
 			}
-			
-//			AutoLogin auto = new AutoLogin();
-//			if(auto.isUseCookie()) {
-//				int amount = 60 * 60 * 24 * 24;
-//				Date limit = new Date(System.currentTimeMillis() + (1000 * amount));
-//				mService.keepLogin(member.getUserNo(), session.getId(), limit);
+		
+//			if(loginUser.getUseCookie().equals("on")) {
+//				Cookie ck = new Cookie("autoLogin", session.getId());
+//				ck.setPath("/");
+//				int amount = (60*60*24*15);
+//				response.addCookie(ck);
 //				
-//			} 지우지 마세요.
-			
+//				Date limit =new Date(System.currentTimeMillis() + (1000*amount));
+//				mService.keepLogin(loginUser.getUserNo(), session.getId(), limit);
+//			}
 			
 			return "redirect:"+prevPage;
 		} else {
@@ -94,6 +105,7 @@ public class MemberController {
 	 * @param model
 	 * @return page
 	 */
+	@ResponseBody
 	@RequestMapping("insertMember.dr")
 	public String insertMember(Member member, Model model, RedirectAttributes rd) {
 		
@@ -102,11 +114,15 @@ public class MemberController {
 			rd.addFlashAttribute("msg", "회원가입 완료!만나서 반갑습니다!");
 			Member loginUser= mService.loginMember(member);
 			model.addAttribute("loginUser", loginUser);
+			
 			int result2 = mService.countVisitToday(loginUser.getUserNo());
+			
 			if(result2 > 0) {
 			System.out.println("userNo : " + loginUser.getUserNo() + "번 회원이 DAYCOUNT 테이블에 삽입됨");
 			}
+			
 			return "redirect:home.dr";
+		
 		}else {
 			model.addAttribute("msg", "회원가입에 실패하였습니다.");
 			return "common/errorPage";
@@ -123,7 +139,10 @@ public class MemberController {
 	}
 	
 	@RequestMapping("changePwd.dr")
-	public String changePwd() {
+	public String changePwd(@RequestParam(value="userEmail")String userEmail, Model model) {
+		
+		System.out.println(userEmail);
+		model.addAttribute("userEmail", userEmail);
 		return "member/changePwdForm";
 	}
 	
@@ -131,9 +150,27 @@ public class MemberController {
 	 * 로그인 후 마이페이지 메뉴 레이어팝업
 	 * @return
 	 */
+//	@RequestMapping("mypage.dr")
+//	public String mypage(Member mem, HttpSession session, Model model) {
+//		
+//		Member loginUser = mService.loginMember(mem);
+//		if(loginUser != null) {
+//			session.setAttribute("loginUser", loginUser);
+//			return "member/mypageHeader";
+//		}else {
+//			model.addAttribute("msg", "로그인이 필요한 서비스입니다.");
+//			return "common/errorPage";
+//		}
+//	
+//	}
+	
 	@RequestMapping("mypage.dr")
 	public String mypage() {
+		
+		
 		return "member/mypageHeader";
+		
+	
 	}
 	
 	/** 회원가입 시 닉네임 중복 검사
@@ -151,6 +188,26 @@ public class MemberController {
 		}else {
 			result = "0";
 		}
+		return result;
+	}
+	
+	/**
+	 * 이메일 찾기
+	 * @param userEmail
+	 * @return result
+	 */
+	@ResponseBody
+	@RequestMapping("checkEmail.dr")
+	public String checkEmail(@RequestParam(value="userEmail")String userEmail) {
+		List<Member> mList = mService.checkEmail(userEmail);
+		
+		String result = null;
+		if(! mList.isEmpty()) {
+			result = "1";
+		}else {
+			result = "0";
+		}
+		
 		return result;
 	}
 	
@@ -189,6 +246,30 @@ public class MemberController {
 			return "common/errorPage";
 		}
 	}
+	
+	@RequestMapping("updatePwd.dr")
+	public String pwdUpdate(Member mem, @RequestParam(value="userEmail")String userEmail, @RequestParam(value="userPwd")String userPwd, RedirectAttributes rd){
+		
+		mem = new Member();
+		
+		mem.setUserEmail(userEmail);
+		mem.setUserPwd(userPwd);
+		
+		
+		System.out.println(mem);
+		
+		int result = mService.updatePwd(mem);
+		System.out.println(result);
+		if(result >0) {
+			rd.addFlashAttribute("msg", "비밀번호를 변경하였습니다. 로그인해주세요.");
+			return "redirect:home.dr";
+		}else {
+			rd.addFlashAttribute("msg", "비밀번호 변경에 실패하였습니다.");
+			return "common/errorPage";	
+		}
+		
+	}
+	
 	
 	
 }

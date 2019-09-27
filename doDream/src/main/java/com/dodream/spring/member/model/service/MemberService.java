@@ -1,6 +1,7 @@
 package com.dodream.spring.member.model.service;
 
 
+import java.sql.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -40,7 +41,12 @@ public interface MemberService {
 
 	public abstract int updateMember(Member mem, HttpServletRequest request, MultipartFile userProfileImage);
 
-	
+	public abstract int updatePwd(Member mem);
 
-	/* public abstract void keepLogin(int userNo, String sessionid, Date limit); */
+//	public abstract void keepLogin(int userNo, String sessionId, Date next);
+
+//	public abstract Member checkUserWithSessionKey(String sessionId);
+
+
+
 }

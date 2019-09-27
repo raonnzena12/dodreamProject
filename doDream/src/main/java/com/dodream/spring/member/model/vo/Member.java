@@ -1,6 +1,7 @@
 package com.dodream.spring.member.model.vo;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Member {
 
@@ -18,28 +19,12 @@ public class Member {
 	private String userPhone;
 	private String userProfileImage;
 	private String userSelf;
+	private String useCookie;
+	
+	private String sessionId;
+	private Timestamp limit;
 		
 	public Member() {}
-
-	public Member(int userNo, String userEmail, String userNickname, String userPwd, String userEmailAuthYn,
-			String userAdminYn, String userStatus, Date userEnrollDate, Date userLoginDate, Date userModifyDate,
-			String userAddress, String userPhone, String userProfileImage, String userSelf) {
-		super();
-		this.userNo = userNo;
-		this.userEmail = userEmail;
-		this.userNickname = userNickname;
-		this.userPwd = userPwd;
-		this.userEmailAuthYn = userEmailAuthYn;
-		this.userAdminYn = userAdminYn;
-		this.userStatus = userStatus;
-		this.userEnrollDate = userEnrollDate;
-		this.userLoginDate = userLoginDate;
-		this.userModifyDate = userModifyDate;
-		this.userAddress = userAddress;
-		this.userPhone = userPhone;
-		this.userProfileImage = userProfileImage;
-		this.userSelf = userSelf;
-	}
 
 	public int getUserNo() {
 		return userNo;
@@ -153,6 +138,53 @@ public class Member {
 		this.userSelf = userSelf;
 	}
 	
+	public String getUseCookie() {
+		return useCookie;
+	}
+
+	public void setUseCookie(String useCookie) {
+		this.useCookie = useCookie;
+	}
+
+	public String getSessionId() {
+		return sessionId;
+	}
+
+	public void setSessionId(String sessionId) {
+		this.sessionId = sessionId;
+	}
+
+	public Timestamp getLimit() {
+		return limit;
+	}
+
+	public void setLimit(Timestamp limit) {
+		this.limit = limit;
+	}
+
+	public Member(int userNo, String userEmail, String userNickname, String userPwd, String userEmailAuthYn,
+			String userAdminYn, String userStatus, Date userEnrollDate, Date userLoginDate, Date userModifyDate,
+			String userAddress, String userPhone, String userProfileImage, String userSelf, String useCookie,
+			String sessionId, Timestamp limit) {
+		super();
+		this.userNo = userNo;
+		this.userEmail = userEmail;
+		this.userNickname = userNickname;
+		this.userPwd = userPwd;
+		this.userEmailAuthYn = userEmailAuthYn;
+		this.userAdminYn = userAdminYn;
+		this.userStatus = userStatus;
+		this.userEnrollDate = userEnrollDate;
+		this.userLoginDate = userLoginDate;
+		this.userModifyDate = userModifyDate;
+		this.userAddress = userAddress;
+		this.userPhone = userPhone;
+		this.userProfileImage = userProfileImage;
+		this.userSelf = userSelf;
+		this.useCookie = useCookie;
+		this.sessionId = sessionId;
+		this.limit = limit;
+	}
 
 	@Override
 	public String toString() {
@@ -160,9 +192,14 @@ public class Member {
 				+ userPwd + ", userEmailAuthYn=" + userEmailAuthYn + ", userAdminYn=" + userAdminYn + ", userStatus="
 				+ userStatus + ", userEnrollDate=" + userEnrollDate + ", userLoginDate=" + userLoginDate
 				+ ", userModifyDate=" + userModifyDate + ", userAddress=" + userAddress + ", userPhone=" + userPhone
-				+ ", userProfileImage=" + userProfileImage + ", userSelf=" + userSelf
-				+ "]";
+				+ ", userProfileImage=" + userProfileImage + ", userSelf=" + userSelf + ", useCookie=" + useCookie
+				+ ", sessionId=" + sessionId + ", limit=" + limit + "]";
 	}
+	
+	
+
+
+
 
 
 	

@@ -25,6 +25,16 @@ public class MemberServiceImpl implements MemberService {
 	public Member loginMember(Member mem) {
 		return mDao.selectMember(mem);
 	}
+	
+//	@Override
+//	public void keepLogin(int userNo, String sessionId, java.sql.Date next) {
+//		mDao.keepLogin(userNo, sessionId, next);
+//	}
+//	
+//	@Override
+//	public Member checkUserWithSessionKey(String sessionId) {
+//		return mDao.checkUserWithSessionKey(sessionId);
+//	}
 
 	@Override
 	public List<Member> checkEmail(String userEmail) {
@@ -120,13 +130,13 @@ public class MemberServiceImpl implements MemberService {
 		return result;
 	}
 
+	@Override
+	public int updatePwd(Member mem) {
+		
+		return mDao.updatePwd(mem);
+	}
 
 
-	/*
-	 * @Override public void keepLogin(int userNo, String sessionid, Date limit) {
-	 * 
-	 * mDao.keepLogin(userNo, sessionid, limit);
-	 * 
-	 * }
-	 */
+
+
 }

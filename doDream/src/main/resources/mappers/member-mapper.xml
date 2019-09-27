@@ -17,7 +17,10 @@
 		<result property="userPhone" column="USER_PHONE" />
 		<result property="userProfileImage" column="USER_PF_IMG" />
 		<result property="userSelf" column="USER_SELF" />
+		<result property="sessionId" column="AUTO_SESSIONKEY" />
+		<result property="limit" column="AUTO_EXPIRYDATE" />
 	</resultMap>
+	
 
 	<!-- 로그인용 쿼리 -->
 	<select id="selectOne" parameterType="Member"
@@ -44,8 +47,8 @@
 	
 	<!-- 회원가입 -->
 	<insert id="insertMember" parameterType="Member">
-		INSERT INTO USER_TB(USER_NO, USER_EMAIL, USER_NICKNAME, USER_PWD)
-		VALUES(SEQ_USER_NO.NEXTVAL, #{userEmail}, #{userNickname}, #{userPwd})
+		INSERT INTO USER_TB(USER_NO, USER_EMAIL, USER_NICKNAME, USER_PWD, USER_EM_AUTH_YN)
+		VALUES(SEQ_USER_NO.NEXTVAL, #{userEmail}, #{userNickname}, #{userPwd}, 'Y')
 	</insert>
 	
 	<!-- 로그인 유지 -->
@@ -67,6 +70,12 @@
 		USER_MF_DT = SYSDATE	
 		WHERE USER_NO = #{userNo}
 	</update>
+	
+	<!-- 비밀번호 수정 -->
+	<update id="updatePwd" parameterType="Member">
+		UPDATE USER_TB SET USER_PWD = #{userPwd}, USER_MF_DT = SYSDATE
+		WHERE USER_EMAIL = #{userEmail}
+	</update>
 
 	<insert id="countVisitToday" parameterType="_int">
 		INSERT INTO DAYCOUNT
@@ -79,6 +88,19 @@
 		SELECT COUNT(*) FROM DAYCOUNT
 		WHERE USER_NO = #{userNo}		
 	</select>
+
+	<!-- 자동로그인 값 저장-->	
+	<update id="keepLogin">
+		UPDATE USER_TB SET AUTO_SESSIONKEY = #{sessionId}, AUTO_EXPIRYDATE =${limit}
+		WHERE USER_NO = #{userNo}
+    </update>
+    
+    <select id="checkUserWithSessionKey" resultType="Member">
+    	SELECT * FROM USER_TB
+    	WHERE AUTO_SESSIONKEY= #{sessionId}
+    	AND AUTO_EXPIRYDATE > now()
+    </select>
+    
 	
   
 </mapper>
