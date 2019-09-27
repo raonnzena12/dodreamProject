@@ -545,6 +545,11 @@
    				
    				var pNo = ${project.pNo}; //프로젝트 번호
    				var addReward = $("#rewardInput").val(); //추가후원금
+   				
+   				if(addReward == ""){
+   					addReward = '0';
+   				}
+   				
    				var rNo = "";
    				var opNo = "";
    				var select= "";
@@ -562,7 +567,7 @@
    					var opNum = $(this).attr("optionNo")*1;
    					
    					
-   					if(opNum == 2 || opNum == 3){
+   					if(opNum != 1){
 	   					if ( opNum == 2 ) {
 		   					select += $(this).parent().parent().find(".reSelect").val()+"/";//옵션 2번 select 옵션 값
 		   					console.log(select);
@@ -572,7 +577,9 @@
 		   					console.log(input);
 	   					}
    					}else{
-   						select = "-1/";
+   						select += "-1/";
+   						input +="-1/";
+   						console.log(select);
    					}
    					
    					/* opNo += $(this).parent().parent().children(".optionNo").val();
@@ -584,6 +591,7 @@
    					} */
    					
    				});
+   				console.log("pNo=" + pNo +" rNo="+ rNo + " addReward="+ addReward +" select=" + select + " input=" + input +" count=" +count);
    				
    				return false;
    				

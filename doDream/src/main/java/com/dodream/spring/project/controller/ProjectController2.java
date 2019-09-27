@@ -52,6 +52,8 @@ public class ProjectController2 {
 			like.setLikeNo(userNo);
 			
 		}
+		
+		
 			like.setLikeNo(userNo);
 			like.setLikePrNo(pno);
 		Like lk = pService2.selectLike(like);
