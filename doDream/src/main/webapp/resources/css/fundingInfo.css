@@ -110,3 +110,8 @@
     border-bottom-color: #F39C12;
     /* border-color: #F39C12; */
 }
+#payingTable input[type=number] {
+    border: none;
+    color: #8E44AD;
+    outline: none;
+}
