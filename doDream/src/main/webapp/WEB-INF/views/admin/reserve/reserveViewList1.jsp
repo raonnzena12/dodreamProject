@@ -140,7 +140,7 @@
 															<td>${ r.resDate}</td>
 															<td>${ r.addi}</td>
 															<td>${ r.resName}</td>
-															<td>${ r.resContract}</td>
+															<td>${ r.resContact}</td>
 															<td>${ r.resAddress}</td>
 															<td>
 																<button type="button" id="projectBtn1" class="btn btn-primary btn-lg btn-block rewardBtn">예약 취소</button>
@@ -184,27 +184,23 @@
 	</a>
 
 	<!-- Logout Modal-->
-	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-					<button class="close" type="button" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">×</span>
-					</button>
-				</div>
-				<div class="modal-body">Select "Logout" below if you are ready
-					to end your current session.</div>
-				<div class="modal-footer">
-					<button class="btn btn-secondary" type="button"
-						data-dismiss="modal">Cancel</button>
-					<a class="btn btn-primary" href="login.html">Logout</a>
-				</div>
-			</div>
-		</div>
-	</div>
+	  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	    <div class="modal-dialog" role="document">
+	      <div class="modal-content">
+	        <div class="modal-header">
+	          <h5 class="modal-title" id="exampleModalLabel">로그아웃</h5>
+	          <button class="close" type="button" data-dismiss="modal" aria-label="Close" style="float: right;">
+	            <span aria-hidden="true" style="float: right;">×</span>
+	          </button>
+	        </div>
+	        <div class="modal-body">로그아웃 시 메인 페이지로 이동합니다.</div>
+	        <div class="modal-footer">
+	          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+	          <a class="btn btn-primary" href="logout.dr">Logout</a>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
 
 	<!-- Bootstrap core JavaScript-->
 	<script src="resources/vendor/jquery/jquery.min.js"></script>

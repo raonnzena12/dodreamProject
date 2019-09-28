@@ -2,6 +2,8 @@ package com.dodream.spring.admin.model.dao;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -212,6 +214,14 @@ public class AdminDao {
 	public int stopProject(int pNo) {
 		return sqlSession.update("adminProjectMapper.stopProject", pNo);
 	}
-	
+
+	/** 신고 답변 관련 Dao
+	 * @param report
+	 * @param request
+	 * @return result
+	 */
+	public int insertAnswer(Report report) {
+		return sqlSession.insert("adminReportMapper.insertAnswer", report);
+	}
 
 }
