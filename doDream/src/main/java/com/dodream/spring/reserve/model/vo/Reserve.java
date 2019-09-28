@@ -9,7 +9,7 @@ public class Reserve {
 	private int addi; // 추가 후원금
 	private Date resDate; // 예약한 날짜
 	private String resName; // 리워드 수령인 이름
-	private int resContract; // 리워드 수령인 연락처
+	private int resContact; // 리워드 수령인 연락처
 	private String resAddress; // 리워드 수령 주소
 	private String resRequest; // 리워드 배송시 요청사항
 	private int resUser; // 예약한 유저번호
@@ -21,25 +21,26 @@ public class Reserve {
 	public Reserve() {
 	}
 
-	public int getResNo() {
-		return resNo;
-
-    public Reserve(int rNo, String bKey, int addi, Date rDate, String rName, String rContract, String rAddress,
-			String rRequest, int rUser, int rRefPno, int rStatusNo, String pTitle, String userNickname) {
+	public Reserve(int resNo, String bKey, int addi, Date resDate, String resName, int resContact, String resAddress,
+			String resRequest, int resUser, int resRefPno, int resStatusNo, String pTitle, String userNickname) {
 		super();
-		this.rNo = rNo;
+		this.resNo = resNo;
 		this.bKey = bKey;
 		this.addi = addi;
-		this.rDate = rDate;
-		this.rName = rName;
-		this.rContract = rContract;
-		this.rAddress = rAddress;
-		this.rRequest = rRequest;
-		this.rUser = rUser;
-		this.rRefPno = rRefPno;
-		this.rStatusNo = rStatusNo;
+		this.resDate = resDate;
+		this.resName = resName;
+		this.resContact = resContact;
+		this.resAddress = resAddress;
+		this.resRequest = resRequest;
+		this.resUser = resUser;
+		this.resRefPno = resRefPno;
+		this.resStatusNo = resStatusNo;
 		this.pTitle = pTitle;
 		this.userNickname = userNickname;
+	}
+
+	public int getResNo() {
+		return resNo;
 	}
 
 	public void setResNo(int resNo) {
@@ -78,12 +79,12 @@ public class Reserve {
 		this.resName = resName;
 	}
 
-	public String getrContract() {
-		return rContract;
+	public int getResContact() {
+		return resContact;
 	}
 
-	public void setrContract(String rContract) {
-		this.rContract = rContract;
+	public void setResContact(int resContact) {
+		this.resContact = resContact;
 	}
 
 	public String getResAddress() {
@@ -145,7 +146,7 @@ public class Reserve {
 	@Override
 	public String toString() {
 		return "Reserve [resNo=" + resNo + ", bKey=" + bKey + ", addi=" + addi + ", resDate=" + resDate + ", resName="
-				+ resName + ", resContract=" + resContract + ", resAddress=" + resAddress + ", resRequest=" + resRequest
+				+ resName + ", resContact=" + resContact + ", resAddress=" + resAddress + ", resRequest=" + resRequest
 				+ ", resUser=" + resUser + ", resRefPno=" + resRefPno + ", resStatusNo=" + resStatusNo + ", pTitle="
 				+ pTitle + ", userNickname=" + userNickname + "]";
 	}

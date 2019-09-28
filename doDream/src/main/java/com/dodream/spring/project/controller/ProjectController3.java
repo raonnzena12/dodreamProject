@@ -46,7 +46,7 @@ public class ProjectController3 {
 		
 		model.addAttribute("rList", rList);
 		model.addAttribute("additionalCost",addtionalCost);
-		model.addAttribute("pNo", pNo);
+		model.addAttribute("prj", prj);
 		
 		return "project/fundingInfo";
 	}

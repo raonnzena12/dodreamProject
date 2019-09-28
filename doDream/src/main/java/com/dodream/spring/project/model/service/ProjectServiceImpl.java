@@ -30,12 +30,8 @@ public class ProjectServiceImpl implements ProjectService {
 			pDao.updatePrjCount(pNo);
 			
 			int goal = prj.getpGoal();
-			
 			String comma_goal = String.format("%,d", goal);
-			
 			prj.setpCommaGoal(comma_goal);
-			
-			System.out.println(prj);
 		}
 		return prj;
 	}

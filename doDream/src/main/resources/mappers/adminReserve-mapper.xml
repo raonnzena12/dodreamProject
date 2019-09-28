@@ -8,7 +8,7 @@
 		<result property="addi" column="ADDITIONAL"/>
 		<result property="resDate" column="RESERVE_DATE"/>
 		<result property="resName" column="RESERVE_NAME"/>
-		<result property="resContract" column="RESERVE_CONTRACT"/>
+		<result property="resContact" column="RESERVE_CONTRACT"/>
 		<result property="resAddress" column="RESERVE_ADDRESS"/>
 		<result property="resRequest" column="RESERVE_REQUEST"/>
 		<result property="resUser" column="RESERVE_USER"/>

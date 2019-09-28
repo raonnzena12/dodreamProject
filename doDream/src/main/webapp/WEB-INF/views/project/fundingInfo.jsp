@@ -14,9 +14,15 @@
 <!-- 툴팁출력용 -->
 <script type="text/javascript" src="https://unpkg.com/popper.js"></script>
 <!-- 부트페이 -->
-<script src="https://cdn.bootpay.co.kr/js/bootpay-3.0.2.min.js" type="application/javascript"></script>
+<!-- <script src="https://cdn.bootpay.co.kr/js/bootpay-3.0.2.min.js" type="application/javascript"></script> -->
+<!-- iamport.payment.js -->
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 </head>
 <body>
+<script>
+	var IMP = window.IMP; 
+  	IMP.init("imp63639406"); // 발급받은 "가맹점 식별코드"를 사용합니다.
+</script>
 <c:url var="fundingComplete" value="thankYou.dr" />
 	<section id="payingInfo" class="my-5">
 		<h1 align="center">뚝딱뚝딱</h1>
@@ -36,7 +42,7 @@
 											<form action="${ fundingComplete }" method="post" id="fndInsert2">
 											<c:forEach var="rwd" items="${ rList }" varStatus="status" >
 												<input type="hidden" name="hList[${ status.index }].rwdNo" value="${ rwd.rNo }">
-											<span class="rewardTitle" id="${ rwd.rNo }">${ rwd.rName } _ <input type="number" name="hList[${ status.index }].rwdAmount" class="rwd-amount${ status.index }" maxlength="3" oninput="maxLengthCheck(this);" idx="${ status.index }" limit="${ rwd.rAmount }" data-toggle="tooltip" data-placement="bottom" title="펀딩가능 수량 : ${ rwd.rAmount }개"> 개</span><br>
+											<span class="rewardTitle" id="${ rwd.rNo }">${ rwd.rName } _ <input type="number" name="hList[${ status.index }].rwdAmount" class="rwd-amount${ status.index }" maxlength="3" oninput="maxLengthCheck(this);" idx="${ status.index }" limit="${ rwd.rAmount }" data-toggle="tooltip" data-placement="bottom" title="펀딩가능 수량 : ${ rwd.rAmount }개" readonly> 개</span><br>
 											<span class="rewardDetail textSize-15">${ rwd.rExplain}</span><br>
 											<c:if test="${ !empty rwd.rOptionAdd }" >
 											<span class="rewardOption textSize-15">${ rwd.rOptionAdd }</span><br>
@@ -169,10 +175,10 @@
 											</td>
 										</tr>
 										<tr>
-											<td><input type="number" name="card1" id="card1" class="form-control form-control-sm" maxlength="4"></td>
-											<td><input type="password" name="card2" id="card2" class="form-control form-control-sm" maxlength="4"></td>
-											<td><input type="password" name="card3" id="card3" class="form-control form-control-sm" maxlength="4"></td>
-											<td><input type="number" name="card4" id="card4" class="form-control form-control-sm" maxlength="4"></td>
+											<td><input type="number" name="cardNo1" id="cardNo1" class="form-control form-control-sm" maxlength="4"></td>
+											<td><input type="password" name="cardNo2" id="cardNo2" class="form-control form-control-sm" maxlength="4"></td>
+											<td><input type="password" name="cardNo3" id="cardNo3" class="form-control form-control-sm" maxlength="4"></td>
+											<td><input type="number" name="cardNo4" id="cardNo4" class="form-control form-control-sm" maxlength="4"></td>
 										</tr>
 										<tr>
 											<td colspan="2">
@@ -183,8 +189,8 @@
 											</td>
 										</tr>
 										<tr>
-											<td colspan="2"><input type="text" name="validity" id="validity" class="form-control form-control-sm" placeholder="MM/YY"></td>
-											<td colspan="2"><input type="password" name="cPassword" id="cPassword" class="form-control form-control-sm" placeholder="앞 2자리" maxlength="2"></td>
+											<td colspan="2"><input type="text" name="expiry" id="expiry" class="form-control form-control-sm" placeholder="MM/YY"></td>
+											<td colspan="2"><input type="password" name="pwd2" id="pwd2" class="form-control form-control-sm" placeholder="앞 2자리" maxlength="2"></td>
 										</tr>
 										<tr>
 											<td colspan="4">
@@ -194,7 +200,7 @@
 										</tr>
 										<tr>
 											<td colspan="4">
-												<input type="number" name="birthYND" id="birthYND" class="form-control form-control-sm" >
+												<input type="number" name="authentication" id="authentication" class="form-control form-control-sm" >
 											</td>
 										</tr>
 									</table>
@@ -235,13 +241,15 @@
 				</div>
 			</div>
 		</div>
+			<!--  Reserve 객체용 -->
 			<input type="hidden" name="addi" value="${ additionalCost }">
 			<input type="hidden" name="rName">
-			<input type="hidden" name="rContract">
+			<input type="hidden" name="rContact">
 			<input type="hidden" name="rAddress">
 			<input type="hidden" name="rRequest">
 			<input type="hidden" name="rUser" value="0">
 			<input type="hidden" name="rRefPno" value="${ pNo }">
+			<input type="hidden" name="userUid">
 		</form>
 	</section>
 <script>
@@ -249,21 +257,21 @@ $(function(){
 	// 최초 진입시 합계를 한번 출력한다
 	calcPrice();
 	// 리워드 양을 변경했을때 실행되는 코드
-	$("input[class^=rwd-amount]").on("input", function(){
-		var index = $(this).attr("idx"); // 해당 input 태그의 index를 받는다
-		var limit = $(this).attr("limit")*1; // 해당 리워드의 현재수량을 받는다
-		var amount = $(this).val()*1; // 유저가 기입한 수량을 받는다
-		var price = $(".rwd-price"+index).val()*1; // 해당 리워드 가격을 받는다
+	// $("input[class^=rwd-amount]").on("input", function(){
+	// 	var index = $(this).attr("idx"); // 해당 input 태그의 index를 받는다
+	// 	var limit = $(this).attr("limit")*1; // 해당 리워드의 현재수량을 받는다
+	// 	var amount = $(this).val()*1; // 유저가 기입한 수량을 받는다
+	// 	var price = $(".rwd-price"+index).val()*1; // 해당 리워드 가격을 받는다
 
-		if ( amount > limit ) { // 기입한 수량이 현재수량보다 크면
-			$(this).val(limit);
-			$(".rwd-aPrint"+index).text(price*limit);
-			calcPrice();
-		} else { // 기입한 수량이 현재수량보다 적으면
-			$(".rwd-aPrint"+index).text(price*amount);
-			calcPrice();
-		}
-	});
+	// 	if ( amount > limit ) { // 기입한 수량이 현재수량보다 크면
+	// 		$(this).val(limit);
+	// 		$(".rwd-aPrint"+index).text(price*limit);
+	// 		calcPrice();
+	// 	} else { // 기입한 수량이 현재수량보다 적으면
+	// 		$(".rwd-aPrint"+index).text(price*amount);
+	// 		calcPrice();
+	// 	}
+	// });
 	// 결제 예약하기 버튼을 클릭했을시 실행되는 코드
 	$("#toComplete").on("click", function(){
 		
@@ -285,6 +293,10 @@ $(function(){
 		var nameCK = true;
 		var addrCK = true;
 		var contCK = true;
+		var cardCK = true;
+		var exprCK = true;
+		var authCK = true;
+		var pwd2CK = true;
 		var regExp = /^\d{3}\d{3,4}\d{4}$/;
         // 전화번호 정규식
 		var infoMsg = "";
@@ -298,7 +310,15 @@ $(function(){
 		}
 		if ( $("input[name=rContract]").val() == "" || !regExp.test($("input[name=rContract]").val()) ) {
 			contCK = false;
-			infoMsg += "연락처를 정확하게 입력 해주세요."
+			infoMsg += "연락처를 정확하게 입력 해주세요.<br>"
+		}
+		if ( $("#cardNo1").val().length+$("#cardNo2").val().length+$("#cardNo3").val().length+$("#cardNo4").val().length < 16 ) {
+			cardCK = false;
+			infoMsg += "카드번호를 정확하게 입력 해주세요.<br>"
+		}
+		if( $("#expiry").val().length < 5 ) {
+			exprCK = false;
+			infoMsg += "카드 유효기간을 정확하게 입력 해주세요.<br>";
 		}
 		// if ( !(nameCK && addrCK && contCK) ) {
 		// 	Swal.fire( '작성란을 기입해주세요!', infoMsg, 'warning' );
@@ -321,39 +341,9 @@ $(function(){
 		// 뒤로 넘기기
 		var c1 = $("input[name=card1]").val();
 		if ( allCK ) {
-			// 부트페이 테스트
-			BootPay.request({
-				price: 0, // 0으로 해야 한다.
-				application_id: "5d7cf0bb0627a80029aecce3",
-				name: '정기적인 결제', //결제창에서 보여질 이름
-				pg: 'danal',
-				method: 'card_rebill', // 빌링키를 받기 위한 결제 수단
-				show_agree_window: 0, // 부트페이 정보 동의 창 보이기 여부
-				user_info: {
-					email: 'raonnzena12@gmail.com',
-				},
-				order_id: 'order_id_1234', //고유 주문번호로, 생성하신 값을 보내주셔야 합니다.
-				params: {callback1: '그대로 콜백받을 변수 1', callback2: '그대로 콜백받을 변수 2', customvar1234: '변수명도 마음대로'},
-				extra: {
-					start_at: '2019-10-10', // 정기 결제 시작일 - 시작일을 지정하지 않으면 그 날 당일로부터 결제가 가능한 Billing key 지급
-					end_at: '2019-10-10' // 정기결제 만료일 -  기간 없음 - 무제한
-				}
-			}).error(function (data) {
-				//결제 진행시 에러가 발생하면 수행됩니다.
-				console.log(data);
-			}).cancel(function (data) {
-				//결제가 취소되면 수행됩니다.
-				console.log(data);
-			}).done(function (data) {
-				// 빌링키를 정상적으로 가져오면 해당 데이터를 불러옵니다.
-				console.log("success");
-				console.log(data);
-			});
-			// $("#fndInsert").submit();
-			// $("#fndInsert2").submit();
-			setTimeout(function(){
-				$(document).find("input[name=cardNo1]").val(c1);
-			}, 3000);
+			
+
+
 		} else {
 			Swal.fire( '약관에 동의해주세요!', "", 'warning' );
 			return false;
