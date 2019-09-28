@@ -120,7 +120,7 @@
 													</tr>
 												</tfoot>
 												<tbody>
-													<c:forEach var="r" items="${ list }">
+													<c:forEach var="r" items="${ list }"  varStatus="status" >
 														<tr role="row" class="odd">
 															<td class="sorting_1">${ r.repNo }</td>
 															<td>${ r.userNickname}</td>
@@ -128,7 +128,37 @@
 															<td>${ r.pTitle}</td>
 															<td>${ r.repDate}</td>
 															<td>
-																<button type="button" id="projectBtn1" class="btn btn-primary btn-lg btn-block rewardBtn">답변 하기</button>
+																<c:url var="answer" value="adminAnswer.dr"/>
+																<button type="button" data-toggle="modal" data-target="#exampleModal${ status.index }" data-whatever="답변하기"
+ 																 id="projectBtn1" class="btn btn-primary btn-lg btn-block rewardBtn" onclick="">답변하기</button>
+ 																 <div class="modal fade" id="exampleModal${ status.index }" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+																  <div class="modal-dialog" role="document">
+																    <div class="modal-content">
+																      <div class="modal-header">
+																        <h5 class="modal-title" id="exampleModalLabel">답변하기</h5>
+																        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																          <span aria-hidden="true">&times;</span>
+																        </button>
+																      </div>
+																      <div class="modal-body">
+																        <form>
+																          <div class="form-group">
+																            <label for="recipient-name" class="col-form-label">회원 아이디 :</label>
+																            <input type="text" class="form-control" id="recipient-name" value="${r.userNickname}" readonly>
+																          </div>
+																          <div class="form-group">
+																            <label for="message-text" class="col-form-label">보낼 내용 :</label>
+																            <textarea class="form-control" id="message-text"></textarea>
+																          </div>
+																        </form>
+																      </div>
+																      <div class="modal-footer">
+																        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+																        <button type="button" class="btn btn-primary">답변 보내기</button>
+																      </div>
+																    </div>
+																  </div>
+																</div>
 															</td>
 														</tr>
 													</c:forEach>
@@ -169,27 +199,23 @@
 	</a>
 
 	<!-- Logout Modal-->
-	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-					<button class="close" type="button" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">×</span>
-					</button>
-				</div>
-				<div class="modal-body">Select "Logout" below if you are ready
-					to end your current session.</div>
-				<div class="modal-footer">
-					<button class="btn btn-secondary" type="button"
-						data-dismiss="modal">Cancel</button>
-					<a class="btn btn-primary" href="login.html">Logout</a>
-				</div>
-			</div>
-		</div>
-	</div>
+	  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	    <div class="modal-dialog" role="document">
+	      <div class="modal-content">
+	        <div class="modal-header">
+	          <h5 class="modal-title" id="exampleModalLabel">로그아웃</h5>
+	          <button class="close" type="button" data-dismiss="modal" aria-label="Close" style="float: right;">
+	            <span aria-hidden="true" style="float: right;">×</span>
+	          </button>
+	        </div>
+	        <div class="modal-body">로그아웃 시 메인 페이지로 이동합니다.</div>
+	        <div class="modal-footer">
+	          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+	          <a class="btn btn-primary" href="logout.dr">Logout</a>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
 
 	<!-- Bootstrap core JavaScript-->
 	<script src="resources/vendor/jquery/jquery.min.js"></script>

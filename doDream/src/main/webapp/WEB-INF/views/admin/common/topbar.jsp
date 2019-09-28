@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 <body>
 
@@ -167,16 +169,29 @@
 				</div></li>
 
 			<div class="topbar-divider d-none d-sm-block"></div>
-
+			
 			<!-- Nav Item - User Information -->
-			<li class="nav-item dropdown no-arrow"><a
+			<li class="nav-item dropdown no-arrow">
+				<a
 				class="nav-link dropdown-toggle" href="#" id="userDropdown"
 				role="button" data-toggle="dropdown" aria-haspopup="true"
-				aria-expanded="false"> <span
-					class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie
-						Luna</span> <img class="img-profile rounded-circle"
-					src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
-			</a> <!-- Dropdown - User Information -->
+				aria-expanded="false">
+				<span id="loginMenuText" class="mr-2 d-none d-lg-inline text-gray-600 small">
+					<!-- 로그인 시 출력 -->
+					<c:if test="${ !empty sessionScope.loginUser }">
+						<h6><c:out value="'${ loginUser.userNickname }' 관리자님 환영합니다!"/></h6>
+					</c:if>
+				</span>
+					<div style="display: inline-block;">
+					<c:if test="${empty loginUser.userProfileImage}">
+					<i class="material-icons">account_circle</i>
+					</c:if>
+					<c:if test="${! empty loginUser.userProfileImage }">
+						<img alt="프로필사진" src="resources/images/userProfileImage/${loginUser.userProfileImage}" class="img-profile rounded-circle" style="width: 24px; height: 24px;" id="userProfileImage_sm" name="userProfileImage"/>
+					</c:if>
+					</div>
+					</a>
+			 <!-- Dropdown - User Information -->
 				<div
 					class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
 					aria-labelledby="userDropdown">

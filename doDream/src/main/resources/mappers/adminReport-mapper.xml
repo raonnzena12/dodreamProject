@@ -29,4 +29,11 @@
 		WHERE REPORT_STATUS = 'Y'
 	</select>
 
+	<!-- 신고 답변 등록 쿼리 -->
+	<insert id="insertAnswer" parameterType="Report">
+		INSERT INTO REPORT_TB VALUES(
+			SEQ_REP_NO.NEXTVAL, SYSDATE, #{repContent}, #{repRefPno}, #{repWriter}, 'Y'
+		)
+	</insert>
+
 </mapper>

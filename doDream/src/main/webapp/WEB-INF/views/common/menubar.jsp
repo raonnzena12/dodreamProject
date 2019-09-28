@@ -206,11 +206,16 @@
 							<div class="row" id="myinfobtn">
 								<div class="col-md-12 text-center">
 								<c:url var="mypage" value="mypage.dr"/>
+								<c:url var="adminPage" value="adminHome.dr"/>
 								<c:url var="logout" value="logout.dr"/>
 								<button class="btn btn-sm mb-2" id="mypagebtn"onclick="location.href='${mypage}'">My Page</button>
 								&nbsp; &nbsp;
 								<button class="btn btn-sm mb-2" id="logoutbtn" onclick="location.href='${logout}'">로그아웃</button>
-								</div>
+								<c:if test="${loginUser.userAdminYn eq 'Y'}">
+									&nbsp; &nbsp;
+									<button class="btn btn-sm mb-2" id="goAdmin"onclick="location.href='${adminPage}'">관리자 페이지로 이동</button>
+								</c:if>
+								</div>	
 							</div>
 						</div>
 				</c:if>	   

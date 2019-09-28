@@ -2,6 +2,8 @@ package com.dodream.spring.admin.model.service;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -169,6 +171,12 @@ public class AdminServiceImpl implements AdminService {
 	public int stopProject(int pNo) {
 		return aDao.stopProject(pNo);
 	}
+
+	@Override
+	public int insertAnswer(Report report) {
+		return aDao.insertAnswer(report);
+	}
+
 	
 
 }
