@@ -5,6 +5,7 @@ package com.dodream.spring.project.controller;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,7 @@ import com.dodream.spring.project.model.service.ProjectService;
 import com.dodream.spring.project.model.service.ProjectService2;
 import com.dodream.spring.project.model.vo.Like;
 import com.dodream.spring.project.model.vo.Project;
+import com.dodream.spring.project.model.vo.Reply;
 import com.dodream.spring.project.model.vo.Reward;
 
 @Controller
@@ -141,11 +143,41 @@ public class ProjectController2 {
 		
 	}
 	
+	
+	//aside리워드
 	@RequestMapping("detailSubReward.dr")
 	public String detailSubReward(int rNo, int pNo, Model model) {
 		System.out.println(rNo + "//////" + pNo);
 		return "redirect:detailSt.dr?page=2&pNo="+pNo+"&rNo="+rNo;
 	}
+	
+	//댓글
+	@RequestMapping("detailReply.dr")
+	public String insertReply(Reply reply, HttpServletRequest request) {
+		
+		int userNo= 0;
+		if( request.getSession().getAttribute("loginUser") != null ) {
+			userNo = ((Member)(request.getSession().getAttribute("loginUser"))).getUserNo();
+			
+			reply.setReWriNo(userNo);
+		}
+		System.out.println(reply);
+		int result = pService2.insertReply(reply);
+		
+		if(result > 0) {
+			return "success";
+		}else {
+			return "fail";
+		}
+		
+		
+	}
+	
+	
+	
+	
+	
+	
 	
 
 }

@@ -273,7 +273,8 @@
                 border: 1px solid #ddd;
                 border-radius: 3px;
                 width: 290px;
-                height: 280px;
+                min-height: 280px;
+                height:auto;
                 margin: 10px 0 0 0;
                 float: right;
            }
@@ -304,21 +305,40 @@
                 margin: 10px 0 0 0;
            }
            #asideText3{
-                /* border: 1px solid black; */
+                border: 1px solid black;
                 width: 100%;
-                height: 30px;
-                padding:  0 0 0 20px;
+                min-height: 30px;
+                height:auto;
+                padding:  0 5px 0 5px;
            }
           #asideReward > .rewardBtn{
                 width: 270px;
                 height: 50px;
-                margin: 15px 0 0 7px;
+                margin: 15px 0 10px 7px;
                 background-color: #8E44AD;
                 border-color: #8E44AD;
            }
            .check{
            		float: right;
            		/* display:none */;
+           }
+           #rname{
+           		border: 1px solid black;
+                width: 270px;
+                min-height: 30px;
+                height:auto;
+                padding-right:70px;
+                position: relative;
+           }
+           #recount{
+           		border: 1px solid black;
+                width: 50px;
+                min-height: 30px;
+                height:auto;
+                top:0;
+                right:0;
+                position: absolute;
+                
            }
        </style>
 </head>
@@ -451,8 +471,13 @@
                         <div id="asideText2">
                             선택한 리워드
                         </div>
-                        <div id="asideText3">
-                            1번(실속형 리워드)
+                        <div id="asideText3" class="clearfix">
+                           <!-- 선택한 리워드 제목이 들어감 -->
+                           <div id="rname">
+                           
+                           		<div id="recount"></div>
+                           </div>
+                           
                         </div>
                         <button type="button" class="btn btn-primary btn-lg btn-block rewardBtn" onclick="goReserve();">후원하기</button>
                </div>
@@ -527,14 +552,22 @@
    			
 			function rewardsum(){
    			var price = 0;
+   			var checkName="";
+   			var count="";
 			
    			$("input:checkbox[name='reCheck']:checked").each(function(){
    				price += $(this).val()*1;
+   				checkName += $(this).parent().parent().find(".rewardText6").text()+"<br>";
+   				count +=$(this).parent().parent().find(".reCount").val()+"<br>";
    				//console.log(price);
    				//console.log($("#rewardInput").val()*1);
+   				console.log(checkName);
    				
    			});
    				$("#rewardSum").text(price + $("#rewardInput").val()*1);
+   				$("#rname").html(checkName);
+   				$("#recount").html(count);
+   				
 		
 			}
    		
@@ -596,9 +629,9 @@
    				console.log("pNo=" + pNo +" rNo="+ rNo + " addReward="+ addReward +" select=" + select + " input=" + input +" count=" +count);
    				
    				//return false;
-   				if(count == ""){
+   				/* if(count == ""){
    					alert("리워드 수량을 입력해주세요.");
-   				}
+   				} */
    				location.href="letsFunding.dr?pNo="+ pNo +"&rNo="+ rNo + "&addReward="+ addReward +"&select=" + select + "&input=" + input +"&count=" +count;
    					
    				/* $("input:checkbox[name='reCheck']:checked").
