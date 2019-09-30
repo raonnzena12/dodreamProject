@@ -9,6 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.dodream.spring.project.model.vo.Project;
 import com.dodream.spring.project.model.vo.Reward;
 import com.dodream.spring.project.model.vo.RewardList;
+import com.dodream.spring.reserve.model.vo.Reserve;
 
 public interface ProjectService {
 /// 공동사용
@@ -57,6 +58,4 @@ public interface ProjectService {
 	 * @return rList
 	 */
 	public abstract ArrayList<Reward> selectRewardList(String rewardStr);
-
-
 }

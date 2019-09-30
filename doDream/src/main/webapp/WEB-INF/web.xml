@@ -51,6 +51,7 @@
 	<servlet-mapping>
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>*.dr</url-pattern>
+		<url-pattern>/resttest/*</url-pattern>
 	</servlet-mapping>
 	
 

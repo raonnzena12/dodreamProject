@@ -15,6 +15,7 @@ import com.dodream.spring.project.model.dao.ProjectDao;
 import com.dodream.spring.project.model.vo.Project;
 import com.dodream.spring.project.model.vo.Reward;
 import com.dodream.spring.project.model.vo.RewardList;
+import com.dodream.spring.reserve.model.vo.Reserve;
 
 @Service("pService")
 public class ProjectServiceImpl implements ProjectService {
@@ -72,4 +73,6 @@ public class ProjectServiceImpl implements ProjectService {
 		ArrayList<String> rewardList = new ArrayList<>(Arrays.asList(rewardTmp));
 		return pDao.selectRewardList(rewardList);
 	}
+
+
 }

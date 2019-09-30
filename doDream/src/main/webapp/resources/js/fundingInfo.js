@@ -1,13 +1,13 @@
 $(function(){
 
     // 가상 키패드 LOADING
-    $('#card2').numberKeypad({
+    $('#cardNo2').numberKeypad({
         // wrap: $('.wrapper'),
         // arrKeys: [1, 2, 3, 4, 5, 6, 7, 8, 9, 'x', 0, 'ok'],
         // login: false // 이하 커스텀 스타일
     }); 
-    $('#card3').numberKeypad();
-    $('#cPassword').numberKeypad();
+    $('#cardNo3').numberKeypad();
+    $('#pwd2').numberKeypad();
     // 전체동의하기 체크하면 전체 체크처리
     $("#allCheck").on("click", function(){
         if( $(this).is(":checked") ) {

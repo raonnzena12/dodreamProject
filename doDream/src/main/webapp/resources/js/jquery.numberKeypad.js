@@ -79,12 +79,24 @@ var $padActive = false; // is active keypad visible :: global
 
                 var $val = $(this).text();
                 var $maxLength = self.attr("maxlength");
+                var $nextIdx = self.attr("cardIdx")*1+1
                 if ( self.val().length >= $maxLength ) {
-                  return false;
+                   return false;
                 }
                 self.val(self.val() + $val);
+                console.log($nextIdx);
+                if ( self.val().length == $maxLength ) {
+                    if ( $nextIdx == NaN ) return false;
+                    $("input[name=cardNo"+$nextIdx+"]").focus();
+                    if ( $nextIdx == 4 ) {
+                        $keypad.fadeOut(200, function () {
+                            $padActive = false;
+                            $(this).find(".keypad").hide();
+                        });
+                    }
+                }
             });
-
+            
             // click back event
             $keypad.find("a.back").on("click", function (e) {
                 e.preventDefault();
