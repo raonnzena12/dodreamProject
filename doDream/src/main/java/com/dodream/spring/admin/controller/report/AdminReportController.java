@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.dodream.spring.admin.model.service.AdminService;
 import com.dodream.spring.report.model.vo.Report;
+import com.dodream.spring.report.model.vo.ReportReply;
 
 @Controller
 public class AdminReportController {
@@ -44,14 +45,15 @@ public class AdminReportController {
 	}
 	
 	// 신고 답변 관련 메소드
-	@RequestMapping("adminAnswer.dr")
-	public String insertAnswer(Report report, Model model) {
+	@RequestMapping("reportReply.dr")
+	public String insertReportReply(ReportReply reportReply, Model model) {
 		
-		int result = aService.insertAnswer(report);
+		int result = aService.insertReportReply(reportReply);
 		
 		String path = null;
 		
 		if(result > 0 ) {
+			result = aService.updateReport(reportReply.getReportRpRefRno());
 			path = "redirect:adminReplist.dr";
 		} else {
 			model.addAttribute("msg", "답변 실패");
@@ -60,6 +62,25 @@ public class AdminReportController {
 		
 		return path;
 	}
+	
+	// 신고 답변 현황 
+	@RequestMapping("adminRepRlist.dr")
+	public ModelAndView reportRlistView(ModelAndView mv) {
+		
+		ArrayList<ReportReply> list = aService.reportRlistView();
+
+		if(list != null) {
+			mv.addObject("list", list).setViewName("admin/report/reportReplyViewList");
+		} else {
+			mv.addObject("msg", "신고 답변이 존재하지 않습니다.").setViewName("admin/report/reportReplyViewList");
+		}
+		
+		return mv;
+	}
+	
+	
+	
+	
 	
 	
 }
