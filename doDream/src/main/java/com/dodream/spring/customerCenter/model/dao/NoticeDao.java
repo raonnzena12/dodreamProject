@@ -9,8 +9,8 @@ import org.springframework.stereotype.Repository;
 import com.dodream.spring.customerCenter.model.vo.Notice;
 
  
-@Repository("noticeDao")
-public class noticeDao {
+@Repository("NoticeDao")
+public class NoticeDao {
 
 	@Autowired
 	private SqlSessionTemplate sqlSession;

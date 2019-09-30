@@ -8,15 +8,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.dodream.spring.customerCenter.model.service.faqService;
+import com.dodream.spring.customerCenter.model.service.FaqService;
 import com.dodream.spring.customerCenter.model.vo.Faq;
 import com.dodream.spring.customerCenter.model.vo.Search;
  
 @Controller
-public class faqController {
+public class FaqController {
 
 	@Autowired
-	private faqService faqService;
+	private FaqService faqService;
 	 
 	@RequestMapping("faq.dr")
 	public ModelAndView faqList(ModelAndView mv) {

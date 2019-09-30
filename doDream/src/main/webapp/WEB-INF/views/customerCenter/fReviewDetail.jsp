@@ -66,8 +66,7 @@
 					<li class="nav-item"><a class="nav-link active"
 						href="notice.dr">공지사항</a></li>
 					<li class="nav-item"><a class="nav-link" href="T_O_Service.dr">이용약관</a></li>
-					<li class="nav-item"><a class="nav-link "
-						href="fReview.dr">펀딩후기</a></li>
+					<li class="nav-item"><a class="nav-link " href="fReview.dr">프로젝트 후기</a></li>
 					<li class="nav-item"><a class="nav-link " href="faq.dr">FAQ</a></li>
 
 				</ul>
@@ -78,7 +77,7 @@
 		</div>
 		<div class="row">
 			<div class="col-md-12">
-				<h3>펀딩후기</h3>
+				<h3>프로젝트 후기-상세</h3>
 				<hr id=Review_bar>
 				<div style="position: relative;" class="clearfix">
 					<div class="btn-group btn-group-md" role="group" id="FReview_title">

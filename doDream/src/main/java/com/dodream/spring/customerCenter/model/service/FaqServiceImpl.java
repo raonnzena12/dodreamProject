@@ -5,15 +5,15 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.dodream.spring.customerCenter.model.dao.faqDao;
+import com.dodream.spring.customerCenter.model.dao.FaqDao;
 import com.dodream.spring.customerCenter.model.vo.Faq;
 import com.dodream.spring.customerCenter.model.vo.Search;
  
-@Service("faqService")
-public class faqServiceImpl implements faqService {
+@Service("FaqService")
+public class FaqServiceImpl implements FaqService {
 
 	@Autowired
-	private faqDao faqDao;
+	private FaqDao faqDao;
 
 	@Override
 	public ArrayList<Faq> selectList() {
