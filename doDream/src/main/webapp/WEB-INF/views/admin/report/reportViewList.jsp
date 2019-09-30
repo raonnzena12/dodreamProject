@@ -128,9 +128,8 @@
 															<td>${ r.pTitle}</td>
 															<td>${ r.repDate}</td>
 															<td>
-																<c:url var="answer" value="adminAnswer.dr"/>
 																<button type="button" data-toggle="modal" data-target="#exampleModal${ status.index }" data-whatever="답변하기"
- 																 id="projectBtn1" class="btn btn-primary btn-lg btn-block rewardBtn" onclick="">답변하기</button>
+ 																 id="projectBtn1" class="btn btn-primary btn-lg btn-block rewardBtn">답변하기</button>
  																 <div class="modal fade" id="exampleModal${ status.index }" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 																  <div class="modal-dialog" role="document">
 																    <div class="modal-content">
@@ -140,22 +139,24 @@
 																          <span aria-hidden="true">&times;</span>
 																        </button>
 																      </div>
+															        <form action ="reportReply.dr" method="post">
 																      <div class="modal-body">
-																        <form>
+																		<input type="hidden" name="reportRpRefRno" value="${r.repNo}">
 																          <div class="form-group">
 																            <label for="recipient-name" class="col-form-label">회원 아이디 :</label>
-																            <input type="text" class="form-control" id="recipient-name" value="${r.userNickname}" readonly>
+																            <input type="text" class="form-control" id="recipient-name" value="${loginUser.userNickname}" readonly>
+																            <input type="hidden" name="reportRpWriter" value="${loginUser.userNo}"> 
 																          </div>
 																          <div class="form-group">
 																            <label for="message-text" class="col-form-label">보낼 내용 :</label>
-																            <textarea class="form-control" id="message-text"></textarea>
+																            <textarea name="reportRpContent" class="form-control" id="message-text"></textarea>
 																          </div>
-																        </form>
 																      </div>
 																      <div class="modal-footer">
 																        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-																        <button type="button" class="btn btn-primary">답변 보내기</button>
+																        <button type="submit" class="btn btn-primary">답변 보내기</button>
 																      </div>
+															        </form>
 																    </div>
 																  </div>
 																</div>

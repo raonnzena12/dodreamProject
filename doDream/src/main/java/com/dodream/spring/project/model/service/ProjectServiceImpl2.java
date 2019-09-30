@@ -9,6 +9,7 @@ import com.dodream.spring.project.model.dao.ProjectDao2;
 import com.dodream.spring.project.model.vo.Like;
 import com.dodream.spring.project.model.vo.Reply;
 import com.dodream.spring.project.model.vo.Reward;
+import com.dodream.spring.project.model.vo.SubReply;
 
 @Service("pService2")
 public class ProjectServiceImpl2 implements ProjectService2{
@@ -54,6 +55,27 @@ public class ProjectServiceImpl2 implements ProjectService2{
 	public int insertReply(Reply reply) {
 		
 		return pDao2.insertReply(reply);
+	}
+	
+	// 댓글 조회용 Service
+	@Override
+	public ArrayList<Reply> selectReply(int pNo) {
+		
+		return pDao2.selectReply(pNo);
+	}
+	
+	// 서브 댓글 조회용 Service
+	@Override
+	public ArrayList<SubReply> selectSubReply(ArrayList<Reply> reList) {
+		
+		return pDao2.selectSubReply(reList);
+	}
+	
+	// 서브 댓글 입력 Service
+	@Override
+	public int insertSubReply(SubReply subRe) {
+		
+		return pDao2.selectSubReply(subRe);
 	}
 	
 	

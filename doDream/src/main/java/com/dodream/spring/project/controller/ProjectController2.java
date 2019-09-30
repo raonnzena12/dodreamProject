@@ -3,9 +3,9 @@ package com.dodream.spring.project.controller;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,6 +20,7 @@ import com.dodream.spring.project.model.vo.Like;
 import com.dodream.spring.project.model.vo.Project;
 import com.dodream.spring.project.model.vo.Reply;
 import com.dodream.spring.project.model.vo.Reward;
+import com.dodream.spring.project.model.vo.SubReply;
 
 @Controller
 public class ProjectController2 {
@@ -151,7 +152,8 @@ public class ProjectController2 {
 		return "redirect:detailSt.dr?page=2&pNo="+pNo+"&rNo="+rNo;
 	}
 	
-	//댓글
+	//댓글 등록
+	@ResponseBody
 	@RequestMapping("detailReply.dr")
 	public String insertReply(Reply reply, HttpServletRequest request) {
 		
@@ -161,6 +163,8 @@ public class ProjectController2 {
 			
 			reply.setReWriNo(userNo);
 		}
+		
+		
 		System.out.println(reply);
 		int result = pService2.insertReply(reply);
 		
@@ -174,9 +178,44 @@ public class ProjectController2 {
 	}
 	
 	
+	//댓글 리스트
+	@ResponseBody
+	@RequestMapping(value="replyList.dr", produces="application/json; charset=UTF-8")
+	public HashMap<String, Object> selectReply(int pNo, Reply reply, SubReply subre) {
+		
+		ArrayList<Reply> reList = pService2.selectReply(pNo);
+		
+		ArrayList<SubReply> srList = pService2.selectSubReply(reList);
+		
+		HashMap<String, Object> map = new HashMap<>();
+		
+		map.put("reList", reList);
+		map.put("srList", srList);
+		
+		
+		return map;
+	}
 	
-	
-	
+	//대댓글 등록
+	@ResponseBody
+	@RequestMapping("insertSubRe.dr")
+	public String insertSubReply(SubReply subRe, HttpServletRequest request) {
+		int userNo= 0;
+		if( request.getSession().getAttribute("loginUser") != null ) {
+			userNo = ((Member)(request.getSession().getAttribute("loginUser"))).getUserNo();
+			
+			subRe.setSubWriNo(userNo);
+		}
+		
+		System.out.println(subRe);
+		int result = pService2.insertSubReply(subRe);
+		
+		if(result > 0) {
+			return "success";
+		}else {
+			return "fail";
+		}
+	}
 	
 	
 

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.dodream.spring.common.model.vo.PageInfo;
 import com.dodream.spring.project.model.vo.Project;
 import com.dodream.spring.project.model.vo.Reward;
+import com.dodream.spring.reserve.model.vo.Reserve;
 
 
 @Repository("pDao")

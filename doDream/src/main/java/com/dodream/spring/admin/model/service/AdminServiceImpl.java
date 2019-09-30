@@ -12,8 +12,11 @@ import com.dodream.spring.common.AdminPagination;
 import com.dodream.spring.common.model.vo.PageInfo;
 import com.dodream.spring.member.model.vo.Member;
 import com.dodream.spring.project.model.vo.Project;
+import com.dodream.spring.project.model.vo.Reply;
 import com.dodream.spring.report.model.vo.Report;
+import com.dodream.spring.report.model.vo.ReportReply;
 import com.dodream.spring.reserve.model.vo.Reserve;
+import com.sun.org.apache.regexp.internal.REProgram;
 
 @Service("aService")
 public class AdminServiceImpl implements AdminService {
@@ -173,8 +176,28 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public int insertAnswer(Report report) {
-		return aDao.insertAnswer(report);
+	public int insertReportReply(ReportReply reportReply) {
+		return aDao.insertReportReply(reportReply);
+	}
+
+	@Override
+	public int updateReport(int reportRpRefRno) {
+		return aDao.updateReport(reportRpRefRno);
+	}
+
+	@Override
+	public ArrayList<ReportReply> reportRlistView() {
+		return aDao.reportRlistView();
+	}
+
+	@Override
+	public ArrayList<Reply> replyListView() {
+		return aDao.replyListView();
+	}
+
+	@Override
+	public int removeReply(int reNo) {
+		return aDao.removeReply(reNo);
 	}
 
 	

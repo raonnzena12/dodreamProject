@@ -42,6 +42,9 @@
 #Terms_title {
 	border-right: 1px solid #8E44AD;
 }
+.jumbotron{
+	padding: 0;
+}
 </STYLE>
 </head>
 <body>
@@ -50,7 +53,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="jumbotron">
-					<img src="resources/img/영화간판2.PNG" style="width: 100%">
+					<img src="resources/images/backgroundImg/배경로고시안 (4).png" style="width: 100%">
 					<!-- <h2>Hello, world!</h2>
 					<p>This is a template for a simple marketing or informational
 						website. It includes a large callout called the hero unit and
@@ -65,9 +68,9 @@
 		<div class="sticky-top row" style="background-color: white;">
 			<div class="col-md-12" id="cCenter_menu">
 				<ul class="nav" style="background-color: #E1F5A9; ">
-					<li class="nav-item"><a class="nav-link" href="notice.dr">공지사항</a></li>
+					<li class="nav-item"><a class="nav-link" href="cCenter.dr">공지사항</a></li>
 					<li class="nav-item"><a class="nav-link" href="T_O_Service.dr">이용약관</a></li>
-					<li class="nav-item"><a class="nav-link" href="fReview.dr">펀딩후기</a></li>
+					<li class="nav-item"><a class="nav-link" href="fReview.dr">프로젝트 후기</a></li>
 					<li class="nav-item"><a class="nav-link" href="faq.dr">FAQ</a></li>
 
 				</ul>

@@ -9,7 +9,7 @@ public class Reserve {
 	private int addi; // 추가 후원금
 	private Date resDate; // 예약한 날짜
 	private String resName; // 리워드 수령인 이름
-	private int resContact; // 리워드 수령인 연락처
+	private String resContact; // 리워드 수령인 연락처
 	private String resAddress; // 리워드 수령 주소
 	private String resRequest; // 리워드 배송시 요청사항
 	private int resUser; // 예약한 유저번호
@@ -17,12 +17,16 @@ public class Reserve {
 	private int resStatusNo; // 예약 스테이터스 ( 1 결제대기 2 결제완료 3 결제예약 취소 )
 	private String pTitle;  			// 조인 시 필요한 프로젝트명
 	private String userNickname;		// 조인 시 필요한 유저 닉네임
+	private int resRwdPriceSum; // 리워드 가격 합한값
+	private Date resFundDate; // 펀드 결제일
+	private String resCustomerUid; 
 	
 	public Reserve() {
 	}
 
-	public Reserve(int resNo, String bKey, int addi, Date resDate, String resName, int resContact, String resAddress,
-			String resRequest, int resUser, int resRefPno, int resStatusNo, String pTitle, String userNickname) {
+	public Reserve(int resNo, String bKey, int addi, Date resDate, String resName, String resContact, String resAddress,
+			String resRequest, int resUser, int resRefPno, int resStatusNo, String pTitle, String userNickname,
+			int resRwdPriceSum, Date resFundDate, String resCustomerUid) {
 		super();
 		this.resNo = resNo;
 		this.bKey = bKey;
@@ -37,6 +41,9 @@ public class Reserve {
 		this.resStatusNo = resStatusNo;
 		this.pTitle = pTitle;
 		this.userNickname = userNickname;
+		this.resRwdPriceSum = resRwdPriceSum;
+		this.resFundDate = resFundDate;
+		this.resCustomerUid = resCustomerUid;
 	}
 
 	public int getResNo() {
@@ -79,11 +86,11 @@ public class Reserve {
 		this.resName = resName;
 	}
 
-	public int getResContact() {
+	public String getResContact() {
 		return resContact;
 	}
 
-	public void setResContact(int resContact) {
+	public void setResContact(String resContact) {
 		this.resContact = resContact;
 	}
 
@@ -143,11 +150,36 @@ public class Reserve {
 		this.userNickname = userNickname;
 	}
 
+	public int getResRwdPriceSum() {
+		return resRwdPriceSum;
+	}
+
+	public void setResRwdPriceSum(int resRwdPriceSum) {
+		this.resRwdPriceSum = resRwdPriceSum;
+	}
+
+	public Date getResFundDate() {
+		return resFundDate;
+	}
+
+	public void setResFundDate(Date resFundDate) {
+		this.resFundDate = resFundDate;
+	}
+
+	public String getResCustomerUid() {
+		return resCustomerUid;
+	}
+
+	public void setResCustomerUid(String resCustomerUid) {
+		this.resCustomerUid = resCustomerUid;
+	}
+
 	@Override
 	public String toString() {
 		return "Reserve [resNo=" + resNo + ", bKey=" + bKey + ", addi=" + addi + ", resDate=" + resDate + ", resName="
 				+ resName + ", resContact=" + resContact + ", resAddress=" + resAddress + ", resRequest=" + resRequest
 				+ ", resUser=" + resUser + ", resRefPno=" + resRefPno + ", resStatusNo=" + resStatusNo + ", pTitle="
-				+ pTitle + ", userNickname=" + userNickname + "]";
+				+ pTitle + ", userNickname=" + userNickname + ", resRwdPriceSum=" + resRwdPriceSum + ", resFundDate="
+				+ resFundDate + ", resCustomerUid=" + resCustomerUid + "]";
 	}
 }

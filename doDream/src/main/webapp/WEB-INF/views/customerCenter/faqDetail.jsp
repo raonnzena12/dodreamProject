@@ -70,7 +70,7 @@
 				<ul class="nav" style="background-color: #E1F5A9;">
 					<li class="nav-item"><a class="nav-link" href="notice.dr">공지사항</a></li>
 					<li class="nav-item"><a class="nav-link" href="T_O_Service.dr">이용약관</a></li>
-					<li class="nav-item"><a class="nav-link" href="FundingReview.dr">펀딩후기</a></li>
+					<li class="nav-item"><a class="nav-link" href="FundingReview.dr">프로젝트 후기</a></li>
 					<li class="nav-item"><a class="nav-link" href="faq.dr">FAQ</a></li>
 				</ul>
 			</div>
