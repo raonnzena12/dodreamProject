@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="reserveMapper">
+	
+	<resultMap type="Reserve" id="reserveResultSet">
+		<id property="resNo" column="RESERVE_NO" />
+		<result property="bKey" column="BILLINGKEY" />
+		<result property="addi" column="ADDITIONAL" />
+		<result property="resDate" column="RESERVE_DATE" />
+		<result property="resName" column="RESERVE_NAME" />
+		<result property="resContact" column="RESERVE_CONTRACT" />
+		<result property="resAddress" column="RESERVE_ADDRESS" />
+		<result property="resRequest" column="RESERVE_REQUEST" />
+		<result property="resUser" column="RESERVE_USER" />
+		<result property="resRefPno" column="RESERVE_REF_PNO" />
+		<result property="resStatusNo" column="RESERVE_STATUS_NO" />
+		<result property="pTitle" column="PROJECT_TITLE" />
+		<result property="userNickname" column="USER_NICKNAME" />
+		<result property="resRwdPriceSum" column="REWARD_PRICE_SUM" />
+		<result property="resFundDate" column="FUND_DATE" />
+		<result property="resCustomerUid" column="RESERVE_CUS_UID" />
+	</resultMap>
+	
+	<resultMap type="Reward" id="rewardReslutSet">
+		<id property="rNo" column="REWARD_NO" />
+		<result property="rPrice" column="REWARD_PRICE" />
+		<result property="rName" column="REWARD_NAME" />
+		<result property="rExplain" column="REWARD_EXPLAIN" />
+		<result property="rLimit" column="REWARD_LIMIT" />
+		<result property="rShipCDT" column="REWARD_SHIP_CDT" />
+		<result property="rShipDate" column="REWARD_SHIP_DT" />
+		<result property="rOptionAdd" column="REWARD_OP_ADD" />
+		<result property="rRefPno" column="REWARD_REF_PNO" />
+		<result property="rOptionNo" column="REWARD_OP_NO" />
+		<result property="rAmount" column="REWARD_AMOUNT" />
+		<result property="userAmount" column="REWARD_SUM" />
+	</resultMap>
+	
+	<select id="selectReserve" resultMap="reserveResultSet" parameterType="_int">
+		SELECT * FROM RESERVE_VIEW_2ND
+		WHERE RESERVE_NO = #{ rsvNo }
+	</select>
+	
+	<select id="selectRewardList" resultMap="rewardReslutSet" parameterType="_int">
+		SELECT * FROM HISTORY 
+		JOIN REWARD USING( REWARD_NO )
+		WHERE RESERVE_NO = #{ rsvNo }
+	</select>
+	
+</mapper>

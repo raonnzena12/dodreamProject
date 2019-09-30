@@ -42,7 +42,7 @@
 											<form action="${ fundingComplete }" method="post" id="fndInsert2">
 											<c:forEach var="rwd" items="${ rList }" varStatus="status" >
 												<input type="hidden" name="hList[${ status.index }].rwdNo" value="${ rwd.rNo }">
-											<span class="rewardTitle" id="${ rwd.rNo }">${ rwd.rName } _ <input type="number" name="hList[${ status.index }].rwdAmount" class="rwd-amount${ status.index }" maxlength="3" oninput="maxLengthCheck(this);" idx="${ status.index }" limit="${ rwd.rAmount }" data-toggle="tooltip" data-placement="bottom" title="펀딩가능 수량 : ${ rwd.rAmount }개" readonly> 개</span><br>
+											<span class="rewardTitle" id="${ rwd.rNo }">${ rwd.rName } _ <input type="number" name="hList[${ status.index }].rwdAmount" class="rwd-amount${ status.index }" maxlength="3" oninput="maxLengthCheck(this);" idx="${ status.index }" limit="${ rwd.rAmount }" data-toggle="tooltip" data-placement="bottom" title="펀딩가능한 최대수량 : ${ rwd.rAmount }개" value="1" readonly> 개</span><br>
 											<span class="rewardDetail textSize-15">${ rwd.rExplain}</span><br>
 											<c:if test="${ !empty rwd.rOptionAdd }" >
 											<span class="rewardOption textSize-15">${ rwd.rOptionAdd }</span><br>
@@ -123,7 +123,7 @@
 										<input type="text" name="postCode1" id="postCode1" placeholder="우편번호" class="form-control" autocomplete="off" value="${ fn:split(addr,',')[2] }">
 									</div>
 									<div class="col-md-3">
-										<button class="btn btn-warning btn-block" id="postcodify_search_button1">우편번호 검색</button>
+										<button class="btn btn-warning btn-block" id="postcodify_search_button1" type="button">우편번호 검색</button>
 									</div>
 								</div>
 								<input type="text" name="ship1Address2" id="ship1Address2" placeholder="상세주소" class="form-control postcodify_details" value="${ fn:split(addr,',')[1] }">
@@ -153,7 +153,7 @@
 										<input type="text" name="postCode2" id="postCode2" placeholder="우편번호" class="form-control" autocomplete="off">
 									</div>
 									<div class="col-md-3">
-										<button class="btn btn-warning btn-block" id="postcodify_search_button2">우편번호 검색</button>
+										<button class="btn btn-warning btn-block" id="postcodify_search_button2" type="button">우편번호 검색</button>
 									</div>
 								</div>
 								<input type="text" name="ship2Address2" id="ship2Address2" placeholder="상세주소를 입력해주세요" class="form-control" >
@@ -175,10 +175,10 @@
 											</td>
 										</tr>
 										<tr>
-											<td><input type="number" name="cardNo1" id="cardNo1" class="form-control form-control-sm" maxlength="4"></td>
-											<td><input type="password" name="cardNo2" id="cardNo2" class="form-control form-control-sm" maxlength="4"></td>
-											<td><input type="password" name="cardNo3" id="cardNo3" class="form-control form-control-sm" maxlength="4"></td>
-											<td><input type="number" name="cardNo4" id="cardNo4" class="form-control form-control-sm" maxlength="4"></td>
+											<td><input type="number" name="cardNo1" id="cardNo1" class="form-control form-control-sm" maxlength="4" oninput="maxLengthCheck(this); nextFocus($(this));" cardidx="1"></td>
+											<td><input type="password" name="cardNo2" id="cardNo2" class="form-control form-control-sm" maxlength="4" readonly cardidx="2"></td>
+											<td><input type="password" name="cardNo3" id="cardNo3" class="form-control form-control-sm" maxlength="4" readonly cardidx="3"></td>
+											<td><input type="number" name="cardNo4" id="cardNo4" class="form-control form-control-sm" maxlength="4" oninput="maxLengthCheck(this);" cardidx="4"></td>
 										</tr>
 										<tr>
 											<td colspan="2">
@@ -189,8 +189,8 @@
 											</td>
 										</tr>
 										<tr>
-											<td colspan="2"><input type="text" name="expiry" id="expiry" class="form-control form-control-sm" placeholder="MM/YY"></td>
-											<td colspan="2"><input type="password" name="pwd2" id="pwd2" class="form-control form-control-sm" placeholder="앞 2자리" maxlength="2"></td>
+											<td colspan="2"><input type="text" name="expiry" id="expiry" class="form-control form-control-sm" placeholder="MM/YY" maxlength="5"></td>
+											<td colspan="2"><input type="password" name="pwd2" id="pwd2" class="form-control form-control-sm" placeholder="앞 2자리" maxlength="2" readonly></td>
 										</tr>
 										<tr>
 											<td colspan="4">
@@ -200,7 +200,7 @@
 										</tr>
 										<tr>
 											<td colspan="4">
-												<input type="number" name="authentication" id="authentication" class="form-control form-control-sm" >
+												<input type="number" name="authentication" id="authentication" class="form-control form-control-sm" maxlength="10" oninput="maxLengthCheck(this);">
 											</td>
 										</tr>
 									</table>
@@ -243,12 +243,12 @@
 		</div>
 			<!--  Reserve 객체용 -->
 			<input type="hidden" name="addi" value="${ additionalCost }">
-			<input type="hidden" name="rName">
-			<input type="hidden" name="rContact">
-			<input type="hidden" name="rAddress">
-			<input type="hidden" name="rRequest">
-			<input type="hidden" name="rUser" value="0">
-			<input type="hidden" name="rRefPno" value="${ pNo }">
+			<input type="hidden" name="resName">
+			<input type="hidden" name="resContact">
+			<input type="hidden" name="resAddress">
+			<input type="hidden" name="resRequest">
+			<input type="hidden" name="resUser" value="0">
+			<input type="hidden" name="resRefPno" value="${ prj.pNo }">
 			<input type="hidden" name="userUid">
 		</form>
 	</section>
@@ -279,16 +279,16 @@ $(function(){
 		// 라디오박스가 어디 체크되어있는지 확인하고, 알맞은 값을 hidden 태그의 value로 저장
 		if ( $("input[name=address]:checked").attr("id") == "newAddress" ) {
 		// 새 배송지가 체크 되어 있을 때
-			$("input[name=rName]").val($("#ship2Name").val());
-			$("input[name=rContract").val($("#ship2Phone").val());
-			$("input[name=rAddress").val($("#ship2Address1").val()+ "," +$("#ship2Address2").val()+ "," +$("#postCode2").val());
-			$("input[name=rRequest").val($("#comment2").val());
+			$("input[name=resName]").val($("#ship2Name").val());
+			$("input[name=resContact").val($("#ship2Phone").val());
+			$("input[name=resAddress").val($("#ship2Address1").val()+ "," +$("#ship2Address2").val()+ "," +$("#postCode2").val());
+			$("input[name=resRequest").val($("#comment2").val());
 		} else {
 			// 기본 배송지가 체크 되어 있을 때
-			$("input[name=rName]").val($("#ship1Name").val());
-			$("input[name=rContract").val($("#ship1Phone").val());
-			$("input[name=rAddress").val($("#ship1Address1").val()+ "," +$("#ship1Address2").val()+ "," +$("#postCode1").val());
-			$("input[name=rRequest").val($("#comment1").val());
+			$("input[name=resName]").val($("#ship1Name").val());
+			$("input[name=resContact").val($("#ship1Phone").val());
+			$("input[name=resAddress").val($("#ship1Address1").val()+ "," +$("#ship1Address2").val()+ "," +$("#postCode1").val());
+			$("input[name=resRequest").val($("#comment1").val());
 		}
 		var nameCK = true;
 		var addrCK = true;
@@ -300,27 +300,32 @@ $(function(){
 		var regExp = /^\d{3}\d{3,4}\d{4}$/;
         // 전화번호 정규식
 		var infoMsg = "";
-		if ( $("input[name=rName]").val() == "" ) {
+		if ( $("input[name=resName]").val() == "" ) {
 			nameCK = false;
 			infoMsg += "수령자 이름을 적어주세요.<br>"
 		}
-		if ( $("input[name=rAddress]").val().match(",,") || $("input[name=rAddress]").val().length < 8 ) {
+		if ( $("input[name=resAddress]").val().match(",,") || $("input[name=resAddress]").val().length < 8 ) {
 			addrCK = false;
 			infoMsg += "주소를 정확하게 입력 해주세요.<br>";
 		}
-		if ( $("input[name=rContract]").val() == "" || !regExp.test($("input[name=rContract]").val()) ) {
+		if ( $("input[name=resContact]").val() == "" || !regExp.test($("input[name=resContact]").val()) ) {
+			console.log(!regExp.test($("input[name=resContact]").val()));
 			contCK = false;
 			infoMsg += "연락처를 정확하게 입력 해주세요.<br>"
 		}
-		if ( $("#cardNo1").val().length+$("#cardNo2").val().length+$("#cardNo3").val().length+$("#cardNo4").val().length < 16 ) {
+		if ( $("#cardNo1").val().length+$("#cardNo2").val().length+$("#cardNo3").val().length+$("#cardNo4").val().length != 16 ) {
 			cardCK = false;
 			infoMsg += "카드번호를 정확하게 입력 해주세요.<br>"
 		}
-		if( $("#expiry").val().length < 5 ) {
+		if( $("#expiry").val().length != 5 ) {
 			exprCK = false;
 			infoMsg += "카드 유효기간을 정확하게 입력 해주세요.<br>";
 		}
-		// if ( !(nameCK && addrCK && contCK) ) {
+		if ( $("#pwd2").val().length != 2 ) {
+			pwd2CK = false;
+			infoMsg += "카드 비밀번호를 정확하게 입력 해주세요.<br>";
+		}
+		// if ( !(nameCK && addrCK && contCK && cardCK && exprCK && pwd2CK) ) {
 		// 	Swal.fire( '작성란을 기입해주세요!', infoMsg, 'warning' );
 		// 	return false;
 		// }
@@ -330,26 +335,40 @@ $(function(){
 		if ( $("input:checked[name=allCheck]").is(":checked") ) {
 			allCK = true;
 		}
-
+		$( "input[name=userUid]" ).val("${ loginUser.userNo }" + "_" + $("#cardNo4").val() );
 		console.log("addi : " + $("input[name=addi]").val());
-		console.log("rName : " + $("input[name=rName]").val());
-		console.log("rContract : " + $("input[name=rContract]").val());
-		console.log("rAddress : " + $("input[name=rAddress]").val());
-		console.log("rRequest : " + $("input[name=rRequest]").val());
-		console.log("rUser : " + $("input[name=rUser]").val());
-		console.log("rRefPno : " + $("input[name=rRefPno]").val());
+		console.log("rName : " + $("input[name=resName]").val());
+		console.log("rContract : " + $("input[name=resContact]").val());
+		console.log("rAddress : " + $("input[name=resAddress]").val());
+		console.log("rRequest : " + $("input[name=resRequest]").val());
+		console.log("rUser : " + $("input[name=resUser]").val());
+		console.log("rRefPno : " + $("input[name=resRefPno]").val());
+		console.log("userUid : " + $( "input[name=userUid]" ).val());
 		// 뒤로 넘기기
 		var c1 = $("input[name=card1]").val();
 		if ( allCK ) {
-			
 
-
+			$("#fndInsert2").submit();
 		} else {
 			Swal.fire( '약관에 동의해주세요!', "", 'warning' );
 			return false;
 		}
 	});
+
+
 });
+// 카드번호 4자 입력시 다음 입력창으로 이동
+function nextFocus(obj) {
+	var inputLeng = obj.val().length;
+	var maxLeng = obj.attr("maxLength");
+	var nextIndex = obj.attr("cardidx")*1+1;
+	if ( nextIndex == 5 ) {
+		return false;
+	} else if ( inputLeng == maxLeng ) {
+		$("input[name=cardNo"+nextIndex+"]").focus();
+	}
+}
+
 // amount maxLength 체크해주는 함수
 function maxLengthCheck(object){
     if (object.value.length > object.maxLength){
@@ -361,6 +380,7 @@ function calcPrice() {
 	$("input[name^=rewardPrice]").each(function(){
 		var index = $(this).attr("idx");
 		var amount = $(".rwd-amount"+index).val();
+		$(".rwd-aPrint"+index).text($(this).val()*1*amount);
 		sum += $(this).val()*1*amount;
 	})
 	$("#fundingPrice").val(sum+${ additionalCost });

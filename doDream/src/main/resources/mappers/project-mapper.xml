@@ -92,7 +92,7 @@
 	<select id="selectProject" parameterType="_int" resultMap="projectResultSet">
 		<!-- SELECT P.*, FLOOR(PROJECT_CLOSE_DT - SYSDATE) AS D_DAY FROM PROJECT_TB P
 		WHERE PROJECT_NO = #{ pNo }  -->
-		SELECT * FROM PROJECT_DETAIL_VIEW
+		SELECT * FROM PROJECT_DETAIL_VIEW_2ND
 		WHERE PROJECT_NO = #{ pNo }
 	</select>
 	
@@ -154,6 +154,18 @@
   		#{rRefPno}, #{rOptionNo}, #{rLimit}  
   		)
   	</insert>
+
+	<!-- 리워드 리스트 셀렉하는 쿼리문 -->
+	<select id="selectRewardList" parameterType="java.util.HashMap" resultMap="rewardResultSet">
+		SELECT * FROM REWARD
+		WHERE REWARD_AMOUNT > 0 AND
+		REWARD_NO IN
+		<foreach collection="list" item="num" index="index" open="(" close=")" separator=",">
+			#{ num }
+		</foreach>
+		ORDER BY REWARD_NO ASC
+	</select>
+	
 	<!-- ========================Like============================ -->
 	
 	<!-- 좋아요 등록 -->
@@ -170,17 +182,6 @@
 	<delete id="deleteLike" parameterType="Like">
 		DELETE FROM LIKE_TB WHERE LIKE_USER=#{likeNo} AND LIKE_PRJ=#{likePrNo}
 	</delete>
-	
-	<!-- 리워드 리스트 셀렉하는 쿼리문 -->
-	<select id="selectRewardList" parameterType="java.util.HashMap" resultMap="rewardResultSet">
-		SELECT * FROM REWARD
-		WHERE REWARD_AMOUNT > 0 AND
-		REWARD_NO IN
-		<foreach collection="list" item="num" index="index" open="(" close=")" separator=",">
-			#{ num }
-		</foreach>
-		ORDER BY REWARD_NO ASC
-	</select>
 	
 	<!-- 댓글 등록 -->
 	<insert id="insertReply" parameterType="Reply">
@@ -204,6 +205,5 @@
 	<insert id="insertSubReply" parameterType="SubReply">
 		INSERT INTO SUBREPLY VALUES(SEQ_SUBRL_NO.NEXTVAL, #{subContent}, 'Y', SYSDATE, SYSDATE, #{subWriNo},#{subRefRNo})
 	</insert>
-	
 	
 </mapper>

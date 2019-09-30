@@ -34,6 +34,7 @@
     	<mapper resource="mappers/adminProject-mapper.xml"/>
     	<mapper resource="mappers/adminReserve-mapper.xml"/>
     	<mapper resource="mappers/adminReport-mapper.xml"/>
+    	<mapper resource="mappers/reserve-mapper.xml"/>
     	<mapper resource="mappers/adminReply-mapper.xml"/>
  	</mappers>
 	

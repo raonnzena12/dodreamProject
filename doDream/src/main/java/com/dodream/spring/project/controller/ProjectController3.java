@@ -1,11 +1,14 @@
 package com.dodream.spring.project.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dodream.spring.common.Pagination;
@@ -14,6 +17,7 @@ import com.dodream.spring.project.model.vo.Project;
 import com.dodream.spring.project.model.vo.Reward;
 import com.dodream.spring.reserve.model.vo.HistoryList;
 import com.dodream.spring.reserve.model.vo.Reserve;
+import com.dodream.spring.reserve.model.vo.UserCard;
 
 @Controller
 public class ProjectController3 {
@@ -53,20 +57,16 @@ public class ProjectController3 {
 	
 	// 펀딩 결제 성공 확인용 임시 매핑
 	@RequestMapping("thankYou.dr")
-	public String tmp2(Reserve reserve, HistoryList hList) {
+	public String tmp2(Reserve reserve, HistoryList hList, UserCard uCard) {
 		
 		System.out.println(reserve);
 		System.out.println(hList);
+		System.out.println(uCard);
+		
 		
 		return "project/fundingComplete";
 	}
 
-	// 펀딩 현황 확인용 임시 매핑
-	@RequestMapping("temp3.dr")
-	public String tmp3() {
-		return "project/fundingStatus";
-	}
-	
 	@ResponseBody
 	@RequestMapping("ptemp4.dr")
 	public String tmp4(String check) {
@@ -83,5 +83,20 @@ public class ProjectController3 {
 		ArrayList<Project> pList = pService.selectPrjList(category, currentPage);
 		
 		return pList;
+	}
+	
+	//REST TEST
+	@ResponseBody
+	@RequestMapping(value="/{testStr}/{num}", method=RequestMethod.GET)
+	public HashMap<String, Object> restTest(@PathVariable String testStr, @PathVariable int num) {
+		
+		HashMap<String, Object> map = new HashMap<>();
+		if ( num == 1 ) {
+			map.put("1", testStr);
+		} else {
+			map.put("2", testStr+testStr);
+		}
+		
+		return map;
 	}
 }
