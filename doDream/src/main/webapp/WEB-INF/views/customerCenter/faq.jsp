@@ -9,7 +9,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>FAQ</title>
+<title>FAQ</title> 
 <jsp:include page="../common/menubar.jsp"></jsp:include>
 <meta name="description"
 	content="Source code generated using layoutit.com">
@@ -18,51 +18,27 @@
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet">
 <STYLE> 
-#noticeCon {
-	width: 1200px;
-	min-height: 900px;
-	height: auto;
-}
+#faqCon { width: 1200px;	min-height: 900px;	height: auto; }
  
-#notice_bar {
-	border-bottom: 3px solid #8E44AD;
-}
+#faq_bar { border-bottom: 3px solid #8E44AD; }
 
-#notice_table {
-	padding-top: 20px;
-	width: 100%;
-	margin: auto;
-}
+#faq_table {	padding-top: 20px; width: 100%; margin: auto; }
 
-#faqTitle {
-	width: 50%;
-	float: left;
-	padding: 0;
-}
+#faqTitle {	width: 50%;	float: left; padding: 0; }
 
-#faqSearch {
-	/* width: 50%; */
-	float: right;
-	padding: 0;
-}
+#faqSearch { float: right; padding: 0; }
+
+.jumbotron{	padding: 0; }
 </STYLE>
 </head>
 <body>
 
 
-	<div class="container-fluid" id="noticeCon">
+	<div class="container-fluid" id="faqCon">
 		<div class="row">
 			<div class="col-md-12" align="center" style="padding: 0;">
 				<div class="jumbotron">
-					<img src="resources/img/영화간판4.PNG" style="width: 100%">
-					<!-- <h2>Hello, world!</h2>
-					<p>This is a template for a simple marketing or informational
-						website. It includes a large callout called the hero unit and
-						three supporting pieces of content. Use it as a starting point to
-						create something more unique.</p>
-					<p>
-						<a class="btn btn-primary btn-large" href="#">Learn more</a>
-					</p> -->
+					<img src="resources/images/backgroundImg/배경로고시안 (1).png" style="width: 100%">
 				</div>
 			</div>
 		</div>
@@ -71,12 +47,12 @@
 				<ul class="nav" style="background-color: #E1F5A9;">
 					<li class="nav-item"><a class="nav-link" href="cCenter.dr">공지사항</a></li>
 					<li class="nav-item"><a class="nav-link" href="T_O_Service.dr">이용약관</a></li>
-					<li class="nav-item"><a class="nav-link" href="fReview.dr">펀딩후기</a></li>
+					<li class="nav-item"><a class="nav-link" href="fReview.dr">프로젝트 후기</a></li>
 					<li class="nav-item"><a class="nav-link" href="faq.dr">FAQ</a></li>
 				</ul>
 			</div>
 		</div>
-		<div class="row" id="notice_table">
+		<div class="row" id="faq_table">
 			<div class="col-md-12" style="padding: 0;">
 				<div>
 					<div class="col-md-12" id="faqTitle">
@@ -101,8 +77,9 @@
 		</div>
 		<div>
 			<div>
-				<hr id=notice_bar>
-				<!-- 공지사항 제목, 내용부분 / 악코디언 부분 -->
+				<hr id=faq_bar>
+				<!-- FAQ 제목, 내용부분 / 악코디언 부분 -->
+				<!-- 추후 선택 : 선택성 액션, 한번에 닫기 기능 구현 -->
 				<div id="card-611390">
 					<!-- 내용을 묶는 틀 -->
 					<c:if test="${ !empty fList }">
@@ -135,13 +112,29 @@
 							</div>
 						</div>
 					</c:if>
-					
 				</div>
 			</div>
 		</div>
 	</div>
 
-
+	<!-- 
+	<script>
+		// 아코디언과 관련된 스크립트입니다.
+		$(".accBtn:not(.active)").next().slideUp();
+		$(function() {
+			$(".accBtn").click(function() {
+				$(".accBtn").removeClass("active");
+				$(this).addClass("active");
+				$(this).next().slideDown();
+				$(".accBtn:not(.active)").next().slideUp();
+				var scrollPosition = $(".accWrapper").offset().top;
+				$("html").animate({
+					scrollTop : scrollPosition
+				}, 400);
+			});
+		});
+	</script> 
+	-->
 	<script src="webapp/resources/js/Center-js/jquery.min.js"></script>
 	<script src="webapp/resources/js/Center-js/bootstrap.min.js"></script>
 	<script src="webapp/resources/js/Center-js/scripts.js"></script>

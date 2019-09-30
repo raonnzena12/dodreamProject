@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="CenterMapper">
+<mapper namespace="centerMapper">
 	
 	<!-- 공지사항 -->
 	<resultMap id="NoticeResultSet" type="Notice">
@@ -36,11 +36,51 @@
 		<result property="fWriter"     column="FAQ_WRITER" />
 	</resultMap>
 
+	<!-- 공지사항 -->
+
 	<!-- 공지사항 리스트 쿼리 -->
-	<select id="selectList" resultMap="NoticeResultSet">
-		SELECT * FROM NOTICE
+	<select id="noticeSelect" resultMap="NoticeResultSet">
+		SELECT * FROM NOTICE 
 		ORDER BY NOTICE_ER_DT DESC
 	</select>
 
+	<!-- 프로젝트 후기 -->
+	<select id="selectfrList" resultMap="ReviewResultSet">
+		SELECT * 
+		FROM Review
+		ORDER BY NOTICE_ER_DT DESC
+	</select> 
+	
+	
+	<!-- FAQ -->
 
+	<!-- FAQ 리스트 쿼리 -->
+	<select id="faqSelect" resultMap="FaqResultSet">
+		SELECT * FROM FAQ 
+		ORDER BY FAQ_ENROLL_DATE DESC
+	</select>
+
+	<!-- FAQ 검색쿼리 -->
+	<select id="searchList" parameterType="Search"
+			resultMap="FaqResultSet">
+		<bind name="sv" 
+			value="'%'+ _parameter.getSearchValue() +'%'" />	
+			
+		SELECT * FROM FAQ
+		<where>			
+			<choose>
+				<when test="searchCondition == 'title'">
+					AND FAQ_TITLE LIKE #{sv}
+				</when>
+				<when test="searchCondition == 'content'">
+					AND FAQ_CONTENT LIKE #{sv}
+				</when>
+				<otherwise>
+					AND (FAQ_TITLE LIKE #{sv} OR FAQ_CONTENT LIKE #{sv})
+				</otherwise>
+			</choose>
+		</where>
+		ORDER BY FAQ_ENROLL_DATE DESC	
+	</select>
+	
 </mapper>

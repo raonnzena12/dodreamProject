@@ -7,13 +7,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.dodream.spring.customerCenter.model.service.noticeService;
+import com.dodream.spring.customerCenter.model.service.NoticeService;
  
 @Controller
 public class TOServiceController {
  
 	@Autowired
-	private noticeService nService;
+	private NoticeService nService;
 
 	/*
 	@RequestMapping("notice.dr")

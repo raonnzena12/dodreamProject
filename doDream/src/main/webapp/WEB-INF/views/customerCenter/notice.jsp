@@ -41,6 +41,9 @@
 #mounImage{
 	width: 100%;
 }
+.jumbotron{
+	padding: 0;
+}
 </STYLE>
 </head>
 <body>
@@ -50,7 +53,7 @@
 		<div class="row">
 			<div class="col-md-12" align="center">
 				<div id=mounImage class="jumbotron">
-					<img src="resources/img/영화간판7.PNG" style="width: 100%">
+					<img src="resources/images/backgroundImg/배경로고시안 (3).png" style="width: 100%">
 					
 					<!-- <h2>Hello, world!</h2>
 					<p>This is a template for a simple marketing or informational
@@ -69,7 +72,7 @@
 					<li class="nav-item"><a class="nav-link active" href="cCenter.dr">공지사항</a>
 					</li>
 					<li class="nav-item"><a class="nav-link" href="T_O_Service.dr">이용약관</a></li>
-					<li class="nav-item"><a class="nav-link " href="fReview.dr">펀딩후기</a></li>
+					<li class="nav-item"><a class="nav-link " href="fReview.dr">프로젝트 후기</a></li>
 					<li class="nav-item"><a class="nav-link " href="faq.dr">FAQ</a></li>
 
 				</ul>

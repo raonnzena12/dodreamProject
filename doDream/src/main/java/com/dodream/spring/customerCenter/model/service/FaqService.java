@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import com.dodream.spring.customerCenter.model.vo.Faq;
 import com.dodream.spring.customerCenter.model.vo.Search;
 
-public interface faqService {
+public interface FaqService {
 
 	ArrayList<Faq> selectList();
 

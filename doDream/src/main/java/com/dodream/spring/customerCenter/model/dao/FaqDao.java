@@ -10,8 +10,8 @@ import com.dodream.spring.customerCenter.model.vo.Faq;
 import com.dodream.spring.customerCenter.model.vo.Search;
  
 
-@Repository("faqDao")
-public class faqDao {
+@Repository("FaqDao")
+public class FaqDao {
 
 	@Autowired
 	private SqlSessionTemplate sqlSession;
