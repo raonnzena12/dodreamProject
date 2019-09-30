@@ -36,15 +36,27 @@
 		<result property="userAmount" column="REWARD_SUM" />
 	</resultMap>
 	
+	<!-- 결제(예약) 정보를 불러오는 쿼리문 -->
 	<select id="selectReserve" resultMap="reserveResultSet" parameterType="_int">
 		SELECT * FROM RESERVE_VIEW_2ND
 		WHERE RESERVE_NO = #{ rsvNo }
 	</select>
 	
+	<!-- 해당 예약정보의 리워드 리스트를 불러오는 쿼리문 -->
 	<select id="selectRewardList" resultMap="rewardReslutSet" parameterType="_int">
 		SELECT * FROM HISTORY 
 		JOIN REWARD USING( REWARD_NO )
 		WHERE RESERVE_NO = #{ rsvNo }
 	</select>
+	
+	<!-- 특정 예약정보의 배송지를 업데이트 하는 쿼리문 -->
+	<update id="updateReserveAddress" parameterType="Reserve">
+		UPDATE RESERVE
+		SET RESERVE_NAME = #{ resName },
+			RESERVE_CONTRACT = #{ resContact },
+			RESERVE_ADDRESS = #{ resAddress },
+			RESERVE_REQUEST = #{ resRequest }
+		WHERE RESERVE_NO = #{ resNo }
+	</update>
 	
 </mapper>

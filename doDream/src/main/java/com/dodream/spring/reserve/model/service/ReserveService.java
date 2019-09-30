@@ -20,4 +20,11 @@ public interface ReserveService {
 	 * @return rList
 	 */
 	public abstract ArrayList<Reward> selectRewardList(int rsvNo);
+
+	/**
+	 * 특정 예약번호의 배송주소를 업데이트하는 Service
+	 * @param reserve
+	 * @return result
+	 */
+	public abstract int updateReserveAddress(Reserve reserve);
 }

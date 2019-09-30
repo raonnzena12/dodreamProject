@@ -44,10 +44,9 @@ public class ReserveController {
 	
 	@ResponseBody
 	@RequestMapping("ajaxAddressChange.dr")
-	public String ajaxAddressChange(Reserve reserve) {
+	public int ajaxAddressChange(Reserve reserve) {
 		
-		System.out.println(reserve);
-		
-		return "1";
+		int result = rsvService.updateReserveAddress(reserve);
+		return result;
 	}
 }

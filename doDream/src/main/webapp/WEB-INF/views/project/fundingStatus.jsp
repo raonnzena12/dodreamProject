@@ -265,7 +265,7 @@
                 </div>
                 <c:if test="${ rsv.resStatusNo == 1 }" >
                 <div class="funding-status-additional rounded-bottom text-13">
-                    <p class="info1">결제 정보 변경은 펀딩 결제 예정일 ${ rsv.resFundDate } 까지 가능합니다.</p>
+                    <p class="info1">결제 정보 변경은 펀딩 결제 예정일 ${ rsv.resFundDate } 15시 까지 가능합니다.</p>
                 </div>
                 </c:if>
                 <div class="funding-status rounded-top mt-3">
@@ -273,8 +273,8 @@
                     <div class="shipPrint mb-3">
                         <p class="shipName">${ rsv.resName }</p>
                         <p class="shipPhone">${ rsv.resContact }</p>
-                        <p class="shipAddr1">(${ fn:split(rsv.resAddress,",")[0] })${fn:split(rsv.resAddress,",")[1]}</p>
-                        <p class="shipAddr2">${ fn:split(rsv.resAddress,",")[2] }</p>
+                        <p class="shipAddr1">(${ fn:split(rsv.resAddress,",")[2] })${fn:split(rsv.resAddress,",")[0]}</p>
+                        <p class="shipAddr2">${ fn:split(rsv.resAddress,",")[1] }</p>
                         <p class="shipRequest mb-3">배송 요청사항 : ${ rsv.resRequest }</p>
                         <c:if test="${ rsv.resStatusNo == 1 }">
                         <button class="btn btn-outline-warning btn-block" id="changeShipAddr">배송지 정보 변경하기</button>
@@ -288,15 +288,15 @@
                             </tr>
                             <tr>
                                 <td class="p-1">
-                                    <input type="text" name="cShipPostCode" id="cShipPostCode" class="form-control" placeholder="우편번호" value='${fn:split(rsv.resAddress,",")[0]}' readonly>
+                                    <input type="text" name="cShipPostCode" id="cShipPostCode" class="form-control" placeholder="우편번호" value='${fn:split(rsv.resAddress,",")[2]}' readonly>
                                 </td>
                                 <td cladd="p-1">
-                                    <input type="text" name="cShipAddr1" id="cShipAddr1" class="form-control" placeholder="주소" value='${fn:split(rsv.resAddress,",")[1]}' readonly>
+                                    <input type="text" name="cShipAddr1" id="cShipAddr1" class="form-control" placeholder="주소" value='${fn:split(rsv.resAddress,",")[0]}' readonly>
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="2" class="p-1">
-                                    <input type="text" name="cShipAddr2" id="cShipAddr2" class="form-control" placeholder="상세주소" value='${ fn:split(rsv.resAddress,",")[2]}'>
+                                    <input type="text" name="cShipAddr2" id="cShipAddr2" class="form-control" placeholder="상세주소" value='${ fn:split(rsv.resAddress,",")[1]}'>
                                 </td>
                             </tr>
                             <tr>
@@ -356,11 +356,21 @@ $(function(){
             data: { resNo: rsvNo,
                     resName: newName,
                     resContact: newPhone,
-                    resAddress: newAddr1+newAddr2+newPost5,
+                    resAddress: newAddr1+","+newAddr2+","+newPost5,
                     resRequest: newRequest },
             error: function(e){ console.log(e); },
             success: function(result) {
-                console.log(result);
+                if ( result == 1 ) {
+                    $(".shipName").text(newName);
+                    $(".shipPhone").text(newPhone);
+                    $(".shipAddr1").text("("+newPost5+") "+newAddr1);
+                    $(".shipAddr2").text(newAddr2);
+                    $(".shipRequest").text(newRequest);
+                    $(".changeShip").hide();
+                    $(".shipPrint").show();
+                } else {
+                    
+                }
             }
         });
     }); 
