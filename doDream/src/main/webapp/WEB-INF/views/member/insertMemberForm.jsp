@@ -174,7 +174,7 @@
 					}else{
 						$("#nicknameAlert").show().text("사용 가능한 닉네임입니다.").css("color", "#F39C12");
 						
-						if(confirm("이 닉네임을 사용하시겠습니까? 회원가입 후 정보 변경에서 변경할 수 있습니다!")){
+						if(confirm("닉네임을 사용합니다.")){
 							$("#userPwd").focus();
 						};
 					}
@@ -188,8 +188,7 @@
 	
 	$("#userPwd").blur(function() {
 		userPwd = $("#userPwd").val().trim();
-		var pwdRegex = /^[a-zA-Z0-9]{6,14}/;
-		
+		var pwdRegex = /^[a-zA-Z0-9]{6,14}$/;
 		if(!pwdRegex.test(userPwd)){
 			alert("비밀번호는 숫자와 문자 포함 6이상 14자리 이내로 작성해주세요.");
 			$("#userPwd").val("").focus();

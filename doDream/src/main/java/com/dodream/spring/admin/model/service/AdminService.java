@@ -2,9 +2,13 @@ package com.dodream.spring.admin.model.service;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.dodream.spring.member.model.vo.Member;
 import com.dodream.spring.project.model.vo.Project;
+import com.dodream.spring.project.model.vo.Reply;
 import com.dodream.spring.report.model.vo.Report;
+import com.dodream.spring.report.model.vo.ReportReply;
 import com.dodream.spring.reserve.model.vo.Reserve;
 
 public interface AdminService {
@@ -160,6 +164,36 @@ public interface AdminService {
 	 * @return result
 	 */
 	public abstract int stopProject(int pNo);
+
+	/** 신고 답변 등록 
+	 * @param report
+	 * @param request
+	 * @return result 
+	 */
+	public abstract int insertReportReply(ReportReply reportReply);
+
+	/** 신고 답변 등록시 답변 완료 띄우기 
+	 * @param reportRpRefRno
+	 * @return result
+	 */
+	public abstract int updateReport(int reportRpRefRno);
+
+	/** 신고 답변 리스트 
+	 * @return list 
+	 */
+	public abstract ArrayList<ReportReply> reportRlistView();
+
+	/** 댓글 리스트 
+	 * @return list
+	 */
+	public abstract ArrayList<Reply> replyListView();
+
+	/** 댓글 삭제
+	 * @param reNo
+	 * @return result
+	 */
+	public abstract int removeReply(int reNo);
+
 	
 
 

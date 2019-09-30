@@ -52,6 +52,32 @@
 		<result property="likePrNo" column="LIKE_PRJ"/>
 	</resultMap>
 	
+	<resultMap type="Reply" id="replyResultSet">
+		<id property="reNo" column="REPLY_NO"/>
+		<result property="reContent" column="REPLY_CONTENT"/>
+		<result property="reStatus" column="REPLY_STATUS"/>
+		<result property="reWriDate" column="REPLY_WRI_DT"/>
+		<result property="reModiDate" column="REPLY_MODI_DT"/>
+		<result property="reRefPNo" column="REPLY_REF_PNO"/>
+		<result property="reWriNo" column="REPLY_WRITER"/>
+		<result property="reWriter" column="NICKNAME"/>
+		<result property="reWriImg" column="PRO_IMG"/>
+		<result property="reCGNo" column="REPLY_CG_NO"/>
+		<result property="reCGName" column="CGNAME"/>
+	</resultMap>
+	
+	<resultMap type="SubReply" id="subReplyResultSet">
+		<id property="subNo" column="SUBRE_NO"/>
+		<result property="subContent" column="SUBRE_CON"/>
+		<result property="subStatus" column="SUBRE_STATUS"/>
+		<result property="subWriDate" column="SUBRE_WRI_DT"/>
+		<result property="subModiDate" column="SUBRE_MODI_DT"/>
+		<result property="subWriNo" column="SUBRE_WRITER"/>
+		<result property="subWriter" column="NICKNAME"/>
+		<result property="subWriImg" column="PRO_IMG"/>
+		<result property="subRefRNo" column="SUBRE_REF_RNO"/>
+	</resultMap>
+	
 	<!-- 프로젝트 등록  -->
 	<insert id="insertProject" parameterType="Project">
 		INSERT INTO PROJECT_TB VALUES( 
@@ -156,5 +182,28 @@
 	<delete id="deleteLike" parameterType="Like">
 		DELETE FROM LIKE_TB WHERE LIKE_USER=#{likeNo} AND LIKE_PRJ=#{likePrNo}
 	</delete>
+	
+	<!-- 댓글 등록 -->
+	<insert id="insertReply" parameterType="Reply">
+		INSERT INTO REPLY VALUES(SEQ_RPL_NO.NEXTVAL, #{reContent}, 'Y', SYSDATE, SYSDATE, #{reRefPNo}, #{reWriNo}, #{reCGNo})
+	</insert>
+	
+	<!-- 댓글 조회 -->
+	<select id="selectReply" parameterType="_int" resultMap="replyResultSet">
+		SELECT * FROM PROJECT_DETAIL_REPLY WHERE REPLY_REF_PNO=#{pNo}
+	</select>
+	
+	<!-- 서브 댓글 조회 -->
+	<select id="selectSubReply" parameterType="Reply" resultMap="subReplyResultSet">
+		SELECT * FROM PROJECT_DETAIL_SUBREPLY WHERE SUBRE_REF_RNO IN 
+		<foreach collection="list" item="num" index="index" open="(" close=")" separator=",">
+			#{num.reNo}
+		</foreach>
+	</select>
+	
+	<!-- 서브 댓글 등록 -->
+	<insert id="insertSubReply" parameterType="SubReply">
+		INSERT INTO SUBREPLY VALUES(SEQ_SUBRL_NO.NEXTVAL, #{subContent}, 'Y', SYSDATE, SYSDATE, #{subWriNo},#{subRefRNo})
+	</insert>
 	
 </mapper>

@@ -10,8 +10,7 @@
 <title>펀딩후기</title>
 <jsp:include page="../common/menubar.jsp"></jsp:include>
 <link rel="stylesheet" href="resources/css/fundList.css">
-<meta name="description"
-	content="Source code generated using layoutit.com">
+<meta name="description" content="Source code generated using layoutit.com">
 <meta name="author" content="LayoutIt!">
 
 <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -41,6 +40,13 @@
 	margin: 0 auto;
 	width: 500px;
 }
+.jumbotron{
+	padding: 0;
+}
+#categoryTopMenu {
+    text-align: center;
+    padding: 0 20px;
+}
 </STYLE>
 </head>
 <body>
@@ -49,15 +55,7 @@
 		<div class="row">
 			<div class="col-md-12" align="center">
 				<div class="jumbotron">
-					<img src="resources/img/영화간판3.PNG" style="width: 100%">
-					<!-- <h2>Hello, world!</h2>
-					<p>This is a template for a simple marketing or informational
-						website. It includes a large callout called the hero unit and
-						three supporting pieces of content. Use it as a starting point to
-						create something more unique.</p>
-					<p>
-						<a class="btn btn-primary btn-large" href="#">Learn more</a>
-					</p> -->
+					<img src="resources/images/backgroundImg/배경로고시안 (2).png" style="width: 100%">
 				</div>
 			</div>
 		</div>
@@ -66,7 +64,7 @@
 				<ul class="nav" style="background-color: #E1F5A9;">
 					<li class="nav-item"><a class="nav-link" href="cCenter.dr">공지사항</a></li>
 					<li class="nav-item"><a class="nav-link" href="T_O_Service.dr">이용약관</a></li>
-					<li class="nav-item"><a class="nav-link" href="fReview.dr">펀딩후기</a></li>
+					<li class="nav-item"><a class="nav-link" href="fReview.dr">프로젝트 후기</a></li>
 					<li class="nav-item"><a class="nav-link" href="faq.dr">FAQ</a></li>
 
 				</ul>
@@ -77,134 +75,125 @@
 		</div>
 		<div class="row">
 			<div class="col-md-12">
-				<h3>펀딩후기</h3>
+				<h3>프로젝트 후기</h3>
 				<hr id=Review_bar>
-				<div style="position: relative;" class="clearfix">
-					<div class="btn-group btn-group-md" role="group" id="FReview_title">
-						<button class="btn btn-secondary" type="button">전체</button>
-						<button class="btn btn-secondary" type="button">음악</button>
-						<button class="btn btn-secondary" type="button">영화</button>
-						<button class="btn btn-secondary" type="button">연극</button>
-						<button class="btn btn-secondary" type="button">미술</button>
-						<button class="btn btn-secondary" type="button">ETC</button>
-					</div>
-				</div>
+				
+				<!-- 프로젝트 후기 카테고리 -->
 				<div class="container-fluid clearfix" id="categoryTop">
 					<div class="row">
 						<div class="col-md-1"></div>
-						<div class="col-md-10" id="categoryTopMenu">
+						<div class="col-md-10" id="fReviewTopMenu">
 							<div id="categoryArea" class="my-5">
-								<input type="radio" name="category" id="all" value="all" checked><label
-									for="all">전체</label> <input type="radio" name="category"
-									id="music" value="music"><label for="music">음악</label>
-								<input type="radio" name="category" id="movie" value="movie"><label
-									for="movie">영화</label> <input type="radio" name="category"
-									id="play" value="play"><label for="play">연극</label> <input
-									type="radio" name="category" id="art" value="art"><label
-									for="art">미술</label> <input type="radio" name="category"
-									id="etc" value="etc"><label for="etc">ETC</label>
-							</div>
+								<input type="radio" name="category" id="all"   value="all" checked><label for="all">전체</label> 
+								<input type="radio" name="category" id="music" value="music"> <label for="music">음악</label>
+								<input type="radio" name="category" id="movie" value="movie"> <label for="movie">영화</label> 
+								<input type="radio" name="category" id="play"  value="play">  <label for="play">연극</label> 
+								<input type="radio" name="category" id="art"   value="art">   <label for="art">미술</label> 
+								<input type="radio" name="category" id="etc"   value="etc">   <label for="etc">ETC</label>
+							</div> 
 						</div>  
 					</div>
 				</div>
-				<div class="row" style="margin-bottom: 50px">
-					<div class="col-md-4">
-						<div class="card" style="height: 500px">
-							<img class="card-img-top" alt="Bootstrap Thumbnail First"
-								src="resources/img/아이콘1.PNG" style="padding: 10px; height: 100%"">
-							<div class="card-block">
-								<h5 class="card-title">인디밴드 공연</h5>
-								<p class="card-text">보람있는 펀딩!</p>
-								<p>
-									<a class="btn btn-primary" href="#">Action</a> <a class="btn"
-										href="#">Action</a>
-								</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="card" style="height: 500px">
-							<img class="card-img-top" alt="Bootstrap Thumbnail Second"
-								src="resources/img/아이콘2.PNG" style="padding: 10px; height: 100%">
-							<div class="card-block">
-								<h5 class="card-title">연극 공연</h5>
-								<p class="card-text">나의 아티스트에게 기회를</p>
-								<p>
-									<a class="btn btn-primary" href="#">Action</a> <a class="btn"
-										href="#">Action</a>
-								</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="card" style="height: 500px">
-							<img class="card-img-top" alt="Bootstrap Thumbnail Third"
-								src="resources/img/아이콘3.PNG" style="padding: 10px; height: 100%"">
-							<div class="card-block">
-								<h5 class="card-title">시진전</h5>
-								<p class="card-text">힐링되는 시간</p>
-								<p>
-									<a class="btn btn-primary" href="#">Action</a> <a class="btn"
-										href="#">Action</a>
-								</p>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-4">
-						<div class="card">
-							<img class="card-img-top" alt="Bootstrap Thumbnail First"
-								src="https://www.layoutit.com/img/people-q-c-600-200-1.jpg">
-							<div class="card-block">
-								<h5 class="card-title">Card title</h5>
-								<p class="card-text">Cras justo odio, dapibus ac facilisis
-									in, egestas eget quam. Donec id elit non mi porta gravida at
-									eget metus. Nullam id dolor id nibh ultricies vehicula ut id
-									elit.</p>
-								<p>
-									<a class="btn btn-primary" href="#">Action</a> <a class="btn"
-										href="#">Action</a>
-								</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="card">
-							<img class="card-img-top" alt="Bootstrap Thumbnail Second"
-								src="https://www.layoutit.com/img/city-q-c-600-200-1.jpg">
-							<div class="card-block">
-								<h5 class="card-title">Card title</h5>
-								<p class="card-text">Cras justo odio, dapibus ac facilisis
-									in, egestas eget quam. Donec id elit non mi porta gravida at
-									eget metus. Nullam id dolor id nibh ultricies vehicula ut id
-									elit.</p>
-								<p>
-									<a class="btn btn-primary" href="#">Action</a> <a class="btn"
-										href="#">Action</a>
-								</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="card">
-							<img class="card-img-top" alt="Bootstrap Thumbnail Third"
-								src="https://www.layoutit.com/img/sports-q-c-600-200-1.jpg">
-							<div class="card-block">
-								<h5 class="card-title">Card title</h5>
-								<p class="card-text">Cras justo odio, dapibus ac facilisis
-									in, egestas eget quam. Donec id elit non mi porta gravida at
-									eget metus. Nullam id dolor id nibh ultricies vehicula ut id
-									elit.</p>
-								<p>
-									<a class="btn btn-primary" href="#">Action</a> <a class="btn"
-										href="#">Action</a>
-								</p>
-							</div>
-						</div>
-					</div>
-				</div>
+				
+				<!-- 프로젝트 후기 검색 리스트 -->
+				<%-- 
+				<div id="resultMenu" class="my-4">
+                  <span>전체보기</span>
+                  <span class="float-right">
+                     <form action="${ keywordSearch }">
+                     <input type="search" name="fundKeyword" id="fundKeyword">
+                     <i class="ver-super material-icons" id="titleSearchSubmit">search</i>
+                     <select name="filter" id="filter">
+                        <option value="allFunding" selected>전체</option>
+                        <option value="runFunding">진행중인 펀딩</option>
+                        <option value="endFunding">종료된 펀딩</option>
+                     </select>
+                     <select name="filter2" id="filter2">
+                        <option value="popularClick">인기순</option>
+                        <option value="newest">최신순</option>
+                        <option value="priceless">최고금액순</option>
+                        <option value="popularFund">최다후원순</option>
+                        <option value="Deadline">마감임박순</option>
+                     </select>
+                     </form>
+                  </span>
+               </div> 
+               --%>
+               
+               <!-- 프로젝트 후기 리스트 출력 -->
+				<div class="resultPrint">
+	              <c:forEach var="fr" items="${ rList }" >
+	              <div>
+	                 <div class="fundCon">
+	                    <div class="fundItem" id="${ fr.rNo }">
+	                       <div class="fundImg">
+	                          <!-- <img src="resources/projectImg/thumbnail/${ fr.pThumbImage }"> -->
+	                          <img src="resources\img\고양이.PNG">
+	                       </div>
+	                       <div class="nameArea">
+	                          <span class="categoryName">
+	                          	<%-- ${ fr.pCategoryName } --%>
+	                          	프로젝트 후기 이름
+	                          </span><br>
+	                          <span class="fundName">
+	                             <!--
+	                             <c:choose>
+	                                <c:when test="${ fn:length(fr.pTitle) > 10 }">
+	                                ${ fn:substring(fr.pTitle,0,10) }…
+	                                </c:when>
+	                                <c:otherwise>
+	                                ${ fr.pTitle }
+	                                </c:otherwise>
+	                             </c:choose>
+	                             -->
+	                          </span>
+	                       </div>
+	                       <div class="heartIcon">
+	                          <i class="material-icons heart-fund">favorite_border</i>
+	                       </div>
+	                       <div class="detailArea my-1">
+	                          <span class="detailText">
+	                             <c:choose>
+	                                <c:when test="${ fn:length(fr.pSummaryText) > 45 }">
+	                                ${ fn:substring(fr.pSummaryText,0,60) }…
+	                                </c:when>
+	                                <c:otherwise>
+	                                ${ fr.pSummaryText }
+	                                </c:otherwise>
+	                             </c:choose>
+	                          </span>
+	                       </div>
+	                       <div class="chartArea px-3 mt-2">
+	                          <div class="chartInfo clearfix">
+	                             <span class="chartInfo1">￦<fmt:formatNumber value="${ fr.pCurrentFunding }" groupingUsed="true" /></span>
+	                             <span class="chartInfo2"><fmt:parseNumber value="${ (fr.pCurrentFunding / fr.pGoal) * 100 }" integerOnly="true" />%</span>
+	                          </div>
+	                          <div class="chartBar">
+	                          <c:choose>
+	                             <c:when test="${ ((fr.pCurrentFunding / fr.pGoal) * 100) < 100 }">
+	                             <div class="purpleBar" style="width:${ (fr.pCurrentFunding / fr.pGoal) * 100 }%"></div>
+	                             </c:when>
+	                             <c:otherwise>
+	                             <div class="purpleBar"></div>                                       
+	                             </c:otherwise>
+	                          </c:choose>
+	                          </div>
+	                          <c:choose>
+	                             <c:when test="${ fr.pDDay > 0 }">
+	                             <div class="chartDate">${ fr.pDDay }일 남음</div>
+	                             </c:when>
+	                             <c:otherwise>
+	                             <div class="chartDate">펀딩 종료</div>
+	                             </c:otherwise>
+	                          </c:choose>
+	                       </div>
+	                    </div>
+	                 </div>
+	              </div>
+	              </c:forEach>
+	           </div>
 			</div>
+			
 		</div>
 	</div>
 

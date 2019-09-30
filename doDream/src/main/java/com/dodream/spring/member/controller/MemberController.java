@@ -165,12 +165,8 @@ public class MemberController {
 //	}
 	
 	@RequestMapping("mypage.dr")
-	public String mypage() {
-		
-		
+	public String mypage() {	
 		return "member/mypageHeader";
-		
-	
 	}
 	
 	/** 회원가입 시 닉네임 중복 검사
@@ -268,6 +264,11 @@ public class MemberController {
 			return "common/errorPage";	
 		}
 		
+	}
+	
+	@RequestMapping("deleteForm.dr")
+	public String deleteMemberFormView() {
+		return "member/deleteMemberView";
 	}
 	
 	

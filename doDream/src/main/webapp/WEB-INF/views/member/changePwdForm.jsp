@@ -57,7 +57,7 @@
 	
 	$("#userPwd").blur(function() {
 		userPwd = $("#userPwd").val().trim();
-		var pwdRegex = /^[a-zA-Z0-9]{6,14}/;
+		var pwdRegex = /^[a-zA-Z0-9]{6,14}$/;
 		if(!pwdRegex.test(userPwd)){
 			alert("비밀번호는 숫자와 문자 포함 6이상 14자리 이내로 작성해주세요.");
 			$("#userPwd").val("").focus();

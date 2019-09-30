@@ -49,20 +49,20 @@
            		width:100%;
            		height:auto;
            		min-height: 90px;
-           		border: 1px solid black;
+           		/* border: 1px solid black; */
            		position: relative;
            		/* 프로필 전체 감싼 박스 */
            }
            #artistImg{
            		/* 아티스트 이미지 박스 */
-           		/*  border: 1px solid black; */
+           		/* border: 1px solid black; */
            		width: 60px;
            		height: 60px;
            		float:right;
            		display:block;
            		position: absolute;
            		bottom: 0;
-           		right: 0;
+           		right: 10px;
            }
            #artProfileImg{
            		border: 1px solid #495057;
@@ -284,6 +284,17 @@
            		background-color: #adb5bd;
            		cursor: pointer;
            }
+           #artistsns{
+           		width:100%;
+           		height:25px;
+           		/* border: 1px solid black; */
+           }
+           #fb, #ig{
+           		float:left;
+           		display:block;
+           		/* border: 1px solid black; */
+           		margin-right:10px;
+           }
        </style>
 </head>
 <body>
@@ -293,7 +304,7 @@
 			<div id="artProfile" class="clearfix">
 				 <div id="artistText1">창작자 소개</div>
 				 <div id="artistImg">
-                 	<img src="resources/images/projectImg/artistImg/${project.pArtistPFImage}" alt="" id="artProfileImg">
+                 	<img src="resources/images/projectImg/artistImg/${project.pArtistPFImage}" id="artProfileImg">
                  </div>
                  <div id="artistName">
 		                 <div id="artistText2">${project.pArtistName }님
@@ -308,8 +319,15 @@
             </div>
             <div id="artInformation">
             	<div id="artistText3">
-            		<a href="https://www.facebook.com/${project.pArtistSns1 }"><img src="resources/images/faceB_gray_icon.png" width="20px" height="20px"></a> <br>
-            		<a href="https://www.instagram.com/${project.pArtistSns2 }"><img src="resources/images/inStar_gray_icon.png" width="20px" height="20px"></a> <br>
+            		<div id="artistsns">
+	            		<div id="fb">
+	            			<a  href="https://www.facebook.com/${project.pArtistSns1 }"><img src="resources/images/faceB_gray_icon.png" width="20px" height="20px"></a>
+	            		</div>
+	            		<div id="ig">
+	            			<a  href="https://www.instagram.com/${project.pArtistSns2 }"><img src="resources/images/inStar_gray_icon.png" width="20px" height="20px"></a>
+	            		</div>
+            		</div>
+            		
             		${project.pArtistPhone} <br>
             		${project.pArtistEmail}
             	</div>

@@ -13,6 +13,26 @@
 		<result property="userNickname" column="USER_NICKNAME"/>
 	</resultMap>
 
+	<resultMap type="ReportReply" id="reportReplyResultSet">
+		<id property="reportRpNo" column="REPORT_RP_NO"/>
+		<result property="reportRpContent" column="REPORT_RP_CONTENT"/>
+		<result property="reportRpDt" column="REPORT_RP_DT"/>
+		<result property="reportRpRefRno" column="REPORT_RP_REF_RNO"/>
+		<result property="reportRpWriter" column="REPORT_RP_WRITER"/>
+		<result property="userNickname" column="USER_NICKNAME"/>
+		<result property="reportContent" column="REPORT_CONTENT"/> 
+	</resultMap>
+	
+	<resultMap type="ReportVo" id="reportVoResultSet">
+		<id property="reportRpNo" column="REPORT_RP_NO"/>
+		<result property="reportRpContent" column="REPORT_RP_CONTENT"/>
+		<result property="reportRpDt" column="REPORT_RP_DT"/>
+		<result property="reportRpRefPno" column="REPORT_RP_REF_PNO"/>
+		<result property="reportWriter" column="REPORT_WRITER"/>
+		<result property="reportRpWriter" column="REPORT_RP_WRITER"/>
+		<result property="reportContent" column="REPORT_CONTENT"/>
+	</resultMap>
+	
 	<!-- 신고 개수 관련 쿼리 -->
 	<select id="countReport" resultType="_int">
 		SELECT COUNT(*) FROM REPORT_TB
@@ -29,4 +49,28 @@
 		WHERE REPORT_STATUS = 'Y'
 	</select>
 
+	<!-- 신고 답변 등록 쿼리 -->
+	<insert id="insertReportReply" parameterType="ReportReply">
+		INSERT INTO REPORT_REPLY VALUES(
+    		SEQ_ANS_NO.NEXTVAL,#{reportRpContent},SYSDATE,#{reportRpRefRno}, #{reportRpWriter}
+		)
+	</insert>
+
+	<!-- 신고 답변 등록시 답변 완료 띄우기   -->
+	<update id="updateReport" parameterType="ReportReply">
+		UPDATE REPORT_TB
+		SET REPORT_STATUS = 'N'
+		WHERE REPORT_NO = #{reportRpRefRno}
+	</update>
+	
+	<!-- 신고 답변 목록 -->
+	<select id="reportRlistView" resultMap="reportVoResultSet">
+		SELECT B.REPORT_RP_NO, AU.USER_NICKNAME AS REPORT_WRITER, A.REPORT_CONTENT, BU.USER_NICKNAME AS REPORT_RP_WRITER, B.REPORT_RP_CONTENT, B.REPORT_RP_DT 
+		FROM REPORT_TB A 
+		JOIN USER_TB AU ON (A.REPORT_WRITER = AU.USER_NO) 
+		JOIN REPORT_REPLY B ON (A.REPORT_NO = B.REPORT_RP_REF_RNO) 
+		JOIN USER_TB BU ON (B.REPORT_RP_WRITER = BU.USER_NO)
+	</select>
+	
+	
 </mapper>
