@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.dodream.spring.project.model.vo.Like;
 import com.dodream.spring.project.model.vo.Reply;
 import com.dodream.spring.project.model.vo.Reward;
+import com.dodream.spring.project.model.vo.SubReply;
 
 public interface ProjectService2 {
 
@@ -43,5 +44,27 @@ public interface ProjectService2 {
 	 * @return
 	 */
 	int insertReply(Reply reply);
+
+	/**
+	 * 댓글 조회
+	 * @param pNo
+	 * @return reList
+	 */
+	ArrayList<Reply> selectReply(int pNo);
+
+	/**
+	 * 서브 댓글 조회
+	 * @param reList
+	 * @return srList
+	 */
+	ArrayList<SubReply> selectSubReply(ArrayList<Reply> reList);
+
+	/**
+	 * 서브 댓글 등록
+	 * @param subRe
+	 * @return result
+	 */
+	int insertSubReply(SubReply subRe);
+	
 
 }
