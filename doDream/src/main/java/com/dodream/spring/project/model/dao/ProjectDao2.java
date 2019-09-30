@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.dodream.spring.project.model.vo.Like;
+import com.dodream.spring.project.model.vo.Reply;
 import com.dodream.spring.project.model.vo.Reward;
 
 @Repository("pDao2")
@@ -50,8 +51,24 @@ public class ProjectDao2 {
 	}
 
 
+	/**
+	 * 좋아요 취소
+	 * @param like
+	 * @return
+	 */
 	public int deleteLike(Like like) {
 		
 		return sqlSession.delete("projectMapper.deleteLike", like);
+	}
+
+
+	/**
+	 *  댓글 등록용 DAO
+	 * @param reply
+	 * @return result
+	 */
+	public int insertReply(Reply reply) {
+		
+		return sqlSession.insert("projectMapper.insertReply", reply);
 	}
 }

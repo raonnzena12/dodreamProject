@@ -233,15 +233,17 @@
 		<section id="content" class="clearfix">
 			<section id="detailContent2" class="clearfix">
 			    <div id="detailCommunity" class="clearfix">
+				    
 					<div class="form-group">
 						<select id="comSelect">
-							<option value="fight">응원</option>
-							<option value="qna">문의</option>
+							<option value="1">응원</option>
+							<option value="2">문의</option>
 							<option value="category" selected>카테고리</option>
 						</select>
-				      	<textarea class="form-control"  id="exampleTextarea" rows="3" style="margin-top: 10px; margin-left: 10px; width:540px; height: 110px; resize:none;"  placeholder="내용을 입력해주세요."></textarea>
-				      	<button type="button" class="btn btn-primary btn-lg btn-block" id="writebtn">글쓰기</button>
-				    </div>
+					    <textarea class="form-control"  id="exampleTextarea" rows="3" style="margin-top: 10px; margin-left: 10px; width:540px; height: 110px; resize:none;"  placeholder="내용을 입력해주세요."></textarea>
+					    <button type="button" class="btn btn-primary btn-lg btn-block" id="writebtn">글쓰기</button>
+					 </div>
+					
 				    <!-- ================content================== -->
 				    <div class="comBox" class="clearfix">
 				    	<div class="profileBox">
@@ -294,7 +296,23 @@
    	</section>
 	
 	<script>
-		
+		$("#writebtn").on("click", function(){
+			var reCGNo = $("#comSelect").val();
+			var reContent =$("#exampleTextarea").val();
+			var reRefPNo = ${project.pNo};
+			
+			$.ajax({
+				url:"detailReply.dr",
+				data:{reCGNo:reCGNo, reContent:reContent, reRefPNo:reRefPNo},
+				type:"post",
+				success: function(result){
+					if(result == "success"){
+						$("#exampleTextarea").val("");
+						$("#comSelect").val("category");
+					}
+				}
+			});
+		});
 	</script>
 
 </body>

@@ -52,6 +52,19 @@
 		<result property="likePrNo" column="LIKE_PRJ"/>
 	</resultMap>
 	
+	<resultMap type="Reply" id="replyResultSet">
+		<id property="reNo" column="REPLY_NO"/>
+		<result property="reContent" column="REPLY_CONTENT"/>
+		<result property="reStatus" column="REPLY_STATUS"/>
+		<result property="reWriDate" column="REPLY_WRI_DT"/>
+		<result property="reModiDate" column="REPLY_MODI_DT"/>
+		<result property="reRefPNo" column="REPLY_REF_PNO"/>
+		<result property="reWriNo" column="REPLY_WRITER"/>
+		<result property="reWriter" column="NICKNAME"/>
+		<result property="reCGNo" column="REPLY_CG_NO"/>
+		<result property="reCGName" column="CGNAME"/>
+	</resultMap>
+	
 	<!-- 프로젝트 등록  -->
 	<insert id="insertProject" parameterType="Project">
 		INSERT INTO PROJECT_TB VALUES( 
@@ -155,4 +168,11 @@
 		</foreach>
 		ORDER BY REWARD_NO ASC
 	</select>
+	
+	<!-- 댓글 등록 -->
+	<insert id="insertReply" parameterType="Reply">
+		INSERT INTO REPLY VALUES(SEQ_RPL_NO.NEXTVAL, #{reContent}, 'Y', SYSDATE, SYSDATE, #{reRefPNo}, #{reWriNo}, #{reCGNo})
+	</insert>
+	
+	
 </mapper>

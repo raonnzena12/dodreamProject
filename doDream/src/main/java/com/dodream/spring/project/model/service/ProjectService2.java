@@ -3,6 +3,7 @@ package com.dodream.spring.project.model.service;
 import java.util.ArrayList;
 
 import com.dodream.spring.project.model.vo.Like;
+import com.dodream.spring.project.model.vo.Reply;
 import com.dodream.spring.project.model.vo.Reward;
 
 public interface ProjectService2 {
@@ -35,5 +36,12 @@ public interface ProjectService2 {
 	 * @return like
 	 */
 	int deleteLike(Like like);
+
+	/**
+	 * 댓글 등록
+	 * @param reply
+	 * @return
+	 */
+	int insertReply(Reply reply);
 
 }
