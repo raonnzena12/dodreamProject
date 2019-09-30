@@ -16,7 +16,7 @@
 		<!-- Sidebar - Brand -->
 		<a
 			class="sidebar-brand d-flex align-items-center justify-content-center"
-			href="adminHome.dr">
+			href="home.dr">
 			<div class="sidebar-brand-icon rotate-n-15" style="color: #FFCD01;">
 				<i class="fas fa-laugh-wink"></i>
 			</div>
@@ -89,6 +89,7 @@
 				data-parent="#accordionSidebar">
 				<div class="bg-white py-2 collapse-inner rounded">
 					<a class="collapse-item" href="adminReplist.dr"><p>〉 신고 접수 현황</p></a>
+					<a class="collapse-item" href="adminRepRlist.dr"><p>〉 신고 답변 현황</p></a>
 				</div>
 			</div></li>
 
@@ -102,7 +103,7 @@
 				<div class="bg-white py-2 collapse-inner rounded">
 					<a class="collapse-item" href="#"><p>〉 공지사항</p></a> <a
 						class="collapse-item" href="#"><p>〉 프로젝트 후기</p></a> <a
-						class="collapse-item" href="#"><p>〉 댓글 관리</p></a>
+						class="collapse-item" href="adminReplyList.dr"><p>〉 댓글 관리</p></a>
 				</div>
 			</div></li>
 
