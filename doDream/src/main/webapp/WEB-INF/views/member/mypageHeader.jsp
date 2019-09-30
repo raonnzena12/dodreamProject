@@ -14,7 +14,7 @@
 
 </head>
 <body>
-	<jsp:include page="../common/menubar.jsp" /> <!-- 페이지위치 변경하기 -->
+	<jsp:include page="../common/menubar.jsp" />
 			<%-- <c:if test="${ !empty loginUser }"> --%>
 	<div class="container-fluid">
 		<div class="row">
@@ -34,7 +34,7 @@
 					<p class="mb-0" id="userSelf">${ loginUser.userSelf }</p>
 				</blockquote>
 				<div id="followOuter">
-					<p id="follower" class="text-left">팔로워 몇명 &nbsp; 팔로잉 몇명</p>
+					<p class="text-left">팔로워 <span id="follower"></span>명 &nbsp; 팔로잉 <span id="follow"></span>명</p>
 				</div>
 			</div>
 			</c:if>
@@ -60,7 +60,7 @@
 					<div class="col-md-6">
 						<ul class="nav">
 							<li class="nav-item"><a class="nav-link" href="#">펀딩</a></li>
-							<li class="nav-item"><a class="nav-link" href="#"><i class="material-icons">favorite </i></a></li>
+							<li class="nav-item"><a class="nav-link" href="followList.dr?userNo=${loginUser.userNo}"><i class="material-icons">favorite </i></a></li>
 							<li class="nav-item"><a class="nav-link" href="#">알림</a></li>
 						</ul>
 					</div>
@@ -75,5 +75,32 @@
 		<!-- <div style="height: 2000px;"></div> -->
 	</div>
 	<%-- </c:if> --%>
+	<script>
+		$(document).ready(function(){
+			$.ajax({
+				url: "countFollow.dr",
+				data: {userNo: ${loginUser.userNo}},
+				success: function(result){
+					if(result != 0){
+						$("#follow").text(result);
+					}else{
+						$("#follow").text(0);
+					}
+				}
+			});
+			
+			$.ajax({
+				url:"countFollower.dr",
+				data: {userNo: ${loginUser.userNo}},
+				success: function(result){
+					if(result != 0){
+						$("#follower").text(result);
+					}else{
+						$("#follower").text(0);
+					}
+				}
+			});
+		});	
+	</script>
 </body>
 </html>
