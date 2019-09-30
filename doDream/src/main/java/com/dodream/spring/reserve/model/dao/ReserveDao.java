@@ -32,4 +32,13 @@ public class ReserveDao {
 	public ArrayList<Reward> selectRewardList(int rsvNo) {
 		return (ArrayList)(sqlSession.selectList("reserveMapper.selectRewardList", rsvNo));
 	}
+
+	/**
+	 * 특정 예약번호의 배송주소를 업데이트하는 DAO
+	 * @param reserve
+	 * @return result
+	 */
+	public int updateReserveAddress(Reserve reserve) {
+		return sqlSession.update("reserveMapper.updateReserveAddress", reserve);
+	}
 }

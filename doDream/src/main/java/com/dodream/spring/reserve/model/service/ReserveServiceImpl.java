@@ -24,4 +24,9 @@ public class ReserveServiceImpl implements ReserveService {
 	public ArrayList<Reward> selectRewardList(int rsvNo) {
 		return rsvDao.selectRewardList(rsvNo);
 	}
+
+	@Override
+	public int updateReserveAddress(Reserve reserve) {
+		return rsvDao.updateReserveAddress(reserve);
+	}
 }
