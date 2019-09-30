@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="followMapper">
+	
+	<resultMap id="followResultSet" type="Follow">
+		<result property="followNo" column="FOLLOW"/>
+		<result property="followerNo" column="FOLLOWER"/>
+		<result property="followerName" column="USER_NICKNAME"/>
+		<result property="followerPfImg" column="USER_PF_IMG"/>
+		<result property="followerSelf" column="USER_SELF" />
+		<result property="followerDate" column="FOLLOWER_DATE"/>
+		<result property="followName" column="USER_NICKNAME" />
+		<result property="followPfImg" column="USER_PF_IMG"/>
+		<result property="followSelf" column="USER_SELF" />
+		<result property="followDate" column="FOLLOW_DATE"/>
+	</resultMap>
+	
+	
+<!-- CREATE OR REPLACE VIEW FOLLOWERLIST AS SELECT FOLLOW, FOLLOWER, USER_NICKNAME, USER_SELF FROM FOLLOW_TB JOIN USER_TB ON(FOLLOW = USER_NO); 내가 팔로잉한 사람(나의 팔로잉 리스트)
+	CREATE OR REPLACE VIEW FOLLOWLIST AS SELECT FOLLOW, FOLLOWER, USER_NICKNAME, USER_SELF FROM FOLLOW_TB JOIN USER_TB ON(FOLLOWER = USER_NO); 나를 팔로잉한 사람 (나의 팔로워 리스트) 
+-->
+    
+    <!-- 내가 팔로잉한 사람 count -->
+	<select id="countFollow" parameterType="_int" resultType="_int">
+		SELECT COUNT(*) FROM FOLLOWERLIST WHERE FOLLOWER = #{userNo}
+	</select>
+	
+	<!-- 나를 팔로잉한 사람 count -->
+	<select id="countFollower" parameterType="_int" resultType="_int">
+		SELECT COUNT(*) FROM FOLLOWLIST WHERE FOLLOW = #{userNo}
+	</select>
+	
+	<!-- 내가 팔로잉한 사람 리스트 -->
+	<select id="selectFollowList" parameterType="_int" resultMap="followResultSet">
+		SELECT * FROM FOLLOWERLIST WHERE FOLLOWER = #{userNo}
+	</select>
+	
+	<!-- 나를 팔로잉한 사람 리스트 -->
+	<select id="selectFollowerList" parameterType="_int" resultMap="followResultSet">
+		SELECT * FROM FOLLOWLIST WHERE FOLLOW = #{userNo};
+	</select>
+  
+</mapper>

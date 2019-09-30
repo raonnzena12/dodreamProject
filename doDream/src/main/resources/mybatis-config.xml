@@ -19,6 +19,7 @@
 		<typeAlias type="com.dodream.spring.customerCenter.model.vo.Search" alias="Search"/>
 		<typeAlias type="com.dodream.spring.reserve.model.vo.Reserve" alias="Reserve"/>
 		<typeAlias type="com.dodream.spring.report.model.vo.Report" alias="Report"/>
+		<typeAlias type="com.dodream.spring.follow.model.vo.Follow" alias="Follow"/>
 	</typeAliases>
 	
 	
@@ -31,6 +32,7 @@
     	<mapper resource="mappers/adminProject-mapper.xml"/>
     	<mapper resource="mappers/adminReserve-mapper.xml"/>
     	<mapper resource="mappers/adminReport-mapper.xml"/>
+    	<mapper resource="mappers/follow-mapper.xml"/>
  	</mappers>
 	
 </configuration>

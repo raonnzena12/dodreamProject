@@ -36,7 +36,7 @@
    #deleteMemMsg mark{
       color: #8E44AD;
       background-color: white;
-      padding: 0;
+      padding: 0; 
    }
    
 
