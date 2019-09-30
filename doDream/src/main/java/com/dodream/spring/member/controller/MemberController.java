@@ -266,6 +266,11 @@ public class MemberController {
 		
 	}
 	
+	@RequestMapping("deleteForm.dr")
+	public String deleteMemberFormView() {
+		return "member/deleteMemberView";
+	}
+	
 	
 	
 }
