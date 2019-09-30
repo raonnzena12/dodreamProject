@@ -327,17 +327,24 @@
                 width: 270px;
                 min-height: 30px;
                 height:auto;
+                display:block;
+                float:left;
                 padding-right:70px;
                 position: relative;
            }
            #recount{
            		border: 1px solid black;
-                width: 50px;
-                min-height: 30px;
+                width:30px;
+                min-height:30px;
                 height:auto;
-                top:0;
+                float:right;
+                display:block;
+                bottom:0;
                 right:0;
+                top:0;
+                /* margin-bottom:10px; */
                 position: absolute;
+                text-align: right;
                 
            }
        </style>
@@ -465,7 +472,8 @@
 			<aside id="aside">
 				<div id="asideReward">
                         <div id="asideText1">총 후원 금액</div>
-                        <div id="rewardSum">
+                        <c:set var="rewardSum" value="${fn:replace(notice.nContent,'<br>','') }"/>
+                        <div id="rewardSum" name="rewardSum">
                             <!-- 선택한 리워드의 총합이 들어감 -->0
                         </div>
                         <div id="asideText2">
@@ -473,9 +481,9 @@
                         </div>
                         <div id="asideText3" class="clearfix">
                            <!-- 선택한 리워드 제목이 들어감 -->
-                           <div id="rname">
+                           <div id="rname" class="clearfix">
                            
-                           		<div id="recount"></div>
+                           		<!-- <div id="recount"></div> -->
                            </div>
                            
                         </div>
@@ -554,19 +562,25 @@
    			var price = 0;
    			var checkName="";
    			var count="";
+   			var comma="";
+   			
+   			
+   			
 			
    			$("input:checkbox[name='reCheck']:checked").each(function(){
    				price += $(this).val()*1;
-   				checkName += $(this).parent().parent().find(".rewardText6").text()+"<br>";
    				count +=$(this).parent().parent().find(".reCount").val()+"<br>";
+   				checkName += $(this).parent().parent().find(".rewardText6").text()+"<br>";
+   				
    				//console.log(price);
    				//console.log($("#rewardInput").val()*1);
    				console.log(checkName);
    				
    			});
-   				$("#rewardSum").text(price + $("#rewardInput").val()*1);
-   				$("#rname").html(checkName);
-   				$("#recount").html(count);
+   				comma = price + $("#rewardInput").val()*1;
+   				$("#rewardSum").text(comma.toLocaleString());
+   				$("#rname").html(checkName +"<div id='recount'>"+ count +"</div>");
+   				//$("#recount").html(count);
    				
 		
 			}

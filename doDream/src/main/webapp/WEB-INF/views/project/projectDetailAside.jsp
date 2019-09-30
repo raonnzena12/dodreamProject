@@ -55,14 +55,14 @@
            }
            #artistImg{
            		/* 아티스트 이미지 박스 */
-           		/*  border: 1px solid black; */
+           		/* border: 1px solid black; */
            		width: 60px;
            		height: 60px;
            		float:right;
            		display:block;
            		position: absolute;
            		bottom: 0;
-           		right: 0;
+           		right: 10px;
            }
            #artProfileImg{
            		border: 1px solid #495057;
@@ -304,7 +304,7 @@
 			<div id="artProfile" class="clearfix">
 				 <div id="artistText1">창작자 소개</div>
 				 <div id="artistImg">
-                 	<img src="resources/images/projectImg/artistImg/${project.pArtistPFImage}" alt="" id="artProfileImg">
+                 	<img src="resources/images/projectImg/artistImg/${project.pArtistPFImage}" id="artProfileImg">
                  </div>
                  <div id="artistName">
 		                 <div id="artistText2">${project.pArtistName }님

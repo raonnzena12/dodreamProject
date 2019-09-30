@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.dodream.spring.project.model.vo.Like;
 import com.dodream.spring.project.model.vo.Reply;
 import com.dodream.spring.project.model.vo.Reward;
+import com.dodream.spring.project.model.vo.SubReply;
 
 @Repository("pDao2")
 public class ProjectDao2 {
@@ -70,5 +71,38 @@ public class ProjectDao2 {
 	public int insertReply(Reply reply) {
 		
 		return sqlSession.insert("projectMapper.insertReply", reply);
+	}
+
+
+	/**
+	 * 댓글 조회용  DAO
+	 * @param pNo
+	 * @return reList
+	 */
+	public ArrayList<Reply> selectReply(int pNo) {
+		
+		return (ArrayList)sqlSession.selectList("projectMapper.selectReply", pNo);
+	}
+
+
+	/**
+	 * 서브 댓글 조회용 DAO
+	 * @param reList
+	 * @return srList
+	 */
+	public ArrayList<SubReply> selectSubReply(ArrayList<Reply> reList) {
+		
+		return (ArrayList)sqlSession.selectList("projectMapper.selectSubReply", reList);
+	}
+
+
+	/**
+	 * 서브 댓글 등록용 DAO
+	 * @param subRe
+	 * @return result
+	 */
+	public int selectSubReply(SubReply subRe) {
+	
+		return sqlSession.insert("projectMapper.insertSubReply", subRe);
 	}
 }
