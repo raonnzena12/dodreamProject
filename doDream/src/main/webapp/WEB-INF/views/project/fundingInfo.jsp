@@ -391,6 +391,14 @@ function calcPrice() {
 	})
 	$("#fundingPrice").val(sum+${ additionalCost });
 }
+function ajaxBilling() {
+	var c1 = $("#cardNo1").val();
+	var c2 = $("#cardNo2").val();
+	var c3 = $("#cardNo3").val();
+	var c4 = $("#cardNo4").val();
+	var card_number = c1 + "-" + c2 + "-" + c3 + "-" + c4;
+	/* 여기 완성할것 여기여기 */
+}
 </script>
 </body>
 </html>
