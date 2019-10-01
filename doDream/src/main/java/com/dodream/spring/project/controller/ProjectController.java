@@ -65,9 +65,9 @@ public class ProjectController {
 		project.setpSummaryText(pSummaryText);
 		project.setpStory(pStory);
 		project.setpArtistIntroduction(pArtistIntroduction);
-		project.setpThumbImage("resources/images/testImg/testImg(1).jpg");
-		project.setpMainImage("resources/images/testImg/testImg(1).jpg");
-		project.setpArtistPFImage("resources/images/testImg/testImg(1).jpg");
+		project.setpThumbImage("testTN.png");
+		project.setpMainImage("testTN.png");
+		project.setpArtistPFImage("testTN.png");
 		// 파일 등록 부분
 		System.out.println(project);
 		// DB 연결을 수행합니다.
