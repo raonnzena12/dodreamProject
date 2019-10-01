@@ -51,13 +51,6 @@
 		VALUES(SEQ_USER_NO.NEXTVAL, #{userEmail}, #{userNickname}, #{userPwd}, 'Y')
 	</insert>
 	
-	<!-- 로그인 유지 -->
-<!-- 	<update id="keepLogin">
-		UPDATE AUTOLOGIN
-		SET AUTO_SESSIONKEY = #{sessionid},
-		AUTO_SESSIONLIMIT = #{limit}
-		WHERE USER_NO = #{userNo}		
-	</update> -->
 
 	<!-- 회원정보 수정 -->
 	<update id="updateMember" parameterType="Member">
@@ -89,17 +82,19 @@
 		WHERE USER_NO = #{userNo}		
 	</select>
 
+	<select id="checkUserWithSessionKey" parameterType="string" resultType="_int">
+    	SELECT * FROM USER_TB
+    	WHERE AUTO_SESSIONKEY= #{sessionId}
+    	AND AUTO_EXPIRYDATE > SYSDATE
+    </select>
+    
 	<!-- 자동로그인 값 저장-->	
-	<update id="keepLogin">
-		UPDATE USER_TB SET AUTO_SESSIONKEY = #{sessionId}, AUTO_EXPIRYDATE =${limit}
+	<update id="keepLogin" parameterType="Member">
+		UPDATE USER_TB SET AUTO_SESSIONKEY = #{sessionId}, AUTO_EXPIRYDATE = #{limit}
 		WHERE USER_NO = #{userNo}
     </update>
     
-    <select id="checkUserWithSessionKey" resultType="Member">
-    	SELECT * FROM USER_TB
-    	WHERE AUTO_SESSIONKEY= #{sessionId}
-    	AND AUTO_EXPIRYDATE > now()
-    </select>
+    <!-- (#id:VARCHAR#, #name:VARCHAR#, #title:VARCHAR#)-->
     
 	
   

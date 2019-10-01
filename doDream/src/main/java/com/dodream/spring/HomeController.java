@@ -12,8 +12,9 @@ import com.dodream.spring.member.model.vo.Member;
 @Controller
 public class HomeController {
 	
-	@RequestMapping(value = "home.dr", method = RequestMethod.GET)
+	@RequestMapping(value = "home2.dr", method = RequestMethod.GET)
 	public String home() {
+		
 		return "home";
 	}
 	@RequestMapping(value = "adminHome.dr", method = RequestMethod.GET)
