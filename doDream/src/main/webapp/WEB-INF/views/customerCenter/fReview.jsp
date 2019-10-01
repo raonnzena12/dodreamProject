@@ -154,9 +154,9 @@
 	                       <div class="detailArea my-1">
 	                          <span class="detailText">
 	                             <c:choose>
-	                                <c:when test="${ fn:length(fr.pSummaryText) > 45 }">
+	                               <%--  <c:when test="${ fn:length(fr.pSummaryText) > 45 }">
 	                                ${ fn:substring(fr.pSummaryText,0,60) }…
-	                                </c:when>
+	                                </c:when> --%>
 	                                <c:otherwise>
 	                                ${ fr.pSummaryText }
 	                                </c:otherwise>
