@@ -39,7 +39,7 @@ public class AuthenticationInterceptor extends HandlerInterceptorAdapter{
 				
 				response.addCookie(autoLogin);
 			}			
-			/* response.sendRedirect("redirect"); */
+			response.sendRedirect("redirect:login.dr");
 			return false;
 		}
 		
