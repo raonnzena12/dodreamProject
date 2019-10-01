@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.dodream.spring.admin.model.service.AdminService;
-import com.dodream.spring.project.model.vo.Reply;
+import com.dodream.spring.project.model.vo.Reply;                                                                                                 
 
 @Controller
 public class AdminReplyController {

@@ -11,7 +11,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>결제 관리 (예약 주문 현황)</title>
+<title>공지사항 관리</title>
 
 <!-- Custom fonts for this template -->
 <link href="resources/vendor/fontawesome-free/css/all.min.css"
@@ -70,12 +70,13 @@
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-2 text-gray-800"># 결제 관리 (예약 주문 현황)</h1>
+					<h1 class="h3 mb-2 text-gray-800"># 공지사항 관리</h1>
 					<br>
 					<!-- DataTales Example -->
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
-							<p class="m-0 font-weight-bold text-primary">-----</p>
+							<button type="button" class="btn btn-primary btn-lg btn-block rewardBtn" style="float: right; background: #8E44AD; border: #8E44AD;"
+							onclick="location.href='goWriteNotice.dr'">공지사항 작성</button>
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
@@ -91,78 +92,76 @@
 														<th class="sorting_asc" tabindex="0"
 															aria-controls="dataTable" rowspan="1" colspan="1"
 															aria-sort="ascending"
-															aria-label="Name: activate to sort column descending">주문 예약 번호</th>
+															aria-label="Name: activate to sort column descending">공지사항 번호</th>
 														<th class="sorting" tabindex="0" aria-controls="dataTable"
 															rowspan="1" colspan="1"
-															aria-label="Office: activate to sort column ascending">프로젝트 이름</th>
+															aria-label="Office: activate to sort column ascending">공지사항 제목</th>
 														<th class="sorting" tabindex="0" aria-controls="dataTable"
 															rowspan="1" colspan="1"
-															aria-label="Age: activate to sort column ascending">회원 이름</th>
+															aria-label="Age: activate to sort column ascending">공지사항 내용</th>
 														<th class="sorting" tabindex="0" aria-controls="dataTable"
 															rowspan="1" colspan="1"
-															aria-label="Start date: activate to sort column ascending">주문일자</th>
+															aria-label="Start date: activate to sort column ascending">작성일</th>
 														<th class="sorting" tabindex="0" aria-controls="dataTable"
 															rowspan="1" colspan="1"
-															aria-label="Salary: activate to sort column ascending">추가 후원금</th>
+															aria-label="Salary: activate to sort column ascending">수정일</th>
 														<th class="sorting" tabindex="0" aria-controls="dataTable"
 															rowspan="1" colspan="1"
-															aria-label="Salary: activate to sort column ascending">배송 이름</th>
+															aria-label="Salary: activate to sort column ascending">작성자</th>
 														<th class="sorting" tabindex="0" aria-controls="dataTable"
 															rowspan="1" colspan="1"
-															aria-label="Salary: activate to sort column ascending">배송 전화번호</th>
+															aria-label="Salary: activate to sort column ascending">공지사항 수정</th>
 														<th class="sorting" tabindex="0" aria-controls="dataTable"
 															rowspan="1" colspan="1"
-															aria-label="Salary: activate to sort column ascending">배송 주소</th>
-														<th class="sorting" tabindex="0" aria-controls="dataTable"
-															rowspan="1" colspan="1"
-															aria-label="Salary: activate to sort column ascending">예약 취소</th>
+															aria-label="Salary: activate to sort column ascending">공지사항 삭제</th>
 													</tr>
 												</thead>
 												<tfoot>
 													<tr>
-														<th rowspan="1" colspan="1">주문 예약 번호</th>
-														<th rowspan="1" colspan="1">프로젝트 이름</th>
-														<th rowspan="1" colspan="1">회원 이름</th>
-														<th rowspan="1" colspan="1">주문일자 </th>
-														<th rowspan="1" colspan="1">추가 후원금</th>
-														<th rowspan="1" colspan="1">배송 이름</th>
-														<th rowspan="1" colspan="1">배송 전화번호</th>
-														<th rowspan="1" colspan="1">배송 주소</th>
-														<th rowspan="1" colspan="1">예약 취소</th>
+														<th rowspan="1" colspan="1">공지사항 번호</th>
+														<th rowspan="1" colspan="1">공지사항 제목</th>
+														<th rowspan="1" colspan="1">공지사항 내용</th>
+														<th rowspan="1" colspan="1">작성일</th>
+														<th rowspan="1" colspan="1">수정일</th>
+														<th rowspan="1" colspan="1">작성자</th>
+														<th rowspan="1" colspan="1">공지사항 수정</th>
+														<th rowspan="1" colspan="1">공지사항 삭제</th>
 													</tr>
 												</tfoot>
 												<tbody>
-													<c:forEach var="r" items="${ list }">
+													<c:forEach var="n" items="${ list }"  varStatus="status" >
 														<tr role="row" class="odd">
-															<td class="sorting_1">${ r.resNo }</td>
-															<td>${ r.pTitle}</td>
-															<td>${ r.userNickname}</td>
-															<td>${ r.resDate}</td>
-															<td>${ r.addi}</td>
-															<td>${ r.resName}</td>
-															<td>${ r.resContact}</td>
-															<td>${ r.resAddress}</td>
+															<td class="sorting_1">${ n.nNo }</td>
+															<td>${ n.nTitle}</td>
+															<td>${ n.nContent}</td>
+															<td>${ n.nEnrollDate}</td>
+															<td>${ n.nModifyDate}</td>
+															<td>${ n.userNickname}</td>
 															<td>
-																<button type="button" data-toggle="modal" data-target="#modal${ status.index }" data-whatever="취소하기"
- 																 id="removeReply" class="btn btn-primary btn-lg btn-block rewardBtn">취소하기</button>
+																<button type="button" class="btn btn-primary btn-lg btn-block rewardBtn" 
+																onclick="location.href='goUpdateNotice.dr'">수정하기</button>
+															</td>
+															<td>
+																<button type="button" data-toggle="modal" data-target="#modal${ status.index }" data-whatever="삭제하기"
+ 																 id="removeReply" class="btn btn-primary btn-lg btn-block rewardBtn">삭제하기</button>
  																 <!-- Modal -->
- 																<form action ="cancelReserve.dr" method="post">
+ 																<form action ="removeNotice.dr" method="post">
 																<div class="modal fade" id="modal${ status.index }" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 																  <div class="modal-dialog" role="document">
 																    <div class="modal-content">
 																      <div class="modal-header">
-																        <h5 class="modal-title" id="exampleModalLabel">예약 취소</h5>
+																        <h5 class="modal-title" id="exampleModalLabel">공지사항 삭제</h5>
 																        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 																          <span aria-hidden="true">&times;</span>
 																        </button>
 																      </div>
 																      <div class="modal-body">
-																        	예약 취소를 진행하시겠습니까?
+																        	해당 공지사항을 삭제하시겠습니까?
 																      </div>
 																      <div class="modal-footer">
-																        <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-																        <button type="submit" class="btn btn-primary">취소하기</button>
-																        <input type="hidden" name="resNo" value="${r.resNo}">
+																        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+																        <button type="submit" class="btn btn-primary">삭제하기</button>
+																        <input type="hidden" name="nNo" value="${n.nNo}">
 																      </div>
 																    </div>
 																  </div>
@@ -249,6 +248,6 @@
 	<script src="resources/js/demo/datatables-demo.js"></script>
 
 </body>
-
 </html>
+
 

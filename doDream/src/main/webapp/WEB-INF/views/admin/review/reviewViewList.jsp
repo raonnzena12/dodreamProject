@@ -11,7 +11,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>결제 관리 (예약 주문 현황)</title>
+<title>프로젝트 후기</title>
 
 <!-- Custom fonts for this template -->
 <link href="resources/vendor/fontawesome-free/css/all.min.css"
@@ -70,12 +70,13 @@
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-2 text-gray-800"># 결제 관리 (예약 주문 현황)</h1>
+					<h1 class="h3 mb-2 text-gray-800"># 프로젝트 후기</h1>
 					<br>
 					<!-- DataTales Example -->
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
-							<p class="m-0 font-weight-bold text-primary">-----</p>
+							<button type="button" class="btn btn-primary btn-lg btn-block rewardBtn" style="float: right; background: #8E44AD; border: #8E44AD;"
+							onclick="location.href='goWriteReview.dr'">후기 작성</button>
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">

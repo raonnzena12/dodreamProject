@@ -10,13 +10,14 @@ public class Notice {
 	private Date nModifyDate; // 수정일
 	private String nStatus;   // 상태
 	private int nWriter;      // 작성자(관리자번호)
-
+	private String userNickname; // 작성자 이름 
+	
 	public Notice() {
 		// TODO Auto-generated constructor stub
 	}
-  
+
 	public Notice(int nNo, String nTitle, String nContent, Date nEnrollDate, Date nModifyDate, String nStatus,
-			int nWriter) {
+			int nWriter, String userNickname) {
 		super();
 		this.nNo = nNo;
 		this.nTitle = nTitle;
@@ -25,6 +26,7 @@ public class Notice {
 		this.nModifyDate = nModifyDate;
 		this.nStatus = nStatus;
 		this.nWriter = nWriter;
+		this.userNickname = userNickname;
 	}
 
 	public int getnNo() {
@@ -83,10 +85,19 @@ public class Notice {
 		this.nWriter = nWriter;
 	}
 
+	public String getUserNickname() {
+		return userNickname;
+	}
+
+	public void setUserNickname(String userNickname) {
+		this.userNickname = userNickname;
+	}
+
 	@Override
 	public String toString() {
 		return "Notice [nNo=" + nNo + ", nTitle=" + nTitle + ", nContent=" + nContent + ", nEnrollDate=" + nEnrollDate
-				+ ", nModifyDate=" + nModifyDate + ", nStatus=" + nStatus + ", nWriter=" + nWriter + "]";
+				+ ", nModifyDate=" + nModifyDate + ", nStatus=" + nStatus + ", nWriter=" + nWriter + ", userNickname="
+				+ userNickname + "]";
 	}
-	
+
 }
