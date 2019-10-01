@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="adminReplyMapper">
+		
+	<resultMap type="Reply" id="replyResultSet">
+		<id property="reNo" column="REPLY_NO"/>
+		<result property="reContent" column="REPLY_CONTENT"/>
+		<result property="reStatus" column="REPLY_STATUS"/>
+		<result property="reWriDate" column="REPLY_WRI_DT"/>
+		<result property="reModiDate" column="REPLY_MODI_DT"/>
+		<result property="reRefPNo" column="REPLY_REF_PNO"/>
+		<result property="reWriNo" column="REPLY_WRITER"/>
+		<result property="reWriter" column="USER_NICKNAME"/>
+		<result property="reCGNo" column="REPLY_CG_NO"/>
+		<result property="reCGName" column="REPLY_CG_NM"/>
+	</resultMap>
+
+	<!-- 댓글 리스트 관련 쿼리-->
+	<select id="replyListView" resultMap="replyResultSet">
+		SELECT REPLY_NO,REPLY_CONTENT,REPLY_STATUS,REPLY_WRI_DT,REPLY_MODI_DT,
+        REPLY_REF_PNO,REPLY_WRITER,REPLY_CG_NO,USER_NICKNAME, REPLY_CG_NM
+		FROM REPLY
+		JOIN USER_TB ON(USER_NO = REPLY_WRITER)
+		JOIN REPLY_CG USING(REPLY_CG_NO)
+		WHERE REPLY_STATUS = 'Y'
+	</select>
+	
+	<!-- 댓글 삭제 관련 쿼리 -->
+	<update id="removeReply" parameterType="_int">
+		UPDATE REPLY SET
+		REPLY_STATUS = 'N'
+		WHERE REPLY_NO = #{reNo}
+	</update>
+	
+	
+
+</mapper>
