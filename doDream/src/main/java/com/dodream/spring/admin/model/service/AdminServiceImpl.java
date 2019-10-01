@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.dodream.spring.admin.model.dao.AdminDao;
 import com.dodream.spring.common.AdminPagination;
 import com.dodream.spring.common.model.vo.PageInfo;
+import com.dodream.spring.customerCenter.model.vo.Notice;
 import com.dodream.spring.member.model.vo.Member;
 import com.dodream.spring.project.model.vo.Project;
 import com.dodream.spring.project.model.vo.Reply;
@@ -198,6 +199,26 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public int removeReply(int reNo) {
 		return aDao.removeReply(reNo);
+	}
+
+	@Override
+	public ArrayList<Notice> selectNoticeList() {
+		return aDao.selectNoticeList();
+	}
+
+	@Override
+	public int updateNotice(int nNo) {
+		return aDao.updateNotice(nNo);
+	}
+
+	@Override
+	public int cancelReserve(int resNo) {
+		return aDao.cancelReserve(resNo); 
+	}
+
+	@Override
+	public int removeNotice(int nNo) {
+		return aDao.removeNotice(nNo);
 	}
 
 	

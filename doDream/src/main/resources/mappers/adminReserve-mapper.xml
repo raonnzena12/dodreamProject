@@ -68,5 +68,12 @@
 		JOIN USER_TB ON(RESERVE_USER = USER_NO)
 		WHERE RESERVE_STATUS_NO = 3
 	</select>
+	
+	<!-- 주문 예약 취소 -->
+	<update id="cancelReserve" parameterType="_int">
+		UPDATE RESERVE SET 
+		RESERVE_STATUS_NO = 3
+		WHERE RESERVE_NO = #{resNo}
+	</update>
 
 </mapper>

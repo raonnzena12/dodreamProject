@@ -8,7 +8,7 @@ $(function() {
 	day6 = 0;
 	day5 = 0;
 	day4 = 0;
-	day3 = 10;
+	day3 = 0;
 	day2 = 0;
 	day1 = 0;
 	today = 0;
@@ -110,6 +110,15 @@ $(function() {
 			success : function(result) {
 				today = result;
 			}
-		})
+		});
+		
+		console.log(day1)
+		console.log(day2)
+		console.log(day3)
+		console.log(day4)
+		console.log(day5)
+		console.log(day6)
+		console.log(day7)
+		
 	}
 });
