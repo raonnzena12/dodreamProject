@@ -57,21 +57,20 @@ public class ProjectController3 {
 	
 	// 펀딩 결제 성공 확인용 임시 매핑
 	@RequestMapping("thankYou.dr")
-	public String tmp2(Reserve reserve, HistoryList hList, UserCard uCard) {
+	public String tmp2(Reserve reserve, HistoryList hList, UserCard uCard, Project prj) {
 		
 		System.out.println(reserve);
 		System.out.println(hList);
 		System.out.println(uCard);
+		System.out.println(prj);
 		
 		
 		return "project/fundingComplete";
 	}
 
-	@ResponseBody
 	@RequestMapping("ptemp4.dr")
-	public String tmp4(String check) {
-		System.out.println(check);
-		return check;
+	public String tmp4() {
+		return "../../resources/js/testF/NewFile";
 	}
 	
 	@ResponseBody
@@ -98,5 +97,11 @@ public class ProjectController3 {
 		}
 		
 		return map;
+	}
+	
+	@RequestMapping("kakaotest.dr")
+	public String kakaoTest() {
+		
+		return "common/test";
 	}
 }

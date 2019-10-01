@@ -250,6 +250,12 @@
 			<input type="hidden" name="resUser" value="0">
 			<input type="hidden" name="resRefPno" value="${ prj.pNo }">
 			<input type="hidden" name="userUid">
+			<input type="hidden" name="pNo" value="${ prj.pNo }">
+			<!-- <input type="hidden" name="pTitle" value="${ prj.pTitle }"> -->
+			<input type="hidden" name="pThumbImage" value="${ prj.pThumbImage }">
+			<input type="hidden" name="pHashTag" value="${ prj.pHashTag }">
+			<input type="hidden" name="pSummaryText" value="${ prj.pSummaryText }">
+			<input type="hidden" name="pCount" value="${ prj.pCount }">
 		</form>
 	</section>
 <script>

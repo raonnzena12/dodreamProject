@@ -115,3 +115,14 @@
     color: #8E44AD;
     outline: none;
 }
+#fdComplete #area2 {
+    display: none;
+    padding: 0;
+}
+#fdComplete #area2 a {
+    text-decoration: none;
+}
+#fdComplete #area2 img {
+    width: 35px;
+    height: auto;
+}

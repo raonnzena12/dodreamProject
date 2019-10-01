@@ -88,7 +88,7 @@
 				</div>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="letsFunding.dr">(temp) 펀딩 결제 INFO</a>
+				<a class="nav-link" href="kakaotest.dr">(temp) 펀딩 결제 INFO</a>
 			</li>
 			</ul>
 			<ul class="navbar-nav ml-auto mr-3">
