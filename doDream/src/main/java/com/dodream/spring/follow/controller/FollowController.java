@@ -52,12 +52,12 @@ public class FollowController {
 	@RequestMapping("followList.dr")
 	public String followList(int userNo, Model model) {
 		
-		List<Follow> fList = fService.selectFollowList(userNo);
+		List<Follow> followList = fService.selectFollowList(userNo);
 		
-		System.out.println(fList);
+		System.out.println(followList);
 		
-		if(! fList.isEmpty()) {
-			model.addAttribute("fList", fList);
+		if(followList !=null) {
+			model.addAttribute("followList", followList);
 			return "member/followList";
 		}else {
 			model.addAttribute("msg", "목록조회에 실패하였습니다.");
@@ -72,8 +72,8 @@ public class FollowController {
 		List<Follow> followerList = fService.selectFollowerList(userNo);
 		System.out.println(followerList);
 		
-		if(! followerList.isEmpty()) {
-			model.addAttribute("fList", followerList);
+		if(followerList !=null) {
+			model.addAttribute("followerList", followerList);
 			return "member/followerList";
 		}else {
 			model.addAttribute("msg", "목록조회에 실패하였습니다.");

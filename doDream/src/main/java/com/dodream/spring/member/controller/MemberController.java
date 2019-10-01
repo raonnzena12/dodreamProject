@@ -1,10 +1,10 @@
 package com.dodream.spring.member.controller;
 
-//import java.sql.Date;
-//import java.util.Date;
+import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
-//import javax.servlet.http.Cookie;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -22,7 +22,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dodream.spring.member.model.service.MemberService;
-//import com.dodream.spring.member.model.vo.AutoLogin;
 import com.dodream.spring.member.model.vo.Member;
 
 @SessionAttributes({ "loginUser", "msg" })
@@ -39,20 +38,24 @@ public class MemberController {
 	 * @param model
 	 * @return page
 	 */
-	@RequestMapping(value = "login.dr", method = RequestMethod.POST)
+	@RequestMapping(value = "login.dr, home.dr", method = RequestMethod.POST)
 	public String memberLogin(Member member, Model model, String prevPage, HttpSession session, HttpServletResponse response) {
 
 		Member loginUser = mService.loginMember(member);
 		
-		
-		 if(session.getAttribute("loginUser") != null) {
-		 session.removeAttribute("loginUser"); }
-		
+		 System.out.println(member);
 
 		if (loginUser != null) {
 			session.setAttribute("loginUser", loginUser);
 			model.addAttribute("loginUser", loginUser);
+		 
+			/*
+			 * if(session.getAttribute("loginUser") == null) {
+			 * session.removeAttribute("loginUser"); }
+			 */
+		 
 			System.out.println(loginUser);
+			
 			// 로그인 카운트 해주는 함수 호출;
 			int result = mService.checkVisitToday(loginUser.getUserNo());
 			if(result == 0) {
@@ -60,19 +63,36 @@ public class MemberController {
 				if(result > 0) 
 				System.out.println("userNo : " + loginUser.getUserNo() + "번 회원이 DAYCOUNT 테이블에 삽입됨");
 			}
-		
-//			if(loginUser.getUseCookie().equals("on")) {
-//				Cookie ck = new Cookie("autoLogin", session.getId());
-//				ck.setPath("/");
-//				int amount = (60*60*24*15);
-//				response.addCookie(ck);
-//				
-//				Date limit =new Date(System.currentTimeMillis() + (1000*amount));
-//				mService.keepLogin(loginUser.getUserNo(), session.getId(), limit);
-//			}
 			
+			if(member.isUseCookie() == true){
+				Cookie autoLogin = new Cookie("autoLogin", session.getId());
+				autoLogin.setPath("/");
+				
+				System.out.println(autoLogin.getPath());
+				
+				int amount = (60*60*24*15);
+				
+				Timestamp limit =new Timestamp(System.currentTimeMillis() + (1000*amount));
+				
+				member.setUserNo(loginUser.getUserNo());
+				System.out.println(loginUser.getUserNo());
+				
+				member.setLimit(limit);
+				System.out.println(limit);
+				
+				member.setSessionId(session.getId());
+				System.out.println(session.getId());
+				
+				System.out.println(member);
+				mService.keepLogin(member);
+				
+				System.out.println(autoLogin);
+				
+				response.addCookie(autoLogin);
+			}
 			return "redirect:"+prevPage;
-		} else {
+			
+		}else {
 			model.addAttribute("msg", "로그인 실패");
 			return "common/errorPage";
 		}
@@ -107,7 +127,7 @@ public class MemberController {
 	 */
 	@ResponseBody
 	@RequestMapping("insertMember.dr")
-	public String insertMember(Member member, Model model, RedirectAttributes rd) {
+	public String insertMember(Member member, Model model, RedirectAttributes rd, String prevPage) {
 		
 		int result = mService.insertMember(member);
 		if(result>0) {
@@ -121,7 +141,7 @@ public class MemberController {
 			System.out.println("userNo : " + loginUser.getUserNo() + "번 회원이 DAYCOUNT 테이블에 삽입됨");
 			}
 			
-			return "redirect:home.dr";
+			return "redirect:"+prevPage;
 		
 		}else {
 			model.addAttribute("msg", "회원가입에 실패하였습니다.");

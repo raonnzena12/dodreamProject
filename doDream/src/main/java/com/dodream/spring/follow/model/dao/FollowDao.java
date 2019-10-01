@@ -33,7 +33,7 @@ public class FollowDao {
 
 	public List<Follow> selectFollowerList(int userNo) {
 		
-		return (ArrayList)sqlSession.selectList("followerMapper.selectFollowerList", userNo);
+		return (ArrayList)sqlSession.selectList("followMapper.selectFollowerList", userNo);
 	}
 
 
