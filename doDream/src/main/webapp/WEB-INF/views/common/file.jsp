@@ -58,7 +58,7 @@
 	<div class="color" style="background-color:#F39C12; color:#fff;">#F39C12</div>
 	<div class="color" style="background-color:#8E44AD; color:#fff;">#8E44AD</div>
 	<hr>
-	<table class="table">
+	<table class="table" id="checkList">
 		<tr>
 			<th colspan="3"> 화면단 구현 체크리스트</th>
 		</tr>
@@ -143,10 +143,10 @@
 	</section>
 <script>
 $(function(){
-	$("input:checkbox").on("change", function(){
+	$("#checkList input:checkbox").on("change", function(){
 		var cha = $(this).parent().attr("class");
-		var total = $(".table input[name^="+cha+"]").length;
-		var chk = $(".table input[name^="+cha+"]:checked").length;
+		var total = $("#checkList input[name^="+cha+"]").length;
+		var chk = $("#checkList input[name^="+cha+"]:checked").length;
 		var calc = Math.round((chk/total)*100);
 		$(this).parent().next().children().eq(0).text(calc);
 	});
