@@ -99,7 +99,7 @@
 
 .accdesc {
 	font-weight: 500;
-	font-size: 13px;
+	font-size: 12px;
 	line-height: 19px;
 	color: #666;
 }
@@ -327,7 +327,10 @@ input:focus, input:active, textarea:focus, textarea:active, select:focus,
 }
 
 .contentarea {
-	margin-top: 30px;
+	margin: auto;
+    border: 1px solid #ced4da;
+	width: 85%;
+	padding: 15px;
 }
 
 .contentagreement {
@@ -433,4 +436,23 @@ input:focus, input:active, textarea:focus, textarea:active, select:focus,
 
 .profileimgdesc {
 	float: left;
+}
+
+#hashtagarea{
+	background-color: #F39C12;
+	border-radius: 5px;
+	border: none;
+	margin-top: 15px;
+	width: 88%;
+}
+#hashtagarea>span{
+	display: inline-block;
+	background-color: white;
+	border-radius: 5px;
+	padding: 6px 10px 5px 10px;
+	font-family: 'Nanum Gothic';
+	color: #444;
+	font-weight: bolder;
+	font-size: 16px;
+	margin: 5px;
 }
