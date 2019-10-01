@@ -1,6 +1,6 @@
 package com.dodream.spring.member.controller;
 
-import java.sql.Date;
+/*import java.sql.Date;*/
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -38,7 +38,7 @@ public class MemberController {
 	 * @param model
 	 * @return page
 	 */
-	@RequestMapping(value = "login.dr, home.dr", method = RequestMethod.POST)
+	@RequestMapping(value = "login.dr", method = RequestMethod.POST)
 	public String memberLogin(Member member, Model model, String prevPage, HttpSession session, HttpServletResponse response) {
 
 		Member loginUser = mService.loginMember(member);
@@ -64,8 +64,11 @@ public class MemberController {
 				System.out.println("userNo : " + loginUser.getUserNo() + "번 회원이 DAYCOUNT 테이블에 삽입됨");
 			}
 			
+					
+			
 			if(member.isUseCookie() == true){
-				Cookie autoLogin = new Cookie("autoLogin", session.getId());
+				Cookie autoLogin = new Cookie("autoLogin","loginUser");
+				
 				autoLogin.setPath("/");
 				
 				System.out.println(autoLogin.getPath());
@@ -90,7 +93,8 @@ public class MemberController {
 				
 				response.addCookie(autoLogin);
 			}
-			return "redirect:"+prevPage;
+			
+			return "redirect:home.dr";
 			
 		}else {
 			model.addAttribute("msg", "로그인 실패");
