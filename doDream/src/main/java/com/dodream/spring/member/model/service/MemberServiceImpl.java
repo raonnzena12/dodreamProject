@@ -136,7 +136,8 @@ public class MemberServiceImpl implements MemberService {
 		return mDao.updatePwd(mem);
 	}
 
-
-
-
+	@Override
+	public int checkValidate(Member member) {
+		return mDao.checkValidate(member);
+	}
 }

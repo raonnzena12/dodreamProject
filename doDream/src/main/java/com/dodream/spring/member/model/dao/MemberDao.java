@@ -50,8 +50,11 @@ public class MemberDao {
 	}
 
 	public int updatePwd(Member mem) {
-		
 		return sqlSession.update("memberMapper.updatePwd", mem);
+	}
+
+	public int checkValidate(Member member) {
+		return sqlSession.selectOne("memberMapper.checkValidate", member);
 	}
 
 //	public void keepLogin(int userNo, String sessionId, Date limit) {

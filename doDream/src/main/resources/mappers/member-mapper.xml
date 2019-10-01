@@ -31,6 +31,14 @@
 		AND USER_STATUS = 'Y'
 	</select>
 	
+	<!-- 로그인 아이디/비번 확인용 쿼리 -->
+	<select id="checkValidate" parameterType="Member" resultType="int">
+		SELECT COUNT(*) FROM USER_TB 
+		WHERE USER_EMAIL = #{userEmail} 
+		AND USER_PWD = #{userPwd} 
+		AND USER_STATUS = 'Y' 
+	</select>
+	
 	<!-- 이메일 중복검사 -->
 	<select id="selectCheckEmail" parameterType="Member" resultMap="memberResultSet">
 		SELECT USER_EMAIL FROM USER_TB

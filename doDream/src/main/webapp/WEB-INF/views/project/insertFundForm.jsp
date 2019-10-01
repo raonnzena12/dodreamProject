@@ -767,18 +767,71 @@
 				$("#goInsertForm").attr('disabled', false);
 			else
 				$("#goInsertForm").attr('disabled', true);
-		}
+		};
+		function goLogin(){
+			Swal.fire({
+				showConfirmButton: false,
+				html: '<div id="login-menu" class="loginmenu text-center" style="display: block; position: relative; width:375px; padding: 10px; margin-left: 59px;"><div style="text-align:center;" class="mb-2"> LOGIN </div><form action="loginmodal.dr" method="POST" id="modal-loginfrm"><input type="hidden" value="" name="prevPage" id="modal-prevPage"><table id="login-table" class="form-group"><tr><td><input class="form-control" type="email" name="userEmail" id="modal-user-email" placeholder="이메일 주소" autocomplete="off" required></td></tr><tr><td><input class="form-control" type="password" name="userPwd" id="modal-user-pwd" placeholder="비밀번호" required></td></tr><tr><td class="loginmenuText custom-control custom-checkbox my-1"></td></tr><tr><td><button type="button" class="btn btn-warning btn-block mb-2" id="modal-loginBtn">L O G I N</button></td></tr><tr><td class="text-center naverKakaoArea"><img src="resources/images/naver_sns_icon.png" data-toggle="tooltip" data-placement="left" title="NAVER ID로 로그인" class="mx-2" style="width:40px; height:auto;"><a href="javascript:loginWithKakao()"><img src="resources/images/kakao_sns_icon.png" data-toggle="tooltip" data-placement="left" title="KAKAO ID로 로그인" class="mx-2" style="width:40px; height:auto;"></a><img src="resources/images/faceB_sns_icon.png" data-toggle="tooltip" data-placement="left" title="FACEBOOK ID로 로그인" class="mx-2" style="width:40px; height:auto;"></td></tr><tr><td class="loginmenuText text-center"><hr>회원이 아니신가요?<br> <a href="insertForm.dr" class="emp blue">가입하기</a></td></tr></table></form></div>'
+			});
+		};
+		$(function(){
+			$(document).on("click","#modal-loginBtn",function(e){
+				var frm = $("#modal-loginfrm");
+				var v_userEmail = $("#modal-user-email").val();
+				var v_userPwd = $("#modal-user-pwd").val();
+				$.ajax({
+					url : "checkValidate.dr",
+					data : {userEmail : v_userEmail, userPwd : v_userPwd},
+					type : "POST",
+					success : function(result){
+						if(result>0){
+							frm.submit();
+						}else{
+							Swal.fire({
+								type: 'error',
+								title: '로그인 실패!',
+								html: '이메일과 비밀번호가 일치하지 않거나 <br> 해당하는 이메일이 없습니다.',
+								showConfirmButton: false,
+								footer: '<a href="javascript:goLogin();">다시 로그인하기</a>'
+							});
+						}
+					},
+					error : function(e){
+						console.log(e);
+						console.log("외않되");
+					}
+				});
+			});
+		});
+		function checklogin(){
+			var loginuser = ${loginUser.userNo}+"";
+			if(loginuser=="") {
+				Swal.fire({
+					type: 'info',
+					title: '로그인이 필요합니다!',
+					html: '프로젝트 등록은 <a href="javascript:goLogin();">로그인</a> 후 이용해주세요',
+					footer: '<a href="insertForm.dr">아직 저희 회원이 아니신가요? 회원가입 바로가기</a>'
+				});
+				return false;
+			}else{
+				return true;
+			}
+		};
+		
 		// 동의를 모두 체크하고 넘어가면 인서트폼을 보여주는 메소드
 		function checkAgreement() {
-			$("#agreementForm").hide();
-			$("#insertFundForm").show();
-			$('html').animate({
-				scrollTop : 0
-			}, 300);
-			if ($("#rad1").is(":checked")) {
-				$("#ac li>label").css("height",
-						$("#rad1").next().next().outerHeight());
-				$("#ac").css("height", $("#rad1").next().next().outerHeight());
+			var loginchk = checklogin();
+			if(loginchk==true){
+				$("#agreementForm").hide();
+				$("#insertFundForm").show();
+				$('html').animate({
+					scrollTop : 0
+				}, 300);
+				if ($("#rad1").is(":checked")) {
+					$("#ac li>label").css("height",
+							$("#rad1").next().next().outerHeight());
+					$("#ac").css("height", $("#rad1").next().next().outerHeight());
+				}
 			}
 		};
 		

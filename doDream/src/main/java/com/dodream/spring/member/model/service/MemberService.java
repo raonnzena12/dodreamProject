@@ -43,6 +43,13 @@ public interface MemberService {
 
 	public abstract int updatePwd(Member mem);
 
+	/**
+	 * 아이디와 비밀번호가 맞는지 확인해주는 Service
+	 * @param member
+	 * @return result
+	 */
+	public abstract int checkValidate(Member member);
+
 //	public abstract void keepLogin(int userNo, String sessionId, Date next);
 
 //	public abstract Member checkUserWithSessionKey(String sessionId);
