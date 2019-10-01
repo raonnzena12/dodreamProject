@@ -23,6 +23,8 @@
 		<result property="rStatus"     column="REVIEW_STATUS" />
 		<result property="rPNO"        column="REVIEW_REF_PNO" />
 		<result property="nWriter"     column="REVIEW_WRITER" />
+		<result property="reviewTnImg" column="REVIEW_TN_IMG"/>
+		<result property="reviewImg" column="REVIEW_IMG"/>
 	</resultMap>
 	  
 	<!-- FAQ -->

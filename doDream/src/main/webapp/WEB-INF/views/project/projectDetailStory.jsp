@@ -69,7 +69,7 @@
            		width: 680px;
                 height: auto;
                 min-height: 470px;
-                border: 1px solid black;
+                /* border: 1px solid black; */
                 display: block;
                 float: left;
                 margin: 10px 0 0 8px;

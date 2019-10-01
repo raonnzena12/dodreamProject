@@ -108,7 +108,7 @@
            		width: 678px;
            		height: auto;
            		min-height:150px;
-           		/* border: 1px solid black; */
+           		/* border: 1px solid black; */ 
            		margin:0 0 0 0;
            		float:left;
            		display:block;
@@ -169,6 +169,7 @@
                	padding: 0 0 0 5px; 
                	/* border: 1px solid black; */
            }
+           
            .comContent{
            		width: 610px;
            		height: auto;
@@ -235,6 +236,17 @@
            		border-radius: 50%;
            		margin: 0 10px 0 10px;
            		display:block;
+           }
+           .subcomTime{
+           		width:auto;
+           		min-width: 60px;
+           		height: 30px;
+           		font-size: 13px;
+               	display: block;
+              	float: right;
+               	margin: 20px 0 0 0;
+               	padding: 0 0 0 5px; 
+               	/* border: 1px solid black; */
            }
 			.subBox > .subBadge{
            		width:70px;
@@ -306,6 +318,7 @@
 					    			<div class="subProfileBox">
 							    		<img src=""class="subArtImg">
 			                 			<p class="artistText2">닉네임112312321312 </p>
+			                 			<div class="comTime">시간</div>
 							    	</div>
 		                 			<span class="badge badge-primary subBadge">아티스트</span>
 					    		</div>
@@ -331,45 +344,44 @@
    	</section>
 	
 	<script>
-	
 		$(function(){
 			replyList();
-		});
-	
-		
-		// 댓글 등록
-		$("#writebtn").on("click", function(){
 			
 			
-			if(${empty sessionScope.loginUser}){
-				
-				alert("로그인이 필요합니다.");
-				$("#comSelect").val("category");
-				$("#exampleTextarea").val("");
+			// 댓글 등록
+			$("#writebtn").on("click", function(){
 			
-			}else{
 				
-				var reCGNo = $("#comSelect").val();
-				var reContent =$("#exampleTextarea").val();
-				var reRefPNo = ${project.pNo};
+				if(${empty sessionScope.loginUser}){
+					
+					alert("로그인이 필요합니다.");
+					$("#comSelect").val("category");
+					$("#exampleTextarea").val("");
 				
-				$.ajax({
-					url:"detailReply.dr",
-					data:{reCGNo:reCGNo, reContent:reContent, reRefPNo:reRefPNo},
-					type:"post",
-					success: function(result){
-						if(result == "success"){
-							console.log("1111111");
-							$("#exampleTextarea").val("");
-							$("#comSelect").val("category");
-							replyList();
+				}else{
+					
+					var reCGNo = $("#comSelect").val();
+					var reContent =$("#exampleTextarea").val();
+					var reRefPNo = ${project.pNo};
+					
+					$.ajax({
+						url:"detailReply.dr",
+						data:{reCGNo:reCGNo, reContent:reContent, reRefPNo:reRefPNo},
+						type:"post",
+						success: function(result){
+							if(result == "success"){
+								console.log("1111111");
+								$("#exampleTextarea").val("");
+								$("#comSelect").val("category");
+								replyList();
+							}
 						}
-					}
-				});
+					});
+					
+				}
 				
-			}
-			
-			
+				
+			});
 		});
 		
 		//댓글 조회
@@ -417,6 +429,7 @@
 					var $subProfileBox;//서브댓글 작성 유저 프로필 박스
 					var $subArtImg;// 서브댓글 작성 유저 이미지
 					var $artistText2;//서브댓글 작성 유저 닉네임
+					var $subcomTime;// 서브 댓글 입력 시간
 					var $artist;//아티스트 서브 댓글 일때  span태그
 					var $subContent;//서브댓글 내용
 					
@@ -435,7 +448,7 @@
 							//$span = $("<span>").addClass("badge badge-primary subConBadge");// 펀딩 참가자 인지
 							
 							$comText1 = $("<div>").addClass("comText1").text(result.reList[i].reCGName+" | ");//카테고리
-							$comTime = $("<div>").addClass("comTime").text(result.reList[i].reWriDate);// 등록 시간
+							$comTime = $("<div>").addClass("comTime").text(replyTime(result.reList[i].reDay));// 등록 시간	
 							$comContent = $("<div>").addClass("comContent").html(result.reList[i].reContent);// 내용
 							//========================================================
 							$subInputBox = $("<div>").addClass("subInputBox");// 서브댓글 등록박스
@@ -478,12 +491,13 @@
 									$subProfileBox = $("<div>").addClass("subProfileBox");//서브댓글 작성 유저 프로필 박스
 									$subArtImg = $("<img>").addClass("subArtImg").attr("src","resources/images/userProfileImage/"+result.srList[j].subWriImg);// 서브댓글 작성 유저 이미지
 									$artistText2 = $("<p>").addClass("artistText2").text(result.srList[j].subWriter);//서브댓글 작성 유저 닉네임
-									
+									$subcomTime = $("<div>").addClass("subcomTime").text("| " + replyTime(result.srList[j].subReDay));// 등록 시간
 									//$artist = $("<span>").addClass("badge badge-primary subBadge");//아티스트 서브 댓글 일때  span태그
 									
 									$subContent = $("<div>").addClass("subContent").html(result.srList[j].subContent);//서브댓글 내용
 									
 									//===============================
+									$subProfileBox.append($subcomTime);
 									$subProfileBox.append($subArtImg);
 									$subProfileBox.append($artistText2);
 									
@@ -507,10 +521,9 @@
 				}
 			});
 		}
-		// <br>처리 해주기
 		
 		// subReply 등록
-		/* $(".subwrite").on("click", function(){ */
+		
 		function insertSubRe(){
 	
 			console.log("111111111");
@@ -546,8 +559,106 @@
 				
 			}
 		}
-		/* }); */
 		
+		
+		function replyTime(wri){
+			console.log(wri);
+			
+			var today = new Date();
+			console.log(today);
+			//console.log(today);
+			//var write = wri;
+			//var write = wri;
+			
+			/* var m = wri.indexOf("월");
+			var d = wri.indexOf("일");
+			
+			var yyyy= write.substr(7,4);
+			var mm = write.substr(0,m);
+			var dd = write.substr(m+2,d);
+			console.log(yyyy + "/" + mm + "/" +dd);
+			
+			var writeday = new Date(yyyy, mm,dd); */
+			var writeday = new Date(wri);
+			console.log(writeday);
+			
+			var maindiff = Math.abs((today.getTime() - writeday.getTime())/1000);
+			diff = Math.ceil(maindiff / (3600 *24));
+			console.log("diff: "+ diff);
+			var subsec = maindiff%60;
+			console.log("subsec" + subsec);
+			var submin = Math.floor(maindiff/60)%60;
+			console.log("min" + min);
+			var subtr;
+			
+			if(today.getFullYear() > writeday.getFullYear()){ // 년도 비교
+				subtr = today.getFullYear() - writeday.getFullYear();
+				console.log(subtr);
+				return subtr+"년전";
+				
+			}else if(today.getMonth() > writeday.getMonth() && today.getMonth() - writeday.getMonth() > 1 ){// 달 비교
+				subtr = today.getMonth() - writeday.getMonth();
+				console.log(subtr);
+				return subtr+"달전";
+				
+			}else if(today.getDate() != writeday.getDate()){// 일 비교
+				subtr = today.getDate() - writeday.getDate();
+			
+				if(diff == 7){
+					return "일주일전";
+				}else{
+					//console.log(subtr);
+					return diff+"일전";
+				}
+				
+			}else if(today.getDate() == writeday.getDate()){// 일이 같을 경우
+				
+				var currTime = today.getTime();
+				var wriTime = writeday.getTime();
+				
+				var sec;
+				var day;
+				var hour;
+				var min;
+				
+				if(currTime > wriTime){
+					
+					sec = parseInt(currTime - wriTime)/1000;
+					day = parseInt(sec/60/60/24);
+					sec = (sec - (day * 60 * 60 * 24));
+					hour = parseInt(sec/60/60);
+					sec = (sec - (hour*60*60));
+					min = parseInt(sec/60);
+					sec = parseInt(sec-(min*60));
+					/* 
+					if(subsec < 60){
+						
+						return "방금전";
+					
+					}else */ 
+					if(hour > 0){
+						//시간
+						console.log(hour);
+						return hour+"시간전";
+					}else if(min > 0){
+						//몇분전
+						console.log(min);
+						return min+"분전";
+					}else if(sec >= 0){
+						//몇초전
+						console.log(sec);
+						return "방금전";
+					}
+				}
+				/* }else if(currTime > wriTime){
+					
+				} */
+				
+				
+			}
+			
+		}
+		 
 		
 	</script>
 

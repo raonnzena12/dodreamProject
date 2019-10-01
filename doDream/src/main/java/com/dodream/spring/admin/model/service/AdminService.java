@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.dodream.spring.customerCenter.model.vo.Notice;
 import com.dodream.spring.member.model.vo.Member;
 import com.dodream.spring.project.model.vo.Project;
 import com.dodream.spring.project.model.vo.Reply;
@@ -11,6 +12,10 @@ import com.dodream.spring.report.model.vo.Report;
 import com.dodream.spring.report.model.vo.ReportReply;
 import com.dodream.spring.reserve.model.vo.Reserve;
 
+/**
+ * @author user1
+ *
+ */
 public interface AdminService {
 
 	/** 관리자페이지에서 신규회원의 수를 세주는 Service
@@ -193,6 +198,28 @@ public interface AdminService {
 	 * @return result
 	 */
 	public abstract int removeReply(int reNo);
+
+	/** 공지사항 목록
+	 * @return list
+	 */
+	public abstract ArrayList<Notice> selectNoticeList();
+
+	/** 공지사항 수정
+	 * @param nNo
+	 * @return result
+	 */
+	public abstract int updateNotice(int nNo);
+
+	/** 주문 예약 취소 
+	 * @return result
+	 */
+	public abstract int cancelReserve(int resNo);
+
+	/** 공지사항 삭제
+	 * @param nNo
+	 * @return result 
+	 */
+	public abstract int removeNotice(int nNo);
 
 	
 

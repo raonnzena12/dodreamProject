@@ -39,6 +39,7 @@
     	<mapper resource="mappers/follow-mapper.xml"/>
     	<mapper resource="mappers/reserve-mapper.xml"/>
     	<mapper resource="mappers/adminReply-mapper.xml"/>
+    	<mapper resource="mappers/adminNotice-mapper.xml"/>
  	</mappers>
 	
 </configuration>

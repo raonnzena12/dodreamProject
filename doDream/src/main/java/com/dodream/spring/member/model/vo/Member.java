@@ -19,12 +19,37 @@ public class Member {
 	private String userPhone;
 	private String userProfileImage;
 	private String userSelf;
-	private String useCookie;
-	
+	private boolean useCookie;
 	private String sessionId;
 	private Timestamp limit;
 		
 	public Member() {}
+	
+		
+	public Member(int userNo, String userEmail, String userNickname, String userPwd, String userEmailAuthYn,
+			String userAdminYn, String userStatus, Date userEnrollDate, Date userLoginDate, Date userModifyDate,
+			String userAddress, String userPhone, String userProfileImage, String userSelf, boolean useCookie,
+			String sessionId, Timestamp limit) {
+		super();
+		this.userNo = userNo;
+		this.userEmail = userEmail;
+		this.userNickname = userNickname;
+		this.userPwd = userPwd;
+		this.userEmailAuthYn = userEmailAuthYn;
+		this.userAdminYn = userAdminYn;
+		this.userStatus = userStatus;
+		this.userEnrollDate = userEnrollDate;
+		this.userLoginDate = userLoginDate;
+		this.userModifyDate = userModifyDate;
+		this.userAddress = userAddress;
+		this.userPhone = userPhone;
+		this.userProfileImage = userProfileImage;
+		this.userSelf = userSelf;
+		this.useCookie = useCookie;
+		this.sessionId = sessionId;
+		this.limit = limit;
+	}
+
 
 	public int getUserNo() {
 		return userNo;
@@ -137,12 +162,12 @@ public class Member {
 	public void setUserSelf(String userSelf) {
 		this.userSelf = userSelf;
 	}
-	
-	public String getUseCookie() {
+
+	public boolean isUseCookie() {
 		return useCookie;
 	}
 
-	public void setUseCookie(String useCookie) {
+	public void setUseCookie(boolean useCookie) {
 		this.useCookie = useCookie;
 	}
 
@@ -162,29 +187,6 @@ public class Member {
 		this.limit = limit;
 	}
 
-	public Member(int userNo, String userEmail, String userNickname, String userPwd, String userEmailAuthYn,
-			String userAdminYn, String userStatus, Date userEnrollDate, Date userLoginDate, Date userModifyDate,
-			String userAddress, String userPhone, String userProfileImage, String userSelf, String useCookie,
-			String sessionId, Timestamp limit) {
-		super();
-		this.userNo = userNo;
-		this.userEmail = userEmail;
-		this.userNickname = userNickname;
-		this.userPwd = userPwd;
-		this.userEmailAuthYn = userEmailAuthYn;
-		this.userAdminYn = userAdminYn;
-		this.userStatus = userStatus;
-		this.userEnrollDate = userEnrollDate;
-		this.userLoginDate = userLoginDate;
-		this.userModifyDate = userModifyDate;
-		this.userAddress = userAddress;
-		this.userPhone = userPhone;
-		this.userProfileImage = userProfileImage;
-		this.userSelf = userSelf;
-		this.useCookie = useCookie;
-		this.sessionId = sessionId;
-		this.limit = limit;
-	}
 
 	@Override
 	public String toString() {
@@ -198,9 +200,4 @@ public class Member {
 	
 	
 
-
-
-
-
-	
 }

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.dodream.spring.common.model.vo.PageInfo;
+import com.dodream.spring.customerCenter.model.vo.Notice;
 import com.dodream.spring.member.model.vo.Member;
 import com.dodream.spring.project.model.vo.Project;
 import com.dodream.spring.project.model.vo.Reply;
@@ -254,6 +255,37 @@ public class AdminDao {
 	 */
 	public int removeReply(int reNo) {
 		return sqlSession.update("adminReplyMapper.removeReply", reNo);
+	}
+
+	/** 공지사항 목록
+	 * @return list 
+	 */
+	public ArrayList<Notice> selectNoticeList() {
+		return (ArrayList)sqlSession.selectList("adminNoticeMapper.selectNoticeList");
+	}
+
+	/** 공지사항 수정하기
+	 * @param nNo
+	 * @return result
+	 */
+	public int updateNotice(int nNo) {
+		return sqlSession.update("adminNoticeMapper.updateNotice",nNo);
+	}
+
+	/** 주문 예약 취소
+	 * @param resNo
+	 * @return result
+	 */
+	public int cancelReserve(int resNo) {
+		return sqlSession.update("adminReserveMapper.cancelReserve", resNo);
+	}
+
+	/** 공지사항 삭제
+	 * @param nNo 
+	 * @return result
+	 */
+	public int removeNotice(int nNo) {
+		return sqlSession.update("adminNoticeMapper.removeNotice", nNo);
 	}
 
 }

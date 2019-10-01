@@ -3,82 +3,123 @@ package com.dodream.spring.customerCenter.model.vo;
 import java.sql.Date;
 
 public class Review {
-	private int rNo;          // 번호
-	private String rTitle;    // 제목
-	private String rContent;  // 내용
-	private Date rEnrollDate; // 작성일
-	private Date rModifyDate; // 수정일
-	private String rStatus;   // 상태
-	private int rPNo;         // 프로젝트 번호
-	private int nWriter;      // 작성자번호(관리자)
+	private int revNo;          // 번호
+	private String revTitle;    // 제목
+	private String revContent;  // 내용
+	private Date revEnrollDate; // 작성일
+	private Date revModifyDate; // 수정일
+	private String revStatus;   // 상태
+	private int revRefPno;      // 프로젝트 번호
+	private int revWriter;      // 작성자번호(관리자)
+	private String reviewTnImg; // 썸네일
+	private String ReviewImg;	// 리뷰 이미지
 	
 	public Review() {  
 		// TODO Auto-generated constructor stub
-	} 
-	public Review(int rNo, String rTitle, String rContent, Date rEnrollDate, Date rModifyDate, String rStatus, int rPNo,
-			int nWriter) {
-		super(); 
-		this.rNo = rNo;
-		this.rTitle = rTitle;
-		this.rContent = rContent;
-		this.rEnrollDate = rEnrollDate;
-		this.rModifyDate = rModifyDate;
-		this.rStatus = rStatus;
-		this.rPNo = rPNo;
-		this.nWriter = nWriter;
 	}
-	public int getrNo() {
-		return rNo;
+
+	public Review(int revNo, String revTitle, String revContent, Date revEnrollDate, Date revModifyDate,
+			String revStatus, int revRefPno, int revWriter, String reviewTnImg, String reviewImg) {
+		super();
+		this.revNo = revNo;
+		this.revTitle = revTitle;
+		this.revContent = revContent;
+		this.revEnrollDate = revEnrollDate;
+		this.revModifyDate = revModifyDate;
+		this.revStatus = revStatus;
+		this.revRefPno = revRefPno;
+		this.revWriter = revWriter;
+		this.reviewTnImg = reviewTnImg;
+		this.ReviewImg = reviewImg;
 	}
-	public void setrNo(int rNo) {
-		this.rNo = rNo;
+
+	public int getRevNo() {
+		return revNo;
 	}
-	public String getrTitle() {
-		return rTitle;
+
+	public void setRevNo(int revNo) {
+		this.revNo = revNo;
 	}
-	public void setrTitle(String rTitle) {
-		this.rTitle = rTitle;
+
+	public String getRevTitle() {
+		return revTitle;
 	}
-	public String getrContent() {
-		return rContent;
+
+	public void setRevTitle(String revTitle) {
+		this.revTitle = revTitle;
 	}
-	public void setrContent(String rContent) {
-		this.rContent = rContent;
+
+	public String getRevContent() {
+		return revContent;
 	}
-	public Date getrEnrollDate() {
-		return rEnrollDate;
+
+	public void setRevContent(String revContent) {
+		this.revContent = revContent;
 	}
-	public void setrEnrollDate(Date rEnrollDate) {
-		this.rEnrollDate = rEnrollDate;
+
+	public Date getRevEnrollDate() {
+		return revEnrollDate;
 	}
-	public Date getrModifyDate() {
-		return rModifyDate;
+
+	public void setRevEnrollDate(Date revEnrollDate) {
+		this.revEnrollDate = revEnrollDate;
 	}
-	public void setrModifyDate(Date rModifyDate) {
-		this.rModifyDate = rModifyDate;
+
+	public Date getRevModifyDate() {
+		return revModifyDate;
 	}
-	public String getrStatus() {
-		return rStatus;
+
+	public void setRevModifyDate(Date revModifyDate) {
+		this.revModifyDate = revModifyDate;
 	}
-	public void setrStatus(String rStatus) {
-		this.rStatus = rStatus;
+
+	public String getRevStatus() {
+		return revStatus;
 	}
-	public int getrPNo() {
-		return rPNo;
+
+	public void setRevStatus(String revStatus) {
+		this.revStatus = revStatus;
 	}
-	public void setrPNo(int rPNo) {
-		this.rPNo = rPNo;
+
+	public int getRevRefPno() {
+		return revRefPno;
 	}
-	public int getnWriter() {
-		return nWriter;
+
+	public void setRevRefPno(int revRefPno) {
+		this.revRefPno = revRefPno;
 	}
-	public void setnWriter(int nWriter) {
-		this.nWriter = nWriter;
+
+	public int getRevWriter() {
+		return revWriter;
 	}
+
+	public void setRevWriter(int revWriter) {
+		this.revWriter = revWriter;
+	}
+
+	public String getReviewTnImg() {
+		return reviewTnImg;
+	}
+
+	public void setReviewTnImg(String reviewTnImg) {
+		this.reviewTnImg = reviewTnImg;
+	}
+
+	public String getReviewImg() {
+		return ReviewImg;
+	}
+
+	public void setReviewImg(String reviewImg) {
+		this.ReviewImg = reviewImg;
+	}
+
 	@Override
 	public String toString() {
-		return "Review [rNo=" + rNo + ", rTitle=" + rTitle + ", rContent=" + rContent + ", rEnrollDate=" + rEnrollDate
-				+ ", rModifyDate=" + rModifyDate + ", rStatus=" + rStatus + ", rPNo=" + rPNo + ", nWriter=" + nWriter
+		return "Review [revNo=" + revNo + ", revTitle=" + revTitle + ", revContent=" + revContent + ", revEnrollDate="
+				+ revEnrollDate + ", revModifyDate=" + revModifyDate + ", revStatus=" + revStatus + ", revRefPno="
+				+ revRefPno + ", revWriter=" + revWriter + ", reviewTnImg=" + reviewTnImg + ", ReviewImg=" + ReviewImg
 				+ "]";
 	}
+
+
 }

@@ -7,6 +7,7 @@ public class Reply {
 	private String reContent;// 댓글 내용
 	private String reStatus;// 댓글 상태 
 	private Date reWriDate;// 댓글 작성일
+	private String reDay;// 댓글 작성일 수정
 	private Date reModiDate;// 댓글 수정일
 	private int reRefPNo;// 프로젝트 번호
 	private int reWriNo;// 작성자 번호
@@ -19,13 +20,14 @@ public class Reply {
 	public Reply() {}
 
 
-	public Reply(int reNo, String reContent, String reStatus, Date reWriDate, Date reModiDate, int reRefPNo,
-			int reWriNo, String reWriter, String reWriImg, int reCGNo, String reCGName) {
+	public Reply(int reNo, String reContent, String reStatus, Date reWriDate, String reDay, Date reModiDate,
+			int reRefPNo, int reWriNo, String reWriter, String reWriImg, int reCGNo, String reCGName) {
 		super();
 		this.reNo = reNo;
 		this.reContent = reContent;
 		this.reStatus = reStatus;
 		this.reWriDate = reWriDate;
+		this.reDay = reDay;
 		this.reModiDate = reModiDate;
 		this.reRefPNo = reRefPNo;
 		this.reWriNo = reWriNo;
@@ -73,6 +75,16 @@ public class Reply {
 
 	public void setReWriDate(Date reWriDate) {
 		this.reWriDate = reWriDate;
+	}
+
+
+	public String getReDay() {
+		return reDay;
+	}
+
+
+	public void setReDay(String reDay) {
+		this.reDay = reDay;
 	}
 
 
@@ -149,10 +161,11 @@ public class Reply {
 	@Override
 	public String toString() {
 		return "Reply [reNo=" + reNo + ", reContent=" + reContent + ", reStatus=" + reStatus + ", reWriDate="
-				+ reWriDate + ", reModiDate=" + reModiDate + ", reRefPNo=" + reRefPNo + ", reWriNo=" + reWriNo
-				+ ", reWriter=" + reWriter + ", reWriImg=" + reWriImg + ", reCGNo=" + reCGNo + ", reCGName=" + reCGName
-				+ "]";
+				+ reWriDate + ", reDay=" + reDay + ", reModiDate=" + reModiDate + ", reRefPNo=" + reRefPNo
+				+ ", reWriNo=" + reWriNo + ", reWriter=" + reWriter + ", reWriImg=" + reWriImg + ", reCGNo=" + reCGNo
+				+ ", reCGName=" + reCGName + "]";
 	}
+
 
 	
 	

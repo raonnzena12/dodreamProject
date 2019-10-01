@@ -42,6 +42,7 @@
 	}
 </style>
 </head>
+
 <body>
 	<section id="mainMenuBar">
 	<div class="mainLogoArea" id="mainLogoArea"><a href="home.dr"><img src="${contextPath}/resources/images/DoDream-2e.png" alt="두드림" id="mainLogo"></a></div>
@@ -88,7 +89,7 @@
 				</div>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="letsFunding.dr">(temp) 펀딩 결제 INFO</a>
+				<a class="nav-link" href="kakaotest.dr">(temp) 펀딩 결제 INFO</a>
 			</li>
 			</ul>
 			<ul class="navbar-nav ml-auto mr-3">
@@ -138,7 +139,7 @@
 						</tr>
 						<tr>
 							<td class="loginmenuText custom-control custom-checkbox my-1">
-								<input type="checkbox" class="custom-control-input" value="autoLogin" id="autoLogin" name="useCookie"><label class="custom-control-label" for="autoLogin" >자동 로그인</label>
+								<input type="checkbox" class="custom-control-input" id="useCookie" name="useCookie"><label class="custom-control-label" for="useCookie" >자동로그인</label>
 								<a href="findPwd.dr" class="gray float-right">비밀번호 찾기</a>
 							</td>
 						</tr>
@@ -232,8 +233,13 @@
 			$("#prevPage").val(arr[2]);
 			frm.submit();
 		};
-			
-			
+		
+		$("#loginBtn").click(function() {
+			var useCookie = $("input[name=useCookie]").is(":checked");
+			console.log(useCookie);
+		});
+		
+
 
 	</script>
 	<%@ include file="footer.jsp" %>

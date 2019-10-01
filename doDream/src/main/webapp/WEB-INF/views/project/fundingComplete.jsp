@@ -7,6 +7,7 @@
 <title>두드림 - 프로젝트 펀딩완료</title>
 <%@ include file="../common/menubar.jsp" %>
 <link rel="stylesheet" href="resources/css/fundingInfo.css">
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 </head>
 <body>
 <c:url var="myFundingStatus" value="temp3.dr" />
@@ -28,8 +29,19 @@
                                 공유하기로 프로젝트를 응원하세요 :)<br>
                                 아티스트의 꿈이 세상에 알려질 수 있도록 공유해주세요
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-3" id="area1" >
                                 <button type="button" class="btn btn-light rounded-circle border" id="shareBtn"><i class="material-icons">share</i></button>
+                            </div>
+                            <div class="col-md-3" id="area2" >
+                                <a href="javascript:sendKakaoLink()">
+                                    <img src="resources/images/kakao_sns_icon.png">
+                                </a>
+                                <a href="" onclick="window.open('https://twitter.com/share?text=dodreamTest&url=http://localhost:8080/spring/thankYou.dr','','width=700, height=460'); return false;", title="트위터 공유">
+                                    <img src="resources/images/twit_gray_icon.png">
+                                </a>
+                                <a href="" onclick="window.open('http://www.facebook.com/sharer/sharer.php?u=http://localhost:8080/spring/thankYou.dr','','width=700, height=460'); return false;", title="페이스북 공유">
+                                    <img src="resources/images/faceB_sns_icon.png">
+                                </a>
                             </div>
                         </div>
                         <div class="infoArea">
@@ -78,7 +90,41 @@ $(function(){
         // }
         location.href="${ myFundingStatus }";
     });
+    $("#shareBtn").on("click", function(){
+        $("#area1").hide();
+        $("#area2").show();
+    });
+
 });
+
+Kakao.init('f6425fbc64a59be6a2488da73ec0761d');
+function sendKakaoLink() {
+    Kakao.Link.sendDefault({
+        objectType: 'feed',
+        content: {
+          title: '두드림 테스트',
+          description: '#두드림 #테스트 #두드림 #두드림',
+          imageUrl: 'https://i.imgur.com/rA4AbTP.png',
+          link: {
+            mobileWebUrl: 'https://www.google.com',
+            webUrl: 'https://www.google.com'
+          }
+        },
+        social: {
+        //   likeCount: 286,
+          viewCount: 845
+        },
+        buttons: [
+          {
+            title: '웹으로 보기',
+            link: {
+              mobileWebUrl: 'https://www.google.com',
+              webUrl: 'https://www.google.com'
+            }
+          }
+        ]
+      });
+}
 </script>
 </body>
 </html>

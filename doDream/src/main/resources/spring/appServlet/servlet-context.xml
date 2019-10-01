@@ -23,14 +23,13 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-<!-- 	로그인 인터셉터 적용 
   		<interceptors>
        		<interceptor>
             <mapping path="/login.dr"/>
             <beans:bean class="com.dodream.spring.common.interceptor.AuthenticationInterceptor" id="AuthenticationInterceptor"/>
          	</interceptor>
       	</interceptors> 
-       -->
+
  
 
 	<context:component-scan base-package="com.dodream.spring" />

@@ -87,6 +87,21 @@ public class AdminReserveController {
 		return mv;
 	}
 	
+	// 주문 예약 취소 
+	@RequestMapping("cancelReserve.dr")
+	public ModelAndView cancelReserve(ModelAndView mv, int resNo) {
+		
+		int result = aService.cancelReserve(resNo);
+		
+		if(result > 0) {
+			mv.setViewName("redirect:adminRlist1.dr");
+		} else {
+			mv.addObject("msg", "취소할 예약건이 존재하지 않습니다.").setViewName("redirect:adminRlist1.dr");
+		}
+		
+		return mv;
+	}
+	
 	
 	
 	

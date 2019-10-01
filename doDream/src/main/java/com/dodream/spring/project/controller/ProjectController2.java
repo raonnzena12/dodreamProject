@@ -21,6 +21,8 @@ import com.dodream.spring.project.model.vo.Project;
 import com.dodream.spring.project.model.vo.Reply;
 import com.dodream.spring.project.model.vo.Reward;
 import com.dodream.spring.project.model.vo.SubReply;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 @Controller
 public class ProjectController2 {
@@ -84,8 +86,10 @@ public class ProjectController2 {
 			return "project/projectDetailStory";
 		}else if(currentPage == 2){
 			return "project/projectDetailReward";
-		}else {
+		}else if(currentPage == 3) {
 			return "project/projectDetailCommunity";
+		}else {
+			return "project/projectDetailGuide";
 		}
 		
 	}
@@ -189,6 +193,8 @@ public class ProjectController2 {
 		
 		HashMap<String, Object> map = new HashMap<>();
 		
+		
+		System.out.println(reList);
 		map.put("reList", reList);
 		map.put("srList", srList);
 		

@@ -143,7 +143,31 @@
 															<td>${ r.resContact}</td>
 															<td>${ r.resAddress}</td>
 															<td>
-																<button type="button" id="projectBtn1" class="btn btn-primary btn-lg btn-block rewardBtn">예약 취소</button>
+																<button type="button" data-toggle="modal" data-target="#modal${ status.index }" data-whatever="취소하기"
+ 																 id="removeReply" class="btn btn-primary btn-lg btn-block rewardBtn">취소하기</button>
+ 																 <!-- Modal -->
+ 																<form action ="cancelReserve.dr" method="post">
+																<div class="modal fade" id="modal${ status.index }" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+																  <div class="modal-dialog" role="document">
+																    <div class="modal-content">
+																      <div class="modal-header">
+																        <h5 class="modal-title" id="exampleModalLabel">예약 취소</h5>
+																        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																          <span aria-hidden="true">&times;</span>
+																        </button>
+																      </div>
+																      <div class="modal-body">
+																        	예약 취소를 진행하시겠습니까?
+																      </div>
+																      <div class="modal-footer">
+																        <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+																        <button type="submit" class="btn btn-primary">취소하기</button>
+																        <input type="hidden" name="resNo" value="${r.resNo}">
+																      </div>
+																    </div>
+																  </div>
+																</div>
+ 																</form>
 															</td>
 														</tr>
 													</c:forEach>
@@ -228,6 +252,3 @@
 
 </html>
 
-
-</body>
-</html>

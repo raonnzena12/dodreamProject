@@ -37,7 +37,7 @@
 	
 	<!-- 나를 팔로잉한 사람 리스트 -->
 	<select id="selectFollowerList" parameterType="_int" resultMap="followResultSet">
-		SELECT * FROM FOLLOWLIST WHERE FOLLOW = #{userNo};
+		SELECT * FROM FOLLOWLIST WHERE FOLLOW = #{userNo}
 	</select>
   
 </mapper>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="adminNoticeMapper">
+	
+	<resultMap type="Notice" id="noticeResultSet">
+		<id property="nNo" column="NOTICE_NO"/>
+		<result property="nTitle" column="NOTICE_TITLE"/>
+		<result property="nContent" column="NOTICE_CONTENT"/>
+		<result property="nEnrollDate" column="NOTICE_ER_DT"/>
+		<result property="nModifyDate" column="NOTICE_MF_DT"/>
+		<result property="nStatus" column="NOTICE_STATUS"/>
+		<result property="nWriter" column="NOTICE_WRITER"/>
+		<result property="userNickname" column="USER_NICKNAME"/>
+	</resultMap>
+	
+	<!-- 공지사항 목록 -->
+	<select id="selectNoticeList" resultMap="noticeResultSet">
+		SELECT  NOTICE_NO,NOTICE_TITLE,NOTICE_CONTENT,NOTICE_ER_DT,NOTICE_MF_DT,NOTICE_STATUS,NOTICE_WRITER,USER_NICKNAME
+		FROM NOTICE
+		JOIN USER_TB ON(USER_NO=NOTICE_WRITER)
+		WHERE NOTICE_STATUS = 'Y'
+	</select>
+	
+	<!-- 공지사항 수정하기 -->
+	<update id="updateNotice" parameterType="_int">
+		UPDATE NOTICE SET
+		NOTICE_CONTENT = #{nContent}, NOTICE_MF_DT = SYSDATE
+		WHERE NOTICE_NO = #{nNo}
+	</update>
+	
+	<!-- 공지사항 삭제 -->
+	<update id="removeNotice" parameterType="_int">
+		UPDATE NOTICE SET
+		NOTICE_STATUS = 'N'
+		WHERE NOTICE_NO = #{nNo}
+	</update>
+	
+	
+	
+</mapper>
