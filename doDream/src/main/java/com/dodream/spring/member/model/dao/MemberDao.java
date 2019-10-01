@@ -45,10 +45,12 @@ public class MemberDao {
 	}
 
 	public int updatePwd(Member mem) {
-		
 		return sqlSession.update("memberMapper.updatePwd", mem);
 	}
 
+	public int checkValidate(Member member) {
+		return sqlSession.selectOne("memberMapper.checkValidate", member);
+	}
 	public int keepLogin(Member member) {
 		 return sqlSession.update("memberMapper.keepLogin", member);
 	}
@@ -56,8 +58,6 @@ public class MemberDao {
 	public Member checkUserWithSessionKey(String sessionId) {
 		return sqlSession.selectOne("memberMapper.checkUserWithSessionKey", sessionId);
 	}
-
-	
 
 	
 }
