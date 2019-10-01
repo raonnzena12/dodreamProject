@@ -320,7 +320,7 @@
            }
            .check{
            		float: right;
-           		/* display:none */;
+           		display:none;
            }
            #rname{
            		border: 1px solid black;
@@ -329,8 +329,18 @@
                 height:auto;
                 display:block;
                 float:left;
-                padding-right:70px;
+                /* padding-right:70px; */
                 position: relative;
+           }
+           #rewardname{
+           		border: 1px solid black;
+                width: 230px;
+                min-height: 30px;
+                height:auto;
+                display:block;
+                float:left;
+               /*  padding-right:70px; */
+                /* position: relative; */
            }
            #recount{
            		border: 1px solid black;
@@ -482,7 +492,7 @@
                         <div id="asideText3" class="clearfix">
                            <!-- 선택한 리워드 제목이 들어감 -->
                            <div id="rname" class="clearfix">
-                           
+                           		<!-- <div id="rewardname"></div> -->
                            		<!-- <div id="recount"></div> -->
                            </div>
                            
@@ -498,8 +508,6 @@
 	   	/* 프로젝트 번호, 리워드 번호 /로 구분, 추가금액,보내고  ////// 수량 넣기 옵션*/
    	
    		$(function(){
-   			
-   			
    			
    			if(${subReward ne '0'}){
    				
@@ -579,8 +587,9 @@
    			});
    				comma = price + $("#rewardInput").val()*1;
    				$("#rewardSum").text(comma.toLocaleString());
-   				$("#rname").html(checkName +"<div id='recount'>"+ count +"</div>");
+   				$("#asideText3").html("<div id='rewardname'>"+checkName+"</div>"+"<div id='recount'>"+ count +"</div>");
    				//$("#recount").html(count);
+   				//수량수량
    				
 		
 			}

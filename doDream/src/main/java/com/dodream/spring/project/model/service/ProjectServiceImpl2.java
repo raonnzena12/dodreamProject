@@ -54,6 +54,8 @@ public class ProjectServiceImpl2 implements ProjectService2{
 	@Override
 	public int insertReply(Reply reply) {
 		
+		reply.setReContent(reply.getReContent().replace("\n", "<br>"));
+		
 		return pDao2.insertReply(reply);
 	}
 	
@@ -74,6 +76,8 @@ public class ProjectServiceImpl2 implements ProjectService2{
 	// 서브 댓글 입력 Service
 	@Override
 	public int insertSubReply(SubReply subRe) {
+		
+		subRe.setSubContent(subRe.getSubContent().replace("\n","<br>"));
 		
 		return pDao2.selectSubReply(subRe);
 	}

@@ -57,6 +57,7 @@
 		<result property="reContent" column="REPLY_CONTENT"/>
 		<result property="reStatus" column="REPLY_STATUS"/>
 		<result property="reWriDate" column="REPLY_WRI_DT"/>
+		<result property="reDay" column="REDAY"/>
 		<result property="reModiDate" column="REPLY_MODI_DT"/>
 		<result property="reRefPNo" column="REPLY_REF_PNO"/>
 		<result property="reWriNo" column="REPLY_WRITER"/>
@@ -71,6 +72,7 @@
 		<result property="subContent" column="SUBRE_CON"/>
 		<result property="subStatus" column="SUBRE_STATUS"/>
 		<result property="subWriDate" column="SUBRE_WRI_DT"/>
+		<result property="subReDay" column="SUBREDAY"/>
 		<result property="subModiDate" column="SUBRE_MODI_DT"/>
 		<result property="subWriNo" column="SUBRE_WRITER"/>
 		<result property="subWriter" column="NICKNAME"/>

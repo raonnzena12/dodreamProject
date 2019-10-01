@@ -187,11 +187,11 @@
                color: #F39C12;
                /* margin-left: 10px; */
            }
-           #favorite2{
+          /*  #favorite2{
            		font-size: 50px;
                	text-align: center;
                	color: #8E44AD;
-           }
+           } */
            
            #share{
                 font-size: 50px;
@@ -266,7 +266,7 @@
                        ${project.pSummaryText}
                     </p>
                     <div id="profile">
-                        <img src="resources/images/projectImg/artistImg/${project.pArtistPFImage}" alt="" id="profileimg" width="60px" height="60px">
+                        <img src="resources/images/projectImg/artistImg/${project.pArtistPFImage}" id="profileimg" width="60px" height="60px">
                         <p id="text2">${project.pArtistName }님 </p>
                     </div>
                     
@@ -288,28 +288,28 @@
                         <button type="button" class="btn btn-primary btn-lg btn-block" id="supportbtn" onclick="location.href='detailSt.dr?page=2&pNo='+${project.pNo};">후 원 하 기</button>
                      
                      <!-- 로그인 했을 때 -->
-                      <c:if test="${!empty sessionScope.loginUser}">
+                      <%-- <c:if test="${!empty sessionScope.loginUser}">
                       		
                       		<!-- 로그인 유저와 좋아요 한사람이 같을 때 -->
-	                        <c:if test="${loginUser.userNo eq like.likeNo}">
+	                        <c:if test="${loginUser.userNo eq like.likeNo}"> --%>
 		                        <div id="icon">
-		                                <i class="material-icons" id="favorite2" onclick="LikeDelete();">favorite_border</i>
+		                                <i class="material-icons" id="favorite">favorite_border</i>
 		                        </div>
-	                        </c:if>
+	                       <%-- </c:if>
 	                        <!-- 로그인 유저와 좋아요 한사람이 다를 때 -->
 	                        <c:if test="${loginUser.userNo ne like.likeNo}">
 	                        	<div id="icon">
-		                                <i class="material-icons" id="favorite" onclick="detailLike();">favorite_border</i>
+		                                <i class="material-icons" id="favorite" onclick="Like();">favorite_border</i>
 		                        </div>
 	                        </c:if>
                      </c:if>
                      <!-- 로그인 안했을 때 -->
-                     <c:if test="${empty sessionScope.loginUser}">
+                      <c:if test="${empty sessionScope.loginUser}">
 	                     	<div id="icon">
 		                          <i class="material-icons" id="favorite" onclick='alert("로그인이 필요합니다.");'>favorite_border</i>
 		                    </div>
-                     </c:if>
-                         
+                     </c:if> --%>
+                          
                         <div id="icon2">
                             <i class="material-icons" id="share">share</i>
                         </div>
@@ -323,7 +323,7 @@
                 <nav class="nav">
                     <div class="container-fluid" id="detailnav">
                       <div id="story" onclick="location.href='detailSt.dr?pNo='+${project.pNo};">스토리</div>
-                      <div id="guide">펀딩 안내</div>
+                      <div id="guide" onclick="location.href='detailSt.dr?page=4&pNo='+${project.pNo};">펀딩 안내</div>
                       <div id="community" onclick="location.href='detailSt.dr?page=3&pNo='+${project.pNo};">커뮤니티</div>
                       <div id="reward" onclick="location.href='detailSt.dr?page=2&pNo='+${project.pNo};">리워드</div>
                     </div>
@@ -333,18 +333,57 @@
 	</section>
 	
 	<script>
+	$(function(){
+		
+		
+		if(${!empty sessionScope.loginUser}){
+			if(${loginUser.userNo eq like.likeNo}){
+				$("#favorite").css("color","#8E44AD");
+				
+			}else if(${loginUser.userNo ne like.likeNo}){
+				$("#favorite").css("color","#F39C12");
+			}
+			
+		}
+		
+		$("#favorite").on("click", function(){
+			if( ${ empty loginUser }) {
+				alert("로그인이 필요합니다.");
+				return false;
+			} else {
+				if($(this).css("color") == "rgb(142, 68, 173)"){
+					LikeDelete(); 
+				}else if($(this).css("color") == "rgb(243, 156, 18)"){
+					detailLike();
+				}
+			}
+		});
+		
+		if(${project.pDDay} < 0){
+			$("#detailDday").text("종료된 프로젝트 입니다.").css("background-color","gray");
+			$("#supportbtn").css({"background-color":"gray", "border":"#F39C12"});
+		}
+	 
+		
+			
+	});
+		
 	
-	
+			
+		
 		
 	
 	/* ===========================좋아요 버튼 취소=========================== */
 		function LikeDelete(){
 			
 		
-			if(${!empty sessionScope.loginUser}){
+			//if(${!empty sessionScope.loginUser}){
 				
 				var uno = ${loginUser.userNo};
 				var pNo = ${project.pNo};
+				
+				console.log(uno);
+				console.log(pNo);
 				
 				//$("#favorite2").on("click", function(){
 					if(confirm("프로젝트 좋아요를 취소하시겠습니까?")){
@@ -355,8 +394,9 @@
 						type: "post",
 						success: function(result){
 							if(result == 1){
-								$("#favorite2").css("color","#F39C12");
+								$("#favorite").css("color","#F39C12");
 								alert("좋아요가 취소되었습니다.");
+								
 							}else{
 								alert("좋아요 취소 실패");
 							}
@@ -366,7 +406,7 @@
 							console.log(e);
 						}
 					});
-				}
+				//}
 				//});
 			}
 		}	
@@ -377,9 +417,9 @@
 			
 			//$("#favorite").on("click", function(){
 				
-				if(${!empty sessionScope.loginUser}){
+				//if(${!empty sessionScope.loginUser}){
 	
-					/* var uno = ${loginUser.userNo}; */
+					var uno = ${loginUser.userNo};
 					var pNo = ${project.pNo};
 					
 					$.ajax({
@@ -390,6 +430,7 @@
 							if(result == 1){
 								$("#favorite").css("color", "#8E44AD");
 								alert("좋아요를 성공했습니다.");
+								
 							}else{
 								alert("좋아요 실패");
 							}
@@ -401,7 +442,7 @@
 						
 					});
 					
-				}
+				//}
 				
 			//});
 		}
