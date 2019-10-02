@@ -4,18 +4,11 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>펀딩후기</title>
+<title>프로젝트 후기</title>
 <jsp:include page="../common/menubar.jsp"></jsp:include>
 <link rel="stylesheet" href="resources/css/fundList.css">
-<meta name="description" content="Source code generated using layoutit.com">
-<meta name="author" content="LayoutIt!">
-
-<link href="css/bootstrap.min.css" rel="stylesheet">
-<link href="css/style.css" rel="stylesheet">
-<STYLE>
+<style>
 #ReviewCon {
 	width: 1200px;
 	min-height: 900px;
@@ -47,15 +40,38 @@
     text-align: center;
     padding: 0 20px;
 }
-</STYLE>
+.fundImg>img {
+    width: 100%;
+    height: 180px;
+}
+.fundCon {
+    /* border: 1px solid red; */
+    width: 250px;
+    height: 350px;
+    /* position: absolute; */
+    margin: auto;
+    right: 0;
+    left: 0;
+    box-shadow: 1px 1px 3px #ccc;
+}
+#category .fundCon:hover {
+    box-shadow: 1px 1px 4px #aaa;
+}
+#REviewCon row{
+	
+	widows: 100%;
+	height: 100px;
+
+}
+</style>
 </head>
 <body>
 
 	<div class="container-fluid" id="ReviewCon">
 		<div class="row">
 			<div class="col-md-12" align="center">
-				<div class="jumbotron">
-					<img src="resources/images/backgroundImg/배경로고시안 (2).png" style="width: 100%">
+				<div class="jumbotrodn"> </div>
+					<img 배경로고시안 (2).png" style="width: 100%">
 				</div>
 			</div>
 		</div>
@@ -122,75 +138,48 @@
                
                <!-- 프로젝트 후기 리스트 출력 -->
 				<div class="resultPrint">
-	              <c:forEach var="fr" items="${ rList }" >
+	             <%--  <c:forEach var="rev" items="${ revList }" > --%>
 	              <div>
 	                 <div class="fundCon">
-	                    <div class="fundItem" id="${ fr.rNo }">
+	                    <div class="fundItem"><!--id="${ rev.rNo }" 후기 번호 -->
 	                       <div class="fundImg">
 	                          <!-- <img src="resources/projectImg/thumbnail/${ fr.pThumbImage }"> -->
-	                          <img src="resources\img\고양이.PNG">
+	                          <img src="resources\img\고양이.PNG"><!-- 썸네일이미지 -->
 	                       </div>
 	                       <div class="nameArea">
 	                          <span class="categoryName">
-	                          	<%-- ${ fr.pCategoryName } --%>
 	                          	프로젝트 후기 이름
+	                          	<%-- ${ fr.pCategoryName } --%>
+	                          	<!-- 프로젝트 후기 이름 -->
 	                          </span><br>
 	                          <span class="fundName">
-	                             <!--
-	                             <c:choose>
-	                                <c:when test="${ fn:length(fr.pTitle) > 10 }">
-	                                ${ fn:substring(fr.pTitle,0,10) }…
-	                                </c:when>
-	                                <c:otherwise>
-	                                ${ fr.pTitle }
-	                                </c:otherwise>
-	                             </c:choose>
-	                             -->
+	                          	우키키키키키
+	                             
 	                          </span>
 	                       </div>
+	                       <!--  
 	                       <div class="heartIcon">
 	                          <i class="material-icons heart-fund">favorite_border</i>
 	                       </div>
+	                       -->
+	                       <%-- 
 	                       <div class="detailArea my-1">
 	                          <span class="detailText">
 	                             <c:choose>
-	                               <%--  <c:when test="${ fn:length(fr.pSummaryText) > 45 }">
+	                                <c:when test="${ fn:length(fr.pSummaryText) > 45 }">
 	                                ${ fn:substring(fr.pSummaryText,0,60) }…
-	                                </c:when> --%>
+	                                </c:when>
 	                                <c:otherwise>
-	                                ${ fr.pSummaryText }
+	                                ${ rev.pSummaryText }
 	                                </c:otherwise>
 	                             </c:choose>
 	                          </span>
-	                       </div>
-	                       <div class="chartArea px-3 mt-2">
-	                          <div class="chartInfo clearfix">
-	                             <span class="chartInfo1">￦<fmt:formatNumber value="${ fr.pCurrentFunding }" groupingUsed="true" /></span>
-	                             <span class="chartInfo2"><fmt:parseNumber value="${ (fr.pCurrentFunding / fr.pGoal) * 100 }" integerOnly="true" />%</span>
-	                          </div>
-	                          <div class="chartBar">
-	                          <c:choose>
-	                             <c:when test="${ ((fr.pCurrentFunding / fr.pGoal) * 100) < 100 }">
-	                             <div class="purpleBar" style="width:${ (fr.pCurrentFunding / fr.pGoal) * 100 }%"></div>
-	                             </c:when>
-	                             <c:otherwise>
-	                             <div class="purpleBar"></div>                                       
-	                             </c:otherwise>
-	                          </c:choose>
-	                          </div>
-	                          <c:choose>
-	                             <c:when test="${ fr.pDDay > 0 }">
-	                             <div class="chartDate">${ fr.pDDay }일 남음</div>
-	                             </c:when>
-	                             <c:otherwise>
-	                             <div class="chartDate">펀딩 종료</div>
-	                             </c:otherwise>
-	                          </c:choose>
-	                       </div>
+	                       </div> 
+	                       --%>
 	                    </div>
 	                 </div>
 	              </div>
-	              </c:forEach>
+	             <!--  </c:forEach> -->
 	           </div>
 			</div>
 			

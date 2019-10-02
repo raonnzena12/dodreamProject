@@ -5,7 +5,8 @@ import java.sql.Date;
 public class Review {
 	private int revNo;          // 번호
 	private String revTitle;    // 제목
-	private String revContent;  // 내용
+	private String revSubTitle;  // 부제목
+	private String revContent;  // 내용	
 	private Date revEnrollDate; // 작성일
 	private Date revModifyDate; // 수정일
 	private String revStatus;   // 상태
@@ -13,16 +14,19 @@ public class Review {
 	private int revWriter;      // 작성자번호(관리자)
 	private String reviewTnImg; // 썸네일
 	private String ReviewImg;	// 리뷰 이미지
+	private int revCount;         // 조회수
 	
 	public Review() {  
 		// TODO Auto-generated constructor stub
 	}
 
-	public Review(int revNo, String revTitle, String revContent, Date revEnrollDate, Date revModifyDate,
-			String revStatus, int revRefPno, int revWriter, String reviewTnImg, String reviewImg) {
+	public Review(int revNo, String revTitle, String revSubTitle, String revContent, Date revEnrollDate,
+			Date revModifyDate, String revStatus, int revRefPno, int revWriter, String reviewTnImg, String reviewImg,
+			int revCount) {
 		super();
 		this.revNo = revNo;
 		this.revTitle = revTitle;
+		this.revSubTitle = revSubTitle;
 		this.revContent = revContent;
 		this.revEnrollDate = revEnrollDate;
 		this.revModifyDate = revModifyDate;
@@ -30,7 +34,8 @@ public class Review {
 		this.revRefPno = revRefPno;
 		this.revWriter = revWriter;
 		this.reviewTnImg = reviewTnImg;
-		this.ReviewImg = reviewImg;
+		ReviewImg = reviewImg;
+		this.revCount = revCount;
 	}
 
 	public int getRevNo() {
@@ -47,6 +52,14 @@ public class Review {
 
 	public void setRevTitle(String revTitle) {
 		this.revTitle = revTitle;
+	}
+
+	public String getRevSubTitle() {
+		return revSubTitle;
+	}
+
+	public void setRevSubTitle(String revSubTitle) {
+		this.revSubTitle = revSubTitle;
 	}
 
 	public String getRevContent() {
@@ -110,16 +123,25 @@ public class Review {
 	}
 
 	public void setReviewImg(String reviewImg) {
-		this.ReviewImg = reviewImg;
+		ReviewImg = reviewImg;
+	}
+
+	public int getRevCount() {
+		return revCount;
+	}
+
+	public void setRevCount(int revCount) {
+		this.revCount = revCount;
 	}
 
 	@Override
 	public String toString() {
-		return "Review [revNo=" + revNo + ", revTitle=" + revTitle + ", revContent=" + revContent + ", revEnrollDate="
-				+ revEnrollDate + ", revModifyDate=" + revModifyDate + ", revStatus=" + revStatus + ", revRefPno="
-				+ revRefPno + ", revWriter=" + revWriter + ", reviewTnImg=" + reviewTnImg + ", ReviewImg=" + ReviewImg
-				+ "]";
+		return "Review [revNo=" + revNo + ", revTitle=" + revTitle + ", revSubTitle=" + revSubTitle + ", revContent="
+				+ revContent + ", revEnrollDate=" + revEnrollDate + ", revModifyDate=" + revModifyDate + ", revStatus="
+				+ revStatus + ", revRefPno=" + revRefPno + ", revWriter=" + revWriter + ", reviewTnImg=" + reviewTnImg
+				+ ", ReviewImg=" + ReviewImg + ", revCount=" + revCount + "]";
 	}
 
+	
 
 }
