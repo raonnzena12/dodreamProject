@@ -7,7 +7,6 @@ $(function(){
 		focus: true,        // set focus to editable area after initializing summernote
 		lang: 'ko-KR',		// 언어 : 한국어 설정
 		
-		
 		// 이미지 업로드 이벤트가 발생했을 때 
 		callbacks:{
 			onImageUpload: function(files, editor) {
@@ -15,6 +14,26 @@ $(function(){
 				
         	   sendFile(files[0], this);
         	   
+			}
+		}
+	});
+	
+	
+	// 프로젝트 등록에 들어가는 서머노트
+	$('#pStorySummernote').summernote({
+		width : 880,		// 에디터 넓이
+		height: 890,        // 에디터 높이
+		focus: true,        // set focus to editable area after initializing summernote
+		lang: 'ko-KR',		// 언어 : 한국어 설정
+		disableResizeEditor: true,
+		
+		// 이미지 업로드 이벤트가 발생했을 때 
+		callbacks:{
+			onImageUpload: function(files, editor) {
+				// 업로드된 이미지를 ajax를 이용하여 서버에 저장
+				
+				sendFile(files[0], this);
+				
 			}
 		}
 	});
