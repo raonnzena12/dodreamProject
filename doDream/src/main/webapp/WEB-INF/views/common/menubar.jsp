@@ -29,7 +29,8 @@
 
 	<!-- 주소 api -->
 	<script src="//cdn.poesis.kr/post/search.min.js"></script>
-	
+	<!-- 카카오 로그인 -->
+	<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 
 <style>
 	* {
@@ -118,12 +119,17 @@
 					</c:if>
 				</span>
 					<div style="display: inline-block;">
-					<c:if test="${empty loginUser.userProfileImage}">
+					<c:choose>
+					<c:when test="${empty loginUser.userProfileImage}">
 					<i class="material-icons">account_circle</i>
-					</c:if>
-					<c:if test="${! empty loginUser.userProfileImage }">
-						<img alt="프로필사진" src="resources/images/userProfileImage/${loginUser.userProfileImage}" class="rounded-circle float-sm" style="width: 24px; height: 24px;" id="userProfileImage_sm" name="userProfileImage"/>
-					</c:if>
+					</c:when>
+					<c:when test= "${fn:contains(loginUser.userProfileImage,'http://')}">
+					<img alt="프로필사진" src="${loginUser.userProfileImage}" class="rounded-circle float-sm" style="width: 60px; height: 60px;"/>
+					</c:when>
+					<c:otherwise>
+					<img alt="프로필사진" src="resources/images/userProfileImage/${loginUser.userProfileImage}" class="rounded-circle float-sm" style="width: 60px; height: 60px;"/>
+					</c:otherwise>
+					</c:choose>
 					</div>
 			</a>
 			<div class="loginmenu" id="veil"></div>
@@ -173,14 +179,19 @@
 							<div class="row">
 								<div class="hr-sect">MY INFO</div>
 								<div class="col-md-12 text-center">
-									<span class="text-left">${ loginUser.userNickname }님 환영합니다!</span>
+									<span class="text-left">${ loginUser.userNickname }님</span>
 									<div style="display: inline-block;">
-									<c:if test="${empty loginUser.userProfileImage}">
+									<c:choose>
+									<c:when test="${empty loginUser.userProfileImage}">
 									<img alt="프로필사진" src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg" class="rounded-circle float-sm ml-3" style="width: 50px; height: 50px;"/>
-									</c:if>
-									<c:if test="${! empty loginUser.userProfileImage}">
+									</c:when>
+									<c:when test= "${fn:contains(loginUser.userProfileImage,'http://')}">
+									<img alt="프로필사진" src="${loginUser.userProfileImage}" class="rounded-circle float-sm" style="width: 50px; height: 50px;"/>
+									</c:when>
+									<c:otherwise>
 									<img alt="프로필사진" src="resources/images/userProfileImage/${loginUser.userProfileImage}" class="rounded-circle float-sm" style="width: 50px; height: 50px;"/>
-									</c:if>
+									</c:otherwise>
+									</c:choose>
 									</div>
 								</div>
 							</div>
@@ -239,12 +250,77 @@
 		
 		$("#loginBtn").click(function() {
 			var useCookie = $("input[name=useCookie]").is(":checked");
-			console.log(useCookie);
+			console.log(useCookie); 
+			/* true */
 		});
 		
-;
+		Kakao.init('ff3dadde4ab297ea0f244c294c45e600')
+		function loginWithKakao() {
+			
+			Kakao.Auth.loginForm({
+				success: function(authObj) {
+					Kakao.API.request({
+						url:"/v2/user/me",
+						success: function(res){
+							/* var userEmail = res.kaccount_email; */
+							var info = res;
+							console.log(res);
+							console.log(res.kakao_account.email);
+							
+							var userEmail = res.kakao_account.email; //email
+							var userPwd = res.id;
+							var userNickname = res.properties.nickname;
+							var userProfileImage = res.properties.profile_image;
+							
+							console.log(userEmail+"/"+userNickname+"/"+userProfileImage+"/"+userPwd);
+							//userId+userNickname -> userNickname에 insert
+							$.ajax({
+								url:"checkEmail.dr", //회원가입여부 확인
+								data: {userEmail:userEmail},
+								type: "post",
+								success: function(result) {
+									console.log(result);
+									if(result == "0"){//email이 없을경우
+										location.href="insertSNS.dr?userEmail="+userEmail+"&userNickname="+userNickname+"&userProfileImage="+userProfileImage+"&userPwd="+userPwd;
+									}else if(result == "1"){
+										
+										snsLoginFrm("login.dr", userEmail, userPwd);
+										/* location.href="login.dr?userEmail="+userEmail+"&userPwd="+userPwd; */
+									}
+								}
+							});
+						},
+						fail: function(err){
+	                           console.log(err);
+						}
+					});
+				}
+			});
+		};
 		
-
+		function snsLoginFrm(url, userEmail, userPwd){
+			var form = document.createElement("form");
+			var param = new Array();
+			var input = new Array();
+			
+			form.action = url;
+			form.method = "post";
+			
+			param.push(["userEmail",userEmail]);
+			param.push(["userPwd",userPwd]);
+			
+			for(var i=0; i<param.length; i++){
+				input[i] = document.createElement("input");
+				input[i].setAttribute("type", "hidden");
+	            input[i].setAttribute('name', param[i][0]);
+	            input[i].setAttribute("value", param[i][1]);
+	            form.appendChild(input[i]);
+			}
+			
+			document.body.appendChild(form);
+			form.submit();
+		}
+		
 
 	</script>
 	<%@ include file="footer.jsp" %>

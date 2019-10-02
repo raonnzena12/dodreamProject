@@ -140,4 +140,10 @@ public class MemberServiceImpl implements MemberService {
 	public int checkValidate(Member member) {
 		return mDao.checkValidate(member);
 	}
+
+	@Override
+	public int insertSNS(Member member) {
+		
+		return mDao.insertSNS(member);
+	}
 }

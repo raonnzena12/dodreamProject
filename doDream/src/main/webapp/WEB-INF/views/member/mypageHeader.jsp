@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,12 +42,17 @@
 			<div class="col-md-4">
 				<div id="pfImgOuter">
 					<a href="myInfo.dr">
-					<c:if test="${ empty loginUser.userProfileImage }">
-					<img alt="프로필사진" src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg" class="rounded-circle " id="userProfileImage" name="userProfileImage" />
-					</c:if>
-					<c:if test="${ !empty loginUser.userProfileImage }">
-					<img alt="프로필사진" src="resources/images/userProfileImage/${loginUser.userProfileImage}" class="rounded-circle" id="userProfileImage" name="userProfileImage"/>
-					</c:if>					
+					<c:choose>
+					<c:when test="${empty loginUser.userProfileImage}">
+					<img alt="프로필사진" src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg" class="rounded-circle float-sm ml-3" style="width: 150px; height: 150px;"/>
+					</c:when>
+					<c:when test= "${fn:contains(loginUser.userProfileImage,'http://')}">
+					<img alt="프로필사진" src="${loginUser.userProfileImage}" class="rounded-circle float-sm" style="width: 150px; height: 150px;"/>
+					</c:when>
+					<c:otherwise>
+					<img alt="프로필사진" src="resources/images/userProfileImage/${loginUser.userProfileImage}" class="rounded-circle float-sm" style="width: 150px; height: 150px;"/>
+					</c:otherwise>
+					</c:choose>
 					<img src="resources/images/settings_icon.png" class="float-sm align-top" id="setting" style="width: 35px;"/>
 					</a>
 				</div>
