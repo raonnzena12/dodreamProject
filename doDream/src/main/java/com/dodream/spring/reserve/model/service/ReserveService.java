@@ -3,6 +3,8 @@ package com.dodream.spring.reserve.model.service;
 import java.util.ArrayList;
 
 import com.dodream.spring.project.model.vo.Reward;
+import com.dodream.spring.reserve.model.vo.History;
+import com.dodream.spring.reserve.model.vo.HistoryList;
 import com.dodream.spring.reserve.model.vo.Reserve;
 
 public interface ReserveService {
@@ -27,4 +29,42 @@ public interface ReserveService {
 	 * @return result
 	 */
 	public abstract int updateReserveAddress(Reserve reserve);
+
+	/**
+	 * 예약테이블 PK키를 하나 받아오는 Service
+	 * @return resNo
+	 */
+	public abstract int selectResNo();
+	
+	/**
+	 * 예약테이블에 예약정보를 입력하는 Service
+	 * @param reserve
+	 * @return result
+	 */
+	public abstract int insertReserve(Reserve reserve);
+
+	/**
+	 * 예약목록 테이블에 리워드 정보를 입력하는 Service
+	 * @param hList
+	 * @param resNo 
+	 * @return result
+	 */
+	public abstract int insertHistory(HistoryList hList, int resNo);
+
+	/**
+	 * 예약을 취소하는 Service
+	 * @param rsvNo
+	 * @return result
+	 */
+	public abstract int updateFundingStatus(int rsvNo);
+
+	/**
+	 * 받은 파라메터들을 HistoryList로 반환하는 Service
+	 * @param rNo
+	 * @param select
+	 * @param input
+	 * @return hList
+	 */
+	public abstract ArrayList<History> assembleHistory(String rNo, String select, String input, String count);
+
 }

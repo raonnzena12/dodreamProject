@@ -18,7 +18,6 @@
 		<result property="userNickname" column="USER_NICKNAME" />
 		<result property="resRwdPriceSum" column="REWARD_PRICE_SUM" />
 		<result property="resFundDate" column="FUND_DATE" />
-		<result property="resCustomerUid" column="RESERVE_CUS_UID" />
 	</resultMap>
 	
 	<resultMap type="Reward" id="rewardReslutSet">
@@ -57,6 +56,30 @@
 			RESERVE_ADDRESS = #{ resAddress },
 			RESERVE_REQUEST = #{ resRequest }
 		WHERE RESERVE_NO = #{ resNo }
+	</update>
+	
+	<select id="selectResNo" resultType="_int">
+		SELECT SEQ_RES_NO.NEXTVAL
+		FROM DUAL
+	</select>
+	
+	<insert id="insertReserve" parameterType="Reserve">
+		INSERT INTO RESERVE VALUES (
+			#{ resNo }, #{ bKey }, #{ addi }, SYSDATE, 
+			#{ resName }, #{ resContact }, #{ resAddress }, #{ resRequest },
+			#{ resUser }, #{ resRefPno }, 1 )
+	</insert>
+	
+	<insert id="insertHistory" parameterType="History">
+		INSERT INTO HISTORY VALUES (
+			#{ rsvNo }, #{ rwdNo }, #{ rwdAmount }, #{ rwdOption }
+		)
+	</insert>
+	
+	<update id="updateFundingStatus" parameterType="_int">
+		UPDATE RESERVE
+		SET RESERVE_STATUS_NO = 3
+		WHERE RESERVE_NO = #{ rsvNo }
 	</update>
 	
 </mapper>

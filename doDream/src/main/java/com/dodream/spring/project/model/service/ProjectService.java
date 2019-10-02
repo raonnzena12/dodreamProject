@@ -57,4 +57,12 @@ public interface ProjectService {
 	 * @return rList
 	 */
 	public abstract ArrayList<Reward> selectRewardList(String rewardStr);
+
+	/**
+	 * 조회수 증감없이 프로젝트 조회하는 Service
+	 * @param resRefPno
+	 * @return prj
+	 */
+	public abstract Project selectProjectS(int pNo);
+
 }

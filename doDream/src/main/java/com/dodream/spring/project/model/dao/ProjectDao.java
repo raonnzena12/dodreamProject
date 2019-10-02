@@ -98,5 +98,14 @@ public class ProjectDao {
 		return (ArrayList)sqlSession.selectList("projectMapper.selectRewardList", rewardList);
 	}
 
+	/**
+	 * 조회수 증감없이 프로젝트를 조회하는 DAO
+	 * @param pNo
+	 * @return prj
+	 */
+	public Project selecProjectS(int pNo) {
+		return sqlSession.selectOne("projectMapper.selectProject", pNo);
+	}
+
 	
 }

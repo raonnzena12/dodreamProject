@@ -19,14 +19,13 @@ public class Reserve {
 	private String userNickname;		// 조인 시 필요한 유저 닉네임
 	private int resRwdPriceSum; // 리워드 가격 합한값
 	private Date resFundDate; // 펀드 결제일
-	private String resCustomerUid; 
 	
 	public Reserve() {
 	}
 
 	public Reserve(int resNo, String bKey, int addi, Date resDate, String resName, String resContact, String resAddress,
 			String resRequest, int resUser, int resRefPno, int resStatusNo, String pTitle, String userNickname,
-			int resRwdPriceSum, Date resFundDate, String resCustomerUid) {
+			int resRwdPriceSum, Date resFundDate) {
 		super();
 		this.resNo = resNo;
 		this.bKey = bKey;
@@ -43,7 +42,6 @@ public class Reserve {
 		this.userNickname = userNickname;
 		this.resRwdPriceSum = resRwdPriceSum;
 		this.resFundDate = resFundDate;
-		this.resCustomerUid = resCustomerUid;
 	}
 
 	public int getResNo() {
@@ -166,20 +164,12 @@ public class Reserve {
 		this.resFundDate = resFundDate;
 	}
 
-	public String getResCustomerUid() {
-		return resCustomerUid;
-	}
-
-	public void setResCustomerUid(String resCustomerUid) {
-		this.resCustomerUid = resCustomerUid;
-	}
-
 	@Override
 	public String toString() {
 		return "Reserve [resNo=" + resNo + ", bKey=" + bKey + ", addi=" + addi + ", resDate=" + resDate + ", resName="
 				+ resName + ", resContact=" + resContact + ", resAddress=" + resAddress + ", resRequest=" + resRequest
 				+ ", resUser=" + resUser + ", resRefPno=" + resRefPno + ", resStatusNo=" + resStatusNo + ", pTitle="
 				+ pTitle + ", userNickname=" + userNickname + ", resRwdPriceSum=" + resRwdPriceSum + ", resFundDate="
-				+ resFundDate + ", resCustomerUid=" + resCustomerUid + "]";
+				+ resFundDate + "]";
 	}
 }

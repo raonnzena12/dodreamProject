@@ -17,7 +17,7 @@ const axios = require('axios');
 
 app.use(bodyParser.urlencoded({extended : true}));
 
-app.post("/world", async (req, res) => {
+app.post("/ajaxBillingServer", async (req, res) => {
   console.log("im start!");
   console.log(req);
   console.log(req.body);
@@ -30,7 +30,11 @@ app.post("/world", async (req, res) => {
       pwd_2digit, // 카드 비밀번호 앞 두자리,
       customer_uid, // 카드(빌링키)와 1:1로 대응하는 값
     } = req.body; // req의 body에서 카드정보 추출
-
+    console.log(card_number);
+    console.log(expiry);
+    console.log(birth);
+    console.log(pwd_2digit);
+    console.log(customer_uid);
     // 인증 토큰 발급 받기
     const getToken = await axios({
       url: "https://api.iamport.kr/users/getToken",
