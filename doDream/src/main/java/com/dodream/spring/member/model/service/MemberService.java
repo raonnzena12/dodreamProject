@@ -52,6 +52,8 @@ public interface MemberService {
 
 	public abstract Member checkUserWithSessionKey(String sessionId);
 
+	public abstract int insertSNS(Member member);
+
 
 
 }

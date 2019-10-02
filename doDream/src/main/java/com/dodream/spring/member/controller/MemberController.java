@@ -357,5 +357,39 @@ public class MemberController {
 	public String deleteMemberFormView() {
 		return "member/deleteMemberView";
 	}
+	
+
+	@RequestMapping("insertSNS.dr")
+	public String insertSNS(Member member, String userEmail, String userNickname, String userPwd, String userProfileImage, Model model, RedirectAttributes rd, String prevPage){
+		
+		member.setUserEmail(userEmail);
+		member.setUserPwd(userPwd);
+		member.setUserNickname(userNickname);
+		member.setUserProfileImage(userProfileImage);
+		
+		int result = mService.insertSNS(member);
+		
+		if(result>0) {
+			rd.addFlashAttribute("msg", "회원가입 완료!만나서 반갑습니다!");
+			Member loginUser = mService.loginMember(member);
+			model.addAttribute("loginUser", loginUser);
+			
+			int result2 = mService.countVisitToday(loginUser.getUserNo());
+
+			if (result2 > 0) {
+				System.out.println("userNo : " + loginUser.getUserNo() + "번 회원이 DAYCOUNT 테이블에 삽입됨");
+			}
+
+			return "redirecr:home.dr";
+			
+		}else {
+			model.addAttribute("msg", "회원가입에 실패하였습니다.");
+			return "common/errorPage";
+		}
+		
+	}
+	
+	
+	
 
 }

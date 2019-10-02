@@ -59,5 +59,9 @@ public class MemberDao {
 		return sqlSession.selectOne("memberMapper.checkUserWithSessionKey", sessionId);
 	}
 
+	public int insertSNS(Member member) {
+		return sqlSession.insert("memberMapper.insertSNS", member);
+	}
+
 	
 }
