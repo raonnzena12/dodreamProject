@@ -14,3 +14,4 @@ public interface FReviewService {
 	ArrayList<Review> selectfrList(String category, int currentPage);
 	
 }
+ 

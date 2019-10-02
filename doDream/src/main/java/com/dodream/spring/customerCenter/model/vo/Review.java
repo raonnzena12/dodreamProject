@@ -27,7 +27,7 @@ public class Review {
 		this.revNo = revNo;
 		this.revTitle = revTitle;
 		this.revSubTitle = revSubTitle;
-		this.revContent = revContent;
+		this.revContent = revContent; 
 		this.revEnrollDate = revEnrollDate;
 		this.revModifyDate = revModifyDate;
 		this.revStatus = revStatus;

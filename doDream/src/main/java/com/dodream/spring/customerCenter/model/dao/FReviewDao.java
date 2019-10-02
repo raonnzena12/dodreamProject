@@ -27,7 +27,7 @@ public class FReviewDao {
 		int offset = ( pi.getCurrentPage() - 1 ) * pi.getLimit();
 		RowBounds rowBounds = new RowBounds(offset, pi.getLimit());
 		*/
-		
+		 
 		return (ArrayList)sqlSession.selectList("centerMapper.selectfrList", category);
 	}
 }

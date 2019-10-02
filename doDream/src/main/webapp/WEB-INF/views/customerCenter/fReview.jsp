@@ -31,7 +31,7 @@
 	right: 0;
 	left: 0;
 	margin: 0 auto;
-	width: 500px;
+	width: 500px; 
 }
 .jumbotron{
 	padding: 0;
