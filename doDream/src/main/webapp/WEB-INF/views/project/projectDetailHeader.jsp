@@ -335,7 +335,6 @@
 	<script>
 	$(function(){
 		
-		
 		if(${!empty sessionScope.loginUser}){
 			if(${loginUser.userNo eq like.likeNo}){
 				$("#favorite").css("color","#8E44AD");
@@ -347,7 +346,8 @@
 		}
 		
 		$("#favorite").on("click", function(){
-			if( ${ empty loginUser }) {
+			console.log("121212");
+			if(${empty sessionScope.loginUser}) {
 				alert("로그인이 필요합니다.");
 				return false;
 			} else {
@@ -374,23 +374,23 @@
 		
 	
 	/* ===========================좋아요 버튼 취소=========================== */
-		function LikeDelete(){
-			
+	
 		
+	
+	function LikeDelete(){
 			//if(${!empty sessionScope.loginUser}){
 				
-				var uno = ${loginUser.userNo};
 				var pNo = ${project.pNo};
 				
 				console.log(uno);
 				console.log(pNo);
 				
-				//$("#favorite2").on("click", function(){
+				
 					if(confirm("프로젝트 좋아요를 취소하시겠습니까?")){
 					
 					$.ajax({
 						url:"detailLikeDelete.dr",
-						data:{pNo:pNo, userNo:uno},
+						data:{pNo:pNo, userNo:"${loginUser.userNo}"},
 						type: "post",
 						success: function(result){
 							if(result == 1){
@@ -406,20 +406,15 @@
 							console.log(e);
 						}
 					});
-				//}
-				//});
+				
 			}
 		}	
-		
+	
 		/* ===========================좋아요 버튼=========================== */
 	
 		function detailLike(){
 			
-			//$("#favorite").on("click", function(){
-				
-				//if(${!empty sessionScope.loginUser}){
-	
-					var uno = ${loginUser.userNo};
+					var uno = "${loginUser.userNo}";
 					var pNo = ${project.pNo};
 					
 					$.ajax({
@@ -442,9 +437,6 @@
 						
 					});
 					
-				//}
-				
-			//});
 		}
 		
 		

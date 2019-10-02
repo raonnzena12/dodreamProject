@@ -57,7 +57,7 @@
            #detailStory{
            		width:100%;
                 height: auto;
-                min-height: 930px;
+                min-height: 500px;
                 border: 1px solid #ddd;
                 display: block;
                 float: left;
@@ -72,10 +72,10 @@
                 /* border: 1px solid black; */
                 display: block;
                 float: left;
-                margin: 10px 0 0 8px;
+                margin: 10px 0 0 9px;
                 
            }
-           #projectInformation{
+          /*  #projectInformation{
            		width: 680px;
                 height: auto;
                 min-height: 350px;
@@ -86,7 +86,7 @@
                 border-radius: 3px;
                 background-color: #f1f3f5;
                 
-           }
+           } */
            #detailTag{
            		width: 680px;
                 height: auto;
@@ -95,7 +95,7 @@
                 display: block;
                 float: left;
                 /* margin:auto; */
-                margin: 0 0 10px 7px;
+                margin: 10px 0 10px 9px;
                 border-radius: 3px;
                 background-color: #F39C12;
                 padding:auto;
@@ -133,9 +133,9 @@
 					<div id="storyContent">
 						${project.pStory }
 					</div>
-					<div id="projectInformation">
+					<!-- <div id="projectInformation">
 						프로젝트 안내가 들어갑니다.
-					</div>
+					</div> -->
 					<div id="detailTag">
 						<!-- <div class="projectTag"></div> -->
 					</div>

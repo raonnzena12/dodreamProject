@@ -16,13 +16,14 @@ public class Reward {
 	private int rOptionNo;// 옵션 번호
 	private int rAmount;// 리워드 재고 수량
 	private int userAmount; // 유저가 주문한 리워드 갯수
+	private int rSum;// 결제된 리워드 개수;
 	
 	public Reward() {
 
 	}
 
 	public Reward(int rNo, int rPrice, String rName, String rExplain, int rLimit, String rShipCDT, Date rShipDate,
-			String rOptionAdd, int rRefPno, int rOptionNo, int rAmount, int userAmount) {
+			String rOptionAdd, int rRefPno, int rOptionNo, int rAmount, int userAmount, int rSum) {
 		super();
 		this.rNo = rNo;
 		this.rPrice = rPrice;
@@ -36,6 +37,7 @@ public class Reward {
 		this.rOptionNo = rOptionNo;
 		this.rAmount = rAmount;
 		this.userAmount = userAmount;
+		this.rSum = rSum;
 	}
 
 	public int getrNo() {
@@ -134,11 +136,21 @@ public class Reward {
 		this.userAmount = userAmount;
 	}
 
+	public int getrSum() {
+		return rSum;
+	}
+
+	public void setrSum(int rSum) {
+		this.rSum = rSum;
+	}
+
 	@Override
 	public String toString() {
 		return "Reward [rNo=" + rNo + ", rPrice=" + rPrice + ", rName=" + rName + ", rExplain=" + rExplain + ", rLimit="
 				+ rLimit + ", rShipCDT=" + rShipCDT + ", rShipDate=" + rShipDate + ", rOptionAdd=" + rOptionAdd
 				+ ", rRefPno=" + rRefPno + ", rOptionNo=" + rOptionNo + ", rAmount=" + rAmount + ", userAmount="
-				+ userAmount + "]";
+				+ userAmount + ", rSum=" + rSum + "]";
 	}
+
+	
 }

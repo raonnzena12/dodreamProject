@@ -305,11 +305,11 @@
                 margin: 10px 0 0 0;
            }
            #asideText3{
-                border: 1px solid black;
+               /*  border: 1px solid black; */
                 width: 100%;
                 min-height: 30px;
                 height:auto;
-                padding:  0 5px 0 5px;
+                padding:  5px 5px 0 5px;
            }
           #asideReward > .rewardBtn{
                 width: 270px;
@@ -323,17 +323,17 @@
            		display:none;
            }
            #rname{
-           		border: 1px solid black;
+           		/* border: 1px solid black; */
                 width: 270px;
                 min-height: 30px;
                 height:auto;
                 display:block;
                 float:left;
-                /* padding-right:70px; */
+                /* padding-left:5px; */
                 position: relative;
            }
            #rewardname{
-           		border: 1px solid black;
+           		/* border: 1px solid black; */
                 width: 230px;
                 min-height: 30px;
                 height:auto;
@@ -343,7 +343,7 @@
                 /* position: relative; */
            }
            #recount{
-           		border: 1px solid black;
+           		/* border: 1px solid black; */
                 width:30px;
                 min-height:30px;
                 height:auto;
@@ -373,10 +373,10 @@
 	                    	<!-- <div class="rewardIconBox">
 		                    	<label for="check"><i class="material-icons rewardIcon">check_circle</i></label>
 		                    </div> -->
-	                        <div class="noRewardText2">
+	                        <!-- <div class="noRewardText2">
 		                        5명선택
-		                        <!-- <span class="badge badge-primary rewardBadge">5개 남음</span> -->
-	                        </div>
+		                        <span class="badge badge-primary rewardBadge">5개 남음</span>
+	                        </div> -->
 	                        
 	                     
 	                        <!-- ==========체크박스=========== -->
@@ -411,7 +411,13 @@
 					                    </div>
 					                 </c:if>   
 			                        <div class="rewardText2">
-				                        5명선택
+				                        <c:if test="${r.rSum eq '0'}">
+				                        	0명 선택
+				                        </c:if>
+				                        <c:if test="${r.rSum ne '0'}">
+				                        	${r.rSum}명 선택
+				                        </c:if>
+				                        	
 				                       <c:if test="${r.rLimit ne '-1'}">
 				                       
 				                       		<c:if test="${r.rAmount ne '0'}">
