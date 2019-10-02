@@ -74,5 +74,9 @@ public class ProjectServiceImpl implements ProjectService {
 		return pDao.selectRewardList(rewardList);
 	}
 
+	@Override
+	public Project selectProjectS(int pNo) {
+		return pDao.selecProjectS(pNo);
+	}
 
 }

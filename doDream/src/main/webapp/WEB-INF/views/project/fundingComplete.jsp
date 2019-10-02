@@ -10,7 +10,9 @@
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 </head>
 <body>
-<c:url var="myFundingStatus" value="temp3.dr" />
+<c:url var="myFundingStatus" value="myFundingInfo.dr" >
+    <c:param name="rsvNo" value="${ resNo }" />
+</c:url>
 <section id="fdComplete">
     <div class="container-fluid">
         <div class="row">

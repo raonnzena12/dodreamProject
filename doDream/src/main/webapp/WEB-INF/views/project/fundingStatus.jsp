@@ -136,6 +136,9 @@
 <body>
 <c:set var="aa" value="aa" />
 <section id="fundingStatus">
+<c:url var="fundingDetail" value="detailSt.dr" >
+    <c:param name="pNo" value="${ prj.pNo }" />
+</c:url>
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-3">
@@ -164,7 +167,7 @@
                         </c:when>
                         </c:choose>
                     </p>
-                    <p class="projectName"><a href="#">${ prj.pTitle }</a></p>
+                    <p class="projectName"><a href="${ fundingDetail }" target="_blank">${ prj.pTitle }</a></p>
                     <p class="artist mb-3">by "<a href="#">${ prj.pArtistName }</a>"</p>
                     <div class="summary">
                         <table class="summaryt">
@@ -201,7 +204,7 @@
                     <c:if test="${ rsv.resStatusNo == 1 }">
                     <p class="chargeInfo">펀딩 종료 후 1 영업일 후인,<br>
                         ${ rsv.resFundDate } 17시에 결제 될 예정입니다.</p>
-                    <button class="btn btn-outline-warning btn-block">결제 예약 취소</button>
+                    <button class="btn btn-outline-warning btn-block" id="cancelFundingBtn">결제 예약 취소</button>
                     </c:if>
                 </div>
                 <c:if test="${ rsv.resStatusNo == 1 }">
@@ -254,9 +257,9 @@
                             <td>신용(체크)카드</td>
                         </tr>
                         <tr>
-                            <c:set var="length" value="${ fn:length(rsv.resCustomerUid) }" />
+                            <c:set var="length" value="${ fn:length(rsv.bKey) }" />
                             <td>카드번호</td>
-                            <td>************${ fn:substring(rsv.resCustomerUid, length-2, length) }</td>
+                            <td>************${ fn:substring(rsv.bKey, length-2, length) }</td>
                         </tr>
                     </table>
                     <c:if test="${ rsv.resStatusNo == 1 }">
@@ -373,8 +376,54 @@ $(function(){
                 }
             }
         });
-    }); 
+    });
+    $("#cancelFundingBtn").on("click", function(){
+        Swal.fire({
+            title: '예약을 취소하시겠습니까?',
+            text: "취소된 예약은 복구가 불가능합니다!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#F39C12',
+            cancelButtonColor: '#8E44AD',
+            confirmButtonText: '예약 취소',
+            cancelButtonText: '취소'
+            }).then((result) => {
+            if (result.value) {
+                cancelFundingAjax();
+            }
+        });
+    });
 });
+function cancelFundingAjax(){
+    var rsvNo = ${ rsv.resNo };
+    $.ajax({
+        url: "ajaxCancelFunding.dr",
+        type: "POST",
+        data: { rsvNo : rsvNo },
+        error: function(e) { console.log(e); },
+        success: function(result) {
+            console.log(result);
+            if ( result == 1) { // 성공값이 넘어 왔을 경우
+                Swal.fire({
+                title: '예약 취소 완료!',
+                text: '펀딩 예약이 취소되었습니다.',
+                type: 'success',
+                confirmButtonColor: '#F39C12'
+                }).then((result) =>{
+                if ( result.value ) {
+                    location.reload();
+                }
+                });
+            } else { // 실패값이 넘어왔을 경우
+                Swal.fire({
+                type: 'error',
+                title: '예약 취소 실패',
+                text: '관리자에게 문의하여 주세요',
+                });
+            }
+        }
+    });
+}
 </script>
 </body>
 </html>

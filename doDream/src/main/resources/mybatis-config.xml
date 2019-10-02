@@ -23,7 +23,7 @@
 		<typeAlias type="com.dodream.spring.follow.model.vo.Follow" alias="Follow"/>
 		<typeAlias type="com.dodream.spring.report.model.vo.ReportReply" alias="ReportReply"/>
 		<typeAlias type="com.dodream.spring.report.model.vo.ReportVo" alias="ReportVo"/>
-
+		<typeAlias type="com.dodream.spring.reserve.model.vo.History" alias="History" />
 	</typeAliases>
 	
 	

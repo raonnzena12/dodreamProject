@@ -17,7 +17,6 @@ import com.dodream.spring.project.model.vo.Project;
 import com.dodream.spring.project.model.vo.Reward;
 import com.dodream.spring.reserve.model.vo.HistoryList;
 import com.dodream.spring.reserve.model.vo.Reserve;
-import com.dodream.spring.reserve.model.vo.UserCard;
 
 @Controller
 public class ProjectController3 {
@@ -36,41 +35,6 @@ public class ProjectController3 {
 		model.addAttribute("pList", pList);
 		model.addAttribute("pi", Pagination.getPageInfo());
 		return "common/fundList";
-	}
-	
-	// 펀딩 결제창 확인용 임시 매핑
-	@RequestMapping("letsFunding.dr")
-	public String tmp(Model model) {
-		int pNo = 54; // projectNumber
-		String rewardStr = "4/6/7/";
-		int addtionalCost = 10000;
-		
-		Project prj = pService.selectProject(pNo);
-		ArrayList<Reward> rList = pService.selectRewardList(rewardStr);
-		
-		model.addAttribute("rList", rList);
-		model.addAttribute("additionalCost",addtionalCost);
-		model.addAttribute("prj", prj);
-		
-		return "project/fundingInfo";
-	}
-	
-	// 펀딩 결제 성공 확인용 임시 매핑
-	@RequestMapping("thankYou.dr")
-	public String tmp2(Reserve reserve, HistoryList hList, UserCard uCard, Project prj) {
-		
-		System.out.println(reserve);
-		System.out.println(hList);
-		System.out.println(uCard);
-		System.out.println(prj);
-		
-		
-		return "project/fundingComplete";
-	}
-
-	@RequestMapping("ptemp4.dr")
-	public String tmp4() {
-		return "../../resources/js/testF/NewFile";
 	}
 	
 	@ResponseBody
@@ -98,10 +62,6 @@ public class ProjectController3 {
 		
 		return map;
 	}
+
 	
-	@RequestMapping("kakaotest.dr")
-	public String kakaoTest() {
-		
-		return "common/test";
-	}
 }
