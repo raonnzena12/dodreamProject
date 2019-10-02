@@ -353,7 +353,7 @@ input:focus, input:active, textarea:focus, textarea:active, select:focus,
 	margin-top: 15px;
 	padding: 15px;
 	height: 1000px;
-	width: 800px;
+	width: 930px;
 }
 
 .contentagreement p {
@@ -455,4 +455,7 @@ input:focus, input:active, textarea:focus, textarea:active, select:focus,
 	font-weight: bolder;
 	font-size: 16px;
 	margin: 5px;
+}
+#pstartyear, #pstartmonth, #pstartday{
+	color:unset;		
 }

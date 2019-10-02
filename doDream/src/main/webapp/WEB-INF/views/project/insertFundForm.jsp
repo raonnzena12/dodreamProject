@@ -12,6 +12,7 @@
 <link href="https://fonts.googleapis.com/css?family=Jua&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap" rel="stylesheet">
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css" rel="stylesheet">
 <style>
 .purplefont {
 	color: #8E44AD;
@@ -278,54 +279,11 @@
 								<select class="form-control form-control-sm" style="width:85px; height:34px; display: inline;" id="pstartyear">
 								</select>										
 								<select class="form-control form-control-sm" style="width:85px; height:34px; display: inline;" id="pstartmonth">
-									<option value="1">1월</option>
-									<option value="2">2월</option>
-									<option value="3">3월</option>
-									<option value="4">4월</option>
-									<option value="5">5월</option>
-									<option value="6">6월</option>
-									<option value="7">7월</option>
-									<option value="8">8월</option>
-									<option value="9">9월</option>
-									<option value="10">10월</option>
-									<option value="11">11월</option>
-									<option value="12">12월</option>
 								</select>										
 								<select class="form-control form-control-sm" style="width:110px; height:34px; display: inline;" id="pstartday">
-									<option value="1">1일</option>
-									<option value="2">2일</option>
-									<option value="3">3일</option>
-									<option value="4">4일</option>
-									<option value="5">5일</option>
-									<option value="6">6일</option>
-									<option value="7">7일</option>
-									<option value="8">8일</option>
-									<option value="9">9일</option>
-									<option value="10">10일</option>
-									<option value="11">11일</option>
-									<option value="12">12일</option>
-									<option value="13">13일</option>
-									<option value="14">14일</option>
-									<option value="15">15일</option>
-									<option value="16">16일</option>
-									<option value="17">17일</option>
-									<option value="18">18일</option>
-									<option value="19">19일</option>
-									<option value="20">20일</option>
-									<option value="21">21일</option>
-									<option value="22">22일</option>
-									<option value="23">23일</option>
-									<option value="24">24일</option>
-									<option value="25">25일</option>
-									<option value="26">26일</option>
-									<option value="27">27일</option>
-									<option value="28">28일</option>
-									<option value="29">29일</option>
-									<option value="30">30일</option>
-									<option value="31">31일</option>
 								</select>									
 								<label style="font-size: 13px; font-weight: 600; color: #555; margin-right: 12px;">프로젝트 진행기간 : </label> 
-								<input type="number" class="form-control form-control-sm" id="pterm" min="1" style="width: 85px; height: 30px; display: inline;" value="1"> 일
+								<input type="number" class="form-control form-control-sm" id="pterm" min="10" style="width: 85px; height: 30px; display: inline;" value="10"> 일
 								<div style="margin: auto; width: 400px; border-top: 1px solid #ddd; padding-top: 20px; margin-top: 30px; text-align: center;">
 									<p style="color: #444; font-size: 15px; font-weight: 700;">예상 프로젝트 종료일</p>
 									<p id="penddatearea"style="font-family: 'Jua'; font-size: 28px; letter-spacing: 2px; color: #F39C12;">- - - -</p>
@@ -603,9 +561,10 @@
 							<div class="contentinfoarea">
 								<p>최종 승인 이후에는 스토리를 수정할 수 없습니다. 신중하게 작성해주세요!</p>
 							</div>
-							<div class="projectcontent">
-								<textarea rows="37" id="pStory" name="pStory"
-									style="width: 100%; resize: none;"></textarea>
+							<div class="projectcontent" align="center">
+								<!-- summnote 에디터 출력 -->
+								<textarea id="pStorySummernote" name="pStory" rows="37" style="width:100%; resize: none;"></textarea>
+								<input type="hidden" name="imgList" value="">
 							</div>
 						</div>
 					</div>
@@ -682,7 +641,7 @@
 						<div class="info-box">
 							<div class="edit-box">
 								<div>
-									<img src="img/facebook.jpg"
+									<img src="resources/images/insertFormImages/facebook.jpg"
 										style="width: 20px; height: 20px; border-radius: 4px; opacity: 0.9; margin-right: 10px;">
 									<label for="pArtistSns1">https://www.facebook.com/</label> <input
 										class="form-control form-control-sm" type="text"
@@ -690,7 +649,7 @@
 										style="display: inline; width: 150px; height: 24px;">
 								</div>
 								<div>
-									<img src="img/instagram.jpg"
+									<img src="resources/images/insertFormImages/instagram.jpg"
 										style="width: 20px; height: 20px; border-radius: 4px; opacity: 0.9; margin-right: 10px;">
 									<label for="pArtistSns2">https://www.instagram.com/</label> <input
 										class="form-control form-control-sm" type="text"
@@ -742,6 +701,7 @@
 		// 페이지 로드 완료시 인서트폼은 숨깁니다. (동의를 완료해야 보여집니다)
 		$(function() {
 			$("#insertFundForm").hide();
+			validate();
 		});
 		// 만약 동의 버튼중 하나라도 변한다면 validate() 메소드 실행
 		$(".checklist input[type='checkbox']").change(function() {
@@ -884,15 +844,6 @@
 				$("#pSummaryTextChk").text(leng);
 			});
 		});
-		// 페이지 로딩시 프로젝트 시작일에서 오늘날짜를 선택해주는 메소드
-		$(function(){
-			var today = new Date();
-			var month = today.getMonth();
-			month++;
-			var date = today.getDate();
-			$("#pstartmonth>option:nth-child("+month+")").attr("selected","true");
-			$("#pstartday>option:nth-child("+date+")").attr("selected","true");
-		});
 		// 프로젝트 시작일의 연(year)을 뿌려주는 메소드, 3년이내로 뿌려줌
 		$(function(){
 			var today = new Date();
@@ -912,50 +863,68 @@
 			thismonth++;
 			var year = $("#pstartyear").val();
 			var month = $("#pstartmonth").val();
+			if(year==null) year = thisyear;
+			if(month==null) month = thismonth;
+			console.log(year);
+			console.log(month);
 			$("#pstartday").empty();
-			$("#pstartday").append("<option value='1'>1일</option>");
-			$("#pstartday").append("<option value='2'>2일</option>");
-			$("#pstartday").append("<option value='3'>3일</option>");
-			$("#pstartday").append("<option value='4'>4일</option>");
-			$("#pstartday").append("<option value='5'>5일</option>");
-			$("#pstartday").append("<option value='6'>6일</option>");
-			$("#pstartday").append("<option value='7'>7일</option>");
-			$("#pstartday").append("<option value='8'>8일</option>");
-			$("#pstartday").append("<option value='9'>9일</option>");
-			$("#pstartday").append("<option value='10'>10일</option>");
-			$("#pstartday").append("<option value='11'>11일</option>");
-			$("#pstartday").append("<option value='12'>12일</option>");
-			$("#pstartday").append("<option value='13'>13일</option>");
-			$("#pstartday").append("<option value='14'>14일</option>");
-			$("#pstartday").append("<option value='15'>15일</option>");
-			$("#pstartday").append("<option value='16'>16일</option>");
-			$("#pstartday").append("<option value='17'>17일</option>");
-			$("#pstartday").append("<option value='18'>18일</option>");
-			$("#pstartday").append("<option value='19'>19일</option>");
-			$("#pstartday").append("<option value='20'>20일</option>");
-			$("#pstartday").append("<option value='21'>21일</option>");
-			$("#pstartday").append("<option value='22'>22일</option>");
-			$("#pstartday").append("<option value='23'>23일</option>");
-			$("#pstartday").append("<option value='24'>24일</option>");
-			$("#pstartday").append("<option value='25'>25일</option>");
-			$("#pstartday").append("<option value='26'>26일</option>");
-			$("#pstartday").append("<option value='27'>27일</option>");
-			$("#pstartday").append("<option value='28'>28일</option>");
-			if(month==1||month==3||month==5||month==7||month==8||month==10||month==12){
-				$("#pstartday").append("<option value='29'>29일</option>");
-				$("#pstartday").append("<option value='30'>30일</option>");
-				$("#pstartday").append("<option value='31'>31일</option>");
-			}else if(month==4||month==6||month==9||month==11){
-				$("#pstartday").append("<option value='29'>29일</option>");
-				$("#pstartday").append("<option value='30'>30일</option>");
-			}else if(month==2&&year%4==0){
-				$("#pstartday").append("<option value='29'>29일</option>");
-			}
 			if(thisyear==year && thismonth==month){
 				var index = 1;
 				while(index<thisdate){
-					$("#pstartday>option:nth-child("+index+")").attr("disabled","true");
+					$("#pstartday").append("<option value='"+index+"' disabled>"+index+"일</option>");
 					index++;
+				}
+				if(month==1||month==3||month==5||month==7||month==8||month==10||month==12){
+					thisdate = 31;
+				}else if(month==4||month==6||month==9||month==11){
+					thisdate = 30;
+				}else if(month==2&&year%4==0){
+					thisdate = 29;
+				}else{
+					thisdate = 28;
+				}
+				while(index<=thisdate){
+					$("#pstartday").append("<option value='"+index+"'>"+index+"일</option>");
+					index++;
+				}
+			}else{
+				$("#pstartday").append("<option value='1'>1일</option>");
+				$("#pstartday").append("<option value='2'>2일</option>");
+				$("#pstartday").append("<option value='3'>3일</option>");
+				$("#pstartday").append("<option value='4'>4일</option>");
+				$("#pstartday").append("<option value='5'>5일</option>");
+				$("#pstartday").append("<option value='6'>6일</option>");
+				$("#pstartday").append("<option value='7'>7일</option>");
+				$("#pstartday").append("<option value='8'>8일</option>");
+				$("#pstartday").append("<option value='9'>9일</option>");
+				$("#pstartday").append("<option value='10'>10일</option>");
+				$("#pstartday").append("<option value='11'>11일</option>");
+				$("#pstartday").append("<option value='12'>12일</option>");
+				$("#pstartday").append("<option value='13'>13일</option>");
+				$("#pstartday").append("<option value='14'>14일</option>");
+				$("#pstartday").append("<option value='15'>15일</option>");
+				$("#pstartday").append("<option value='16'>16일</option>");
+				$("#pstartday").append("<option value='17'>17일</option>");
+				$("#pstartday").append("<option value='18'>18일</option>");
+				$("#pstartday").append("<option value='19'>19일</option>");
+				$("#pstartday").append("<option value='20'>20일</option>");
+				$("#pstartday").append("<option value='21'>21일</option>");
+				$("#pstartday").append("<option value='22'>22일</option>");
+				$("#pstartday").append("<option value='23'>23일</option>");
+				$("#pstartday").append("<option value='24'>24일</option>");
+				$("#pstartday").append("<option value='25'>25일</option>");
+				$("#pstartday").append("<option value='26'>26일</option>");
+				$("#pstartday").append("<option value='27'>27일</option>");
+				$("#pstartday").append("<option value='28'>28일</option>");
+				if(month==1||month==3||month==5||month==7||month==8||month==10||month==12){
+					$("#pstartday").append("<option value='29'>29일</option>");
+					$("#pstartday").append("<option value='30'>30일</option>");
+					$("#pstartday").append("<option value='31'>31일</option>");
+				}else if(month==4||month==6||month==9||month==11){
+					$("#pstartday").append("<option value='29'>29일</option>");
+					$("#pstartday").append("<option value='30'>30일</option>");
+				}else if(month==2&&year%4==0){
+					$("#pstartday").append("<option value='29'>29일</option>");
 				}
 			}
 		};
@@ -970,6 +939,7 @@
 			var index = 1;
 			$("#pstartmonth").empty();
 			if(year==thisyear){
+				var chk = true;
 				while(index<thismonth){
 					$("#pstartmonth").append("<option value='"+index+"' disabled>"+index+"월</option>");
 					index++;
@@ -994,14 +964,14 @@
 			}
 		};
 		$(function(){
-			calcdate();
 			calcmonth();
-		});
-		$("#pstartyear,#pstartmonth").on("input",function(){
 			calcdate();
 		});
 		$("#pstartyear").on("input",function(){
 			calcmonth();
+		});
+		$("#pstartmonth, #pstartyear").on("input",function(){
+			calcdate();
 		});
 
 		// 프로젝트 시작일의 날짜를 조합해주는 메소드
@@ -1027,6 +997,15 @@
 				$("#pCloseDate").val(enddate);
 			}
 		});
+		// 페이지 로딩시 프로젝트 시작일에서 오늘날짜를 선택해주는 메소드
+		$(function(){
+			var today = new Date();
+			var month = today.getMonth();
+			month++;
+			var date = today.getDate();
+			$("#pstartmonth>option:nth-child("+month+")").attr("selected","true");
+			$("#pstartday>option:nth-child("+date+")").attr("selected","true");
+		});
 
 		// url 복사하기 메소드
 		$(function(){
@@ -1044,6 +1023,7 @@
 			function numberWithCommas(x) {
 				return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 			};
+			/*
 			// 한글로 뿌려주기
 			function convertKorean(num){
 				var hanA = new Array("","일","이","삼","사","오","육","칠","팔","구","십"); 
@@ -1069,12 +1049,12 @@
 				$("#pgoalarea").empty();
 				$("#pgoalarea").text(result);
 			};
+			*/
 			$("#pgoalregexp").on("change",function(){
 				var value = $("#pgoalregexp").val();
 				$("input[name='pGoal'").val(value);
 				var conversion = numberWithCommas(value);
 				$(this).val(conversion);
-				convertKorean($("input[name='pGoal'").val());
 			})
 		});
 		// 해시태그를 최대 10개까지만 생성할 수 있게하는 메소드
@@ -1251,6 +1231,13 @@
 			});
 		});
 	</script>
+
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js"></script>
+	<!-- summernote 기능 구현 js -->
+	<script src="resources/summernote/js/summernote.js"></script>
+	
+	<!-- summernote 언어 설정 js -->
+	<script src="resources/summernote/dist/lang/summernote-ko-KR.js"></script>
 
 	 
 </body>
