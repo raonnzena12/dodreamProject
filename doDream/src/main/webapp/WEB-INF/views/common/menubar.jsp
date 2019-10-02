@@ -31,6 +31,8 @@
 	<script src="//cdn.poesis.kr/post/search.min.js"></script>
 	<!-- 카카오 로그인 -->
 	<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+	<!-- 네이버 로그인 -->
+	<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
 
 <style>
 	* {
@@ -158,9 +160,13 @@
 						<tr>
 						<!-- 소셜 로그인 아이콘 들어가는 부분 -->
 							<td class="text-center naverKakaoArea">
-								<img src="resources/images/naver_sns_icon.png" data-toggle="tooltip" data-placement="left" title="NAVER ID로 로그인" class="mx-2">
+								<div>
+								<div id="naver_id_login" class="text-left mx-2" style="display: inline-block;">
+								</div>
 								<a href="javascript:loginWithKakao()"><img src="resources/images/kakao_sns_icon.png" data-toggle="tooltip" data-placement="left" title="KAKAO ID로 로그인" class="mx-2"></a>
 								<img src="resources/images/faceB_sns_icon.png" data-toggle="tooltip" data-placement="left" title="FACEBOOK ID로 로그인" class="mx-2">
+								<!-- <img src="resources/images/naver_sns_icon.png" data-toggle="tooltip" data-placement="left" title="NAVER ID로 로그인" class="mx-2"> -->
+								</div>
 							</td>
 						</tr>
 						<tr>
@@ -254,9 +260,9 @@
 			/* true */
 		});
 		
-		Kakao.init('ff3dadde4ab297ea0f244c294c45e600')
 		function loginWithKakao() {
 			
+			Kakao.init('ff3dadde4ab297ea0f244c294c45e600')			
 			Kakao.Auth.loginForm({
 				success: function(authObj) {
 					Kakao.API.request({
@@ -298,6 +304,8 @@
 			});
 		};
 		
+		
+		
 		function snsLoginFrm(url, userEmail, userPwd){
 			var form = document.createElement("form");
 			var param = new Array();
@@ -320,9 +328,41 @@
 			document.body.appendChild(form);
 			form.submit();
 		}
+	
 		
-
+		var naver_id_login = new naver_id_login("bVM8dWUiwi3icdeJiKkg", "http://localhost:8080/dodream/views/common/naverLoginRedirect.jsp");
+	  	var state = naver_id_login.getUniqState();
+	  	naver_id_login.setButton("green", 1, 40);
+	  	naver_id_login.setDomain("http://localhost:8080/");
+	  	naver_id_login.setState(state);
+	  	naver_id_login.setPopup();
+	  	naver_id_login.init_naver_id_login();	
+	  
+	  	/* naverLogin.init(); */
 	</script>
+	
+	<!-- <script>
+	var naverLogin = new naver.LoginWithNaverId({
+        clientId : "bVM8dWUiwi3icdeJiKkg",
+        callbackUrl : "http://localhost:8080/dodream/views/common/naverLoginRedirect.jsp",
+        isPopup : false, /* 팝업을 통한 연동처리 여부 */
+        loginButton : {
+           color : "green",
+           type : 1,
+           height : 40
+        }
+     /* 로그인 버튼의 타입을 지정 */
+     });
+     /* 설정정보를 초기화하고 연동을 준비 */
+     naverLogin.init();
+	
+	
+	</script> -->
+	
+	
+
+	
+
 	<%@ include file="footer.jsp" %>
 </body>
 </html>
