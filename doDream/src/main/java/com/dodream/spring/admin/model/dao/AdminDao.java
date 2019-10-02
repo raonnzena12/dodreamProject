@@ -288,4 +288,13 @@ public class AdminDao {
 		return sqlSession.update("adminNoticeMapper.removeNotice", nNo);
 	}
 
+	/** 공지사항 글쓰기 써머노트
+	 * @param notice
+	 * @return result
+	 */
+	public int insertNotice(Notice notice) {
+		return sqlSession.insert("adminNoticeMapper.insertNotice", notice);
+	}
+
+
 }

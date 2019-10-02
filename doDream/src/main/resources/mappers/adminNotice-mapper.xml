@@ -35,6 +35,12 @@
 		WHERE NOTICE_NO = #{nNo}
 	</update>
 	
+	<!-- 공지사항 등록 써머노트 -->
+	<insert id="insertNotice" parameterType="Notice">
+		INSERT INTO NOTICE VALUES(
+			SEQ_NOT_NO.NEXTVAL,#{nTitle},#{nContent},SYSDATE,SYSDATE,'Y',#{nWriter}
+		)
+	</insert>
 	
 	
 </mapper>

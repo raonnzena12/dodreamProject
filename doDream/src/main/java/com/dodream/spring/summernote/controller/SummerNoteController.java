@@ -6,11 +6,13 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.dodream.spring.customerCenter.model.vo.Notice;
 import com.dodream.spring.summernote.model.SummerService;
 
 @Controller
@@ -44,5 +46,29 @@ public class SummerNoteController {
 		sService.cancleImage(request,imgArr);
 		return "redirect:adminNoticeList.dr";
 	}
+	
+	@RequestMapping("insert.dr")
+	public String insertNotice(Notice notice, Model model) {
+		
+		int result = sService.insertNotice(notice);
+
+		String path = null;
+		if(result > 0) {
+			path = "redirect:adminNoticeList.dr";
+		} else {
+			model.addAttribute("msg", "공지사항 등록 실패");
+			path = "redirect:adminNoticeList.dr";
+		}
+		
+		return path;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 }
 

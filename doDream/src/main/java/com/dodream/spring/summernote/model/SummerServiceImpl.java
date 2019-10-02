@@ -6,13 +6,20 @@ import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.dodream.spring.admin.model.dao.AdminDao;
+import com.dodream.spring.customerCenter.model.vo.Notice;
 
 
 @Service("sService")
 public class SummerServiceImpl implements SummerService {
 
+	@Autowired
+	private AdminDao aDao;
+	
 	@Override
 	public String insertImage(MultipartFile uploadFile, HttpServletRequest request) {
 		
@@ -27,7 +34,7 @@ public class SummerServiceImpl implements SummerService {
 	@Override
 	public void cancleImage(HttpServletRequest request, String[] imgArr) {
 		
-		String savePath = "C:/Users/user1/git/finalProject/doDream/src/main/webapp/resources/images/summernoteimg/";
+		String savePath = request.getSession().getServletContext().getRealPath("resources")+"/images/summernoteimg/";
 		
 		File file = null;
 		for(String img : imgArr) {
@@ -86,4 +93,11 @@ public class SummerServiceImpl implements SummerService {
 		return result;
 	}
 
+	@Override
+	public int insertNotice(Notice notice) {
+		
+		return aDao.insertNotice(notice);
+	}
+
+	
 }

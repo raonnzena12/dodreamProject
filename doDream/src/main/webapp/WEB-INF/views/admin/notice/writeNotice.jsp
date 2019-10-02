@@ -88,12 +88,15 @@
 										<div class="col-sm-12">
 											<form action="insert.dr" name="insertForm" id="insertForm" method="post">
 												<!-- summnote 에디터 출력 -->
-												<textarea id="summernote" name="content"></textarea>
-												
+												공지사항 제목 : <input type="text" name="nTitle">
+												<br><br>
+												<textarea id="summernote" name="nContent"></textarea>
+												<br><br>
 												<button>등록</button>
 												<button onclick="cancle();">취소</button>
 												
 												<!-- 등록된 이미지 목록 -->
+												<input type="hidden" name="nWriter" value="${loginUser.userNo}">
 												<input type="hidden" name="imgList" value="">
 											</form>
 										</div>
