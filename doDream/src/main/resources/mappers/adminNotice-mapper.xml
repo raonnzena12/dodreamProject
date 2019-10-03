@@ -22,12 +22,12 @@
 	</select>
 	
 	<!-- 공지사항 수정하기 -->
-	<update id="updateNotice" parameterType="_int">
+	<update id="updateNotice" parameterType="Notice">
 		UPDATE NOTICE SET
 		NOTICE_CONTENT = #{nContent}, NOTICE_MF_DT = SYSDATE
 		WHERE NOTICE_NO = #{nNo}
 	</update>
-	
+	  
 	<!-- 공지사항 삭제 -->
 	<update id="removeNotice" parameterType="_int">
 		UPDATE NOTICE SET

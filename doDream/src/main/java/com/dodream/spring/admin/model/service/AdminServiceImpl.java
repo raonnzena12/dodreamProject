@@ -207,11 +207,6 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public int updateNotice(int nNo) {
-		return aDao.updateNotice(nNo);
-	}
-
-	@Override
 	public int cancelReserve(int resNo) {
 		return aDao.cancelReserve(resNo); 
 	}

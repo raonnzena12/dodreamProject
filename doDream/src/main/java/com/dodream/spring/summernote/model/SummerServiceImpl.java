@@ -20,6 +20,7 @@ public class SummerServiceImpl implements SummerService {
 	@Autowired
 	private AdminDao aDao;
 	
+	// 관리자 공지사항 등록
 	@Override
 	public String insertImage(MultipartFile uploadFile, HttpServletRequest request) {
 		
@@ -30,7 +31,7 @@ public class SummerServiceImpl implements SummerService {
 		return savePath;
 	}
 	
-	//
+	// 관리자 공지사항 취소
 	@Override
 	public void cancleImage(HttpServletRequest request, String[] imgArr) {
 		
@@ -45,6 +46,7 @@ public class SummerServiceImpl implements SummerService {
 		}
 	}
 
+	
 	public String renameFile(MultipartFile file) {
 
 		// "년월일시분초.확장자" 로 파일명 변경
@@ -91,12 +93,16 @@ public class SummerServiceImpl implements SummerService {
 		}
 
 		return result;
+	} 
+
+	@Override  
+	public int insertNotice(Notice notice) {
+		return aDao.insertNotice(notice);
 	}
 
 	@Override
-	public int insertNotice(Notice notice) {
-		
-		return aDao.insertNotice(notice);
+	public int updateNotice(Notice notice) {
+		return aDao.updateNotice(notice);
 	}
 
 	

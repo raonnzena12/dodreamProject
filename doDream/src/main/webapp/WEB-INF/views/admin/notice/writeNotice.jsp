@@ -94,7 +94,7 @@
 												<br><br>
 												<button>등록</button>
 												<button onclick="cancle();">취소</button>
-												
+												   
 												<!-- 등록된 이미지 목록 -->
 												<input type="hidden" name="nWriter" value="${loginUser.userNo}">
 												<input type="hidden" name="imgList" value="">
