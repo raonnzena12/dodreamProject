@@ -21,7 +21,7 @@ public class SummerNoteController {
 	@Autowired
 	private SummerService sService;
 	
-	/** 이미지 등록
+	/** 관리자 공지사항 이미지 등록
 	 * @param request
 	 * @param uploadFile
 	 * @return path
@@ -34,7 +34,7 @@ public class SummerNoteController {
 		return path;
 	}
 	
-	/** 이미지 삭제 
+	/** 관리자 공지사항 이미지 삭제 
 	 * @param request
 	 * @param imgList
 	 * @return 
@@ -47,6 +47,12 @@ public class SummerNoteController {
 		return "redirect:adminNoticeList.dr";
 	}
 	
+	
+	/** 관리자 공지사항 등록 
+	 * @param notice
+	 * @param model
+	 * @return path
+	 */
 	@RequestMapping("insert.dr")
 	public String insertNotice(Notice notice, Model model) {
 		
@@ -63,7 +69,27 @@ public class SummerNoteController {
 		return path;
 	}
 	
-	
+	/**  관리자 공지사항 수정
+	 * @param notice
+	 * @param model
+	 * @return result
+	 */
+	@RequestMapping("updateNotice.dr")
+	public String updateNotice(Notice notice, Model model) {
+		
+		int result = sService.updateNotice(notice);
+		
+		System.out.println(notice.getnNo());
+		String path = null;
+		if(result > 0) {
+			path= "redirect:adminNoticeList.dr?nNo="+notice.getnNo();
+		} else {
+			model.addAttribute("msg","공지사항 수정 실패하였습니다.");
+			path= "redriect:adminNoticeList.dr";
+		}
+		return path;
+		
+	}
 	
 	
 	

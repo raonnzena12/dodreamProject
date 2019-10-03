@@ -38,12 +38,6 @@ public class AdminNoticeController {
 		return mv;
 	}
 	
-	// 공지사항 수정 
-	
-	
-	
-	
-	
 	
 	// 공지사항 삭제
 	@RequestMapping("removeNotice.dr")

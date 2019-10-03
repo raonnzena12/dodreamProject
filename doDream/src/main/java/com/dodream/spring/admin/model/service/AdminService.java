@@ -204,12 +204,6 @@ public interface AdminService {
 	 */
 	public abstract ArrayList<Notice> selectNoticeList();
 
-	/** 공지사항 수정
-	 * @param nNo
-	 * @return result
-	 */
-	public abstract int updateNotice(int nNo);
-
 	/** 주문 예약 취소 
 	 * @return result
 	 */

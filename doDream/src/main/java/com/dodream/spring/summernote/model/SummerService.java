@@ -14,4 +14,6 @@ public interface SummerService {
 
 	public abstract int insertNotice(Notice notice);
 
+	public abstract int updateNotice(Notice notice);
+
 }

@@ -265,11 +265,11 @@ public class AdminDao {
 	}
 
 	/** 공지사항 수정하기
-	 * @param nNo
+	 * @param notice
 	 * @return result
 	 */
-	public int updateNotice(int nNo) {
-		return sqlSession.update("adminNoticeMapper.updateNotice",nNo);
+	public int updateNotice(Notice notice) { 
+		return sqlSession.update("adminNoticeMapper.updateNotice", notice);
 	}
 
 	/** 주문 예약 취소
@@ -295,6 +295,7 @@ public class AdminDao {
 	public int insertNotice(Notice notice) {
 		return sqlSession.insert("adminNoticeMapper.insertNotice", notice);
 	}
+
 
 
 }

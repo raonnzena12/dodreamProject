@@ -13,6 +13,8 @@
 
 <title>공지사항 수정</title>
 
+
+
 <!-- Custom fonts for this template -->
 <link href="resources/vendor/fontawesome-free/css/all.min.css"
 	rel="stylesheet" type="text/css">
@@ -64,7 +66,7 @@
 			<!-- Main Content -->
 			<div id="content">
 
-				<jsp:include page="../common/topbar.jsp"/>
+				<%@include file="../common/topbar.jsp" %>
 
 				<!-- Begin Page Content -->
 				<div class="container-fluid">
@@ -76,7 +78,7 @@
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
 							<button type="button" class="btn btn-primary btn-lg btn-block rewardBtn" style="float: right; background: #8E44AD; border: #8E44AD;"
-							onclick="location.href='goWriteNotice.dr'">공지사항 수정</button>
+							onclick="location.href='goUpdateNotice.dr'">공지사항 수정</button>
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
@@ -84,9 +86,19 @@
 									class="dataTables_wrapper dt-bootstrap4">
 									<div class="row">
 										<div class="col-sm-12">
-											
-											
-											
+											<form action="updateNotice.dr" name="updateForm" id="updateForm" method="post">
+												<!-- summnote 에디터 출력 -->
+												공지사항 제목 : <input type="text" name="nTitle">
+												<br><br>
+												<textarea id="summernote" name="nContent"></textarea>
+												<br><br>
+												<button>수정</button>
+												<button onclick="cancle();">취소</button>
+												
+												<!-- 등록된 이미지 목록 -->
+												<input type="hidden" name="nWriter" value="${loginUser.userNo}">
+												<input type="hidden" name="imgList" value="">
+											</form>
 										</div>
 									</div>
 								</div>
@@ -134,14 +146,18 @@
 	        <div class="modal-body">로그아웃 시 메인 페이지로 이동합니다.</div>
 	        <div class="modal-footer">
 	          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-	          <a class="btn btn-primary" href="logout.dr">Logout</a>
 	        </div>
 	      </div>
 	    </div>
 	  </div>
-
+	<script>
+		// 취소 버튼을 누를 경우 action 속성값 변경
+		function cancle(){
+			$("#updateForm").attr("action","cancle.dr");
+		}
+	</script>
+	
 	<!-- Bootstrap core JavaScript-->
-	<script src="resources/vendor/jquery/jquery.min.js"></script>
 	<script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 	<!-- Core plugin JavaScript-->
@@ -161,6 +177,15 @@
 
 	<!-- Demo scripts for this page-->
 	<script src="resources/js/demo/datatables-demo.js"></script>
+	
+	<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css" rel="stylesheet">
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js"></script>
+	<!-- summernote 기능 구현 js -->
+	<script src="resources/summernote/js/summernote.js"></script>
+	
+	<!-- summernote 언어 설정 js -->
+	<script src="resources/summernote/dist/lang/summernote-ko-KR.js"></script>
+
 
 </body>
 </html>
