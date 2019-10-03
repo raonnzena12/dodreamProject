@@ -16,12 +16,12 @@ public class AdminNoticeController {
 	@Autowired
 	private AdminService aService;
 	
-	// 공지사항 목록
-	@RequestMapping("adminNoticeList.dr")
+	// 공지사항 목록 
+	@RequestMapping("adminNoticeList.dr") 
 	public ModelAndView noticeViewList(ModelAndView mv) {
 		
 		ArrayList<Notice> list = aService.selectNoticeList();
-		
+		 
 		if(list != null) {
 			mv.addObject("list",list).setViewName("admin/notice/noticeViewList");
 		} else {

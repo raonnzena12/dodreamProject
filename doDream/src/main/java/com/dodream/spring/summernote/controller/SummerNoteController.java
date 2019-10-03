@@ -76,7 +76,7 @@ public class SummerNoteController {
 	 */
 	@RequestMapping("updateNotice.dr")
 	public String updateNotice(Notice notice, Model model) {
-		
+		 
 		int result = sService.updateNotice(notice);
 		
 		System.out.println(notice.getnNo());

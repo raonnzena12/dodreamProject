@@ -93,9 +93,9 @@ public class SummerServiceImpl implements SummerService {
 		}
 
 		return result;
-	}
+	} 
 
-	@Override
+	@Override 
 	public int insertNotice(Notice notice) {
 		return aDao.insertNotice(notice);
 	}
