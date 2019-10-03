@@ -2,7 +2,7 @@ package com.dodream.spring.summernote.model;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.web.multipart.MultipartFile; 
+import org.springframework.web.multipart.MultipartFile;  
 
 import com.dodream.spring.customerCenter.model.vo.Notice;
 

@@ -21,7 +21,7 @@ public class AdminNoticeController {
 	public ModelAndView noticeViewList(ModelAndView mv) {
 		
 		ArrayList<Notice> list = aService.selectNoticeList();
-		 
+		  
 		if(list != null) {
 			mv.addObject("list",list).setViewName("admin/notice/noticeViewList");
 		} else {

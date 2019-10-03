@@ -57,7 +57,7 @@ function sendFile(file, editor){
 		type : "post",
 		data : form_data,
 		dataType: "text",
-		enctype: "multipart/form-data", 
+		enctype: "multipart/form-data",  
 		cache : false,
         contentType : false,
         // contentType : 서버로 전송되는 데이터의 형식 설정

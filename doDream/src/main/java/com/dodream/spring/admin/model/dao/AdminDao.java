@@ -267,7 +267,7 @@ public class AdminDao {
 	/** 공지사항 수정하기
 	 * @param notice
 	 * @return result
-	 */ 
+	 */  
 	public int updateNotice(Notice notice) { 
 		return sqlSession.update("adminNoticeMapper.updateNotice", notice);
 	}

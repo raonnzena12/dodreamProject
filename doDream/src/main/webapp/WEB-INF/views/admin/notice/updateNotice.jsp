@@ -80,7 +80,7 @@
 							<button type="button" class="btn btn-primary btn-lg btn-block rewardBtn" style="float: right; background: #8E44AD; border: #8E44AD;"
 							onclick="location.href='goUpdateNotice.dr'">공지사항 수정</button>
 						</div>
-						<div class="card-body"> 
+						<div class="card-body">  
 							<div class="table-responsive">
 								<div id="dataTable_wrapper"
 									class="dataTables_wrapper dt-bootstrap4">
