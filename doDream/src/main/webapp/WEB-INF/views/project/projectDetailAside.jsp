@@ -345,7 +345,17 @@
 				<section class="projectReward">
 					<div class="rewardTitle">
 						<i class="material-icons rewardIcon">keyboard_arrow_right</i>
-						<p class="RewardText2">5명 선택</p> <!-- 리워드 정보 불러오기 -->
+						
+						
+						<p class="RewardText2">
+							<c:if test="${r.rSum eq '0'}">
+					             0명 선택
+					        </c:if>
+					        <c:if test="${r.rSum ne '0'}">
+					             ${r.rSum}명 선택
+					        </c:if>
+						</p> <!-- 리워드 정보 불러오기 -->
+					
 					<c:if test="${r.rLimit ne '-1'}">
 					
 						<c:if test="${r.rAmount eq '0' }">

@@ -45,6 +45,7 @@
 		<result property="rRefPno" column="REWARD_REF_PNO"/>
 		<result property="rOptionNo" column="REWARD_OP_NO"/>
 		<result property="rAmount" column="REWARD_AMOUNT"/>
+		<result property="rSum" column="SUMM"/>
 	</resultMap>
 	
 	<resultMap type="Like" id="likeResultSet">
@@ -65,6 +66,7 @@
 		<result property="reWriImg" column="PRO_IMG"/>
 		<result property="reCGNo" column="REPLY_CG_NO"/>
 		<result property="reCGName" column="CGNAME"/>
+		<result property="reRSUser" column="RSUSER"/>
 	</resultMap>
 	
 	<resultMap type="SubReply" id="subReplyResultSet">
@@ -78,6 +80,7 @@
 		<result property="subWriter" column="NICKNAME"/>
 		<result property="subWriImg" column="PRO_IMG"/>
 		<result property="subRefRNo" column="SUBRE_REF_RNO"/>
+		<result property="subRSUser" column="RSUSER"/>
 	</resultMap>
 	
 	<!-- 프로젝트 등록  -->
@@ -140,7 +143,7 @@
 	
 	<!-- 리워드 조회 쿼리 -->
 	<select id="selectReward" parameterType="_int" resultMap="rewardResultSet">
-		SELECT * FROM REWARD WHERE REWARD_REF_PNO=#{pno}
+		SELECT * FROM PROJECT_DETAIL_REWARD WHERE REWARD_REF_PNO=#{pno}
 	</select>
 	
 	<!-- 프로젝트 등록 페이지 이동시 pNo를 생성해주는 쿼리  -->

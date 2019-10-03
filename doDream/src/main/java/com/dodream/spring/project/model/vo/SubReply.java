@@ -14,13 +14,14 @@ public class SubReply {
 	private String subWriter;// 서브 댓글 작성자 닉네임
 	private String subWriImg;// 서브 댓글 작성자 이미지
 	private int subRefRNo;// 서브 댓글 참조 댓글 번호
+	private int subRSUser;// 프로젝트에 펀딩 했는 지 유무
 	
 	public SubReply() {
 		
 	}
 
 	public SubReply(int subNo, String subContent, String subStatus, Date subWriDate, String subReDay, Date subModiDate,
-			int subWriNo, String subWriter, String subWriImg, int subRefRNo) {
+			int subWriNo, String subWriter, String subWriImg, int subRefRNo, int subRSUser) {
 		super();
 		this.subNo = subNo;
 		this.subContent = subContent;
@@ -32,6 +33,7 @@ public class SubReply {
 		this.subWriter = subWriter;
 		this.subWriImg = subWriImg;
 		this.subRefRNo = subRefRNo;
+		this.subRSUser = subRSUser;
 	}
 
 	public int getSubNo() {
@@ -114,11 +116,20 @@ public class SubReply {
 		this.subRefRNo = subRefRNo;
 	}
 
+	public int getSubRSUser() {
+		return subRSUser;
+	}
+
+	public void setSubRSUser(int subRSUser) {
+		this.subRSUser = subRSUser;
+	}
+
 	@Override
 	public String toString() {
 		return "SubReply [subNo=" + subNo + ", subContent=" + subContent + ", subStatus=" + subStatus + ", subWriDate="
 				+ subWriDate + ", subReDay=" + subReDay + ", subModiDate=" + subModiDate + ", subWriNo=" + subWriNo
-				+ ", subWriter=" + subWriter + ", subWriImg=" + subWriImg + ", subRefRNo=" + subRefRNo + "]";
+				+ ", subWriter=" + subWriter + ", subWriImg=" + subWriImg + ", subRefRNo=" + subRefRNo + ", subRSUser="
+				+ subRSUser + "]";
 	}
 
 	
