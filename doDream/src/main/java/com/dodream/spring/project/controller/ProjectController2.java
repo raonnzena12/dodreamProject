@@ -16,13 +16,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.dodream.spring.member.model.vo.Member;
 import com.dodream.spring.project.model.service.ProjectService;
 import com.dodream.spring.project.model.service.ProjectService2;
+import com.dodream.spring.project.model.vo.DetailFollow;
 import com.dodream.spring.project.model.vo.Like;
 import com.dodream.spring.project.model.vo.Project;
 import com.dodream.spring.project.model.vo.Reply;
 import com.dodream.spring.project.model.vo.Reward;
 import com.dodream.spring.project.model.vo.SubReply;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 @Controller
 public class ProjectController2 {
@@ -44,7 +43,7 @@ public class ProjectController2 {
 	 * @return
 	 */
 	@RequestMapping("detailSt.dr")
-	public String prjDetailView(Integer pNo, Integer rNo, HttpServletRequest request, Like like,  Model model, Integer page) {
+	public String prjDetailView(Integer pNo, Integer rNo, DetailFollow follow, HttpServletRequest request, Like like,  Model model, Integer page) {
 		int pno = pNo;
 		int userNo = 0;
 		
@@ -55,6 +54,7 @@ public class ProjectController2 {
 			System.out.println(pno+"///"+ userNo);
 			
 			like.setLikeNo(userNo);
+			follow.setFollowerNo(userNo);
 			
 		}
 			like.setLikeNo(userNo);
@@ -62,6 +62,10 @@ public class ProjectController2 {
 		Like lk = pService2.selectLike(like);
 		
 		Project prj = pService.selectProject(pno);
+		
+		follow.setFollowNo(prj.getpWriter());
+		
+		DetailFollow df = pService2.selectFollow(follow);
 		
 		ArrayList<Reward> rw = pService2.selectReward(pno);
 		
@@ -74,6 +78,7 @@ public class ProjectController2 {
 			System.out.println("detail : " + rno);
 			model.addAttribute("subReward", rno);
 		}
+		model.addAttribute("follow", df);
 		model.addAttribute("reward", rw);
 		model.addAttribute("project", prj);
 		model.addAttribute("like", lk);
@@ -220,6 +225,45 @@ public class ProjectController2 {
 			return "fail";
 		}
 	}
+	
+	//아티스트 팔로우
+	@ResponseBody
+	@RequestMapping("followInsert.dr")
+	public String insertFollow(int followerNo, int followNo, DetailFollow follow, Model model) {
+		
+		follow.setFollowerNo(followerNo);
+		follow.setFollowNo(followNo);
+		
+		int result = pService2.insertFollow(follow);
+		
+		if(result > 0) {
+			return "1";
+		}else {
+			return "2";
+		}
+		
+	}
+	
+	//아티스트 팔로우 취소
+	@ResponseBody
+	@RequestMapping("followDelete.dr")
+	public String deleteFollow(int followerNo, int followNo, DetailFollow follow, Model model) {
+		
+		follow.setFollowerNo(followerNo);
+		follow.setFollowNo(followNo);
+		
+		int result = pService2.deleteFollow(follow);
+		
+		if(result > 0) {
+			return "1";
+		}else {
+			return "2";
+		}
+		
+		
+		
+	}
+	
 	
 	
 

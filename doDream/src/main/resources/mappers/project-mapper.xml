@@ -83,6 +83,16 @@
 		<result property="subRSUser" column="RSUSER"/>
 	</resultMap>
 	
+	<resultMap type="DetailFollow" id="detailFollowResultSet">
+		<id property="followNo" column="FOLLOW"/>
+		<result property="followerNo" column="FOLLOWER"/>
+		<result property="followDate" column="FOLLOW_DATE"/>
+		<result property="followerDate" column="FOLLOWER_DATE"/>
+	</resultMap>
+	
+	
+	
+	
 	<!-- 프로젝트 등록  -->
 	<insert id="insertProject" parameterType="Project">
 		INSERT INTO PROJECT_TB VALUES( 
@@ -210,5 +220,20 @@
 	<insert id="insertSubReply" parameterType="SubReply">
 		INSERT INTO SUBREPLY VALUES(SEQ_SUBRL_NO.NEXTVAL, #{subContent}, 'Y', SYSDATE, SYSDATE, #{subWriNo},#{subRefRNo})
 	</insert>
+	
+	<!-- 팔로우 조회용 -->
+	<select id="selectFollow" parameterType="DetailFollow" resultMap="detailFollowResultSet">
+		SELECT * FROM FOLLOW_TB WHERE FOLLOW=#{followNo} AND FOLLOWER=#{followerNo}
+	</select>
+	
+	<!-- 팔로우 등록 -->
+	<insert id="insertFollow" parameterType="DetailFollow">
+		INSERT INTO FOLLOW_TB VALUES(#{followNo}, #{followerNo}, SYSDATE, SYSDATE)
+	</insert>
+	
+	<!-- 팔로우 취소 -->
+	<delete id="deleteFollow" parameterType="DetailFollow">
+		DELETE FROM FOLLOW_TB WHERE FOLLOW=#{followNo} AND FOLLOWER=#{followerNo}
+	</delete>
 	
 </mapper>
