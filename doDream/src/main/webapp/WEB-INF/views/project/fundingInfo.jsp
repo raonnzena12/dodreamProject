@@ -384,7 +384,11 @@ function calcPrice() {
 		$(".rwd-aPrint"+index).text($(this).val()*1*amount);
 		sum += $(this).val()*1*amount;
 	})
-	$("#fundingPrice").val(sum+${ additionalCost });
+	$("#fundingPrice").val(numberWithCommas(sum+${ additionalCost }));
+}
+// 숫자 넘버포맷 정리하는 함수
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 // Ajax로 카드사와 통신하는 메서드
 function ajaxBilling() {

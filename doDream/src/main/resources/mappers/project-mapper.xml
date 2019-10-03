@@ -132,6 +132,54 @@
 	 	</choose>
 	</select>
 	
+	<!-- 여러 필터링을 한번에 처리하는 필터링된 리스트 받아오는 쿼리 -->
+	<select id="selectPrjListS" resultMap="projectResultSet" parameterType="FilteringList">
+		SELECT P.*, (CASE WHEN PROJECT_NO IN (SELECT LIKE_PRJ FROM LIKE_TB WHERE LIKE_USER = #{ userNo }) THEN 1 ELSE 0 END) AS ILIKE
+		FROM PROJECT_LIST_VIEW_2ND P
+		WHERE 
+		<choose>
+			<when test="category == 'total'">
+			PROJECT_CT_NO IN ( 1, 2, 3, 4, 5 )
+			</when>
+			<when test="category == 'music'">
+			PROJECT_CT_NO = 1
+			</when>
+			<when test="category == 'movie'">
+			PROJECT_CT_NO = 2
+			</when>
+			<when test="category == 'play'">
+			PROJECT_CT_NO = 3
+			</when>
+			<when test="category == 'art'">
+			PROJECT_CT_NO = 4
+			</when>
+			<when test="category == 'etc'">
+			PROJECT_CT_NO = 5
+			</when>
+		</choose>
+		<if test="keyword != null">
+		AND ( PROJECT_TITLE LIKE '%'||'#{ keyword }'||'%' OR PROJECT_STITLE LIKE '%'||'#{ keyword }'||'%' PROJECT_HASHTAG LIKE '%'||'#{ keyword }'||'%' )
+		</if>
+		ORDER BY
+		<choose>
+			<when test="order == 'popluar'">
+			COUNTCOUNT DESC NULLS LAST
+			</when>
+			<when test="order == 'recent'">
+			RECENT DESC NULLS LAST
+			</when>
+			<when test="order == 'amount'">
+			AMOUNT DESC NULLS LAST
+			</when>
+			<when test="order == 'support'">
+			SUPPORT DESC NULLS LAST
+			</when>
+			<when test="order == 'closing'">
+			CLOSING ASC NULLS LAST
+			</when>
+		</choose>
+	</select>
+	
 	<!-- 조회된 프로젝트 조회수 올리는 쿼리 -->
 	<update id="updatePrjCount" parameterType="_int">
 		UPDATE PROJECT_TB 
