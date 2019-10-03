@@ -160,7 +160,7 @@
 	                       </div>
 	                       <div class="nameArea">
 	                       <p>음악</p>
-	                          <span class="categoryName"> 
+	                          <span class="categoryName">  
 	                          	프로젝트 후기 이름
 	                          	<%-- ${ fr.pCategoryName } --%>
 	                          	<!-- 프로젝트 후기 이름 -->
