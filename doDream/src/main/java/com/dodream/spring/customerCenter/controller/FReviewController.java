@@ -32,7 +32,7 @@ public class FReviewController {
 	
 	@RequestMapping("fReview.dr")
 	public String tmp() {
-		return "customerCenter/fReviewDetail";
+		return "customerCenter/fReview";
 	}
 	
 	

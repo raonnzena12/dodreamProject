@@ -54,7 +54,7 @@
     left: 0;
     box-shadow: 1px 1px 3px #ccc;
 }
-#category .fundCon:hover {
+.fundCon:hover {
     box-shadow: 1px 1px 4px #aaa;
 }
 #REviewCon row{
@@ -63,25 +63,37 @@
 	height: 100px;
 
 }
+#mounImage{
+	width: 100%;
+}
+.jumbotron{
+	padding: 0;
+}
 </style>
 </head>
 <body>
 
+
 	<div class="container-fluid" id="ReviewCon">
+		
+		<!-- 메인로고 이미지 -->
 		<div class="row">
 			<div class="col-md-12" align="center">
-				<div class="jumbotrodn"> </div>
-					<img 배경로고시안 (2).png" style="width: 100%">
+				<div id=mounImage class="jumbotron">
+					<img src="resources/images/backgroundImg/배경로고시안 (3).png" style="width: 100%">
 				</div>
 			</div>
 		</div>
-		<div class="sticky-top row" style="background-color: white;">
-			<div class="col-md-12" id="cCenter_menu">
-				<ul class="nav" style="background-color: #E1F5A9;">
-					<li class="nav-item"><a class="nav-link" href="cCenter.dr">공지사항</a></li>
+		
+		<!-- 고객센터 메뉴 -->
+		<div class="sticky-top row">
+			<div class="col-md-12 " >
+				<ul class="nav" style="background-color: #E1F5A9; ">
+					<li class="nav-item"><a class="nav-link active" href="cCenter.dr">공지사항</a>
+					</li>
 					<li class="nav-item"><a class="nav-link" href="T_O_Service.dr">이용약관</a></li>
-					<li class="nav-item"><a class="nav-link" href="fReview.dr">프로젝트 후기</a></li>
-					<li class="nav-item"><a class="nav-link" href="faq.dr">FAQ</a></li>
+					<li class="nav-item"><a class="nav-link " href="fReview.dr">프로젝트 후기</a></li>
+					<li class="nav-item"><a class="nav-link " href="faq.dr">FAQ</a></li>
 
 				</ul>
 			</div>
@@ -94,7 +106,7 @@
 				<h3>프로젝트 후기</h3>
 				<hr id=Review_bar>
 				
-				<!-- 프로젝트 후기 카테고리 -->
+				<!-- 프로젝트 후기 메뉴 -->
 				<div class="container-fluid clearfix" id="categoryTop">
 					<div class="row">
 						<div class="col-md-1"></div>
@@ -147,7 +159,8 @@
 	                          <img src="resources\img\고양이.PNG"><!-- 썸네일이미지 -->
 	                       </div>
 	                       <div class="nameArea">
-	                          <span class="categoryName">
+	                       <p>음악</p>
+	                          <span class="categoryName"> 
 	                          	프로젝트 후기 이름
 	                          	<%-- ${ fr.pCategoryName } --%>
 	                          	<!-- 프로젝트 후기 이름 -->
