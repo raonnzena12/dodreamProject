@@ -65,15 +65,19 @@ public class ReserveController {
 		int result = 0, result2 = 0, resNo = 0;
 		System.out.println(reserve);
 		System.out.println(hList);
-		// 예약테이블 PK번호를 하나 받아옴
-		resNo = rsvService.selectResNo();
-		// 예약테이블 PK번호를 예약용 객체에 셋팅
-		reserve.setResNo(resNo);
-		// 예약정보 Insert 시도
-		result = rsvService.insertReserve(reserve);
-		if ( result > 0 ) { // 예약정보 Insert 성공 시 History 테이블 Insert
-			 result2 = rsvService.insertHistory(hList, resNo);
-		}
+//		// 예약테이블 PK번호를 하나 받아옴
+//		resNo = rsvService.selectResNo();
+//		// 예약테이블 PK번호를 예약용 객체에 셋팅
+//		reserve.setResNo(resNo);
+//		// 예약정보 Insert 시도
+//		result = rsvService.insertReserve(reserve);
+//		if ( result > 0 ) { // 예약정보 Insert 성공 시 History 테이블 Insert
+//			 result2 = rsvService.insertHistory(hList, resNo);
+//		}
+		result2 = 1;
+		resNo = 11;
+		reserve.setResRefPno(127);
+		
 		if ( result2 > 0 ) { // History 테이블 Insert 성공 시 성공 VIew로
 			model.addAttribute("resNo", resNo);
 			model.addAttribute("prj", pService.selectProjectS(reserve.getResRefPno()));
@@ -101,10 +105,10 @@ public class ReserveController {
 		Project prj = pService.selectProjectS(pNo.intValue());
 		ArrayList<Reward> rList = pService.selectRewardList(rNo);
 		
-		System.out.println(rList);
-		System.out.println(addReward);
-		System.out.println(prj);
-		System.out.println(hList);
+		model.addAttribute("rList", rList);
+		model.addAttribute("prj", prj);
+		model.addAttribute("hList", hList);
+		model.addAttribute("additionalCost", addReward);
 		
 		return "project/fundingInfo";
 	}
