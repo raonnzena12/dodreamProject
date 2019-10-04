@@ -11,9 +11,7 @@ public class Faq {
 	private String fStatus;   // 상태
 	private int fWriter;      // 작성자(관리자)
 
-	public Faq() {
-		// TODO Auto-generated constructor stub
-	}
+	public Faq() {  }
 
 	// 전체 리스트
 	public Faq(int fNo, String fTitle, String fContent, Date fEnrollDate, Date fModifyDate, String fStatus,

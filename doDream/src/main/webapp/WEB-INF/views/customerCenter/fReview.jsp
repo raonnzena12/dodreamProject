@@ -44,7 +44,7 @@
     width: 100%;
     height: 180px;
 }
-.fundCon {
+.revCon {
     /* border: 1px solid red; */
     width: 250px;
     height: 350px;
@@ -53,8 +53,9 @@
     right: 0;
     left: 0;
     box-shadow: 1px 1px 3px #ccc;
+    margin: 30px;
 }
-.fundCon:hover {
+.revCon:hover {
     box-shadow: 1px 1px 4px #aaa;
 }
 #REviewCon row{
@@ -68,6 +69,15 @@
 }
 .jumbotron{
 	padding: 0;
+}
+.categoryName {
+    font-weight: 800;
+    font-size: 15px;
+    color: #F39C12;
+}
+.fundName {
+    font-weight: 900;
+    font-size: 18px;
 }
 </style>
 </head>
@@ -89,12 +99,10 @@
 		<div class="sticky-top row">
 			<div class="col-md-12 " >
 				<ul class="nav" style="background-color: #E1F5A9; ">
-					<li class="nav-item"><a class="nav-link active" href="cCenter.dr">공지사항</a>
-					</li>
-					<li class="nav-item"><a class="nav-link" href="T_O_Service.dr">이용약관</a></li>
-					<li class="nav-item"><a class="nav-link " href="fReview.dr">프로젝트 후기</a></li>
-					<li class="nav-item"><a class="nav-link " href="faq.dr">FAQ</a></li>
-
+					<li class="nav-item"><a class="nav-link" href="cCenter.dr">     공지사항</a></li>
+					<li class="nav-item"><a class="nav-link" href="T_O_Service.dr"> 이용약관</a></li>
+					<li class="nav-item"><a class="nav-link" href="fReview.dr">     프로젝트 후기</a></li>
+					<li class="nav-item"><a class="nav-link" href="faq.dr">         FAQ</a></li>
 				</ul>
 			</div>
 		</div>
@@ -122,52 +130,26 @@
 						</div>  
 					</div>
 				</div>
-				
-				<!-- 프로젝트 후기 검색 리스트 -->
-				<%-- 
-				<div id="resultMenu" class="my-4">
-                  <span>전체보기</span>
-                  <span class="float-right">
-                     <form action="${ keywordSearch }">
-                     <input type="search" name="fundKeyword" id="fundKeyword">
-                     <i class="ver-super material-icons" id="titleSearchSubmit">search</i>
-                     <select name="filter" id="filter">
-                        <option value="allFunding" selected>전체</option>
-                        <option value="runFunding">진행중인 펀딩</option>
-                        <option value="endFunding">종료된 펀딩</option>
-                     </select>
-                     <select name="filter2" id="filter2">
-                        <option value="popularClick">인기순</option>
-                        <option value="newest">최신순</option>
-                        <option value="priceless">최고금액순</option>
-                        <option value="popularFund">최다후원순</option>
-                        <option value="Deadline">마감임박순</option>
-                     </select>
-                     </form>
-                  </span>
-               </div> 
-               --%>
-               
+
                <!-- 프로젝트 후기 리스트 출력 -->
 				<div class="resultPrint">
-	             <%--  <c:forEach var="rev" items="${ revList }" > --%>
+	             <c:forEach var="rev" items="${ revList }" >
 	              <div>
-	                 <div class="fundCon">
-	                    <div class="fundItem"><!--id="${ rev.rNo }" 후기 번호 -->
+	                 <div class="revCon">
+	                    <div class="fundItem" id="${ rev.revNo }">
 	                       <div class="fundImg">
-	                          <!-- <img src="resources/projectImg/thumbnail/${ fr.pThumbImage }"> -->
+	                          <!-- <img src="resources/projectImg/thumbnail/${ rev.reviewTnImg }"> -->
 	                          <img src="resources\img\고양이.PNG"><!-- 썸네일이미지 -->
 	                       </div>
 	                       <div class="nameArea">
-	                       <p>음악</p>
-	                          <span class="categoryName">  
+	                       <p class="categoryName">${ rev.revCategoryNo }</p><!-- 카테고리 번호 -->
+	                          <span class="fundName">  
 	                          	프로젝트 후기 이름
-	                          	<%-- ${ fr.pCategoryName } --%>   
-	                          	<!-- 프로젝트 후기 이름 -->
+	                          	${ rev.revTitle }  
 	                          </span><br> 
-	                          <span class="fundName">
-	                          	우키키키키키
-	                             
+	                          <span>
+	                          	후기 부제목
+	                            ${ rev.revSubTitle }
 	                          </span>
 	                       </div>
 	                       <!--  
