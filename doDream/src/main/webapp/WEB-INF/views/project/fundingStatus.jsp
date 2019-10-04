@@ -131,7 +131,24 @@
 #fundingStatus input[type=text] {
     background-color: #fff;
 }
+#creditCard {
+    font-size: 15px;
+}
+#creditCard input[type="number"]::-webkit-outer-spin-button,
+#creditCard input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+#creditCard input {
+    background-color: #fff;
+}
+.changeCredit {
+    display: none;
+}
 </style>
+<!-- 가상 숫자패드 CSS/JS --> 
+<link rel="stylesheet" type="text/css" href="resources/css/jquery.numberKeypad.css">
+<script type="text/javascript" src="resources/js/jquery.numberKeypad.js"></script>
 </head>
 <body>
 <c:set var="aa" value="aa" />
@@ -250,6 +267,7 @@
                     </table>
                 </div>
                 <div class="funding-status rounded-top">
+                    <div class="defaultCredit">
                     <p class="text-13">결제 정보</p>
                     <table class="funddeT mb-3 fundingTotal">
                         <tr>
@@ -263,8 +281,53 @@
                         </tr>
                     </table>
                     <c:if test="${ rsv.resStatusNo == 1 }">
-                    <button class="btn btn-outline-warning btn-block">결제 정보 변경하기</button>
+                        <button class="btn btn-outline-warning btn-block">결제 정보 변경하기</button>
                     </c:if>
+                    </div>
+                    <div class="row changeCredit">
+                    <div class="col-md-12">
+                        <table id="creditCard">
+                            <tr>
+                                <td colspan="4">
+                                    <label>카드 정보</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="p-1"><input type="number" name="cardNo1" id="cardNo1" class="form-control form-control-sm" maxlength="4" oninput="maxLengthCheck(this); nextFocus($(this));" cardidx="1"></td>
+                                <td class="p-1"><input type="password" name="cardNo2" id="cardNo2" class="form-control form-control-sm" maxlength="4" readonly cardidx="2"></td>
+                                <td class="p-1"><input type="password" name="cardNo3" id="cardNo3" class="form-control form-control-sm" maxlength="4" readonly cardidx="3"></td>
+                                <td class="p-1"><input type="number" name="cardNo4" id="cardNo4" class="form-control form-control-sm" maxlength="4" oninput="maxLengthCheck(this);" cardidx="4"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" class="p-1">
+                                    <label class="mt-1">유효기간</label>
+                                </td>
+                                <td colspan="2" class="p-1">
+                                    <label class="mt-1">카드 비밀번호</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" class="p-1"><input type="text" name="expiry" id="expiry" class="form-control form-control-sm" placeholder="YYYY-MM" maxlength="7"></td>
+                                <td colspan="2" class="p-1"><input type="password" name="pwd2" id="pwd2" class="form-control form-control-sm" placeholder="앞 2자리" maxlength="2" readonly></td>
+                            </tr>
+                            <tr>
+                                <td colspan="4" class="p-1">
+                                    <label class="mt-1">생년월일 (주민번호 앞 6자리)<br>
+                                    <span class="graytext">무기명 법인카드는 사업자 등록번호 10자리를 입력하세요</span></label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="4" class="p-1">
+                                    <input type="number" name="authentication" id="authentication" class="form-control form-control-sm" maxlength="10" oninput="maxLengthCheck(this);">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" class="p-1 mt-3"><button class="btn btn-outline-primary btn-block" >취소</button></td>
+                                <td colspan="2" class="p-1 mt-3"><button class="btn btn-outline-warning btn-block" >결제정보 변경</button></td>
+                            </tr>
+                        </table>
+                    </div>
+                    </div>
                 </div>
                 <c:if test="${ rsv.resStatusNo == 1 }" >
                 <div class="funding-status-additional rounded-bottom text-13">
@@ -293,7 +356,7 @@
                                 <td class="p-1">
                                     <input type="text" name="cShipPostCode" id="cShipPostCode" class="form-control" placeholder="우편번호" value='${fn:split(rsv.resAddress,",")[2]}' readonly>
                                 </td>
-                                <td cladd="p-1">
+                                <td class="p-1">
                                     <input type="text" name="cShipAddr1" id="cShipAddr1" class="form-control" placeholder="주소" value='${fn:split(rsv.resAddress,",")[0]}' readonly>
                                 </td>
                             </tr>
@@ -393,6 +456,10 @@ $(function(){
             }
         });
     });
+    // 가상 키패드 LOADING
+    $('#cardNo2').numberKeypad(); 
+    $('#cardNo3').numberKeypad();
+    $('#pwd2').numberKeypad();
 });
 function cancelFundingAjax(){
     var rsvNo = ${ rsv.resNo };
@@ -423,6 +490,23 @@ function cancelFundingAjax(){
             }
         }
     });
+}
+// 카드번호 4자 입력시 다음 입력창으로 이동
+function nextFocus(obj) {
+	var inputLeng = obj.val().length;
+	var maxLeng = obj.attr("maxLength");
+	var nextIndex = obj.attr("cardidx")*1+1;
+	if ( nextIndex == 5 ) {
+		return false;
+	} else if ( inputLeng == maxLeng ) {
+		$("input[name=cardNo"+nextIndex+"]").focus();
+	}
+}
+// maxLength 체크해주는 함수
+function maxLengthCheck(object){
+    if (object.value.length > object.maxLength){
+      object.value = object.value.slice(0, object.maxLength);
+    }    
 }
 </script>
 </body>

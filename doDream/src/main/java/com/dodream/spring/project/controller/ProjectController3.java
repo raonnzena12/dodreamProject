@@ -32,12 +32,13 @@ public class ProjectController3 {
 	public String fundListView(String keyword, String cate, String order, String endYn, Integer page, HttpServletRequest request, Model model) {
 		int currentPage = ( page == null ) ? 1 : page;
 		int userNo = 0;
-		String category = ( cate == null ) ? "total" : cate;
-		String order1 = ( order == null ) ? "popluar" : order;
-		String endYn1 = ( endYn == null ) ? "ALL" : endYn;
+		String category = ( cate == null || cate.equals("") ) ? "total" : cate;
+		String order1 = ( order == null || order.equals("") ) ? "popluar" : order;
+		String endYn1 = ( endYn == null || endYn.equals("") ) ? "ALL" : endYn;
+		String keyword1 = ( keyword == null || keyword.equals("") ) ? null : keyword;
 		if ( request.getSession().getAttribute("loginUser") != null ) userNo = ((Member)(request.getSession().getAttribute("loginUser"))).getUserNo();
 		
-		FilteringList filter = new FilteringList(userNo, category, order1, keyword, endYn1);
+		FilteringList filter = new FilteringList(userNo, category, order1, keyword1, endYn1);
 		
 		ArrayList<Project> pList = pService.selectPrjList(filter, currentPage);
 		model.addAttribute("pList", pList);
@@ -50,13 +51,14 @@ public class ProjectController3 {
 	public ArrayList<Project> loadListByAjax(String keyword, String cate, String order, String endYn, Integer page, HttpServletRequest request) {
 		int currentPage = ( page == null ) ? 1 : page;
 		int userNo = 0;
-		String category = ( cate == null ) ? "total" : cate;
-		String order1 = ( order == null ) ? "popluar" : order;
-		String endYn1 = ( endYn == null ) ? "ALL" : endYn;
+		String category = ( cate == null || cate.equals("") ) ? "total" : cate;
+		String order1 = ( order == null || order.equals("") ) ? "popluar" : order;
+		String endYn1 = ( endYn == null || endYn.equals("") ) ? "ALL" : endYn;
+		String keyword1 = ( keyword == null || keyword.equals("") ) ? null : keyword;
 		if ( request.getSession().getAttribute("loginUser") != null ) userNo = ((Member)(request.getSession().getAttribute("loginUser"))).getUserNo();
 		
-		FilteringList filter = new FilteringList(userNo, category, order1, keyword, endYn1);
-		
+		FilteringList filter = new FilteringList(userNo, category, order1, keyword1, endYn1);
+		System.out.println(filter);
 		ArrayList<Project> pList = pService.selectPrjList(filter, currentPage);
 		
 		return pList;
