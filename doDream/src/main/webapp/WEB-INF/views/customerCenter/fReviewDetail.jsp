@@ -13,7 +13,7 @@
 <meta name="author" content="LayoutIt!">
 
 <link href="css/bootstrap.min.css" rel="stylesheet">
-<link href="css/style.css" rel="stylesheet">  
+<link href="css/style.css" rel="stylesheet">   
 <STYLE>
 #ReviewCon {
 	width: 1200px;

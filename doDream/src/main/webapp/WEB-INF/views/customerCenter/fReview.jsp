@@ -162,7 +162,7 @@
 	                       <p>음악</p>
 	                          <span class="categoryName">  
 	                          	프로젝트 후기 이름
-	                          	<%-- ${ fr.pCategoryName } --%>
+	                          	<%-- ${ fr.pCategoryName } --%> 
 	                          	<!-- 프로젝트 후기 이름 -->
 	                          </span><br>
 	                          <span class="fundName">

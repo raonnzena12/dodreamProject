@@ -7,7 +7,7 @@ public class Review {
 	private String revTitle;    // 제목
 	private String revSubTitle;  // 부제목
 	private String revContent;  // 내용	
-	private Date revEnrollDate; // 작성일
+	private Date revEnrollDate; // 작성일 
 	private Date revModifyDate; // 수정일
 	private String revStatus;   // 상태
 	private int revRefPno;      // 프로젝트 번호
@@ -15,7 +15,7 @@ public class Review {
 	private String reviewTnImg; // 썸네일
 	private String ReviewImg;	// 리뷰 이미지
 	private int revCount;         // 조회수
-	
+	 
 	public Review() {  
 		// TODO Auto-generated constructor stub
 	}

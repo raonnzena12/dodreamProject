@@ -14,7 +14,7 @@ public class FReviewController {
 
 	private FReviewService frService;
  
-	/*
+	/*  
 	// 프로젝트 후기 / 필요 변수 : 조회수, 후기 이미지, 제목, 내용
 	@RequestMapping("fReview.dr")
 	public ArrayList<Review> frListByAjax(Integer page, String cate) {
