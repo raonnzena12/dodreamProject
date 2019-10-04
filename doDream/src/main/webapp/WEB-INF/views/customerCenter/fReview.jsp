@@ -164,7 +164,7 @@
 	                          	프로젝트 후기 이름
 	                          	<%-- ${ fr.pCategoryName } --%>   
 	                          	<!-- 프로젝트 후기 이름 -->
-	                          </span><br>
+	                          </span><br> 
 	                          <span class="fundName">
 	                          	우키키키키키
 	                             

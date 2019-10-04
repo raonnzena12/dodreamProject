@@ -24,7 +24,7 @@
 #Review_bar {
 	border-bottom: 3px solid #8E44AD;
 }
-
+ 
 #Review_table {
 	padding-top: 20px;
 	width: 100%;

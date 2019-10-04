@@ -18,7 +18,7 @@ public class Review {
 	 
 	public Review() {  
 		// TODO Auto-generated constructor stub
-	}
+	} 
 
 	public Review(int revNo, String revTitle, String revSubTitle, String revContent, Date revEnrollDate,
 			Date revModifyDate, String revStatus, int revRefPno, int revWriter, String reviewTnImg, String reviewImg,

@@ -25,7 +25,7 @@ public class FReviewController {
 		ArrayList<Review> revList = frService.selectfrevList(category, currentPage);
 
 		return revList;
-	}
+	} 
 	*/
 	 
 	// 프로젝트 상세 / 제목, 
