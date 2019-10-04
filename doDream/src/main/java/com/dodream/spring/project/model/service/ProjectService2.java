@@ -2,6 +2,7 @@ package com.dodream.spring.project.model.service;
 
 import java.util.ArrayList;
 
+import com.dodream.spring.project.model.vo.DetailFollow;
 import com.dodream.spring.project.model.vo.Like;
 import com.dodream.spring.project.model.vo.Reply;
 import com.dodream.spring.project.model.vo.Reward;
@@ -65,6 +66,30 @@ public interface ProjectService2 {
 	 * @return result
 	 */
 	int insertSubReply(SubReply subRe);
+
+	/**
+	 * 팔로우 조회용 
+	 * @param follow
+	 * @return fl
+	 */
+	DetailFollow selectFollow(DetailFollow follow);
+
+	/**
+	 * 팔로우 등록
+	 * @param follow
+	 * @return
+	 */
+	int insertFollow(DetailFollow follow);
+
+	
+	/**
+	 * 팔로우 취소
+	 * @param follow
+	 * @return
+	 */
+	int deleteFollow(DetailFollow follow);
+	
+
 	
 
 }

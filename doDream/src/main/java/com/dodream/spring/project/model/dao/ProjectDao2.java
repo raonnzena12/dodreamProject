@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.dodream.spring.project.model.vo.DetailFollow;
 import com.dodream.spring.project.model.vo.Like;
 import com.dodream.spring.project.model.vo.Reply;
 import com.dodream.spring.project.model.vo.Reward;
@@ -104,5 +105,37 @@ public class ProjectDao2 {
 	public int selectSubReply(SubReply subRe) {
 	
 		return sqlSession.insert("projectMapper.insertSubReply", subRe);
+	}
+
+
+	/**팔로우 조회용 DAO
+	 * @param follow
+	 * @return fl
+	 */
+	public DetailFollow selectFollow(DetailFollow follow) {
+		
+		return sqlSession.selectOne("projectMapper.selectFollow", follow);
+	}
+
+
+	/**
+	 * 팔로우 등록 DAO
+	 * @param follow
+	 * @return result
+	 */
+	public int insertFollow(DetailFollow follow) {
+		
+		return  sqlSession.insert("projectMapper.insertFollow", follow);
+	}
+
+
+	/**
+	 * 팔로우 취소 DAO
+	 * @param follow
+	 * @return result
+	 */
+	public int deleteFollow(DetailFollow follow) {
+		
+		return sqlSession.delete("projectMapper.deleteFollow", follow);
 	}
 }

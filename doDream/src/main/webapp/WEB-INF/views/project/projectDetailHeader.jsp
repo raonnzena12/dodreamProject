@@ -379,7 +379,7 @@
 	
 	function LikeDelete(){
 			//if(${!empty sessionScope.loginUser}){
-				
+				var uno = "${loginUser.userNo}";
 				var pNo = ${project.pNo};
 				
 				console.log(uno);
@@ -390,7 +390,7 @@
 					
 					$.ajax({
 						url:"detailLikeDelete.dr",
-						data:{pNo:pNo, userNo:"${loginUser.userNo}"},
+						data:{pNo:pNo, userNo:uno},
 						type: "post",
 						success: function(result){
 							if(result == 1){

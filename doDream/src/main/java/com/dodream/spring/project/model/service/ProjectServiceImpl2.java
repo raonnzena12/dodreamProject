@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dodream.spring.project.model.dao.ProjectDao2;
+import com.dodream.spring.project.model.vo.DetailFollow;
 import com.dodream.spring.project.model.vo.Like;
 import com.dodream.spring.project.model.vo.Reply;
 import com.dodream.spring.project.model.vo.Reward;
@@ -80,6 +81,25 @@ public class ProjectServiceImpl2 implements ProjectService2{
 		subRe.setSubContent(subRe.getSubContent().replace("\n","<br>"));
 		
 		return pDao2.selectSubReply(subRe);
+	}
+	
+	//팔로우 조회용 Service
+	@Override
+	public DetailFollow selectFollow(DetailFollow follow) {
+		
+		return pDao2.selectFollow(follow);
+	}
+
+	@Override
+	public int insertFollow(DetailFollow follow) {
+		
+		return  pDao2.insertFollow(follow);
+	}
+
+	@Override
+	public int deleteFollow(DetailFollow follow) {
+		
+		return pDao2.deleteFollow(follow);
 	}
 	
 	
