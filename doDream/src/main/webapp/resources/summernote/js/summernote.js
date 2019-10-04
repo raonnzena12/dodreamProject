@@ -19,28 +19,29 @@ $(function(){
 	});
 	
 	
-	// 프로젝트 등록에 들어가는 서머노트
+	
+	
+});
+
+// 프로젝트 등록에 들어가는 서머노트
+function loadSummernote(){
 	$('#pStorySummernote').summernote({
-		width : 880,		// 에디터 넓이
-		height: 890,        // 에디터 높이
-		focus: true,        // set focus to editable area after initializing summernote
-		lang: 'ko-KR',		// 언어 : 한국어 설정
-		disableResizeEditor: true,
-		
-		// 이미지 업로드 이벤트가 발생했을 때 
-		callbacks:{
-			onImageUpload: function(files, editor) {
-				// 업로드된 이미지를 ajax를 이용하여 서버에 저장
+	width : 880,		// 에디터 넓이
+	height: 890,        // 에디터 높이
+	focus: true,        // set focus to editable area after initializing summernote
+	lang: 'ko-KR',		// 언어 : 한국어 설정
+	disableResizeEditor: true,
+	// 이미지 업로드 이벤트가 발생했을 때 
+	callbacks:{
+		onImageUpload: function(files, editor) {
+			// 업로드된 이미지를 ajax를 이용하여 서버에 저장
 				
 				sendFile(files[0], this);
 				
 			}
 		}
 	});
-	
-	
-});
-
+};
 
 // 업로드된 이미지를 ajax를 이용하여 서버로 전송하여 저장하는 함수
 function sendFile(file, editor){
