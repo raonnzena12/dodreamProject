@@ -42,18 +42,18 @@
                   <span class="float-right">
                      <form action="${ keywordSearch }">
                      <input type="search" name="fundKeyword" id="fundKeyword">
-                     <i class="ver-super material-icons" id="titleSearchSubmit">search</i>
+                     <i class="ver-super material-icons" id="searchSubmit">search</i>
                      <select name="filter" id="filter">
-                        <option value="allFunding" selected>전체</option>
-                        <option value="runFunding">진행중인 펀딩</option>
-                        <option value="endFunding">종료된 펀딩</option>
+                        <option value="ALL" selected>전체</option>
+                        <option value="N">진행중인 펀딩</option>
+                        <option value="Y">종료된 펀딩</option>
                      </select>
                      <select name="filter2" id="filter2">
-                        <option value="popularClick">인기순</option>
-                        <option value="newest">최신순</option>
-                        <option value="priceless">최고금액순</option>
-                        <option value="popularFund">최다후원순</option>
-                        <option value="Deadline">마감임박순</option>
+                        <option value="popluar">인기순</option>
+                        <option value="recent">최신순</option>
+                        <option value="amount">최고금액순</option>
+                        <option value="support">최다후원순</option>
+                        <option value="closing">마감임박순</option>
                      </select>
                      </form>
                   </span>
@@ -73,7 +73,14 @@
                               </span>
                            </div>
                            <div class="heartIcon">
-                              <i class="material-icons heart-fund">favorite_border</i>
+                              <c:choose>
+                                 <c:when test="${ prj.iLike == 0 }">
+                                 <i class="material-icons heart-fund">favorite_border</i>
+                                 </c:when>
+                                 <c:otherwise>
+                                 <i class="material-icons heart-fund">favorite</i>
+                                 </c:otherwise>
+                              </c:choose>
                            </div>
                            <div class="detailArea my-1">
                               <!-- <span class="detailText">
@@ -129,15 +136,20 @@
 // 페이지 접속하면 currentPage = 1;
 var currentPage = 1;
 var maxPage = ${ pi.maxPage };
+var cate = null;
+var order = null;
+var endYn = null;
+var keyword = null;
+
 
    // 좋아요 누르는 함수 만들것
 $(function() {
    // 리뷰 좋아요 체크하는 함수
    $(document).on("click",".heartIcon", function(e){
-      // if ( ${ empty loginUser } ) {
-      //     Swal.fire( '로그인이 필요합니다!', '좋아요를 누르기 전 로그인을 해주세요!', 'warning' );
-      //     return false;
-      // }
+      if ( ${ empty loginUser } ) {
+          Swal.fire( '로그인이 필요합니다!', '좋아요를 누르기 전 로그인을 해주세요!', 'warning' );
+          return false;
+      }
       var icheck = $(this).children().text();
       var pno = $(this).parent().attr("id");
       if ( icheck == 'favorite_border') {
@@ -197,7 +209,7 @@ function printFunds(list) {
       // 하트 누른 값에따라 채워진 하트/빈하트 구분
       var $heartIcon = $("<div>").addClass("heartIcon");
       var $heart_fund = $("<i>").addClass("material-icons heart-fund")
-      if ( list[i].heart == 1 ) { // 좋아요 찍은 내력이 있을 시 꽉찬 하트를 프린트한다
+      if ( list[i].iLike == 1 ) { // 좋아요 찍은 내력이 있을 시 꽉찬 하트를 프린트한다
          $heart_fund.text("favorite");
       } else { // 내역이 없을 시 빈하트를 프린트한다
          $heart_fund.text("favorite_border");
@@ -230,22 +242,26 @@ function addComma(num) {
 }
 
 function listLoading() {
-   if ( currentPage == maxPage ) {
+   if ( currentPage > maxPage ) {
       console.log(currentPage);
       return false;
    }
-   // console.log("curP: " +currentPage);
-   // console.log("maxP: " +maxPage);
-   currentPage += 1;
-   var selectCate = $("input[name=category]:checked").val();
-
-   console.log("리스트 로딩중 " + selectCate);
-   
+   cate = $("input[name=category]:checked").val();
+   keyword = $("#fundKeyword").val();
+   endYn = $("#filter").val();
+   order = $("#filter2").val();
+   console.log(cate);
+   console.log(keyword);
+   console.log(endYn);
+   console.log(order);
    $.ajax({
       url: "loadListByAjax.dr",
       type: "GET",
       data: { page: currentPage,
-              cate: selectCate },
+              cate: cate,
+              keyword: keyword,
+              order: order,
+              endYn: endYn },
       dataType: "json",
       error: function(e){
          console.log(e);
@@ -267,28 +283,32 @@ $(function(){
          var oldDocHei = $(document).height();
          $("#loadingImg").css("opacity","1");
          setTimeout(function(){
+         currentPage += 1;
          listLoading();
          $("#loadingImg").css("opacity","0");
          $(window).scrollTop(oldDocHei-($(window).height()+($(window).height()/4)));
          },500);
       } 
    });
+   // 카테고리가 변경될때마다 리스트로딩을 다시 하는 함수
    $("#categoryArea input").on("change", function(){
-      var selectCate = $("input[name=category]:checked").val();
       currentPage = 1;
-      $.ajax({
-         url: "loadListByAjax.dr",
-         data: { cate: selectCate,
-                 page: currentPage },
-         dataType: "JSON",
-         error: function(e){ console.log(e); },
-         success: function(pList) {
-            $(".resultPrint").html("");
-            printFunds(pList);
-         }
-      });
+      $(".resultPrint").html("");
+      listLoading();
    });
-
+   // 진행상태/ 정렬상태가 변경될때마다 리스트 로딩을 다시 하는 함수
+   $("#filter, #filter2").on("change", function(){
+      currentPage = 1;
+      $(".resultPrint").html("");
+      listLoading();
+   });
+   // 검색어를 서치할때마다 리스트 로딩을 다시 하는 함수
+   $("#searchSubmit").on("click", function(){
+      console.log("왜안돼");
+      currentPage = 1;
+      $(".resultPrint").html("");
+      listLoading();
+   })
 })
 
 </script>

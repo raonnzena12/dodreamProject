@@ -32,6 +32,7 @@ public class Project {
 	private int pStatusNum;
 	private int pCount;
 	private int pOpenCount; // 프로젝트 작성자가 오픈한 프로젝트 개수
+	private int iLike; 
 	
 	public Project() {}
 
@@ -303,6 +304,14 @@ public class Project {
 
 	public void setpOpenCount(int pOpenCount) {
 		this.pOpenCount = pOpenCount;
+	}
+
+	public int getiLike() {
+		return iLike;
+	}
+
+	public void setiLike(int iLike) {
+		this.iLike = iLike;
 	}
 
 	@Override

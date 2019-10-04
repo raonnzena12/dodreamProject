@@ -37,10 +37,10 @@ public class ReserveController {
 		Reserve rsv = rsvService.selectReserve(rsvNo.intValue());
 		
 		// uNo 검사
-//		if ( uNo != rsv.getResUser() ) {
-//			return "redirect:home.dr";
-//			// 자신의 예약조회가 아닐경우 홈으로 넘김
-//		}
+		if ( uNo != rsv.getResUser() ) {
+			return "redirect:home.dr";
+			// 자신의 예약조회가 아닐경우 홈으로 넘김
+		}
 		
 		Project prj = pService.selectProjectS(rsv.getResRefPno());
 		ArrayList<Reward> rList = rsvService.selectRewardList(rsvNo);
@@ -65,18 +65,18 @@ public class ReserveController {
 		int result = 0, result2 = 0, resNo = 0;
 		System.out.println(reserve);
 		System.out.println(hList);
-//		// 예약테이블 PK번호를 하나 받아옴
-//		resNo = rsvService.selectResNo();
-//		// 예약테이블 PK번호를 예약용 객체에 셋팅
-//		reserve.setResNo(resNo);
-//		// 예약정보 Insert 시도
-//		result = rsvService.insertReserve(reserve);
-//		if ( result > 0 ) { // 예약정보 Insert 성공 시 History 테이블 Insert
-//			 result2 = rsvService.insertHistory(hList, resNo);
-//		}
-		result2 = 1;
-		resNo = 11;
-		reserve.setResRefPno(127);
+		// 예약테이블 PK번호를 하나 받아옴
+		resNo = rsvService.selectResNo();
+		// 예약테이블 PK번호를 예약용 객체에 셋팅
+		reserve.setResNo(resNo);
+		// 예약정보 Insert 시도
+		result = rsvService.insertReserve(reserve);
+		if ( result > 0 ) { // 예약정보 Insert 성공 시 History 테이블 Insert
+			 result2 = rsvService.insertHistory(hList, resNo);
+		}
+//		result2 = 1;
+//		resNo = 11;
+//		reserve.setResRefPno(127);
 		
 		if ( result2 > 0 ) { // History 테이블 Insert 성공 시 성공 VIew로
 			model.addAttribute("resNo", resNo);
