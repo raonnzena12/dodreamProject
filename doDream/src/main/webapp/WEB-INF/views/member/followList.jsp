@@ -55,7 +55,7 @@
 						<c:if test="${! empty followList.followName }">
 							${followList.followName}
 						</c:if>
-						<img class="float-sm align-top" src="resources/images/alertBadge/star.png" style="width: 25px; height: 25px;"/>
+						<img class="float-sm align-top" src="resources/images/alertBadge/star.png" style="width: 25px; height: 25px;" id="artistbadge"/>
 					</h6>
 					<div class="text-left" >
 						<c:if test="${empty followList.followSelf }">
@@ -91,6 +91,7 @@
 	
 	$(function() {
 		console.log("${fn:length(followList)}");
+		
 	});
 
 </script>

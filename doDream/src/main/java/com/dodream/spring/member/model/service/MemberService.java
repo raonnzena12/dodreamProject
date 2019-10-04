@@ -51,6 +51,8 @@ public interface MemberService {
 
 	public abstract int insertSNS(Member member);
 
+	public abstract int countOpenProject(int userNo);
+
 
 
 }

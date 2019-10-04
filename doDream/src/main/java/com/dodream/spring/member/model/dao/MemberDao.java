@@ -57,5 +57,10 @@ public class MemberDao {
 		return sqlSession.insert("memberMapper.insertSNS", member);
 	}
 
+	public int countOpenProject(int userNo) {
+		
+		return sqlSession.selectOne("projectMapper.countOpenProject", userNo);
+	}
+
 	
 }

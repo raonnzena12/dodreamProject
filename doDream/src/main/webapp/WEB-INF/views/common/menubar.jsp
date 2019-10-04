@@ -201,11 +201,12 @@
 							<div class="row">
 								<div class="hr-sect">SUB MENU</div>
 								<div class="col-md-12" id="myinfosub">
+								
 									<div class="row text-center">
 										<div class="col-md-4">
 											<i class="material-icons">supervisor_account</i>
 											<br>
-											<a href="#">팔로잉</a>
+											<a href="followList.dr?userNo=${loginUser.userNo}">팔로잉</a>
 										</div>
 										<div class="col-md-4">
 											<i class="material-icons">favorite</i>
@@ -362,6 +363,12 @@
 			if(getCookie("userEmail") && getCookie("userPwd")){
 				$("#userEmail").val(getCookie("userEmail"));
 				$("#userPwd").val(getCookie("userPwd"));
+				
+				var frm = $("#loginFrm");
+				var path = window.location.pathname;
+				var arr = path.split("/");
+				$("#prevPage").val(arr[2]);
+				
 				$("#loginFrm").submit();
 			}
 						
