@@ -132,6 +132,7 @@
            		font-size: 30px;
                 text-align: center;
                 color:#F39C12;
+                cursor: pointer;
                /*  margin:43px 0 0 3px; */
                 /* position: absolute; */
                 /* 하트 아이콘 */
@@ -393,6 +394,94 @@
 		</section>
 	</section>
 	<script>
+		$(function(){
+			
+			if(${!empty sessionScope.loginUser}){
+				if(${loginUser.userNo eq follow.followNo}){ //로그인 유저가 같으면 보라색
+					$("#asideFavorite","#8E44AD");
+					
+				}else if(${loginUser.userNo ne follow.followNo}){
+					$("#asideFavorite").css("color","#F39C12");
+				}
+				
+			}
+			
+			
+			$("#asideFavorite").on("click", function(){
+				
+				if(${empty sessionScope.loginUser}) {
+					alert("로그인이 필요합니다.");
+					return false;
+				}else{
+					if($(this).css("color") == "rgb(142, 68, 173)"){
+						followDelete(); 
+					}else if($(this).css("color") == "rgb(243, 156, 18)"){
+						followInsert();
+					}
+				}
+				
+			});
+			
+		});
+		
+		
+		function followInsert(){
+			var followerNo = "${loginUser.userNo}";
+			var followNo = ${project.pWriter};
+			
+			$.ajax({
+				url:"followInsert.dr",
+				data:{followerNo:followerNo, followNo:followNo},
+				type:"post",
+				success: function(result){
+					if(result == 1){
+						$("#asideFavorite").css("color", "#8E44AD");
+						alert("팔로우를 성공했습니다.");
+						
+					}else{
+						alert("팔로우 실패");
+					}
+					
+				},
+				error: function(e){
+					console.log(e);
+				}
+			});
+			
+			
+		}
+		
+		
+		function followDelete(){
+			
+			var followerNo = "${loginUser.userNo}";
+			var followNo = ${project.pWriter};
+			
+			$.ajax({
+				url:"followDelete.dr",
+				data:{followerNo:followerNo, followNo:followNo},
+				type:"post",
+				success: function(result){
+					if(result == 1){
+						$("#asideFavorite").css("color","#F39C12");
+						alert("팔로우가 취소되었습니다.");
+						
+					}else{
+						alert("팔로우 취소 실패");
+					}
+					
+				},
+				error: function(e){
+					console.log(e);
+				}
+			});
+			
+			
+		} 
+		
+		
+		
+		
 		
 	</script>
              

@@ -167,7 +167,7 @@
       ].join(''));
   });
   var popover = renderer.create([
-      '<div class="note-popover popover in">',
+      '<div class="note-popover popover in" style="display: none;">',
       '  <div class="arrow"/>',
       '  <div class="popover-content note-children-container"/>',
       '</div>',

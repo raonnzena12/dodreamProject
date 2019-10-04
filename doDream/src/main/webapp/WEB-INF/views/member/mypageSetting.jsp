@@ -20,15 +20,6 @@
       font-size: 14px;
    }
    
-/*    #userProfileImage{
-      width: 140px;
-      height: 140px;
-   } */
-   
-/*    #deleteMemMsg{
-      font-size: 13px;
-   } */
-   
    #deleteMemMsg a{
       text-decoration: none;
       color: red;
@@ -39,8 +30,6 @@
       background-color: white;
       padding: 0; 
    }
-   
-
 
 </style>
 
@@ -128,7 +117,7 @@
                      </tr>
                   </table>
                   <div id="deleteMemMsg" class= "text-center">
-                     <mark>두드림</mark>에서 탈퇴하시겠습니까? <a href="deleteForm.dr">회원탈퇴</a>   
+                     <mark>두드림</mark>에서 탈퇴하시겠습니까? <a role="button" id="deleteMember">회원탈퇴</a>   
                   </div>
                            
                </form>
@@ -150,17 +139,14 @@
            insertAddress : "#address",
        });
       
-      //사진 등록
-      
+      //사진 등록      
       $("#changeImgBtn").click(function() {
          $("#changbtn").click();
       });
       
       var sel_file;
-/*       var origin = "${empty loginUser.userProfileImage}"; */
       
       $("#changbtn").on("change", handleImgSelect);
-
       
       function handleImgSelect(e) {
          
@@ -225,6 +211,25 @@
        $("#postcode").attr("value",res[2]);
               
     });
+   
+   //회원탈퇴버튼 클릭 시 오픈프로젝트 조회
+   $("#deleteMember").click(function(){
+	   $.ajax({
+		   url: "countOpenPJT.dr",
+		   type: "post",
+		   data: {userNo : ${loginUser.userNo}},
+		   success: function(result){
+			   console.log(result);
+			   if(result > 0){
+				   alert("진행중인 프로젝트가"+result+"건이 있습니다. 탈퇴를 진행할 수 없습니다.");
+				   $("#deleteMember").bind("click", false);
+			   }else{
+				   alert("진행중인 프로젝트가 없습니다.");
+				   location.href = "deleteForm.dr?userNo=${loginUser.userNo}";
+			   }
+		   }
+	   });
+   });
    
    
    
