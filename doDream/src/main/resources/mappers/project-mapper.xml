@@ -31,6 +31,7 @@
 		<result property="pCurrentFunding" column="TOTAL" />
 		<result property="pOpenCount" column="PROJECT_OPEN_COUNT" />
 		<result property="pArtistIntroduction" column="PROJECT_AT_INT" />
+		<result property="pUserCount" column="USERCOUNT" />
 	</resultMap>
 	
 	<resultMap type="Reward" id="rewardResultSet">
@@ -88,6 +89,15 @@
 		<result property="followerNo" column="FOLLOWER"/>
 		<result property="followDate" column="FOLLOW_DATE"/>
 		<result property="followerDate" column="FOLLOWER_DATE"/>
+	</resultMap>
+	
+	<resultMap type="DetailReport" id="detailReportResultSet">
+		<id property="repNo" column="REPORT_NO"/>
+		<result property="repDate" column="REPORT_DATE"/>
+		<result property="repContent" column="REPORT_CONTENT"/>
+		<result property="repRefPno" column="REPORT_REF_PNO"/>
+		<result property="repWriter" column="REPORT_WRITER"/>
+		<result property="repStatus" column="REPORT_STATUS"/>
 	</resultMap>
 	
 	
@@ -282,5 +292,15 @@
 	<delete id="deleteFollow" parameterType="DetailFollow">
 		DELETE FROM FOLLOW_TB WHERE FOLLOW=#{followNo} AND FOLLOWER=#{followerNo}
 	</delete>
+	
+	<!-- 프로젝트 신고 -->
+	<insert id="insertReport" parameterType="DetailReport">
+		INSERT INTO REPORT_TB VALUES(SEQ_REP_NO.NEXTVAL, SYSDATE, #{repContent}, #{repRefPno}, #{repWriter}, 'Y')
+	</insert>
+	
+	<!-- 프로젝트 신고 조회 -->
+	<select id="selectReport" parameterType="DetailReport" resultMap="detailReportResultSet">
+		SELECT * FROM REPORT_TB WHERE REPORT_REF_PNO=#{repRefPno} AND REPORT_WRITER=#{repWriter}
+	</select>
 	
 </mapper>

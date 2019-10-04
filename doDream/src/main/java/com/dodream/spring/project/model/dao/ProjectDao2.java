@@ -7,10 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.dodream.spring.project.model.vo.DetailFollow;
+import com.dodream.spring.project.model.vo.DetailReport;
 import com.dodream.spring.project.model.vo.Like;
 import com.dodream.spring.project.model.vo.Reply;
 import com.dodream.spring.project.model.vo.Reward;
 import com.dodream.spring.project.model.vo.SubReply;
+
 
 @Repository("pDao2")
 public class ProjectDao2 {
@@ -137,5 +139,22 @@ public class ProjectDao2 {
 	public int deleteFollow(DetailFollow follow) {
 		
 		return sqlSession.delete("projectMapper.deleteFollow", follow);
+	}
+
+
+	/**
+	 * 프로젝트 신고
+	 * @param report
+	 * @return result
+	 */
+	public int insertReport(DetailReport report) {
+
+		return sqlSession.insert("projectMapper.insertReport", report);
+	}
+
+
+	public DetailReport selectReport(DetailReport report) {
+	
+		return sqlSession.selectOne("projectMapper.selectReport", report);
 	}
 }
