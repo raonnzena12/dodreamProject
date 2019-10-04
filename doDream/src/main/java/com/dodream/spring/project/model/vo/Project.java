@@ -33,6 +33,7 @@ public class Project {
 	private int pCount;
 	private int pOpenCount; // 프로젝트 작성자가 오픈한 프로젝트 개수
 	private int pUserCount; // 프로젝트 후원자 수
+	private int iLike; 
 	
 	public Project() {}
 
@@ -313,6 +314,13 @@ public class Project {
 
 	public void setpUserCount(int pUserCount) {
 		this.pUserCount = pUserCount;
+  }
+    public int getiLike() {
+		return iLike;
+	}
+
+	public void setiLike(int iLike) {
+		this.iLike = iLike;
 	}
 
 	@Override

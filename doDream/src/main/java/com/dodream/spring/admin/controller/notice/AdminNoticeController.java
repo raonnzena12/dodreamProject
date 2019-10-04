@@ -31,10 +31,32 @@ public class AdminNoticeController {
 		return mv;
 	}
 	
+	// 공지사항 상세 조회
+	@RequestMapping("nDetail.dr")
+	public ModelAndView detailNotice(ModelAndView mv, int nNo) {
+		
+		Notice notice = aService.selectNotice(nNo);
+		
+		if(notice != null) {
+			mv.addObject("notice",notice).setViewName("admin/notice/detailNotice");
+		} else {
+			mv.addObject("msg","공지사항 상세조회 실패").setViewName("admin/notice/detailNotice");
+		}
+		return mv;
+	}
+	
 	// 공지사항 수정으로 이동
 	@RequestMapping("goUpdateNotice.dr")
-	public ModelAndView goUpdateNotice(ModelAndView mv) {
-		mv.setViewName("admin/notice/updateNotice");
+	public ModelAndView goUpdateNotice(ModelAndView mv, int nNo) {
+		
+		Notice notice = aService.selectNotice(nNo);
+
+		System.out.println(notice);
+		if(notice != null) {
+			mv.addObject("notice",notice).setViewName("admin/notice/updateNotice");
+		} else {
+			mv.addObject("msg","공지사항 수정 실패").setViewName("admin/notice/updateNotice");
+		}
 		return mv;
 	}
 	

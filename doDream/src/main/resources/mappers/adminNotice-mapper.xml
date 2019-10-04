@@ -42,5 +42,15 @@
 		)
 	</insert>
 	
+	<!-- 해당 공지사항 조회 쿼리 -->
+	<select id="selectNotice" resultMap="noticeResultSet" parameterType="_int">
+		SELECT NOTICE_NO, NOTICE_TITLE,NOTICE_CONTENT,NOTICE_ER_DT,NOTICE_MF_DT,NOTICE_STATUS,NOTICE_WRITER,USER_NICKNAME
+		FROM NOTICE
+		JOIN USER_TB ON(USER_NO=NOTICE_WRITER)
+		WHERE NOTICE_NO = #{nNo}
+		AND NOTICE_STATUS = 'Y'
+	</select>
+	
+	
 	
 </mapper>

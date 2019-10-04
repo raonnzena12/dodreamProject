@@ -7,7 +7,20 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
+<style>
+	#followsub{
+		text-decoration: none;
+	}
+	#followsub>a{
+		color: #444;
+	}
+	#top {
+ 	position: fixed;
+ 	left: 60%;
+  	bottom: 200px;
+  	display: none;
+	}
+</style>
 </head>
 <body>
 	<jsp:include page="../member/mypageHeader.jsp"/>
@@ -16,15 +29,8 @@
 	<div class="row">
 		<div class="col-md-2">
 		</div>
-		<div class="col-md-8">
-			<ul class="nav nav-tabs" style="height: 45px;">
-				<li class="nav-item">
-					<a class="nav-link active" href="followList.dr?userNo=${loginUser.userNo}">내가 팔로잉한</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="followerList.dr?userNo=${loginUser.userNo}">나를 팔로잉한</a>
-				</li>
-			</ul>
+		<div class="col-md-8" id="followsub">	
+			<a class="" href="followList.dr?userNo=${loginUser.userNo}">내가 팔로잉한</a> ｜ <a class="" href="followerList.dr?userNo=${loginUser.userNo}">나를 팔로잉한</a>
 		</div>
 		<div class="col-md-2">
 		</div>
@@ -82,11 +88,28 @@
 				</c:if>
 		</div>
 		<div class="col-md-2">
+			<a href="#"><img src="${contextPath}/resources/images/pageup.png" style="width: 25px; height: 25px" id="top" ></a>
 		</div>
 	</div>
 </div>
 
-<script>
+
+	
+	<script>
+	$(document).scroll(function() {
+		if ( $( this ).scrollTop() > 200 ) {
+			$( '#top' ).fadeIn();
+		} else {
+			$( '#top' ).fadeOut();
+		}
+	} );
+	
+	$( '#top' ).click( function() {
+		$( 'html, body' ).animate( { scrollTop : 0 }, 400 );
+		return false;
+	} );
+
+
 	
 	$(function() {
 		console.log("${fn:length(followerList)}");

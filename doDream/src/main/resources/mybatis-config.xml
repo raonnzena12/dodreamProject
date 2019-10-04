@@ -43,6 +43,7 @@
     	<mapper resource="mappers/reserve-mapper.xml"/>
     	<mapper resource="mappers/adminReply-mapper.xml"/>
     	<mapper resource="mappers/adminNotice-mapper.xml"/>
+    	<mapper resource="mappers/adminReview-mapper.xml"/>
  	</mappers>
 	
 </configuration>

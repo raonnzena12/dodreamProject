@@ -96,6 +96,7 @@
 												<button onclick="cancle();">취소</button>
 												
 												<!-- 등록된 이미지 목록 -->
+												<input type="hidden" name="nNo" value="${notice.nNo }"> 
 												<input type="hidden" name="nWriter" value="${loginUser.userNo}">
 												<input type="hidden" name="imgList" value="">
 											</form>
@@ -179,9 +180,9 @@
 	<script src="resources/js/demo/datatables-demo.js"></script>
 	
 	<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css" rel="stylesheet">
-	<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js"></script>
 	<!-- summernote 기능 구현 js -->
 	<script src="resources/summernote/js/summernote.js"></script>
+	<script src="resources/summernote/dist/summernote.js"></script>
 	
 	<!-- summernote 언어 설정 js -->
 	<script src="resources/summernote/dist/lang/summernote-ko-KR.js"></script>
