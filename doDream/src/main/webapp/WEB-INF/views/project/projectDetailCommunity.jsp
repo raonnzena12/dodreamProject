@@ -380,6 +380,8 @@
    	</section>
 	
 	<script>
+	
+	/* 댓글 , 대댓글 수정 삭제 기능 */
 		$(function(){
 			replyList();
 			
@@ -490,7 +492,7 @@
 							//========================================================
 							$subInputBox = $("<div>").addClass("subInputBox");// 서브댓글 등록박스
 							
-							//로그인 유저 받기
+							
 							$subArtImg = $("<img>").addClass("subArtImg").attr("src","resources/images/userProfileImage/"+result.reList[i].reWriImg);//서브 댓글 작성한 유저 이미지
 							
 							$subTextarea = $("<textarea>").addClass("subTextarea").attr({"rows":"3", "placeholder":"댓글을 입력해주세요."}).
@@ -540,7 +542,7 @@
 									$subProfileBox = $("<div>").addClass("subProfileBox");//서브댓글 작성 유저 프로필 박스
 									$subArtImg = $("<img>").addClass("subArtImg").attr("src","resources/images/userProfileImage/"+result.srList[j].subWriImg);// 서브댓글 작성 유저 이미지
 									$artistText2 = $("<p>").addClass("artistText2").text(result.srList[j].subWriter);//서브댓글 작성 유저 닉네임
-									$subcomTime = $("<div>").addClass("subcomTime").text("| " + replyTime(result.srList[j].subReDay));// 등록 시간
+									$subcomTime = $("<div>").addClass("subcomTime").text(replyTime(result.srList[j].subReDay));// 등록 시간
 									
 									$artist = $("<span>").addClass("badge badge-primary subBadge").text("아티스트");//아티스트 서브 댓글 일때  span태그
 									$span = $("<span>").addClass("badge badge-primary subConBadge").text("펀딩참가");// 펀딩 참가자 인지
@@ -593,8 +595,8 @@
 			if(${empty sessionScope.loginUser}){
 				
 				alert("로그인이 필요합니다.");
-				$("#comSelect").val("category");
-				$("#exampleTextarea").val("");
+				//$("#comSelect").val("category");
+				$(".subTextarea").val("");
 			
 			}else{
 				

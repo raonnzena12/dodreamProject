@@ -17,11 +17,13 @@ import com.dodream.spring.member.model.vo.Member;
 import com.dodream.spring.project.model.service.ProjectService;
 import com.dodream.spring.project.model.service.ProjectService2;
 import com.dodream.spring.project.model.vo.DetailFollow;
+import com.dodream.spring.project.model.vo.DetailReport;
 import com.dodream.spring.project.model.vo.Like;
 import com.dodream.spring.project.model.vo.Project;
 import com.dodream.spring.project.model.vo.Reply;
 import com.dodream.spring.project.model.vo.Reward;
 import com.dodream.spring.project.model.vo.SubReply;
+
 
 @Controller
 public class ProjectController2 {
@@ -43,7 +45,7 @@ public class ProjectController2 {
 	 * @return
 	 */
 	@RequestMapping("detailSt.dr")
-	public String prjDetailView(Integer pNo, Integer rNo, DetailFollow follow, HttpServletRequest request, Like like,  Model model, Integer page) {
+	public String prjDetailView(Integer pNo, Integer rNo, DetailFollow follow, DetailReport report, HttpServletRequest request, Like like,  Model model, Integer page) {
 		int pno = pNo;
 		int userNo = 0;
 		
@@ -55,6 +57,7 @@ public class ProjectController2 {
 			
 			like.setLikeNo(userNo);
 			follow.setFollowerNo(userNo);
+			report.setRepWriter(userNo);
 			
 		}
 			like.setLikeNo(userNo);
@@ -67,6 +70,10 @@ public class ProjectController2 {
 		
 		DetailFollow df = pService2.selectFollow(follow);
 		
+		report.setRepRefPno(pno);
+		
+		DetailReport dr = pService2.selectReport(report);
+		
 		ArrayList<Reward> rw = pService2.selectReward(pno);
 		
 		if(rNo != null) {
@@ -78,6 +85,7 @@ public class ProjectController2 {
 			System.out.println("detail : " + rno);
 			model.addAttribute("subReward", rno);
 		}
+		model.addAttribute("report", dr);
 		model.addAttribute("follow", df);
 		model.addAttribute("reward", rw);
 		model.addAttribute("project", prj);
@@ -260,10 +268,26 @@ public class ProjectController2 {
 			return "2";
 		}
 		
-		
-		
 	}
 	
+	//프로젝트 신고 하기
+	@ResponseBody
+	@RequestMapping("detailReport.dr")
+	public String insertReport(int pNo, int uNo, String repContent, DetailReport report, Model model) {
+		
+		report.setRepContent(repContent);
+		report.setRepRefPno(pNo);
+		report.setRepWriter(uNo);
+		
+		int result = pService2.insertReport(report);
+		
+		if(result > 0) {
+			return "1";
+		}else {
+			return "2";
+		}
+		
+	}
 	
 	
 

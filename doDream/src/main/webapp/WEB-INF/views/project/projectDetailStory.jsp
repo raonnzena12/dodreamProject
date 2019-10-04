@@ -150,15 +150,23 @@
 
    	</section>
 	<script>
-	
+	/* 해시 태그 클릭시 검색 되는 기능 */
 		$(function(){
+			
+			
 			var ht = "${project.pHashTag}";
 			var hashTag = ht.split(",");
 			var $detailTag = $("#detailTag");
-			for ( var i = 0 ; i < hashTag.length ; i++ ) {
-				var $prjTag = $("<div>").addClass("projectTag").text("#"+hashTag[i]);
-				$detailTag.append($prjTag);
+			
+			console.log(ht);
+			
+			if(ht != ""){
+				for ( var i = 0 ; i < hashTag.length ; i++ ) {
+					var $prjTag = $("<div>").addClass("projectTag").text("#"+hashTag[i]);
+					$detailTag.append($prjTag);
+				}
 			}
+			
 			
 		});
 	

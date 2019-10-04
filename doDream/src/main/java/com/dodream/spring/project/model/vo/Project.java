@@ -32,6 +32,7 @@ public class Project {
 	private int pStatusNum;
 	private int pCount;
 	private int pOpenCount; // 프로젝트 작성자가 오픈한 프로젝트 개수
+	private int pUserCount; // 프로젝트 후원자 수
 	private int iLike; 
 	
 	public Project() {}
@@ -41,7 +42,7 @@ public class Project {
 			String pSummaryText, String pStory, String pArtistName, String pArtistIntroduction, String pArtistPFImage,
 			String pArtistSns1, String pArtistSns2, String pArtistPhone, String pArtistEmail, Date pEnrollDate,
 			Date pModifyDate, int pWriter, int pCategoryNum, String pCategoryName, int pStatusNum, int pCount,
-			int pOpenCount) {
+			int pOpenCount, int pUserCount) {
 		super();
 		this.pNo = pNo;
 		this.pTitle = pTitle;
@@ -72,6 +73,7 @@ public class Project {
 		this.pStatusNum = pStatusNum;
 		this.pCount = pCount;
 		this.pOpenCount = pOpenCount;
+		this.pUserCount = pUserCount;
 	}
 
 	public int getpNo() {
@@ -306,7 +308,14 @@ public class Project {
 		this.pOpenCount = pOpenCount;
 	}
 
-	public int getiLike() {
+	public int getpUserCount() {
+		return pUserCount;
+	}
+
+	public void setpUserCount(int pUserCount) {
+		this.pUserCount = pUserCount;
+  }
+    public int getiLike() {
 		return iLike;
 	}
 
@@ -325,6 +334,8 @@ public class Project {
 				+ pArtistPhone + ", pArtistEmail=" + pArtistEmail + ", pEnrollDate=" + pEnrollDate + ", pModifyDate="
 				+ pModifyDate + ", pWriter=" + pWriter + ", pCategoryNum=" + pCategoryNum + ", pCategoryName="
 				+ pCategoryName + ", pStatusNum=" + pStatusNum + ", pCount=" + pCount + ", pOpenCount=" + pOpenCount
-				+ "]";
+				+ ", pUserCount=" + pUserCount + "]";
 	}
+
+	
 }

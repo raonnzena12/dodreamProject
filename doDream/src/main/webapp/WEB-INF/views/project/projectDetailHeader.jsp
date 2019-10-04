@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>ProjectDetailHeader</title>
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <%@ include file = "../common/menubar.jsp" %>
        <style>
            #HeaderSection{
@@ -34,15 +35,40 @@
                 display: block;
                 float: left;
            } */
+           #cgbox{
+           		width:100%;
+           		height:30px;
+           		/* border: 1px solid black; */
+           		margin: 45px 0 10px 0;
+           }
+           #cgbox > #detailCG{
+           		width: 70px;
+           		height: auto;
+           		min-height: 30px;
+           		/* border: 1px solid #F39C12;
+           		background-color:#F39C12; */
+           		font-size: 20px;
+           		font-weight: bold;
+           		color: #F39C12;
+           		text-align: center;
+           		/* border-radius: 3px; */
+           		padding: 3px 0 0 0;
+           		margin: auto;
+           		
+           }
+           
+           
            #detailTitle{
-               height: 100px;
+               height: 90px;
                text-align: center;
                font-size: 30px;
-               padding-top: 25px;
+               padding-top: 20px;
                /* border-bottom: 1px solid #ced4da; */
+               /* border: 1px solid black; */
            }
            #headerContent{
                height: 500px;
+               /* border: 1px solid black; */
 
            }
            #detailimg{
@@ -197,8 +223,30 @@
                 font-size: 50px;
                 text-align: center;
                 color:#495057;
-                /* margin-left: 10px; */
+                /* margin-right: 15px; */
            }
+            .btn-group{
+           		/* border: 1px solid black; */
+           		width:50px;
+           		height:50px;
+           		margin:0;
+           		
+           }
+          icon2 .dropdown-menu{
+           		width:50px;
+           		height:50px;
+           		border:none;
+           		/* padding: 10px; */
+           }
+           
+           icon2 .dropdown-menu img{
+           		width:30px;
+           		height:30px;
+           		display:block;
+           		float:left;
+           		margin: 0 10px 0 5px;
+           }
+           
            #detailnav{
                border-top: 1px solid #ced4da;
                border-bottom: 1px solid #ced4da;
@@ -245,11 +293,16 @@
            	
            }
            
+          
+           
        </style>
        
 </head>
 <body>
 	<section id="HeaderSection">
+			<section id="cgbox"> 
+				<div id="detailCG">${project.pCategoryName}</div>
+			</section>
             <section id="detailTitle">
                 <p>${project.pTitle}</p>
             </section>
@@ -272,7 +325,7 @@
                     
                         
                         <div id="text3">
-                            	총 30명이 300,000원을 후원하셨습니다.
+                            	<%-- 총 명이 ${project.pCurrentFunding }원을 후원하셨습니다. --%>
                         </div>
                         <br>
                         <div id="text4">
@@ -309,10 +362,31 @@
 		                          <i class="material-icons" id="favorite" onclick='alert("로그인이 필요합니다.");'>favorite_border</i>
 		                    </div>
                      </c:if> --%>
-                          
-                        <div id="icon2">
-                            <i class="material-icons" id="share">share</i>
+                        
+	                      <div id="icon2">
+	                        <div class="btn-group "> 
+	                            <i class="material-icons btn btn-default" style="padding:0" id="share"  data-toggle="dropdown" aria-expanded="false">share</i>
+	                            
+	                            <ul class="dropdown-menu" role="menu" style="width:50px; height:50px;">
+								    <li>
+									    <a href="javascript:sendKakaoLink()" title="카카오톡 공유하기">
+	                                    	<img src="resources/images/kakao_sns_icon.png">
+	                                	</a>
+                                	</li>
+								    <li>
+								    	<a href="" onclick="window.open('https://twitter.com/share?text=dodreamTest&url=http://localhost:8080/spring/detailSt.dr?pNo=${ project.pNo }','','width=700, height=460'); return false;", title="트위터 공유하기">
+                                    		<img src="resources/images/twit_gray_icon.png">
+                                		</a>
+								    </li>
+								    <li>
+								    	<a href="" onclick="window.open('http://www.facebook.com/sharer/sharer.php?u=http://localhost:8080/spring/detailSt.dr?pNo=${ project.pNo }','','width=700, height=460'); return false;", title="페이스북 공유하기">
+		                                    <img src="resources/images/faceB_sns_icon.png">
+		                                </a>
+								    </li>
+							  </ul>
+	                        </div>
                         </div>
+                       
                        
                 </article>
             </section>
@@ -333,7 +407,14 @@
 	</section>
 	
 	<script>
+	
+	/* 아티스트 이미지 클릭시 아티스트 마이페이지로 이동 */
 	$(function(){
+		
+		var total = ${project.pCurrentFunding };
+		var userCount = ${project.pUserCount};
+		$("#text3").text("총 "+ userCount + "명이 " + total.toLocaleString() + "원을 후원하셨습니다.");
+		//총 명이 ${project.pCurrentFunding }원을 후원하셨습니다.
 		
 		if(${!empty sessionScope.loginUser}){
 			if(${loginUser.userNo eq like.likeNo}){
@@ -362,20 +443,12 @@
 		if(${project.pDDay} < 0){
 			$("#detailDday").text("종료된 프로젝트 입니다.").css("background-color","gray");
 			$("#supportbtn").css({"background-color":"gray", "border":"#F39C12"});
+		}else if( total > ${project.pGoal}){
+			$("#detailDday").text("성공한 프로젝트 입니다.").css("background-color","gray");
+			$("#supportbtn").css({"background-color":"gray", "border":"#F39C12"});
 		}
-	 
-		
-			
 	});
-		
-	
-			
-		
-		
-	
 	/* ===========================좋아요 버튼 취소=========================== */
-	
-		
 	
 	function LikeDelete(){
 			//if(${!empty sessionScope.loginUser}){
@@ -438,6 +511,46 @@
 					});
 					
 		}
+		
+		
+		/* 카카오톡 공유하기 */
+		Kakao.init('f6425fbc64a59be6a2488da73ec0761d');
+		function sendKakaoLink() {
+			console.log("kakao");
+			var hashTag = "#"+"${project.pHashTag}".replace(/,/gi," #");
+			console.log(hashTag);
+		    Kakao.Link.sendDefault({
+		        objectType: 'feed',
+		        content: {
+		          title: '프로젝트 테스트',
+		          description: hashTag,
+		          imageUrl: 'https://i.imgur.com/rA4AbTP.png',
+		          link: {
+		            mobileWebUrl: 'https://www.google.com',
+		            webUrl: 'https://www.google.com'
+		          }
+		        },
+		        social: {
+		          likeCount: 286,
+		          viewCount: ${ project.pCount }
+		        },
+		        buttons: [
+		          {
+		            title: '웹으로 보기',
+		            link: {
+		              mobileWebUrl: 'https://www.google.com',
+		              webUrl: 'https://www.google.com'
+		            }
+		          }
+		        ]
+		      });
+		}
+			
+
+		
+		
+		
+		
 		
 		
 	</script>
