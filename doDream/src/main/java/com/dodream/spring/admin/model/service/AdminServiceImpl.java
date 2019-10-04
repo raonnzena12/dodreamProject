@@ -11,6 +11,7 @@ import com.dodream.spring.admin.model.dao.AdminDao;
 import com.dodream.spring.common.AdminPagination;
 import com.dodream.spring.common.model.vo.PageInfo;
 import com.dodream.spring.customerCenter.model.vo.Notice;
+import com.dodream.spring.customerCenter.model.vo.Review;
 import com.dodream.spring.member.model.vo.Member;
 import com.dodream.spring.project.model.vo.Project;
 import com.dodream.spring.project.model.vo.Reply;
@@ -214,6 +215,21 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public int removeNotice(int nNo) {
 		return aDao.removeNotice(nNo);
+	}
+
+	@Override
+	public ArrayList<Review> selectReviewList() {
+		return aDao.selectReviewList();
+	}
+
+	@Override
+	public Notice selectNotice(int nNo) {
+		return aDao.selectNotice(nNo);
+	}
+
+	@Override
+	public Review selectReview(int revNo) {
+		return aDao.selectReview(revNo);
 	}
 
 	
