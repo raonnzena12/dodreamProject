@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 
 import com.dodream.spring.customerCenter.model.vo.Notice;
+import com.dodream.spring.customerCenter.model.vo.Review;
 import com.dodream.spring.member.model.vo.Member;
 import com.dodream.spring.project.model.vo.Project;
 import com.dodream.spring.project.model.vo.Reply;
@@ -214,6 +215,23 @@ public interface AdminService {
 	 * @return result 
 	 */
 	public abstract int removeNotice(int nNo);
+
+	/** 리뷰 목록
+	 * @return list
+	 */
+	public abstract ArrayList<Review> selectReviewList();
+
+	/** 리뷰 검색
+	 * @param nNo
+	 * @return notice
+	 */
+	public abstract Notice selectNotice(int nNo);
+
+	/** 리뷰 검색
+	 * @param revNo
+	 * @return review
+	 */
+	public abstract Review selectReview(int revNo);
 
 	
 

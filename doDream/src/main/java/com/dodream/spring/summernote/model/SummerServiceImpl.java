@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.dodream.spring.admin.model.dao.AdminDao;
 import com.dodream.spring.customerCenter.model.vo.Notice;
+import com.dodream.spring.customerCenter.model.vo.Review;
 
 
 @Service("sService")
@@ -103,6 +104,27 @@ public class SummerServiceImpl implements SummerService {
 	@Override
 	public int updateNotice(Notice notice) {
 		return aDao.updateNotice(notice);
+	}
+
+	@Override
+	public int insertReview(Review review, MultipartFile uploadFile, HttpServletRequest request) {
+		
+		String renameFileName = null;
+		
+		if(!uploadFile.getOriginalFilename().equals("")) {
+			
+			renameFileName = renameFile(uploadFile);
+			System.out.println(renameFileName);
+			review.setReviewTnImg(renameFileName);
+		}
+		
+		int result = aDao.insertReview(review);
+		
+		if(renameFileName != null && result == 1) {
+			result = saveFile(renameFileName, uploadFile, request);
+		}
+		
+		return result;
 	}
 
 	

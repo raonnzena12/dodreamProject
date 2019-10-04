@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.dodream.spring.customerCenter.model.vo.Notice;
+import com.dodream.spring.customerCenter.model.vo.Review;
 import com.dodream.spring.summernote.model.SummerService;
 
 @Controller
@@ -75,22 +77,35 @@ public class SummerNoteController {
 	 * @return result
 	 */
 	@RequestMapping("updateNotice.dr")
-	public String updateNotice(Notice notice, Model model) {
+	public ModelAndView updateNotice(Notice notice, ModelAndView mv) {
 		  
 		int result = sService.updateNotice(notice);
 		
 		System.out.println(notice.getnNo());
-		String path = null;
-		if(result > 0) {
-			path= "redirect:adminNoticeList.dr?nNo="+notice.getnNo();
-		} else {
-			model.addAttribute("msg","공지사항 수정 실패하였습니다.");
-			path= "redriect:adminNoticeList.dr";
-		}
-		return path;
 		
+		if(result > 0) {
+			mv.setViewName("redirect:adminNoticeList.dr?nNo="+ notice.getnNo()); 
+		} else {
+			mv.addObject("msg","공지사항 수정 실패하였습니다.").setViewName("redirect:adminNoticeList.dr?nNo="+ notice.getnNo()); 
+		}
+
+		return mv;
+
 	}
 	
+	@RequestMapping("insertReview.dr")
+	public ModelAndView insertReview(Review review, ModelAndView mv, HttpServletRequest request, MultipartFile uploadFile) {
+		
+		int result = sService.insertReview(review, uploadFile, request);
+		
+		if(result > 0) {
+			mv.setViewName("redirect:adminReviewList.dr");
+		} else {
+			mv.addObject("msg", "리뷰 등록 실패하였습니다.").setViewName("redirect:adminReviewList.dr");
+		}
+		
+		return mv;
+	}
 	
 	
 	

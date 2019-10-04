@@ -11,9 +11,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>프로젝트 후기 작성</title>
-
-
+<title>리뷰 상세</title>
 
 <!-- Custom fonts for this template -->
 <link href="resources/vendor/fontawesome-free/css/all.min.css"
@@ -72,41 +70,60 @@
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-2 text-gray-800"># 프로젝트 후기 작성</h1>
+					<h1 class="h3 mb-2 text-gray-800"># 리뷰 상세</h1>
 					<br>
 					<!-- DataTales Example -->
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
 							<button type="button" class="btn btn-primary btn-lg btn-block rewardBtn" style="float: right; background: #8E44AD; border: #8E44AD;"
-							onclick="">프로젝트 후기 작성</button>
+							onclick="location.href='goUpdateNotice.dr'">리뷰 수정</button>
 						</div>
-						<div class="card-body">
+						<div class="card-body">  
 							<div class="table-responsive">
 								<div id="dataTable_wrapper"
 									class="dataTables_wrapper dt-bootstrap4">
 									<div class="row">
-										<div class="col-sm-12">
-											<form action="insertReview.dr" name="insertReviewForm" id="insertReviewForm" method="post" enctype="multipart/form-data">
-												<!-- summnote 에디터 출력 -->
-												프로젝트 후기 제목 : <input type="text" name="revTitle">
-												<br><br>
-												프로젝트 후기 부제목 : <input type="text" name="revSubTitle">
-												<br><br>
-												프로젝트 번호 : <input type="text" name="revRefPno">
-												<br><br>
-												카테고리 번호 : <input type="text" name="revCategoryNo">
-												<br><br>
-												썸네일 : <input type="file" name="uploadFile">
-												<br><br>
-												<textarea id="summernote" name="revContent"></textarea>
-												<br><br>
-												<button>등록</button>
-												<button onclick="cancle();">취소</button>
-												   
-												<!-- 등록된 이미지 목록 -->
-												<input type="hidden" name="revWriter" value="${loginUser.userNo}">
-												<input type="hidden" name="imgList" value="">
-											</form>
+			 							<div class="col-sm-12">
+			 								<table align="center" id="tb" cellpadding="10" cellspacing="0" border="1" width="500">
+												<tr align="center" valign="middle">
+													<th colspan="2">${ review.revNo }번 글 상세보기</th>
+												</tr>
+												<tr>
+													<td height="15" width="70">제목</td>
+													<td>${ review.revTitle }</td>
+												</tr>
+												<tr>
+													<td>작성자</td>
+													<td>${ review.userNickname }</td>
+												</tr>		
+												<tr>
+													<td>작성일</td>
+													<td>${ review.revEnrollDate}</td>
+												</tr>		
+												<tr height="300">
+													<td>내용</td>
+													<td>${ review.revContent }</td>
+												</tr>
+												<tr>
+													<td colspan="2" align="center">
+													
+														<c:url var="goUpdateNotice" value="goUpdateNotice.dr">
+															<c:param name="nNo" value="${ review.revTitle }"/>
+														</c:url>
+														<c:url var="removeNotice" value="removeNotice.dr">
+															<c:param name="nNo" value="${ review.revTitle }"/>
+														</c:url>
+														<c:url var="adminNoticeList" value="adminNoticeList.dr">
+														</c:url>
+														
+														<a href="${ goUpdateNotice }">수정하기</a> &nbsp;
+														<a href="${ removeNotice }">삭제하기</a> &nbsp;
+														
+														<a href="${ adminNoticeList }">목록으로</a>
+													</td>
+												</tr>
+											</table>
+			 							
 										</div>
 									</div>
 								</div>
@@ -158,12 +175,6 @@
 	      </div>
 	    </div>
 	  </div>
-	<script>
-		// 취소 버튼을 누를 경우 action 속성값 변경
-		function cancle(){
-			$("#insertReviewForm").attr("action","cancle.dr");
-		}
-	</script>
 	
 	<!-- Bootstrap core JavaScript-->
 	<script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
