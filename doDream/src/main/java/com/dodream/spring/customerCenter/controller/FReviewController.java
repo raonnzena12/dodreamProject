@@ -17,7 +17,7 @@ public class FReviewController {
 	/*  
 	// 프로젝트 후기 / 필요 변수 : 조회수, 후기 이미지, 제목, 내용
 	@RequestMapping("fReview.dr")
-	public ArrayList<Review> frListByAjax(Integer page, String cate) {
+	public ArrayList<Review> frListByAjax(Integer page, String cate) { 
 		String category = (cate == null) ? "total" : cate; // 합계
 		int currentPage = (page == null) ? 1 : page; // 페이지 번호 확인 삼항 연산자 
 		// page이라는 매개변수 값이 null과 경우 1을 대입하며,
