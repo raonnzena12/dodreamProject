@@ -58,7 +58,7 @@ public class MemberController {
 					System.out.println("userNo : " + loginUser.getUserNo() + "번 회원이 DAYCOUNT 테이블에 삽입됨");
 			}
 						
-			return "redirect:home.dr";
+			return "redirect:"+prevPage;
 			
 		}else {
 			model.addAttribute("msg", "로그인 실패");
@@ -316,12 +316,31 @@ public class MemberController {
 		}
 
 	}
+	
+	
+	@ResponseBody
+	@RequestMapping("countOpenPJT.dr")
+	public int countOpenProject(int userNo) {
+		
+		System.out.println(userNo);
+		
+		int result = mService.countOpenProject(userNo);
+		System.out.println(result);
+		
+		if(result > 0) {
+			return result;
+		}else {
+			return 0;
+		}
+	}
+	
 
 	/** 회원탈퇴페이지
 	 * @return
 	 */
 	@RequestMapping("deleteForm.dr")
-	public String deleteMemberFormView() {
+	public String deleteMemberFormView(int userNo, Model model) {
+		
 		return "member/deleteMemberView";
 	}
 	
@@ -358,7 +377,7 @@ public class MemberController {
 				System.out.println("userNo : " + loginUser.getUserNo() + "번 회원이 DAYCOUNT 테이블에 삽입됨");
 			}
 
-			return "redirect:home.dr";
+			return "redirect:"+prevPage;
 			
 		}else {
 			model.addAttribute("msg", "회원가입에 실패하였습니다.");
@@ -367,7 +386,4 @@ public class MemberController {
 		
 	}
 	
-	
-	
-
 }

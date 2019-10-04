@@ -117,7 +117,7 @@
                      </tr>
                   </table>
                   <div id="deleteMemMsg" class= "text-center">
-                     <mark>두드림</mark>에서 탈퇴하시겠습니까? <a href="deleteForm.dr">회원탈퇴</a>   
+                     <mark>두드림</mark>에서 탈퇴하시겠습니까? <a role="button" id="deleteMember">회원탈퇴</a>   
                   </div>
                            
                </form>
@@ -211,6 +211,25 @@
        $("#postcode").attr("value",res[2]);
               
     });
+   
+   //회원탈퇴버튼 클릭 시 오픈프로젝트 조회
+   $("#deleteMember").click(function(){
+	   $.ajax({
+		   url: "countOpenPJT.dr",
+		   type: "post",
+		   data: {userNo : ${loginUser.userNo}},
+		   success: function(result){
+			   console.log(result);
+			   if(result > 0){
+				   alert("진행중인 프로젝트가"+result+"건이 있습니다. 탈퇴를 진행할 수 없습니다.");
+				   $("#deleteMember").bind("click", false);
+			   }else{
+				   alert("진행중인 프로젝트가 없습니다.");
+				   location.href = "deleteForm.dr?userNo=${loginUser.userNo}";
+			   }
+		   }
+	   });
+   });
    
    
    

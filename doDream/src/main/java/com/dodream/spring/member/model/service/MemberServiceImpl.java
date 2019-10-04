@@ -137,4 +137,11 @@ public class MemberServiceImpl implements MemberService {
 		
 		return mDao.insertSNS(member);
 	}
+
+
+	@Override
+	public int countOpenProject(int userNo) {
+		
+		return mDao.countOpenProject(userNo);
+	}
 }
