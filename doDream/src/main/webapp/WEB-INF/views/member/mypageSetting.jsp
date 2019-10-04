@@ -20,15 +20,6 @@
       font-size: 14px;
    }
    
-/*    #userProfileImage{
-      width: 140px;
-      height: 140px;
-   } */
-   
-/*    #deleteMemMsg{
-      font-size: 13px;
-   } */
-   
    #deleteMemMsg a{
       text-decoration: none;
       color: red;
@@ -39,8 +30,6 @@
       background-color: white;
       padding: 0; 
    }
-   
-
 
 </style>
 
@@ -150,17 +139,14 @@
            insertAddress : "#address",
        });
       
-      //사진 등록
-      
+      //사진 등록      
       $("#changeImgBtn").click(function() {
          $("#changbtn").click();
       });
       
       var sel_file;
-/*       var origin = "${empty loginUser.userProfileImage}"; */
       
       $("#changbtn").on("change", handleImgSelect);
-
       
       function handleImgSelect(e) {
          

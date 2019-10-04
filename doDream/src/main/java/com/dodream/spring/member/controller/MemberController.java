@@ -1,10 +1,9 @@
 package com.dodream.spring.member.controller;
 
-/*import java.sql.Date;*/
-import java.sql.Timestamp;
+//import java.sql.Timestamp;
 import java.util.List;
 
-import javax.servlet.http.Cookie;
+//import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -48,12 +47,7 @@ public class MemberController {
 		if (loginUser != null) {
 			session.setAttribute("loginUser", loginUser);
 			model.addAttribute("loginUser", loginUser);
-		 
-			/*
-			 * if(session.getAttribute("loginUser") == null) {
-			 * session.removeAttribute("loginUser"); }
-			 */
-		 
+
 			System.out.println(loginUser);
 			
 			// 로그인 카운트 해주는 함수 호출;
@@ -63,37 +57,7 @@ public class MemberController {
 				if (result > 0)
 					System.out.println("userNo : " + loginUser.getUserNo() + "번 회원이 DAYCOUNT 테이블에 삽입됨");
 			}
-			
-					
-			
-			if(member.isUseCookie() == true){
-				Cookie autoLogin = new Cookie("autoLogin","loginUser");
-				
-				autoLogin.setPath("/");
-				
-				System.out.println(autoLogin.getPath());
-				
-				int amount = (60*60*24*15);
-				
-				Timestamp limit =new Timestamp(System.currentTimeMillis() + (1000*amount));
-				
-				member.setUserNo(loginUser.getUserNo());
-				System.out.println(loginUser.getUserNo());
-				
-				member.setLimit(limit);
-				System.out.println(limit);
-				
-				member.setSessionId(session.getId());
-				System.out.println(session.getId());
-				
-				System.out.println(member);
-				mService.keepLogin(member);
-				
-				System.out.println(autoLogin);
-				
-				response.addCookie(autoLogin);
-			}
-			
+						
 			return "redirect:home.dr";
 			
 		}else {
@@ -164,6 +128,7 @@ public class MemberController {
 	@RequestMapping("logout.dr")
 	public String memberLogout(SessionStatus status, HttpSession session) {
 		status.setComplete();
+		session.invalidate();
 		return "redirect:home.dr";
 	}
 
@@ -215,7 +180,13 @@ public class MemberController {
 	public String findPwd() {
 		return "member/findPwdForm";
 	}
-
+	
+	
+	/** 비밀번호 변경페이지
+	 * @param userEmail
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("changePwd.dr")
 	public String changePwd(@RequestParam(value = "userEmail") String userEmail, Model model) {
 
@@ -229,20 +200,6 @@ public class MemberController {
 	 * 
 	 * @return
 	 */
-//	@RequestMapping("mypage.dr")
-//	public String mypage(Member mem, HttpSession session, Model model) {
-//		
-//		Member loginUser = mService.loginMember(mem);
-//		if(loginUser != null) {
-//			session.setAttribute("loginUser", loginUser);
-//			return "member/mypageHeader";
-//		}else {
-//			model.addAttribute("msg", "로그인이 필요한 서비스입니다.");
-//			return "common/errorPage";
-//		}
-//	
-//	}
-
 	@RequestMapping("mypage.dr")
 	public String mypage() {
 		return "member/mypageHeader";
@@ -252,7 +209,7 @@ public class MemberController {
 	 * 회원가입 시 닉네임 중복 검사
 	 * 
 	 * @param userNickname
-	 * @return
+	 * @return result
 	 */
 	@ResponseBody
 	@RequestMapping("checkNickname.dr")
@@ -330,6 +287,13 @@ public class MemberController {
 		}
 	}
 
+	/** 비밀번호 변경
+	 * @param mem
+	 * @param userEmail
+	 * @param userPwd
+	 * @param rd
+	 * @return
+	 */
 	@RequestMapping("updatePwd.dr")
 	public String pwdUpdate(Member mem, @RequestParam(value = "userEmail") String userEmail,
 			@RequestParam(value = "userPwd") String userPwd, RedirectAttributes rd) {
@@ -353,18 +317,32 @@ public class MemberController {
 
 	}
 
+	/** 회원탈퇴페이지
+	 * @return
+	 */
 	@RequestMapping("deleteForm.dr")
 	public String deleteMemberFormView() {
 		return "member/deleteMemberView";
 	}
 	
 
+	/** SNS로그인
+	 * @param member
+	 * @param userEmail
+	 * @param userNickname
+	 * @param userPwd
+	 * @param userProfileImage
+	 * @param model
+	 * @param rd
+	 * @param prevPage
+	 * @return
+	 */
 	@RequestMapping("insertSNS.dr")
 	public String insertSNS(Member member, String userEmail, String userNickname, String userPwd, String userProfileImage, Model model, RedirectAttributes rd, String prevPage){
 		
 		member.setUserEmail(userEmail);
 		member.setUserPwd(userPwd);
-		member.setUserNickname(userNickname);
+		member.setUserNickname(userNickname+userPwd);
 		member.setUserProfileImage(userProfileImage);
 		
 		int result = mService.insertSNS(member);
@@ -380,7 +358,7 @@ public class MemberController {
 				System.out.println("userNo : " + loginUser.getUserNo() + "번 회원이 DAYCOUNT 테이블에 삽입됨");
 			}
 
-			return "redirecr:home.dr";
+			return "redirect:home.dr";
 			
 		}else {
 			model.addAttribute("msg", "회원가입에 실패하였습니다.");

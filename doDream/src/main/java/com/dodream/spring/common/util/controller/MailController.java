@@ -27,8 +27,6 @@ public class MailController {
 	@Autowired
 	private MemberService mService;
 	
-	private Member mem;	
-	
 	private CommonMail cm = new CommonMail();
 	
 	@Autowired
@@ -38,12 +36,18 @@ public class MailController {
 	private String username;
 	
 	
+	/** 회원가입 인증
+	 * @param userEmail
+	 * @return code
+	 * @throws MessagingException
+	 * @throws IOException
+	 */
 	@ResponseBody
 	@RequestMapping(value="authEmail.dr")
 	public String userEmail(@RequestParam(value = "userEmail") String userEmail) throws MessagingException, IOException {
 		
 		System.out.println(userEmail);
-		String code = cm.setCode(); //인증번호 코드 입력
+		String code = cm.setCode(5, false); //인증번호 코드 입력
 		
 		List<Member> mList = mService.checkEmail(userEmail); //이메일 중복검사
 		
@@ -58,13 +62,13 @@ public class MailController {
 				 
 				 msgHelper.setFrom(username);
 				 System.out.println(username);
-				 msgHelper.setSubject("Do Dream 비밀번호 초기화 인증번호 발송 메일입니다.");
+				 msgHelper.setSubject("Do Dream 회원가입 인증번호 발송 메일입니다.");
 				 
 				 String htmlContent = "<h3 style=\"text-align: center\"><u>Welcome! Do Dream</u></h3><div align=\"center\"><br>"
 						 	+"<div align=\"center\"><img src=\"https://i.imgur.com/2wVLUA0.png\" style=\"width: 10%;\"><br></div>"
 						 	+" 본 메일은 발신 전용 메일입니다.<br> 아래의 인증번호를 정확히 입력해주세요. <br>"
-						 	+"인증번호 "+"<u><mark>"+code +"</mark></u>"+" 를 입력해주세요"+"</div>";
-//				 msgHelper.addInline("main", new FileDataSource("https://i.imgur.com/2wVLUA0.png"));
+						 	+"인증번호 "+"<u><mark>"+ code +"</mark></u>"+" 를 입력해주세요"+"</div>";
+
 				 
 				 msgHelper.setText(htmlContent, true);
 				 
@@ -83,10 +87,16 @@ public class MailController {
 
 	}
 	
+	/** 비밀번호 초기화
+	 * @param userEmail
+	 * @return
+	 * @throws MessagingException
+	 * @throws IOException
+	 */
 	@ResponseBody
 	@RequestMapping("sendAuth.dr")
 	public String sendEmail(@RequestParam(value = "userEmail") String userEmail) throws MessagingException, IOException {
-		String code = cm.setCode();
+		String code = cm.setCode(5, false);
 		List<Member> mList = mService.checkEmail(userEmail);
 		
 		try {
@@ -96,13 +106,12 @@ public class MailController {
 				 
 				 msgHelper.setFrom(username);
 				 System.out.println(username);
-				 msgHelper.setSubject("Do Dream 회원가입 인증번호 발송 메일입니다.");
+				 msgHelper.setSubject("Do Dream 비밀번호 초기화 인증번호 발송 메일입니다.");
 				 
-				 String htmlContent = "<h3 style=\"text-align: center\"><u>Welcome! Do Dream</u></h3><div align=\"center\"><br>"
+				 String htmlContent = "<h3 style=\"text-align: center\"><u>Find Your PassWord</u></h3><div align=\"center\"><br>"
 						 	+"<div align=\"center\"><img src=\"https://i.imgur.com/2wVLUA0.png\" style=\"width: 10%;\"><br></div>"
 						 	+" 본 메일은 발신 전용 메일입니다.<br> 아래의 인증번호를 정확히 입력해주세요. <br>"
-						 	+"인증번호 "+"<u><mark>"+code +"</mark></u>"+" 를 입력해주세요"+"</div>";
-//				 msgHelper.addInline("main", new FileDataSource("https://i.imgur.com/2wVLUA0.png"));
+						 	+"인증번호 "+"<u><mark>"+ code +"</mark></u>"+"를 입력해주세요."+"</div>";
 				 
 				 msgHelper.setText(htmlContent, true);
 				 
