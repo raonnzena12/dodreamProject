@@ -129,7 +129,7 @@
 							</div> 
 						</div>  
 					</div>
-				</div>
+				</div> 
 
                <!-- 프로젝트 후기 리스트 출력 -->
 				<div class="resultPrint">

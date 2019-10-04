@@ -10,7 +10,7 @@ public class Faq {
 	private Date fModifyDate; // 수정일
 	private String fStatus;   // 상태
 	private int fWriter;      // 작성자(관리자)
-
+ 
 	public Faq() {  }
 
 	// 전체 리스트

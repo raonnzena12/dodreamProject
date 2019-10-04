@@ -10,7 +10,7 @@ public class Review {
 	private Date revEnrollDate;     // 작성일 
 	private Date revModifyDate;     // 수정일
 	private String revStatus;       // 상태
-	private int revRefPno;          // 프로젝트 번호
+	private int revRefPno;          // 프로젝트 번호 
 	private int revWriter;          // 작성자번호(관리자)    
 	private String reviewTnImg;     // 썸네일
 	private String ReviewImg;	    // 리뷰 이미지

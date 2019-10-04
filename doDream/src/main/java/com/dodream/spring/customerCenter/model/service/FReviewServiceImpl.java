@@ -18,7 +18,7 @@ public class FReviewServiceImpl implements FReviewService {
 	public ArrayList<Review> selectfrevList(String category, int currentPage) {
 		// 프로젝트 페이징 처리
 			//PageInfo pi = Pagination.getPageInfo(currentPage);
-			
+			 
 			// 프로젝트 조회 후 리턴
 			System.out.println(category);
 			System.out.println(currentPage);

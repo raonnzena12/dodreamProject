@@ -23,7 +23,7 @@ public class FReviewDao {
 	 */
 	public ArrayList<Review> selectfrList(String category) {
 		
-		/*
+		/* 
 		int offset = ( pi.getCurrentPage() - 1 ) * pi.getLimit();
 		RowBounds rowBounds = new RowBounds(offset, pi.getLimit());
 		*/

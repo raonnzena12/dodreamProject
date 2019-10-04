@@ -13,7 +13,7 @@ public interface FReviewService {
 	 */
 	ArrayList<Review> selectfrevList(String category, int currentPage);
 
-	/** 프로젝트 후기 상세를 로드하는 Service
+	/** 프로젝트 후기 상세를 로드하는 Service 
 	 * @param revId
 	 * @return
 	 */

@@ -10,7 +10,7 @@ public class Search {
 	}
  
 	public Search(String searchCondition, String searchValue, String existFile) {
-		super();
+		super(); 
 		this.searchCondition = searchCondition;
 		this.searchValue = searchValue;
 		this.existFile = existFile;
