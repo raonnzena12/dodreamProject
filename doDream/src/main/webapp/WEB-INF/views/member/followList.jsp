@@ -7,7 +7,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+	#followsub{
+		text-decoration: none;
+	}
+	#followsub>a{
+		color: #444;
+	}
 
+</style>
 </head>
 <body>
 	<jsp:include page="../member/mypageHeader.jsp"/>
@@ -16,15 +24,8 @@
 	<div class="row">
 		<div class="col-md-2">
 		</div>
-		<div class="col-md-8">
-			<ul class="nav nav-tabs" style="height: 45px;">
-				<li class="nav-item">
-					<a class="nav-link active" href="followList.dr?userNo=${loginUser.userNo}">내가 팔로잉한</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="followerList.dr?userNo=${loginUser.userNo}">나를 팔로잉한</a>
-				</li>
-			</ul>
+		<div class="col-md-8" id="followsub">	
+			<a class="" href="followList.dr?userNo=${loginUser.userNo}">내가 팔로잉한</a> ｜ <a class="" href="followerList.dr?userNo=${loginUser.userNo}">나를 팔로잉한</a>
 		</div>
 		<div class="col-md-2">
 		</div>

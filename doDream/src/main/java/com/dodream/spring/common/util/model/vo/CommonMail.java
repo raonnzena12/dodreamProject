@@ -1,21 +1,42 @@
 package com.dodream.spring.common.util.model.vo;
 
+import java.util.Random;
+
 public class CommonMail {
-
-	public String setCode() {
+	
+	private boolean lowerCheck;
+	private int size;
+	
+	public String setCode(int size, boolean lowerCheck) {
 		
-		StringBuffer sb = new StringBuffer();
+		this.size = size;
+		this.lowerCheck = lowerCheck;
 		
-		int a = 0;
-
-		for (int i = 0; i < 6; i++) {
-			a = (int) (Math.random() * 122 + 1);
-			if ((a >= 48 && a <= 57) || (a >= 65 && a <= 90) || (a >= 97 && a <= 122))
-				sb.append (a);
-			else
-				i--;
-		}
-		return sb.toString();
+		return init();
+	
 	}
 	
+	private String init() {
+		
+		Random ran = new Random();
+		StringBuffer sb = new StringBuffer();
+		int num = 0;
+		do {
+			num = ran.nextInt(75)+48; 
+			if((num>=48 && num<=57) || (num>=65 && num<=90) || (num>=97 && num<=122)) {
+				sb.append((int)num);
+			} else{
+				continue;
+			}
+		} while(sb.length() < size);
+		
+		if(lowerCheck) {
+			return sb.toString().toLowerCase();
+		}
+		
+		return sb.toString();
+	}
+
 }
+	
+

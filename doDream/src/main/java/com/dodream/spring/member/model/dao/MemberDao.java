@@ -51,13 +51,7 @@ public class MemberDao {
 	public int checkValidate(Member member) {
 		return sqlSession.selectOne("memberMapper.checkValidate", member);
 	}
-	public int keepLogin(Member member) {
-		 return sqlSession.update("memberMapper.keepLogin", member);
-	}
 
-	public Member checkUserWithSessionKey(String sessionId) {
-		return sqlSession.selectOne("memberMapper.checkUserWithSessionKey", sessionId);
-	}
 
 	public int insertSNS(Member member) {
 		return sqlSession.insert("memberMapper.insertSNS", member);

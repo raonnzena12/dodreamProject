@@ -26,15 +26,6 @@ public class MemberServiceImpl implements MemberService {
 		return mDao.selectMember(mem);
 	}
 	
-	@Override
-	public int keepLogin(Member member) {
-		return mDao.keepLogin(member);
-	}
-	
-	@Override
-	public Member checkUserWithSessionKey(String sessionId) {
-		return mDao.checkUserWithSessionKey(sessionId);
-	}
 
 	@Override
 	public List<Member> checkEmail(String userEmail) {
