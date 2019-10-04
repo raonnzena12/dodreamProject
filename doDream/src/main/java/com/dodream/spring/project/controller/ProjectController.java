@@ -1,5 +1,6 @@
 package com.dodream.spring.project.controller;
 
+import java.awt.Image;
 import java.net.BindException;
 import java.util.ArrayList;
 
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -112,4 +114,21 @@ public class ProjectController {
 		return mv;
 	}
 	
+	/**
+	 * 프로젝트 등록하기에서 썸네일 이미지 등록시 서버에 파일을 저장해주는 메소드입니다.
+	 * @return file
+	 */
+	@ResponseBody
+	@RequestMapping(value="uploadthumbimg.dr", method=RequestMethod.POST)
+	public String uploadPThumbImg(HttpServletRequest request, MultipartFile uploadFile) {
+		System.out.println(uploadFile);
+		return uploadFile+"";
+	}
+	
+	
+	
+	public void modifyImageSize() {
+		Image image;
+		
+	}
 }
