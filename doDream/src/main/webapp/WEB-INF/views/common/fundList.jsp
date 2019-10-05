@@ -171,7 +171,6 @@ $(function() {
    $(document).on("click",".fundItem div:not(.heartIcon)", function(){
       location.href='detailSt.dr?pNo='+$(this).parent().attr("id");
    });
-
 });
 // 좋아요 누르고/취소하는 함수
 // status로 1을 보내면 좋아요 누르기

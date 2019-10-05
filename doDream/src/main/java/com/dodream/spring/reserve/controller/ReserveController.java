@@ -112,4 +112,24 @@ public class ReserveController {
 		
 		return "project/fundingInfo";
 	}
+	
+	@ResponseBody
+	@RequestMapping("ajaxChangeCredit.dr")
+	public int ajaxChangeCredit(Integer rsvNo, String customerUid) {
+		int result = rsvService.updateReserveCredit(new Reserve(rsvNo, customerUid));
+		return result;
+	}
+	
+	@RequestMapping("myFundingList.dr")
+	public String fundListView(HttpServletRequest request, Model model) {
+		int userNo = 0;
+		Object loginUser = request.getSession().getAttribute("loginUser");
+		if ( loginUser != null ) {
+			userNo = ((Member)loginUser).getUserNo();
+		}
+		userNo = 17;
+		ArrayList<Reserve> rList = rsvService.selectReserveList(userNo);
+		model.addAttribute("rList", rList);
+		return "member/fundingList";
+	}
 }

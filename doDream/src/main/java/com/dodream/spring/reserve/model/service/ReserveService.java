@@ -67,4 +67,18 @@ public interface ReserveService {
 	 */
 	public abstract ArrayList<History> assembleHistory(String rNo, String select, String input, String count);
 
+	/**
+	 * customer_Uid update용 Service
+	 * @param reserve
+	 * @return result
+	 */
+	public abstract int updateReserveCredit(Reserve reserve);
+
+	/**
+	 * 해당 유저의 예약현황 리스트를 받아오는 Service
+	 * @param userNo
+	 * @return rList
+	 */
+	public abstract ArrayList<Reserve> selectReserveList(int userNo);
+
 }

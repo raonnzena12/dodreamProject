@@ -74,4 +74,14 @@ public class ReserveServiceImpl implements ReserveService {
 		}
 		return hList;
 	}
+
+	@Override
+	public int updateReserveCredit(Reserve reserve) {
+		return rsvDao.updateReserveCredit(reserve);
+	}
+
+	@Override
+	public ArrayList<Reserve> selectReserveList(int userNo) {
+		return rsvDao.selectReserveList(userNo);
+	}
 }

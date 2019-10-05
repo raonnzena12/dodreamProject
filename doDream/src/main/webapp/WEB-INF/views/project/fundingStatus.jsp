@@ -281,7 +281,7 @@
                         </tr>
                     </table>
                     <c:if test="${ rsv.resStatusNo == 1 }">
-                        <button class="btn btn-outline-warning btn-block">결제 정보 변경하기</button>
+                        <button class="btn btn-outline-warning btn-block" id="changeCreditBtn">결제 정보 변경하기</button>
                     </c:if>
                     </div>
                     <div class="row changeCredit">
@@ -307,7 +307,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="2" class="p-1"><input type="text" name="expiry" id="expiry" class="form-control form-control-sm" placeholder="YYYY-MM" maxlength="7"></td>
+                                <td colspan="2" class="p-1"><input type="text" name="expiry" id="expiry" class="form-control form-control-sm" placeholder="YYYY-MM ( 숫자만 입력 )" maxlength="7"></td>
                                 <td colspan="2" class="p-1"><input type="password" name="pwd2" id="pwd2" class="form-control form-control-sm" placeholder="앞 2자리" maxlength="2" readonly></td>
                             </tr>
                             <tr>
@@ -322,8 +322,8 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="2" class="p-1 mt-3"><button class="btn btn-outline-primary btn-block" >취소</button></td>
-                                <td colspan="2" class="p-1 mt-3"><button class="btn btn-outline-warning btn-block" >결제정보 변경</button></td>
+                                <td colspan="2" class="p-1 mt-3"><button class="btn btn-outline-primary btn-block" id="cancelCr">취소</button></td>
+                                <td colspan="2" class="p-1 mt-3"><button class="btn btn-outline-warning btn-block" id="changeCr">결제정보 변경</button></td>
                             </tr>
                         </table>
                     </div>
@@ -395,6 +395,7 @@
 </section>
 <script>
 $(function(){
+    // 배송지 변경 / 취소버튼을 누를때 각각의 Area를 보이고 숨긴다
     $("#changeShipAddr").on("click", function(){
         $(this).parent().hide();
         $(".changeShip").show();
@@ -440,6 +441,17 @@ $(function(){
             }
         });
     });
+    // 결제정보 변경 / 취소를 누를때마다 각각의 Area를 전환
+    $("#changeCreditBtn").on("click", function(){
+        console.log("aa");
+        $(".defaultCredit").hide();
+        $(".changeCredit").show();
+    });
+    $("#cancelCr").on("click", function(){
+        $(".changeCredit").hide();
+        $(".defaultCredit").show();
+    });
+    // 예약 취소 버튼 클릭시 동작
     $("#cancelFundingBtn").on("click", function(){
         Swal.fire({
             title: '예약을 취소하시겠습니까?',
@@ -460,7 +472,16 @@ $(function(){
     $('#cardNo2').numberKeypad(); 
     $('#cardNo3').numberKeypad();
     $('#pwd2').numberKeypad();
+    // 유효기간 밸류값 불러서 하이픈 삽입하는 코드
+    $("#expiry").on("input", function(){
+        $(this).val(autoHypen($(this).val()));
+    });
+    // 버튼 클릭시 서버 호출하는 코드
+    $("#changeCr").on("click", function(){
+        ajaxBilling();
+    });
 });
+// 펀딩 예약Status를 변경하는 함수
 function cancelFundingAjax(){
     var rsvNo = ${ rsv.resNo };
     $.ajax({
@@ -507,6 +528,78 @@ function maxLengthCheck(object){
     if (object.value.length > object.maxLength){
       object.value = object.value.slice(0, object.maxLength);
     }    
+}
+// 유효기간 입력시 하이픈(-) 추가하는 함수
+function autoHypen(str){
+    str = str.replace(/[^0-9]/g, '');
+    var tmp = '';
+    if( str.length < 5){
+        return str;
+    }else if(str.length < 7){
+        tmp += str.substr(0, 4);
+        tmp += '-';
+        tmp += str.substr(4);
+        return tmp;
+    }
+    return str;
+}
+// Ajax로 카드사와 통신하는 메서드
+function ajaxBilling() {
+	var c1 = $("#cardNo1").val();
+	var c2 = $("#cardNo2").val();
+	var c3 = $("#cardNo3").val();
+	var c4 = $("#cardNo4").val();
+	var card_number = c1 + "-" + c2 + "-" + c3 + "-" + c4;
+	var expiry = $("#expiry").val();
+	var birth = $("#authentication").val();
+	var pwd_2digit = $("#pwd2").val();
+	var customer_uid = "${ loginUser.userNo }" + "_" + $("#cardNo4").val();
+	$.ajax({
+		url: "http://localhost:8081/ajaxBillingServer",
+		type: "POST",
+		data: { card_number: card_number,
+				expiry: expiry,
+				birth: birth,
+				pwd_2digit: pwd_2digit,
+				customer_uid: customer_uid },
+		dataType: "JSON",
+		error: function(e){ console.log(e) },
+		success: function( result ){
+			console.log(result);
+            // 카드정보 갱신에 성공하면 ajax로 reserve의 customer_uid를 갱신한다
+            ajaxCustomerUid(customer_uid);
+		}
+	});
+}
+function ajaxCustomerUid(uid) {
+    $.ajax({
+        url: "ajaxChangeCredit.dr",
+        type: "POST",
+        data: { rsvNo : "${ rsv.resNo }",
+                customerUid: uid },
+        error: function(e) { console.log(e); },
+        success: function(result) {
+            console.log(result);
+            if ( result == 1) { // 성공값이 넘어 왔을 경우
+                Swal.fire({
+                title: '결제 정보 변경 완료!',
+                text: '결제 정보가 업데이트 되었습니다',
+                type: 'success',
+                confirmButtonColor: '#F39C12'
+                }).then((result) =>{
+                    if ( result.value ) {
+                        location.reload();
+                    }
+                });
+            } else { // 실패값이 넘어왔을 경우
+                Swal.fire({
+                type: 'error',
+                title: '결제정보 변경 실패',
+                text: '관리자에게 문의하여 주세요',
+                });
+            }
+        }
+    });
 }
 </script>
 </body>

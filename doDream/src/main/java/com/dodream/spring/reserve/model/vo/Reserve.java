@@ -17,10 +17,19 @@ public class Reserve {
 	private int resStatusNo; // 예약 스테이터스 ( 1 결제대기 2 결제완료 3 결제예약 취소 )
 	private String pTitle;  			// 조인 시 필요한 프로젝트명
 	private String userNickname;		// 조인 시 필요한 유저 닉네임
+	private String artistNickname;		// 조인 시 필요한 아티스트 닉네임
 	private int resRwdPriceSum; // 리워드 가격 합한값
 	private Date resFundDate; // 펀드 결제일
+	private String prjCategoryName; // 프로젝트 카테고리 이름
+	private int dDay; // 프로젝트 남은 일수
 	
 	public Reserve() {
+	}
+	
+	public Reserve(int resNo, String bKey) {
+		super();
+		this.resNo = resNo;
+		this.bKey = bKey;
 	}
 
 	public Reserve(int resNo, String bKey, int addi, Date resDate, String resName, String resContact, String resAddress,
@@ -54,6 +63,22 @@ public class Reserve {
 
 	public String getbKey() {
 		return bKey;
+	}
+
+	public String getPrjCategoryName() {
+		return prjCategoryName;
+	}
+
+	public void setPrjCategoryName(String prjCategoryName) {
+		this.prjCategoryName = prjCategoryName;
+	}
+
+	public int getdDay() {
+		return dDay;
+	}
+
+	public void setdDay(int dDay) {
+		this.dDay = dDay;
 	}
 
 	public void setbKey(String bKey) {
@@ -163,13 +188,22 @@ public class Reserve {
 	public void setResFundDate(Date resFundDate) {
 		this.resFundDate = resFundDate;
 	}
+	
+	public String getArtistNickname() {
+		return artistNickname;
+	}
+
+	public void setArtistNickname(String artistNickname) {
+		this.artistNickname = artistNickname;
+	}
 
 	@Override
 	public String toString() {
 		return "Reserve [resNo=" + resNo + ", bKey=" + bKey + ", addi=" + addi + ", resDate=" + resDate + ", resName="
 				+ resName + ", resContact=" + resContact + ", resAddress=" + resAddress + ", resRequest=" + resRequest
 				+ ", resUser=" + resUser + ", resRefPno=" + resRefPno + ", resStatusNo=" + resStatusNo + ", pTitle="
-				+ pTitle + ", userNickname=" + userNickname + ", resRwdPriceSum=" + resRwdPriceSum + ", resFundDate="
-				+ resFundDate + "]";
+				+ pTitle + ", userNickname=" + userNickname + ", artistNickname=" + artistNickname + ", resRwdPriceSum="
+				+ resRwdPriceSum + ", resFundDate=" + resFundDate + ", prjCategoryName=" + prjCategoryName + ", dDay="
+				+ dDay + "]";
 	}
 }
