@@ -11,7 +11,7 @@
 		<result property="nModifyDate" column="NOTICE_MF_DT" />
 		<result property="nStatus"     column="NOTICE_STATUS" />
 		<result property="nWriter"     column="NOTICE_WRITER" />
-	</resultMap>
+	</resultMap> 
 
 	<!-- 프로젝트 리뷰 -->
 	<resultMap id="ReviewResultSet" type="Review">
@@ -26,7 +26,7 @@
 		<result property="reviewTnImg" column="REVIEW_TN_IMG"/>
 		<result property="reviewImg" column="REVIEW_IMG"/>
 	</resultMap>
-	  
+	   
 	<!-- FAQ -->
 	<resultMap id="FaqResultSet" type="Faq">
 		<id     property="fNo"         column="FAQ_NO" />

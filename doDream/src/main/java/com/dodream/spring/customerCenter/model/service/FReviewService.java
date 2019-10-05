@@ -6,11 +6,18 @@ import com.dodream.spring.customerCenter.model.vo.Review;
 
 public interface FReviewService {
 
-	/** 프로젝트 후기로 최신순으로 성공 프로젝트를 로드하는 SErvice
+	/** 프로젝트 후기로 최신순으로 성공 프로젝트를 로드하는 Service
 	 * @param category
 	 * @param currentPage
 	 * @return frList
 	 */
-	ArrayList<Review> selectfrList(String category, int currentPage);
+	ArrayList<Review> selectfrevList(String category, int currentPage);
+
+	/** 프로젝트 후기 상세를 로드하는 Service 
+	 * @param revId
+	 * @return
+	 */
+	Review selectReview(int revId);
 	
 }
+ 

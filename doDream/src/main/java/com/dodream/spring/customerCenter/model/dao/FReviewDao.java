@@ -23,11 +23,30 @@ public class FReviewDao {
 	 */
 	public ArrayList<Review> selectfrList(String category) {
 		
-		/*
+		/* 
 		int offset = ( pi.getCurrentPage() - 1 ) * pi.getLimit();
 		RowBounds rowBounds = new RowBounds(offset, pi.getLimit());
 		*/
-		
+		System.out.println("dao 전달");
 		return (ArrayList)sqlSession.selectList("centerMapper.selectfrList", category);
+	}
+
+
+	/** 후기 상세페이지 DAO
+	 * @param revId
+	 * @return Review
+	 */
+	public Review selectReview(int revId) {
+		
+		return sqlSession.selectOne("boardMapper.selectReview", revId);
+	}
+
+
+	/** 후기 조회수증가 DAO
+	 * @param revId
+	 */
+	public void addReadCount(int revId) {
+		
+		sqlSession.update("centerMapper.updateCount", revId);
 	}
 }

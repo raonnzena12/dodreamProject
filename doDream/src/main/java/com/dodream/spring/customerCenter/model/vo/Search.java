@@ -1,16 +1,16 @@
 package com.dodream.spring.customerCenter.model.vo;
 
 public class Search {
-	private String searchCondition;
-	private String searchValue;
-	private String existFile;
+	private String searchCondition; // 검색조건
+	private String searchValue;     // 검색어
+	private String existFile;       // 
 	
 	public Search() {
 		
 	}
  
 	public Search(String searchCondition, String searchValue, String existFile) {
-		super();
+		super(); 
 		this.searchCondition = searchCondition;
 		this.searchValue = searchValue;
 		this.existFile = existFile;
