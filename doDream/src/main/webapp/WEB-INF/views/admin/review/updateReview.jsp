@@ -11,7 +11,9 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>공지사항 상세</title>
+<title>프로젝트 수정</title>
+
+
 
 <!-- Custom fonts for this template -->
 <link href="resources/vendor/fontawesome-free/css/all.min.css"
@@ -49,6 +51,37 @@
 	width: auto;
 }
 
+/* imaged preview */
+.filebox .upload-display { /* 이미지가 표시될 지역 */
+	margin-bottom: 5px;
+}
+
+@media ( min-width : 768px) {
+	.filebox .upload-display {
+		display: inline-block;
+		margin-right: 5px;
+		margin-bottom: 0;
+	}
+}
+
+.filebox .upload-thumb-wrap { /* 추가될 이미지를 감싸는 요소 */
+	display: inline-block;
+	width: 54px;
+	padding: 2px;
+	vertical-align: middle;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	background-color: #fff;
+}
+
+.filebox .upload-display img { /* 추가될 이미지 */
+	display: block;
+	max-width: 100%;
+	width: 100% \9;
+	height: auto;
+}
+
+
 </style>
 
 </head>
@@ -70,56 +103,48 @@
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-2 text-gray-800"># 공지사항 상세</h1>
+					<h1 class="h3 mb-2 text-gray-800"># 프로젝트 수정</h1>
 					<br>
 					<!-- DataTales Example -->
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
-							<c:url var="goUpdateNotice" value="goUpdateNotice.dr">
-								<c:param name="nNo" value="${ notice.nNo }"/>
-							</c:url>
-							<c:url var="removeNotice" value="removeNotice.dr">
-								<c:param name="nNo" value="${ notice.nNo }"/>
-							</c:url>
-							<c:url var="adminNoticeList" value="adminNoticeList.dr">
-							</c:url>
-							<span class="float-right">
-								<button type="button" class="btn btn-primary btn-lg btn-inline rewardBtn" style="background: #8E44AD; border: #8E44AD;"
-								onclick="location.href='${goUpdateNotice}'">수정하기</button>
-								<button type="button" class="btn btn-primary btn-lg btn-inline rewardBtn" style="background: #8E44AD; border: #8E44AD;"
-								onclick="location.href='${removeNotice}'">삭제하기</button> 	
-								<button type="button" class="btn btn-primary btn-lg btn-inline rewardBtn" style="background: #8E44AD; border: #8E44AD;"
-								onclick="location.href='${adminNoticeList}'">목록으로</button> 
-							</span>
+						<form action="updateReview.dr" name="updateReviewForm" id="updateReviewForm" method="post" enctype="multipart/form-data">
+						<span class = "float-right">
+							<button type="button" id="submitBtn" class="btn btn-primary btn-lg btn-inline rewardBtn" style="background: #8E44AD; border: #8E44AD;"
+							onclick="">프로젝트 수정하기</button>
+							<button class="btn btn-primary btn-lg btn-inline rewardBtn" style="background: #8E44AD; border: #8E44AD;"
+							onclick="cancle();">취소</button>
+						</span>
 						</div>
-						<div class="card-body">  
+						<div class="card-body">
 							<div class="table-responsive">
 								<div id="dataTable_wrapper"
 									class="dataTables_wrapper dt-bootstrap4">
 									<div class="row">
-			 							<div class="col-sm-12">
-			 								<table align="center" id="tb" cellpadding="10" cellspacing="0" border="1" width="500">
-												<tr align="center" valign="middle">
-													<th colspan="2">${ notice.nNo }번 글 상세보기</th>
-												</tr>
-												<tr>
-													<td height="15" width="70">제목</td>
-													<td>${ notice.nTitle }</td>
-												</tr>
-												<tr>
-													<td>작성자</td>
-													<td>${ notice.userNickname }</td>
-												</tr>		
-												<tr>
-													<td>작성일</td>
-													<td>${ notice.nEnrollDate}</td>
-												</tr>		
-												<tr height="300">
-													<td>내용</td>
-													<td>${ notice.nContent }</td>
-												</tr>
-											</table>
-			 							
+										<div class="col-sm-12">
+												<!-- summnote 에디터 출력 -->
+												<input type="hidden" name="revNo" value="${review.revNo }">
+												프로젝트 후기 제목 : <input type="text" name="revTitle">
+												<br><br>
+												프로젝트 후기 부제목 : <input type="text" name="revSubTitle">
+												<br><br>
+												프로젝트 번호 : <input type="text" name="revRefPno" value="${review.revRefPno }" readonly>
+												<br><br>
+												카테고리 번호 : <input type="text" name="revCategoryNo">
+												<br><br>
+												<div class="filebox preview-image">
+													<label for="input-file">썸네일 이미지 업로드 : </label>
+													<input type="file" id="input-file" class="upload-hidden" name="reloadFile">
+												</div>
+												<br><br>
+												<input type="hidden" name="reviewTnImg" value="${review.reviewTnImg }">
+												<textarea id="summernote" name="revContent"></textarea>
+												<br><br>
+												   
+												<!-- 등록된 이미지 목록 -->
+												<input type="hidden" name="revWriter" value="${loginUser.userNo}">
+												<input type="hidden" name="imgList" value="">
+											</form>
 										</div>
 									</div>
 								</div>
@@ -171,6 +196,68 @@
 	      </div>
 	    </div>
 	  </div>
+	<script>
+		// 취소 버튼을 누를 경우 action 속성값 변경
+		function cancle(){
+			$("#updateReviewForm").attr("action","cancleReview.dr");
+		}
+		
+		$(function(){
+			$("#submitBtn").on("click", function(){
+				if($("input[name=revTitle]").val().trim() == ""){
+					alert("후기 제목을 작성해주세요.");
+					return false;
+				}
+				if($("input[name=revSubTitle]").val().trim() == ""){
+					alert("후기 부제목을 작성해주세요.");
+					return false;
+				}
+				if($("input[name=revCategoryNo]").val().trim() == ""){
+					alert("카테고리를 선택해주세요.");
+					return false;
+				}
+				if($("input[name=reloadFile]").val().trim() == ""){
+					alert("썸네일 이미지를 선택해주세요.");
+					return false;
+				}
+				if($("#summernote").val().trim() == ""){
+					alert("후기 내용을 작성해주세요.");
+					return false;
+				}
+				$("#updateReviewForm").submit();
+			});
+		});
+		
+		var imgTarget = $('.preview-image .upload-hidden'); 
+		
+		imgTarget.on('change', function(){
+			var parent = $(this).parent(); 
+			parent.children('.upload-display').remove(); 
+			
+			if(window.FileReader){ //image 파일만 
+				if (!$(this)[0].files[0].type.match(/image\//)) 
+					return;
+			
+				var reader = new FileReader(); 
+				reader.onload = function(e){ 
+					var src = e.target.result; parent.prepend('<div class="upload-display"><div class="upload-thumb-wrap"><img src="'+src+'" class="upload-thumb"></div></div>');
+				}
+				reader.readAsDataURL($(this)[0].files[0]); 
+			} else {
+				$(this)[0].select();
+				$(this)[0].blur();
+				var imgSrc = document.selection.createRange().text;
+				parent.prepend('<div class="upload-display"><div class="upload-thumb-wrap"><img class="upload-thumb"></div></div>');
+				
+				var img = $(this).siblings('.upload-display').find('img');
+				img[0].style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(enable='true',sizingMethod='scale',src=\""+imgSrc+"\")";
+			}
+		});
+		
+		
+		
+		
+	</script>
 	
 	<!-- Bootstrap core JavaScript-->
 	<script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -196,6 +283,7 @@
 	<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css" rel="stylesheet">
 	<!-- summernote 기능 구현 js -->
 	<script src="resources/summernote/js/summernote.js"></script>
+	<script src="resources/summernote/dist/summernote.js"></script>
 	
 	<!-- summernote 언어 설정 js -->
 	<script src="resources/summernote/dist/lang/summernote-ko-KR.js"></script>

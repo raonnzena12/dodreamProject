@@ -19,4 +19,8 @@ public interface SummerService {
 
 	public abstract int insertReview(Review review, MultipartFile uploadFile, HttpServletRequest request);
 
+	public abstract int updateReview(Review review, MultipartFile reloadFile, HttpServletRequest request);
+
+	public abstract int removeReview(int revNo);
+
 }

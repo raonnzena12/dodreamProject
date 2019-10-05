@@ -127,5 +127,59 @@ public class SummerServiceImpl implements SummerService {
 		return result;
 	}
 
+	// 공지사항 수정
+	@Override
+	public int updateReview(Review review, MultipartFile reloadFile, HttpServletRequest request) {
+		
+		String renameFileName = null; // 수정 파일	
+		String oldFileName = null; // 이전 파일
+		
+		if(!reloadFile.getOriginalFilename().equals("")) { // 사진 있을시 
+			
+			renameFileName = renameFile(reloadFile);
+			oldFileName = review.getReviewTnImg();
+			
+			review.setReviewTnImg(renameFileName);
+		} 
+		
+		int result = aDao.updateReview(review);
+		System.out.println("service result : " + result);
+		
+		if(result > 0 && !reloadFile.getOriginalFilename().equals("")) {
+			result += saveFile(renameFileName, reloadFile, request);
+		} 
+		
+		// 기존 파일 삭제
+		if(result == 2) {
+			deleteFile(oldFileName, request);
+		}
+		System.out.println("service result2 :" + result);
+		return result;
+	}
+
+	// 파일 삭제 메소드 
+	public void deleteFile(String fileName, HttpServletRequest request) {
+		
+		String root = request.getSession().getServletContext().getRealPath("resources");
+		
+		String savePath = root + "\\images\\summernoteimg";
+		
+		// 삭제할 파일 경로 + 파일명
+		File deleteFile = new File(savePath + "\\" + fileName);
+		
+		// 해당 파일이 존재할 경우 삭제
+		if(deleteFile.exists()) {
+			deleteFile.delete();
+		}
+		
+	}
+
+	// 리뷰 삭제
+	@Override
+	public int removeReview(int revNo) {
+		return aDao.removeReview(revNo);
+	}
+	
+	
 	
 }
