@@ -16,8 +16,11 @@
 		<result property="resStatusNo" column="RESERVE_STATUS_NO" />
 		<result property="pTitle" column="PROJECT_TITLE" />
 		<result property="userNickname" column="USER_NICKNAME" />
+		<result property="artistNickname" column="PROJECT_AT_NM" />
 		<result property="resRwdPriceSum" column="REWARD_PRICE_SUM" />
 		<result property="resFundDate" column="FUND_DATE" />
+		<result property="prjCategoryName" column="PROJECT_CT_NAME" />
+		<result property="dDay" column="D_DAY" />
 	</resultMap>
 	
 	<resultMap type="Reward" id="rewardReslutSet">
@@ -82,4 +85,14 @@
 		WHERE RESERVE_NO = #{ rsvNo }
 	</update>
 	
+	<update id="updateReserveCredit" parameterType="Reserve">
+		UPDATE RESERVE
+		SET BILLINGKEY = #{ bKey }
+		WHERE RESERVE_NO = #{ resNo }
+	</update>
+	
+	<select id="selectReserveList" parameterType="_int" resultMap="reserveResultSet">
+		SELECT * FROM RESERVE_USER_VIEW
+		WHERE RESERVE_USER = #{ userNo }
+	</select>
 </mapper>

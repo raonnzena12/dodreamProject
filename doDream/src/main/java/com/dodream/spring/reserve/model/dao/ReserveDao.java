@@ -78,4 +78,22 @@ public class ReserveDao {
 	public int updateFundingStatus(int rsvNo) {
 		return sqlSession.update("reserveMapper.updateFundingStatus", rsvNo);
 	}
+
+	/**
+	 * customer_uid 업데이트용 DAO
+	 * @param reserve
+	 * @return result
+	 */
+	public int updateReserveCredit(Reserve reserve) {
+		return sqlSession.update("reserveMapper.updateReserveCredit", reserve);
+	}
+
+	/**
+	 * 해당 유저의 예약현황 리스트를 받아오는 DAO
+	 * @param userNo
+	 * @return rList
+	 */
+	public ArrayList<Reserve> selectReserveList(int userNo) {
+		return (ArrayList)sqlSession.selectList("reserveMapper.selectReserveList", userNo);
+	}
 }

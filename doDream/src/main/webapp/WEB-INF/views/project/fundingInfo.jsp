@@ -192,7 +192,7 @@
 											</td>
 										</tr>
 										<tr>
-											<td colspan="2"><input type="text" name="expiry" id="expiry" class="form-control form-control-sm" placeholder="YYYY-MM" maxlength="7"></td>
+											<td colspan="2"><input type="text" name="expiry" id="expiry" class="form-control form-control-sm" placeholder="YYYY-MM ( 숫자만 입력 )" maxlength="7"></td>
 											<td colspan="2"><input type="password" name="pwd2" id="pwd2" class="form-control form-control-sm" placeholder="앞 2자리" maxlength="2" readonly></td>
 										</tr>
 										<tr>
@@ -355,8 +355,10 @@ $(function(){
 			return false;
 		}
 	});
-
-
+	// 유효기간 밸류값 불러서 하이픈 삽입하는 코드
+    $("#expiry").on("input", function(){
+        $(this).val(autoHypen($(this).val()));
+    });
 });
 // 카드번호 4자 입력시 다음 입력창으로 이동
 function nextFocus(obj) {
@@ -414,10 +416,24 @@ function ajaxBilling() {
 		error: function(e){ console.log(e) },
 		success: function( result ){
 			console.log(result);
-			// 결제 성공하면 폼을 서브밋해 우리 서버로 정보를 넘김
+			// 카드정보 입력에 성공하면 폼을 서브밋해 우리 서버로 정보를 넘김
 			$("#fndInsert2").submit();
 		}
 	});
+}
+// 유효기간 입력시 하이픈(-) 추가하는 함수
+function autoHypen(str){
+    str = str.replace(/[^0-9]/g, '');
+    var tmp = '';
+    if( str.length < 5){
+        return str;
+    }else if(str.length < 7){
+        tmp += str.substr(0, 4);
+        tmp += '-';
+        tmp += str.substr(4);
+        return tmp;
+    }
+    return str;
 }
 </script>
 </body>
