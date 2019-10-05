@@ -38,17 +38,20 @@
 							<table class="table" id="payingTable">
 								<thead>
 									<tr>
-										<td colspan="2">
+										<td colspan="2" class="lineH">
 											<form action="${ fundingComplete }" method="post" id="fndInsert2">
 											<c:forEach var="rwd" items="${ rList }" varStatus="status" >
 												<input type="hidden" name="hList[${ status.index }].rwdNo" value="${ rwd.rNo }">
-											<span class="rewardTitle" id="${ rwd.rNo }">${ rwd.rName } _ <input type="number" name="hList[${ status.index }].rwdAmount" class="rwd-amount${ status.index }" maxlength="3" oninput="maxLengthCheck(this);" idx="${ status.index }" limit="${ rwd.rAmount }" data-toggle="tooltip" data-placement="bottom" title="펀딩가능한 최대수량 : ${ rwd.rAmount }개" value="1" readonly> 개</span><br>
-											<span class="rewardDetail textSize-15">${ rwd.rExplain}</span><br>
-											<c:if test="${ !empty rwd.rOptionAdd }" >
-											<span class="rewardOption textSize-15">${ rwd.rOptionAdd }</span><br>
+												<br><span class="rewardTitle" id="${ rwd.rNo }">${ rwd.rName } _ <input type="number" name="hList[${ status.index }].rwdAmount" class="rwd-amount${ status.index }" maxlength="3" oninput="maxLengthCheck(this);" idx="${ status.index }" limit="${ rwd.rAmount }" data-toggle="tooltip" data-placement="bottom" title="펀딩가능한 최대수량 : ${ rwd.rAmount }개" value="${ hList[status.index].rwdAmount }" readonly> 개</span><br><br>
+											<span class="rewardDetail textSize-14">${ rwd.rExplain}</span><br>
+											<c:if test="${ hList[status.index].rwdOption != '-1' }" >
+											<input type="hidden" name="hList[${ status.index }].rwdOption" value="${ hList[status.index].rwdOption }">
+											<span class="rewardOption textSize-15">
+												${ hList[status.index].rwdOption }
+											</span><br>
 											</c:if>
 											<div class="rewardPriceArea text-right">
-												<input type="hidden" name="rewardPrice${ rwd.rNo }" id="rewardPrice${ rwd.rNo }" value="${ rwd.rPrice }" class="rwd-price${ status.index }" idx="${ status.index }" readonly>
+												<input type="hidden" name="rewardPrice${ rwd.rNo }" id="rewardPrice${ rwd.rNo }" value="${ rwd.rPrice }" class="rwd-price${ status.index } mt-1" idx="${ status.index }" readonly>
 												<span class="rwd-aPrint${ status.index }"></span> 원</div>
 											</c:forEach>
 										</td>
@@ -87,7 +90,7 @@
 						<div class="col-md-12 innerMain mx-auto">
 							<h3>리워드 배송지</h3>
 							<!-- 회원정보에 주소지가 입력되어 있을 때 기존 배송지 정보 출력 -->
-							<c:if test="${ sessionScope.loginUser.userAddress != null }">
+							<c:if test="${ loginUser.userAddress != null && fn:length(loginUser.userAddress) > 2 }">
 							<c:set var="addr" value="${ loginUser.userAddress }" />
 							<span class="custom-control custom-radio mx-4 my-3">
 								<input type="radio" name="address" id="current" class="custom-control-input" checked><label class="custom-control-label mr-5" for="current">기본 배송지</label>
@@ -96,7 +99,7 @@
 								<input type="radio" name="address" id="newAddress" class="custom-control-input"><label class="custom-control-label" for="newAddress">새 배송지</label>
 							</span>
 							</c:if>
-							<c:if test="${ sessionScope.loginUser.userAddress == null }">
+							<c:if test="${ sessionScope.loginUser.userAddress == null || fn:length(loginUser.userAddress) == 2 }">
 							<span class="custom-control custom-radio mx-4 my-3">
 								<input type="radio" name="address" id="newAddress" class="custom-control-input" checked><label class="custom-control-label" for="newAddress">새 배송지</label>
 							</span>
@@ -189,7 +192,7 @@
 											</td>
 										</tr>
 										<tr>
-											<td colspan="2"><input type="text" name="expiry" id="expiry" class="form-control form-control-sm" placeholder="MM/YY" maxlength="5"></td>
+											<td colspan="2"><input type="text" name="expiry" id="expiry" class="form-control form-control-sm" placeholder="YYYY-MM" maxlength="7"></td>
 											<td colspan="2"><input type="password" name="pwd2" id="pwd2" class="form-control form-control-sm" placeholder="앞 2자리" maxlength="2" readonly></td>
 										</tr>
 										<tr>
@@ -247,15 +250,10 @@
 			<input type="hidden" name="resContact">
 			<input type="hidden" name="resAddress">
 			<input type="hidden" name="resRequest">
-			<input type="hidden" name="resUser" value="0">
+			<input type="hidden" name="resUser" value="${ loginUser.userNo }">
 			<input type="hidden" name="resRefPno" value="${ prj.pNo }">
-			<input type="hidden" name="userUid">
+			<input type="hidden" name="bKey">
 			<input type="hidden" name="pNo" value="${ prj.pNo }">
-			<!-- <input type="hidden" name="pTitle" value="${ prj.pTitle }"> -->
-			<input type="hidden" name="pThumbImage" value="${ prj.pThumbImage }">
-			<input type="hidden" name="pHashTag" value="${ prj.pHashTag }">
-			<input type="hidden" name="pSummaryText" value="${ prj.pSummaryText }">
-			<input type="hidden" name="pCount" value="${ prj.pCount }">
 		</form>
 	</section>
 <script>
@@ -280,7 +278,6 @@ $(function(){
 	// });
 	// 결제 예약하기 버튼을 클릭했을시 실행되는 코드
 	$("#toComplete").on("click", function(){
-		
 		// console.log($("input[name=address]:checked").attr("id"));
 		// 라디오박스가 어디 체크되어있는지 확인하고, 알맞은 값을 hidden 태그의 value로 저장
 		if ( $("input[name=address]:checked").attr("id") == "newAddress" ) {
@@ -341,20 +338,18 @@ $(function(){
 		if ( $("input:checked[name=allCheck]").is(":checked") ) {
 			allCK = true;
 		}
-		$( "input[name=userUid]" ).val("${ loginUser.userNo }" + "_" + $("#cardNo4").val() );
-		console.log("addi : " + $("input[name=addi]").val());
-		console.log("rName : " + $("input[name=resName]").val());
-		console.log("rContract : " + $("input[name=resContact]").val());
-		console.log("rAddress : " + $("input[name=resAddress]").val());
-		console.log("rRequest : " + $("input[name=resRequest]").val());
-		console.log("rUser : " + $("input[name=resUser]").val());
-		console.log("rRefPno : " + $("input[name=resRefPno]").val());
-		console.log("userUid : " + $( "input[name=userUid]" ).val());
+		// console.log("addi : " + $("input[name=addi]").val());
+		// console.log("rName : " + $("input[name=resName]").val());
+		// console.log("rContract : " + $("input[name=resContact]").val());
+		// console.log("rAddress : " + $("input[name=resAddress]").val());
+		// console.log("rRequest : " + $("input[name=resRequest]").val());
+		// console.log("rUser : " + $("input[name=resUser]").val());
+		// console.log("rRefPno : " + $("input[name=resRefPno]").val());
+		// console.log("bKey : " + $( "input[name=bKey]" ).val());
 		// 뒤로 넘기기
 		var c1 = $("input[name=card1]").val();
-		if ( allCK ) {
-
-			$("#fndInsert2").submit();
+		if ( allCK ) { // 모든 과정이 만족되었을 경우
+			ajaxBilling(); // 예약결제 시도
 		} else {
 			Swal.fire( '약관에 동의해주세요!', "", 'warning' );
 			return false;
@@ -374,13 +369,13 @@ function nextFocus(obj) {
 		$("input[name=cardNo"+nextIndex+"]").focus();
 	}
 }
-
 // amount maxLength 체크해주는 함수
 function maxLengthCheck(object){
     if (object.value.length > object.maxLength){
       object.value = object.value.slice(0, object.maxLength);
     }    
 }
+// 리워드 금액 합산하는 펑션
 function calcPrice() {
 	var sum = 0;
 	$("input[name^=rewardPrice]").each(function(){
@@ -389,15 +384,40 @@ function calcPrice() {
 		$(".rwd-aPrint"+index).text($(this).val()*1*amount);
 		sum += $(this).val()*1*amount;
 	})
-	$("#fundingPrice").val(sum+${ additionalCost });
+	$("#fundingPrice").val(numberWithCommas(sum+${ additionalCost }));
 }
+// 숫자 넘버포맷 정리하는 함수
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+// Ajax로 카드사와 통신하는 메서드
 function ajaxBilling() {
 	var c1 = $("#cardNo1").val();
 	var c2 = $("#cardNo2").val();
 	var c3 = $("#cardNo3").val();
 	var c4 = $("#cardNo4").val();
 	var card_number = c1 + "-" + c2 + "-" + c3 + "-" + c4;
-	/* 여기 완성할것 여기여기 */
+	var expiry = $("#expiry").val();
+	var birth = $("#authentication").val();
+	var pwd_2digit = $("#pwd2").val();
+	$( "input[name=bKey]" ).val("${ loginUser.userNo }" + "_" + $("#cardNo4").val() );
+	var customer_uid = $("input[name=bKey]").val();
+	$.ajax({
+		url: "http://localhost:8081/ajaxBillingServer",
+		type: "POST",
+		data: { card_number: card_number,
+				expiry: expiry,
+				birth: birth,
+				pwd_2digit: pwd_2digit,
+				customer_uid: customer_uid },
+		dataType: "JSON",
+		error: function(e){ console.log(e) },
+		success: function( result ){
+			console.log(result);
+			// 결제 성공하면 폼을 서브밋해 우리 서버로 정보를 넘김
+			$("#fndInsert2").submit();
+		}
+	});
 }
 </script>
 </body>

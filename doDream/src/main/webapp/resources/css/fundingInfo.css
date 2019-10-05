@@ -1,6 +1,10 @@
 #payingTable td:nth-child(2) {
     text-align: right
 }
+#payingTable #fundingPrice {
+    color: #8E44AD;
+    font-weight: 900;
+}
 #payingTable .rewardTitle {
     color: #8E44AD;
     font-weight: 900;
@@ -8,6 +12,12 @@
 } 
 #payingInfo .textSize-15 {
     font-size: 15px;
+}
+#payingInfo .textSize-14 {
+    font-size: 14px;
+}
+#payingInfo .lineH {
+    line-height: 20px;
 }
 #payingTable input[type=text] {
     border: none;

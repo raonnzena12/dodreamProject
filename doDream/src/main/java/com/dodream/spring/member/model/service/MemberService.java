@@ -48,11 +48,10 @@ public interface MemberService {
 	 */
 	public abstract int checkValidate(Member member);
 
-	public abstract int keepLogin(Member member);
-
-	public abstract Member checkUserWithSessionKey(String sessionId);
 
 	public abstract int insertSNS(Member member);
+
+	public abstract int countOpenProject(int userNo);
 
 
 

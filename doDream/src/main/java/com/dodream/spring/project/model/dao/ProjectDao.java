@@ -8,9 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.dodream.spring.common.model.vo.PageInfo;
+import com.dodream.spring.project.model.vo.FilteringList;
+import com.dodream.spring.project.model.vo.Like;
 import com.dodream.spring.project.model.vo.Project;
 import com.dodream.spring.project.model.vo.Reward;
-import com.dodream.spring.reserve.model.vo.Reserve;
 
 
 @Repository("pDao")
@@ -43,7 +44,7 @@ public class ProjectDao {
 	 * @param pi
 	 * @return pList
 	 */
-	public ArrayList<Project> selectPrjList(String category, PageInfo pi) {
+	public ArrayList<Project> selectPrjList(FilteringList filter, PageInfo pi) {
 		// 페이징 처리가 적용된 목록 조회
 		// -> MyBatis RowBounds 사용
 		
@@ -51,7 +52,7 @@ public class ProjectDao {
 		int offset = ( pi.getCurrentPage() - 1 ) * pi.getLimit();
 		RowBounds rowBounds = new RowBounds(offset, pi.getLimit());
 		
-		return (ArrayList)sqlSession.selectList("projectMapper.selectPrjList", category, rowBounds);
+		return (ArrayList)sqlSession.selectList("projectMapper.selectPrjListS", filter, rowBounds);
 	}
 
 	/**
@@ -96,6 +97,33 @@ public class ProjectDao {
 	 */
 	public ArrayList<Reward> selectRewardList(ArrayList<String> rewardList) {
 		return (ArrayList)sqlSession.selectList("projectMapper.selectRewardList", rewardList);
+	}
+
+	/**
+	 * 조회수 증감없이 프로젝트를 조회하는 DAO
+	 * @param pNo
+	 * @return prj
+	 */
+	public Project selecProjectS(int pNo) {
+		return sqlSession.selectOne("projectMapper.selectProject", pNo);
+	}
+
+	/**
+	 * project like 테이블에 insert하는 DAO
+	 * @param like
+	 * @return result
+	 */
+	public int insertLikeProject(Like like) {
+		return sqlSession.insert("projectMapper.insertProjectLike", like);
+	}
+
+	/**
+	 * project like 테이블 delete하는 DAO
+	 * @param like
+	 * @return result
+	 */
+	public int deleteLikeProject(Like like) {
+		return sqlSession.delete("projectMapper.deleteLike", like);
 	}
 
 	

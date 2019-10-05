@@ -3,6 +3,8 @@ package com.dodream.spring.project.controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,12 +14,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dodream.spring.common.Pagination;
+import com.dodream.spring.member.model.vo.Member;
 import com.dodream.spring.project.model.service.ProjectService;
+import com.dodream.spring.project.model.vo.FilteringList;
+import com.dodream.spring.project.model.vo.Like;
 import com.dodream.spring.project.model.vo.Project;
-import com.dodream.spring.project.model.vo.Reward;
-import com.dodream.spring.reserve.model.vo.HistoryList;
-import com.dodream.spring.reserve.model.vo.Reserve;
-import com.dodream.spring.reserve.model.vo.UserCard;
 
 @Controller
 public class ProjectController3 {
@@ -28,58 +29,37 @@ public class ProjectController3 {
 	
 	// 카테고리 전체 출력 임시 매핑
 	@RequestMapping("category.dr")
-	public String fundListView(String cate, Integer page, Model model) {
-		String category = ( cate == null ) ? "total" : cate;
+	public String fundListView(String keyword, String cate, String order, String endYn, Integer page, HttpServletRequest request, Model model) {
 		int currentPage = ( page == null ) ? 1 : page;
+		int userNo = 0;
+		String category = ( cate == null || cate.equals("") ) ? "total" : cate;
+		String order1 = ( order == null || order.equals("") ) ? "popluar" : order;
+		String endYn1 = ( endYn == null || endYn.equals("") ) ? "ALL" : endYn;
+		String keyword1 = ( keyword == null || keyword.equals("") ) ? null : keyword;
+		if ( request.getSession().getAttribute("loginUser") != null ) userNo = ((Member)(request.getSession().getAttribute("loginUser"))).getUserNo();
 		
-		ArrayList<Project> pList = pService.selectPrjList(category, currentPage);
+		FilteringList filter = new FilteringList(userNo, category, order1, keyword1, endYn1);
+		
+		ArrayList<Project> pList = pService.selectPrjList(filter, currentPage);
 		model.addAttribute("pList", pList);
 		model.addAttribute("pi", Pagination.getPageInfo());
 		return "common/fundList";
 	}
 	
-	// 펀딩 결제창 확인용 임시 매핑
-	@RequestMapping("letsFunding.dr")
-	public String tmp(Model model) {
-		int pNo = 54; // projectNumber
-		String rewardStr = "4/6/7/";
-		int addtionalCost = 10000;
-		
-		Project prj = pService.selectProject(pNo);
-		ArrayList<Reward> rList = pService.selectRewardList(rewardStr);
-		
-		model.addAttribute("rList", rList);
-		model.addAttribute("additionalCost",addtionalCost);
-		model.addAttribute("prj", prj);
-		
-		return "project/fundingInfo";
-	}
-	
-	// 펀딩 결제 성공 확인용 임시 매핑
-	@RequestMapping("thankYou.dr")
-	public String tmp2(Reserve reserve, HistoryList hList, UserCard uCard, Project prj) {
-		
-		System.out.println(reserve);
-		System.out.println(hList);
-		System.out.println(uCard);
-		System.out.println(prj);
-		
-		
-		return "project/fundingComplete";
-	}
-
-	@RequestMapping("ptemp4.dr")
-	public String tmp4() {
-		return "../../resources/js/testF/NewFile";
-	}
-	
 	@ResponseBody
 	@RequestMapping("loadListByAjax.dr")
-	public ArrayList<Project> loadListByAjax(Integer page, String cate) {
-		String category = ( cate == null ) ? "total" : cate;
+	public ArrayList<Project> loadListByAjax(String keyword, String cate, String order, String endYn, Integer page, HttpServletRequest request) {
 		int currentPage = ( page == null ) ? 1 : page;
+		int userNo = 0;
+		String category = ( cate == null || cate.equals("") ) ? "total" : cate;
+		String order1 = ( order == null || order.equals("") ) ? "popluar" : order;
+		String endYn1 = ( endYn == null || endYn.equals("") ) ? "ALL" : endYn;
+		String keyword1 = ( keyword == null || keyword.equals("") ) ? null : keyword;
+		if ( request.getSession().getAttribute("loginUser") != null ) userNo = ((Member)(request.getSession().getAttribute("loginUser"))).getUserNo();
 		
-		ArrayList<Project> pList = pService.selectPrjList(category, currentPage);
+		FilteringList filter = new FilteringList(userNo, category, order1, keyword1, endYn1);
+		System.out.println(filter);
+		ArrayList<Project> pList = pService.selectPrjList(filter, currentPage);
 		
 		return pList;
 	}
@@ -99,9 +79,14 @@ public class ProjectController3 {
 		return map;
 	}
 	
-	@RequestMapping("kakaotest.dr")
-	public String kakaoTest() {
-		
-		return "common/test";
+	// 리스트에서 프로젝트 좋아요 누르는 링크
+	@ResponseBody
+	@RequestMapping("ajaxProjectLike.dr")
+	public int ajaxProjectLike(Integer pNo, Integer uNo, Integer status) {
+		int result = 0;
+		if ( pNo != null && uNo != null ) {
+			result = pService.insertLikeProject(new Like(uNo, pNo), status.intValue());
+		} 		
+		return result;
 	}
 }

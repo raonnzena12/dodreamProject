@@ -131,11 +131,31 @@
 #fundingStatus input[type=text] {
     background-color: #fff;
 }
+#creditCard {
+    font-size: 15px;
+}
+#creditCard input[type="number"]::-webkit-outer-spin-button,
+#creditCard input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+#creditCard input {
+    background-color: #fff;
+}
+.changeCredit {
+    display: none;
+}
 </style>
+<!-- 가상 숫자패드 CSS/JS --> 
+<link rel="stylesheet" type="text/css" href="resources/css/jquery.numberKeypad.css">
+<script type="text/javascript" src="resources/js/jquery.numberKeypad.js"></script>
 </head>
 <body>
 <c:set var="aa" value="aa" />
 <section id="fundingStatus">
+<c:url var="fundingDetail" value="detailSt.dr" >
+    <c:param name="pNo" value="${ prj.pNo }" />
+</c:url>
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-3">
@@ -164,7 +184,7 @@
                         </c:when>
                         </c:choose>
                     </p>
-                    <p class="projectName"><a href="#">${ prj.pTitle }</a></p>
+                    <p class="projectName"><a href="${ fundingDetail }" target="_blank">${ prj.pTitle }</a></p>
                     <p class="artist mb-3">by "<a href="#">${ prj.pArtistName }</a>"</p>
                     <div class="summary">
                         <table class="summaryt">
@@ -201,7 +221,7 @@
                     <c:if test="${ rsv.resStatusNo == 1 }">
                     <p class="chargeInfo">펀딩 종료 후 1 영업일 후인,<br>
                         ${ rsv.resFundDate } 17시에 결제 될 예정입니다.</p>
-                    <button class="btn btn-outline-warning btn-block">결제 예약 취소</button>
+                    <button class="btn btn-outline-warning btn-block" id="cancelFundingBtn">결제 예약 취소</button>
                     </c:if>
                 </div>
                 <c:if test="${ rsv.resStatusNo == 1 }">
@@ -247,6 +267,7 @@
                     </table>
                 </div>
                 <div class="funding-status rounded-top">
+                    <div class="defaultCredit">
                     <p class="text-13">결제 정보</p>
                     <table class="funddeT mb-3 fundingTotal">
                         <tr>
@@ -254,14 +275,59 @@
                             <td>신용(체크)카드</td>
                         </tr>
                         <tr>
-                            <c:set var="length" value="${ fn:length(rsv.resCustomerUid) }" />
+                            <c:set var="length" value="${ fn:length(rsv.bKey) }" />
                             <td>카드번호</td>
-                            <td>************${ fn:substring(rsv.resCustomerUid, length-2, length) }</td>
+                            <td>************${ fn:substring(rsv.bKey, length-2, length) }</td>
                         </tr>
                     </table>
                     <c:if test="${ rsv.resStatusNo == 1 }">
-                    <button class="btn btn-outline-warning btn-block">결제 정보 변경하기</button>
+                        <button class="btn btn-outline-warning btn-block">결제 정보 변경하기</button>
                     </c:if>
+                    </div>
+                    <div class="row changeCredit">
+                    <div class="col-md-12">
+                        <table id="creditCard">
+                            <tr>
+                                <td colspan="4">
+                                    <label>카드 정보</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="p-1"><input type="number" name="cardNo1" id="cardNo1" class="form-control form-control-sm" maxlength="4" oninput="maxLengthCheck(this); nextFocus($(this));" cardidx="1"></td>
+                                <td class="p-1"><input type="password" name="cardNo2" id="cardNo2" class="form-control form-control-sm" maxlength="4" readonly cardidx="2"></td>
+                                <td class="p-1"><input type="password" name="cardNo3" id="cardNo3" class="form-control form-control-sm" maxlength="4" readonly cardidx="3"></td>
+                                <td class="p-1"><input type="number" name="cardNo4" id="cardNo4" class="form-control form-control-sm" maxlength="4" oninput="maxLengthCheck(this);" cardidx="4"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" class="p-1">
+                                    <label class="mt-1">유효기간</label>
+                                </td>
+                                <td colspan="2" class="p-1">
+                                    <label class="mt-1">카드 비밀번호</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" class="p-1"><input type="text" name="expiry" id="expiry" class="form-control form-control-sm" placeholder="YYYY-MM" maxlength="7"></td>
+                                <td colspan="2" class="p-1"><input type="password" name="pwd2" id="pwd2" class="form-control form-control-sm" placeholder="앞 2자리" maxlength="2" readonly></td>
+                            </tr>
+                            <tr>
+                                <td colspan="4" class="p-1">
+                                    <label class="mt-1">생년월일 (주민번호 앞 6자리)<br>
+                                    <span class="graytext">무기명 법인카드는 사업자 등록번호 10자리를 입력하세요</span></label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="4" class="p-1">
+                                    <input type="number" name="authentication" id="authentication" class="form-control form-control-sm" maxlength="10" oninput="maxLengthCheck(this);">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" class="p-1 mt-3"><button class="btn btn-outline-primary btn-block" >취소</button></td>
+                                <td colspan="2" class="p-1 mt-3"><button class="btn btn-outline-warning btn-block" >결제정보 변경</button></td>
+                            </tr>
+                        </table>
+                    </div>
+                    </div>
                 </div>
                 <c:if test="${ rsv.resStatusNo == 1 }" >
                 <div class="funding-status-additional rounded-bottom text-13">
@@ -290,7 +356,7 @@
                                 <td class="p-1">
                                     <input type="text" name="cShipPostCode" id="cShipPostCode" class="form-control" placeholder="우편번호" value='${fn:split(rsv.resAddress,",")[2]}' readonly>
                                 </td>
-                                <td cladd="p-1">
+                                <td class="p-1">
                                     <input type="text" name="cShipAddr1" id="cShipAddr1" class="form-control" placeholder="주소" value='${fn:split(rsv.resAddress,",")[0]}' readonly>
                                 </td>
                             </tr>
@@ -373,8 +439,75 @@ $(function(){
                 }
             }
         });
-    }); 
+    });
+    $("#cancelFundingBtn").on("click", function(){
+        Swal.fire({
+            title: '예약을 취소하시겠습니까?',
+            text: "취소된 예약은 복구가 불가능합니다!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#F39C12',
+            cancelButtonColor: '#8E44AD',
+            confirmButtonText: '예약 취소',
+            cancelButtonText: '취소'
+            }).then((result) => {
+            if (result.value) {
+                cancelFundingAjax();
+            }
+        });
+    });
+    // 가상 키패드 LOADING
+    $('#cardNo2').numberKeypad(); 
+    $('#cardNo3').numberKeypad();
+    $('#pwd2').numberKeypad();
 });
+function cancelFundingAjax(){
+    var rsvNo = ${ rsv.resNo };
+    $.ajax({
+        url: "ajaxCancelFunding.dr",
+        type: "POST",
+        data: { rsvNo : rsvNo },
+        error: function(e) { console.log(e); },
+        success: function(result) {
+            console.log(result);
+            if ( result == 1) { // 성공값이 넘어 왔을 경우
+                Swal.fire({
+                title: '예약 취소 완료!',
+                text: '펀딩 예약이 취소되었습니다.',
+                type: 'success',
+                confirmButtonColor: '#F39C12'
+                }).then((result) =>{
+                if ( result.value ) {
+                    location.reload();
+                }
+                });
+            } else { // 실패값이 넘어왔을 경우
+                Swal.fire({
+                type: 'error',
+                title: '예약 취소 실패',
+                text: '관리자에게 문의하여 주세요',
+                });
+            }
+        }
+    });
+}
+// 카드번호 4자 입력시 다음 입력창으로 이동
+function nextFocus(obj) {
+	var inputLeng = obj.val().length;
+	var maxLeng = obj.attr("maxLength");
+	var nextIndex = obj.attr("cardidx")*1+1;
+	if ( nextIndex == 5 ) {
+		return false;
+	} else if ( inputLeng == maxLeng ) {
+		$("input[name=cardNo"+nextIndex+"]").focus();
+	}
+}
+// maxLength 체크해주는 함수
+function maxLengthCheck(object){
+    if (object.value.length > object.maxLength){
+      object.value = object.value.slice(0, object.maxLength);
+    }    
+}
 </script>
 </body>
 </html>

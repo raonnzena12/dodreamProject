@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.dodream.spring.common.model.vo.PageInfo;
 import com.dodream.spring.customerCenter.model.vo.Notice;
+import com.dodream.spring.customerCenter.model.vo.Review;
 import com.dodream.spring.member.model.vo.Member;
 import com.dodream.spring.project.model.vo.Project;
 import com.dodream.spring.project.model.vo.Reply;
@@ -265,11 +266,11 @@ public class AdminDao {
 	}
 
 	/** 공지사항 수정하기
-	 * @param nNo
+	 * @param notice
 	 * @return result
-	 */
-	public int updateNotice(int nNo) {
-		return sqlSession.update("adminNoticeMapper.updateNotice",nNo);
+	 */  
+	public int updateNotice(Notice notice) { 
+		return sqlSession.update("adminNoticeMapper.updateNotice", notice);
 	}
 
 	/** 주문 예약 취소
@@ -287,5 +288,47 @@ public class AdminDao {
 	public int removeNotice(int nNo) {
 		return sqlSession.update("adminNoticeMapper.removeNotice", nNo);
 	}
+
+	/** 공지사항 글쓰기 써머노트
+	 * @param notice
+	 * @return result
+	 */
+	public int insertNotice(Notice notice) {
+		return sqlSession.insert("adminNoticeMapper.insertNotice", notice);
+	}
+
+	/** 리뷰 작성
+	 * @param review
+	 * @return result
+	 */
+	public int insertReview(Review review) {
+		return sqlSession.insert("adminReviewMapper.insertReview", review);
+	}
+
+	/** 리뷰 목록
+	 * @return list
+	 */
+	public ArrayList<Review> selectReviewList() {
+		return (ArrayList)sqlSession.selectList("adminReviewMapper.selectReviewList");
+	}
+
+	/** 해당 공지사항 조회
+	 * @param nNo
+	 * @return notice
+	 */
+	public Notice selectNotice(int nNo) {
+		return sqlSession.selectOne("adminNoticeMapper.selectNotice", nNo);
+	}
+
+	/** 해당 리뷰 조회
+	 * @param revNo
+	 * @return review
+	 */
+	public Review selectReview(int revNo) {
+		return sqlSession.selectOne("adminReviewMapper.selectReview", revNo);
+	}
+
+
+
 
 }

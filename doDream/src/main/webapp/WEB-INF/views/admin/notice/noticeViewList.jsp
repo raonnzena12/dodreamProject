@@ -98,9 +98,6 @@
 															aria-label="Office: activate to sort column ascending">공지사항 제목</th>
 														<th class="sorting" tabindex="0" aria-controls="dataTable"
 															rowspan="1" colspan="1"
-															aria-label="Age: activate to sort column ascending">공지사항 내용</th>
-														<th class="sorting" tabindex="0" aria-controls="dataTable"
-															rowspan="1" colspan="1"
 															aria-label="Start date: activate to sort column ascending">작성일</th>
 														<th class="sorting" tabindex="0" aria-controls="dataTable"
 															rowspan="1" colspan="1"
@@ -120,7 +117,6 @@
 													<tr>
 														<th rowspan="1" colspan="1">공지사항 번호</th>
 														<th rowspan="1" colspan="1">공지사항 제목</th>
-														<th rowspan="1" colspan="1">공지사항 내용</th>
 														<th rowspan="1" colspan="1">작성일</th>
 														<th rowspan="1" colspan="1">수정일</th>
 														<th rowspan="1" colspan="1">작성자</th>
@@ -133,13 +129,16 @@
 														<tr role="row" class="odd">
 															<td class="sorting_1">${ n.nNo }</td>
 															<td>${ n.nTitle}</td>
-															<td>${ n.nContent}</td>
 															<td>${ n.nEnrollDate}</td>
 															<td>${ n.nModifyDate}</td>
 															<td>${ n.userNickname}</td>
 															<td>
+																<c:url var="nDetail" value="nDetail.dr">
+																	<c:param name="nNo" value="${ n.nNo }"/>
+																</c:url>
+																
 																<button type="button" class="btn btn-primary btn-lg btn-block rewardBtn" 
-																onclick="location.href='goUpdateNotice.dr'">수정하기</button>
+																onclick="location.href='${nDetail}'"> 상세 이동</button>
 															</td>
 															<td>
 																<button type="button" data-toggle="modal" data-target="#modal${ status.index }" data-whatever="삭제하기"

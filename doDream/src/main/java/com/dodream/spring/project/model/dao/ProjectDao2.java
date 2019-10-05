@@ -6,10 +6,13 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.dodream.spring.project.model.vo.DetailFollow;
+import com.dodream.spring.project.model.vo.DetailReport;
 import com.dodream.spring.project.model.vo.Like;
 import com.dodream.spring.project.model.vo.Reply;
 import com.dodream.spring.project.model.vo.Reward;
 import com.dodream.spring.project.model.vo.SubReply;
+
 
 @Repository("pDao2")
 public class ProjectDao2 {
@@ -104,5 +107,54 @@ public class ProjectDao2 {
 	public int selectSubReply(SubReply subRe) {
 	
 		return sqlSession.insert("projectMapper.insertSubReply", subRe);
+	}
+
+
+	/**팔로우 조회용 DAO
+	 * @param follow
+	 * @return fl
+	 */
+	public DetailFollow selectFollow(DetailFollow follow) {
+		
+		return sqlSession.selectOne("projectMapper.selectFollow", follow);
+	}
+
+
+	/**
+	 * 팔로우 등록 DAO
+	 * @param follow
+	 * @return result
+	 */
+	public int insertFollow(DetailFollow follow) {
+		
+		return  sqlSession.insert("projectMapper.insertFollow", follow);
+	}
+
+
+	/**
+	 * 팔로우 취소 DAO
+	 * @param follow
+	 * @return result
+	 */
+	public int deleteFollow(DetailFollow follow) {
+		
+		return sqlSession.delete("projectMapper.deleteFollow", follow);
+	}
+
+
+	/**
+	 * 프로젝트 신고
+	 * @param report
+	 * @return result
+	 */
+	public int insertReport(DetailReport report) {
+
+		return sqlSession.insert("projectMapper.insertReport", report);
+	}
+
+
+	public DetailReport selectReport(DetailReport report) {
+	
+		return sqlSession.selectOne("projectMapper.selectReport", report);
 	}
 }

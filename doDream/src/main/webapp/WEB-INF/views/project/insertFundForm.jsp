@@ -12,6 +12,7 @@
 <link href="https://fonts.googleapis.com/css?family=Jua&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap" rel="stylesheet">
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css" rel="stylesheet">
 <style>
 .purplefont {
 	color: #8E44AD;
@@ -28,6 +29,90 @@
 
 #goSubmit:hover, #goPreview:hover {
 	opacity: 1;
+}
+#timagearea{
+  border: 1px solid #dddddd;
+  width: 470px;
+  height: 270px;
+  padding: 15px;
+  text-align: left;
+}
+#timageinputarea{
+  width: 100%;
+  height: 190px;
+}
+#timagecontentarea{
+  float: left;
+  width: 184px;
+  padding: 5px;
+  font-family: 'Noto Sans';
+  color: #666;
+  font-size: 11px;
+}
+#timageshowarea{
+  float: right;
+  border: 1px solid #dddddd;
+  width: 254px;
+  height: 184px;
+  border-radius: 5px;
+  margin-top: 26px;
+  overflow: hidden;
+}
+#timageshowarea img{
+  width: 100%;
+  height: 100%;
+}
+#timage-noimage{
+  margin: auto;
+  text-align: center;
+  padding: 25px;
+}
+#timage-noimage i{
+  color: #999;
+  font-size: 92px;
+  opacity: 0.7;
+  display: block;
+}
+#timage-noimage i:hover{
+  color: #F39C12;
+  font-size: 92px;
+  opacity: 0.7;
+  display: block;
+}
+#timage-noimage span{
+  font-size: 12px;
+  display: block;
+  color: #888;
+}
+#timagecontrolarea{
+  border: 1px solid #ddd;
+  width: 100%;
+  height: 100px;
+}
+#timagebtnarea{
+  width: 100%;
+  height: 50px;
+  text-align: right;
+}
+#timagebtnarea button{
+  font-family: 'Noto Sans KR';
+  font-size: 13px;
+  height: 28px;
+  width: 54px;
+  background-color: #fff;
+  border-color: #F39C12;
+  font-weight: 700;
+  color: #F39C12;
+  line-height: 10px;
+  margin-left: 15px;
+  margin-bottom: 3px;
+  margin-top: 6px;
+  margin-right: 100px;
+}
+#timagebtnarea button:hover{
+  background-color: #F39C12;
+  border-color: #fff;
+  color: #ffffff;
 }
 </style>
 </head>
@@ -241,18 +326,25 @@
 						<div class="info-box">
 							<div class="edit-box">
 								<div class="box-img-area">
-									<a href="javascript:void(0);" id="pThimbNailImgUpload"> <i
-										class="material-icons" id="pThumbNailImg"
-										style="font-size: 52px;"> camera_alt </i>
-									</a>
-									<p>사진등록</p>
+									<div id="box-img-area-noimg">
+										<a href="javascript:void(0);" id="pThimbNailImgUpload"> <i
+											class="material-icons" id="pThumbNailImg"
+											style="font-size: 52px;"> camera_alt </i>
+										</a>
+										<p>사진등록</p>
+									</div>
+									<div id="box-img-area-img">
+										<img src="" id="thumbimg" style="width:100%; height:100%; border-radius: 3px;" alt='이미지출력오류'>
+									</div>
+								</div>
+								<div id="pthumbimgdelete">
+									<a href="javascript:void(0)"><i class="material-icons">image</i></a>
 								</div>
 								<div class="box-img-desc">
-									<p>· 용량 : 3MB 미만의 사진만 올려주세요!</p>
+									<p>· 용량 : 10MB 미만의 사진만 올려주세요!</p>
 									<p>· 크기 : 가로 250px, 세로 180px로 자동 조정됩니다.</p>
 								</div>
-								<input type="file" name="uploadfile1"
-									style="background-color: #fff; width: 100%; height: 20px; font-size: 8px;">
+								<input type="file" name="uploadfile1" id="uploadfile1" multiple="multiple" onchange="loadImg(this);" style="display: none;">
 							</div>
 						</div>
 					</div>
@@ -278,54 +370,11 @@
 								<select class="form-control form-control-sm" style="width:85px; height:34px; display: inline;" id="pstartyear">
 								</select>										
 								<select class="form-control form-control-sm" style="width:85px; height:34px; display: inline;" id="pstartmonth">
-									<option value="1">1월</option>
-									<option value="2">2월</option>
-									<option value="3">3월</option>
-									<option value="4">4월</option>
-									<option value="5">5월</option>
-									<option value="6">6월</option>
-									<option value="7">7월</option>
-									<option value="8">8월</option>
-									<option value="9">9월</option>
-									<option value="10">10월</option>
-									<option value="11">11월</option>
-									<option value="12">12월</option>
 								</select>										
 								<select class="form-control form-control-sm" style="width:110px; height:34px; display: inline;" id="pstartday">
-									<option value="1">1일</option>
-									<option value="2">2일</option>
-									<option value="3">3일</option>
-									<option value="4">4일</option>
-									<option value="5">5일</option>
-									<option value="6">6일</option>
-									<option value="7">7일</option>
-									<option value="8">8일</option>
-									<option value="9">9일</option>
-									<option value="10">10일</option>
-									<option value="11">11일</option>
-									<option value="12">12일</option>
-									<option value="13">13일</option>
-									<option value="14">14일</option>
-									<option value="15">15일</option>
-									<option value="16">16일</option>
-									<option value="17">17일</option>
-									<option value="18">18일</option>
-									<option value="19">19일</option>
-									<option value="20">20일</option>
-									<option value="21">21일</option>
-									<option value="22">22일</option>
-									<option value="23">23일</option>
-									<option value="24">24일</option>
-									<option value="25">25일</option>
-									<option value="26">26일</option>
-									<option value="27">27일</option>
-									<option value="28">28일</option>
-									<option value="29">29일</option>
-									<option value="30">30일</option>
-									<option value="31">31일</option>
 								</select>									
 								<label style="font-size: 13px; font-weight: 600; color: #555; margin-right: 12px;">프로젝트 진행기간 : </label> 
-								<input type="number" class="form-control form-control-sm" id="pterm" min="1" style="width: 85px; height: 30px; display: inline;" value="1"> 일
+								<input type="number" class="form-control form-control-sm" id="pterm" min="10" style="width: 85px; height: 30px; display: inline;" value="10"> 일
 								<div style="margin: auto; width: 400px; border-top: 1px solid #ddd; padding-top: 20px; margin-top: 30px; text-align: center;">
 									<p style="color: #444; font-size: 15px; font-weight: 700;">예상 프로젝트 종료일</p>
 									<p id="penddatearea"style="font-family: 'Jua'; font-size: 28px; letter-spacing: 2px; color: #F39C12;">- - - -</p>
@@ -603,9 +652,10 @@
 							<div class="contentinfoarea">
 								<p>최종 승인 이후에는 스토리를 수정할 수 없습니다. 신중하게 작성해주세요!</p>
 							</div>
-							<div class="projectcontent">
-								<textarea rows="37" id="pStory" name="pStory"
-									style="width: 100%; resize: none;"></textarea>
+							<div class="projectcontent" align="center">
+								<!-- summnote 에디터 출력 -->
+								<textarea id="pStorySummernote" name="pStory" rows="37" style="width:100%; resize: none;"></textarea>
+								<input type="hidden" name="imgList" value="">
 							</div>
 						</div>
 					</div>
@@ -664,7 +714,7 @@
 									</div>
 								</div>
 								<div class="profileimgdesc">
-									<input type="file" name="uploadfile1"
+									<input type="file" name="uploadfile2"
 										style="background-color: #fff; width: 100%; height: 20px; font-size: 8px;">
 								</div>
 								<div class="clearFloat"></div>
@@ -682,7 +732,7 @@
 						<div class="info-box">
 							<div class="edit-box">
 								<div>
-									<img src="img/facebook.jpg"
+									<img src="resources/images/insertFormImages/facebook.jpg"
 										style="width: 20px; height: 20px; border-radius: 4px; opacity: 0.9; margin-right: 10px;">
 									<label for="pArtistSns1">https://www.facebook.com/</label> <input
 										class="form-control form-control-sm" type="text"
@@ -690,7 +740,7 @@
 										style="display: inline; width: 150px; height: 24px;">
 								</div>
 								<div>
-									<img src="img/instagram.jpg"
+									<img src="resources/images/insertFormImages/instagram.jpg"
 										style="width: 20px; height: 20px; border-radius: 4px; opacity: 0.9; margin-right: 10px;">
 									<label for="pArtistSns2">https://www.instagram.com/</label> <input
 										class="form-control form-control-sm" type="text"
@@ -737,182 +787,208 @@
 			</form>
 			<button type="button" onclick="goSave();">임시저장하기</button>
 		</div>
+
 	</div>
-		<script>
-		// 페이지 로드 완료시 인서트폼은 숨깁니다. (동의를 완료해야 보여집니다)
-		$(function() {
-			$("#insertFundForm").hide();
-		});
-		// 만약 동의 버튼중 하나라도 변한다면 validate() 메소드 실행
-		$(".checklist input[type='checkbox']").change(function() {
-			validate();
-		});
 
-		// 모든 동의버튼이 체크되어야 다음으로 버튼이 활성화 됩니다.
-		function validate() {
-			var result1, result2, result3, result4;
-			var $chk1 = $("#reward-create-process-checklist1");
-			var $chk2 = $("#reward-create-process-checklist2");
-			var $chk3 = $("#reward-create-process-checklist3");
-			var $chk4 = $("#reward-create-process-checklist4");
-			if ($chk1.is(':checked'))
-				result1 = true;
-			if ($chk2.is(':checked'))
-				result2 = true;
-			if ($chk3.is(':checked'))
-				result3 = true;
-			if ($chk4.is(':checked'))
-				result4 = true;
-			if (result1 && result2 && result3 && result4)
-				$("#goInsertForm").attr('disabled', false);
-			else
-				$("#goInsertForm").attr('disabled', true);
-		};
-		function goLogin(){
-			Swal.fire({
-				showConfirmButton: false,
-				html: '<div id="login-menu" class="loginmenu text-center" style="display: block; position: relative; width:375px; padding: 10px; margin-left: 59px;"><div style="text-align:center;" class="mb-2"> LOGIN </div><form action="loginmodal.dr" method="POST" id="modal-loginfrm"><input type="hidden" value="" name="prevPage" id="modal-prevPage"><table id="login-table" class="form-group"><tr><td><input class="form-control" type="email" name="userEmail" id="modal-user-email" placeholder="이메일 주소" autocomplete="off" required></td></tr><tr><td><input class="form-control" type="password" name="userPwd" id="modal-user-pwd" placeholder="비밀번호" required></td></tr><tr><td class="loginmenuText custom-control custom-checkbox my-1"></td></tr><tr><td><button type="button" class="btn btn-warning btn-block mb-2" id="modal-loginBtn">L O G I N</button></td></tr><tr><td class="text-center naverKakaoArea"><img src="resources/images/naver_sns_icon.png" data-toggle="tooltip" data-placement="left" title="NAVER ID로 로그인" class="mx-2" style="width:40px; height:auto;"><a href="javascript:loginWithKakao()"><img src="resources/images/kakao_sns_icon.png" data-toggle="tooltip" data-placement="left" title="KAKAO ID로 로그인" class="mx-2" style="width:40px; height:auto;"></a><img src="resources/images/faceB_sns_icon.png" data-toggle="tooltip" data-placement="left" title="FACEBOOK ID로 로그인" class="mx-2" style="width:40px; height:auto;"></td></tr><tr><td class="loginmenuText text-center"><hr>회원이 아니신가요?<br> <a href="insertForm.dr" class="emp blue">가입하기</a></td></tr></table></form></div>'
-			});
-		};
-		$(function(){
-			$(document).on("click","#modal-loginBtn",function(e){
-				var frm = $("#modal-loginfrm");
-				var v_userEmail = $("#modal-user-email").val();
-				var v_userPwd = $("#modal-user-pwd").val();
-				$.ajax({
-					url : "checkValidate.dr",
-					data : {userEmail : v_userEmail, userPwd : v_userPwd},
-					type : "POST",
-					success : function(result){
-						if(result>0){
-							frm.submit();
-						}else{
-							Swal.fire({
-								type: 'error',
-								title: '로그인 실패!',
-								html: '이메일과 비밀번호가 일치하지 않거나 <br> 해당하는 이메일이 없습니다.',
-								showConfirmButton: false,
-								footer: '<a href="javascript:goLogin();">다시 로그인하기</a>'
-							});
-						}
-					},
-					error : function(e){
-						console.log(e);
-						console.log("외않되");
-					}
-				});
-			});
-		});
-		function checklogin(){
-			var loginuser = ${loginUser.userNo}+"";
-			if(loginuser=="") {
-				Swal.fire({
-					type: 'info',
-					title: '로그인이 필요합니다!',
-					html: '프로젝트 등록은 <a href="javascript:goLogin();">로그인</a> 후 이용해주세요',
-					footer: '<a href="insertForm.dr">아직 저희 회원이 아니신가요? 회원가입 바로가기</a>'
-				});
-				return false;
-			}else{
-				return true;
-			}
-		};
-		
-		// 동의를 모두 체크하고 넘어가면 인서트폼을 보여주는 메소드
-		function checkAgreement() {
-			var loginchk = checklogin();
-			if(loginchk==true){
-				$("#agreementForm").hide();
-				$("#insertFundForm").show();
-				$('html').animate({
-					scrollTop : 0
-				}, 300);
-				if ($("#rad1").is(":checked")) {
-					$("#ac li>label").css("height",
-							$("#rad1").next().next().outerHeight());
-					$("#ac").css("height", $("#rad1").next().next().outerHeight());
-				}
-			}
-		};
-		
-		// 임시저장하는 메소드입니다. pStatusNum = 1 으로 세팅합니다. 
-		function goSave() {
-			var frm = $("#insertFrm");
-			$("#pStatusNum").val(1);
-			frm.submit();
+	<script src="resources/summernote/dist/summernote.js"></script>
+	<!-- summernote 기능 구현 js -->
+	<script src="resources/summernote/js/summernote.js"></script>
+	
+	<!-- summernote 언어 설정 js -->
+	<script src="resources/summernote/dist/lang/summernote-ko-KR.js"></script>
+	<script>
+	// 페이지 로드 완료시 인서트폼은 숨깁니다. (동의를 완료해야 보여집니다)
+	$(function() {
+		$("#insertFundForm").hide();
+		validate();
+	});
+	// 만약 동의 버튼중 하나라도 변한다면 validate() 메소드 실행
+	$(".checklist input[type='checkbox']").change(function() {
+		validate();
+	});
+
+
+	// 모든 동의버튼이 체크되어야 다음으로 버튼이 활성화 됩니다.
+	function validate() {
+		var result1, result2, result3, result4;
+		var $chk1 = $("#reward-create-process-checklist1");
+		var $chk2 = $("#reward-create-process-checklist2");
+		var $chk3 = $("#reward-create-process-checklist3");
+		var $chk4 = $("#reward-create-process-checklist4");
+		if ($chk1.is(':checked'))
+			result1 = true;
+		if ($chk2.is(':checked'))
+			result2 = true;
+		if ($chk3.is(':checked'))
+			result3 = true;
+		if ($chk4.is(':checked'))
+			result4 = true;
+		if (result1 && result2 && result3 && result4)
+			$("#goInsertForm").attr('disabled', false);
+		else
+			$("#goInsertForm").attr('disabled', true);
+	};
+	$(function(){
+		var loginUser = ${loginUser.userNo} + "";
+		if(loginUser!=""){
+			$("#reward-create-process-checklist1").attr("checked",true);
+			$("#reward-create-process-checklist2").attr("checked",true);
+			$("#reward-create-process-checklist3").attr("checked",true);
+			$("#reward-create-process-checklist4").attr("checked",true);
 		}
-
-		// 프로젝트 내용 입력전 동의를 체크해야 입력폼이 보이게하는 메소드입니다.
-		$(".contentinfoarea").hide();
-		$(".projectcontent").hide();
-		$(document).on("click", ".chkboxarea input[type='checkbox']",
-				function() {
-					var chk1 = $("#storychk1:checked").val();
-					var chk2 = $("#storychk2:checked").val();
-					var chk3 = $("#storychk3:checked").val();
-					var chk4 = $("#storychk4:checked").val();
-					if (chk1 == 1 && chk2 == 1 && chk3 == 1 && chk4 == 1) {
-						$(".contentagreement").hide('slow');
-						$(".contentinfoarea").show('slow');
-						$(".projectcontent").show('slow');
-						var scrollPosition = $(".contentarea").offset().top;
-						$("html").animate({
-							scrollTop : scrollPosition
-						}, 700);
+		validate();
+	});
+	function goLogin(){
+		Swal.fire({
+			showConfirmButton: false,
+			html: '<div id="login-menu" class="loginmenu text-center" style="display: block; position: relative; width:375px; padding: 10px; margin-left: 59px;"><div style="text-align:center;" class="mb-2"> LOGIN </div><form action="loginmodal.dr" method="POST" id="modal-loginfrm"><input type="hidden" value="" name="prevPage" id="modal-prevPage"><table id="login-table" class="form-group"><tr><td><input class="form-control" type="email" name="userEmail" id="modal-user-email" placeholder="이메일 주소" autocomplete="off" required></td></tr><tr><td><input class="form-control" type="password" name="userPwd" id="modal-user-pwd" placeholder="비밀번호" required></td></tr><tr><td class="loginmenuText custom-control custom-checkbox my-1"></td></tr><tr><td><button type="button" class="btn btn-warning btn-block mb-2" id="modal-loginBtn">L O G I N</button></td></tr><tr><td class="text-center naverKakaoArea"><img src="resources/images/naver_sns_icon.png" data-toggle="tooltip" data-placement="left" title="NAVER ID로 로그인" class="mx-2" style="width:40px; height:auto;"><a href="javascript:loginWithKakao()"><img src="resources/images/kakao_sns_icon.png" data-toggle="tooltip" data-placement="left" title="KAKAO ID로 로그인" class="mx-2" style="width:40px; height:auto;"></a><img src="resources/images/faceB_sns_icon.png" data-toggle="tooltip" data-placement="left" title="FACEBOOK ID로 로그인" class="mx-2" style="width:40px; height:auto;"></td></tr><tr><td class="loginmenuText text-center"><hr>회원이 아니신가요?<br> <a href="insertForm.dr" class="emp blue">가입하기</a></td></tr></table></form></div>'
+		});
+	};
+	$(function(){
+		$(document).on("click","#modal-loginBtn",function(e){
+			var frm = $("#modal-loginfrm");
+			var v_userEmail = $("#modal-user-email").val();
+			var v_userPwd = $("#modal-user-pwd").val();
+			$.ajax({
+				url : "checkValidate.dr",
+				data : {userEmail : v_userEmail, userPwd : v_userPwd},
+				type : "POST",
+				success : function(result){
+					if(result>0){
+						frm.submit();
+					}else{
+						Swal.fire({
+							type: 'error',
+							title: '로그인 실패!',
+							html: '이메일과 비밀번호가 일치하지 않거나 <br> 해당하는 이메일이 없습니다.',
+							showConfirmButton: false,
+							footer: '<a href="javascript:goLogin();">다시 로그인하기</a>'
+						});
 					}
-				});
-		
-
-		// 길이를 체크해주는 메소드입니다.
-		$(function() {
-
-			// pTitle(제목) input태그의 길이를 체크해주는 메소드
-			$("input[name='pTitle']").on("input", function() {
-				var leng = $("input[name='pTitle']").val().length;
-				$("#pTitleLengthChk").text(leng);
-			});
-
-			// pSTitle(짧은제목) input태그의 길이를 체크해주는 메소드
-			$("input[name='pSTitle']").on("input", function() {
-				var leng = $("input[name='pSTitle']").val().length;
-				$("#pSTitleLengthChk").text(leng);
-			});
-
-			// pSummaryText(요약내용) textarea태그의 길이를 체크해주는 메소드
-			$("textarea[name='pSummaryText']").on("input", function() {
-				var leng = $("textarea[name='pSummaryText']").val().length;
-				$("#pSummaryTextChk").text(leng);
+				},
+				error : function(e){
+				}
 			});
 		});
-		// 페이지 로딩시 프로젝트 시작일에서 오늘날짜를 선택해주는 메소드
-		$(function(){
-			var today = new Date();
-			var month = today.getMonth();
-			month++;
-			var date = today.getDate();
-			$("#pstartmonth>option:nth-child("+month+")").attr("selected","true");
-			$("#pstartday>option:nth-child("+date+")").attr("selected","true");
+	});
+	function checklogin(){
+		var loginuser = ${loginUser.userNo}+"";
+		if(loginuser=="") {
+			Swal.fire({
+				type: 'info',
+				title: '로그인이 필요합니다!',
+				html: '프로젝트 등록은 <a href="javascript:goLogin();">로그인</a> 후 이용해주세요',
+				footer: '<a href="insertForm.dr">아직 저희 회원이 아니신가요? 회원가입 바로가기</a>',
+				confirmButtonText: '닫기'
+			});
+			return false;
+		}else{
+			return true;
+		}
+	};
+	// 동의를 모두 체크하고 넘어가면 인서트폼을 보여주는 메소드
+	function checkAgreement() {
+		var loginchk = checklogin();
+		if(loginchk==true){
+			$("#agreementForm").hide();
+			$("#insertFundForm").show();
+			$('html').animate({
+				scrollTop : 0
+			}, 300);
+		}
+	};
+	
+	// 임시저장하는 메소드입니다. pStatusNum = 1 으로 세팅합니다. 
+	function goSave() {
+		var frm = $("#insertFrm");
+		$("#pStatusNum").val(1);
+		frm.submit();
+	}
+
+	// 프로젝트 내용 입력전 동의를 체크해야 입력폼이 보이게하는 메소드입니다.
+	$(".contentinfoarea").hide();
+	$(".projectcontent").hide();
+	$(document).on("click", ".chkboxarea input[type='checkbox']", function() {
+		var chk1 = $("#storychk1:checked").val();
+		var chk2 = $("#storychk2:checked").val();
+		var chk3 = $("#storychk3:checked").val();
+		var chk4 = $("#storychk4:checked").val();
+		if (chk1 == 1 && chk2 == 1 && chk3 == 1 && chk4 == 1) {
+			loadSummernote();
+			$(".contentagreement").hide('slow');
+			$(".contentinfoarea").show('slow');
+			$(".projectcontent").show('slow');
+			var scrollPosition = $(".contentarea").offset().top;
+			$("html").animate({
+				scrollTop : scrollPosition
+			}, 700);
+		}
+	});
+	
+	
+	// 길이를 체크해주는 메소드입니다.
+	$(function() {
+
+		// pTitle(제목) input태그의 길이를 체크해주는 메소드
+		$("input[name='pTitle']").on("input", function() {
+			var leng = $("input[name='pTitle']").val().length;
+			$("#pTitleLengthChk").text(leng);
 		});
-		// 프로젝트 시작일의 연(year)을 뿌려주는 메소드, 3년이내로 뿌려줌
-		$(function(){
-			var today = new Date();
-			var year1 = today.getFullYear();
-			var year2 = year1 + 1;
-			var year3 = year2 + 1;
-			$("#pstartyear").append("<option value="+year1+">"+year1+"년</option>");
-			$("#pstartyear").append("<option value="+year2+">"+year2+"년</option>");
-			$("#pstartyear").append("<option value="+year3+">"+year3+"년</option>");
+
+		// pSTitle(짧은제목) input태그의 길이를 체크해주는 메소드
+		$("input[name='pSTitle']").on("input", function() {
+			var leng = $("input[name='pSTitle']").val().length;
+			$("#pSTitleLengthChk").text(leng);
 		});
-		// 프로젝트 시작일의 일(day)를 뿌려주는 메소드, 윤달계산하여 뿌려줌
-		function calcdate(){
-			var today = new Date();
-			var thisyear = today.getFullYear();
-			var thismonth = today.getMonth();
-			var thisdate = today.getDate();
-			thismonth++;
-			var year = $("#pstartyear").val();
-			var month = $("#pstartmonth").val();
-			$("#pstartday").empty();
+
+		// pSummaryText(요약내용) textarea태그의 길이를 체크해주는 메소드
+		$("textarea[name='pSummaryText']").on("input", function() {
+			var leng = $("textarea[name='pSummaryText']").val().length;
+			$("#pSummaryTextChk").text(leng);
+		});
+	});
+	// 프로젝트 시작일의 연(year)을 뿌려주는 메소드, 3년이내로 뿌려줌
+	$(function(){
+		var today = new Date();
+		var year1 = today.getFullYear();
+		var year2 = year1 + 1;
+		var year3 = year2 + 1;
+		$("#pstartyear").append("<option value="+year1+">"+year1+"년</option>");
+		$("#pstartyear").append("<option value="+year2+">"+year2+"년</option>");
+		$("#pstartyear").append("<option value="+year3+">"+year3+"년</option>");
+	});
+	// 프로젝트 시작일의 일(day)를 뿌려주는 메소드, 윤달계산하여 뿌려줌
+	function calcdate(){
+		var today = new Date();
+		var thisyear = today.getFullYear();
+		var thismonth = today.getMonth();
+		var thisdate = today.getDate();
+		thismonth++;
+		var year = $("#pstartyear").val();
+		var month = $("#pstartmonth").val();
+		if(year==null) year = thisyear;
+		if(month==null) month = thismonth;
+		$("#pstartday").empty();
+		if(thisyear==year && thismonth==month){
+			var index = 1;
+			while(index<thisdate){
+				$("#pstartday").append("<option value='"+index+"' disabled>"+index+"일</option>");
+				index++;
+			}
+			if(month==1||month==3||month==5||month==7||month==8||month==10||month==12){
+				thisdate = 31;
+			}else if(month==4||month==6||month==9||month==11){
+				thisdate = 30;
+			}else if(month==2&&year%4==0){
+				thisdate = 29;
+			}else{
+				thisdate = 28;
+			}
+			while(index<=thisdate){
+				$("#pstartday").append("<option value='"+index+"'>"+index+"일</option>");
+				index++;
+			}
+		}else{
 			$("#pstartday").append("<option value='1'>1일</option>");
 			$("#pstartday").append("<option value='2'>2일</option>");
 			$("#pstartday").append("<option value='3'>3일</option>");
@@ -951,307 +1027,362 @@
 			}else if(month==2&&year%4==0){
 				$("#pstartday").append("<option value='29'>29일</option>");
 			}
-			if(thisyear==year && thismonth==month){
-				var index = 1;
-				while(index<thisdate){
-					$("#pstartday>option:nth-child("+index+")").attr("disabled","true");
-					index++;
-				}
+		}
+	};
+	// 프로젝트의 달(month)를 뿌려주는 메소드, 현재보다 이전 달은 선택할 수 없음
+	function calcmonth(){
+		var today = new Date();
+		var thisyear = today.getFullYear();
+		var thismonth = today.getMonth();
+		thismonth++;
+		var year = $("#pstartyear").val();
+		var month = $("#pstartmonth").val();
+		var index = 1;
+		$("#pstartmonth").empty();
+		if(year==thisyear){
+			var chk = true;
+			while(index<thismonth){
+				$("#pstartmonth").append("<option value='"+index+"' disabled>"+index+"월</option>");
+				index++;
 			}
-		};
-		// 프로젝트의 달(month)를 뿌려주는 메소드, 현재보다 이전 달은 선택할 수 없음
-		function calcmonth(){
-			var today = new Date();
-			var thisyear = today.getFullYear();
-			var thismonth = today.getMonth();
-			thismonth++;
+			while(thismonth<=12){
+				$("#pstartmonth").append("<option value='"+thismonth+"'>"+thismonth+"월</option>");
+				thismonth++;
+			}
+		}else{
+			$("#pstartmonth").append("<option value='1'>1월</option>");
+			$("#pstartmonth").append("<option value='2'>2월</option>");
+			$("#pstartmonth").append("<option value='3'>3월</option>");
+			$("#pstartmonth").append("<option value='4'>4월</option>");
+			$("#pstartmonth").append("<option value='5'>5월</option>");
+			$("#pstartmonth").append("<option value='6'>6월</option>");
+			$("#pstartmonth").append("<option value='7'>7월</option>");
+			$("#pstartmonth").append("<option value='8'>8월</option>");
+			$("#pstartmonth").append("<option value='9'>9월</option>");
+			$("#pstartmonth").append("<option value='10'>10월</option>");
+			$("#pstartmonth").append("<option value='11'>11월</option>");
+			$("#pstartmonth").append("<option value='12'>12월</option>");
+		}
+	};
+	$(function(){
+		calcmonth();
+		calcdate();
+	});
+	$("#pstartyear").on("input",function(){
+		calcmonth();
+	});
+	$("#pstartmonth, #pstartyear").on("input",function(){
+		calcdate();
+	});
+
+	// 프로젝트 시작일의 날짜를 조합해주는 메소드
+	$(function(){
+		$("#pstartyear,#pstartmonth,#pstartday,#pterm").on("input",function(){
+			givedate();
+		});
+		givedate();
+		function givedate(){
 			var year = $("#pstartyear").val();
 			var month = $("#pstartmonth").val();
-			var index = 1;
-			$("#pstartmonth").empty();
-			if(year==thisyear){
-				while(index<thismonth){
-					$("#pstartmonth").append("<option value='"+index+"' disabled>"+index+"월</option>");
-					index++;
-				}
-				while(thismonth<=12){
-					$("#pstartmonth").append("<option value='"+thismonth+"'>"+thismonth+"월</option>");
-					thismonth++;
-				}
-			}else{
-				$("#pstartmonth").append("<option value='1'>1월</option>");
-				$("#pstartmonth").append("<option value='2'>2월</option>");
-				$("#pstartmonth").append("<option value='3'>3월</option>");
-				$("#pstartmonth").append("<option value='4'>4월</option>");
-				$("#pstartmonth").append("<option value='5'>5월</option>");
-				$("#pstartmonth").append("<option value='6'>6월</option>");
-				$("#pstartmonth").append("<option value='7'>7월</option>");
-				$("#pstartmonth").append("<option value='8'>8월</option>");
-				$("#pstartmonth").append("<option value='9'>9월</option>");
-				$("#pstartmonth").append("<option value='10'>10월</option>");
-				$("#pstartmonth").append("<option value='11'>11월</option>");
-				$("#pstartmonth").append("<option value='12'>12월</option>");
-			}
+			var date = $("#pstartday").val();
+			var datecomb = year + "-" + month + "-" + date;
+			var ptermdate = Number($("#pterm").val());
+			// date계산을 위한 Date객체로의 형변환
+			var startdate = new Date(year, month-1, date);
+			var enddate = new Date(year, month-1, date);
+			enddate.setDate(enddate.getDate()+ptermdate);
+			$("#penddatearea").text("");
+			$("#penddatearea").text(enddate.getFullYear()+"년 "+(enddate.getMonth()+1)+"월 "+enddate.getDate()+"일");
+			enddate = enddate.getFullYear() + "-"+(enddate.getMonth()+1)+"-"+enddate.getDate()
+			$("#pStartDate").val(datecomb);
+			$("#pCloseDate").val(enddate);
+		}
+	});
+	// 페이지 로딩시 프로젝트 시작일에서 오늘날짜를 선택해주는 메소드
+	$(function(){
+		var today = new Date();
+		var month = today.getMonth();
+		month++;
+		var date = today.getDate();
+		$("#pstartmonth>option:nth-child("+month+")").attr("selected","true");
+		$("#pstartday>option:nth-child("+date+")").attr("selected","true");
+	});
+
+	// url 복사하기 메소드
+	$(function(){
+		$("#copyurl").click(function(){
+			$("#urltarget").select();
+			document.execCommand('Copy');
+			$("#urlalertbox").empty();
+			$("#urlalertbox").append('<p style="color: #F39C12; margin: 0; padding: 0;">URL이 성공적으로 복사되었습니다.</p>');
+		});
+	});
+
+	// 금액에 3자리마다 콤마찍는 메소드, 금액을 한글로 뿌려주는 메소드
+	$(function(){
+		// 콤마찍기
+		function numberWithCommas(x) {
+			return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 		};
-		$(function(){
-			calcdate();
-			calcmonth();
-		});
-		$("#pstartyear,#pstartmonth").on("input",function(){
-			calcdate();
-		});
-		$("#pstartyear").on("input",function(){
-			calcmonth();
-		});
-
-		// 프로젝트 시작일의 날짜를 조합해주는 메소드
-		$(function(){
-			$("#pstartyear,#pstartmonth,#pstartday,#pterm").on("input",function(){
-				givedate();
-			});
-			givedate();
-			function givedate(){
-				var year = $("#pstartyear").val();
-				var month = $("#pstartmonth").val();
-				var date = $("#pstartday").val();
-				var datecomb = year + "-" + month + "-" + date;
-				var ptermdate = Number($("#pterm").val());
-				// date계산을 위한 Date객체로의 형변환
-				var startdate = new Date(year, month-1, date);
-				var enddate = new Date(year, month-1, date);
-				enddate.setDate(enddate.getDate()+ptermdate);
-				$("#penddatearea").text("");
-				$("#penddatearea").text(enddate.getFullYear()+"년 "+(enddate.getMonth()+1)+"월 "+enddate.getDate()+"일");
-				enddate = enddate.getFullYear() + "-"+(enddate.getMonth()+1)+"-"+enddate.getDate()
-				$("#pStartDate").val(datecomb);
-				$("#pCloseDate").val(enddate);
-			}
-		});
-
-		// url 복사하기 메소드
-		$(function(){
-			$("#copyurl").click(function(){
-				$("#urltarget").select();
-				document.execCommand('Copy');
-				$("#urlalertbox").empty();
-				$("#urlalertbox").append('<p style="color: #F39C12; margin: 0; padding: 0;">URL이 성공적으로 복사되었습니다.</p>');
-			});
-		});
-
-		// 금액에 3자리마다 콤마찍는 메소드, 금액을 한글로 뿌려주는 메소드
-		$(function(){
-			// 콤마찍기
-			function numberWithCommas(x) {
-				return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-			};
-			// 한글로 뿌려주기
-			function convertKorean(num){
-				var hanA = new Array("","일","이","삼","사","오","육","칠","팔","구","십"); 
-				var danA = new Array("","십","백","천","","십","백","천","","십","백","천","","십","백","천");
-				var result = ""; 
-				num = num+"";
-				for(i=0; i<num.length; i++) { 
-					var str = ""; 
-					var han = hanA[num.charAt(num.length-(i+1))]; 
-					if(han != "") str += han+danA[i]; 
-					if(i == 4) str += "만"; 
-					if(i == 8) {
-						str += "억";
-						for(k=i-1; k>=5; k--){
-							if(num.charAt(k)!="0") break;
-						}
-						result = result.replace('만','');
-					} 
-					if(i == 12) str += "조"; 
-					result = str + result; 
+		/*
+		// 한글로 뿌려주기
+		function convertKorean(num){
+			var hanA = new Array("","일","이","삼","사","오","육","칠","팔","구","십"); 
+			var danA = new Array("","십","백","천","","십","백","천","","십","백","천","","십","백","천");
+			var result = ""; 
+			num = num+"";
+			for(i=0; i<num.length; i++) { 
+				var str = ""; 
+				var han = hanA[num.charAt(num.length-(i+1))]; 
+				if(han != "") str += han+danA[i]; 
+				if(i == 4) str += "만"; 
+				if(i == 8) {
+					str += "억";
+					for(k=i-1; k>=5; k--){
+						if(num.charAt(k)!="0") break;
+					}
+					result = result.replace('만','');
 				} 
-				if(num != 0) result = result + "원"; 
-				$("#pgoalarea").empty();
-				$("#pgoalarea").text(result);
-			};
-			$("#pgoalregexp").on("change",function(){
-				var value = $("#pgoalregexp").val();
-				$("input[name='pGoal'").val(value);
-				var conversion = numberWithCommas(value);
-				$(this).val(conversion);
-				convertKorean($("input[name='pGoal'").val());
-			})
-		});
-		// 해시태그를 최대 10개까지만 생성할 수 있게하는 메소드
-		$(function(){
-			var chk = 0;
-			function hashtaginvalidate(){
-				var index = $("input[name='pHashTag']").val().length;
-				var input = $("input[name='pHashTag']").val().substring(0,index-1);
-				$("input[name='pHashTag']").val(input);
-				
-			};
-			// 해시태그 생성 메소드
-
-			function createHashtag(){
-				var input = $("input[name='pHashTag']").val().split(',')
-				var leng = input.length			
-				if(leng>10) {
-					hashtaginvalidate();
-					return false;
-				}
-				$("#hashtagarea").empty();
-				for(i = 0; i < leng; i++){
-					$("#hashtagarea").append("<span>#"+input[i].trim()+"<span>");
-				}
-			};
-			$("input[name='pHashTag']").on("input",function(){
-				createHashtag();
-			});
-			$(function(){
-				createHashtag();
-			});
-			$("input[name='pHashTag']").on("click",function(){
-				if(chk==0) {
-					$("input[name='pHashTag']").val("");
-					chk = 1;
-				}
-			});
-		});
-		
-	</script>
-
-	<script>
-		// 리워드 추가하기 버튼 메소드
-		var bi = 1;
-		var count = 1;
-		function addReward() {
-			var addbox = '<div class="rewardBox"><div class="leftBoxArea"><div class="nthReward"></div></div><div class="rewardContentBox"><div class="rewardContent"><div class="rewardContentLeft">리워드 이름</div><div class="rewardContentRight"><input type="text" class="form-control form-control-sm"name="rList['+bi+'].rName" style="width: 88%; required"></div></div><div class="rewardContent"><div class="rewardContentLeft">금액</div><div class="rewardContentRight"><input type="number" class="form-control form-control-sm" name="rList['+bi+'].rPrice" style="width: 30%; display: inline-block;" min="0"><label style="padding: 5px;">원</label></div></div><div class="rewardContent"><div class="rewardContentLeft">리워드 설명</div><div class="rewardContentRight"><textarea rows="8" class="form-control form-control-sm"id="rExplain" name="rList['+bi+'].rExplain" style="width: 100%; resize: none;"></textarea></div></div><div class="rewardContent"><div class="rewardContentLeft">옵션</div><div class="rewardContentRight" style="line-height: 40px;"><div class="custom-control custom-radio" style="padding-left: 0;"><input type="radio" id="option'+bi+'-1" class="optionrad custom-control-input" name="rList['+bi+'].rOptionNo"	value="1" checked> <label for="option'+bi+'-1" class="custom-control-label" style="margin-left: 35px; padding-top: 1px; padding-left: 5px; line-height: 20px;">옵션 입력이 필요 없는 리워드입니다.</label><br> </div><div class="custom-control custom-radio" style="padding-left: 0;"><input type="radio" id="option'+bi+'-2" class="optionrad custom-control-input" name="rList['+bi+'].rOptionNo" value="2"><label for="option'+bi+'-2" class="custom-control-label" style="margin-left: 35px; padding-top: 1px; padding-left: 5px;">선택 옵션이 필요한 리워드입니다. <span>(사이즈, 색상 등)</span></label><br></div><div class="custom-control custom-radio" style="padding-left: 0;"><input type="radio" id="option'+bi+'-3" class="optionrad custom-control-input" name="rList['+bi+'].rOptionNo" value="3"> <label for="option'+bi+'-3" class="custom-control-label" style="margin-left: 35px; padding-top: 1px; padding-left: 5px;">직접 입력 옵션이 필요한 리워드입니다. <span>(각인, 메세지 등)</span></label></div></div></div><div class="rewardContent" style="display: none;"><div class="rewardContentLeft"></div><div class="rewardContentRight"><input type="hidden" name="optionradchk'+bi+'" value="0"><textarea rows="4" name="rList['+bi+'].rOptionAdd" class="form-control form-control-sm optionradtarea" style="resize: none;"></textarea></div></div><div class="rewardContent"><div class="rewardContentLeft">배송조건</div><div class="rewardContentRight custom-control custom-checkbox"><input type="checkbox" class="custom-control-input" id="shipChk'+bi+'" name="rList['+bi+'].rShipCDT" value="1"><label class="custom-control-label" for="shipChk'+bi+'" style="margin-left: 35px; padding-left: 6px; line-height: 24px; margin-bottom: 3px;">배송을 위해 주소지가 필요합니다.</label></div></div><div class="rewardContent"><div class="rewardContentLeft">제한수량</div><div class="rewardContentRight" style="padding-left: 10px;"><p style="display:inline;">리워드를 <input type="number" class="form-control form-control-sm" name="rList['+bi+'].rLimit" style="display: inline; width: 15%;" min="0"> 개로 제한합니다.</p><div class="custom-control custom-checkbox" style="display:inline; padding:10px; vertical-align: bottom; margin-left: 10px;"><input type="checkbox" class="rewardLimitChk custom-control-input" id="reward'+bi+'LimitChk1"><label class="custom-control-label" for="reward'+bi+'LimitChk1" style="margin-left: 15px; padding-left: 6px; line-height: 24px; margin-bottom: 3px;">수량에 제한 없음</label></div></div></div><div class="rewardContent"><div class="rewardContentLeft">발송시작일</div><div class="rewardContentRight"><select class="form-control form-control-sm rsd" style="width:110px; height:34px; display: inline;" name="rList['+bi+'].shipYear"><option>년</option><option value="2019" selected>2019년</option><option value="2020">2020년</option><option value="2021">2021년</option></select><select class="form-control form-control-sm rsd" style="width:110px; height:34px; display: inline;" name="rList['+bi+'].shipMonth"><option>월</option><option value="01">1월</option><option value="02">2월</option><option value="03">3월</option><option value="04">4월</option><option value="05">5월</option><option value="06">6월</option><option value="07">7월</option><option value="08">8월</option><option value="09">9월</option><option value="10">10월</option><option value="11">11월</option><option value="12">12월</option></select><select class="form-control form-control-sm rsd" style="width:155px; height:34px; display: inline;" name="rList['+bi+'].shipDay"><option>일</option><option value="5">초(1일 ~ 10일)</option><option value="15">중순(11일 ~ 20일)</option><option value="25">말(21일 ~ 말일)</option></select><input type="hidden" name="rList['+bi+'].rShipDate" value=""></div></div></div><div class="rightBoxArea"><a href="javascript: void(0);" class="removeReward"> <i class="material-icons">delete_forever</i></a></div><div class="clearFloat"></div></div>';
-			$("#rewardBtnArea").before(addbox);
-			var scrollPosition = $("#rewardBtnArea").offset().top-800;
-			$("html").animate({
-				scrollTop : scrollPosition
-			}, 700);
-			bi++;
-			count++;
-			if (count == 10) {
-				$("#addRewardBtn").attr('disabled', true);
-				$("#addRewardBtn").text("리워드는 10개까지만 가능합니다.");
-			} else {
-				$("#addRewardBtn").attr('disabled', false);
-				$("#addRewardBtn").text("리워드 추가");
-			}
-			giveRewardNum();
+				if(i == 12) str += "조"; 
+				result = str + result; 
+			} 
+			if(num != 0) result = result + "원"; 
+			$("#pgoalarea").empty();
+			$("#pgoalarea").text(result);
 		};
-		// 리워드 삭제하기 버튼 메소드
-		$(document).on("click", ".removeReward", function() {
-			if (count == 1) {
+		*/
+		$("#pgoalregexp").on("change",function(){
+			var value = $("#pgoalregexp").val();
+			$("input[name='pGoal'").val(value);
+			var conversion = numberWithCommas(value);
+			$(this).val(conversion);
+		})
+	});
+	// 해시태그를 최대 10개까지만 생성할 수 있게하는 메소드
+	$(function(){
+		var chk = 0;
+		function hashtaginvalidate(){
+			var index = $("input[name='pHashTag']").val().length;
+			var input = $("input[name='pHashTag']").val().substring(0,index-1);
+			$("input[name='pHashTag']").val(input);
+			
+		};
+		// 해시태그 생성 메소드
+
+		function createHashtag(){
+			var input = $("input[name='pHashTag']").val().split(',')
+			var leng = input.length			
+			if(leng>10) {
+				hashtaginvalidate();
 				return false;
 			}
-			count--;
-			var $target = $(this).parent().parent();
-			$target.hide('slow', function() {
-				$target.remove();
-			});
-			if (count < 10) {
-				$("#addRewardBtn").attr('disabled', false);
-				$("#addRewardBtn").text("리워드 추가");
+			$("#hashtagarea").empty();
+			for(i = 0; i < leng; i++){
+				$("#hashtagarea").append("<span>#"+input[i].trim()+"<span>");
 			}
-			setTimeout(function() {
-				giveRewardNum();
-			}, 700);
-		})
-		// 리워드에 번호를 매겨주는 메소드입니다.
-		function giveRewardNum() {
-			var num = 1;
-			// 사이즈 기본값 : 4 (1개있을 경우임);
-			var size = document.getElementById("rewardContainer").childElementCount;
-			for (var j = 0; j < size - 3; j++) {
-				var input = '<span>리워드 #' + (j + 1) + '</span>';
-				var $target = $("#rewardContainer>div:nth-child(" + (j + 3)
-						+ ")>div:first-child>div");
-				$target.empty();
-				$target.append(input);
+		};
+		$("input[name='pHashTag']").on("input",function(){
+			createHashtag();
+		});
+		$(function(){
+			createHashtag();
+		});
+		$("input[name='pHashTag']").on("click",function(){
+			if(chk==0) {
+				$("input[name='pHashTag']").val("");
+				chk = 1;
 			}
+		});
+	});
+	$("#pThimbNailImgUpload, #pthumbimgdelete a").on("click", function(){
+		var input = "";
+		input += '<div id="timagearea"><div id="timageinputarea"><div id="timagecontentarea"><p>· 이미지 파일 형식에 맞는 파일을<br> 업로드해주세요. <span style="font-size: 5px; color: #888;">(jpg,jpeg,png,gif,bmp)</span></p><p>· 이미지 크기는 최대 10mb까지 <br>첨부 가능합니다.</p><p>· 이미지의 가로 세로 사이즈는 <br>자동조정됩니다.</p><p>· 사진의 크기는 자동조정 사이즈를 <br>고려하여 올려주세요.</p><p>· 가로 : 250px, 세로 : 180px</p></div>';
+		input += '<div id="timageshowarea"><div id="timage-noimage"><a href="javascript:pthumbimgclick();"><i class="material-icons">broken_image</i></a><span>사진을 등록해주세요.</span></div><div id="timage-image" style="display: none;"><a href="javascript:pthumbimgclick();"><img src="" style="width: 100%; height: 100%;" id="timg"></a></div></div><div style="clear: both; padding: 0; border: none; margin: 0;"></div></div></div>';
+		Swal.fire({
+			title: '썸네일 이미지 등록',
+			html: input,
+			confirmButtonText: '닫기'	,
+			onClose: function(){
+				if($("#timg").attr("src")!=""){
+					$("#thumbimg").attr("src",$("#timg").attr("src"));
+				}
+				pthumbimgload();
+			}
+		});
+	});
+	function pthumbimgload(){
+		var image = $("#uploadfile1").val();
+		if(image!=""){
+			$("#box-img-area-noimg").hide();
+			$("#box-img-area-img").show();
+			$("#pthumbimgdelete").show();
+			$(".box-img-area").css({"border": "none"});
+		}else{
+			$("#box-img-area-img").hide();
+			$("#box-img-area-noimg").show();
+			$("#pthumbimgdelete").hide();
+		}
+	}
+	pthumbimgload();
+	function pthumbimgclick(){
+		var input = $("#uploadfile1");
+		input.click();
+	};
+	
+
+</script>
+
+<script>
+	// 리워드 추가하기 버튼 메소드
+	var bi = 1;
+	var count = 1;
+	function addReward() {
+		var addbox = '<div class="rewardBox"><div class="leftBoxArea"><div class="nthReward"></div></div><div class="rewardContentBox"><div class="rewardContent"><div class="rewardContentLeft">리워드 이름</div><div class="rewardContentRight"><input type="text" class="form-control form-control-sm"name="rList['+bi+'].rName" style="width: 88%; required"></div></div><div class="rewardContent"><div class="rewardContentLeft">금액</div><div class="rewardContentRight"><input type="number" class="form-control form-control-sm" name="rList['+bi+'].rPrice" style="width: 30%; display: inline-block;" min="0"><label style="padding: 5px;">원</label></div></div><div class="rewardContent"><div class="rewardContentLeft">리워드 설명</div><div class="rewardContentRight"><textarea rows="8" class="form-control form-control-sm"id="rExplain" name="rList['+bi+'].rExplain" style="width: 100%; resize: none;"></textarea></div></div><div class="rewardContent"><div class="rewardContentLeft">옵션</div><div class="rewardContentRight" style="line-height: 40px;"><div class="custom-control custom-radio" style="padding-left: 0;"><input type="radio" id="option'+bi+'-1" class="optionrad custom-control-input" name="rList['+bi+'].rOptionNo"	value="1" checked> <label for="option'+bi+'-1" class="custom-control-label" style="margin-left: 35px; padding-top: 1px; padding-left: 5px; line-height: 20px;">옵션 입력이 필요 없는 리워드입니다.</label><br> </div><div class="custom-control custom-radio" style="padding-left: 0;"><input type="radio" id="option'+bi+'-2" class="optionrad custom-control-input" name="rList['+bi+'].rOptionNo" value="2"><label for="option'+bi+'-2" class="custom-control-label" style="margin-left: 35px; padding-top: 1px; padding-left: 5px;">선택 옵션이 필요한 리워드입니다. <span>(사이즈, 색상 등)</span></label><br></div><div class="custom-control custom-radio" style="padding-left: 0;"><input type="radio" id="option'+bi+'-3" class="optionrad custom-control-input" name="rList['+bi+'].rOptionNo" value="3"> <label for="option'+bi+'-3" class="custom-control-label" style="margin-left: 35px; padding-top: 1px; padding-left: 5px;">직접 입력 옵션이 필요한 리워드입니다. <span>(각인, 메세지 등)</span></label></div></div></div><div class="rewardContent" style="display: none;"><div class="rewardContentLeft"></div><div class="rewardContentRight"><input type="hidden" name="optionradchk'+bi+'" value="0"><textarea rows="4" name="rList['+bi+'].rOptionAdd" class="form-control form-control-sm optionradtarea" style="resize: none;"></textarea></div></div><div class="rewardContent"><div class="rewardContentLeft">배송조건</div><div class="rewardContentRight custom-control custom-checkbox"><input type="checkbox" class="custom-control-input" id="shipChk'+bi+'" name="rList['+bi+'].rShipCDT" value="1"><label class="custom-control-label" for="shipChk'+bi+'" style="margin-left: 35px; padding-left: 6px; line-height: 24px; margin-bottom: 3px;">배송을 위해 주소지가 필요합니다.</label></div></div><div class="rewardContent"><div class="rewardContentLeft">제한수량</div><div class="rewardContentRight" style="padding-left: 10px;"><p style="display:inline;">리워드를 <input type="number" class="form-control form-control-sm" name="rList['+bi+'].rLimit" style="display: inline; width: 15%;" min="0"> 개로 제한합니다.</p><div class="custom-control custom-checkbox" style="display:inline; padding:10px; vertical-align: bottom; margin-left: 10px;"><input type="checkbox" class="rewardLimitChk custom-control-input" id="reward'+bi+'LimitChk1"><label class="custom-control-label" for="reward'+bi+'LimitChk1" style="margin-left: 15px; padding-left: 6px; line-height: 24px; margin-bottom: 3px;">수량에 제한 없음</label></div></div></div><div class="rewardContent"><div class="rewardContentLeft">발송시작일</div><div class="rewardContentRight"><select class="form-control form-control-sm rsd" style="width:110px; height:34px; display: inline;" name="rList['+bi+'].shipYear"><option>년</option><option value="2019" selected>2019년</option><option value="2020">2020년</option><option value="2021">2021년</option></select><select class="form-control form-control-sm rsd" style="width:110px; height:34px; display: inline;" name="rList['+bi+'].shipMonth"><option>월</option><option value="01">1월</option><option value="02">2월</option><option value="03">3월</option><option value="04">4월</option><option value="05">5월</option><option value="06">6월</option><option value="07">7월</option><option value="08">8월</option><option value="09">9월</option><option value="10">10월</option><option value="11">11월</option><option value="12">12월</option></select><select class="form-control form-control-sm rsd" style="width:155px; height:34px; display: inline;" name="rList['+bi+'].shipDay"><option>일</option><option value="5">초(1일 ~ 10일)</option><option value="15">중순(11일 ~ 20일)</option><option value="25">말(21일 ~ 말일)</option></select><input type="hidden" name="rList['+bi+'].rShipDate" value=""></div></div></div><div class="rightBoxArea"><a href="javascript: void(0);" class="removeReward"> <i class="material-icons">delete_forever</i></a></div><div class="clearFloat"></div></div>';
+		$("#rewardBtnArea").before(addbox);
+		var scrollPosition = $("#rewardBtnArea").offset().top-800;
+		$("html").animate({
+			scrollTop : scrollPosition
+		}, 700);
+		bi++;
+		count++;
+		if (count == 10) {
+			$("#addRewardBtn").attr('disabled', true);
+			$("#addRewardBtn").text("리워드는 10개까지만 가능합니다.");
+		} else {
+			$("#addRewardBtn").attr('disabled', false);
+			$("#addRewardBtn").text("리워드 추가");
 		}
 		giveRewardNum();
-		</script>
-		<script>
-		// 리워드에서 옵션선택 (라디오)를 선택시 동작하는 메소드
-		$(document).on("change",".optionrad",function() {
-			
-			var value = $(this).val();
-			if (value == 2) {
-				$(this).parent().parent().parent().next().css(
-						"display", "block");
-				$(this)
-						.parent()
-						.parent()
-						.parent()
-						.next()
-						.children()
-						.next()
-						.children()
-						.text("예)\n화이트골드 / XL \n오리엔탈블루 / L");
-			} else if (value == 3) {
-				$(this).parent().parent().parent().next().css(
-						"display", "block");
-				$(this)
-						.parent()
-						.parent()
-						.parent()
-						.next()
-						.children()
-						.next()
-						.children()
-						.text(
-								"각인 메시지, 카드에 담길 메시지 등 \n서포터가 남길 메시지를 위해 \n설명을 충분히 적어주세요.");
-			} else {
-				$(this).parent().parent().parent().next().addClass().css(
-						"display", "none");
-			}
+	};
+	// 리워드 삭제하기 버튼 메소드
+	$(document).on("click", ".removeReward", function() {
+		if (count == 1) {
+			return false;
+		}
+		count--;
+		var $target = $(this).parent().parent();
+		$target.hide('slow', function() {
+			$target.remove();
 		});
-		// 리워드에서 옵션 (텍스트에어리어)의 내용물을 지워주는 메소드
-		$(document).on("click",".optionradtarea",function(){
-			var value = $("input[type='hidden']",$(this).parent()).val();
-			if(value==0){
-				$(this).val("");
-				$("input[type='hidden']",$(this).parent()).val(1);
-			}
-		});
-		
-		// 배송선택필요없음에 value값을 -1로 넘기는 메소드
-		$(document).on("change",".rewardLimitChk",function(){
-			if($(this).is(":checked")) {
-				$("p",$(this).parent().parent()).hide();
-				$("input[type='number']",$(this).parent().parent()).val(-1);
-			}else{
-				$("p",$(this).parent().parent()).show();
-				$("input[type='number']",$(this).parent().parent()).val("");
-			}
-		});
-		
-		// 배송일 조합해주는 메소드
-		$(document).on("input",".rsd",function(){
-			var year = $(this).parent().children().val();
-			var month = $(this).parent().children().next().val();
-			var date = $(this).parent().children().next().next().val();
-			var inputdate = year + "-" + month + "-" + date;
-			$(this).parent().children().next().next().next().val(inputdate);
-		});
+		if (count < 10) {
+			$("#addRewardBtn").attr('disabled', false);
+			$("#addRewardBtn").text("리워드 추가");
+		}
+		setTimeout(function() {
+			giveRewardNum();
+		}, 700);
+	})
+	// 리워드에 번호를 매겨주는 메소드입니다.
+	function giveRewardNum() {
+		var num = 1;
+		// 사이즈 기본값 : 4 (1개있을 경우임);
+		var size = document.getElementById("rewardContainer").childElementCount;
+		for (var j = 0; j < size - 3; j++) {
+			var input = '<span>리워드 #' + (j + 1) + '</span>';
+			var $target = $("#rewardContainer>div:nth-child(" + (j + 3)
+					+ ")>div:first-child>div");
+			$target.empty();
+			$target.append(input);
+		}
+	}
+	giveRewardNum();
 	</script>
 	<script>
-		// 아코디언과 관련된 스크립트입니다.
-		$(".accBtn:not(.active)").next().slideUp();
-		$(function() {
-			$(".accBtn").click(function() {
-				$(".accBtn").removeClass("active");
-				$(this).addClass("active");
-				$(this).next().slideDown();
-				$(".accBtn:not(.active)").next().slideUp();
-				var scrollPosition = $(".accWrapper").offset().top;
-				$("html").animate({
-					scrollTop : scrollPosition
-				}, 400);
-			});
+	// 리워드에서 옵션선택 (라디오)를 선택시 동작하는 메소드
+	$(document).on("change",".optionrad",function() {
+		
+		var value = $(this).val();
+		if (value == 2) {
+			$(this).parent().parent().parent().next().css(
+					"display", "block");
+			$(this)
+					.parent()
+					.parent()
+					.parent()
+					.next()
+					.children()
+					.next()
+					.children()
+					.text("예)\n화이트골드 / XL \n오리엔탈블루 / L");
+		} else if (value == 3) {
+			$(this).parent().parent().parent().next().css(
+					"display", "block");
+			$(this)
+					.parent()
+					.parent()
+					.parent()
+					.next()
+					.children()
+					.next()
+					.children()
+					.text(
+							"각인 메시지, 카드에 담길 메시지 등 \n서포터가 남길 메시지를 위해 \n설명을 충분히 적어주세요.");
+		} else {
+			$(this).parent().parent().parent().next().addClass().css(
+					"display", "none");
+		}
+	});
+	// 리워드에서 옵션 (텍스트에어리어)의 내용물을 지워주는 메소드
+	$(document).on("click",".optionradtarea",function(){
+		var value = $("input[type='hidden']",$(this).parent()).val();
+		if(value==0){
+			$(this).val("");
+			$("input[type='hidden']",$(this).parent()).val(1);
+		}
+	});
+	
+	// 배송선택필요없음에 value값을 -1로 넘기는 메소드
+	$(document).on("change",".rewardLimitChk",function(){
+		if($(this).is(":checked")) {
+			$("p",$(this).parent().parent()).hide();
+			$("input[type='number']",$(this).parent().parent()).val(-1);
+		}else{
+			$("p",$(this).parent().parent()).show();
+			$("input[type='number']",$(this).parent().parent()).val("");
+		}
+	});
+	
+	// 배송일 조합해주는 메소드
+	$(document).on("input",".rsd",function(){
+		var year = $(this).parent().children().val();
+		var month = $(this).parent().children().next().val();
+		var date = $(this).parent().children().next().next().val();
+		var inputdate = year + "-" + month + "-" + date;
+		$(this).parent().children().next().next().next().val(inputdate);
+	});
+</script>
+<script>
+	// 아코디언과 관련된 스크립트입니다.
+	$(".accBtn:not(.active)").next().slideUp();
+	$(function() {
+		$(".accBtn").click(function() {
+			$(".accBtn").removeClass("active");
+			$(this).addClass("active");
+			$(this).next().slideDown();
+			$(".accBtn:not(.active)").next().slideUp();
+			var scrollPosition = $(".accWrapper").offset().top;
+			$("html").animate({
+				scrollTop : scrollPosition
+			}, 400);
 		});
-	</script>
+	});
+</script>
+<script>
+	function loadImg(value){
+		var reader = new FileReader();
+		reader.onload = function(e){
+			$("#timage-noimage").hide();
+			$("#timage-image").show();
+			$("#timg").attr("src", e.target.result);
+		}
+		// 보안처리(Data URI)
+		// RFC 2397에 정의되어있는 개발규약
+		// 파일의 직접적인 경로 노출 방지
+		reader.readAsDataURL(value.files[0]);
+	}
+</script>
 
-	 
+
+ 
 </body>
 </html>

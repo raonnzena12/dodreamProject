@@ -42,11 +42,9 @@
 		text-decoration: none;
 		/* user-select: none; */
 	}
+
 </style>
 </head>
-
-
-
 <body>
 	<section id="mainMenuBar">
 	<div class="mainLogoArea" id="mainLogoArea"><a href="home.dr"><img src="${contextPath}/resources/images/DoDream-2e.png" alt="두드림" id="mainLogo"></a></div>
@@ -118,7 +116,7 @@
 						<c:out value="${ loginUser.userNickname }님 환영합니다!"/>
 					</c:if>
 				</span>
-					<div style="display: inline-block;">
+				<div style="display: inline-block;">
 					<c:choose>
 					<c:when test="${empty loginUser.userProfileImage}">
 					<i class="material-icons">account_circle</i>
@@ -130,7 +128,7 @@
 					<img alt="프로필사진" src="resources/images/userProfileImage/${loginUser.userProfileImage}" class="rounded-circle float-sm" style="width: 60px; height: 60px;"/>
 					</c:otherwise>
 					</c:choose>
-					</div>
+				</div>
 			</a>
 			<div class="loginmenu" id="veil"></div>
 			<!-- 비로그인 시 메뉴창 출력 -->
@@ -141,14 +139,14 @@
 					<input type="hidden" value="" name="prevPage" id="prevPage">
 					<table id="login-table" class="form-group">
 						<tr>
-							<td><input class="form-control" type="email" name="userEmail" id="user-email" placeholder="이메일 주소" autocomplete="off" required></td>
+							<td><input class="form-control" type="email" name="userEmail" id="userEmail" placeholder="이메일 주소" autocomplete="off" required></td>
 						</tr>
 						<tr>
-							<td><input class="form-control" type="password" name="userPwd" id="user-pwd" placeholder="비밀번호" required></td>
+							<td><input class="form-control" type="password" name="userPwd" id="userPwd" placeholder="비밀번호" required></td>
 						</tr>
 						<tr>
 							<td class="loginmenuText custom-control custom-checkbox my-1">
-								<input type="checkbox" class="custom-control-input" id="useCookie" name="useCookie"><label class="custom-control-label" for="useCookie" >자동로그인</label>
+								<input type="checkbox" class="custom-control-input" id="useCookie" name="useCookie"><label class="custom-control-label" for="useCookie">자동로그인</label>
 								<a href="findPwd.dr" class="gray float-right">비밀번호 찾기</a>
 							</td>
 						</tr>
@@ -158,9 +156,13 @@
 						<tr>
 						<!-- 소셜 로그인 아이콘 들어가는 부분 -->
 							<td class="text-center naverKakaoArea">
-								<img src="resources/images/naver_sns_icon.png" data-toggle="tooltip" data-placement="left" title="NAVER ID로 로그인" class="mx-2">
+								<div>
+								<div id="naver_id_login" class="text-left mx-2" style="display: inline-block;">
+								</div>
 								<a href="javascript:loginWithKakao()"><img src="resources/images/kakao_sns_icon.png" data-toggle="tooltip" data-placement="left" title="KAKAO ID로 로그인" class="mx-2"></a>
 								<img src="resources/images/faceB_sns_icon.png" data-toggle="tooltip" data-placement="left" title="FACEBOOK ID로 로그인" class="mx-2">
+								<!-- <img src="resources/images/naver_sns_icon.png" data-toggle="tooltip" data-placement="left" title="NAVER ID로 로그인" class="mx-2"> -->
+								</div>
 							</td>
 						</tr>
 						<tr>
@@ -199,11 +201,12 @@
 							<div class="row">
 								<div class="hr-sect">SUB MENU</div>
 								<div class="col-md-12" id="myinfosub">
+								
 									<div class="row text-center">
 										<div class="col-md-4">
 											<i class="material-icons">supervisor_account</i>
 											<br>
-											<a href="#">팔로잉</a>
+											<a href="followList.dr?userNo=${loginUser.userNo}">팔로잉</a>
 										</div>
 										<div class="col-md-4">
 											<i class="material-icons">favorite</i>
@@ -225,7 +228,8 @@
 								<c:url var="logout" value="logout.dr"/>
 								<button class="btn btn-sm mb-2" id="mypagebtn"onclick="location.href='${mypage}'">My Page</button>
 								&nbsp; &nbsp;
-								<button class="btn btn-sm mb-2" id="logoutbtn" onclick="location.href='${logout}'">로그아웃</button>
+								<%-- <button class="btn btn-sm mb-2" id="logoutbtn" onclick="location.href='${logout}'">로그아웃</button> --%>
+								<button class="btn btn-sm mb-2" id="logoutbtn"">로그아웃</button>
 								<c:if test="${loginUser.userAdminYn eq 'Y'}">
 									&nbsp; &nbsp;
 									<button class="btn btn-sm mb-2" id="goAdmin"onclick="location.href='${adminPage}'">관리자 페이지로 이동</button>
@@ -234,12 +238,11 @@
 							</div>
 						</div>
 				</c:if>	   
-		<!-- </div> -->
-		<!-- ↑??? -->
 	</nav>
 	</section>
 	<script>
-	
+		
+		/* 로그인폼 submit */
 		function beforeLogin(){
 			var frm = $("#loginFrm");
 			var path = window.location.pathname;
@@ -248,15 +251,17 @@
 			frm.submit();
 		};
 		
+		
 		$("#loginBtn").click(function() {
 			var useCookie = $("input[name=useCookie]").is(":checked");
 			console.log(useCookie); 
 			/* true */
 		});
 		
-		Kakao.init('ff3dadde4ab297ea0f244c294c45e600')
+		/* 카카오 로그인 */
 		function loginWithKakao() {
 			
+			Kakao.init('ff3dadde4ab297ea0f244c294c45e600')			
 			Kakao.Auth.loginForm({
 				success: function(authObj) {
 					Kakao.API.request({
@@ -283,7 +288,6 @@
 									if(result == "0"){//email이 없을경우
 										location.href="insertSNS.dr?userEmail="+userEmail+"&userNickname="+userNickname+"&userProfileImage="+userProfileImage+"&userPwd="+userPwd;
 									}else if(result == "1"){
-										
 										snsLoginFrm("login.dr", userEmail, userPwd);
 										/* location.href="login.dr?userEmail="+userEmail+"&userPwd="+userPwd; */
 									}
@@ -298,6 +302,7 @@
 			});
 		};
 		
+		/* SNS로그인 시 가상 로그인 폼 생성 후 submit */
 		function snsLoginFrm(url, userEmail, userPwd){
 			var form = document.createElement("form");
 			var param = new Array();
@@ -320,9 +325,89 @@
 			document.body.appendChild(form);
 			form.submit();
 		}
+	
+		/* 쿠키생성 */
+		function setCookie(cookieName, value, exdays) {
+			var exdate = new Date();
+			exdate.setDate(exdate.getDate() + exdays);
+			
+			var cookieValue =  escape(value) + ((exdays==null) ? "" : "; expires=" + exdate.toGMTString());
+			document.cookie = cookieName + "=" + cookieValue;
+		}
+		
+		/* 쿠키삭제 */
+		function deleteCookie(cookieName) {
+			var expireDate = new Date();
+			expireDate.setDate(expireDate.getDate()- 1);
+			document.cookie = cookieName + "=" +"; expires=" + expireDate.toGMTString();
+		}
+		
+		/* 쿠키 얻기 */
+		function getCookie(cookieName) {
+			cookieName = cookieName + '=';
+	        var cookieData = document.cookie;
+	        var start = cookieData.indexOf(cookieName);
+	        var cookieValue = '';
+	        if(start != -1){
+	            start += cookieName.length;
+	            var end = cookieData.indexOf(';', start);
+	            if(end == -1)end = cookieData.length;
+	            cookieValue = cookieData.substring(start, end);
+	        }
+	        return unescape(cookieValue);
+		}
+		
+		/* 쿠키저장 */
+		$(document).ready(function() {
+			
+			if(getCookie("userEmail") && getCookie("userPwd")){
+				$("#userEmail").val(getCookie("userEmail"));
+				$("#userPwd").val(getCookie("userPwd"));
+				
+				var frm = $("#loginFrm");
+				var path = window.location.pathname;
+				var arr = path.split("/");
+				$("#prevPage").val(arr[2]);
+				
+				$("#loginFrm").submit();
+			}
+						
+			var userEmail = getCookie("userEmail");
+			//$("#userEmail").val(userEmail);
+			
+			var userPwd = getCookie("userPwd");
+			//$("#userPwd").val(userPwd);
+			
+			$("#useCookie").change(function() {
+				if($("#useCookie").is(":checked", true)){ //자동로그인 체크박스 선택 할때
+					var userEmail = $("#userEmail").val();
+					setCookie("userEmail", userEmail, 15); //15일저장
+					var userPwd = $("#userPwd").val();
+					setCookie("userPwd", userPwd, 15); //15일저장
+
+				}else{
+					deleteCookie("userEmail");
+					deleteCookie("userPwd");
+				}	
+			
+			});
+			
+			
+		});
+		
+		$("#logoutbtn").click(function(){
+			deleteCookie("userEmail");
+			deleteCookie("userPwd");
+			
+			location.href='${logout}';
+		});
 		
 
 	</script>
+
+	
+	
+
 	<%@ include file="footer.jsp" %>
 </body>
 </html>

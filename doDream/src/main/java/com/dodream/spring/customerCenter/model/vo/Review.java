@@ -16,7 +16,6 @@ public class Review {
 	private String ReviewImg;	    // 리뷰 이미지
 	private int revCount;           // 조회수
 	private String revCategoryNo;   // 후기 카테고리번호
-	 
 	public Review() {  
 		
 	} 
@@ -120,11 +119,19 @@ public class Review {
 	}
 
 	public String getReviewImg() {
-		return ReviewImg;
+		return reviewImg;
 	}
 
 	public void setReviewImg(String reviewImg) {
-		ReviewImg = reviewImg;
+		this.reviewImg = reviewImg;
+	}
+
+	public String getUserNickname() {
+		return userNickname;
+	}
+
+	public void setUserNickname(String userNickname) {
+		this.userNickname = userNickname;
 	}
 
 	public int getRevCount() {
@@ -133,6 +140,22 @@ public class Review {
 
 	public void setRevCount(int revCount) {
 		this.revCount = revCount;
+	}
+
+	public String getRevSubTitle() {
+		return revSubTitle;
+	}
+
+	public void setRevSubTitle(String revSubTitle) {
+		this.revSubTitle = revSubTitle;
+	}
+
+	public int getRevCategoryNo() {
+		return revCategoryNo;
+	}
+
+	public void setRevCategoryNo(int revCategoryNo) {
+		this.revCategoryNo = revCategoryNo;
 	}
 
 	@Override

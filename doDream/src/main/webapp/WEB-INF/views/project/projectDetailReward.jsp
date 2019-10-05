@@ -305,11 +305,11 @@
                 margin: 10px 0 0 0;
            }
            #asideText3{
-                border: 1px solid black;
+               /*  border: 1px solid black; */
                 width: 100%;
                 min-height: 30px;
                 height:auto;
-                padding:  0 5px 0 5px;
+                padding:  5px 5px 0 5px;
            }
           #asideReward > .rewardBtn{
                 width: 270px;
@@ -318,22 +318,33 @@
                 background-color: #8E44AD;
                 border-color: #8E44AD;
            }
+           
+            #asideReward > .rewardBtn2{
+                width: 270px;
+                height: 50px;
+                margin: 15px 0 10px 7px;
+                background-color: gray;
+                border-color: gray;
+                display:none;
+           }
+           
+           
            .check{
            		float: right;
            		display:none;
            }
            #rname{
-           		border: 1px solid black;
+           		/* border: 1px solid black; */
                 width: 270px;
                 min-height: 30px;
                 height:auto;
                 display:block;
                 float:left;
-                /* padding-right:70px; */
+                /* padding-left:5px; */
                 position: relative;
            }
            #rewardname{
-           		border: 1px solid black;
+           		/* border: 1px solid black; */
                 width: 230px;
                 min-height: 30px;
                 height:auto;
@@ -343,7 +354,7 @@
                 /* position: relative; */
            }
            #recount{
-           		border: 1px solid black;
+           		/* border: 1px solid black; */
                 width:30px;
                 min-height:30px;
                 height:auto;
@@ -373,10 +384,10 @@
 	                    	<!-- <div class="rewardIconBox">
 		                    	<label for="check"><i class="material-icons rewardIcon">check_circle</i></label>
 		                    </div> -->
-	                        <div class="noRewardText2">
+	                        <!-- <div class="noRewardText2">
 		                        5명선택
-		                        <!-- <span class="badge badge-primary rewardBadge">5개 남음</span> -->
-	                        </div>
+		                        <span class="badge badge-primary rewardBadge">5개 남음</span>
+	                        </div> -->
 	                        
 	                     
 	                        <!-- ==========체크박스=========== -->
@@ -411,7 +422,13 @@
 					                    </div>
 					                 </c:if>   
 			                        <div class="rewardText2">
-				                        5명선택
+				                        <c:if test="${r.rSum eq '0'}">
+				                        	0명 선택
+				                        </c:if>
+				                        <c:if test="${r.rSum ne '0'}">
+				                        	${r.rSum}명 선택
+				                        </c:if>
+				                        	
 				                       <c:if test="${r.rLimit ne '-1'}">
 				                       
 				                       		<c:if test="${r.rAmount ne '0'}">
@@ -498,6 +515,7 @@
                            
                         </div>
                         <button type="button" class="btn btn-primary btn-lg btn-block rewardBtn" onclick="goReserve();">후원하기</button>
+                        <button type="button" class="btn btn-primary btn-lg btn-block rewardBtn2">후원하기</button>
                </div>
 			</aside>
 		</section>  
@@ -505,10 +523,22 @@
    	</section>
    	
    	<script>
-	   	/* 프로젝트 번호, 리워드 번호 /로 구분, 추가금액,보내고  ////// 수량 넣기 옵션*/
+	   	/* 리워드 수량 합산 하는것 완성하기 */
    	
    		$(function(){
+   			var total = ${project.pCurrentFunding };
+   			if(${project.pDDay} < 0 || total > ${project.pGoal}){
+   				
+   				$(".rewardBtn2").css("display","block");
+   				$(".rewardBtn").css("display","none");
+   				
+   				$(".rewardBtn2").click(function(){
+   					alert("종료된 프로젝트 입니다.");
+   				});
+   				
+   			}
    			
+   			// aside에서 선택된 리워드 
    			if(${subReward ne '0'}){
    				
 	   			
@@ -569,25 +599,111 @@
 			function rewardsum(){
    			var price = 0;
    			var checkName="";
-   			var count="";
+   			
+   			var count= 1;
    			var comma="";
+   			var reCount=0;
+   			var cPrice=0;
+   			
+   			/* ============================================================================== */
+   			
+   			
+   				$("input:checkbox[name='reCheck']:checked").each(function(){
+   	   				count += $(this).parent().parent().find(".reCount").val()*1;
+   	   				price += $(this).val()*1*count; // 리워드 가격
+   	   				checkName += $(this).parent().parent().find(".rewardText6").text()+"<br>";
+   	   			});
+   				comma = price + $("#rewardInput").val()*1;
+   				$("#rewardSum").text(comma.toLocaleString());
+   				$("#asideText3").html("<div id='rewardname'>"+checkName+"</div>");
+   			
+   				
    			
    			
    			
 			
-   			$("input:checkbox[name='reCheck']:checked").each(function(){
-   				price += $(this).val()*1;
-   				count +=$(this).parent().parent().find(".reCount").val()+"<br>";
+   			
+   			
+   			
+   			
+   			
+   			
+   			
+   			
+   			
+   			
+   			
+   			
+   			
+   			
+   			
+   			
+   			
+   			
+   			/* ============================================================================== */
+   			
+   			
+   			
+   			
+   			
+   			
+   			// 수량 까지 합쳐서 총 금액 합산 / 수량 보다 많은 숫자 입력안되게 조치
+   			/* $("input:checkbox[name='reCheck']:checked").each(function(){
+   				count +=$(this).parent().parent().find(".reCount").val()*1;
+   				price += $(this).val()*1*count;
+   				//count +=$(this).parent().parent().find(".reCount").val()+"<br>";
    				checkName += $(this).parent().parent().find(".rewardText6").text()+"<br>";
    				
    				//console.log(price);
    				//console.log($("#rewardInput").val()*1);
    				console.log(checkName);
    				
-   			});
-   				comma = price + $("#rewardInput").val()*1;
+   			}); */
+   			
+   			
+   			/* comma = price + $("#rewardInput").val()*1;
+			$("#rewardSum").text(comma.toLocaleString());
+			$("#asideText3").html("<div id='rewardname'>"+checkName+"</div>");
+   			
+   			
+   			$(".reCount").on("blur", function(){
+   				$("#rewardSum").text("");
+   				$("input:checkbox[name='reCheck']:checked").each(function(){
+   	   				/* reCount +=$(this).parent().parent().find(".reCount").val()*1;
+   	   				reCount +=$(this).parent().parent().find(".reCount").val() + "/";
+   	   				console.log(reCount);
+   	   				cPrice += $(this).val()*1*reCount;
+   	   			 */	//count +=$(this).parent().parent().find(".reCount").val()+"<br>";
+   	   				//checkName += $(this).parent().parent().find(".rewardText6").text()+"<br>";
+   	   				
+   	   				//console.log(price);
+   	   				//console.log($("#rewardInput").val()*1);
+   	   				//console.log(checkName);
+   	   				
+   	   			//});
+   				/* console.log($(this).val());
+   				reCount = $(this).val()*1;
+   				cPrice = $(this).parent().parent().parent().find(".rewardMo").text()*1;
+   				console.log(cPrice);
+   				
+   				var sum = cPrice*reCount;
+   				
+   				console.log(sum); */
+   				
+   				//comma = cPrice + $("#rewardInput").val()*1;
+   				//$("#rewardSum").text(comma.toLocaleString());
+   				//$("#asideText3").html("<div id='rewardname'>"+checkName+"</div>");
+   				
+   				
+   			//});
+   			
+   				/* comma = cPrice + $("#rewardInput").val()*1;
    				$("#rewardSum").text(comma.toLocaleString());
-   				$("#asideText3").html("<div id='rewardname'>"+checkName+"</div>"+"<div id='recount'>"+ count +"</div>");
+   				$("#asideText3").html("<div id='rewardname'>"+checkName+"</div>"); */
+   			
+   				//comma = price + $("#rewardInput").val()*1;
+   				//$("#rewardSum").text(comma.toLocaleString());
+   				//$("#asideText3").html("<div id='rewardname'>"+checkName+"</div>");
    				//$("#recount").html(count);
    				//수량수량
    				

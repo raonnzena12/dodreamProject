@@ -23,19 +23,18 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-  		<interceptors>
-       		<interceptor>
-            <mapping path="/login.dr"/>
-            <beans:bean class="com.dodream.spring.common.interceptor.AuthenticationInterceptor" id="AuthenticationInterceptor"/>
-         	</interceptor>
-      	</interceptors> 
-
- 
-
 	<context:component-scan base-package="com.dodream.spring" />
 	
 	<aop:aspectj-autoproxy/>
 	
-	
-	
+	<!-- 웹소켓 핸들러 -->
+	<!-- <websocket:handlers>
+		<websocket:mapping handler="echoHandler" path="/echo"/>
+		<websocket:handshake-interceptors>
+			<beans:bean class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor"/>
+		</websocket:handshake-interceptors>
+		<websocket:sockjs/>
+	</websocket:handlers> 
+	<beans:bean id="echoHandler" class="com.dodream.spring.common.websocket.EchoHandler"/>
+	 -->
 </beans:beans>
