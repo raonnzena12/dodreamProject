@@ -130,6 +130,7 @@ public class ReserveController {
 		userNo = 17;
 		ArrayList<Reserve> rList = rsvService.selectReserveList(userNo);
 		model.addAttribute("rList", rList);
+		System.out.println(rList);
 		return "member/fundingList";
 	}
 }

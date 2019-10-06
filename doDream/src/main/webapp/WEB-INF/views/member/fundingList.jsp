@@ -113,49 +113,51 @@
 				</span>
 			</div>
 			<div id="listArea">
+			<c:forEach var="r" items="${ rList }">
 			<div id="statusMain">
 				<div class="projectInfo mb-3 rounded">
-					<p class="category text-13">${ prj.pCategoryName }</p>
+					<p class="category text-13">${ r.prjCategoryName }</p>
 					<p class="projectStatus text-13">
 						<c:choose>
-							<c:when test="${ prj.pDDay > 0 }">
+							<c:when test="${ r.dDay > 0 }">
 							<i class="material-icons">play_arrow</i>
 							진행중
 						</c:when>
-						<c:when test="${ prj.pDDay == 0 }">
+						<c:when test="${ r.dDay == 0 }">
 							<i class="material-icons">play_arrow</i>
 							오늘마감
 						</c:when>
-						<c:when test="${ prj.pGoal <= prj.pCurrentFunding }">
+						<c:when test="${ r.dDay <= prj.pCurrentFunding }">
 							<i class="material-icons">done</i>
 							펀딩성공
 						</c:when>
-						<c:when test="${ prj.pGoal > prj.pCurrentFunding }" >
+						<c:when test="${ r.dDay > prj.pCurrentFunding }" >
 							<i class="material-icons">clear</i>
 							펀딩실패
 						</c:when>
 						</c:choose>
 					</p>
-					<p class="projectName"><a href="${ fundingDetail }" target="_blank">${ prj.pTitle }</a></p>
-					<p class="artist mb-3">by "<a href="#">${ prj.pArtistName }</a>"</p>
+					<p class="projectName"><a href="#" target="_blank">${ r.pTitle }</a></p>
+					<p class="artist mb-3">by "<a href="#">${ r.artistNickname }</a>"</p>
 					<div class="summary">
 						<table class="summaryt">
 							<tr>
 								<td class="text-gray">펀딩 번호</td>
-								<td>${ prj.pNo }</td>
+								<td>${ r.resNo }</td>
 							</tr>
 							<tr>
 								<td class="text-gray">펀딩 날짜</td>
-								<td>${ rsv.resDate }</td>
+								<td>${ r.resDate }</td>
 							</tr>
 							<tr>
 								<td class="text-gray">펀딩 마감일</td>
-								<td>${ prj.pCloseDate }</td>
+								<td>${ r.resFundDate }</td>
 							</tr>
 						</table>
 					</div>
 				</div>
 			</div>
+			</c:forEach>
 			</c:otherwise>
 		</c:choose>
 		</div>
