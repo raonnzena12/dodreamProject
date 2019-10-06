@@ -235,6 +235,19 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public ArrayList<Project> selectProjectList5() {
 		return aDao.selectProjectList5();
+  }
+	public ArrayList<Reserve> selectReserveListTarget(int pNo) {
+		return aDao.selectReserveListTarget(pNo);
+	}
+
+	@Override
+	public int updateReserveStatusToSuccess(int[] rNo) {
+		return aDao.updateReserveStatusToSuccess(rNo);
+	}
+
+	@Override
+	public int updateReserveStatusToFail(int[] rNo) {
+		return aDao.updateReserveStatusToFail(rNo);
 	}
 
 	

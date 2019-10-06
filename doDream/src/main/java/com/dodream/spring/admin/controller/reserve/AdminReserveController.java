@@ -112,8 +112,25 @@ public class AdminReserveController {
 		mv.setViewName("admin/reserve/reserveViewList4");
 		mv.addObject("pList", pList);
 		return mv;
+  }
+  
+	// 프로젝트 별로 리저브 리스트 호출하기
+	@ResponseBody
+	@RequestMapping("selectReserveListTarget.dr")
+	public ArrayList<Reserve> selectReserveListTarget(int pNo) {
+		return aService.selectReserveListTarget(pNo);
 	}
 	
-	
-	
+	// 리저브 결제 성공하면 상태값 바꿔주기
+	@ResponseBody
+	@RequestMapping("updateReserveStatusToSuccess.dr")
+	public int updateReserveStatusToSuccess(int[] rNo) {
+		return aService.updateReserveStatusToSuccess(rNo);
+	}
+	// 리저브 결제 실패하면 상태값 바꿔주기
+	@ResponseBody
+	@RequestMapping("updateReserveStatusToFail.dr")
+	public int updateReserveStatusToFail(int[] rNo) {
+		return aService.updateReserveStatusToFail(rNo);
+	}
 }
