@@ -328,6 +328,22 @@ public class AdminDao {
 		return sqlSession.selectOne("adminReviewMapper.selectReview", revNo);
 	}
 
+	/** 해당 리뷰 수정
+	 * @param review
+	 * @return result
+	 */
+	public int updateReview(Review review) {
+		return sqlSession.update("adminReviewMapper.updateReview", review);
+	}
+
+	/** 리뷰 삭제
+	 * @param revNo
+	 * @return result
+	 */
+	public int removeReview(int revNo) {
+		return sqlSession.update("adminReviewMapper.removeReview", revNo);
+	}
+
 
 
 

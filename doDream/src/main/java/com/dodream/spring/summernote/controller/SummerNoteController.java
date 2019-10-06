@@ -49,6 +49,19 @@ public class SummerNoteController {
 		return "redirect:adminNoticeList.dr";
 	}
 	
+	/** 관리자 프로젝트 후기 이미지 삭제 
+	 * @param request
+	 * @param imgList
+	 * @return 
+	 */
+	@RequestMapping(value="cancleReview.dr", method = RequestMethod.POST)
+	public String cancleReviewImage(HttpServletRequest request, String imgList) {
+		String[] imgArr = imgList.split(",");
+		System.out.println(Arrays.toString(imgArr));
+		sService.cancleImage(request,imgArr);
+		return "redirect:adminReviewList.dr";
+	}
+	
 	
 	/** 관리자 공지사항 등록 
 	 * @param notice
@@ -93,6 +106,13 @@ public class SummerNoteController {
 
 	}
 	
+	/** 리뷰 등록
+	 * @param review
+	 * @param mv
+	 * @param request
+	 * @param uploadFile
+	 * @return mv
+	 */
 	@RequestMapping("insertReview.dr")
 	public ModelAndView insertReview(Review review, ModelAndView mv, HttpServletRequest request, MultipartFile uploadFile) {
 		
@@ -106,6 +126,42 @@ public class SummerNoteController {
 		
 		return mv;
 	}
+	
+	/** 공지사항 수정
+	 * @param mv
+	 * @param review
+	 * @param request
+	 * @param uploadFile
+	 * @return mv
+	 */
+	@RequestMapping("updateReview.dr")
+	public ModelAndView updateReview(ModelAndView mv, Review review, HttpServletRequest request,MultipartFile reloadFile) {
+		System.out.println(review);
+		int result = sService.updateReview(review, reloadFile, request);
+		
+		if(result > 0) {
+			mv.setViewName("redirect:adminReviewList.dr?revNo="+ review.getRevNo()); 
+		} else {
+			mv.addObject("msg", "리뷰 수정을 실패하였습니다.").setViewName("redirect:adminReviewList.dr?revNo=" + review.getRevNo());
+		}
+		
+		return mv;
+	}
+	
+	@RequestMapping("removeReview.dr")
+	public ModelAndView removeReview(ModelAndView mv, int revNo) {
+		
+		int result = sService.removeReview(revNo);
+		
+		if(result > 0) {
+			mv.setViewName("redirect:adminReviewList.dr");
+		} else {
+			mv.addObject("msg", "리뷰 삭제 실패 !").setViewName("redirect:adminReviewList.dr");
+		}
+		
+		return mv;
+	}
+	
 	
 	
 	
