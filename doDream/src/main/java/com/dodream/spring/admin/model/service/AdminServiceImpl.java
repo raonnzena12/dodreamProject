@@ -233,6 +233,9 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
+	public ArrayList<Project> selectProjectList5() {
+		return aDao.selectProjectList5();
+  }
 	public ArrayList<Reserve> selectReserveListTarget(int pNo) {
 		return aDao.selectReserveListTarget(pNo);
 	}

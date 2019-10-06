@@ -17,6 +17,10 @@ import com.dodream.spring.reserve.model.vo.Reserve;
  * @author user1
  *
  */
+/**
+ * @author user1
+ *
+ */
 public interface AdminService {
 
 	/** 관리자페이지에서 신규회원의 수를 세주는 Service
@@ -232,6 +236,12 @@ public interface AdminService {
 	 * @return review
 	 */
 	public abstract Review selectReview(int revNo);
+
+	/**
+	 * 펀딩 성공한 프로젝트 리스트를 받아오는 Service
+	 * @return pList
+	 */
+	public abstract ArrayList<Project> selectProjectList5();
 
 	
 	/** 프로젝트에 해당하는 Reserve를 호출해옵니다.

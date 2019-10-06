@@ -74,6 +74,7 @@
 			<div id="dropDown3" class="collapse" aria-labelledby="headingTwo"
 				data-parent="#accordionSidebar">
 				<div class="bg-white py-2 collapse-inner rounded">
+					<a class="collapse-item" href="adminRlist4.dr"><p>〉 성공 펀딩 현황</p></a> 
 					<a class="collapse-item" href="adminRlist1.dr"><p>〉 주문 예약 현황</p></a> 
 					<a class="collapse-item" href="adminRlist2.dr"><p>〉 결제 완료 현황</p></a> 
 					<a class="collapse-item" href="adminRlist3.dr"><p>〉 주문 취소 현황</p></a>

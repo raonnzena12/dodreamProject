@@ -26,6 +26,7 @@
 		<result property="pCategoryNum" column="PROJECT_CT_NO"/>
 		<result property="pStatusNum" column="PROJECT_ST_NO"/>
 		<result property="pCount" column="PROJECT_COUNT"/>
+		<result property="pCurrentFunding" column="TOTAL" />
 	</resultMap>
 	
 	<!-- 심사중인 프로젝트 개수 관련 쿼리 -->
@@ -109,5 +110,9 @@
 		WHERE PROJECT_NO = #{pNo}
 	</update>
 	
+	<select id="selectProjectList5" resultMap="projectResultSet">
+		SELECT * FROM PROJECT_LIST_VIEW
+		WHERE PROJECT_ST_NO = 7	
+	</select>
 	
 </mapper>

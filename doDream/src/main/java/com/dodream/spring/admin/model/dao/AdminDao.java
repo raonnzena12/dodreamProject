@@ -343,7 +343,8 @@ public class AdminDao {
 
 	public int updateReserveStatusToFail(int[] rNo) {
 		return sqlSession.update("adminReserveMapper.updateReserveStatusToFail",rNo);
-
+  }
+  
 	/** 해당 리뷰 수정
 	 * @param review
 	 * @return result
@@ -361,6 +362,13 @@ public class AdminDao {
 
 	}
 
+	/**
+	 * 펀딩 성공한 프로젝트 리스트를 반환하는 DAO
+	 * @return pList
+	 */
+	public ArrayList<Project> selectProjectList5() {
+		return (ArrayList)sqlSession.selectList("adminProjectMapper.selectProjectList5");
+	}
 
 
 

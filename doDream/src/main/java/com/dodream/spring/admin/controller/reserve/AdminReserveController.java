@@ -5,11 +5,11 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.dodream.spring.admin.model.service.AdminService;
+import com.dodream.spring.project.model.vo.Project;
 import com.dodream.spring.reserve.model.vo.Reserve;
 
 
@@ -102,7 +102,18 @@ public class AdminReserveController {
 		return mv;
 	}
 	
-	
+	// 성공한 프로젝트 결제용 컨트롤러
+	@RequestMapping("adminRlist4.dr")
+	public ModelAndView billingReserve(ModelAndView mv) {
+		
+		ArrayList<Project> pList = aService.selectProjectList5();
+		
+		System.out.println(pList);
+		mv.setViewName("admin/reserve/reserveViewList4");
+		mv.addObject("pList", pList);
+		return mv;
+  }
+  
 	// 프로젝트 별로 리저브 리스트 호출하기
 	@ResponseBody
 	@RequestMapping("selectReserveListTarget.dr")
