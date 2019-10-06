@@ -234,6 +234,25 @@ public interface AdminService {
 	public abstract Review selectReview(int revNo);
 
 	
+	/** 프로젝트에 해당하는 Reserve를 호출해옵니다.
+	 * @param pNo
+	 * @return rList
+	 */
+	public abstract ArrayList<Reserve> selectReserveListTarget(int pNo);
+
+	/** 결제가 완료된 Reserve의 상태값을 변경해줍니다(성공).
+	 * @param rNo
+	 * @return result
+	 */
+	public abstract int updateReserveStatusToSuccess(int[] rNo);
+
+	/** 결제가 완료된 Reserve의 상태값을 변경해줍니다(실패).
+	 * @param rNo
+	 * @return result
+	 */
+	public abstract int updateReserveStatusToFail(int[] rNo);
+
+	
 
 
 }
