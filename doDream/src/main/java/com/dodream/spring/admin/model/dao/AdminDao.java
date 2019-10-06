@@ -344,6 +344,14 @@ public class AdminDao {
 		return sqlSession.update("adminReviewMapper.removeReview", revNo);
 	}
 
+	/**
+	 * 펀딩 성공한 프로젝트 리스트를 반환하는 DAO
+	 * @return pList
+	 */
+	public ArrayList<Project> selectProjectList5() {
+		return (ArrayList)sqlSession.selectList("adminProjectMapper.selectProjectList5");
+	}
+
 
 
 

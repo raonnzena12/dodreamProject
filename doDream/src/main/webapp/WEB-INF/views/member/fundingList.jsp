@@ -36,6 +36,51 @@
 	color: #999;
 	font-size: 14px;
 }
+.projectInfo, .funding-status, .funding-detail {
+    padding: 24px 20px 20px;
+    border: 1px solid #ccc;
+}
+.funding-status-additional {
+    border: 1px solid #eee;
+    border-top: none;
+    padding: 15px 20px 5px;
+    background-color: rgb(245, 245, 245);
+}
+.funding-detail2 {
+    border: 1px solid #eee;
+    border-top: none;
+    padding: 15px 20px 15px;
+    background-color: rgb(245, 245, 245);
+}
+.projectInfo>p {
+    margin: 0;
+}
+.summary {
+    padding-top: 20px;
+    border-top: 1px solid #ccc;
+}
+.summaryt, .funddeT {
+    width: 100%;
+}
+.summaryt td {
+    font-size: 13px;
+    font-weight: 400;
+}
+.text-gray {
+    color : #888;
+}
+.summaryt td:nth-child(2), .funddeT td:nth-child(2) {
+    text-align: right;
+}
+.btn-outline-warning {
+    color: #F39C12;
+    border-color: #F39C12;
+}
+.text-13 {
+    font-size: 13px;
+    font-weight: bold;
+    color: #666;
+}
 </style>
 </head>
 <body>
@@ -68,7 +113,48 @@
 				</span>
 			</div>
 			<div id="listArea">
-				rList가 있습니다.
+			<div id="statusMain">
+				<div class="projectInfo mb-3 rounded">
+					<p class="category text-13">${ prj.pCategoryName }</p>
+					<p class="projectStatus text-13">
+						<c:choose>
+							<c:when test="${ prj.pDDay > 0 }">
+							<i class="material-icons">play_arrow</i>
+							진행중
+						</c:when>
+						<c:when test="${ prj.pDDay == 0 }">
+							<i class="material-icons">play_arrow</i>
+							오늘마감
+						</c:when>
+						<c:when test="${ prj.pGoal <= prj.pCurrentFunding }">
+							<i class="material-icons">done</i>
+							펀딩성공
+						</c:when>
+						<c:when test="${ prj.pGoal > prj.pCurrentFunding }" >
+							<i class="material-icons">clear</i>
+							펀딩실패
+						</c:when>
+						</c:choose>
+					</p>
+					<p class="projectName"><a href="${ fundingDetail }" target="_blank">${ prj.pTitle }</a></p>
+					<p class="artist mb-3">by "<a href="#">${ prj.pArtistName }</a>"</p>
+					<div class="summary">
+						<table class="summaryt">
+							<tr>
+								<td class="text-gray">펀딩 번호</td>
+								<td>${ prj.pNo }</td>
+							</tr>
+							<tr>
+								<td class="text-gray">펀딩 날짜</td>
+								<td>${ rsv.resDate }</td>
+							</tr>
+							<tr>
+								<td class="text-gray">펀딩 마감일</td>
+								<td>${ prj.pCloseDate }</td>
+							</tr>
+						</table>
+					</div>
+				</div>
 			</div>
 			</c:otherwise>
 		</c:choose>

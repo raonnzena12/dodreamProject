@@ -232,6 +232,11 @@ public class AdminServiceImpl implements AdminService {
 		return aDao.selectReview(revNo);
 	}
 
+	@Override
+	public ArrayList<Project> selectProjectList5() {
+		return aDao.selectProjectList5();
+	}
+
 	
 
 }
