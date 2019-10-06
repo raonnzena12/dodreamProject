@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.catalina.tribes.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -241,12 +242,13 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public int updateReserveStatusToSuccess(int[] rNo) {
+	public int updateReserveStatusToSuccess(String[] rNo) {
 		return aDao.updateReserveStatusToSuccess(rNo);
 	}
 
 	@Override
-	public int updateReserveStatusToFail(int[] rNo) {
+	public int updateReserveStatusToFail(String[] rNo) {
+		System.out.println(Arrays.toString(rNo));
 		return aDao.updateReserveStatusToFail(rNo);
 	}
 

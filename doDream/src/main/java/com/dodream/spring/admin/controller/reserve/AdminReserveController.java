@@ -1,6 +1,7 @@
 package com.dodream.spring.admin.controller.reserve;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -121,16 +122,32 @@ public class AdminReserveController {
 		return aService.selectReserveListTarget(pNo);
 	}
 	
-	// 리저브 결제 성공하면 상태값 바꿔주기
 	@ResponseBody
-	@RequestMapping("updateReserveStatusToSuccess.dr")
-	public int updateReserveStatusToSuccess(int[] rNo) {
+	@RequestMapping("updateReserveStatus.dr")
+	public int updateReserveStatus(String successparam, String failparam) {
+		int result = 0;
+		String[] success = {""};
+		String[] fail = {""};
+		System.out.println(failparam);
+		
+		if(successparam != null) {
+			success = successparam.split(",");
+			result += updateReserveStatusToSuccess(success);
+		}
+		if(failparam != null) {
+			fail = failparam.split(",");
+			result += updateReserveStatusToFail(fail);
+		}
+		return result;
+	}
+	
+	
+	// 리저브 결제 성공하면 상태값 바꿔주기
+	public int updateReserveStatusToSuccess(String[] rNo) {
 		return aService.updateReserveStatusToSuccess(rNo);
 	}
 	// 리저브 결제 실패하면 상태값 바꿔주기
-	@ResponseBody
-	@RequestMapping("updateReserveStatusToFail.dr")
-	public int updateReserveStatusToFail(int[] rNo) {
+	public int updateReserveStatusToFail(String[] rNo) {
 		return aService.updateReserveStatusToFail(rNo);
 	}
 }

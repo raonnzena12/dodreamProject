@@ -92,7 +92,7 @@
 	</select>
 	
 	<!-- 결제처리된 Reserve 상태값 바꿔주기 (성공) -->
-	<update id="updateReserveStatusToSuccess" parameterType="map">
+	<update id="updateReserveStatusToSuccess" parameterType="java.util.HashMap">
 		UPDATE RESERVE SET RESERVE_STATUS_NO = 2 WHERE 
 		RESERVE_NO IN 
 		<foreach collection="array" item="num" index="index" open="(" close=")" separator=",">
@@ -101,7 +101,7 @@
 	</update>
 	
 	<!-- 결제처리된 Reserve 상태값 바꿔주기 (실패) -->
-	<update id="updateReserveStatusToFail" parameterType="map">
+	<update id="updateReserveStatusToFail" parameterType="java.util.HashMap">
 		UPDATE RESERVE SET RESERVE_STATUS_NO = 4 WHERE 
 		RESERVE_NO IN 
 		<foreach collection="array" item="num" index="index" open="(" close=")" separator=",">

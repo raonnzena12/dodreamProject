@@ -211,8 +211,57 @@
 <script>
 $(function(){
 	$(".billingProject").on("click", function(){
-		
+		var pNo = $(this).attr("pno");
+		$.ajax({
+			url : "selectReserveListTarget.dr",
+			data : {pNo : pNo},
+			success : function(result){
+				var success = "";
+				var fail = ""; 
+				$.each(result, function(i){
+					var customerUid = result[i].bKey;
+					var amount = result[i].addi + result[i].resRwdPriceSum;
+					var billingResult = submitBilling(customerUid, amount);
+					if(billingResult==1){
+						success += result[i].resNo + ",";
+					}else{
+						fail += result[i].resNo + ",";
+					}
+				});
+				updateReserve(success,fail);
+			},
+			error : function(e){
+				console.log(e);
+			}
+		});
 	});
+	function updateReserve(success, fail){
+		$.ajax({
+			url : "updateReserveStatus.dr",
+			data : {successparam : success, failparam : fail},
+			type : "POST",
+			success : function(result){
+				console.log(result);
+			}
+		});
+	}
+	
+	function submitBilling(customerUid, amount){
+		$.ajax({
+			url : "http://localhost:8081/billings",
+			data : {customer_uid : customerUid, amount : amount},
+			type : "post",
+			success : function(result){
+				var value = result.code;
+				console.log(value);
+				if(value==0){
+					return 1;
+				}else{
+					return 0;
+				}
+			}
+		});
+	};
 });
 </script>
 </body>

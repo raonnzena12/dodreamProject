@@ -254,13 +254,13 @@ public interface AdminService {
 	 * @param rNo
 	 * @return result
 	 */
-	public abstract int updateReserveStatusToSuccess(int[] rNo);
+	public abstract int updateReserveStatusToSuccess(String[] rNo);
 
 	/** 결제가 완료된 Reserve의 상태값을 변경해줍니다(실패).
 	 * @param rNo
 	 * @return result
 	 */
-	public abstract int updateReserveStatusToFail(int[] rNo);
+	public abstract int updateReserveStatusToFail(String[] rNo);
 
 	
 
