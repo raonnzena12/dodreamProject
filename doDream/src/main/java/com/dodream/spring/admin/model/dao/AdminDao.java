@@ -337,11 +337,11 @@ public class AdminDao {
 		return (ArrayList)sqlSession.selectList("adminReserveMapper.selectReserveListTarget",pNo);
 	}
 
-	public int updateReserveStatusToSuccess(int[] rNo) {
+	public int updateReserveStatusToSuccess(String[] rNo) {
 		return sqlSession.update("adminReserveMapper.updateReserveStatusToSuccess", rNo);
 	}
 
-	public int updateReserveStatusToFail(int[] rNo) {
+	public int updateReserveStatusToFail(String[] rNo) {
 		return sqlSession.update("adminReserveMapper.updateReserveStatusToFail",rNo);
   }
   
