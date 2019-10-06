@@ -50,24 +50,28 @@
 	<select id="selectProjectList1" resultMap="projectResultSet">
 		SELECT * FROM PROJECT_TB
 		WHERE PROJECT_ST_NO = 2
+		ORDER BY PROJECT_NO DESC
 	</select>
 	
 	<!-- 심사 완료된 프로젝트 목록 조회 -->
 	<select id="selectProjectList2" resultMap="projectResultSet">
 		SELECT * FROM PROJECT_TB
 		WHERE PROJECT_ST_NO = 3
+		ORDER BY PROJECT_NO DESC
 	</select>
 	
 	<!-- 오픈 중인 프로젝트 목록 조회 -->
 	<select id="selectProjectList3" resultMap="projectResultSet">
 		SELECT * FROM PROJECT_TB
 		WHERE PROJECT_ST_NO = 4
+		ORDER BY PROJECT_NO DESC
 	</select>
 	
 	<!-- 마감된 프로젝트 목록 조회 -->
 	<select id="selectProjectList4" resultMap="projectResultSet">
 		SELECT * FROM PROJECT_TB
 		WHERE PROJECT_ST_NO = 5
+		ORDER BY PROJECT_NO DESC
 	</select>
 	
 	<!-- 카테고리 분포 관련 쿼리 -->

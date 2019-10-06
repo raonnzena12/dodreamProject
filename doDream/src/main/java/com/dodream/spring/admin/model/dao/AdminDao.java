@@ -328,6 +328,7 @@ public class AdminDao {
 		return sqlSession.selectOne("adminReviewMapper.selectReview", revNo);
 	}
 
+
 	/** 결제하는 프로젝트에 해당하는 Reserve 조회
 	 * @param pNo
 	 * @returnr rList
@@ -342,6 +343,22 @@ public class AdminDao {
 
 	public int updateReserveStatusToFail(int[] rNo) {
 		return sqlSession.update("adminReserveMapper.updateReserveStatusToFail",rNo);
+
+	/** 해당 리뷰 수정
+	 * @param review
+	 * @return result
+	 */
+	public int updateReview(Review review) {
+		return sqlSession.update("adminReviewMapper.updateReview", review);
+	}
+
+	/** 리뷰 삭제
+	 * @param revNo
+	 * @return result
+	 */
+	public int removeReview(int revNo) {
+		return sqlSession.update("adminReviewMapper.removeReview", revNo);
+
 	}
 
 

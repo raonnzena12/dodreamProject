@@ -101,9 +101,6 @@
 															aria-label="Age: activate to sort column ascending">리뷰 부제목</th>
 														<th class="sorting" tabindex="0" aria-controls="dataTable"
 															rowspan="1" colspan="1"
-															aria-label="Age: activate to sort column ascending">리뷰 내용</th>
-														<th class="sorting" tabindex="0" aria-controls="dataTable"
-															rowspan="1" colspan="1"
 															aria-label="Start date: activate to sort column ascending">리뷰 작성일</th>
 														<th class="sorting" tabindex="0" aria-controls="dataTable"
 															rowspan="1" colspan="1"
@@ -117,9 +114,6 @@
 														<th class="sorting" tabindex="0" aria-controls="dataTable"
 															rowspan="1" colspan="1"
 															aria-label="Salary: activate to sort column ascending">리뷰 수정</th>
-														<th class="sorting" tabindex="0" aria-controls="dataTable"
-															rowspan="1" colspan="1"
-															aria-label="Salary: activate to sort column ascending">리뷰 삭제</th>
 													</tr>
 												</thead>
 												<tfoot>
@@ -127,13 +121,11 @@
 														<th rowspan="1" colspan="1">리뷰 번호</th>
 														<th rowspan="1" colspan="1">리뷰 제목</th>
 														<th rowspan="1" colspan="1">리뷰 부제목</th>
-														<th rowspan="1" colspan="1">리뷰 내용 </th>
 														<th rowspan="1" colspan="1">리뷰 작성일</th>
 														<th rowspan="1" colspan="1">해당 프로젝트 번호</th>
 														<th rowspan="1" colspan="1">작성자 닉네임</th>
 														<th rowspan="1" colspan="1">리뷰 조회수</th>
 														<th rowspan="1" colspan="1">리뷰 수정</th>
-														<th rowspan="1" colspan="1">리뷰 삭제</th>
 													</tr>
 												</tfoot>
 												<tbody>
@@ -142,41 +134,16 @@
 															<td class="sorting_1">${ r.revNo }</td>
 															<td>${ r.revTitle}</td>
 															<td>${ r.revSubTitle}</td>
-															<td>${ r.revContent}</td>
 															<td>${ r.revEnrollDate}</td>
 															<td>${ r.revRefPno}</td>
 															<td>${ r.userNickname}</td>
 															<td>${ r.revCount}</td>
 															<td>
+																<c:url var="rDetail" value="rDetail.dr">
+																	<c:param name="revNo" value="${ r.revNo }"/>
+																</c:url>
 																<button type="button" class="btn btn-primary btn-lg btn-block rewardBtn" 
-																onclick="location.href='rDetail.dr'">상세보기</button>
-															</td>
-															<td>
-																<button type="button" data-toggle="modal" data-target="#modal${ status.index }" data-whatever="삭제하기"
- 																 id="removeReply" class="btn btn-primary btn-lg btn-block rewardBtn">삭제하기</button>
- 																 <!-- Modal -->
- 																<form action ="removeNotice.dr" method="post">
-																<div class="modal fade" id="modal${ status.index }" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-																  <div class="modal-dialog" role="document">
-																    <div class="modal-content">
-																      <div class="modal-header">
-																        <h5 class="modal-title" id="exampleModalLabel">리뷰 삭제</h5>
-																        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-																          <span aria-hidden="true">&times;</span>
-																        </button>
-																      </div>
-																      <div class="modal-body">
-																        	해당 리뷰를 삭제하시겠습니까?
-																      </div>
-																      <div class="modal-footer">
-																        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-																        <button type="submit" class="btn btn-primary">삭제하기</button>
-																        <input type="hidden" name="revNo" value="${r.revNo}">
-																      </div>
-																    </div>
-																  </div>
-																</div>
- 																</form>
+																onclick="location.href='${rDetail}'">상세보기</button>
 															</td>
 														</tr>
 													</c:forEach>

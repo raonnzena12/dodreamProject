@@ -75,8 +75,22 @@
 					<!-- DataTales Example -->
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
-							<button type="button" class="btn btn-primary btn-lg btn-block rewardBtn" style="float: right; background: #8E44AD; border: #8E44AD;"
-							onclick="location.href='goUpdateNotice.dr'">리뷰 수정</button>
+							<c:url var="goUpdateReview" value="goUpdateReview.dr">
+								<c:param name="revNo" value="${ review.revNo }"/>
+							</c:url>
+							<c:url var="removeReview" value="removeReview.dr">
+								<c:param name="revNo" value="${ review.revNo }"/>
+							</c:url>
+							<c:url var="adminReviewList" value="adminReviewList.dr">
+							</c:url>
+							<span class="float-right">
+								<button type="button" class="btn btn-primary btn-lg btn-inline rewardBtn" style="background: #8E44AD; border: #8E44AD;"
+								onclick="location.href='${ goUpdateReview }'">리뷰 수정</button>
+								<button type="button" id="removeReview" class="btn btn-primary btn-lg btn-inline rewardBtn" style="background: #8E44AD; border: #8E44AD;"
+								onclick="location.href='${ removeReview}'">리뷰 삭제</button>
+								<button type="button" class="btn btn-primary btn-lg btn-inline rewardBtn" style="background: #8E44AD; border: #8E44AD;"
+								onclick="location.href='${ adminReviewList }'">목록으로</button>
+							</span>
 						</div>
 						<div class="card-body">  
 							<div class="table-responsive">
@@ -100,27 +114,13 @@
 													<td>작성일</td>
 													<td>${ review.revEnrollDate}</td>
 												</tr>		
+												<tr>
+													<td>썸네일 이미지</td>
+													<td>${ review.reviewTnImg}</td>
+												</tr>		
 												<tr height="300">
 													<td>내용</td>
 													<td>${ review.revContent }</td>
-												</tr>
-												<tr>
-													<td colspan="2" align="center">
-													
-														<c:url var="goUpdateNotice" value="goUpdateNotice.dr">
-															<c:param name="nNo" value="${ review.revTitle }"/>
-														</c:url>
-														<c:url var="removeNotice" value="removeNotice.dr">
-															<c:param name="nNo" value="${ review.revTitle }"/>
-														</c:url>
-														<c:url var="adminNoticeList" value="adminNoticeList.dr">
-														</c:url>
-														
-														<a href="${ goUpdateNotice }">수정하기</a> &nbsp;
-														<a href="${ removeNotice }">삭제하기</a> &nbsp;
-														
-														<a href="${ adminNoticeList }">목록으로</a>
-													</td>
 												</tr>
 											</table>
 			 							
@@ -175,6 +175,19 @@
 	      </div>
 	    </div>
 	  </div>
+	
+	<script type="text/javascript">
+		$(function(){
+			$("#removeReview").on("click", function(){
+				if(confirm("해당 리뷰를 삭제하시겠습니까?")){
+					alert("해당 리뷰가 삭제되었습니다.");
+				} else{
+					alert()
+				}
+			});		
+		});
+	</script>
+	
 	
 	<!-- Bootstrap core JavaScript-->
 	<script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

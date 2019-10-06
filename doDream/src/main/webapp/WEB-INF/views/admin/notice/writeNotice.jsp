@@ -75,37 +75,37 @@
 					<h1 class="h3 mb-2 text-gray-800"># 공지사항 작성</h1>
 					<br>
 					<!-- DataTales Example -->
-					<div class="card shadow mb-4">
-						<div class="card-header py-3">
-							<button type="button" class="btn btn-primary btn-lg btn-block rewardBtn" style="float: right; background: #8E44AD; border: #8E44AD;"
-							onclick="location.href='goWriteNotice.dr'">공지사항 작성</button>
-						</div>
-						<div class="card-body">
-							<div class="table-responsive">
-								<div id="dataTable_wrapper"
-									class="dataTables_wrapper dt-bootstrap4">
-									<div class="row">
-										<div class="col-sm-12">
-											<form action="insert.dr" name="insertForm" id="insertForm" method="post">
+					<form action="insert.dr" name="insertForm" id="insertForm" method="post">
+						<div class="card shadow mb-4">
+							<div class="card-header py-3">
+								<span class="float-right">
+									<button class="btn btn-primary btn-lg btn-inline rewardBtn" type="button" id="submitBtn" style="background: #8E44AD; border: #8E44AD;">공지사항 등록</button>
+									<button class="btn btn-primary btn-lg btn-inline rewardBtn" style="background: #8E44AD; border: #8E44AD;"
+									onclick="cancle();">취소하기</button>
+								</span>
+							</div>
+							<div class="card-body">
+								<div class="table-responsive">
+									<div id="dataTable_wrapper"
+										class="dataTables_wrapper dt-bootstrap4">
+										<div class="row">
+											<div class="col-sm-12">
 												<!-- summnote 에디터 출력 -->
 												공지사항 제목 : <input type="text" name="nTitle">
 												<br><br>
 												<textarea id="summernote" name="nContent"></textarea>
 												<br><br>
-												<button>등록</button>
-												<button onclick="cancle();">취소</button>
 												   
 												<!-- 등록된 이미지 목록 -->
 												<input type="hidden" name="nWriter" value="${loginUser.userNo}">
 												<input type="hidden" name="imgList" value="">
-											</form>
+											</div>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-
+					</form>	
 				</div>
 				<!-- /.container-fluid -->
 
@@ -155,6 +155,23 @@
 		function cancle(){
 			$("#insertForm").attr("action","cancle.dr");
 		}
+	
+		$(function(){
+			$("#submitBtn").on("click", function(){
+				var inputTitle = $("input[name=nTitle]").val();
+				if ( inputTitle.trim() == "" ) {
+					alert("제목을 입력해주세요.");
+					return false;
+				}
+				if($("#summernote").val().trim() == ""){
+					alert("내용을 입력해주세요.");
+					return false;
+				}
+				
+				console.log("이제 서브밋 하면 됨");
+				$("#insertForm").submit();
+			});
+		});
 	</script>
 	
 	<!-- Bootstrap core JavaScript-->
@@ -179,9 +196,9 @@
 	<script src="resources/js/demo/datatables-demo.js"></script>
 	
 	<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css" rel="stylesheet">
-	<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js"></script>
 	<!-- summernote 기능 구현 js -->
 	<script src="resources/summernote/js/summernote.js"></script>
+	<script src="resources/summernote/dist/summernote.js"></script>
 	
 	<!-- summernote 언어 설정 js -->
 	<script src="resources/summernote/dist/lang/summernote-ko-KR.js"></script>

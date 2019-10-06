@@ -19,12 +19,13 @@
 		FROM NOTICE
 		JOIN USER_TB ON(USER_NO=NOTICE_WRITER)
 		WHERE NOTICE_STATUS = 'Y'
+		ORDER BY NOTICE_NO DESC
 	</select>
 	
 	<!-- 공지사항 수정하기 -->
 	<update id="updateNotice" parameterType="Notice">
 		UPDATE NOTICE SET
-		NOTICE_CONTENT = #{nContent}, NOTICE_MF_DT = SYSDATE
+		NOTICE_TITLE = #{nTitle} ,NOTICE_CONTENT = #{nContent}, NOTICE_MF_DT = SYSDATE
 		WHERE NOTICE_NO = #{nNo}
 	</update>
 	  

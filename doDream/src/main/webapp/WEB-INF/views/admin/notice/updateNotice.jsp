@@ -77,34 +77,35 @@
 					<!-- DataTales Example -->
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
-							<button type="button" class="btn btn-primary btn-lg btn-block rewardBtn" style="float: right; background: #8E44AD; border: #8E44AD;"
-							onclick="location.href='goUpdateNotice.dr'">공지사항 수정</button>
-						</div>
-						<div class="card-body">  
-							<div class="table-responsive">
-								<div id="dataTable_wrapper"
-									class="dataTables_wrapper dt-bootstrap4">
-									<div class="row">
-			 							<div class="col-sm-12">
-											<form action="updateNotice.dr" name="updateForm" id="updateForm" method="post">
-												<!-- summnote 에디터 출력 -->
-												공지사항 제목 : <input type="text" name="nTitle">
-												<br><br>
-												<textarea id="summernote" name="nContent"></textarea>
-												<br><br>
-												<button>수정</button>
-												<button onclick="cancle();">취소</button>
-												
-												<!-- 등록된 이미지 목록 -->
-												<input type="hidden" name="nNo" value="${notice.nNo }"> 
-												<input type="hidden" name="nWriter" value="${loginUser.userNo}">
-												<input type="hidden" name="imgList" value="">
-											</form>
+						<form action="updateNotice.dr" name="updateForm" id="updateForm" method="post">
+						<span class="float-right">
+							<button class="btn btn-primary btn-lg btn-inline rewardBtn" style="background: #8E44AD; border: #8E44AD;">공지사항 수정</button>
+							<button class="btn btn-primary btn-lg btn-inline rewardBtn" style="background: #8E44AD; border: #8E44AD;"
+							onclick="cancle();">취소하기</button>
+						</span>
+							</div>
+							<div class="card-body">  
+								<div class="table-responsive">
+									<div id="dataTable_wrapper"
+										class="dataTables_wrapper dt-bootstrap4">
+										<div class="row">
+				 							<div class="col-sm-12">
+													<!-- summnote 에디터 출력 -->
+													공지사항 제목 : <input type="text" name="nTitle">
+													<c:if test="input[value]"></c:if>
+													<br><br>
+													<textarea id="summernote" name="nContent"></textarea>
+													
+													<!-- 등록된 이미지 목록 -->
+													<input type="hidden" name="nNo" value="${notice.nNo }"> 
+													<input type="hidden" name="nWriter" value="${loginUser.userNo}">
+													<input type="hidden" name="imgList" value="">
+											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-						</div>
+						</form>
 					</div>
 
 				</div>

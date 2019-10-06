@@ -16,18 +16,22 @@ public class Review {
 	private String ReviewImg;	    // 리뷰 이미지
 	private int revCount;           // 조회수
 	private String revCategoryNo;   // 후기 카테고리번호
+	private String userNickname;	// 사용자 닉네임
+	
+	
 	public Review() {  
 		
-	} 
+	}
+
 
 	public Review(int revNo, String revTitle, String revSubTitle, String revContent, Date revEnrollDate,
 			Date revModifyDate, String revStatus, int revRefPno, int revWriter, String reviewTnImg, String reviewImg,
-			int revCount) {
+			int revCount, String revCategoryNo, String userNickname) {
 		super();
 		this.revNo = revNo;
 		this.revTitle = revTitle;
 		this.revSubTitle = revSubTitle;
-		this.revContent = revContent; 
+		this.revContent = revContent;
 		this.revEnrollDate = revEnrollDate;
 		this.revModifyDate = revModifyDate;
 		this.revStatus = revStatus;
@@ -36,136 +40,159 @@ public class Review {
 		this.reviewTnImg = reviewTnImg;
 		ReviewImg = reviewImg;
 		this.revCount = revCount;
+		this.revCategoryNo = revCategoryNo;
+		this.userNickname = userNickname;
 	}
+
 
 	public int getRevNo() {
 		return revNo;
 	}
 
+
 	public void setRevNo(int revNo) {
 		this.revNo = revNo;
 	}
+
 
 	public String getRevTitle() {
 		return revTitle;
 	}
 
+
 	public void setRevTitle(String revTitle) {
 		this.revTitle = revTitle;
 	}
+
 
 	public String getRevSubTitle() {
 		return revSubTitle;
 	}
 
+
 	public void setRevSubTitle(String revSubTitle) {
 		this.revSubTitle = revSubTitle;
 	}
+
 
 	public String getRevContent() {
 		return revContent;
 	}
 
+
 	public void setRevContent(String revContent) {
 		this.revContent = revContent;
 	}
+
 
 	public Date getRevEnrollDate() {
 		return revEnrollDate;
 	}
 
+
 	public void setRevEnrollDate(Date revEnrollDate) {
 		this.revEnrollDate = revEnrollDate;
 	}
+
 
 	public Date getRevModifyDate() {
 		return revModifyDate;
 	}
 
+
 	public void setRevModifyDate(Date revModifyDate) {
 		this.revModifyDate = revModifyDate;
 	}
+
 
 	public String getRevStatus() {
 		return revStatus;
 	}
 
+
 	public void setRevStatus(String revStatus) {
 		this.revStatus = revStatus;
 	}
+
 
 	public int getRevRefPno() {
 		return revRefPno;
 	}
 
+
 	public void setRevRefPno(int revRefPno) {
 		this.revRefPno = revRefPno;
 	}
+
 
 	public int getRevWriter() {
 		return revWriter;
 	}
 
+
 	public void setRevWriter(int revWriter) {
 		this.revWriter = revWriter;
 	}
+
 
 	public String getReviewTnImg() {
 		return reviewTnImg;
 	}
 
+
 	public void setReviewTnImg(String reviewTnImg) {
 		this.reviewTnImg = reviewTnImg;
 	}
 
+
 	public String getReviewImg() {
-		return reviewImg;
+		return ReviewImg;
 	}
+
 
 	public void setReviewImg(String reviewImg) {
-		this.reviewImg = reviewImg;
+		ReviewImg = reviewImg;
 	}
 
-	public String getUserNickname() {
-		return userNickname;
-	}
-
-	public void setUserNickname(String userNickname) {
-		this.userNickname = userNickname;
-	}
 
 	public int getRevCount() {
 		return revCount;
 	}
 
+
 	public void setRevCount(int revCount) {
 		this.revCount = revCount;
 	}
 
-	public String getRevSubTitle() {
-		return revSubTitle;
-	}
 
-	public void setRevSubTitle(String revSubTitle) {
-		this.revSubTitle = revSubTitle;
-	}
-
-	public int getRevCategoryNo() {
+	public String getRevCategoryNo() {
 		return revCategoryNo;
 	}
 
-	public void setRevCategoryNo(int revCategoryNo) {
+
+	public void setRevCategoryNo(String revCategoryNo) {
 		this.revCategoryNo = revCategoryNo;
 	}
+
+
+	public String getUserNickname() {
+		return userNickname;
+	}
+
+
+	public void setUserNickname(String userNickname) {
+		this.userNickname = userNickname;
+	}
+
 
 	@Override
 	public String toString() {
 		return "Review [revNo=" + revNo + ", revTitle=" + revTitle + ", revSubTitle=" + revSubTitle + ", revContent="
 				+ revContent + ", revEnrollDate=" + revEnrollDate + ", revModifyDate=" + revModifyDate + ", revStatus="
 				+ revStatus + ", revRefPno=" + revRefPno + ", revWriter=" + revWriter + ", reviewTnImg=" + reviewTnImg
-				+ ", ReviewImg=" + ReviewImg + ", revCount=" + revCount + "]";
+				+ ", ReviewImg=" + ReviewImg + ", revCount=" + revCount + ", revCategoryNo=" + revCategoryNo
+				+ ", userNickname=" + userNickname + "]";
 	}
-
 	
 
 }

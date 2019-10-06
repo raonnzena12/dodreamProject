@@ -26,6 +26,7 @@
 		FROM REVIEW
 		JOIN USER_TB ON(USER_NO=REVIEW_WRITER)
 		WHERE REVIEW_STATUS = 'Y'
+		ORDER BY 1 DESC
 	</select>
 	
 	
@@ -38,7 +39,7 @@
 	</insert>
 	
 	<!-- 해당 리뷰 조회 -->
-	<select id="selectReview" parameterType="_int">
+	<select id="selectReview" resultMap="ReviewResultSet" parameterType="_int">
 		SELECT  REVIEW_NO,REVIEW_TITLE,REVIEW_CONTENT,REVIEW_ER_DT,REVIEW_MF_DT,REVIEW_STATUS,REVIEW_REF_PNO,USER_NICKNAME,REVIEW_TN_IMG,
         REVIEW_IMG,REVIEW_COUNT,REVIEW_SUBTITLE, REVIEW_CNO
 		FROM REVIEW
@@ -47,5 +48,21 @@
 		AND REVIEW_NO = #{revNo}
 	</select>
 	
+	<!-- 해당 리뷰 수정 -->
+	<update id="updateReview" parameterType="Review">
+		UPDATE REVIEW SET 
+		REVIEW_TITLE = #{revTitle}, REVIEW_CONTENT = #{revContent}, REVIEW_MF_DT = SYSDATE,
+		REVIEW_CNO = #{revCategoryNo} ,
+		REVIEW_TN_IMG = #{reviewTnImg}, 
+		REVIEW_SUBTITLE = #{revSubTitle}
+		WHERE REVIEW_NO = #{revNo}
+	</update> 
+	
+	<!-- 해당 리뷰 삭제 -->
+	<update id="removeReview" parameterType="_int">
+		UPDATE REVIEW SET 
+		REVIEW_STATUS = 'N'
+		WHERE REVIEW_NO = #{revNo}
+	</update>
 
 </mapper>
