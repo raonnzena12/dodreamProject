@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.dodream.spring.admin.model.vo.Alarm;
 import com.dodream.spring.customerCenter.model.vo.Notice;
 import com.dodream.spring.customerCenter.model.vo.Review;
 import com.dodream.spring.member.model.vo.Member;
@@ -261,6 +262,11 @@ public interface AdminService {
 	 * @return result
 	 */
 	public abstract int updateReserveStatusToFail(String[] rNo);
+
+	/** 알림 리스트
+	 * @return list
+	 */
+	public abstract ArrayList<Alarm> goAlarmList();
 
 	
 

@@ -90,15 +90,18 @@
 										class="dataTables_wrapper dt-bootstrap4">
 										<div class="row">
 											<div class="col-sm-12">
-												<!-- summnote 에디터 출력 -->
-												공지사항 제목 : <input type="text" name="nTitle">
-												<br><br>
-												<textarea id="summernote" name="nContent"></textarea>
-												<br><br>
-												   
+											<table align="center" id="tb" cellpadding="15" cellspacing="0" width="780px" >
+												<tr>
+													<!-- summnote 에디터 출력 -->
+													<th> 공지사항 제목 : <input type="text" name="nTitle" size="80" placeholder="제목을 입력해주세요."></th>
+												</tr>
+												<tr>
+													<td><textarea id="summernote" name="nContent"></textarea><td>
+												</tr> 
 												<!-- 등록된 이미지 목록 -->
 												<input type="hidden" name="nWriter" value="${loginUser.userNo}">
 												<input type="hidden" name="imgList" value="">
+											</table>	
 											</div>
 										</div>
 									</div>

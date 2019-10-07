@@ -9,6 +9,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.dodream.spring.admin.model.vo.Alarm;
 import com.dodream.spring.common.model.vo.PageInfo;
 import com.dodream.spring.customerCenter.model.vo.Notice;
 import com.dodream.spring.customerCenter.model.vo.Review;
@@ -368,6 +369,13 @@ public class AdminDao {
 	 */
 	public ArrayList<Project> selectProjectList5() {
 		return (ArrayList)sqlSession.selectList("adminProjectMapper.selectProjectList5");
+	}
+
+	/** 알림 리스트
+	 * @return list
+	 */
+	public ArrayList<Alarm> goAlarmList() {
+		return (ArrayList)sqlSession.selectList("adminAlarmMapper.goAlarmList");
 	}
 
 

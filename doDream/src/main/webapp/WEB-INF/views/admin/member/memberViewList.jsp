@@ -44,6 +44,9 @@
 	background-color: #8E44AD;
 	cursor: pointer;
 }
+tbody tr:hover{
+	background: #f8f9fc;
+}
 </style>
 
 </head>

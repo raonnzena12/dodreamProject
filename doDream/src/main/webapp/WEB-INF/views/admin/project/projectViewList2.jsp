@@ -49,6 +49,9 @@
 .sorting{
 	width: auto;
 }
+tbody tr:hover{
+	background: #f8f9fc;
+}
 
 </style>
 
