@@ -53,6 +53,12 @@ public interface MemberService {
 
 	public abstract int countOpenProject(int userNo);
 
+	public abstract int projectJoinCount(int userNo);
+
+	public abstract int projectCloseCount(int userNo);
+
+	public abstract int deleteMember(int userNo);
+
 
 
 }
