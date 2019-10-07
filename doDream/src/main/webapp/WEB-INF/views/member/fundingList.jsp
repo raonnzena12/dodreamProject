@@ -81,6 +81,16 @@
     font-weight: bold;
     color: #666;
 }
+.projectName {
+    font-size: 28px;
+    text-decoration: underline;
+}
+.projectName a {
+    color: #444;
+}
+.artist {
+    font-size: 14px;
+}
 </style>
 </head>
 <body>
@@ -91,7 +101,6 @@
 		</div>
 		<div class="col-md-8">
 		<div id="innerCon">
-			<!-- 작업중 // 나중에 조건 값 0으로 바꿔줄것 -->
 		<c:choose>
 			<c:when test="${ fn:length(rList) == 0 }">
 			<div id="listArea">
@@ -127,11 +136,11 @@
 							<i class="material-icons">play_arrow</i>
 							오늘마감
 						</c:when>
-						<c:when test="${ r.dDay <= prj.pCurrentFunding }">
+						<c:when test="${ r.resRefPst == 7 }">
 							<i class="material-icons">done</i>
 							펀딩성공
 						</c:when>
-						<c:when test="${ r.dDay > prj.pCurrentFunding }" >
+						<c:when test="${ r.resRefPst == 5 }" >
 							<i class="material-icons">clear</i>
 							펀딩실패
 						</c:when>
@@ -152,6 +161,25 @@
 							<tr>
 								<td class="text-gray">펀딩 마감일</td>
 								<td>${ r.resFundDate }</td>
+							</tr>
+							<tr>
+								<td class="text-gray">펀딩 상태</td>
+								<td>
+								<c:choose>
+									<c:when test="${ r.resStatusNo == 1 }">
+									결제 예약
+									</c:when>
+									<c:when test="${ r.resStatusNo == 2 }">
+									결제 완료
+									</c:when>
+									<c:when test="${ r.resStatusNo == 3 }">
+									결제 취소
+									</c:when>
+									<c:when test="${ r.resStatusNo == 4 }">
+									결제 실패
+									</c:when>
+								</c:choose>
+								</td>
 							</tr>
 						</table>
 					</div>

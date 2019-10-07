@@ -128,7 +128,7 @@ public class ReserveController {
 			userNo = ((Member)loginUser).getUserNo();
 		}
 		userNo = 17;
-		ArrayList<Reserve> rList = rsvService.selectReserveList(userNo);
+		ArrayList<Reserve> rList = rsvService.selectReserveList(new FilteringList(user));
 		model.addAttribute("rList", rList);
 		System.out.println(rList);
 		return "member/fundingList";

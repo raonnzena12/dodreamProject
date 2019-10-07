@@ -21,6 +21,7 @@
 		<result property="resFundDate" column="FUND_DATE" />
 		<result property="prjCategoryName" column="PROJECT_CT_NAME" />
 		<result property="dDay" column="D_DAY" />
+		<result property="resRefPst" column="PROJECT_ST_NO" />
 	</resultMap>
 	
 	<resultMap type="Reward" id="rewardReslutSet">
@@ -91,8 +92,22 @@
 		WHERE RESERVE_NO = #{ resNo }
 	</update>
 	
-	<select id="selectReserveList" parameterType="_int" resultMap="reserveResultSet">
+	<select id="selectReserveList" parameterType="FilteringList" resultMap="reserveResultSet">
 		SELECT * FROM RESERVE_USER_VIEW
 		WHERE RESERVE_USER = #{ userNo }
+		<choose>
+			<when test="order == 'ALL'">
+			AND RESERVE_STATUS_NO IN ( 1, 2, 3, 4 )
+			</when>
+			<when test="order == 'ING'">
+			AND RESERVE_STATUS_NO = 1
+			</when>
+			<when test="order == 'END'">
+			AND RESERVE_STATUS_NO = 2
+			</when>
+			<when test="order == 'CAN'">
+			AND RESERVE_STATUS_NO IN ( 3, 4 )
+			</when>
+		</choose>
 	</select>
 </mapper>
