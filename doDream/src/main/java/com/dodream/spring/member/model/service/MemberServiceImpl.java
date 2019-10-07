@@ -144,4 +144,23 @@ public class MemberServiceImpl implements MemberService {
 		
 		return mDao.countOpenProject(userNo);
 	}
+
+
+	@Override
+	public int projectJoinCount(int userNo) {
+		return mDao.projectJoinCount(userNo);
+	}
+
+
+	@Override
+	public int projectCloseCount(int userNo) {
+		return mDao.projectCloseCount(userNo);
+	}
+
+
+	@Override
+	public int deleteMember(int userNo) {
+		
+		return mDao.deleteMember(userNo);
+	}
 }
