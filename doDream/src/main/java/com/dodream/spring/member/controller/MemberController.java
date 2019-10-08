@@ -94,7 +94,7 @@ public class MemberController {
 	 * @return
 	 */
 	@RequestMapping(value = "loginmodal.dr", method = RequestMethod.POST)
-	public String loginModal(Member member, Model model, String prevPage, HttpSession session,
+	public ModelAndView loginModal(Member member, ModelAndView mv, String prevPage, HttpSession session,
 			HttpServletResponse response) {
 		Member loginUser = mService.loginMember(member);
 
@@ -103,7 +103,8 @@ public class MemberController {
 		}
 		if (loginUser != null) {
 			session.setAttribute("loginUser", loginUser);
-			model.addAttribute("loginUser", loginUser);
+			mv.addObject("loginUser", loginUser);
+			mv.addObject("isDoneByModal", "true");
 			System.out.println(loginUser);
 			// 로그인 카운트 해주는 함수 호출;
 			int result = mService.checkVisitToday(loginUser.getUserNo());
@@ -112,11 +113,11 @@ public class MemberController {
 				if (result > 0)
 					System.out.println("userNo : " + loginUser.getUserNo() + "번 회원이 DAYCOUNT 테이블에 삽입됨");
 			}
-
-			return "redirect:insertFundForm.dr";
+			mv.setViewName("redirect:insertFundForm.dr");
+			return mv;
 		} else {
-			model.addAttribute("msg", "로그인 실패");
-			return "common/errorPage";
+			mv.addObject("msg", "로그인 실패").setViewName("common/errorPage");
+			return mv;
 		}
 	}
 
