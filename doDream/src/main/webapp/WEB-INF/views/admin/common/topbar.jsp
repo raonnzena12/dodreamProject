@@ -7,6 +7,9 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<!-- include summernote css/js -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
 </head>
 <body>
 
@@ -56,7 +59,7 @@
 				<div
 					class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
 					aria-labelledby="alertsDropdown">
-					<p class="dropdown-header">Alerts Center</p>
+					<p class="dropdown-header" style="font-size: medium;">알 림 창</p>
 					<a class="dropdown-item d-flex align-items-center" href="#">
 						<div class="mr-3">
 							<div class="icon-circle bg-primary">
@@ -89,8 +92,7 @@
 							Spending Alert: We've noticed unusually high spending for your
 							account.
 						</div>
-					</a> <a class="dropdown-item text-center small text-gray-500" href="#">Show
-						All Alerts</a>
+					</a> <a class="dropdown-item text-center small text-gray-500" href="goAlarmList.dr">모든 알림 보기</a>
 				</div></li>
 
 			<!-- Nav Item - Messages -->

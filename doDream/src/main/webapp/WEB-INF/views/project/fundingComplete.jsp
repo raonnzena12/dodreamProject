@@ -10,7 +10,9 @@
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 </head>
 <body>
-<c:url var="myFundingStatus" value="temp3.dr" />
+<c:url var="myFundingStatus" value="myFundingInfo.dr" >
+    <c:param name="rsvNo" value="${ resNo }" />
+</c:url>
 <section id="fdComplete">
     <div class="container-fluid">
         <div class="row">
@@ -33,13 +35,13 @@
                                 <button type="button" class="btn btn-light rounded-circle border" id="shareBtn"><i class="material-icons">share</i></button>
                             </div>
                             <div class="col-md-3" id="area2" >
-                                <a href="javascript:sendKakaoLink()">
+                                <a href="javascript:sendKakaoLink()" title="카카오톡 공유하기">
                                     <img src="resources/images/kakao_sns_icon.png">
                                 </a>
-                                <a href="" onclick="window.open('https://twitter.com/share?text=dodreamTest&url=http://localhost:8080/spring/thankYou.dr','','width=700, height=460'); return false;", title="트위터 공유">
+                                <a href="" onclick="window.open('https://twitter.com/share?text=dodreamTest&url=http://localhost:8080/spring/detailSt.dr?pNo=${ prj.pNo }','','width=700, height=460'); return false;", title="트위터 공유하기">
                                     <img src="resources/images/twit_gray_icon.png">
                                 </a>
-                                <a href="" onclick="window.open('http://www.facebook.com/sharer/sharer.php?u=http://localhost:8080/spring/thankYou.dr','','width=700, height=460'); return false;", title="페이스북 공유">
+                                <a href="" onclick="window.open('http://www.facebook.com/sharer/sharer.php?u=http://localhost:8080/spring/detailSt.dr?pNo=${ prj.pNo }','','width=700, height=460'); return false;", title="페이스북 공유하기">
                                     <img src="resources/images/faceB_sns_icon.png">
                                 </a>
                             </div>
@@ -49,7 +51,7 @@
                             <div class="infoText pt-4 pb-3">
                                 <ul>
                                     <li class="my-1">쇼핑하기처럼 지금 결제가 되지 않았습니다. 프로젝트가 성공하면 결제가 실행됩니다.</li>
-                                    <li class="my-1">프로젝트 종료일(${ pCloseDate })의 다음 영업일에 펀딩 선공여부에 따라 결제실행/결제취소가 진행됩니다.</li>
+                                    <li class="my-1">프로젝트 종료일(${ prj.pCloseDate })의 다음 영업일에 펀딩 성공여부에 따라 결제실행/결제취소가 진행됩니다.</li>
                                     <li class="my-1">프로젝트 실패 시 결제예약 정보가 자동으로 삭제되고 결제가 진행되지 않습니다.</li>
                                     <li class="my-1">결제실행일에 결제자 귀책사유(카드재발급, 한도초과, 이용정지 등)로 인하여 결제가 실패 할 수 있으니, 결제예약으로 등록하신 카드가 유효한지 다시 한번 확인하세요.</li>
                                 </ul>
@@ -111,8 +113,8 @@ function sendKakaoLink() {
           }
         },
         social: {
-        //   likeCount: 286,
-          viewCount: 845
+          likeCount: "286",
+          viewCount: "${ prj.pCount }"
         },
         buttons: [
           {

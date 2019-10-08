@@ -4,12 +4,10 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.web.multipart.MultipartFile;
-
+import com.dodream.spring.project.model.vo.FilteringList;
+import com.dodream.spring.project.model.vo.Like;
 import com.dodream.spring.project.model.vo.Project;
 import com.dodream.spring.project.model.vo.Reward;
-import com.dodream.spring.project.model.vo.RewardList;
-import com.dodream.spring.reserve.model.vo.Reserve;
 
 public interface ProjectService {
 /// 공동사용
@@ -22,18 +20,23 @@ public interface ProjectService {
 	public abstract Project selectProject(int pNo);
 
 	/**
-	 * category로 프로젝트 리스트를 로드하는 Service
-	 * @param category
+	 * filter로 프로젝트 리스트를 로드하는 Service
+	 * @param filter
 	 * @param currentPage 
 	 * @return pList
 	 */
-	public abstract ArrayList<Project> selectPrjList(String category, int currentPage);
+	public abstract ArrayList<Project> selectPrjList(FilteringList filter, int currentPage);
 
 	/**
-	 * 펀딩 등록페이지로 넘어가기 전에 프로젝트번호를 생성해주는 Service입니다.
+	 * 펀딩 등록페이지로 넘어가기 전에 프로젝트를 생성해주는 Service입니다.
 	 * @return pNo
 	 */
-	public abstract int createProjectNumber();
+	public abstract int createProject();
+	
+	/** 위에서 생성된 프로젝트 번호를 가져오는 Service
+	 * @return pNo
+	 */
+	public abstract int selectThisProject();
 	
 	/**
 	 * 리워드를 DB에 저장시키기 위한 Service입니다.
@@ -57,4 +60,22 @@ public interface ProjectService {
 	 * @return rList
 	 */
 	public abstract ArrayList<Reward> selectRewardList(String rewardStr);
+
+	/**
+	 * 조회수 증감없이 프로젝트 조회하는 Service
+	 * @param resRefPno
+	 * @return prj
+	 */
+	public abstract Project selectProjectS(int pNo);
+
+	/**
+	 * 리스트에서 좋아요 누르는 Service
+	 * status 1 : 좋아요 / status 0 : 좋아요 취소
+	 * @param like
+	 * @param status
+	 * @return result
+	 */
+	public abstract int insertLikeProject(Like like, int status);
+
+
 }

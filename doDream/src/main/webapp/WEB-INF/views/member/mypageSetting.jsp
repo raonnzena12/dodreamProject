@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html>
 <html>
@@ -19,15 +20,6 @@
       font-size: 14px;
    }
    
-   .userProfileImage{
-      width: 140px;
-      height: 140px;
-   }
-   
-/*    #deleteMemMsg{
-      font-size: 13px;
-   } */
-   
    #deleteMemMsg a{
       text-decoration: none;
       color: red;
@@ -39,7 +31,9 @@
       padding: 0; 
    }
    
-
+   #deleteMember{
+   	cursor: pointer;
+   }
 
 </style>
 
@@ -70,12 +64,17 @@
                         </td>
                         <td style="width: 60%">
                            <div class="text-center">
-                              <c:if test="${ !empty loginUser.userProfileImage}">
-                              <img alt="프로필사진" src="resources/images/userProfileImage/${loginUser.userProfileImage}" class="rounded-circle userProfileImage" id="userProfileImage"  name="userProfileImage"/>
-                              </c:if>
-                              <c:if test="${empty loginUser.userProfileImage}">
-                              <img alt="프로필사진" src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg" class="rounded-circle userProfileImage" id="userProfileImage" name="userProfileImage"/>
-                              </c:if>
+                              <c:choose>
+								<c:when test="${empty loginUser.userProfileImage}">
+								<img alt="프로필사진" src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg" class="rounded-circle float-sm ml-3" style="width: 150px; height: 150px;"/>
+								</c:when>
+								<c:when test= "${fn:contains(loginUser.userProfileImage,'http://')}">
+								<img alt="프로필사진" src="${loginUser.userProfileImage}" class="rounded-circle float-sm" style="width: 150px; height: 150px;"/>
+								</c:when>
+								<c:otherwise>
+								<img alt="프로필사진" src="resources/images/userProfileImage/${loginUser.userProfileImage}" class="rounded-circle float-sm" style="width: 150px; height: 150px;"/>
+								</c:otherwise>
+								</c:choose>
                            </div>
                         </td>
                         <td style="width: 20%" class="text-center">
@@ -122,7 +121,7 @@
                      </tr>
                   </table>
                   <div id="deleteMemMsg" class= "text-center">
-                     <mark>두드림</mark>에서 탈퇴하시겠습니까? <a href="deleteForm.dr">회원탈퇴</a>   
+                     <mark>두드림</mark>에서 탈퇴하시겠습니까? <a role="button" id="deleteMember">회원탈퇴</a>   
                   </div>
                            
                </form>
@@ -144,17 +143,14 @@
            insertAddress : "#address",
        });
       
-      //사진 등록
-      
+      //사진 등록      
       $("#changeImgBtn").click(function() {
          $("#changbtn").click();
       });
       
       var sel_file;
-/*       var origin = "${empty loginUser.userProfileImage}"; */
       
       $("#changbtn").on("change", handleImgSelect);
-
       
       function handleImgSelect(e) {
          
@@ -219,6 +215,26 @@
        $("#postcode").attr("value",res[2]);
               
     });
+   
+   //회원탈퇴버튼 클릭 시 오픈프로젝트 조회
+   $("#deleteMember").click(function(){
+	   $.ajax({
+		   url: "countOpenPJT.dr",
+		   type: "post",
+		   data: {userNo : ${loginUser.userNo}},
+		   success: function(result){
+			   console.log(result);
+			   if(result > 0){
+				   alert("진행중인 프로젝트가"+result+"건이 있습니다. 탈퇴를 진행할 수 없습니다.");
+				   $("#deleteMember").bind("click", false);
+				   //프로젝트 오픈건이 있으면 비활성화
+			   }else{
+				   alert("진행중인 프로젝트가 없습니다.");
+				   location.href = "deleteForm.dr?userNo=${loginUser.userNo}";
+			   }
+		   }
+	   });
+   });
    
    
    

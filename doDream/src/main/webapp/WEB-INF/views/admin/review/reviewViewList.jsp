@@ -48,7 +48,9 @@
 .sorting{
 	width: auto;
 }
-
+tbody tr:hover{
+	background: #f8f9fc;
+}
 </style>
 
 </head>
@@ -92,83 +94,58 @@
 														<th class="sorting_asc" tabindex="0"
 															aria-controls="dataTable" rowspan="1" colspan="1"
 															aria-sort="ascending"
-															aria-label="Name: activate to sort column descending">주문 예약 번호</th>
+															aria-label="Name: activate to sort column descending">리뷰 번호</th>
 														<th class="sorting" tabindex="0" aria-controls="dataTable"
 															rowspan="1" colspan="1"
-															aria-label="Office: activate to sort column ascending">프로젝트 이름</th>
+															aria-label="Office: activate to sort column ascending">리뷰 제목</th>
 														<th class="sorting" tabindex="0" aria-controls="dataTable"
 															rowspan="1" colspan="1"
-															aria-label="Age: activate to sort column ascending">회원 이름</th>
+															aria-label="Age: activate to sort column ascending">리뷰 부제목</th>
 														<th class="sorting" tabindex="0" aria-controls="dataTable"
 															rowspan="1" colspan="1"
-															aria-label="Start date: activate to sort column ascending">주문일자</th>
+															aria-label="Start date: activate to sort column ascending">리뷰 작성일</th>
 														<th class="sorting" tabindex="0" aria-controls="dataTable"
 															rowspan="1" colspan="1"
-															aria-label="Salary: activate to sort column ascending">추가 후원금</th>
+															aria-label="Salary: activate to sort column ascending">해당 프로젝트 번호</th>
 														<th class="sorting" tabindex="0" aria-controls="dataTable"
 															rowspan="1" colspan="1"
-															aria-label="Salary: activate to sort column ascending">배송 이름</th>
+															aria-label="Salary: activate to sort column ascending">작성자 닉네임</th>
 														<th class="sorting" tabindex="0" aria-controls="dataTable"
 															rowspan="1" colspan="1"
-															aria-label="Salary: activate to sort column ascending">배송 전화번호</th>
+															aria-label="Salary: activate to sort column ascending">리뷰 조회수</th>
 														<th class="sorting" tabindex="0" aria-controls="dataTable"
 															rowspan="1" colspan="1"
-															aria-label="Salary: activate to sort column ascending">배송 주소</th>
-														<th class="sorting" tabindex="0" aria-controls="dataTable"
-															rowspan="1" colspan="1"
-															aria-label="Salary: activate to sort column ascending">예약 취소</th>
+															aria-label="Salary: activate to sort column ascending">리뷰 수정</th>
 													</tr>
 												</thead>
 												<tfoot>
 													<tr>
-														<th rowspan="1" colspan="1">주문 예약 번호</th>
-														<th rowspan="1" colspan="1">프로젝트 이름</th>
-														<th rowspan="1" colspan="1">회원 이름</th>
-														<th rowspan="1" colspan="1">주문일자 </th>
-														<th rowspan="1" colspan="1">추가 후원금</th>
-														<th rowspan="1" colspan="1">배송 이름</th>
-														<th rowspan="1" colspan="1">배송 전화번호</th>
-														<th rowspan="1" colspan="1">배송 주소</th>
-														<th rowspan="1" colspan="1">예약 취소</th>
+														<th rowspan="1" colspan="1">리뷰 번호</th>
+														<th rowspan="1" colspan="1">리뷰 제목</th>
+														<th rowspan="1" colspan="1">리뷰 부제목</th>
+														<th rowspan="1" colspan="1">리뷰 작성일</th>
+														<th rowspan="1" colspan="1">해당 프로젝트 번호</th>
+														<th rowspan="1" colspan="1">작성자 닉네임</th>
+														<th rowspan="1" colspan="1">리뷰 조회수</th>
+														<th rowspan="1" colspan="1">리뷰 수정</th>
 													</tr>
 												</tfoot>
 												<tbody>
 													<c:forEach var="r" items="${ list }">
 														<tr role="row" class="odd">
-															<td class="sorting_1">${ r.resNo }</td>
-															<td>${ r.pTitle}</td>
+															<td class="sorting_1">${ r.revNo }</td>
+															<td>${ r.revTitle}</td>
+															<td>${ r.revSubTitle}</td>
+															<td>${ r.revEnrollDate}</td>
+															<td>${ r.revRefPno}</td>
 															<td>${ r.userNickname}</td>
-															<td>${ r.resDate}</td>
-															<td>${ r.addi}</td>
-															<td>${ r.resName}</td>
-															<td>${ r.resContact}</td>
-															<td>${ r.resAddress}</td>
+															<td>${ r.revCount}</td>
 															<td>
-																<button type="button" data-toggle="modal" data-target="#modal${ status.index }" data-whatever="취소하기"
- 																 id="removeReply" class="btn btn-primary btn-lg btn-block rewardBtn">취소하기</button>
- 																 <!-- Modal -->
- 																<form action ="cancelReserve.dr" method="post">
-																<div class="modal fade" id="modal${ status.index }" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-																  <div class="modal-dialog" role="document">
-																    <div class="modal-content">
-																      <div class="modal-header">
-																        <h5 class="modal-title" id="exampleModalLabel">예약 취소</h5>
-																        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-																          <span aria-hidden="true">&times;</span>
-																        </button>
-																      </div>
-																      <div class="modal-body">
-																        	예약 취소를 진행하시겠습니까?
-																      </div>
-																      <div class="modal-footer">
-																        <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-																        <button type="submit" class="btn btn-primary">취소하기</button>
-																        <input type="hidden" name="resNo" value="${r.resNo}">
-																      </div>
-																    </div>
-																  </div>
-																</div>
- 																</form>
+																<c:url var="rDetail" value="rDetail.dr">
+																	<c:param name="revNo" value="${ r.revNo }"/>
+																</c:url>
+																<button type="button" class="btn btn-primary btn-lg btn-block rewardBtn" 
+																onclick="location.href='${rDetail}'">상세보기</button>
 															</td>
 														</tr>
 													</c:forEach>

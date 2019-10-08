@@ -14,6 +14,8 @@
 		<typeAlias type="com.dodream.spring.project.model.vo.Like" alias="Like"/>
 		<typeAlias type="com.dodream.spring.project.model.vo.Reply" alias="Reply"/>
 		<typeAlias type="com.dodream.spring.project.model.vo.SubReply" alias="SubReply"/>
+		<typeAlias type="com.dodream.spring.project.model.vo.DetailFollow" alias="DetailFollow"/>
+		<typeAlias type="com.dodream.spring.project.model.vo.DetailReport" alias="DetailReport"/>
 		<typeAlias type="com.dodream.spring.customerCenter.model.vo.Review" alias="Review"/>
 		<typeAlias type="com.dodream.spring.customerCenter.model.vo.Notice" alias="Notice"/>
 		<typeAlias type="com.dodream.spring.customerCenter.model.vo.Faq" alias="Faq"/>
@@ -23,7 +25,9 @@
 		<typeAlias type="com.dodream.spring.follow.model.vo.Follow" alias="Follow"/>
 		<typeAlias type="com.dodream.spring.report.model.vo.ReportReply" alias="ReportReply"/>
 		<typeAlias type="com.dodream.spring.report.model.vo.ReportVo" alias="ReportVo"/>
-
+		<typeAlias type="com.dodream.spring.reserve.model.vo.History" alias="History" />
+		<typeAlias type="com.dodream.spring.project.model.vo.FilteringList" alias="FilteringList" />
+		<typeAlias type="com.dodream.spring.admin.model.vo.Alarm" alias="Alarm" />
 	</typeAliases>
 	
 	
@@ -40,6 +44,8 @@
     	<mapper resource="mappers/reserve-mapper.xml"/>
     	<mapper resource="mappers/adminReply-mapper.xml"/>
     	<mapper resource="mappers/adminNotice-mapper.xml"/>
+    	<mapper resource="mappers/adminReview-mapper.xml"/>
+    	<mapper resource="mappers/adminAlarm-mapper.xml"/>
  	</mappers>
 	
 </configuration>

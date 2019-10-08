@@ -15,13 +15,14 @@ public class Reply {
 	private String reWriImg;// 작성자 이미지
 	private int reCGNo;//카테고리 번호
 	private String reCGName;// 카테고리 이름
+	private int reRSUser;//프로젝트에 펀딩 했는 지 유무
 	
 	
 	public Reply() {}
 
 
 	public Reply(int reNo, String reContent, String reStatus, Date reWriDate, String reDay, Date reModiDate,
-			int reRefPNo, int reWriNo, String reWriter, String reWriImg, int reCGNo, String reCGName) {
+			int reRefPNo, int reWriNo, String reWriter, String reWriImg, int reCGNo, String reCGName, int reRSUser) {
 		super();
 		this.reNo = reNo;
 		this.reContent = reContent;
@@ -35,6 +36,7 @@ public class Reply {
 		this.reWriImg = reWriImg;
 		this.reCGNo = reCGNo;
 		this.reCGName = reCGName;
+		this.reRSUser = reRSUser;
 	}
 
 
@@ -158,15 +160,26 @@ public class Reply {
 	}
 
 
+	public int getReRSUser() {
+		return reRSUser;
+	}
+
+
+	public void setReRSUser(int reRSUser) {
+		this.reRSUser = reRSUser;
+	}
+
+
 	@Override
 	public String toString() {
 		return "Reply [reNo=" + reNo + ", reContent=" + reContent + ", reStatus=" + reStatus + ", reWriDate="
 				+ reWriDate + ", reDay=" + reDay + ", reModiDate=" + reModiDate + ", reRefPNo=" + reRefPNo
 				+ ", reWriNo=" + reWriNo + ", reWriter=" + reWriter + ", reWriImg=" + reWriImg + ", reCGNo=" + reCGNo
-				+ ", reCGName=" + reCGName + "]";
+				+ ", reCGName=" + reCGName + ", reRSUser=" + reRSUser + "]";
 	}
 
 
+	
 	
 	
 	

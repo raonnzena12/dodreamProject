@@ -32,12 +32,12 @@
 	
 	<!-- 내가 팔로잉한 사람 리스트 -->
 	<select id="selectFollowList" parameterType="_int" resultMap="followResultSet">
-		SELECT * FROM FOLLOWERLIST WHERE FOLLOWER = #{userNo}
+		SELECT * FROM FOLLOWERLIST WHERE FOLLOWER = #{userNo} ORDER BY FOLLOW_DATE DESC
 	</select>
 	
 	<!-- 나를 팔로잉한 사람 리스트 -->
 	<select id="selectFollowerList" parameterType="_int" resultMap="followResultSet">
-		SELECT * FROM FOLLOWLIST WHERE FOLLOW = #{userNo}
+		SELECT * FROM FOLLOWLIST WHERE FOLLOW = #{userNo} ORDER BY FOLLOWER_DATE DESC
 	</select>
   
 </mapper>

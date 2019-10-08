@@ -16,9 +16,6 @@
 		<result property="userAddress" column="USER_ADDR" />
 		<result property="userPhone" column="USER_PHONE" />
 		<result property="userProfileImage" column="USER_PF_IMG" />
-		<result property="userSelf" column="USER_SELF" />
-		<result property="sessionId" column="AUTO_SESSIONKEY" />
-		<result property="limit" column="AUTO_EXPIRYDATE" />
 	</resultMap>
 	
 
@@ -59,7 +56,12 @@
 		VALUES(SEQ_USER_NO.NEXTVAL, #{userEmail}, #{userNickname}, #{userPwd}, 'Y')
 	</insert>
 	
-
+	<!-- SNS회원가입 -->
+	<insert id="insertSNS" parameterType="Member">
+		INSERT INTO USER_TB(USER_NO, USER_EMAIL, USER_NICKNAME, USER_PWD, USER_PF_IMG, USER_EM_AUTH_YN)
+		VALUES(SEQ_USER_NO.NEXTVAL, #{userEmail}, #{userNickname}, #{userPwd}, #{userProfileImage}, 'Y')
+	</insert>
+	
 	<!-- 회원정보 수정 -->
 	<update id="updateMember" parameterType="Member">
 		UPDATE USER_TB
@@ -89,20 +91,12 @@
 		SELECT COUNT(*) FROM DAYCOUNT
 		WHERE USER_NO = #{userNo}		
 	</select>
-
-	<select id="checkUserWithSessionKey" parameterType="string" resultType="_int">
-    	SELECT * FROM USER_TB
-    	WHERE AUTO_SESSIONKEY= #{sessionId}
-    	AND AUTO_EXPIRYDATE > SYSDATE
-    </select>
-    
-	<!-- 자동로그인 값 저장-->	
-	<update id="keepLogin" parameterType="Member">
-		UPDATE USER_TB SET AUTO_SESSIONKEY = #{sessionId}, AUTO_EXPIRYDATE = #{limit}
-		WHERE USER_NO = #{userNo}
-    </update>
-    
-    <!-- (#id:VARCHAR#, #name:VARCHAR#, #title:VARCHAR#)-->
+	
+	<!-- 회원탈퇴 -->
+	<update id="deleteMember" parameterType="_int">
+		UPDATE USER_TB 
+		SET USER_STATUS = 'N' WHERE USER_NO = #{userNo}
+	</update>
     
 	
   

@@ -14,8 +14,13 @@
 		<result property="resUser" column="RESERVE_USER"/>
 		<result property="resRefPno" column="RESERVE_REF_PNO"/>
 		<result property="resStatusNo" column="RESERVE_STATUS_NO"/>
-		<result property="userNickname" column="USER_NICKNAME"/>
 		<result property="pTitle" column="PROJECT_TITLE"/>
+		<result property="userNickname" column="USER_NICKNAME"/>
+		<result property="artistNickname" column="BILLINGKEY"/>
+		<result property="resRwdPriceSum" column="REWARD_PRICE_SUM"/>
+		<result property="resFundDate" column="FUND_DATE"/>
+		<result property="prjCategoryName" column="PROJECT_CT_NAME"/>
+		<result property="dDay" column="D_DAY"/>
 	</resultMap>
 	
 	<!-- 주문 예약 개수 관련 쿼리  -->
@@ -47,6 +52,7 @@
 		JOIN PROJECT_TB ON(RESERVE_REF_PNO = PROJECT_NO)
 		JOIN USER_TB ON(RESERVE_USER = USER_NO)
 		WHERE RESERVE_STATUS_NO = 1
+		ORDER BY 1 DESC
 	</select>
 	
 	<!-- 결제 현황 쿼리 -->
@@ -57,6 +63,7 @@
 		JOIN PROJECT_TB ON(RESERVE_REF_PNO = PROJECT_NO)
 		JOIN USER_TB ON(RESERVE_USER = USER_NO)
 		WHERE RESERVE_STATUS_NO = 2
+		ORDER BY 1 DESC
 	</select>
 	
 	<!-- 주문 예약 취소  쿼리 -->
@@ -67,6 +74,7 @@
 		JOIN PROJECT_TB ON(RESERVE_REF_PNO = PROJECT_NO)
 		JOIN USER_TB ON(RESERVE_USER = USER_NO)
 		WHERE RESERVE_STATUS_NO = 3
+		ORDER BY 1 DESC
 	</select>
 	
 	<!-- 주문 예약 취소 -->
@@ -76,4 +84,28 @@
 		WHERE RESERVE_NO = #{resNo}
 	</update>
 
+	<!-- 프로젝트별 Reserve 호출 (결제관련)-->
+	<select id="selectReserveListTarget" parameterType="_int" resultMap="reserveResultSet">
+		SELECT * FROM ADMIN_BILLING_VIEW 
+		WHERE PROJECT_NO = #{pNo} 
+		ORDER BY RESERVE_NO ASC
+	</select>
+	
+	<!-- 결제처리된 Reserve 상태값 바꿔주기 (성공) -->
+	<update id="updateReserveStatusToSuccess" parameterType="java.util.HashMap">
+		UPDATE RESERVE SET RESERVE_STATUS_NO = 2 WHERE 
+		RESERVE_NO IN 
+		<foreach collection="array" item="num" index="index" open="(" close=")" separator=",">
+			#{num}
+		</foreach>
+	</update>
+	
+	<!-- 결제처리된 Reserve 상태값 바꿔주기 (실패) -->
+	<update id="updateReserveStatusToFail" parameterType="java.util.HashMap">
+		UPDATE RESERVE SET RESERVE_STATUS_NO = 4 WHERE 
+		RESERVE_NO IN 
+		<foreach collection="array" item="num" index="index" open="(" close=")" separator=",">
+			#{num}
+		</foreach>
+	</update>
 </mapper>

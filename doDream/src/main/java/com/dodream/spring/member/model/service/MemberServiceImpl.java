@@ -2,6 +2,7 @@ package com.dodream.spring.member.model.service;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -14,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.dodream.spring.member.model.dao.MemberDao;
 import com.dodream.spring.member.model.exception.MemberException;
 import com.dodream.spring.member.model.vo.Member;
+import com.dodream.spring.project.model.vo.Project;
 
 @Service("mService")
 public class MemberServiceImpl implements MemberService {
@@ -26,15 +28,6 @@ public class MemberServiceImpl implements MemberService {
 		return mDao.selectMember(mem);
 	}
 	
-	@Override
-	public int keepLogin(Member member) {
-		return mDao.keepLogin(member);
-	}
-	
-	@Override
-	public Member checkUserWithSessionKey(String sessionId) {
-		return mDao.checkUserWithSessionKey(sessionId);
-	}
 
 	@Override
 	public List<Member> checkEmail(String userEmail) {
@@ -140,4 +133,43 @@ public class MemberServiceImpl implements MemberService {
 	public int checkValidate(Member member) {
 		return mDao.checkValidate(member);
 	}
+
+	@Override
+	public int insertSNS(Member member) {
+		
+		return mDao.insertSNS(member);
+	}
+
+
+	@Override
+	public int countOpenProject(int userNo) {
+		
+		return mDao.countOpenProject(userNo);
+	}
+
+
+	@Override
+	public int projectJoinCount(int userNo) {
+		return mDao.projectJoinCount(userNo);
+	}
+
+
+	@Override
+	public int projectCloseCount(int userNo) {
+		return mDao.projectCloseCount(userNo);
+	}
+
+
+	@Override
+	public int deleteMember(int userNo) {
+		
+		return mDao.deleteMember(userNo);
+	}
+
+	@Override
+	public ArrayList<Project> myFundingList(int userNo) {
+		return mDao.myFundingList(userNo);
+	}
+
+
 }

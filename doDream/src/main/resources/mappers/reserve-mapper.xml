@@ -16,9 +16,12 @@
 		<result property="resStatusNo" column="RESERVE_STATUS_NO" />
 		<result property="pTitle" column="PROJECT_TITLE" />
 		<result property="userNickname" column="USER_NICKNAME" />
+		<result property="artistNickname" column="PROJECT_AT_NM" />
 		<result property="resRwdPriceSum" column="REWARD_PRICE_SUM" />
 		<result property="resFundDate" column="FUND_DATE" />
-		<result property="resCustomerUid" column="RESERVE_CUS_UID" />
+		<result property="prjCategoryName" column="PROJECT_CT_NAME" />
+		<result property="dDay" column="D_DAY" />
+		<result property="resRefPst" column="PROJECT_ST_NO" />
 	</resultMap>
 	
 	<resultMap type="Reward" id="rewardReslutSet">
@@ -59,4 +62,52 @@
 		WHERE RESERVE_NO = #{ resNo }
 	</update>
 	
+	<select id="selectResNo" resultType="_int">
+		SELECT SEQ_RES_NO.NEXTVAL
+		FROM DUAL
+	</select>
+	
+	<insert id="insertReserve" parameterType="Reserve">
+		INSERT INTO RESERVE VALUES (
+			#{ resNo }, #{ bKey }, #{ addi }, SYSDATE, 
+			#{ resName }, #{ resContact }, #{ resAddress }, #{ resRequest },
+			#{ resUser }, #{ resRefPno }, 1 )
+	</insert>
+	
+	<insert id="insertHistory" parameterType="History">
+		INSERT INTO HISTORY VALUES (
+			#{ rsvNo }, #{ rwdNo }, #{ rwdAmount }, #{ rwdOption }
+		)
+	</insert>
+	
+	<update id="updateFundingStatus" parameterType="_int">
+		UPDATE RESERVE
+		SET RESERVE_STATUS_NO = 3
+		WHERE RESERVE_NO = #{ rsvNo }
+	</update>
+	
+	<update id="updateReserveCredit" parameterType="Reserve">
+		UPDATE RESERVE
+		SET BILLINGKEY = #{ bKey }
+		WHERE RESERVE_NO = #{ resNo }
+	</update>
+	
+	<select id="selectReserveList" parameterType="FilteringList" resultMap="reserveResultSet">
+		SELECT * FROM RESERVE_USER_VIEW
+		WHERE RESERVE_USER = #{ userNo }
+		<choose>
+			<when test="order == 'ALL'">
+			AND RESERVE_STATUS_NO IN ( 1, 2, 3, 4 )
+			</when>
+			<when test="order == 'ING'">
+			AND RESERVE_STATUS_NO = 1
+			</when>
+			<when test="order == 'END'">
+			AND RESERVE_STATUS_NO = 2
+			</when>
+			<when test="order == 'CAN'">
+			AND RESERVE_STATUS_NO IN ( 3, 4 )
+			</when>
+		</choose>
+	</select>
 </mapper>

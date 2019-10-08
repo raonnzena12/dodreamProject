@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="adminReviewMapper">
+
+	<resultMap type="Review" id="ReviewResultSet">
+		<id property="revNo" column="REVIEW_NO"/>
+		<result property="revTitle" column="REVIEW_TITLE"/>
+		<result property="revContent" column="REVIEW_CONTENT"/>
+		<result property="revEnrollDate" column="REVIEW_ER_DT"/>
+		<result property="revModifyDate" column="REVIEW_MF_DT"/>
+		<result property="revStatus" column="REVIEW_STATUS"/>
+		<result property="revRefPno" column="REVIEW_REF_PNO"/>
+		<result property="revWriter" column="REVIEW_WRITER"/>
+		<result property="reviewTnImg" column="REVIEW_TN_IMG"/>
+		<result property="reviewImg" column="REVIEW_IMG"/>
+		<result property="userNickname" column="USER_NICKNAME"/>
+		<result property="revCount" column="REVIEW_COUNT"/>
+		<result property="revSubTitle" column="REVIEW_SUBTITLE"/>
+		<result property="revCategoryNo" column="REVIEW_CNO"/>
+	</resultMap>
+	
+	<!-- 리뷰 목록 -->
+	<select id="selectReviewList" resultMap="ReviewResultSet">
+		SELECT  REVIEW_NO,REVIEW_TITLE,REVIEW_CONTENT,REVIEW_ER_DT,REVIEW_MF_DT,REVIEW_STATUS,REVIEW_REF_PNO,USER_NICKNAME,REVIEW_TN_IMG,
+        REVIEW_IMG,REVIEW_COUNT,REVIEW_SUBTITLE, REVIEW_CNO
+		FROM REVIEW
+		JOIN USER_TB ON(USER_NO=REVIEW_WRITER)
+		WHERE REVIEW_STATUS = 'Y'
+		ORDER BY 1 DESC
+	</select>
+	
+	
+	<!-- 리뷰 작성 -->
+	<insert id="insertReview" parameterType="Review">
+		INSERT INTO REVIEW VALUES(
+  			SEQ_PROJ_RV_NO.NEXTVAL,#{revTitle},#{revContent},SYSDATE,SYSDATE, DEFAULT, #{revRefPno}, #{revWriter} ,
+  			#{reviewTnImg}, #{reviewImg}, DEFAULT, #{revSubTitle} ,#{revCategoryNo}
+		)
+	</insert>
+	
+	<!-- 해당 리뷰 조회 -->
+	<select id="selectReview" resultMap="ReviewResultSet" parameterType="_int">
+		SELECT  REVIEW_NO,REVIEW_TITLE,REVIEW_CONTENT,REVIEW_ER_DT,REVIEW_MF_DT,REVIEW_STATUS,REVIEW_REF_PNO,USER_NICKNAME,REVIEW_TN_IMG,
+        REVIEW_IMG,REVIEW_COUNT,REVIEW_SUBTITLE, REVIEW_CNO
+		FROM REVIEW
+		JOIN USER_TB ON(USER_NO=REVIEW_WRITER)
+		WHERE REVIEW_STATUS = 'Y'
+		AND REVIEW_NO = #{revNo}
+	</select>
+	
+	<!-- 해당 리뷰 수정 -->
+	<update id="updateReview" parameterType="Review">
+		UPDATE REVIEW SET 
+		REVIEW_TITLE = #{revTitle}, REVIEW_CONTENT = #{revContent}, REVIEW_MF_DT = SYSDATE,
+		REVIEW_CNO = #{revCategoryNo} ,
+		REVIEW_TN_IMG = #{reviewTnImg}, 
+		REVIEW_SUBTITLE = #{revSubTitle}
+		WHERE REVIEW_NO = #{revNo}
+	</update> 
+	
+	<!-- 해당 리뷰 삭제 -->
+	<update id="removeReview" parameterType="_int">
+		UPDATE REVIEW SET 
+		REVIEW_STATUS = 'N'
+		WHERE REVIEW_NO = #{revNo}
+	</update>
+
+</mapper>

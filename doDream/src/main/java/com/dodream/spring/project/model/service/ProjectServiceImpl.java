@@ -7,15 +7,14 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.dodream.spring.common.Pagination;
 import com.dodream.spring.common.model.vo.PageInfo;
 import com.dodream.spring.project.model.dao.ProjectDao;
+import com.dodream.spring.project.model.vo.FilteringList;
+import com.dodream.spring.project.model.vo.Like;
 import com.dodream.spring.project.model.vo.Project;
 import com.dodream.spring.project.model.vo.Reward;
-import com.dodream.spring.project.model.vo.RewardList;
-import com.dodream.spring.reserve.model.vo.Reserve;
 
 @Service("pService")
 public class ProjectServiceImpl implements ProjectService {
@@ -38,7 +37,7 @@ public class ProjectServiceImpl implements ProjectService {
 	}
 
 	@Override
-	public ArrayList<Project> selectPrjList(String category, int currentPage) {
+	public ArrayList<Project> selectPrjList(FilteringList filter, int currentPage) {
 		
 		// 진행중/진행완료 상태의 프로젝트 갯수 조회
 		int listCount = pDao.countList();
@@ -47,15 +46,20 @@ public class ProjectServiceImpl implements ProjectService {
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 		
 		// 목록 조회 후 리턴
-		ArrayList<Project> pList = pDao.selectPrjList(category, pi);
+		ArrayList<Project> pList = pDao.selectPrjList(filter, pi);
 		return pList;
 	}
 
 	@Override
-	public int createProjectNumber() {
-		return pDao.createProjectNumber();
+	public int createProject() {
+		return pDao.createProject();
 	}
-
+	
+	@Override
+	public int selectThisProject() {
+		return pDao.selectThisProject();
+	}
+	
 	@Override
 	public int insertReward(Reward reward) {
 		return pDao.insertReward(reward);
@@ -73,6 +77,23 @@ public class ProjectServiceImpl implements ProjectService {
 		ArrayList<String> rewardList = new ArrayList<>(Arrays.asList(rewardTmp));
 		return pDao.selectRewardList(rewardList);
 	}
+
+	@Override
+	public Project selectProjectS(int pNo) {
+		return pDao.selecProjectS(pNo);
+	}
+
+	@Override
+	public int insertLikeProject(Like like, int status) {
+		int result = 0;
+		if ( status == 1 ) {
+			result = pDao.insertLikeProject(like);
+		} else if ( status == 0 ) {
+			result = pDao.deleteLikeProject(like);
+		}
+		return result;
+	}
+
 
 
 }

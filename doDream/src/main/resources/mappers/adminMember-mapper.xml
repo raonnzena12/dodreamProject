@@ -43,14 +43,14 @@
 	<select id="selectMemberList" resultMap="memberResultSet">
 		SELECT * FROM USER_TB
 		WHERE USER_STATUS = 'Y'
-		ORDER BY USER_NO
+		ORDER BY USER_NO DESC
 	</select>
 	
 	<!-- 블랙리스트  회원 전체 목록 조회 쿼리 -->
 	<select id="selectBlackList" resultMap="memberResultSet">
 		SELECT * FROM USER_TB
 		WHERE USER_STATUS = 'B'
-		ORDER BY USER_NO
+		ORDER BY USER_NO DESC
 	</select>
 	
 	<!-- 오늘 방문자 수 구하는 쿼리 -->

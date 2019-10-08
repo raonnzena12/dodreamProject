@@ -7,9 +7,9 @@ import org.springframework.web.servlet.ModelAndView;
 import com.dodream.spring.customerCenter.model.vo.Review;
 
 public interface FReviewService {
-
-	/** 프로젝트 후기로 최신순으로 성공 프로젝트를 로드하는 SErvice
-	 * @param category 
+  
+	/** 프로젝트 후기로 최신순으로 성공 프로젝트를 로드하는 Service
+	 * @param category
 	 * @param currentPage
 	 * @param mv 
 	 * @return frList
@@ -19,3 +19,4 @@ public interface FReviewService {
 	Review selectReview(int revNo);
 	
 }
+ 

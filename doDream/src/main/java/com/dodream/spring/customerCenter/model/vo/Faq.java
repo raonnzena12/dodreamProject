@@ -12,7 +12,6 @@ public class Faq {
 	private int    fWriter;     // 작성자(관리자)
 
 	public Faq() {
-		
 	}
 
 	// 전체 리스트

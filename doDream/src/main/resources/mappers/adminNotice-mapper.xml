@@ -19,21 +19,38 @@
 		FROM NOTICE
 		JOIN USER_TB ON(USER_NO=NOTICE_WRITER)
 		WHERE NOTICE_STATUS = 'Y'
+		ORDER BY NOTICE_NO DESC
 	</select>
 	
 	<!-- 공지사항 수정하기 -->
-	<update id="updateNotice" parameterType="_int">
+	<update id="updateNotice" parameterType="Notice">
 		UPDATE NOTICE SET
-		NOTICE_CONTENT = #{nContent}, NOTICE_MF_DT = SYSDATE
+		NOTICE_TITLE = #{nTitle} ,NOTICE_CONTENT = #{nContent}, NOTICE_MF_DT = SYSDATE
 		WHERE NOTICE_NO = #{nNo}
 	</update>
-	
+	  
 	<!-- 공지사항 삭제 -->
 	<update id="removeNotice" parameterType="_int">
 		UPDATE NOTICE SET
 		NOTICE_STATUS = 'N'
 		WHERE NOTICE_NO = #{nNo}
 	</update>
+	
+	<!-- 공지사항 등록 써머노트 -->
+	<insert id="insertNotice" parameterType="Notice">
+		INSERT INTO NOTICE VALUES(
+			SEQ_NOT_NO.NEXTVAL,#{nTitle},#{nContent},SYSDATE,SYSDATE,'Y',#{nWriter}
+		)
+	</insert>
+	
+	<!-- 해당 공지사항 조회 쿼리 -->
+	<select id="selectNotice" resultMap="noticeResultSet" parameterType="_int">
+		SELECT NOTICE_NO, NOTICE_TITLE,NOTICE_CONTENT,NOTICE_ER_DT,NOTICE_MF_DT,NOTICE_STATUS,NOTICE_WRITER,USER_NICKNAME
+		FROM NOTICE
+		JOIN USER_TB ON(USER_NO=NOTICE_WRITER)
+		WHERE NOTICE_NO = #{nNo}
+		AND NOTICE_STATUS = 'Y'
+	</select>
 	
 	
 	

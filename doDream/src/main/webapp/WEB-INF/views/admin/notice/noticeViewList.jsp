@@ -48,6 +48,9 @@
 .sorting{
 	width: auto;
 }
+tbody tr:hover{
+	background: #f8f9fc;
+}
 
 </style>
 
@@ -98,9 +101,6 @@
 															aria-label="Office: activate to sort column ascending">공지사항 제목</th>
 														<th class="sorting" tabindex="0" aria-controls="dataTable"
 															rowspan="1" colspan="1"
-															aria-label="Age: activate to sort column ascending">공지사항 내용</th>
-														<th class="sorting" tabindex="0" aria-controls="dataTable"
-															rowspan="1" colspan="1"
 															aria-label="Start date: activate to sort column ascending">작성일</th>
 														<th class="sorting" tabindex="0" aria-controls="dataTable"
 															rowspan="1" colspan="1"
@@ -111,21 +111,16 @@
 														<th class="sorting" tabindex="0" aria-controls="dataTable"
 															rowspan="1" colspan="1"
 															aria-label="Salary: activate to sort column ascending">공지사항 수정</th>
-														<th class="sorting" tabindex="0" aria-controls="dataTable"
-															rowspan="1" colspan="1"
-															aria-label="Salary: activate to sort column ascending">공지사항 삭제</th>
 													</tr>
 												</thead>
 												<tfoot>
 													<tr>
 														<th rowspan="1" colspan="1">공지사항 번호</th>
 														<th rowspan="1" colspan="1">공지사항 제목</th>
-														<th rowspan="1" colspan="1">공지사항 내용</th>
 														<th rowspan="1" colspan="1">작성일</th>
 														<th rowspan="1" colspan="1">수정일</th>
 														<th rowspan="1" colspan="1">작성자</th>
 														<th rowspan="1" colspan="1">공지사항 수정</th>
-														<th rowspan="1" colspan="1">공지사항 삭제</th>
 													</tr>
 												</tfoot>
 												<tbody>
@@ -133,40 +128,16 @@
 														<tr role="row" class="odd">
 															<td class="sorting_1">${ n.nNo }</td>
 															<td>${ n.nTitle}</td>
-															<td>${ n.nContent}</td>
 															<td>${ n.nEnrollDate}</td>
 															<td>${ n.nModifyDate}</td>
 															<td>${ n.userNickname}</td>
 															<td>
+																<c:url var="nDetail" value="nDetail.dr">
+																	<c:param name="nNo" value="${ n.nNo }"/>
+																</c:url>
+																
 																<button type="button" class="btn btn-primary btn-lg btn-block rewardBtn" 
-																onclick="location.href='goUpdateNotice.dr'">수정하기</button>
-															</td>
-															<td>
-																<button type="button" data-toggle="modal" data-target="#modal${ status.index }" data-whatever="삭제하기"
- 																 id="removeReply" class="btn btn-primary btn-lg btn-block rewardBtn">삭제하기</button>
- 																 <!-- Modal -->
- 																<form action ="removeNotice.dr" method="post">
-																<div class="modal fade" id="modal${ status.index }" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-																  <div class="modal-dialog" role="document">
-																    <div class="modal-content">
-																      <div class="modal-header">
-																        <h5 class="modal-title" id="exampleModalLabel">공지사항 삭제</h5>
-																        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-																          <span aria-hidden="true">&times;</span>
-																        </button>
-																      </div>
-																      <div class="modal-body">
-																        	해당 공지사항을 삭제하시겠습니까?
-																      </div>
-																      <div class="modal-footer">
-																        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-																        <button type="submit" class="btn btn-primary">삭제하기</button>
-																        <input type="hidden" name="nNo" value="${n.nNo}">
-																      </div>
-																    </div>
-																  </div>
-																</div>
- 																</form>
+																onclick="location.href='${nDetail}'"> 상세 이동</button>
 															</td>
 														</tr>
 													</c:forEach>

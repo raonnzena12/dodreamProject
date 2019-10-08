@@ -155,3 +155,6 @@
     height: auto;
     opacity: 0;
 }
+#category .fundItem {
+    cursor: pointer;
+ }

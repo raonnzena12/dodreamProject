@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,32 +42,37 @@
 			<div class="col-md-4">
 				<div id="pfImgOuter">
 					<a href="myInfo.dr">
-					<c:if test="${ empty loginUser.userProfileImage }">
-					<img alt="프로필사진" src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg" class="rounded-circle " id="userProfileImage" name="userProfileImage" />
-					</c:if>
-					<c:if test="${ !empty loginUser.userProfileImage }">
-					<img alt="프로필사진" src="resources/images/userProfileImage/${loginUser.userProfileImage}" class="rounded-circle" id="userProfileImage" name="userProfileImage"/>
-					</c:if>					
+					<c:choose>
+					<c:when test="${empty loginUser.userProfileImage}">
+					<img alt="프로필사진" src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg" class="rounded-circle float-sm ml-3" style="width: 150px; height: 150px;"/>
+					</c:when>
+					<c:when test= "${fn:contains(loginUser.userProfileImage,'http://')}">
+					<img alt="프로필사진" src="${loginUser.userProfileImage}" class="rounded-circle float-sm" style="width: 150px; height: 150px;"/>
+					</c:when>
+					<c:otherwise>
+					<img alt="프로필사진" src="resources/images/userProfileImage/${loginUser.userProfileImage}" class="rounded-circle float-sm" style="width: 150px; height: 150px;"/>
+					</c:otherwise>
+					</c:choose>
 					<img src="resources/images/settings_icon.png" class="float-sm align-top" id="setting" style="width: 35px;"/>
 					</a>
 				</div>
 			</div>
 		</div>
 		<div style="height: 20px;"></div>
-		<div class="row sticky-top" id="navOuter">
+		<div class="row" id="navOuter">
 			<div class="col-md-12">
 				<div class="row">
 					<div class="col-md-2"></div>
 					<div class="col-md-6">
 						<ul class="nav">
-							<li class="nav-item"><a class="nav-link" href="#">펀딩</a></li>
+							<li class="nav-item"><a class="nav-link" href="myFundingList.dr?userNo=${loginUser.userNo}">펀딩로그</a></li>
 							<li class="nav-item"><a class="nav-link" href="followList.dr?userNo=${loginUser.userNo}"><i class="material-icons">favorite </i></a></li>
-							<li class="nav-item"><a class="nav-link" href="#">알림</a></li>
+							<li class="nav-item"><a class="nav-link" href="#">나의문의사항</a></li>
 						</ul>
 					</div>
 					<div class="col-md-4">
 						<ul class="nav">
-							<li class="nav-item"><a class="nav-link" href="#">펀딩로그</a></li>
+							<li class="nav-item"><a class="nav-link" href="#">펀딩결제내역</a></li>
 						</ul>
 					</div>
 				</div>

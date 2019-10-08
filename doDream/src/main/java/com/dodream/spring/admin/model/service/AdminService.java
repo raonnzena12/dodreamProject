@@ -4,7 +4,9 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.dodream.spring.admin.model.vo.Alarm;
 import com.dodream.spring.customerCenter.model.vo.Notice;
+import com.dodream.spring.customerCenter.model.vo.Review;
 import com.dodream.spring.member.model.vo.Member;
 import com.dodream.spring.project.model.vo.Project;
 import com.dodream.spring.project.model.vo.Reply;
@@ -12,6 +14,10 @@ import com.dodream.spring.report.model.vo.Report;
 import com.dodream.spring.report.model.vo.ReportReply;
 import com.dodream.spring.reserve.model.vo.Reserve;
 
+/**
+ * @author user1
+ *
+ */
 /**
  * @author user1
  *
@@ -204,12 +210,6 @@ public interface AdminService {
 	 */
 	public abstract ArrayList<Notice> selectNoticeList();
 
-	/** 공지사항 수정
-	 * @param nNo
-	 * @return result
-	 */
-	public abstract int updateNotice(int nNo);
-
 	/** 주문 예약 취소 
 	 * @return result
 	 */
@@ -220,6 +220,53 @@ public interface AdminService {
 	 * @return result 
 	 */
 	public abstract int removeNotice(int nNo);
+
+	/** 리뷰 목록
+	 * @return list
+	 */
+	public abstract ArrayList<Review> selectReviewList();
+
+	/** 리뷰 검색
+	 * @param nNo
+	 * @return notice
+	 */
+	public abstract Notice selectNotice(int nNo);
+
+	/** 리뷰 검색
+	 * @param revNo
+	 * @return review
+	 */
+	public abstract Review selectReview(int revNo);
+
+	/**
+	 * 펀딩 성공한 프로젝트 리스트를 받아오는 Service
+	 * @return pList
+	 */
+	public abstract ArrayList<Project> selectProjectList5();
+
+	
+	/** 프로젝트에 해당하는 Reserve를 호출해옵니다.
+	 * @param pNo
+	 * @return rList
+	 */
+	public abstract ArrayList<Reserve> selectReserveListTarget(int pNo);
+
+	/** 결제가 완료된 Reserve의 상태값을 변경해줍니다(성공).
+	 * @param rNo
+	 * @return result
+	 */
+	public abstract int updateReserveStatusToSuccess(String[] rNo);
+
+	/** 결제가 완료된 Reserve의 상태값을 변경해줍니다(실패).
+	 * @param rNo
+	 * @return result
+	 */
+	public abstract int updateReserveStatusToFail(String[] rNo);
+
+	/** 알림 리스트
+	 * @return list
+	 */
+	public abstract ArrayList<Alarm> goAlarmList();
 
 	
 

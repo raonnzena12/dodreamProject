@@ -1,5 +1,6 @@
 package com.dodream.spring.project.controller;
 
+import java.awt.Image;
 import java.net.BindException;
 import java.util.ArrayList;
 
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -26,15 +28,18 @@ public class ProjectController {
 
 	/**
 	 * 메뉴바에서 펀드 등록하기 클릭시 프로젝트 동의 페이지로 이동
-	 * 이동하기 전에 프로젝트 번호를 생성(nextval)합니다.
+	 * 이동하기 전에 프로젝트테이블에 빈 데이터들을 삽입하여 미리 생성해둡니다. (프로젝트 상태값 0 (임시생성))
 	 * @return insertFundAgreement.jsp
 	 */
 	@RequestMapping("insertFundForm.dr")
-	public ModelAndView insertFundForm(ModelAndView mv) {
-		int pNo = pService.createProjectNumber();
-		if(pNo>0) {
-			mv.addObject("pNo",pNo);
+	public ModelAndView insertFundForm(ModelAndView mv, String isDoneByModal) {
+		int result = pService.createProject();
+		int pNo;
+		if(isDoneByModal != null) mv.addObject("isDoneByModal","true");
+		if(result>0) {
 			mv.setViewName("project/insertFundForm");
+			pNo = pService.selectThisProject();
+			mv.addObject("pNo", pNo);
 		}else {
 			mv.addObject("msg","프로젝트 번호 생성 실패");
 			mv.setViewName("common/errorPage");
@@ -112,4 +117,21 @@ public class ProjectController {
 		return mv;
 	}
 	
+	/**
+	 * 프로젝트 등록하기에서 썸네일 이미지 등록시 서버에 파일을 저장해주는 메소드입니다.
+	 * @return file
+	 */
+	@ResponseBody
+	@RequestMapping(value="uploadthumbimg.dr", method=RequestMethod.POST)
+	public String uploadPThumbImg(HttpServletRequest request, MultipartFile uploadFile) {
+		System.out.println(uploadFile);
+		return uploadFile+"";
+	}
+	
+	
+	
+	public void modifyImageSize() {
+		Image image;
+		
+	}
 }
