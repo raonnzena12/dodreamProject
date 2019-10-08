@@ -146,7 +146,7 @@
 						</c:when>
 						</c:choose>
 					</p>
-					<p class="projectName"><a href="detailSt.dr?pNo=${ r.resRefPno }" target="_blank">${ r.pTitle }</a></p>
+					<p class="projectName"><a href="myFundingInfo.dr?rsvNo=${ r.resNo }" target="_blank">${ r.pTitle }</a></p>
 					<p class="artist mb-3">by "<a href="#">${ r.artistNickname }</a>"</p>
 					<div class="summary">
 						<table class="summaryt">
@@ -198,7 +198,7 @@
 <script>
 $(function(){
 	$("#filter").on("change", function(){
-		location.href='myFundingList.dr?order='+$(this).val();
+		location.href='myReserveList.dr?order='+$(this).val();
 	});
 });
 </script>

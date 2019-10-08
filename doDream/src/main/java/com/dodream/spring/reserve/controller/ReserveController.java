@@ -121,7 +121,7 @@ public class ReserveController {
 		return result;
 	}
 	
-	@RequestMapping("myFundingList.dr")
+	@RequestMapping("myReserveList.dr")
 	public String fundListView(HttpServletRequest request,String order, Model model) {
 		int userNo = 0;
 		Object loginUser = request.getSession().getAttribute("loginUser");
@@ -134,6 +134,6 @@ public class ReserveController {
 		model.addAttribute("rList", rList);
 		System.out.println(rList);
 		model.addAttribute("order", order1);
-		return "member/fundingList";
+		return "member/reserveList";
 	}
 }
