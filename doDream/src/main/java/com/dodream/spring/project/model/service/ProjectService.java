@@ -77,5 +77,13 @@ public interface ProjectService {
 	 */
 	public abstract int insertLikeProject(Like like, int status);
 
+	/**
+	 * 메인 출력에 필요한 리스트들
+	 * (인기순, 최신등록순, 마감임박순) 받아오는 Service
+	 * @param userNo
+	 * @return allList
+	 */
+	public abstract ArrayList<Project> selectMainList(int userNo);
+
 
 }

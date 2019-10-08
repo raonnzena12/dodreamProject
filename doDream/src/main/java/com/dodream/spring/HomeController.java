@@ -1,16 +1,25 @@
 package com.dodream.spring;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.dodream.spring.member.model.vo.Member;
+import com.dodream.spring.project.model.service.ProjectService;
+import com.dodream.spring.project.model.vo.FilteringList;
+import com.dodream.spring.project.model.vo.Project;
 
 @Controller
 public class HomeController {
+	
+	@Autowired
+	private ProjectService pService;
 	
 	@RequestMapping(value = "home.dr", method = RequestMethod.GET)
 	public String home() {
@@ -30,6 +39,18 @@ public class HomeController {
 		
 	}
 	
+	@RequestMapping("main.dr")
+	public String main(HttpServletRequest request, Model model) {
+		int userNo = 0;
+		Object loginUser = request.getSession().getAttribute("loginUser");
+		if ( loginUser != null ) {
+			userNo = ((Member)loginUser).getUserNo();
+		}
+		
+		ArrayList<Project> allList = pService.selectMainList(userNo);
+		model.addAttribute("allList", allList);
+		return "common/main";
+	}
 }
 
 

@@ -90,5 +90,9 @@ public class ProjectController3 {
 		return result;
 	}
 	
+	@RequestMapping("kakaotest.dr")
+	public String testtest() {
+		return "common/main";
+	}
 
 }
