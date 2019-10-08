@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.dodream.spring.member.model.vo.Member;
 import com.dodream.spring.project.model.service.ProjectService;
+import com.dodream.spring.project.model.vo.FilteringList;
 import com.dodream.spring.project.model.vo.Project;
 import com.dodream.spring.project.model.vo.Reward;
 import com.dodream.spring.reserve.model.service.ReserveService;
@@ -121,16 +122,18 @@ public class ReserveController {
 	}
 	
 	@RequestMapping("myFundingList.dr")
-	public String fundListView(HttpServletRequest request, Model model) {
+	public String fundListView(HttpServletRequest request,String order, Model model) {
 		int userNo = 0;
 		Object loginUser = request.getSession().getAttribute("loginUser");
 		if ( loginUser != null ) {
 			userNo = ((Member)loginUser).getUserNo();
 		}
+		String order1 = (order == null)? "ALL" : order;
 		userNo = 17;
-		ArrayList<Reserve> rList = rsvService.selectReserveList(userNo);
+		ArrayList<Reserve> rList = rsvService.selectReserveList(new FilteringList(userNo, order1));
 		model.addAttribute("rList", rList);
 		System.out.println(rList);
+		model.addAttribute("order", order1);
 		return "member/fundingList";
 	}
 }

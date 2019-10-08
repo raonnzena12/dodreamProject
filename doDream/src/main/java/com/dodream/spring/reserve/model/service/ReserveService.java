@@ -2,6 +2,7 @@ package com.dodream.spring.reserve.model.service;
 
 import java.util.ArrayList;
 
+import com.dodream.spring.project.model.vo.FilteringList;
 import com.dodream.spring.project.model.vo.Reward;
 import com.dodream.spring.reserve.model.vo.History;
 import com.dodream.spring.reserve.model.vo.HistoryList;
@@ -79,6 +80,6 @@ public interface ReserveService {
 	 * @param userNo
 	 * @return rList
 	 */
-	public abstract ArrayList<Reserve> selectReserveList(int userNo);
+	public abstract ArrayList<Reserve> selectReserveList(FilteringList filter);
 
 }

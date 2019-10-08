@@ -14,6 +14,12 @@ public class FilteringList {
 	
 	public FilteringList() {}
 
+	public FilteringList(int userNo, String order) {
+		super();
+		this.userNo = userNo;
+		this.order = order;
+	}
+
 	public FilteringList(int userNo, String category, String order, String keyword, String endYn) {
 		super();
 		this.userNo = userNo;

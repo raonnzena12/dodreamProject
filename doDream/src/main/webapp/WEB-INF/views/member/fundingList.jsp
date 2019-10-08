@@ -81,6 +81,16 @@
     font-weight: bold;
     color: #666;
 }
+.projectName {
+    font-size: 28px;
+    text-decoration: underline;
+}
+.projectName a {
+    color: #444;
+}
+.artist {
+    font-size: 14px;
+}
 </style>
 </head>
 <body>
@@ -91,7 +101,16 @@
 		</div>
 		<div class="col-md-8">
 		<div id="innerCon">
-			<!-- 작업중 // 나중에 조건 값 0으로 바꿔줄것 -->
+		<div id="selectMenu">
+			<span class="float-right mt-2 mr-2">
+				<select name="filter" id="filter">
+					<option value="ALL" ${ (empty order || order == "ALL") ? 'selected' : '' }>전체</option>
+					<option value="ING" ${ ( order == "ING") ? 'selected' : '' }>결제 예약</option>
+					<option value="END" ${ ( order == "END") ? 'selected' : '' }>결제 완료</option>
+					<option value="CAN" ${ ( order == "CAN") ? 'selected' : '' }>결제 취소/실패</option>
+				</select>
+			</span>
+		</div>
 		<c:choose>
 			<c:when test="${ fn:length(rList) == 0 }">
 			<div id="listArea">
@@ -102,16 +121,6 @@
 			</div>
 			</c:when>
 			<c:otherwise>
-			<div id="selectMenu">
-				<span class="float-right mt-2 mr-2">
-					<select name="filter" id="filter">
-						<option value="ALL" selected>전체</option>
-						<option value="1">결제 예약</option>
-						<option value="2">결제 완료</option>
-						<option value="3">결제 취소/실패</option>
-					</select>
-				</span>
-			</div>
 			<div id="listArea">
 			<c:forEach var="r" items="${ rList }">
 			<div id="statusMain">
@@ -127,17 +136,17 @@
 							<i class="material-icons">play_arrow</i>
 							오늘마감
 						</c:when>
-						<c:when test="${ r.dDay <= prj.pCurrentFunding }">
+						<c:when test="${ r.resRefPst == 7 }">
 							<i class="material-icons">done</i>
 							펀딩성공
 						</c:when>
-						<c:when test="${ r.dDay > prj.pCurrentFunding }" >
+						<c:when test="${ r.resRefPst == 5 }" >
 							<i class="material-icons">clear</i>
 							펀딩실패
 						</c:when>
 						</c:choose>
 					</p>
-					<p class="projectName"><a href="#" target="_blank">${ r.pTitle }</a></p>
+					<p class="projectName"><a href="detailSt.dr?pNo=${ r.resRefPno }" target="_blank">${ r.pTitle }</a></p>
 					<p class="artist mb-3">by "<a href="#">${ r.artistNickname }</a>"</p>
 					<div class="summary">
 						<table class="summaryt">
@@ -153,6 +162,25 @@
 								<td class="text-gray">펀딩 마감일</td>
 								<td>${ r.resFundDate }</td>
 							</tr>
+							<tr>
+								<td class="text-gray">펀딩 상태</td>
+								<td>
+								<c:choose>
+									<c:when test="${ r.resStatusNo == 1 }">
+									결제 예약
+									</c:when>
+									<c:when test="${ r.resStatusNo == 2 }">
+									결제 완료
+									</c:when>
+									<c:when test="${ r.resStatusNo == 3 }">
+									결제 취소
+									</c:when>
+									<c:when test="${ r.resStatusNo == 4 }">
+									결제 실패
+									</c:when>
+								</c:choose>
+								</td>
+							</tr>
 						</table>
 					</div>
 				</div>
@@ -167,5 +195,12 @@
 	</div>
 </div>
 </section>
+<script>
+$(function(){
+	$("#filter").on("change", function(){
+		location.href='myFundingList.dr?order='+$(this).val();
+	});
+});
+</script>
 </body>
 </html>
