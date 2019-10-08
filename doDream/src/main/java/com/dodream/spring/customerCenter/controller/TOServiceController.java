@@ -11,30 +11,12 @@ import com.dodream.spring.customerCenter.model.service.NoticeService;
  
 @Controller
 public class TOServiceController {
- 
-	@Autowired
-	private NoticeService nService;
-
-	/*
-	@RequestMapping("notice.dr")
-	public ModelAndView noticeList(ModelAndView mv) {
-
-	 	ArrayList<notice> list = nService.selectList();
-
-		if (list != null) {
-			mv.addObject("list", list);
-			mv.setViewName("customerCenter/notice");
-		} else {
-			mv.addObject("msg", "공지사항 목록 조회 실패");
-			mv.setViewName("common/errorPage");
-		}
-
-		return mv;
-	}*/
-
-
+	
+	/** 이용약관 이동
+	 * @return
+	 */
 	@RequestMapping("T_O_Service.dr")
-	public String tmp() {
+	public String Terms() {
 		return "customerCenter/TermsOfService";
 	}
 }

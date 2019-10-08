@@ -3,16 +3,16 @@ package com.dodream.spring.customerCenter.model.vo;
 import java.sql.Date;
 
 public class Faq {
-	private int fNo;          // 번호 
-	private String fTitle;    // 제목
-	private String fContent;  // 내용
-	private Date fEnrollDate; // 작성일
-	private Date fModifyDate; // 수정일
-	private String fStatus;   // 상태
-	private int fWriter;      // 작성자(관리자)
+	private int    fNo;         // 번호 
+	private String fTitle;      // 제목
+	private String fContent;    // 내용
+	private Date   fEnrollDate; // 작성일
+	private Date   fModifyDate; // 수정일
+	private String fStatus;     // 상태
+	private int    fWriter;     // 작성자(관리자)
 
 	public Faq() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	// 전체 리스트

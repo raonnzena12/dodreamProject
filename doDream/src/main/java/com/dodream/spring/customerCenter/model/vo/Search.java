@@ -1,7 +1,7 @@
 package com.dodream.spring.customerCenter.model.vo;
 
 public class Search {
-	private String searchCondition;
+	private String searchCondition; 
 	private String searchValue;
 	private String existFile;
 	
