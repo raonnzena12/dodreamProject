@@ -65,14 +65,14 @@
 					<div class="col-md-2"></div>
 					<div class="col-md-6">
 						<ul class="nav">
-							<li class="nav-item"><a class="nav-link" href="#">펀딩</a></li>
+							<li class="nav-item"><a class="nav-link" href="myFundingList.dr?userNo=${loginUser.userNo}">펀딩로그</a></li>
 							<li class="nav-item"><a class="nav-link" href="followList.dr?userNo=${loginUser.userNo}"><i class="material-icons">favorite </i></a></li>
-							<li class="nav-item"><a class="nav-link" href="#">알림</a></li>
+							<li class="nav-item"><a class="nav-link" href="#">나의문의사항</a></li>
 						</ul>
 					</div>
 					<div class="col-md-4">
 						<ul class="nav">
-							<li class="nav-item"><a class="nav-link" href="#">펀딩로그</a></li>
+							<li class="nav-item"><a class="nav-link" href="#">펀딩결제내역</a></li>
 						</ul>
 					</div>
 				</div>

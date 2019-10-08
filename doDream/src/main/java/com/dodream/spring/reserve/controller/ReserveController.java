@@ -120,7 +120,7 @@ public class ReserveController {
 		return result;
 	}
 	
-	@RequestMapping("myFundingList.dr")
+	@RequestMapping("myReserveList.dr")
 	public String fundListView(HttpServletRequest request, Model model) {
 		int userNo = 0;
 		Object loginUser = request.getSession().getAttribute("loginUser");
@@ -131,6 +131,6 @@ public class ReserveController {
 		ArrayList<Reserve> rList = rsvService.selectReserveList(userNo);
 		model.addAttribute("rList", rList);
 		System.out.println(rList);
-		return "member/fundingList";
+		return "member/myReserveList";
 	}
 }

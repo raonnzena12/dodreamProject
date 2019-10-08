@@ -1,5 +1,6 @@
 package com.dodream.spring.member.controller;
 
+import java.util.ArrayList;
 //import java.sql.Timestamp;
 import java.util.List;
 
@@ -18,10 +19,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dodream.spring.member.model.service.MemberService;
 import com.dodream.spring.member.model.vo.Member;
+import com.dodream.spring.project.model.vo.Project;
 
 @SessionAttributes({ "loginUser", "msg" })
 @Controller
@@ -43,7 +46,7 @@ public class MemberController {
 		Member loginUser = mService.loginMember(member);
 		
 		 System.out.println(member);
-
+		 System.out.println("로그인!!!");
 		if (loginUser != null) {
 			session.setAttribute("loginUser", loginUser);
 			model.addAttribute("loginUser", loginUser);
@@ -164,6 +167,7 @@ public class MemberController {
 				System.out.println("userNo : " + loginUser.getUserNo() + "번 회원이 DAYCOUNT 테이블에 삽입됨");
 			}
 			
+			System.out.println(prevPage);
 			return "redirect:"+prevPage;
 		}else {
 			model.addAttribute("msg", "회원가입에 실패하였습니다.");
@@ -276,7 +280,7 @@ public class MemberController {
 		mem.setUserAddress(address + "," + details + "," + postcode);
 
 		int result = mService.updateMember(mem, request, uploadImg);
-
+		System.out.println("뿅뿅");
 		if (result > 0) {
 			model.addAttribute("loginUser", mem);
 			rd.addFlashAttribute("msg", "회원정보를 수정하였습니다!");
@@ -448,7 +452,29 @@ public class MemberController {
 		}
 		
 	}
-	
+		
+	/** 회원이 참여한 펀딩 리스트 조회
+	 * @param userNo
+	 * @param mv
+	 * @return mv
+	 */
+	@RequestMapping("myFundingList.dr")
+	public ModelAndView myFundingList(int userNo, ModelAndView mv) {
+
+		ArrayList<Project> pList = mService.myFundingList(userNo);
+		
+		System.out.println(pList);
+		
+		if (pList != null) {
+			mv.addObject("pList", pList);
+			mv.setViewName("member/myFundingList");
+		} else {
+			mv.addObject("msg", "목록 조회에 실패하였습니다.");
+			mv.setViewName("common/errorPage");
+		}
+
+		return mv;
+	}
 	
 	
 }
