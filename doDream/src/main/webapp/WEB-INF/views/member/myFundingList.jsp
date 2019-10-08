@@ -169,6 +169,16 @@
 											<p class="categoryName mb-0">${ pList.pCategoryName }</p>
 											<span class="fundName"> ${ pList.pTitle } </span>
 										</div>
+										<div class="heartIcon">
+<%-- 			                              <c:choose>
+			                                 <c:when test="${ prj.iLike == 0 }">
+			                                 <i class="material-icons heart-fund">favorite_border</i>
+			                                 </c:when>
+			                                 <c:otherwise>
+			                                 <i class="material-icons heart-fund">favorite</i>
+			                                 </c:otherwise>
+			                              </c:choose> --%>
+			                           </div>
 										<div class="chartArea px-3 mt-2">
 											<div class="chartInfo clearfix">
 												<span class="chartInfo1">￦<fmt:formatNumber
@@ -264,6 +274,13 @@
 			var regexp = /\B(?=(\d{3})+(?!\d))/g;
 			return num.toString().replace(regexp, ',');
 		}
+		
+		$(document).on("click",".fundItem", function(){
+			  /* location.href='detailSt.dr?pNo='+$(this).attr("id"); */
+			  console.log($(this).attr("id"));
+			  console.log("${loginUser.userNo}");
+		});
+		
 	</script>
 
 </body>
