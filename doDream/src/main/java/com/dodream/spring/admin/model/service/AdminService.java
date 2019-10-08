@@ -269,6 +269,13 @@ public interface AdminService {
 	public abstract ArrayList<Alarm> goAlarmList();
 
 	
+	public abstract String getAlarmCount1();
+
+	public abstract String getAlarmCount2();
+
+	public abstract String getAlarmCount3();
+
+	
 
 
 }

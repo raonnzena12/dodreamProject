@@ -81,6 +81,9 @@
 	width: 100% \9;
 	height: auto;
 }
+
+
+
 </style>
 
 </head>
@@ -126,28 +129,41 @@
 									class="dataTables_wrapper dt-bootstrap4">
 									<div class="row">
 										<div class="col-sm-12">
-											<!-- summnote 에디터 출력 -->
-											프로젝트 후기 제목 : <input type="text" name="revTitle">
-											<br><br>
-											프로젝트 후기 부제목 : <input type="text" name="revSubTitle">
-											<br><br> 
-											프로젝트 번호 : <input type="text" name="revRefPno">
-											<br><br>
-											카테고리 번호 : <input type="text" name="revCategoryNo">
-											<br><br>
-											<div class="filebox preview-image">
-												<label for="input-file">썸네일 이미지 업로드 : </label>
-												<input type="file" id="input-file" class="upload-hidden" name="uploadFile">
-											</div>
-											<br> <br>
-											<textarea id="summernote" name="revContent"></textarea>
-											<br> <br>
-
-											<!-- 등록된 이미지 목록 -->
-											<input type="hidden" name="revWriter"
-												value="${loginUser.userNo}"> <input type="hidden"
-												name="imgList" value="">
-											</form>
+											<table align="center" id="tb" cellpadding="5" cellspacing="0" width="1000px">
+												<tr>
+													<th>프로젝트 후기 제목 : </th>
+													<td><input type="text" name="revTitle" type="text" size="97" placeholder="제목을 입력해주세요."></td>
+												</tr>
+												<tr>
+													<th>프로젝트 후기 부제목 : </th>
+													<td><input type="text" name="revSubTitle" type="text" size="97" placeholder="부제목을 입력해주세요."></td>
+												</tr>
+												<tr>
+													<th>프로젝트 번호 : </th>
+													<td><input type="text" name="revRefPno" type="text" size="97" placeholder="프로젝트 번호를 입력해주세요."></td>
+												</tr>
+												<tr>
+													<th>카테고리 번호 : </th>
+													<td><input type="text" name="revCategoryNo" type="text" size="97" placeholder="카테고리 번호를 입력해주세요."></td>
+												</tr>
+												<tr>
+													<th>썸네일 이미지 :</th>
+													<td>
+														<div class="filebox preview-image">
+															<input type="file" id="input-file" class="upload-hidden" name="uploadFile">
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<th>리뷰 내용 : </th>
+													<td><textarea id="summernote" name="revContent"></textarea></td>
+												</tr>
+												<!-- 등록된 이미지 목록 -->
+												<input type="hidden" name="revWriter"
+													value="${loginUser.userNo}"> <input type="hidden"
+													name="imgList" value="">
+												</form>
+											</table>
 										</div>
 									</div>
 								</div>

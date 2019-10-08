@@ -79,7 +79,7 @@
 						<div class="card-header py-3">
 						<form action="updateNotice.dr" name="updateForm" id="updateForm" method="post">
 						<span class="float-right">
-							<button class="btn btn-primary btn-lg btn-inline rewardBtn" style="background: #8E44AD; border: #8E44AD;">공지사항 수정</button>
+							<button class="btn btn-primary btn-lg btn-inline rewardBtn" type="button" id="submitBtn" style="background: #8E44AD; border: #8E44AD;">공지사항 수정</button>
 							<button class="btn btn-primary btn-lg btn-inline rewardBtn" style="background: #8E44AD; border: #8E44AD;"
 							onclick="cancle();">취소하기</button>
 						</span>
@@ -90,16 +90,21 @@
 										class="dataTables_wrapper dt-bootstrap4">
 										<div class="row">
 				 							<div class="col-sm-12">
-													<!-- summnote 에디터 출력 -->
-													공지사항 제목 : <input type="text" name="nTitle">
-													<c:if test="input[value]"></c:if>
-													<br><br>
-													<textarea id="summernote" name="nContent"></textarea>
-													
+					 							<table align="center" id="tb" cellpadding="15" cellspacing="0" width="1000px" >
+													<tr>
+														<!-- summnote 에디터 출력 -->
+														<th>공지사항 제목 : </th>
+														<td><input type="text" name="nTitle" size="97" placeholder="제목을 입력해주세요."></th>
+													</tr>
+													<tr>
+														<th style="padding-bottom: 55%;">공지사항 내용 : </th>
+														<td><textarea id="summernote" name="nContent"></textarea><td>
+													</tr> 
 													<!-- 등록된 이미지 목록 -->
 													<input type="hidden" name="nNo" value="${notice.nNo }"> 
 													<input type="hidden" name="nWriter" value="${loginUser.userNo}">
 													<input type="hidden" name="imgList" value="">
+												</table>
 											</div>
 										</div>
 									</div>
@@ -157,6 +162,24 @@
 		function cancle(){
 			$("#updateForm").attr("action","cancle.dr");
 		}
+		
+		$(function(){
+			$("#submitBtn").on("click", function(){
+				var inputTitle = $("input[name=nTitle]").val();
+				if ( inputTitle.trim() == "" ) {
+					alert("제목을 입력해주세요.");
+					return false;
+				}
+				if($("#summernote").val().trim() == ""){
+					alert("내용을 입력해주세요.");
+					return false;
+				}
+				
+				console.log("이제 서브밋 하면 됨");
+				$("#updateForm").submit();
+			});
+		});
+		
 	</script>
 	
 	<!-- Bootstrap core JavaScript-->

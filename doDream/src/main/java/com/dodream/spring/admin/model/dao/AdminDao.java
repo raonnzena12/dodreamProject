@@ -378,6 +378,18 @@ public class AdminDao {
 		return (ArrayList)sqlSession.selectList("adminAlarmMapper.goAlarmList");
 	}
 
+	public String getAlarmCount1() {
+		return sqlSession.selectOne("adminAlarmMapper.getAlarmCount1")+"";
+	}
+
+	public String getAlarmCount2() {
+		return sqlSession.selectOne("adminAlarmMapper.getAlarmCount2")+"";
+	}
+
+	public String getAlarmCount3() {
+		return sqlSession.selectOne("adminAlarmMapper.getAlarmCount3")+"";
+	}
+
 
 
 }
