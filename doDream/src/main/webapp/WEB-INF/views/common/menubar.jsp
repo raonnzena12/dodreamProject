@@ -46,11 +46,6 @@
 </style>
 </head>
 <body>
-
-	<c:if test="${!empty msg}">
-		<script>alert("${msg}")</script>
-	</c:if>
-
 	<section id="mainMenuBar">
 	<div class="mainLogoArea" id="mainLogoArea"><a href="home.dr"><img src="${contextPath}/resources/images/DoDream-2e.png" alt="두드림" id="mainLogo"></a></div>
 	<nav class="navbar navbar-expand-lg navbar-light" id="naviBar">
