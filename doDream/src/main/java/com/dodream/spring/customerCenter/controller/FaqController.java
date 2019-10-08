@@ -17,7 +17,12 @@ public class FaqController {
 
 	@Autowired
 	private FaqService faqService;
-	 
+	
+	
+	/** FAQ 목록 조회 
+	 * @param mv
+	 * @return
+	 */
 	@RequestMapping("faq.dr")
 	public ModelAndView faqList(ModelAndView mv) {
 		
@@ -33,28 +38,31 @@ public class FaqController {
 
 		return mv;
 	} 
-	// 검색
 	
-		@RequestMapping("nsearch.dr")
-		public String noticeSearch(Search search, Model model){
-			
-			System.out.println(search.getSearchCondition());
-			System.out.println(search.getSearchValue());
-			System.out.println(search.getExistFile());
-			// 체크 O : on
-			// 체크 X : null
-			
-			ArrayList<Faq> searchList 
-				= faqService.searchList(search);
-			
-			for(Faq f : searchList) {
-				System.out.println(f);
-			}
-			
-			
-			model.addAttribute("fList", searchList);
-			model.addAttribute("search", search);
-			return "customerCenter/faq";
+	
+	/** FAQ 검색
+	 * @param search
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("nsearch.dr")
+	public String noticeSearch(Search search, Model model) {
+
+		System.out.println(search.getSearchCondition());
+		System.out.println(search.getSearchValue());
+		System.out.println(search.getExistFile());
+		// 체크 O : on
+		// 체크 X : null
+
+		ArrayList<Faq> searchList = faqService.searchList(search);
+
+		for (Faq f : searchList) {
+			System.out.println(f);
+		}
+
+		model.addAttribute("fList", searchList);
+		model.addAttribute("search", search);
+		return "customerCenter/faq";
 	}
 	
 
