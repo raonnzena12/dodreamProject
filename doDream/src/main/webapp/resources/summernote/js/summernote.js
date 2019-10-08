@@ -26,7 +26,7 @@ $(function(){
 // 프로젝트 등록에 들어가는 서머노트
 function loadSummernote(){
 	$('#pStorySummernote').summernote({
-	width : 880,		// 에디터 넓이
+	width : 682,		// 에디터 넓이
 	height: 890,        // 에디터 높이
 	focus: true,        // set focus to editable area after initializing summernote
 	lang: 'ko-KR',		// 언어 : 한국어 설정

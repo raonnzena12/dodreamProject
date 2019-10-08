@@ -342,13 +342,6 @@ input:focus, input:active, textarea:focus, textarea:active, select:focus,
 	opacity: 1;
 }
 
-.contentarea {
-	margin: auto;
-    border: 1px solid #ced4da;
-	width: 85%;
-	padding: 15px;
-}
-
 .contentagreement {
 	border-bottom: 1px solid #ced4da;
 }
@@ -475,4 +468,3 @@ input:focus, input:active, textarea:focus, textarea:active, select:focus,
 #pstartyear, #pstartmonth, #pstartday{
 	color:unset;		
 }
-

@@ -114,6 +114,153 @@
   border-color: #fff;
   color: #ffffff;
 }
+
+#mimagearea{
+    width: 470px;
+    padding: 15px;
+}
+#mimageinputarea{
+    width: 100%;
+    height: 100%;
+}
+#mimagetabarea{
+    width: 100%;
+    height: 30px;
+}
+#mimagetabarea ul{
+    display: block;
+    position: relative;
+    list-style: none;
+    height: 100%;
+}
+#mimagetabarea li{
+    text-align: center;
+    width: 50%;
+    height: 100%;
+    float: left;
+    position: relative;
+    padding: 5px;
+    border-bottom: 1px solid #ddd;
+}
+#mimagetabarea li p{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    font-family: 'Jua';   
+    color: #F39C12;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    cursor: pointer;        
+}
+.ontab{
+    border-top: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    border-bottom: none !important;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+}
+#mimageimagearea{
+    width: 100%;
+    height: 300px;
+    border-left: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    font-family: 'Noto Sans';
+    color: #666;
+    font-size: 11px;
+    padding: 15px;
+}
+#mimageurlarea{
+    width: 100%;
+    height: 150px;
+    border-left: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    font-family: 'Noto Sans';
+    color: #666;
+    font-size: 11px;
+    padding: 15px;
+}
+#mimageimagecontent, #mimageurlcontent{
+    border: 1px solid #ddd;
+    height: 100%;
+    border-radius: 5px;
+}
+#mimageimageshowbox{
+    float: left;
+    width: 60%;
+    height: 100%;
+    padding-left: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+#mimagenoimage{
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+#mimagenoimage a{
+}
+#mimagenoimage i{
+    color: #999 !important;
+    margin-top: 35px;
+    font-size: 128px;
+}
+#mimagenoimage i:hover{
+    color: #F39C12 !important;
+}
+#mimagenoimage p{
+    color: #777;
+    font-family: 'Noto Sans';
+    font-weight: 600;
+}
+#mimageimgcontent{
+    width: 100%;
+    height: 100%;
+}
+#mimageimagedescbox{
+    float: left;
+    width: 40%;
+    height: 100%;
+    padding-top: 30px;
+}
+#mimageimagedescbox p{
+    font-size: 11px;
+    font-family: 'Noto Sans';
+    color: #666;
+    line-height: 18px;
+    margin-top: 15px;
+    margin-left: 10px;
+    margin-right: 5px;
+}
+#mimageurldescbox{
+    height: 60%;
+    width: 100%;
+    padding-left: 40px;
+    margin-top: 11px;
+}
+#mimageurldescbox p{
+    font-size: 11px;
+    font-family: 'Noto Sans';
+    color: #666;
+    text-align: left;
+    line-height: 8px;
+}
+#mimageurlinputbox{
+    height: 40%;
+    width: 100%;
+}
+#mimageurlinputbox input{
+    width: 70%;
+    margin-left: 15px;
+    font-size: 11px;
+    display: inline;
+}
+
+
 </style>
 </head>
 <body>
@@ -326,14 +473,14 @@
 						<div class="info-box">
 							<div class="edit-box">
 								<div class="box-img-area">
-									<div id="box-img-area-noimg">
-										<a href="javascript:void(0);" id="pThimbNailImgUpload"> <i
+									<div id="box-img-area-noimg" style="height:100%;">
+										<a href="javascript:void(0);" id="pThumbNailImgUpload"> <i
 											class="material-icons" id="pThumbNailImg"
 											style="font-size: 52px;"> camera_alt </i>
 										</a>
 										<p>사진등록</p>
 									</div>
-									<div id="box-img-area-img">
+									<div id="box-img-area-img" style="height:100%;">
 										<img src="" id="thumbimg" style="width:100%; height:100%; border-radius: 3px;" alt='이미지출력오류'>
 									</div>
 								</div>
@@ -585,7 +732,7 @@
 								<input type="text"
 									class="form-control form-control-sm nooutline" id="pMainImage"
 									name="pMainImage" style="width: 75%; display: inline-block;">
-								<button type="button" class="btn btn-warning customized">등록하기</button>
+								<button type="button" class="btn btn-warning customized" id="pMainImageUpload">등록하기</button>
 								<div class="box-img-area story">
 									<div id="noImage"
 										style="margin: auto; padding: 0; border: none;">
@@ -1196,7 +1343,7 @@
 			}
 		});
 	});
-	$("#pThimbNailImgUpload, #pthumbimgdelete a").on("click", function(){
+	$("#pThumbNailImgUpload, #pthumbimgdelete a").on("click", function(){
 		var input = "";
 		input += '<div id="timagearea"><div id="timageinputarea"><div id="timagecontentarea"><p>· 이미지 파일 형식에 맞는 파일을<br> 업로드해주세요. <span style="font-size: 5px; color: #888;">(jpg,jpeg,png,gif,bmp)</span></p><p>· 이미지 크기는 최대 10mb까지 <br>첨부 가능합니다.</p><p>· 이미지의 가로 세로 사이즈는 <br>자동조정됩니다.</p><p>· 사진의 크기는 자동조정 사이즈를 <br>고려하여 올려주세요.</p><p>· 가로 : 250px, 세로 : 180px</p></div>';
 		input += '<div id="timageshowarea"><div id="timage-noimage"><a href="javascript:pthumbimgclick();"><i class="material-icons">broken_image</i></a><span>사진을 등록해주세요.</span></div><div id="timage-image" style="display: none;"><a href="javascript:pthumbimgclick();"><img src="" style="width: 100%; height: 100%;" id="timg"></a></div></div><div style="clear: both; padding: 0; border: none; margin: 0;"></div></div></div>';
@@ -1353,6 +1500,45 @@
 		$(this).parent().children().next().next().next().val(inputdate);
 	});
 </script>
+<script>
+	$("#pMainImageUpload").on("click", function(){
+		var input = "";
+		input += '<div id="mimagearea"><div id="mimageinputarea"><div id="mimagetabarea"><ul><li class="ontab"><p>사진 직접 등록하기</p></li><li><p>동영상 URL 등록하기</p></li></ul></div><div style="clear: both;"></div><div id="mimageimagearea"><div id="mimageimagecontent"><div id="mimageimageshowbox"><div id="mimagenoimage"><a href="javascript:void(0);"><i class="material-icons">broken_image</i></a><p>사진을 등록해 주세요.</p></div><div id="mimageimgcontent"></div></div><div id="mimageimagedescbox"><p>· 프로젝트 상세 페이지에 최상단에 뜨는 메인 썸네일 이미지입니다.</p><p>· 사이즈는 가로: 450px,<br> 세로:350px로 조정됩니다.</p><p>· 최대 10MB 이하의 파일만 업로드해주세요!</p></div><div style="clear: both;"></div></div></div>';
+		input += '<div id="mimageurlarea"><div id="mimageurlcontent"><div id="mimageurldescbox"><p>· YouTube 혹은 Vimeo에 등록된 영상의 URL주소를 입력해주세요.</p><p>· URL 입력후 창을 닫으시면 등록된 영상을 확인하실 수 있습니다.</p><p>· 영상은 원본이 삭제되면 재생되지 않을 수 있습니다.</p></div><div id="mimageurlinputbox"><input type="text" class="form-control form-control-sm nooutline"><button class="btn btn-warning customized" id="mimageurlbtn">등록하기</button></div></div></div></div></div>';
+		Swal.fire({
+			title: '메인이미지 등록',
+			html: input,
+			confirmButtonText: '닫기',
+			onClose: function(){
+				alert("뿅");
+			}
+		});
+        $("#mimageimagearea").show();
+        $("#mimageurlarea").hide();
+        $("#mimageimgcontent").hide();
+	});
+	// 프로젝트 메인 썸네일 사진&동영상 등록 메소드입니다.
+    $(document).on("click","#mimagetabarea ul li p",function(){
+        $(".ontab").removeClass("ontab");
+        $(this).parent().addClass("ontab");
+        if($("#mimagetabarea ul li:nth-child(1)").is(".ontab")){ // 사진등록탭
+            $("#mimageurlarea").hide();  
+            $("#mimageimagearea").show();
+        }else{ // 동영상 URL 탭
+            $("#mimageimagearea").hide();
+            $("#mimageurlarea").show();  
+        }
+    });
+    $(document).on("click","#mimageurlbtn",function(){
+        alert("등록되었습니다.");
+    });
+
+</script>
+
+
+
+
+
 <script>
 	// 아코디언과 관련된 스크립트입니다.
 	$(".accBtn:not(.active)").next().slideUp();
