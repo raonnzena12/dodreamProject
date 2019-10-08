@@ -28,15 +28,18 @@ public class ProjectController {
 
 	/**
 	 * 메뉴바에서 펀드 등록하기 클릭시 프로젝트 동의 페이지로 이동
-	 * 이동하기 전에 프로젝트 번호를 생성(nextval)합니다.
+	 * 이동하기 전에 프로젝트테이블에 빈 데이터들을 삽입하여 미리 생성해둡니다. (프로젝트 상태값 0 (임시생성))
 	 * @return insertFundAgreement.jsp
 	 */
 	@RequestMapping("insertFundForm.dr")
-	public ModelAndView insertFundForm(ModelAndView mv) {
-		int pNo = pService.createProjectNumber();
-		if(pNo>0) {
-			mv.addObject("pNo",pNo);
+	public ModelAndView insertFundForm(ModelAndView mv, String isDoneByModal) {
+		int result = pService.createProject();
+		int pNo;
+		if(isDoneByModal != null) mv.addObject("isDoneByModal","true");
+		if(result>0) {
 			mv.setViewName("project/insertFundForm");
+			pNo = pService.selectThisProject();
+			mv.addObject("pNo", pNo);
 		}else {
 			mv.addObject("msg","프로젝트 번호 생성 실패");
 			mv.setViewName("common/errorPage");

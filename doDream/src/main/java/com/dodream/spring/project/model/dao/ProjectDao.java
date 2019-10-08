@@ -64,13 +64,20 @@ public class ProjectDao {
 	}
 
 	/**
-	 * 프로젝트 등록 페이지로 넘어가기 전 pNo를 생성해주는 DAO
+	 * 프로젝트 등록 페이지로 넘어가기 전 프로젝트를 생성해주는 DAO
+	 * @return result
+	 */
+	public int createProject() {
+		return sqlSession.insert("projectMapper.createProject");
+	}
+	
+	/** 
+	 * 위에서 생성된 프로젝트의 번호를 가져오는 DAO
 	 * @return pNo
 	 */
-	public int createProjectNumber() {
-		return sqlSession.selectOne("projectMapper.createProjectNumber");
+	public int selectThisProject() {
+		return sqlSession.selectOne("projectMapper.selectThisProject");
 	}
-
   
 	/**
 	 * 리워드를 DB에 저장하는 DAO
@@ -125,6 +132,8 @@ public class ProjectDao {
 	public int deleteLikeProject(Like like) {
 		return sqlSession.delete("projectMapper.deleteLike", like);
 	}
+
+
 
 	
 }

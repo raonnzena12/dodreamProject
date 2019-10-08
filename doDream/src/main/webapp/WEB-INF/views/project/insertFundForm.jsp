@@ -830,7 +830,9 @@
 	};
 	$(function(){
 		var loginUser = ${loginUser.userNo} + "";
-		if(loginUser!=""){
+		var isChecked = ${isDoneByModal}+"";
+		console.log("ischecked : " + isChecked);
+		if(loginUser!="" && isChecked=="true"){
 			$("#reward-create-process-checklist1").attr("checked",true);
 			$("#reward-create-process-checklist2").attr("checked",true);
 			$("#reward-create-process-checklist3").attr("checked",true);

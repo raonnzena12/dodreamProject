@@ -95,12 +95,32 @@
 	
 	<!-- 프로젝트 등록  -->
 	<insert id="insertProject" parameterType="Project">
-		INSERT INTO PROJECT_TB VALUES( 
-			#{pNo}, #{pTitle}, #{pSTitle}, #{pGoal}, #{pThumbImage}, #{pStartDate}, #{pCloseDate},
-			#{pHashTag}, #{pMainImage}, #{pSummaryText}, #{pStory}, #{pArtistName}, #{pArtistPFImage},
-			#{pArtistSns1}, #{pArtistSns2}, #{pArtistPhone}, #{pArtistEmail}, SYSDATE, SYSDATE, #{pWriter}, #{pCategoryNum}, 
-			#{pStatusNum}, DEFAULT, #{pArtistIntroduction}
-		)
+		UPDATE PROJECT_TB SET 
+			PROJECT_TITLE = #{pTitle}, 
+			PROJECT_STITLE = #{pSTitle}, 
+			PROJECT_GOAL = #{pGoal}, 
+			PROJECT_THUMB_IMG = #{pThumbImage},
+			PROJECT_START_DT = #{pStartDate},
+			PROJECT_CLOSE_DT = #{pCloseDate},
+			PROJECT_HASHTAG = #{pHashTag},
+			PROJECT_MAIN_IMG = #{pMainImage}, 
+			PROJECT_SUMMARY = #{pSummaryText},
+			PROJECT_STORY = #{pStory}, 
+			PROJECT_AT_NM = #{pArtistName},
+			PROJECT_AT_PF = #{pArtistPFImage},
+			PROJECT_AT_SNS1 = #{pArtistSns1}, 
+			PROJECT_AT_SNS2 = #{pArtistSns2},
+			PROJECT_AT_CONT = #{pArtistPhone},
+			PROJECT_AT_EM = #{pArtistEmail},
+			PROJECT_ER_DT = SYSDATE,
+			PROJECT_MF_DT = SYSDATE,
+			PROJECT_WRITER = #{pWriter},
+			PROJECT_CT_NO = #{pCategoryNum},
+			PROJECT_ST_NO = #{pStatusNum},
+			PROJECT_COUNT = DEFAULT,
+			PROJECT_AT_INT = #{pArtistIntroduction},
+			PROJECT_TOTAL = DEFAULT
+		WHERE PROJECT_NO = #{pNo} 
 	</insert>
 	
 	<!-- 프로젝트 디테일 조회용 쿼리 -->
@@ -221,8 +241,13 @@
 	</select>
 	
 	<!-- 프로젝트 등록 페이지 이동시 pNo를 생성해주는 쿼리  -->
-	<select id="createProjectNumber" resultType="_int">
-		SELECT SEQ_PROJ_NO.NEXTVAL FROM DUAL
+	<insert id="createProject">
+		INSERT INTO PROJECT_TB (PROJECT_NO, PROJECT_ST_NO) VALUES (SEQ_PROJ_NO.NEXTVAL, 0)
+	</insert>
+	
+	<!-- 위에서 생성된 프로젝트의 번호를 가져오는 쿼리  -->
+	<select id="selectThisProject" resultType="_int">
+		SELECT SEQ_PROJ_NO.CURRVAL FROM DUAL
 	</select>
 	
 	<!-- 리워드 등록 -->
