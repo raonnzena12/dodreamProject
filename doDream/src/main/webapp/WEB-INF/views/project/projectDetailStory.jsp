@@ -152,8 +152,7 @@
 	<script>
 	/* 해시 태그 클릭시 검색 되는 기능 */
 		$(function(){
-			
-			
+			// 해시 태그 출력 
 			var ht = "${project.pHashTag}";
 			var hashTag = ht.split(",");
 			var $detailTag = $("#detailTag");
@@ -167,15 +166,14 @@
 				}
 			}
 			
+			$(".projectTag").on('click', function(){
+				location.href="";
+			});
+			
 			
 		});
 	
-		/* $("#story").on("click", function(){
-			location.href="#detailcontent";
-		}); */
-		
-		
-		/* 페이지마다 넣기 */
+	
 		
 		
 		

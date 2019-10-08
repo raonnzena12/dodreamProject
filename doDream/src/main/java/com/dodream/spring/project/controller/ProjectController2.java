@@ -62,13 +62,15 @@ public class ProjectController2 {
 		}
 			like.setLikeNo(userNo);
 			like.setLikePrNo(pno);
-		Like lk = pService2.selectLike(like);
+		Like lk = pService2.selectLike(like);// 프로젝트 좋아요 조회
 		
 		Project prj = pService.selectProject(pno);
 		
 		follow.setFollowNo(prj.getpWriter());
 		
-		DetailFollow df = pService2.selectFollow(follow);
+		DetailFollow df = pService2.selectFollow(follow);// 팔로워 조회
+		
+		System.out.println("df : " + df);
 		
 		report.setRepRefPno(pno);
 		

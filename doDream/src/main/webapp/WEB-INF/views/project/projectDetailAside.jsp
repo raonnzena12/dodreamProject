@@ -460,13 +460,17 @@
 	<script>
 	
 	/* 아티스트 클릭시 아티스트 마이페이지로 이동  */
-		$(function(){
-			
+		
+	$(function(){
+			//처음 들어왔을때 색 바뀌는 기능 
 			if(${!empty sessionScope.loginUser}){
-				if(${loginUser.userNo eq follow.followNo}){ //로그인 유저가 같으면 보라색
-					$("#asideFavorite","#8E44AD");
+				console.log(${loginUser.userNo});
+				console.log(${follow.followerNo});
+				
+				if(${loginUser.userNo eq follow.followerNo}){ //로그인 유저가 같으면 보라색
+					$("#asideFavorite").css("color","#8E44AD");
 					
-				}else if(${loginUser.userNo ne follow.followNo}){
+				}else if(${loginUser.userNo ne follow.followerNo}){
 					$("#asideFavorite").css("color","#F39C12");
 				}
 				
@@ -556,8 +560,8 @@
 		
 		//팔로우 등록
 		function followInsert(){
-			var followerNo = ${project.pWriter};
-			var followNo = "${loginUser.userNo}";
+			var followerNo = "${loginUser.userNo}";
+			var followNo = ${project.pWriter};
 			
 			$.ajax({
 				url:"followInsert.dr",
@@ -584,8 +588,8 @@
 		// 팔로우 취소
 		function followDelete(){
 			
-			var followerNo = ${project.pWriter};
-			var followNo = "${loginUser.userNo}";
+			var followerNo = "${loginUser.userNo}";
+			var followNo = ${project.pWriter};
 			
 			$.ajax({
 				url:"followDelete.dr",

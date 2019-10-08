@@ -4,8 +4,8 @@ import java.sql.Date;
 
 public class DetailFollow {
 	
-	private int followNo;
-	private int followerNo;
+	private int followNo;// 아티스트
+	private int followerNo;// 유저
 	private Date followDate;
 	private Date followerDate;
 	

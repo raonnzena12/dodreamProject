@@ -174,6 +174,16 @@
 											<p class="categoryName mb-0">${ pList.pCategoryName }</p>
 											<span class="fundName"> ${ pList.pTitle } </span>
 										</div>
+										<div class="heartIcon">
+<%-- 			                              <c:choose>
+			                                 <c:when test="${ prj.iLike == 0 }">
+			                                 <i class="material-icons heart-fund">favorite_border</i>
+			                                 </c:when>
+			                                 <c:otherwise>
+			                                 <i class="material-icons heart-fund">favorite</i>
+			                                 </c:otherwise>
+			                              </c:choose> --%>
+			                           </div>
 										<div class="detailArea my-1">
 											<c:choose>
 												<c:when test="${pList.pStatusNum eq 1 }">
