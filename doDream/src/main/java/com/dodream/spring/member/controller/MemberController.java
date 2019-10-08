@@ -357,6 +357,10 @@ public class MemberController {
 		}
 	}
 	
+	/** 완료된 프로젝트 갯수
+	 * @param userNo
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping("projectCloseCount.dr")
 	public int projectCloseCount(int userNo) {
@@ -444,5 +448,7 @@ public class MemberController {
 		}
 		
 	}
+	
+	
 	
 }

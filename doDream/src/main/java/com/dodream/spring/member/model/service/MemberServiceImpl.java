@@ -163,4 +163,6 @@ public class MemberServiceImpl implements MemberService {
 		
 		return mDao.deleteMember(userNo);
 	}
+
+
 }
