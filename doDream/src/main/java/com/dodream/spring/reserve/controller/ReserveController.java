@@ -134,6 +134,6 @@ public class ReserveController {
 		model.addAttribute("rList", rList);
 		System.out.println(rList);
 		model.addAttribute("order", order1);
-		return "member/myReserveList";
+		return "member/reserveList";
 	}
 }
