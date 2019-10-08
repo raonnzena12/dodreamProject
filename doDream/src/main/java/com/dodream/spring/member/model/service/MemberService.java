@@ -63,6 +63,8 @@ public interface MemberService {
 
 	public abstract ArrayList<Project> myFundingList(int userNo);
 
+	public abstract ArrayList<Project> myOpenProjectList(int userNo);
+
 
 
 }

@@ -14,12 +14,7 @@
 	#followsub>a{
 		color: #444;
 	}
-	#top {
- 	position: fixed;
- 	left: 60%;
-  	bottom: 200px;
-  	display: none;
-	}
+
 </style>
 </head>
 <body>
@@ -88,7 +83,6 @@
 				</c:if>
 		</div>
 		<div class="col-md-2">
-			<a href="#"><img src="${contextPath}/resources/images/pageup.png" style="width: 25px; height: 25px" id="top" ></a>
 		</div>
 	</div>
 </div>
@@ -96,18 +90,7 @@
 
 	
 	<script>
-	$(document).scroll(function() {
-		if ( $( this ).scrollTop() > 200 ) {
-			$( '#top' ).fadeIn();
-		} else {
-			$( '#top' ).fadeOut();
-		}
-	} );
-	
-	$( '#top' ).click( function() {
-		$( 'html, body' ).animate( { scrollTop : 0 }, 400 );
-		return false;
-	} );
+
 
 
 	
