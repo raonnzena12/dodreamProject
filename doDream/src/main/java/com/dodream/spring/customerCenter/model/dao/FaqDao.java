@@ -15,7 +15,7 @@ public class FaqDao {
 
 	@Autowired
 	private SqlSessionTemplate sqlSession;
-
+ 
 	/** FAQ 목록 조회를 위한 DAO
 	 * @return
 	 */
