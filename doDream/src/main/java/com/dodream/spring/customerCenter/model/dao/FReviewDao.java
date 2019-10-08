@@ -73,6 +73,4 @@ public class FReviewDao {
 		return (ArrayList)sqlSession.selectList("centerMapper.selectrevList", category, rowBounds);
 	}
 
-
-
-	}
+}
