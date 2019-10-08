@@ -126,12 +126,6 @@
 		WHERE PROJECT_ST_NO IN ( 4, 5 )
 	</select>
 	
-	<!-- 회원의 진행중/종료된 프로젝트 갯수 조회용 쿼리 -->
-	<select id="countOpenProject" resultType="_int" parameterType="_int">
-		SELECT COUNT(*) FROM PROJECT_TB 
-		WHERE PROJECT_WRITER= #{userNo} AND PROJECT_ST_NO IN ( 4, 5 )
-	</select>
-	
 	<!-- 선택한 카테고리에 따라 프로젝트 리스트 조회용 쿼리 -->
 	<select id="selectPrjList" resultMap="projectResultSet" parameterType="string">
 	 	SELECT * FROM PROJECT_LIST_VIEW
@@ -212,16 +206,7 @@
 		WHERE PROJECT_NO = #{ pNo }
 	</update>
 	
-	<!-- 내가 펀딩한 프로젝트 중 RESERVE_ST_NO 1인것 (결제대기)  -->
-	<select id="projectJoinCount" parameterType="_int" resultType="_int">
-		SELECT COUNT(*) FROM RESERVE WHERE RESERVE_STATUS_NO = '1' AND RESERVE_USER = #{userNo}
-	</select>
-	
-	<!-- 내가 펀딩한 프로젝트 중 결재완료된 건 -->
-	<select id="projectCloseCount" parameterType="_int" resultType="_int">
-		SELECT COUNT(*) FROM RESERVE WHERE RESERVE_STATUS_NO = 2 AND RESERVE_USER = #{userNo}
-	</select>
-	
+
 	<!-- =======================리워드=========================== -->
 	
 	<!-- 리워드 조회 쿼리 -->
@@ -316,6 +301,33 @@
 	<!-- 프로젝트 신고 조회 -->
 	<select id="selectReport" parameterType="DetailReport" resultMap="detailReportResultSet">
 		SELECT * FROM REPORT_TB WHERE REPORT_REF_PNO=#{repRefPno} AND REPORT_WRITER=#{repWriter}
+	</select>
+	
+	<!-- ========================myPage============================ -->
+
+	<!-- 내가 펀딩한 프로젝트 중 RESERVE_ST_NO 1인것 (결제대기)  -->
+	<select id="projectJoinCount" parameterType="_int" resultType="_int">
+		SELECT COUNT(*) FROM RESERVE
+		WHERE RESERVE_STATUS_NO = '1' AND RESERVE_USER = #{userNo}
+	</select>
+
+	<!-- 내가 펀딩한 프로젝트 중 결재완료된 건 -->
+	<select id="projectCloseCount" parameterType="_int" resultType="_int">
+		SELECT COUNT(*) FROM RESERVE
+		WHERE RESERVE_STATUS_NO = 2 AND RESERVE_USER = #{userNo}
+	</select>
+
+
+	<!-- 회원의 진행중/종료된 프로젝트 갯수 조회용 쿼리 -->
+	<select id="countOpenProject" resultType="_int" parameterType="_int">
+		SELECT COUNT(*) FROM PROJECT_TB 
+		WHERE PROJECT_WRITER= #{userNo} AND PROJECT_ST_NO IN ( 4, 5 )
+	</select>
+
+	<!-- 회원이 참여한 펀딩 리스트 조회 -->
+	<select id="myFundingList" resultMap="projectResultSet" parameterType="_int">
+		SELECT * FROM PROJECT_TB WHERE PROJECT_NO
+		IN(SELECT DISTINCT(RESERVE_REF_PNO) FROM RESERVE WHERE RESERVE_USER = #{userNo});
 	</select>
 	
 </mapper>

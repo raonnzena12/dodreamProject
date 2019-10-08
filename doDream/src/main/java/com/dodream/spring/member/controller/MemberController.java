@@ -1,9 +1,9 @@
 package com.dodream.spring.member.controller;
 
-//import java.sql.Timestamp;
+
+import java.util.ArrayList;
 import java.util.List;
 
-//import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -18,10 +18,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dodream.spring.member.model.service.MemberService;
 import com.dodream.spring.member.model.vo.Member;
+import com.dodream.spring.project.model.vo.Project;
 
 @SessionAttributes({ "loginUser", "msg" })
 @Controller
@@ -447,6 +449,29 @@ public class MemberController {
 			return "common/errorPage";
 		}
 		
+	}
+	
+	/** 회원이 참여한 펀딩 리스트 조회
+	 * @param userNo
+	 * @param mv
+	 * @return mv
+	 */
+	@RequestMapping("myFundingList.dr")
+	public ModelAndView myFundingList(int userNo, ModelAndView mv) {
+
+		ArrayList<Project> pList = mService.myFundingList(userNo);
+
+		System.out.println(pList);
+
+		if (pList != null) {
+			mv.addObject("pList", pList);
+			mv.setViewName("member/myFundingList");
+		} else {
+			mv.addObject("msg", "목록 조회에 실패하였습니다.");
+			mv.setViewName("common/errorPage");
+		}
+
+		return mv;
 	}
 	
 	
