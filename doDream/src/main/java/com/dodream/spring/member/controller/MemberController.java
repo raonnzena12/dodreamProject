@@ -1,9 +1,9 @@
 package com.dodream.spring.member.controller;
 
-//import java.sql.Timestamp;
+
+import java.util.ArrayList;
 import java.util.List;
 
-//import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -18,10 +18,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dodream.spring.member.model.service.MemberService;
 import com.dodream.spring.member.model.vo.Member;
+import com.dodream.spring.project.model.vo.Project;
 
 @SessionAttributes({ "loginUser", "msg" })
 @Controller
@@ -92,7 +94,7 @@ public class MemberController {
 	 * @return
 	 */
 	@RequestMapping(value = "loginmodal.dr", method = RequestMethod.POST)
-	public String loginModal(Member member, Model model, String prevPage, HttpSession session,
+	public ModelAndView loginModal(Member member, ModelAndView mv, String prevPage, HttpSession session,
 			HttpServletResponse response) {
 		Member loginUser = mService.loginMember(member);
 
@@ -101,7 +103,8 @@ public class MemberController {
 		}
 		if (loginUser != null) {
 			session.setAttribute("loginUser", loginUser);
-			model.addAttribute("loginUser", loginUser);
+			mv.addObject("loginUser", loginUser);
+			mv.addObject("isDoneByModal", "true");
 			System.out.println(loginUser);
 			// 로그인 카운트 해주는 함수 호출;
 			int result = mService.checkVisitToday(loginUser.getUserNo());
@@ -110,11 +113,11 @@ public class MemberController {
 				if (result > 0)
 					System.out.println("userNo : " + loginUser.getUserNo() + "번 회원이 DAYCOUNT 테이블에 삽입됨");
 			}
-
-			return "redirect:insertFundForm.dr";
+			mv.setViewName("redirect:insertFundForm.dr");
+			return mv;
 		} else {
-			model.addAttribute("msg", "로그인 실패");
-			return "common/errorPage";
+			mv.addObject("msg", "로그인 실패").setViewName("common/errorPage");
+			return mv;
 		}
 	}
 
@@ -447,6 +450,29 @@ public class MemberController {
 			return "common/errorPage";
 		}
 		
+	}
+	
+	/** 회원이 참여한 펀딩 리스트 조회
+	 * @param userNo
+	 * @param mv
+	 * @return mv
+	 */
+	@RequestMapping("myFundingList.dr")
+	public ModelAndView myFundingList(int userNo, ModelAndView mv) {
+
+		ArrayList<Project> pList = mService.myFundingList(userNo);
+
+		System.out.println(pList);
+
+		if (pList != null) {
+			mv.addObject("pList", pList);
+			mv.setViewName("member/myFundingList");
+		} else {
+			mv.addObject("msg", "목록 조회에 실패하였습니다.");
+			mv.setViewName("common/errorPage");
+		}
+
+		return mv;
 	}
 	
 	

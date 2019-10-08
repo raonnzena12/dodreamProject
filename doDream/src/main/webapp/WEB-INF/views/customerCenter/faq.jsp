@@ -18,17 +18,12 @@
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet">
 <STYLE> 
-#faqCon { width: 1200px;	min-height: 900px;	height: auto; }
- 
-#faq_bar { border-bottom: 3px solid #8E44AD; }
-
-#faq_table {	padding-top: 20px; width: 100%; margin: auto; }
-
-#faqTitle {	width: 50%;	float: left; padding: 0; }
-
+#faqCon    { width: 1200px; min-height: 900px;	height: auto; }
+#faq_bar   { border-bottom: 3px solid #8E44AD; }
+#faq_table { padding-top: 20px; width: 100%; margin: auto; }
+#faqTitle  { width: 50%; float: left; padding: 0; }
 #faqSearch { float: right; padding: 0; }
-
-.jumbotron{	padding: 0; }
+.jumbotron { padding: 0; }
 </STYLE>
 </head>
 <body>
@@ -63,8 +58,8 @@
 						<form class="form-inline" action="nsearch.dr" name="searchForm" method="get">
 			
 							<select id="searchCondition" name="searchCondition">
-								<option value="all" <c:if test="${search.searchCondition == 'all'}">selected</c:if> >전체</option>
-								<option value="title" <c:if test="${search.searchCondition == 'title'}">selected</c:if> >제목</option>
+								<option value="all"     <c:if test="${search.searchCondition == 'all'}">selected</c:if> >전체</option>
+								<option value="title"   <c:if test="${search.searchCondition == 'title'}">selected</c:if> >제목</option>
 								<option value="content" <c:if test="${search.searchCondition == 'content'}">selected</c:if> >내용</option>
 							</select>
 							
@@ -81,29 +76,31 @@
 				<!-- FAQ 제목, 내용부분 / 악코디언 부분 -->
 				<!-- 추후 선택 : 선택성 액션, 한번에 닫기 기능 구현 -->
 				<div id="card-611390">
-					<!-- 내용을 묶는 틀 -->
+				
+					<!-- 검색 내용이 있을 경우 -->
 					<c:if test="${ !empty fList }">
-					<c:forEach var="f" items="${ fList }">
-						<div class="card">
-						
-							<div class="card-header">
-								<a class="card-link collapsed" href="#card-${f.fNo}"
-									data-toggle="collapse"> 
-									${f.fTitle}
-								</a>
+						<c:forEach var="f" items="${ fList }">
+							<div class="card">
+							
+								<div class="card-header">
+									<a class="card-link collapsed" href="#card-${f.fNo}"
+										data-toggle="collapse"> 
+										${f.fTitle}
+									</a>
+								</div>
+								<div class="collapse content" id="card-${f.fNo}">
+									<div class="card-body">${f.fContent }</div>
+								</div>
 							</div>
-							<div class="collapse content" id="card-${f.fNo}">
-								<div class="card-body">${f.fContent }</div>
-							</div>
-						</div>
-					</c:forEach>
+						</c:forEach>
 					</c:if>
+					
+					<!-- 검색내용이 없을 경우 -->
 					<c:if test="${ empty fList }">
 					<div class="card">
 						
 							<div class="card-header">
-								<a class="card-link collapsed" href="#card-01"
-									data-toggle="collapse"> 
+								<a class="card-link collapsed" href="#card-01" data-toggle="collapse"> 
 									해당 검색 내용이 없습니다.
 								</a>
 							</div>

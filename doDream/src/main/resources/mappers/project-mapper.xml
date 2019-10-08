@@ -105,12 +105,32 @@
 	
 	<!-- 프로젝트 등록  -->
 	<insert id="insertProject" parameterType="Project">
-		INSERT INTO PROJECT_TB VALUES( 
-			#{pNo}, #{pTitle}, #{pSTitle}, #{pGoal}, #{pThumbImage}, #{pStartDate}, #{pCloseDate},
-			#{pHashTag}, #{pMainImage}, #{pSummaryText}, #{pStory}, #{pArtistName}, #{pArtistPFImage},
-			#{pArtistSns1}, #{pArtistSns2}, #{pArtistPhone}, #{pArtistEmail}, SYSDATE, SYSDATE, #{pWriter}, #{pCategoryNum}, 
-			#{pStatusNum}, DEFAULT, #{pArtistIntroduction}
-		)
+		UPDATE PROJECT_TB SET 
+			PROJECT_TITLE = #{pTitle}, 
+			PROJECT_STITLE = #{pSTitle}, 
+			PROJECT_GOAL = #{pGoal}, 
+			PROJECT_THUMB_IMG = #{pThumbImage},
+			PROJECT_START_DT = #{pStartDate},
+			PROJECT_CLOSE_DT = #{pCloseDate},
+			PROJECT_HASHTAG = #{pHashTag},
+			PROJECT_MAIN_IMG = #{pMainImage}, 
+			PROJECT_SUMMARY = #{pSummaryText},
+			PROJECT_STORY = #{pStory}, 
+			PROJECT_AT_NM = #{pArtistName},
+			PROJECT_AT_PF = #{pArtistPFImage},
+			PROJECT_AT_SNS1 = #{pArtistSns1}, 
+			PROJECT_AT_SNS2 = #{pArtistSns2},
+			PROJECT_AT_CONT = #{pArtistPhone},
+			PROJECT_AT_EM = #{pArtistEmail},
+			PROJECT_ER_DT = SYSDATE,
+			PROJECT_MF_DT = SYSDATE,
+			PROJECT_WRITER = #{pWriter},
+			PROJECT_CT_NO = #{pCategoryNum},
+			PROJECT_ST_NO = #{pStatusNum},
+			PROJECT_COUNT = DEFAULT,
+			PROJECT_AT_INT = #{pArtistIntroduction},
+			PROJECT_TOTAL = DEFAULT
+		WHERE PROJECT_NO = #{pNo} 
 	</insert>
 	
 	<!-- 프로젝트 디테일 조회용 쿼리 -->
@@ -125,12 +145,6 @@
 	<select id="countList" resultType="_int">
 		SELECT COUNT(*) FROM PROJECT_TB
 		WHERE PROJECT_ST_NO IN ( 4, 5 )
-	</select>
-	
-	<!-- 회원의 진행중/종료된 프로젝트 갯수 조회용 쿼리 -->
-	<select id="countOpenProject" resultType="_int" parameterType="_int">
-		SELECT COUNT(*) FROM PROJECT_TB 
-		WHERE PROJECT_WRITER= #{userNo} AND PROJECT_ST_NO IN ( 4, 5 )
 	</select>
 	
 	<!-- 선택한 카테고리에 따라 프로젝트 리스트 조회용 쿼리 -->
@@ -213,16 +227,7 @@
 		WHERE PROJECT_NO = #{ pNo }
 	</update>
 	
-	<!-- 내가 펀딩한 프로젝트 중 RESERVE_ST_NO 1인것 (결제대기)  -->
-	<select id="projectJoinCount" parameterType="_int" resultType="_int">
-		SELECT COUNT(*) FROM RESERVE WHERE RESERVE_STATUS_NO = '1' AND RESERVE_USER = #{userNo}
-	</select>
-	
-	<!-- 내가 펀딩한 프로젝트 중 결재완료된 건 -->
-	<select id="projectCloseCount" parameterType="_int" resultType="_int">
-		SELECT COUNT(*) FROM RESERVE WHERE RESERVE_STATUS_NO = 2 AND RESERVE_USER = #{userNo}
-	</select>
-	
+
 	<!-- =======================리워드=========================== -->
 	
 	<!-- 리워드 조회 쿼리 -->
@@ -231,8 +236,13 @@
 	</select>
 	
 	<!-- 프로젝트 등록 페이지 이동시 pNo를 생성해주는 쿼리  -->
-	<select id="createProjectNumber" resultType="_int">
-		SELECT SEQ_PROJ_NO.NEXTVAL FROM DUAL
+	<insert id="createProject">
+		INSERT INTO PROJECT_TB (PROJECT_NO, PROJECT_ST_NO) VALUES (SEQ_PROJ_NO.NEXTVAL, 0)
+	</insert>
+	
+	<!-- 위에서 생성된 프로젝트의 번호를 가져오는 쿼리  -->
+	<select id="selectThisProject" resultType="_int">
+		SELECT SEQ_PROJ_NO.CURRVAL FROM DUAL
 	</select>
 	
 	<!-- 리워드 등록 -->
@@ -338,5 +348,32 @@
 	<update id="deleteSubRe" parameterType="_int">
 		UPDATE SUBREPLY SET SUBRE_STATUS='N', SUBRE_MODI_DT=SYSDATE WHERE SUBRE_NO=#{subNo}
 	</update>
+  
+	<!-- ========================myPage============================ -->
+
+	<!-- 내가 펀딩한 프로젝트 중 RESERVE_ST_NO 1인것 (결제대기)  -->
+	<select id="projectJoinCount" parameterType="_int" resultType="_int">
+		SELECT COUNT(*) FROM RESERVE
+		WHERE RESERVE_STATUS_NO = '1' AND RESERVE_USER = #{userNo}
+	</select>
+
+	<!-- 내가 펀딩한 프로젝트 중 결재완료된 건 -->
+	<select id="projectCloseCount" parameterType="_int" resultType="_int">
+		SELECT COUNT(*) FROM RESERVE
+		WHERE RESERVE_STATUS_NO = 2 AND RESERVE_USER = #{userNo}
+	</select>
+
+
+	<!-- 회원의 진행중/종료된 프로젝트 갯수 조회용 쿼리 -->
+	<select id="countOpenProject" resultType="_int" parameterType="_int">
+		SELECT COUNT(*) FROM PROJECT_TB 
+		WHERE PROJECT_WRITER= #{userNo} AND PROJECT_ST_NO IN ( 4, 5 )
+	</select>
+
+	<!-- 회원이 참여한 펀딩 리스트 조회 -->
+	<select id="myFundingList" resultMap="projectResultSet" parameterType="_int">
+		SELECT * FROM PROJECT_TB WHERE PROJECT_NO
+		IN(SELECT DISTINCT(RESERVE_REF_PNO) FROM RESERVE WHERE RESERVE_USER = #{userNo});
+	</select>
 	
 </mapper>
