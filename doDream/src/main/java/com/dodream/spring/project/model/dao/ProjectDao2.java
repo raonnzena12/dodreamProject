@@ -153,8 +153,57 @@ public class ProjectDao2 {
 	}
 
 
+	/**
+	 * 신고 조회
+	 * @param report
+	 * @return
+	 */
 	public DetailReport selectReport(DetailReport report) {
 	
 		return sqlSession.selectOne("projectMapper.selectReport", report);
+	}
+
+
+	/**
+	 * 댓글 조회
+	 * @param reply
+	 * @return result
+	 */
+	public int updateReply(Reply reply) {
+		
+		return sqlSession.update("projectMapper.updateReply", reply);
+	}
+
+
+	/**
+	 * 댓글 삭제
+	 * @param rNo
+	 * @return result
+	 */
+	public int deleteReply(int rNo) {
+		
+		return sqlSession.update("projectMapper.deleteReply", rNo);
+	}
+
+
+	/**
+	 * 대댓글 수정
+	 * @param sReply
+	 * @return result
+	 */
+	public int updateSubRe(SubReply sReply) {
+		
+		return sqlSession.update("projectMapper.updateSubRe", sReply);
+	}
+
+
+	/**
+	 * 대댓글 삭제
+	 * @param subNo
+	 * @return result
+	 */
+	public int deleteSubRe(int subNo) {
+		
+		return sqlSession.update("projectMapper.deleteSubRe", subNo);
 	}
 }

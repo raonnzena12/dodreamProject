@@ -290,6 +290,71 @@ public class ProjectController2 {
 		
 	}
 	
+	//댓글수정
+	@ResponseBody
+	@RequestMapping("updateReply.dr")
+	public String updateReply(String content, int rNo, Reply reply) {
+		
+		reply.setReContent(content);
+		reply.setReNo(rNo);
+		
+		int result = pService2.updateReply(reply);
+		
+		if(result > 0) {
+			return "1";
+		}else {
+			return "2";
+		}
+		
+	}
+	
+	//댓글 삭제
+	@ResponseBody
+	@RequestMapping("deleteReply.dr")
+	public String deleteReply(int rNo) {
+		
+		int result = pService2.deleteReply(rNo);
+		
+		if(result > 0) {
+			return "1";
+		}else {
+			return "2";
+		}
+		
+	}
+	
+	//대댓글 수정
+	@ResponseBody
+	@RequestMapping("updateSubRe.dr")
+	public String updateSubRe(int subNo, String updateSubCon, SubReply sReply) {
+		
+		sReply.setSubNo(subNo);
+		sReply.setSubContent(updateSubCon);
+		
+		int result = pService2.updateSubRe(sReply);
+		
+		if(result > 0) {
+			return "1";
+		}else {
+			return "2";
+		}
+	}
+	
+	//대댓글 삭제
+	@ResponseBody
+	@RequestMapping("deleteSubRe.dr")
+	public String deleteSubRe(int subNo) {
+		
+		int result = pService2.deleteSubRe(subNo);
+		
+		if(result > 0) {
+			return "1";
+		}else {
+			return "2";
+		}
+		
+	}
+	
 	
 
 }
