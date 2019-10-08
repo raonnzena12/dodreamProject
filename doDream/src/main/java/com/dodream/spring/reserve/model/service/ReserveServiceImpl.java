@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.dodream.spring.project.model.vo.FilteringList;
 import com.dodream.spring.project.model.vo.Reward;
 import com.dodream.spring.reserve.model.dao.ReserveDao;
 import com.dodream.spring.reserve.model.vo.History;
@@ -81,7 +82,7 @@ public class ReserveServiceImpl implements ReserveService {
 	}
 
 	@Override
-	public ArrayList<Reserve> selectReserveList(int userNo) {
-		return rsvDao.selectReserveList(userNo);
+	public ArrayList<Reserve> selectReserveList(FilteringList filter) {
+		return rsvDao.selectReserveList(filter);
 	}
 }
