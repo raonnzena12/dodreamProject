@@ -501,6 +501,8 @@
 			
 			//신고하기 눌렀을 때
 			$(".reportBtn").on("click", function(){
+				
+				//console.log("report : " + ${report.repWriter});
 				if(${empty sessionScope.loginUser}) {
 					alert("로그인이 필요합니다.");
 					return false;
