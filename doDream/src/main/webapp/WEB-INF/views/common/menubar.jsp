@@ -216,12 +216,12 @@
 										<div class="col-md-4">
 											<i class="material-icons">favorite</i>
 											<br>
-											<a href="#">찜</a>
+											<a href="#">찜</a> <!-- 좋아요한 프로젝트목록 -->
 										</div>
 										<div class="col-md-4">
 											<i class="material-icons">folder</i>
 											<br>
-											<a href="#">펀딩로그</a>
+											<a href="myFundingList.dr?userNo=${loginUser.userNo}">펀딩로그</a> <!-- 내가 참여한 프로젝트 -->
 										</div>
 									</div>
 								</div>
