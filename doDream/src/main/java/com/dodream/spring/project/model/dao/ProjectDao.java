@@ -133,6 +133,16 @@ public class ProjectDao {
 		return sqlSession.delete("projectMapper.deleteLike", like);
 	}
 
+	/**
+	 * 메인 출력에 필요한 리스트들
+	 * (인기순, 최신등록순, 마감임박순) 받아오는 DAO
+	 * @param userNo
+	 * @return allList
+	 */
+	public ArrayList<Project> selectMainList(int userNo) {
+		return (ArrayList)sqlSession.selectList("projectMapper.selectMainList", userNo);
+	}
+
 
 
 	

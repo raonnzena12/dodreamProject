@@ -94,6 +94,11 @@ public class ProjectServiceImpl implements ProjectService {
 		return result;
 	}
 
+	@Override
+	public ArrayList<Project> selectMainList(int userNo) {
+		return pDao.selectMainList(userNo);
+	}
+
 
 
 }
