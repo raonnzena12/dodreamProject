@@ -81,6 +81,7 @@
 		<result property="subWriImg" column="PRO_IMG"/>
 		<result property="subRefRNo" column="SUBRE_REF_RNO"/>
 		<result property="subRSUser" column="RSUSER"/>
+		<result property="subPNo" column="SUBRE_PNO"/>
 	</resultMap>
 	
 	<resultMap type="DetailFollow" id="detailFollowResultSet">
@@ -287,12 +288,12 @@
 	
 	<!-- 댓글 조회 -->
 	<select id="selectReply" parameterType="_int" resultMap="replyResultSet">
-		SELECT * FROM PROJECT_DETAIL_REPLY WHERE REPLY_REF_PNO=#{pNo}
+		SELECT * FROM PROJECT_DETAIL_REPLY_2ND WHERE REPLY_REF_PNO=#{pNo}
 	</select>
 	
 	<!-- 서브 댓글 조회 -->
 	<select id="selectSubReply" parameterType="Reply" resultMap="subReplyResultSet">
-		SELECT * FROM PROJECT_DETAIL_SUBREPLY WHERE SUBRE_REF_RNO IN 
+		SELECT * FROM PROJECT_DETAIL_SUBREPLY_2ND WHERE SUBRE_REF_RNO IN 
 		<foreach collection="list" item="num" index="index" open="(" close=")" separator=",">
 			#{num.reNo}
 		</foreach>
@@ -328,6 +329,26 @@
 		SELECT * FROM REPORT_TB WHERE REPORT_REF_PNO=#{repRefPno} AND REPORT_WRITER=#{repWriter}
 	</select>
 	
+	<!-- 댓글 수정 -->
+	<update id="updateReply" parameterType="Reply">
+		UPDATE REPLY SET REPLY_CONTENT=#{reContent}, REPLY_MODI_DT=SYSDATE WHERE REPLY_NO=#{reNo}
+	</update>
+	
+	<!-- 댓글 삭제 -->
+	<update id="deleteReply" parameterType="_int">
+		UPDATE REPLY SET REPLY_STATUS='N', REPLY_MODI_DT=SYSDATE WHERE REPLY_NO=#{rNo}
+	</update>
+	
+	<!-- 대댓글 수정 -->
+	<update id="updateSubRe" parameterType="SubReply">
+		UPDATE SUBREPLY SET SUBRE_CON=#{subContent}, SUBRE_MODI_DT=SYSDATE WHERE SUBRE_NO=#{subNo}
+	</update>
+	
+	<!-- 대댓글 삭제 -->
+	<update id="deleteSubRe" parameterType="_int">
+		UPDATE SUBREPLY SET SUBRE_STATUS='N', SUBRE_MODI_DT=SYSDATE WHERE SUBRE_NO=#{subNo}
+	</update>
+  
 	<!-- ========================myPage============================ -->
 
 	<!-- 내가 펀딩한 프로젝트 중 RESERVE_ST_NO 1인것 (결제대기)  -->
