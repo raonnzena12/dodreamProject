@@ -477,7 +477,7 @@
 		                            			
 		                            			if(num > max){
 		                            				$(this).val(max);
-		                            			}else if(num < min){
+		                            			}else if(num < 0){
 		                            				$(this).val(min);
 		                            			}
 		                            		});
@@ -534,7 +534,7 @@
                            </div>
                            
                         </div>
-                        <button type="button" class="btn btn-primary btn-lg btn-block rewardBtn" onclick="goReserve();">후원하기</button>
+                        <button type="button" class="btn btn-primary btn-lg btn-block rewardBtn">후원하기</button>
                         <button type="button" class="btn btn-primary btn-lg btn-block rewardBtn2">후원하기</button>
                </div>
 			</aside>
@@ -546,6 +546,15 @@
 	   
    	
    		$(function(){
+   			
+   			
+   				$(".rewardBtn").on("click", function(){
+   					if(${empty sessionScope.loginUser}){
+   						alert("로그인이 필요합니다.");
+   					}else{
+   						goReserve();
+   					}
+   				});
    			
    			
    			
@@ -654,10 +663,11 @@
    			//});
    			
    				$(".reCount").focus(function(){
+   					
    					$("#rewardSum").text("");
    					reCount = 0;
 					checkName = "";
-   					$(".reCount").change(function(){
+   					$(".reCount").on("input", function(){
    						sum();
    						/* cPrice = 0;
    						$("#rewardSum").text("");
@@ -703,6 +713,10 @@
    				var count="";
    				var input="";
    				
+   				if($("input:checkbox[name='reCheck']:checked").length == 0){
+   					alert("리워드를 선택해주세요.");
+   				}else{
+   					
    				$("input:checkbox[name='reCheck']:checked").each(function(){
    					
    					rNo += $(this).parent().parent().attr("id")+"/"; //리워드 번호
@@ -765,7 +779,7 @@
 	   				console.log("pNo=" + pNo + "addReward="+ addReward +"select=" + select + "input=" + input +"count=" +count);
 	   				 */
 	   				
-   	   			
+   				}
    				
    			}
 		
@@ -776,7 +790,7 @@
 				var checkName2 ="";
 				
 				$("#rewardSum").text("");
-					$("input:checkbox[name='reCheck']:checked").each(function(){
+				$("input:checkbox[name='reCheck']:checked").each(function(){
 					reCount2 =$(this).parent().parent().find(".reCount").val()*1;
 					console.log(reCount2);
 					cPrice2 += $(this).val()*1*reCount2;
