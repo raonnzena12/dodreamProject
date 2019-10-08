@@ -303,6 +303,31 @@
            		float:right;
            }
            
+           /* ================댓글 수정 삭제================== */
+           .reCreate{
+           		float:right;
+           		display:block;
+           		color:#F39C12;
+           		margin-right:5px;
+           }
+           .reDelete{
+           		float:right;
+           		display:block;
+           		color:#8E44AD;
+           		margin-right:30px;
+           }
+            .subCreate{
+           		float:right;
+           		display:block;
+           		color:#F39C12;
+           		margin-right:5px;
+           }
+           .subDelete{
+           		float:right;
+           		display:block;
+           		color:#8E44AD;
+           		margin-right:30px;
+           }
           
            
        </style>
@@ -335,7 +360,12 @@
 		                 			<div class="comText1">카테고리  |</div>
 		                 			<div class="comTime">시간</div>
 						    	</div>
-						    	
+						    	<i class="material-icons reCreate">
+									create
+								</i>
+								<i class="material-icons reDelete">
+									delete_sweep
+								</i>
 						    	<div class="comContent">
 						    		댓글 내용내용
 						    	
@@ -358,7 +388,12 @@
 							    	</div>
 		                 			<span class="badge badge-primary subBadge">아티스트</span>
 					    		</div>
-					    		
+					    		<i class="material-icons subCreate">
+									create
+								</i>
+								<i class="material-icons subDelete">
+									delete_sweep
+								</i>
 					    		<div class="subContent">
 					    			서브 댓글 내용자리
 					    		</div>
@@ -368,7 +403,7 @@
 				    </div>
 				    
 				    
-				</div>            
+			<!-- 	</div>  -->           
 			</section>
 			
 			<aside id="aside">
@@ -455,6 +490,8 @@
 					var $comText1;//카테고리
 					var $comTime;// 등록 시간
 					var $comContent;// 내용
+					var $reCreate;// 댓글 수정 버튼
+					var $reDelete;// 댓글 삭제 버튼
 					//========================================================
 					var $subInputBox;// 서브 댓글 등록박스
 					var $subArtImg;//서브 댓글 작성한 유저 이미지
@@ -470,6 +507,8 @@
 					var $subcomTime;// 서브 댓글 입력 시간
 					var $artist;//아티스트 서브 댓글 일때  span태그
 					var $subContent;//서브댓글 내용
+					var $subCreate;//대댓글 수정 버튼
+					var $subDelete;// 대댓글 삭제 버튼
 					
 					
 					if(result.reList.length > 0){
@@ -489,6 +528,8 @@
 							$comText1 = $("<div>").addClass("comText1").text(result.reList[i].reCGName+" | ");//카테고리
 							$comTime = $("<div>").addClass("comTime").text(replyTime(result.reList[i].reDay));// 등록 시간	
 							$comContent = $("<div>").addClass("comContent").html(result.reList[i].reContent);// 내용
+							$reCreate = $("<i>").addClass("material-icons reCreate").attr("title","수정").text("create");// 댓글 수정 버튼
+							$reDelete = $("<i>").addClass("material-icons reDelete").attr("title","삭제").text("delete_sweep");//댓글 삭제 버튼
 							//========================================================
 							$subInputBox = $("<div>").addClass("subInputBox");// 서브댓글 등록박스
 							
@@ -526,8 +567,11 @@
 							
 							//=============================
 							$sub.append($profileBox);
+							$sub.append($reDelete);// 댓글 삭제 버튼
+							$sub.append($reCreate);// 댓글 수정 버튼
 							$sub.append($comContent);
 							$sub.append($subInputBox);
+							
 							
 							$comBox.append($sub);
 							
@@ -546,7 +590,8 @@
 									
 									$artist = $("<span>").addClass("badge badge-primary subBadge").text("아티스트");//아티스트 서브 댓글 일때  span태그
 									$span = $("<span>").addClass("badge badge-primary subConBadge").text("펀딩참가");// 펀딩 참가자 인지
-									
+									$subCreate = $("<i>").addClass("material-icons subCreate").attr("title","수정").text("create");// 대댓글 수정 버튼
+									$subDelete = $("<i>").addClass("material-icons subDelete").attr("title","삭제").text("delete_sweep");//대댓글 삭제 버튼
 									$subContent = $("<div>").addClass("subContent").html(result.srList[j].subContent);//서브댓글 내용
 									
 									//===============================
@@ -567,8 +612,10 @@
 										}
 									}
 									$subBox.append($subProfileBox);
-									
+									if()
 									$subCom.append($subBox);
+									$subCom.append($subDelete);
+									$subCom.append($subCreate);
 									$subCom.append($subContent);
 									
 									$comBox.append($subCom);
@@ -585,6 +632,11 @@
 				}
 			});
 		}
+		
+		
+		
+		
+		
 		
 		// subReply 등록
 		
