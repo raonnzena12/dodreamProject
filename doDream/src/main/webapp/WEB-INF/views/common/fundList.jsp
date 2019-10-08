@@ -20,12 +20,12 @@
          <div class="col-md-10" id="categoryTopMenu">
             <span class="font15">당신의 마음을 두드릴 아티스트를 찾아보세요</span>
             <div id="categoryArea" class="my-5">
-               <input type="radio" name="category" id="total" value="total" checked><label for="total">전체</label>
-               <input type="radio" name="category" id="music" value="music"><label for="music">음악</label>
-               <input type="radio" name="category" id="movie" value="movie"><label for="movie">영화</label>
-               <input type="radio" name="category" id="play" value="play"><label for="play">연극</label>
-               <input type="radio" name="category" id="art" value="art"><label for="art">미술</label>
-               <input type="radio" name="category" id="etc" value="etc"><label for="etc">ETC</label>
+               <input type="radio" name="category" id="total" value="total" ${ (empty cate || cate == "total") ? 'checked' : '' }><label for="total">전체</label>
+               <input type="radio" name="category" id="music" value="music" ${ (cate == "music") ? 'checked' : '' }><label for="music">음악</label>
+               <input type="radio" name="category" id="movie" value="movie" ${ (cate == "movie") ? 'checked' : '' }><label for="movie">영화</label>
+               <input type="radio" name="category" id="play" value="play" ${ (cate == "play") ? 'checked' : '' }><label for="play">연극</label>
+               <input type="radio" name="category" id="art" value="art" ${ (cate == "art") ? 'checked' : '' }><label for="art">미술</label>
+               <input type="radio" name="category" id="etc" value="etc" ${ (cate == "etc") ? 'checked' : '' }><label for="etc">ETC</label>
             </div>
          </div>
          <div class="col-md-1">
@@ -41,19 +41,20 @@
                   <span>전체보기</span>
                   <span class="float-right">
                      <form action="${ keywordSearch }">
+                     <input type="hidden" name="cate" value="${ cate }">
                      <input type="search" name="keyword" id="fundKeyword" placeholder="Search">
                      <i class="ver-super material-icons" id="searchSubmit">search</i>
                      <select name="endYn" id="filter">
-                        <option value="ALL" selected>전체</option>
-                        <option value="N">진행중인 펀딩</option>
-                        <option value="Y">종료된 펀딩</option>
+                        <option value="ALL" ${ ( empty endYn || endYn == "ALL" ) ? 'selected' : '' }>전체</option>
+                        <option value="N" ${ ( endYn == "N" ) ? 'selected' : '' }>진행중인 펀딩</option>
+                        <option value="Y" ${ ( endYn == "Y" ) ? 'selected' : '' }>종료된 펀딩</option>
                      </select>
                      <select name="order" id="filter2">
-                        <option value="popluar">인기순</option>
-                        <option value="recent">최신순</option>
-                        <option value="amount">최고금액순</option>
-                        <option value="support">최다후원순</option>
-                        <option value="closing">마감임박순</option>
+                        <option value="popluar" ${ ( order == "popluar" ) ? 'selected' : '' }>인기순</option>
+                        <option value="recent" ${ ( order == "recent" ) ? 'selected' : '' }>최신순</option>
+                        <option value="amount" ${ ( order == "amount" ) ? 'selected' : '' }>최고금액순</option>
+                        <option value="support" ${ ( order == "support" ) ? 'selected' : '' }>최다후원순</option>
+                        <option value="closing" ${ ( order == "closing" ) ? 'selected' : '' }>마감임박순</option>
                      </select>
                      </form>
                   </span>
@@ -136,10 +137,10 @@
 // 페이지 접속하면 currentPage = 1;
 var currentPage = 1;
 var maxPage = ${ pi.maxPage };
-var cate = null;
-var order = null;
-var endYn = null;
-var keyword = null;
+var cate = "";
+var order = "";
+var endYn = "";
+var keyword = "";
 
 
    // 좋아요 누르는 함수 만들것
@@ -261,10 +262,10 @@ function listLoading() {
    keyword = $("#fundKeyword").val();
    endYn = $("#filter").val();
    order = $("#filter2").val();
-   console.log(cate);
-   console.log(keyword);
-   console.log(endYn);
-   console.log(order);
+   console.log("cate : " + cate);
+   console.log("keyword : " + keyword);
+   console.log("endYn : " + endYn);
+   console.log("order : " + order);
    $.ajax({
       url: "loadListByAjax.dr",
       type: "GET",
@@ -281,6 +282,13 @@ function listLoading() {
          printFunds(pList);
       }
    });
+}
+function reload(){
+   var catecate = $("input[name=category]:checked").val();
+   var key = $("#fundKeyword").val();
+   var endYnn = $("#filter").val();
+   var orderorder = $("#filter2").val();
+   location.href='category.dr?keyword='+key+"&cate="+catecate+"&endYn="+endYnn+"&order="+orderorder;
 }
 $(function(){
    $(window).scroll(function(){   //스크롤이 최하단 으로 내려가면 리스트를 조회하고 page를 증가시킨다.
@@ -303,22 +311,15 @@ $(function(){
    });
    // 카테고리가 변경될때마다 리스트로딩을 다시 하는 함수
    $("#categoryArea input").on("change", function(){
-      currentPage = 1;
-      $(".resultPrint").html("");
-      listLoading();
+      reload();
    });
    // 진행상태/ 정렬상태가 변경될때마다 리스트 로딩을 다시 하는 함수
    $("#filter, #filter2").on("change", function(){
-      currentPage = 1;
-      $(".resultPrint").html("");
-      listLoading();
+      reload();
    });
    // 검색어를 서치할때마다 리스트 로딩을 다시 하는 함수
    $("#searchSubmit").on("click", function(){
-      console.log("왜안돼");
-      currentPage = 1;
-      $(".resultPrint").html("");
-      listLoading();
+      reload();
    })
 })
 
