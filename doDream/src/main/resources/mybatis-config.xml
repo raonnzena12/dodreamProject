@@ -26,6 +26,7 @@
 		<typeAlias type="com.dodream.spring.report.model.vo.ReportVo" alias="ReportVo"/>
 		<typeAlias type="com.dodream.spring.reserve.model.vo.History" alias="History" />
 		<typeAlias type="com.dodream.spring.project.model.vo.FilteringList" alias="FilteringList" />
+		<typeAlias type="com.dodream.spring.admin.model.vo.Alarm" alias="Alarm" />
 	</typeAliases>
 	
 	
@@ -42,6 +43,8 @@
     	<mapper resource="mappers/reserve-mapper.xml"/>
     	<mapper resource="mappers/adminReply-mapper.xml"/>
     	<mapper resource="mappers/adminNotice-mapper.xml"/>
+    	<mapper resource="mappers/adminReview-mapper.xml"/>
+    	<mapper resource="mappers/adminAlarm-mapper.xml"/>
  	</mappers>
 	
 </configuration>

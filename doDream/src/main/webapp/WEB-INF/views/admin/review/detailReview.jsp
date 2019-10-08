@@ -48,6 +48,16 @@
 .sorting{
 	width: auto;
 }
+#tb{
+	border-top: 3px solid lightgray; 
+}
+#tb td, #tb th{
+	border-bottom: 1px solid lightgray;
+}
+#tb th{
+	background: #f8f9fc;
+}
+
 
 </style>
 
@@ -98,28 +108,28 @@
 									class="dataTables_wrapper dt-bootstrap4">
 									<div class="row">
 			 							<div class="col-sm-12">
-			 								<table align="center" id="tb" cellpadding="10" cellspacing="0" border="1" width="500">
+			 								<table align="center" id="tb" cellpadding="10" cellspacing="0" width="1000px">
 												<tr align="center" valign="middle">
 													<th colspan="2">${ review.revNo }번 글 상세보기</th>
 												</tr>
 												<tr>
-													<td height="15" width="70">제목</td>
+													<th height="15" width="70">제목</th>
 													<td>${ review.revTitle }</td>
 												</tr>
 												<tr>
-													<td>작성자</td>
+													<th>작성자</th>
 													<td>${ review.userNickname }</td>
 												</tr>		
 												<tr>
-													<td>작성일</td>
+													<th>작성일</th>
 													<td>${ review.revEnrollDate}</td>
 												</tr>		
 												<tr>
-													<td>썸네일 이미지</td>
+													<th>썸네일 이미지</th>
 													<td>${ review.reviewTnImg}</td>
 												</tr>		
 												<tr height="300">
-													<td>내용</td>
+													<th>내용</th>
 													<td>${ review.revContent }</td>
 												</tr>
 											</table>

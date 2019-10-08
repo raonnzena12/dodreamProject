@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dodream.spring.admin.model.dao.AdminDao;
+import com.dodream.spring.admin.model.vo.Alarm;
 import com.dodream.spring.common.AdminPagination;
 import com.dodream.spring.common.model.vo.PageInfo;
 import com.dodream.spring.customerCenter.model.vo.Notice;
@@ -250,6 +251,11 @@ public class AdminServiceImpl implements AdminService {
 	public int updateReserveStatusToFail(String[] rNo) {
 		System.out.println(Arrays.toString(rNo));
 		return aDao.updateReserveStatusToFail(rNo);
+	}
+
+	@Override
+	public ArrayList<Alarm> goAlarmList() {
+		return aDao.goAlarmList();
 	}
 
 	
