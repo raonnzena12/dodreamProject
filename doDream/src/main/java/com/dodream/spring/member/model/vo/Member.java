@@ -1,7 +1,6 @@
 package com.dodream.spring.member.model.vo;
 
 import java.sql.Date;
-import java.sql.Timestamp;
 
 public class Member {
 
@@ -19,17 +18,12 @@ public class Member {
 	private String userPhone;
 	private String userProfileImage;
 	private String userSelf;
-	private boolean useCookie;
-	private String sessionId;
-	private Timestamp limit;
 		
 	public Member() {}
-	
-		
+
 	public Member(int userNo, String userEmail, String userNickname, String userPwd, String userEmailAuthYn,
 			String userAdminYn, String userStatus, Date userEnrollDate, Date userLoginDate, Date userModifyDate,
-			String userAddress, String userPhone, String userProfileImage, String userSelf, boolean useCookie,
-			String sessionId, Timestamp limit) {
+			String userAddress, String userPhone, String userProfileImage, String userSelf) {
 		super();
 		this.userNo = userNo;
 		this.userEmail = userEmail;
@@ -45,11 +39,7 @@ public class Member {
 		this.userPhone = userPhone;
 		this.userProfileImage = userProfileImage;
 		this.userSelf = userSelf;
-		this.useCookie = useCookie;
-		this.sessionId = sessionId;
-		this.limit = limit;
 	}
-
 
 	public int getUserNo() {
 		return userNo;
@@ -163,40 +153,17 @@ public class Member {
 		this.userSelf = userSelf;
 	}
 
-	public boolean isUseCookie() {
-		return useCookie;
-	}
-
-	public void setUseCookie(boolean useCookie) {
-		this.useCookie = useCookie;
-	}
-
-	public String getSessionId() {
-		return sessionId;
-	}
-
-	public void setSessionId(String sessionId) {
-		this.sessionId = sessionId;
-	}
-
-	public Timestamp getLimit() {
-		return limit;
-	}
-
-	public void setLimit(Timestamp limit) {
-		this.limit = limit;
-	}
-
-
 	@Override
 	public String toString() {
 		return "Member [userNo=" + userNo + ", userEmail=" + userEmail + ", userNickname=" + userNickname + ", userPwd="
 				+ userPwd + ", userEmailAuthYn=" + userEmailAuthYn + ", userAdminYn=" + userAdminYn + ", userStatus="
 				+ userStatus + ", userEnrollDate=" + userEnrollDate + ", userLoginDate=" + userLoginDate
 				+ ", userModifyDate=" + userModifyDate + ", userAddress=" + userAddress + ", userPhone=" + userPhone
-				+ ", userProfileImage=" + userProfileImage + ", userSelf=" + userSelf + ", useCookie=" + useCookie
-				+ ", sessionId=" + sessionId + ", limit=" + limit + "]";
+				+ ", userProfileImage=" + userProfileImage + ", userSelf=" + userSelf + "]";
 	}
+	
+	
+	
 	
 	
 

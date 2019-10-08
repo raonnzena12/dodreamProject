@@ -474,6 +474,25 @@ public class MemberController {
 		return mv;
 	}
 	
+	@RequestMapping("myOpenProjectList")
+	public ModelAndView myOpenProjectList(int userNo, ModelAndView mv) {
+		
+		ArrayList<Project> pList = mService.myOpenProjectList(userNo);
+		System.out.println(pList);
+		
+		if(pList != null) {
+			mv.addObject("pList", pList);
+			mv.setViewName("member/myOpenProjectList");
+		} else {
+			mv.addObject("msg", "목록 조회에 실패하였습니다.");
+			mv.setViewName("common/errorPage");
+		}
+
+		return mv;
+		
+	}
+	
+
 	
 	
 }

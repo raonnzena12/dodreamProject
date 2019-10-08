@@ -172,4 +172,11 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 
+	@Override
+	public ArrayList<Project> myOpenProjectList(int userNo) {
+	
+		return mDao.myOpenProjectList(userNo);
+	}
+
+
 }

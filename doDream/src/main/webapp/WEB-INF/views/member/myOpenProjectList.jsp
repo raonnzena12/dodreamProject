@@ -61,6 +61,12 @@
     padding-top: 3px;
 }
 
+.detailArea>span{
+	font-weight: 800;
+	font-size: 14px;
+    color: #8E44AD;
+}
+
 .nameArea {
     grid-column-start: 1;
     grid-column-end: 3;
@@ -154,7 +160,7 @@
 			<div class="col-md-2"></div>
 			<div class="col-md-8 resultPrint">
 					<c:if test="${ empty pList }">
-						<h4 class="text-center">참여한 펀딩이 없습니다.</h4>
+						<h4 class="text-center">오픈한 펀딩이 없습니다.</h4>
 					</c:if>
 					<c:if test="${ fn:length(pList) >0 }">
 						<c:forEach var="pList" items="${ pList }">
@@ -162,29 +168,46 @@
 								<div class="fundCon">
 									<div class="fundItem" id="${ pList.pNo }">
 										<div class="fundImg">
-											<img
-												src="resources/images/projectImg/thumbnail/${ pList.pThumbImage }">
+											<img src="resources/images/projectImg/thumbnail/${ pList.pThumbImage }">
 										</div>
 										<div class="nameArea">
 											<p class="categoryName mb-0">${ pList.pCategoryName }</p>
 											<span class="fundName"> ${ pList.pTitle } </span>
 										</div>
+										<div class="detailArea my-1">
+											<c:choose>
+												<c:when test="${pList.pStatusNum eq 1 }">
+													<span>임시저장</span>
+												</c:when>
+												<c:when test="${pList.pStatusNum eq 2 }">
+													<span>심사대기</span>
+												</c:when>
+												<c:when test="${pList.pStatusNum eq 3 }">
+													<span>심사완료</span>
+												</c:when>
+												<c:when test="${pList.pStatusNum eq 4 }">
+													<span>펀딩중</span>
+												</c:when>
+												<c:when test="${pList.pStatusNum eq 5 }">
+													<span>펀딩마감</span>
+												</c:when>
+												<c:when test="${pList.pStatusNum eq 6 }">
+													<span>심사탈락</span>
+												</c:when>
+												<c:when test="${pList.pStatusNum eq 7 }">
+													<span>펀딩성공</span>
+												</c:when>																							
+											</c:choose>
+           		                        </div>
 										<div class="chartArea px-3 mt-2">
 											<div class="chartInfo clearfix">
-												<span class="chartInfo1">￦<fmt:formatNumber
-														value="${ pList.pCurrentFunding }" groupingUsed="true" /></span>
-												<span class="chartInfo2"><fmt:parseNumber
-														value="${ (pList.pCurrentFunding / pList.pGoal) * 100 }"
-														integerOnly="true" />%</span>
+												<span class="chartInfo1">￦<fmt:formatNumber value="${ pList.pCurrentFunding }" groupingUsed="true" /></span>
+												<span class="chartInfo2"><fmt:parseNumber value="${ (pList.pCurrentFunding / pList.pGoal) * 100 }" integerOnly="true" />%</span>
 											</div>
-											<div class="detailArea my-1">
-           		                           	</div>
 											<div class="chartBar">
 												<c:choose>
-													<c:when
-														test="${ ((pList.pCurrentFunding / pList.pGoal) * 100) < 100 }">
-														<div class="purpleBar"
-															style="width:${ (pList.pCurrentFunding / pList.pGoal) * 100 }%"></div>
+													<c:when test="${ ((pList.pCurrentFunding / pList.pGoal) * 100) < 100 }">
+														<div class="purpleBar"style="width:${ (pList.pCurrentFunding / pList.pGoal) * 100 }%"></div>
 													</c:when>
 													<c:otherwise>
 														<div class="purpleBar"></div>
@@ -209,6 +232,7 @@
 			</div>
 		<div class="col-md-2"></div>
 	</div>
+	
 	<script>
 		// 페이지 접속하면 currentPage = 1;
 		/* var currentPage = 1;
