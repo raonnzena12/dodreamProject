@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.dodream.spring.member.model.vo.Member;
 
+
 @Repository("mDao")
 public class MemberDao {
 
@@ -60,6 +61,21 @@ public class MemberDao {
 	public int countOpenProject(int userNo) {
 		
 		return sqlSession.selectOne("projectMapper.countOpenProject", userNo);
+	}
+
+	public int projectJoinCount(int userNo) {
+		
+		return sqlSession.selectOne("projectMapper.projectJoinCount", userNo);
+	}
+
+	public int projectCloseCount(int userNo) {
+		
+		return sqlSession.selectOne("projectMapper.projectCloseCount", userNo);
+	}
+
+	public int deleteMember(int userNo) {
+		
+		return sqlSession.update("memberMapper.deleteMember", userNo);
 	}
 
 	

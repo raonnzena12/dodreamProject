@@ -15,7 +15,6 @@
 		<typeAlias type="com.dodream.spring.project.model.vo.Reply" alias="Reply"/>
 		<typeAlias type="com.dodream.spring.project.model.vo.SubReply" alias="SubReply"/>
 		<typeAlias type="com.dodream.spring.project.model.vo.DetailFollow" alias="DetailFollow"/>
-		<typeAlias type="com.dodream.spring.project.model.vo.DetailReport" alias="DetailReport"/>
 		<typeAlias type="com.dodream.spring.customerCenter.model.vo.Review" alias="Review"/>
 		<typeAlias type="com.dodream.spring.customerCenter.model.vo.Notice" alias="Notice"/>
 		<typeAlias type="com.dodream.spring.customerCenter.model.vo.Faq" alias="Faq"/>

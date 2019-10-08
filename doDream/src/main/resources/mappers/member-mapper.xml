@@ -92,7 +92,11 @@
 		WHERE USER_NO = #{userNo}		
 	</select>
 	
-	
+	<!-- 회원탈퇴 -->
+	<update id="deleteMember" parameterType="_int">
+		UPDATE USER_TB 
+		SET USER_STATUS = 'N' WHERE USER_NO = #{userNo}
+	</update>
     
 	
   
