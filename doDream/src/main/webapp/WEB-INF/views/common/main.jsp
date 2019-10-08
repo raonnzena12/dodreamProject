@@ -143,7 +143,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="mainBanner">
-            <div class="carousel slide" id="carousel-435807">
+            <div class="carousel slide mb-3" id="carousel-435807">
                 <ol class="carousel-indicators">
                     <li data-slide-to="0" data-target="#carousel-435807" class="active">
                     </li>
@@ -197,7 +197,7 @@
         <div class="popular">
             <div class="popularLink clear-both my-4">
                 <span class="cateName">인기 있는 프로젝트</span>
-                <span class="float-right more"><a>More &gt;</a></span>
+                <span class="float-right more"><a href="category.dr?order=popluar">More &gt;</a></span>
             </div>
             <div class="resultPrint">
             <c:forEach var="prj" items="${ allList }" varStatus="status">
@@ -263,7 +263,7 @@
         <div class="newest">
             <div class="newestLink clear-both my-4">
                 <span class="cateName">신규 프로젝트</span>
-                <span class="float-right more"><a>More &gt;</a></span>
+                <span class="float-right more"><a href="category.dr?order=recent">More &gt;</a></span>
             </div>
             <div class="resultPrint">
             <c:forEach var="prj" items="${ allList }" varStatus="status">

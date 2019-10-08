@@ -68,7 +68,11 @@
 					<a class="dropdown-item" href="home.dr">홈</a>
 					<a class="dropdown-item" href="category.dr">카테고리</a>
 					<!-- 카테고리 소분류 입력할것 -->
-					<a class="dropdown-item" href="#">Something else here</a>
+					<a class="dropdown-item submenu" href="category.dr?cate=music"> - 음악</a>
+					<a class="dropdown-item submenu" href="category.dr?cate=movie"> - 영화</a>
+					<a class="dropdown-item submenu" href="category.dr?cate=play"> - 연극</a>
+					<a class="dropdown-item submenu" href="category.dr?cate=art"> - 미술</a>
+					<a class="dropdown-item submenu" href="category.dr?cate=etc"> - 기타</a>
 				</div>
 			</li>
 			<li class="nav-item">
@@ -102,8 +106,8 @@
 			<ul class="navbar-nav ml-auto mr-3">
 				<li>
 					<!-- FORM ACTION 지정할것 -->
-					<form class="form-inline" id="titleSearchForm" action="#" method="GET">
-						<input class="mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="titleSearch">
+					<form class="form-inline" id="titleSearchForm" action="category.dr" method="GET">
+						<input class="mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="titleSearch" name="keyword">
 						<i class="material-icons" id="titleSearchSubmit">search</i>
 					</form>
 				</li>
