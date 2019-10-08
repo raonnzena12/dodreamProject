@@ -11,7 +11,7 @@
 <script src="https://cdn.jsdelivr.net/npm/@mojs/core"></script>
 </head>
 <body>
-<c:url var="keywordSearch" value="tmptmp" />
+<c:url var="keywordSearch" value="category.dr" />
 <section id="category">
    <div class="container-fluid clearfix" id="categoryTop">
       <div class="row">
@@ -41,14 +41,14 @@
                   <span>전체보기</span>
                   <span class="float-right">
                      <form action="${ keywordSearch }">
-                     <input type="search" name="fundKeyword" id="fundKeyword">
+                     <input type="search" name="keyword" id="fundKeyword" placeholder="Search">
                      <i class="ver-super material-icons" id="searchSubmit">search</i>
-                     <select name="filter" id="filter">
+                     <select name="endYn" id="filter">
                         <option value="ALL" selected>전체</option>
                         <option value="N">진행중인 펀딩</option>
                         <option value="Y">종료된 펀딩</option>
                      </select>
-                     <select name="filter2" id="filter2">
+                     <select name="order" id="filter2">
                         <option value="popluar">인기순</option>
                         <option value="recent">최신순</option>
                         <option value="amount">최고금액순</option>
@@ -224,9 +224,21 @@ function printFunds(list) {
       $chartInfo.append($chartInfo1, $chartInfo2);
       var $chartBar = $("<div>").addClass("chartBar");
       // 진행바 가로길이 지정
-      var $purpleBar = $("<div>").addClass("purpleBar").css("width", (list[i].pCurrentFunding/list[i].pGoal)*100+"%");
+      var $purpleBar = $("<div>").addClass("purpleBar")
+      if ( (list[i].pCurrentFunding/list[i].pGoal)*100 > 100 ) {
+         $purpleBar.css("width", "100%");
+      } else {
+         $purpleBar.css("width", (list[i].pCurrentFunding/list[i].pGoal)*100+"%");
+      }
       $chartBar.append($purpleBar);
-      var $chartDate = $("<div>").addClass("chartDate").text(list[i].pDDay+"일 남음");
+      var $chartDate = $("<div>").addClass("chartDate")
+      if ( list[i].pDDay > 0 ) {
+         $chartDate.text(list[i].pDDay+"일 남음");
+      } else if ( list[i].pDDay == 0 ) {
+         $chartDate.text("오늘 마감");
+      } else {
+         $chartDate.text("펀딩 종료");
+      }
       $chartArea.append($chartInfo,$chartBar,$chartDate);
       $fundItem.append($fundImg,$nameArea,$heartIcon,$detailArea,$chartArea);
       $fundCon.append($fundItem);

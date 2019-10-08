@@ -200,6 +200,17 @@
 		<if test="keyword != null">
 		AND ( PROJECT_TITLE LIKE '%'||#{ keyword } ||'%' OR PROJECT_STITLE LIKE '%'||#{ keyword } ||'%' OR PROJECT_HASHTAG LIKE '%'||#{ keyword } ||'%' )
 		</if>
+		<choose>
+			<when test="endYn == 'ALL'">
+			AND PROJECT_ST_NO IN ( 4, 5, 7 )
+			</when>
+			<when test='endYn == "N"'>
+			AND PROJECT_ST_NO = 4
+			</when>
+			<when test='endYn == "Y"'>
+			AND PROJECT_ST_NO IN ( 5, 7 )
+			</when>
+		</choose>
 		ORDER BY
 		<choose>
 			<when test="order == 'popluar'">
