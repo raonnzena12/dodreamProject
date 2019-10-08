@@ -463,10 +463,10 @@
 		$(function(){
 			
 			if(${!empty sessionScope.loginUser}){
-				if(${loginUser.userNo eq follow.followNo}){ //로그인 유저가 같으면 보라색
+				if(${loginUser.userNo eq follow.followerNo}){ //로그인 유저가 같으면 보라색
 					$("#asideFavorite","#8E44AD");
 					
-				}else if(${loginUser.userNo ne follow.followNo}){
+				}else if(${loginUser.userNo ne follow.followerNo}){
 					$("#asideFavorite").css("color","#F39C12");
 				}
 				
