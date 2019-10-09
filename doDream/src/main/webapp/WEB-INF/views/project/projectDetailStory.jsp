@@ -150,7 +150,7 @@
 
    	</section>
 	<script>
-	/* 해시 태그 클릭시 검색 되는 기능 */
+	
 		$(function(){
 			// 해시 태그 출력 
 			var ht = "${project.pHashTag}";
@@ -166,8 +166,15 @@
 				}
 			}
 			
+			// 해시태그 클릭시 검색 기능
 			$(".projectTag").on('click', function(){
-				location.href="";
+				
+				var ht = $(this).text();
+				var tagLength = ht.length;
+				var cutHt = ht.substring(1, tagLength);
+				console.log(cutHt);
+				
+				location.href="category.dr?keyword="+cutHt;
 			});
 			
 			
