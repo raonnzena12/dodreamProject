@@ -173,7 +173,7 @@
 			<div class="col-md-2"></div>
 			<div class="col-md-8 resultPrint">
 					<c:if test="${ empty pList }">
-						<h4 class="text-center">좋아요한 펀딩이 없습니다.</h4>
+						<h4 class="text-center">좋아요한 프로젝트가 없습니다.</h4>
 					</c:if>
 					<c:if test="${ fn:length(pList) >0 }">
 						<c:forEach var="pList" items="${ pList }">

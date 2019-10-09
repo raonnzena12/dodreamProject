@@ -9,6 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.dodream.spring.member.model.vo.Member;
 import com.dodream.spring.project.model.vo.Project;
+import com.dodream.spring.report.model.vo.Report;
 
 public interface MemberService {
 
@@ -66,6 +67,10 @@ public interface MemberService {
 	public abstract ArrayList<Project> myOpenProjectList(int userNo);
 
 	public abstract ArrayList<Project> myLikePRJList(int userNo);
+
+	public abstract ArrayList<Report> myReportList(int userNo);
+
+	public abstract ArrayList<Report> myReportReplyList(int userNo);
 
 
 }

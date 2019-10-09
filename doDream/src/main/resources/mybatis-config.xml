@@ -28,6 +28,7 @@
 		<typeAlias type="com.dodream.spring.reserve.model.vo.History" alias="History" />
 		<typeAlias type="com.dodream.spring.project.model.vo.FilteringList" alias="FilteringList" />
 		<typeAlias type="com.dodream.spring.admin.model.vo.Alarm" alias="Alarm" />
+		<typeAlias type="com.dodream.spring.report.model.vo.MyPageReport" alias="MyPageReport"/>
 	</typeAliases>
 	
 	

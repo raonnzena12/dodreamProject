@@ -24,6 +24,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.dodream.spring.member.model.service.MemberService;
 import com.dodream.spring.member.model.vo.Member;
 import com.dodream.spring.project.model.vo.Project;
+import com.dodream.spring.report.model.vo.Report;
 
 @SessionAttributes({ "loginUser", "msg" })
 @Controller
@@ -276,7 +277,7 @@ public class MemberController {
 		if (result > 0) {
 			model.addAttribute("loginUser", mem);
 			model.addAttribute("msg", "회원정보를 수정하였습니다!");
-			return "redirect:mypage.dr";
+			return "redirect:myFundingList.dr";
 		} else {
 			model.addAttribute("msg", "회원정보 수정에 실패하였습니다.");
 			return "common/errorPage";
@@ -420,7 +421,7 @@ public class MemberController {
 		
 	}
 	
-	/** 회원이 참여한 펀딩 리스트 조회
+	/** 회원이 참여한 프로젝트 리스트 조회
 	 * @param userNo
 	 * @param mv
 	 * @return mv
@@ -443,6 +444,11 @@ public class MemberController {
 		return mv;
 	}
 	
+	/** 회원이 오픈한 프로젝트 리스트 조회
+	 * @param userNo
+	 * @param mv
+	 * @return
+	 */
 	@RequestMapping("myOpenProjectList.dr")
 	public ModelAndView myOpenProjectList(int userNo, ModelAndView mv) {
 		
@@ -461,6 +467,11 @@ public class MemberController {
 		
 	}
 	
+	/** 회원이 좋아요한 프로젝트 조회
+	 * @param userNo
+	 * @param mv
+	 * @return
+	 */
 	@RequestMapping("myLikePRJList.dr")
 	public ModelAndView myLikePRJList(int userNo, ModelAndView mv) {
 		
@@ -478,6 +489,24 @@ public class MemberController {
 		return mv;
 		
 	}
+	
+	@RequestMapping("myReportList.dr")
+	public ModelAndView myReportList(int userNo, ModelAndView mv) {
+		
+		ArrayList<Report> rList = mService.myReportList(userNo);
+		System.out.println(rList);
+		
+		if(rList != null) {
+			mv.addObject("rList", rList);
+			mv.setViewName("member/myReportList");
+		}else {
+			mv.addObject("msg", "목록 조회에 실패하였습니다.");
+			mv.setViewName("common/errorPage");
+		}
+		
+		return mv;
+	}
+	
 	
 
 	

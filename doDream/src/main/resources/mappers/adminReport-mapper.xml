@@ -33,6 +33,21 @@
 		<result property="reportContent" column="REPORT_CONTENT"/>
 	</resultMap>
 	
+	<!-- 마이페이지 출력용 resultMap -->
+	<resultMap type="MyPageReport" id="myPageReportResultSet">
+		<id property="repNo" column="REPORT_NO"/> <!-- 신고번호  -->
+		<result property="reportRpRefRno" column="REPORT_RP_REF_RNO"/> <!-- join 신고번호 -->
+		<result property="repDate" column="REPORT_DATE"/>
+		<result property="repContent" column="REPORT_CONTENT"/>
+		<result property="repRefPno" column="REPORT_REF_PNO"/>
+		<result property="pTitle" column="PROJECT_TITLE"/>
+		<result property="repWriter" column="REPORT_WRITER"/>
+		<result property="repStatus" column="REPORT_STATUS"/>
+		<result property="reportRpNo" column="REPORT_RP_NO"/>
+		<result property="reportRpContent" column="REPORT_RP_CONTENT"/>
+		<result property="reportRpDt" column="REPORT_RP_DT"/>
+	</resultMap>
+		
 	<!-- 신고 개수 관련 쿼리 -->
 	<select id="countReport" resultType="_int">
 		SELECT COUNT(*) FROM REPORT_TB
@@ -73,6 +88,18 @@
 		JOIN USER_TB BU ON (B.REPORT_RP_WRITER = BU.USER_NO)
 		ORDER BY 1 DESC
 	</select>
+	
+	<!-- =======================myPage=========================== -->
+	
+	<!-- 회원이 신고한 목록 조회 -->
+	<select id="myReportList" resultMap="myPageReportResultSet" parameterType="_int">
+		SELECT * FROM REPORT_TB
+		JOIN REPORT_REPLY ON (REPORT_NO = REPORT_RP_REF_RNO)
+		JOIN USER_TB ON (REPORT_WRITER = USER_NO)
+		JOIN PROJECT_TB ON (REPORT_REF_PNO = PROJECT_NO)
+		WHERE REPORT_WRITER = #{userNo}
+	</select>
+	
 	
 	
 </mapper>
