@@ -90,5 +90,10 @@ public class MemberDao {
 		return (ArrayList)sqlSession.selectList("projectMapper.myOpenProjectList", userNo);
 	}
 
+	public ArrayList<Project> myLikePRJList(int userNo) {
+	
+		return (ArrayList)sqlSession.selectList("projectMapper.myLikePRJList", userNo);
+	}
+
 	
 }

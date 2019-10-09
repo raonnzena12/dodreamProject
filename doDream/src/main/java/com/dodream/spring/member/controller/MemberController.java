@@ -198,15 +198,6 @@ public class MemberController {
 		return "member/changePwdForm";
 	}
 
-	/**
-	 * 로그인 후 마이페이지 메뉴 레이어팝업
-	 * 
-	 * @return
-	 */
-	@RequestMapping("mypage.dr")
-	public String mypage() {
-		return "member/mypageHeader";
-	}
 
 	/**
 	 * 회원가입 시 닉네임 중복 검사
@@ -273,13 +264,15 @@ public class MemberController {
 	 * @return
 	 */
 	@RequestMapping("myInfoUpdate.dr")
-	public String memberUpdate(Member mem, String address, String details, String postcode, HttpServletRequest request,
+	public String memberUpdate(Member mem, String address, String details, String postcode, String userSelf, String userPhone, HttpServletRequest request,
 			Model model, MultipartFile uploadImg) {
 
 		mem.setUserAddress(address + "," + details + "," + postcode);
-
+		mem.setUserSelf(userSelf);
+		mem.setUserPhone(userPhone);
+		
 		int result = mService.updateMember(mem, request, uploadImg);
-
+		System.out.println(result);
 		if (result > 0) {
 			model.addAttribute("loginUser", mem);
 			model.addAttribute("msg", "회원정보를 수정하였습니다!");
@@ -475,7 +468,7 @@ public class MemberController {
 		return mv;
 	}
 	
-	@RequestMapping("myOpenProjectList")
+	@RequestMapping("myOpenProjectList.dr")
 	public ModelAndView myOpenProjectList(int userNo, ModelAndView mv) {
 		
 		ArrayList<Project> pList = mService.myOpenProjectList(userNo);
@@ -484,6 +477,24 @@ public class MemberController {
 		if(pList != null) {
 			mv.addObject("pList", pList);
 			mv.setViewName("member/myOpenProjectList");
+		} else {
+			mv.addObject("msg", "목록 조회에 실패하였습니다.");
+			mv.setViewName("common/errorPage");
+		}
+
+		return mv;
+		
+	}
+	
+	@RequestMapping("myLikePRJList.dr")
+	public ModelAndView myLikePRJList(int userNo, ModelAndView mv) {
+		
+		ArrayList<Project> pList = mService.myLikePRJList(userNo);
+		System.out.println(pList);
+		
+		if(pList != null) {
+			mv.addObject("pList", pList);
+			mv.setViewName("member/myLikePRJList");
 		} else {
 			mv.addObject("msg", "목록 조회에 실패하였습니다.");
 			mv.setViewName("common/errorPage");

@@ -16,6 +16,7 @@
 		<result property="userAddress" column="USER_ADDR" />
 		<result property="userPhone" column="USER_PHONE" />
 		<result property="userProfileImage" column="USER_PF_IMG" />
+		<result property="userSelf" column="USER_SELF" />
 	</resultMap>
 	
 
