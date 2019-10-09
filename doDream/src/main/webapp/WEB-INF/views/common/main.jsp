@@ -163,16 +163,18 @@
                     </li>
                     <li data-slide-to="2" data-target="#carousel-435807">
                     </li>
+                    <li data-slide-to="3" data-target="#carousel-435807">
+                    </li>
                 </ol>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img class="d-block w-100" alt="Carousel Bootstrap First" src="resources/images/mainImg/hero24.jpg" />
+                        <img class="d-block w-100" alt="Carousel Bootstrap First" src="resources/images/mainImg/scn.png" />
                         <div class="carousel-caption">
                             <h4>
-                                피아니스트 박창수의<br>독보적 음악 실험
+                                시(詩)와 차(茶)와 음악이 함께하는 시간
                             </h4>
                             <p>
-                                24시간동안 서로 협의하지 않은 24번의 공연이 펼쳐진다
+                                카페 SYZYGY X 트루베르 X 이지에프엠 X 신철규 시인<br>2019년 11월 2일 토요일 저녁 7시
                             </p>
                         </div>
                     </div>
@@ -195,6 +197,17 @@
                             </h4>
                             <p>
                                 가깝고도 먼 엄마와 딸의 틈. 연결을 시작합니다.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img class="d-block w-100" alt="Carousel Bootstrap First" src="resources/images/mainImg/hero24.jpg" />
+                        <div class="carousel-caption">
+                            <h4>
+                                피아니스트 박창수의<br>독보적 음악 실험
+                            </h4>
+                            <p>
+                                24시간동안 서로 협의하지 않은 24번의 공연이 펼쳐진다
                             </p>
                         </div>
                     </div>
