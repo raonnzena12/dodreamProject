@@ -62,18 +62,21 @@ public class ProjectController2 {
 		}
 			like.setLikeNo(userNo);
 			like.setLikePrNo(pno);
-		Like lk = pService2.selectLike(like);
+		Like lk = pService2.selectLike(like);// 프로젝트 좋아요 조회
 		
 		Project prj = pService.selectProject(pno);
 		
 		follow.setFollowNo(prj.getpWriter());
 		
-		DetailFollow df = pService2.selectFollow(follow);
+		DetailFollow df = pService2.selectFollow(follow);// 팔로워 조회
+		
+		System.out.println("df : " + df);
 		
 		report.setRepRefPno(pno);
 		
 		DetailReport dr = pService2.selectReport(report);
 		
+		System.out.println("report : " + dr);
 		ArrayList<Reward> rw = pService2.selectReward(pno);
 		
 		if(rNo != null) {
@@ -280,6 +283,71 @@ public class ProjectController2 {
 		report.setRepWriter(uNo);
 		
 		int result = pService2.insertReport(report);
+		
+		if(result > 0) {
+			return "1";
+		}else {
+			return "2";
+		}
+		
+	}
+	
+	//댓글수정
+	@ResponseBody
+	@RequestMapping("updateReply.dr")
+	public String updateReply(String content, int rNo, Reply reply) {
+		
+		reply.setReContent(content);
+		reply.setReNo(rNo);
+		
+		int result = pService2.updateReply(reply);
+		
+		if(result > 0) {
+			return "1";
+		}else {
+			return "2";
+		}
+		
+	}
+	
+	//댓글 삭제
+	@ResponseBody
+	@RequestMapping("deleteReply.dr")
+	public String deleteReply(int rNo) {
+		
+		int result = pService2.deleteReply(rNo);
+		
+		if(result > 0) {
+			return "1";
+		}else {
+			return "2";
+		}
+		
+	}
+	
+	//대댓글 수정
+	@ResponseBody
+	@RequestMapping("updateSubRe.dr")
+	public String updateSubRe(int subNo, String updateSubCon, SubReply sReply) {
+		
+		sReply.setSubNo(subNo);
+		sReply.setSubContent(updateSubCon);
+		
+		int result = pService2.updateSubRe(sReply);
+		
+		if(result > 0) {
+			return "1";
+		}else {
+			return "2";
+		}
+	}
+	
+	//대댓글 삭제
+	@ResponseBody
+	@RequestMapping("deleteSubRe.dr")
+	public String deleteSubRe(int subNo) {
+		
+		int result = pService2.deleteSubRe(subNo);
 		
 		if(result > 0) {
 			return "1";

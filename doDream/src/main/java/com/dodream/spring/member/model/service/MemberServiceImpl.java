@@ -2,6 +2,7 @@ package com.dodream.spring.member.model.service;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -14,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.dodream.spring.member.model.dao.MemberDao;
 import com.dodream.spring.member.model.exception.MemberException;
 import com.dodream.spring.member.model.vo.Member;
+import com.dodream.spring.project.model.vo.Project;
 
 @Service("mService")
 public class MemberServiceImpl implements MemberService {
@@ -144,4 +146,37 @@ public class MemberServiceImpl implements MemberService {
 		
 		return mDao.countOpenProject(userNo);
 	}
+
+
+	@Override
+	public int projectJoinCount(int userNo) {
+		return mDao.projectJoinCount(userNo);
+	}
+
+
+	@Override
+	public int projectCloseCount(int userNo) {
+		return mDao.projectCloseCount(userNo);
+	}
+
+
+	@Override
+	public int deleteMember(int userNo) {
+		
+		return mDao.deleteMember(userNo);
+	}
+
+	@Override
+	public ArrayList<Project> myFundingList(int userNo) {
+		return mDao.myFundingList(userNo);
+	}
+
+
+	@Override
+	public ArrayList<Project> myOpenProjectList(int userNo) {
+	
+		return mDao.myOpenProjectList(userNo);
+	}
+
+
 }

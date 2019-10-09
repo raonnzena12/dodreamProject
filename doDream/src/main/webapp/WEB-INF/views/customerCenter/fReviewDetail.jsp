@@ -19,7 +19,7 @@
 	width: 1200px;
 	min-height: 900px;
 	height: auto;
-}  
+}
 
 #Review_bar {
 	border-bottom: 3px solid #8E44AD;
@@ -76,34 +76,46 @@
 			<div class="col-md-12"></div>
 		</div>
 		<div class="row">
-			<div class="col-md-12">
-				<%-- <c:forEach var="rd" items="${ revdetail }" > --%>
-					<div style="text-align: center;">
-					제목 들어가는 곳 ${rd.revTitle}
-					</div>
-					<div style="text-align: center;">"부제목 들어가는 곳" ${rd.revSubTitle}</div>
-					<div id="rdCategory"><b>음악 ${rd.revCategoryName}</b>
-					<!-- 날짜 / 조회수  -->
-					</div>
-					
-					<span id="rdCategory1">날짜 ${rd.revEnrollDate } / 조회수 : ${rd.revCount }</span>
-					<div> http://www.dodream.com/detailSt.dr?pNo=54 해당 펀딩정보로 이동 </div>
-					
-					<!-- 줄 -->
-					<hr id=Review_bar>
-					<div>
-					<img class="card-img-top" alt="Bootstrap Thumbnail First"
-						src="resources/img/아이콘1.PNG" style="padding: 10px; height: 400px">
-					<!-- 후기 내용 리스트 -->
-					<%-- <c:if test="${ !empty revList }"> --%>
+			<c:forEach var="f" items="${ fList }">
+				<div class="col-md-12">
+					<h3>프로젝트 제목</h3>
+					<c:if test="${ !empty fList }">
 						<div>
-							내용
-							${rd.revContent}
+							${f.fTitle}
+							<!-- 제목 -->
 						</div>
-					<%-- </c:if> --%>
+						<div class="card">
+							<div class="card-header">
+								<a class="card-link collapsed" href="#card-${f.fNo}"
+									data-toggle="collapse"> ${f.fTitle} </a>
+							</div>
+							<div class="collapse content" id="card-${f.fNo}">
+								<div class="card-body">${f.fContent }</div>
+							</div>
+						</div>
+					</c:if>
+					<div></div>
+					<hr id=Review_bar>
+
+					<div class="row" style="margin-bottom: 50px">
+						<div class="col-md-4">
+							<div class="card" style="height: 500px">
+								<img class="card-img-top" alt="Bootstrap Thumbnail First"
+									src="resources/img/아이콘1.PNG"
+									style="padding: 10px; height: 100%"">
+								<div class="card-block">
+									<h5 class="card-title">인디밴드 공연</h5>
+									<p class="card-text">보람있는 펀딩!</p>
+									<p>
+										<a class="btn btn-primary" href="#">Action</a> <a class="btn"
+											href="#">Action</a>
+									</p>
+								</div>
+							</div>
+						</div>
 					</div>
-				<%-- </c:forEach> --%>
-			</div>
+				</div>
+			</c:forEach>
 		</div>
 	</div>
 

@@ -57,6 +57,9 @@
 }
 .th{
 	border-right: 1px solid lightgray;
+  }
+#tb th{
+	background: #f8f9fc;
 }
 
 </style>

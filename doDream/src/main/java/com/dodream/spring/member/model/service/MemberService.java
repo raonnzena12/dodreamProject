@@ -1,5 +1,6 @@
 package com.dodream.spring.member.model.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -7,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.dodream.spring.member.model.vo.Member;
+import com.dodream.spring.project.model.vo.Project;
 
 public interface MemberService {
 
@@ -53,6 +55,15 @@ public interface MemberService {
 
 	public abstract int countOpenProject(int userNo);
 
+	public abstract int projectJoinCount(int userNo);
+
+	public abstract int projectCloseCount(int userNo);
+
+	public abstract int deleteMember(int userNo);
+
+	public abstract ArrayList<Project> myFundingList(int userNo);
+
+	public abstract ArrayList<Project> myOpenProjectList(int userNo);
 
 
 }

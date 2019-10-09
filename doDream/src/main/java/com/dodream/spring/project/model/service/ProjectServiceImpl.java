@@ -51,10 +51,15 @@ public class ProjectServiceImpl implements ProjectService {
 	}
 
 	@Override
-	public int createProjectNumber() {
-		return pDao.createProjectNumber();
+	public int createProject() {
+		return pDao.createProject();
 	}
-
+	
+	@Override
+	public int selectThisProject() {
+		return pDao.selectThisProject();
+	}
+	
 	@Override
 	public int insertReward(Reward reward) {
 		return pDao.insertReward(reward);
@@ -88,5 +93,12 @@ public class ProjectServiceImpl implements ProjectService {
 		}
 		return result;
 	}
+
+	@Override
+	public ArrayList<Project> selectMainList(int userNo) {
+		return pDao.selectMainList(userNo);
+	}
+
+
 
 }

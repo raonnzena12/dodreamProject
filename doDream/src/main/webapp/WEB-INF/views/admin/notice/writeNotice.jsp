@@ -91,14 +91,12 @@
 										class="dataTables_wrapper dt-bootstrap4">
 										<div class="row">
 											<div class="col-sm-12">
-											<table align="center" id="tb" cellpadding="15" cellspacing="0" width="1000px" >
+											<table align="center" id="tb" cellpadding="15" cellspacing="0" width="780px" >
 												<tr>
 													<!-- summnote 에디터 출력 -->
-													<th>공지사항 제목 : </th>
-													<td><input type="text" name="nTitle" size="97" placeholder="제목을 입력해주세요."></th>
+													<th> 공지사항 제목 : <input type="text" name="nTitle" size="80" placeholder="제목을 입력해주세요."></th>
 												</tr>
 												<tr>
-													<th style="padding-bottom: 55%;">공지사항 내용 : </th>
 													<td><textarea id="summernote" name="nContent"></textarea><td>
 												</tr> 
 												<!-- 등록된 이미지 목록 -->

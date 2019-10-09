@@ -463,7 +463,21 @@
 		                           	<div class="rewardText4">
 		                                	<input type="number" class="form-control reCount" placeholder="수량을 입력하세요." value="1">
 		                            </div>
-		                            
+		                            <script>
+		                            	$(function(){
+		                            		$(".reCount").on("input", function(){
+		                            			var max = $(this).attr("max")*1;
+		                            			var num = $(this).val()*1;
+		                            			var min = $(this).attr("min")*1;
+		                            			
+		                            			if(num > max){
+		                            				$(this).val(max);
+		                            			}else if(num < 0){
+		                            				$(this).val(min);
+		                            			}
+		                            		});
+		                            	});
+		                            </script>
 		                            <div class="rewardText5">
 			                           
 			                            <c:if test="${r.rOptionNo eq '1'}">
@@ -514,7 +528,7 @@
                            </div>
                            
                         </div>
-                        <button type="button" class="btn btn-primary btn-lg btn-block rewardBtn" onclick="goReserve();">후원하기</button>
+                        <button type="button" class="btn btn-primary btn-lg btn-block rewardBtn">후원하기</button>
                         <button type="button" class="btn btn-primary btn-lg btn-block rewardBtn2">후원하기</button>
                </div>
 			</aside>
@@ -526,6 +540,15 @@
 	   	/* 리워드 수량 합산 하는것 완성하기 */
    	
    		$(function(){
+   			
+   			
+   				$(".rewardBtn").on("click", function(){
+   					if(${empty sessionScope.loginUser}){
+   						alert("로그인이 필요합니다.");
+   					}else{
+   						goReserve();
+   					}
+   				});
    			var total = ${project.pCurrentFunding };
    			if(${project.pDDay} < 0 || total > ${project.pGoal}){
    				
@@ -639,6 +662,32 @@
    			
    			
    			
+   				$(".reCount").focus(function(){
+   					
+   					$("#rewardSum").text("");
+   					reCount = 0;
+					checkName = "";
+   					$(".reCount").on("input", function(){
+   						sum();
+   						/* cPrice = 0;
+   						$("#rewardSum").text("");
+   						
+   						//if($(".reCount").val() > $())
+   						
+   						$("input:checkbox[name='reCheck']:checked").each(function(){
+   							reCount =$(this).parent().parent().find(".reCount").val()*1;
+   							console.log(reCount);
+   							cPrice += $(this).val()*1*reCount;
+   							checkName += $(this).parent().parent().find(".rewardText6").text()+"<br>";
+   						});
+   						comma = cPrice + $("#rewardInput").val()*1;
+   		   				$("#rewardSum").text(comma.toLocaleString());
+   		   				$("#asideText3").html("<div id='rewardname'>"+checkName+"</div>"); */
+   					});
+   					
+   					
+   				});
+   	
    			
    			/* ============================================================================== */
    			
@@ -730,6 +779,10 @@
    				var count="";
    				var input="";
    				
+   				if($("input:checkbox[name='reCheck']:checked").length == 0){
+   					alert("리워드를 선택해주세요.");
+   				}else{
+   					
    				$("input:checkbox[name='reCheck']:checked").each(function(){
    					
    					rNo += $(this).parent().parent().attr("id")+"/"; //리워드 번호
@@ -792,11 +845,29 @@
 	   				console.log("pNo=" + pNo + "addReward="+ addReward +"select=" + select + "input=" + input +"count=" +count);
 	   				 */
 	   				
-   	   			
+   				}
    				
    			}
 		
-   			
+   			function sum() {
+   				var comma = "";
+				var cPrice2 = 0;
+				var reCount2 = 0;
+				var checkName2 ="";
+				
+				$("#rewardSum").text("");
+				$("input:checkbox[name='reCheck']:checked").each(function(){
+					reCount2 =$(this).parent().parent().find(".reCount").val()*1;
+					console.log(reCount2);
+					cPrice2 += $(this).val()*1*reCount2;
+					checkName2 += $(this).parent().parent().find(".rewardText6").text()+"<br>";
+				});
+					console.log("cPrice : " + cPrice2);
+			//$("#rewardSum").text(cPrice2);
+				comma = cPrice2 + $("#rewardInput").val()*1;
+  				$("#rewardSum").text(comma.toLocaleString());
+  				$("#asideText3").html("<div id='rewardname'>"+checkName2+"</div>");
+			}
    		
    	</script>
 	

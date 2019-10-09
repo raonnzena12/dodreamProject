@@ -28,10 +28,15 @@ public interface ProjectService {
 	public abstract ArrayList<Project> selectPrjList(FilteringList filter, int currentPage);
 
 	/**
-	 * 펀딩 등록페이지로 넘어가기 전에 프로젝트번호를 생성해주는 Service입니다.
+	 * 펀딩 등록페이지로 넘어가기 전에 프로젝트를 생성해주는 Service입니다.
 	 * @return pNo
 	 */
-	public abstract int createProjectNumber();
+	public abstract int createProject();
+	
+	/** 위에서 생성된 프로젝트 번호를 가져오는 Service
+	 * @return pNo
+	 */
+	public abstract int selectThisProject();
 	
 	/**
 	 * 리워드를 DB에 저장시키기 위한 Service입니다.
@@ -71,5 +76,14 @@ public interface ProjectService {
 	 * @return result
 	 */
 	public abstract int insertLikeProject(Like like, int status);
+
+	/**
+	 * 메인 출력에 필요한 리스트들
+	 * (인기순, 최신등록순, 마감임박순) 받아오는 Service
+	 * @param userNo
+	 * @return allList
+	 */
+	public abstract ArrayList<Project> selectMainList(int userNo);
+
 
 }

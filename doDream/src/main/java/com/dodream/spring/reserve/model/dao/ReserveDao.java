@@ -6,9 +6,9 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.dodream.spring.project.model.vo.FilteringList;
 import com.dodream.spring.project.model.vo.Reward;
 import com.dodream.spring.reserve.model.vo.History;
-import com.dodream.spring.reserve.model.vo.HistoryList;
 import com.dodream.spring.reserve.model.vo.Reserve;
 
 @Repository("rsvDao")
@@ -93,7 +93,7 @@ public class ReserveDao {
 	 * @param userNo
 	 * @return rList
 	 */
-	public ArrayList<Reserve> selectReserveList(int userNo) {
-		return (ArrayList)sqlSession.selectList("reserveMapper.selectReserveList", userNo);
+	public ArrayList<Reserve> selectReserveList(FilteringList filter) {
+		return (ArrayList)sqlSession.selectList("reserveMapper.selectReserveList", filter);
 	}
 }

@@ -53,6 +53,11 @@
 #mainMenuBar .loginmenuText {
     font-size: 14px;
 }
+#mainMenuBar .submenu {
+    font-size: 15px;
+    color: #888;
+    padding-left: 40px;
+}
 /* 커스텀 체크박스 색 변경하는 CSS */
 #mainMenuBar .custom-control-input:checked~.custom-control-label::before {
 color: #fff;

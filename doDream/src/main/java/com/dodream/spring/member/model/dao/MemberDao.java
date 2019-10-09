@@ -1,6 +1,7 @@
 package com.dodream.spring.member.model.dao;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.dodream.spring.member.model.vo.Member;
+import com.dodream.spring.project.model.vo.Project;
 
 @Repository("mDao")
 public class MemberDao {
@@ -60,6 +62,31 @@ public class MemberDao {
 	public int countOpenProject(int userNo) {
 		
 		return sqlSession.selectOne("projectMapper.countOpenProject", userNo);
+	}
+
+	public int projectJoinCount(int userNo) {
+		
+		return sqlSession.selectOne("projectMapper.projectJoinCount", userNo);
+	}
+
+	public int projectCloseCount(int userNo) {
+		
+		return sqlSession.selectOne("projectMapper.projectCloseCount", userNo);
+	}
+
+	public int deleteMember(int userNo) {
+		
+		return sqlSession.update("memberMapper.deleteMember", userNo);
+	}
+	
+	public ArrayList<Project> myFundingList(int userNo) {
+
+		return (ArrayList)sqlSession.selectList("projectMapper.myFundingList", userNo);
+	}
+
+	public ArrayList<Project> myOpenProjectList(int userNo) {
+		
+		return (ArrayList)sqlSession.selectList("projectMapper.myOpenProjectList", userNo);
 	}
 
 	

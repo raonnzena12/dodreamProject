@@ -282,7 +282,5 @@ public interface AdminService {
 
 	public abstract int confirmAlarm(int alNo);
 
-	
-
 
 }

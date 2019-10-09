@@ -35,7 +35,7 @@ public class ProjectController3 {
 		String category = ( cate == null || cate.equals("") ) ? "total" : cate;
 		String order1 = ( order == null || order.equals("") ) ? "popluar" : order;
 		String endYn1 = ( endYn == null || endYn.equals("") ) ? "ALL" : endYn;
-		String keyword1 = ( keyword == null || keyword.equals("") ) ? null : keyword;
+		String keyword1 = ( keyword == null || keyword.equals("") || keyword.equals("null") ) ? null : keyword;
 		if ( request.getSession().getAttribute("loginUser") != null ) userNo = ((Member)(request.getSession().getAttribute("loginUser"))).getUserNo();
 		
 		FilteringList filter = new FilteringList(userNo, category, order1, keyword1, endYn1);
@@ -43,6 +43,10 @@ public class ProjectController3 {
 		ArrayList<Project> pList = pService.selectPrjList(filter, currentPage);
 		model.addAttribute("pList", pList);
 		model.addAttribute("pi", Pagination.getPageInfo());
+		model.addAttribute("keyword", keyword1);
+		model.addAttribute("cate", category);
+		model.addAttribute("order", order1);
+		model.addAttribute("endYn", endYn1);
 		return "common/fundList";
 	}
 	
@@ -90,5 +94,9 @@ public class ProjectController3 {
 		return result;
 	}
 	
+	@RequestMapping("kakaotest.dr")
+	public String testtest() {
+		return "common/main";
+	}
 
 }

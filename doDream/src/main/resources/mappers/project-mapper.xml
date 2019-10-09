@@ -97,6 +97,7 @@
 		<result property="subWriImg" column="PRO_IMG"/>
 		<result property="subRefRNo" column="SUBRE_REF_RNO"/>
 		<result property="subRSUser" column="RSUSER"/>
+		<result property="subPNo" column="SUBRE_PNO"/>
 	</resultMap>
 	
 	<resultMap type="DetailFollow" id="detailFollowResultSet">
@@ -120,12 +121,32 @@
 	
 	<!-- 프로젝트 등록  -->
 	<insert id="insertProject" parameterType="Project">
-		INSERT INTO PROJECT_TB VALUES( 
-			#{pNo}, #{pTitle}, #{pSTitle}, #{pGoal}, #{pThumbImage}, #{pStartDate}, #{pCloseDate},
-			#{pHashTag}, #{pMainImage}, #{pSummaryText}, #{pStory}, #{pArtistName}, #{pArtistPFImage},
-			#{pArtistSns1}, #{pArtistSns2}, #{pArtistPhone}, #{pArtistEmail}, SYSDATE, SYSDATE, #{pWriter}, #{pCategoryNum}, 
-			#{pStatusNum}, DEFAULT, #{pArtistIntroduction}
-		)
+		UPDATE PROJECT_TB SET 
+			PROJECT_TITLE = #{pTitle}, 
+			PROJECT_STITLE = #{pSTitle}, 
+			PROJECT_GOAL = #{pGoal}, 
+			PROJECT_THUMB_IMG = #{pThumbImage},
+			PROJECT_START_DT = #{pStartDate},
+			PROJECT_CLOSE_DT = #{pCloseDate},
+			PROJECT_HASHTAG = #{pHashTag},
+			PROJECT_MAIN_IMG = #{pMainImage}, 
+			PROJECT_SUMMARY = #{pSummaryText},
+			PROJECT_STORY = #{pStory}, 
+			PROJECT_AT_NM = #{pArtistName},
+			PROJECT_AT_PF = #{pArtistPFImage},
+			PROJECT_AT_SNS1 = #{pArtistSns1}, 
+			PROJECT_AT_SNS2 = #{pArtistSns2},
+			PROJECT_AT_CONT = #{pArtistPhone},
+			PROJECT_AT_EM = #{pArtistEmail},
+			PROJECT_ER_DT = SYSDATE,
+			PROJECT_MF_DT = SYSDATE,
+			PROJECT_WRITER = #{pWriter},
+			PROJECT_CT_NO = #{pCategoryNum},
+			PROJECT_ST_NO = #{pStatusNum},
+			PROJECT_COUNT = DEFAULT,
+			PROJECT_AT_INT = #{pArtistIntroduction},
+			PROJECT_TOTAL = DEFAULT
+		WHERE PROJECT_NO = #{pNo} 
 	</insert>
 	
 	<!-- 프로젝트 디테일 조회용 쿼리 -->
@@ -140,12 +161,6 @@
 	<select id="countList" resultType="_int">
 		SELECT COUNT(*) FROM PROJECT_TB
 		WHERE PROJECT_ST_NO IN ( 4, 5 )
-	</select>
-	
-	<!-- 회원의 진행중/종료된 프로젝트 갯수 조회용 쿼리 -->
-	<select id="countOpenProject" resultType="_int" parameterType="_int">
-		SELECT COUNT(*) FROM PROJECT_TB 
-		WHERE PROJECT_WRITER= #{userNo} AND PROJECT_ST_NO IN ( 4, 5 )
 	</select>
 	
 	<!-- 선택한 카테고리에 따라 프로젝트 리스트 조회용 쿼리 -->
@@ -198,20 +213,20 @@
 			PROJECT_CT_NO = 9
 			</when>
 		</choose>
+		<if test="keyword != null">
+		AND ( PROJECT_TITLE LIKE '%'||#{ keyword } ||'%' OR PROJECT_STITLE LIKE '%'||#{ keyword } ||'%' OR PROJECT_HASHTAG LIKE '%'||#{ keyword } ||'%' )
+		</if>
 		<choose>
-			<when test="endYn == 'ALL'" ></when>
-			<when test='endYn == "Y"'>
-			<!-- <![CDATA[ AND PROJECT_CLOSE_DT < SYSDATE ]]>  -->
-			AND PROJECT_ST_NO = 5
+			<when test="endYn == 'ALL'">
+			AND PROJECT_ST_NO IN ( 4, 5, 7 )
 			</when>
 			<when test='endYn == "N"'>
-			<!-- <![CDATA[ AND PROJECT_CLOSE_DT > SYSDATE ]]> -->
 			AND PROJECT_ST_NO = 4
 			</when>
+			<when test='endYn == "Y"'>
+			AND PROJECT_ST_NO IN ( 5, 7 )
+			</when>
 		</choose>
-		<if test="keyword != null">
-		AND ( PROJECT_TITLE LIKE '%'||#{ keyword }||'%' OR PROJECT_STITLE LIKE '%'||#{ keyword }||'%' OR PROJECT_HASHTAG LIKE '%'||#{ keyword }||'%' )
-		</if>
 		ORDER BY
 		<choose>
 			<when test="order == 'popluar'">
@@ -238,7 +253,6 @@
 		SET PROJECT_COUNT = PROJECT_COUNT+1
 		WHERE PROJECT_NO = #{ pNo }
 	</update>
-	
 	<!-- =======================리워드=========================== -->
 	
 	<!-- 리워드 조회 쿼리 -->
@@ -247,8 +261,13 @@
 	</select>
 	
 	<!-- 프로젝트 등록 페이지 이동시 pNo를 생성해주는 쿼리  -->
-	<select id="createProjectNumber" resultType="_int">
-		SELECT SEQ_PROJ_NO.NEXTVAL FROM DUAL
+	<insert id="createProject">
+		INSERT INTO PROJECT_TB (PROJECT_NO, PROJECT_ST_NO) VALUES (SEQ_PROJ_NO.NEXTVAL, 0)
+	</insert>
+	
+	<!-- 위에서 생성된 프로젝트의 번호를 가져오는 쿼리  -->
+	<select id="selectThisProject" resultType="_int">
+		SELECT SEQ_PROJ_NO.CURRVAL FROM DUAL
 	</select>
 	
 	<!-- 리워드 등록 -->
@@ -294,12 +313,12 @@
 	
 	<!-- 댓글 조회 -->
 	<select id="selectReply" parameterType="_int" resultMap="replyResultSet">
-		SELECT * FROM PROJECT_DETAIL_REPLY WHERE REPLY_REF_PNO=#{pNo}
+		SELECT * FROM PROJECT_DETAIL_REPLY_2ND WHERE REPLY_REF_PNO=#{pNo}
 	</select>
 	
 	<!-- 서브 댓글 조회 -->
 	<select id="selectSubReply" parameterType="Reply" resultMap="subReplyResultSet">
-		SELECT * FROM PROJECT_DETAIL_SUBREPLY WHERE SUBRE_REF_RNO IN 
+		SELECT * FROM PROJECT_DETAIL_SUBREPLY_2ND WHERE SUBRE_REF_RNO IN 
 		<foreach collection="list" item="num" index="index" open="(" close=")" separator=",">
 			#{num.reNo}
 		</foreach>
@@ -335,4 +354,78 @@
 		SELECT * FROM REPORT_TB WHERE REPORT_REF_PNO=#{repRefPno} AND REPORT_WRITER=#{repWriter}
 	</select>
 	
+	<!-- 댓글 수정 -->
+	<update id="updateReply" parameterType="Reply">
+		UPDATE REPLY SET REPLY_CONTENT=#{reContent}, REPLY_MODI_DT=SYSDATE WHERE REPLY_NO=#{reNo}
+	</update>
+	
+	<!-- 댓글 삭제 -->
+	<update id="deleteReply" parameterType="_int">
+		UPDATE REPLY SET REPLY_STATUS='N', REPLY_MODI_DT=SYSDATE WHERE REPLY_NO=#{rNo}
+	</update>
+	
+	<!-- 대댓글 수정 -->
+	<update id="updateSubRe" parameterType="SubReply">
+		UPDATE SUBREPLY SET SUBRE_CON=#{subContent}, SUBRE_MODI_DT=SYSDATE WHERE SUBRE_NO=#{subNo}
+	</update>
+	
+	<!-- 대댓글 삭제 -->
+	<update id="deleteSubRe" parameterType="_int">
+		UPDATE SUBREPLY SET SUBRE_STATUS='N', SUBRE_MODI_DT=SYSDATE WHERE SUBRE_NO=#{subNo}
+	</update>
+  
+	<!-- ========================myPage============================ -->
+
+	<!-- 내가 펀딩한 프로젝트 중 RESERVE_ST_NO 1인것 (결제대기)  -->
+	<select id="projectJoinCount" parameterType="_int" resultType="_int">
+		SELECT COUNT(*) FROM RESERVE
+		WHERE RESERVE_STATUS_NO = '1' AND RESERVE_USER = #{userNo}
+	</select>
+
+	<!-- 내가 펀딩한 프로젝트 중 결재완료된 건 -->
+	<select id="projectCloseCount" parameterType="_int" resultType="_int">
+		SELECT COUNT(*) FROM RESERVE
+		WHERE RESERVE_STATUS_NO = 2 AND RESERVE_USER = #{userNo}
+	</select>
+
+	<!-- 회원의 진행중/종료된 프로젝트 갯수 조회용 쿼리 -->
+	<select id="countOpenProject" resultType="_int" parameterType="_int">
+		SELECT COUNT(*) FROM PROJECT_TB 
+		WHERE PROJECT_WRITER= #{userNo} AND PROJECT_ST_NO IN ( 4, 5 )
+	</select>
+
+	<!-- 회원이 펀딩한 프로젝트 리스트 조회 -->
+	<select id="myFundingList" resultMap="projectResultSet" parameterType="_int">
+		SELECT * FROM PROJECT_LIST_VIEW WHERE PROJECT_NO
+		IN(SELECT DISTINCT(RESERVE_REF_PNO) FROM RESERVE WHERE RESERVE_USER = #{userNo})
+	</select>
+	
+	<!-- 회원이 오픈한 프로젝트 리스트 조회  -->
+	<select id="myOpenProjectList" resultMap="projectResultSet" parameterType="_int">
+		SELECT * FROM PROJECT_MYLIST_VIEW JOIN USER_TB ON(USER_NO = PROJECT_WRITER)
+		WHERE PROJECT_WRITER= #{userNo} AND PROJECT_ST_NO IN(1,2,3,4,5,6,7)
+	</select>
+	
+	<!-- ====================== mainPage =========================== -->
+	<!--  -->
+	<select id="selectMainList" parameterType="_int" resultMap="projectResultSet">
+		SELECT ROWNUM, C.* FROM
+		(SELECT P.*, (CASE WHEN PROJECT_NO IN (SELECT LIKE_PRJ FROM LIKE_TB WHERE LIKE_USER = #{ userNo }) THEN 1 ELSE 0 END) AS ILIKE
+		FROM PROJECT_LIST_VIEW_2ND P
+		ORDER BY COUNTCOUNT DESC NULLS LAST) C
+		WHERE ROWNUM <![CDATA[<]]> 5
+		UNION ALL
+		SELECT ROWNUM, A.* FROM (
+		SELECT P.*, (CASE WHEN PROJECT_NO IN (SELECT LIKE_PRJ FROM LIKE_TB WHERE LIKE_USER = #{ userNo }) THEN 1 ELSE 0 END) AS ILIKE
+		FROM PROJECT_LIST_VIEW_2ND P
+		ORDER BY RECENT DESC NULLS LAST) A
+		WHERE ROWNUM <![CDATA[<]]> 5
+		UNION aLL
+		SELECT ROWNUM, B.* FROM(
+		SELECT P.*, (CASE WHEN PROJECT_NO IN (SELECT LIKE_PRJ FROM LIKE_TB WHERE LIKE_USER = #{ userNo }) THEN 1 ELSE 0 END) AS ILIKE
+		FROM PROJECT_LIST_VIEW_2ND P
+		WHERE AMOUNT <![CDATA[<]]> PROJECT_GOAL
+		ORDER BY AMOUNT DESC NULLS LAST) B
+		WHERE ROWNUM <![CDATA[<]]> 5
+	</select>
 </mapper>

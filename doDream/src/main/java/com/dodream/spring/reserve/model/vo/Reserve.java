@@ -14,7 +14,7 @@ public class Reserve {
 	private String resRequest; // 리워드 배송시 요청사항
 	private int resUser; // 예약한 유저번호
 	private int resRefPno; // 참조하는 프로젝트 번호
-	private int resStatusNo; // 예약 스테이터스 ( 1 결제대기 2 결제완료 3 결제예약 취소 )
+	private int resStatusNo; // 예약 스테이터스 ( 1 결제대기 2 결제완료 3 결제예약 취소 4 결제 실패 )
 	private String pTitle;  			// 조인 시 필요한 프로젝트명
 	private String userNickname;		// 조인 시 필요한 유저 닉네임
 	private String artistNickname;		// 조인 시 필요한 아티스트 닉네임
@@ -22,6 +22,7 @@ public class Reserve {
 	private Date resFundDate; // 펀드 결제일
 	private String prjCategoryName; // 프로젝트 카테고리 이름
 	private int dDay; // 프로젝트 남은 일수
+	private int resRefPst; // 참조하는 프로젝트 스테이터스
 	
 	public Reserve() {
 	}
@@ -51,6 +52,14 @@ public class Reserve {
 		this.userNickname = userNickname;
 		this.resRwdPriceSum = resRwdPriceSum;
 		this.resFundDate = resFundDate;
+	}
+
+	public int getResRefPst() {
+		return resRefPst;
+	}
+
+	public void setResRefPst(int resRefPst) {
+		this.resRefPst = resRefPst;
 	}
 
 	public int getResNo() {
@@ -204,6 +213,6 @@ public class Reserve {
 				+ ", resUser=" + resUser + ", resRefPno=" + resRefPno + ", resStatusNo=" + resStatusNo + ", pTitle="
 				+ pTitle + ", userNickname=" + userNickname + ", artistNickname=" + artistNickname + ", resRwdPriceSum="
 				+ resRwdPriceSum + ", resFundDate=" + resFundDate + ", prjCategoryName=" + prjCategoryName + ", dDay="
-				+ dDay + "]";
+				+ dDay + ", resRefPst=" + resRefPst + "]";
 	}
 }

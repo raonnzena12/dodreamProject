@@ -105,6 +105,34 @@ public interface ProjectService2 {
 	 * @return dr
 	 */
 	DetailReport selectReport(DetailReport report);
+
+	/**
+	 * 댓글 수정
+	 * @param reply
+	 * @return result
+	 */
+	int updateReply(Reply reply);
+
+	/**
+	 * 댓글 삭제
+	 * @param reply
+	 * @return result
+	 */
+	int deleteReply(int rNo);
+
+	/**
+	 * 대댓글 수정
+	 * @param sReply
+	 * @return result
+	 */
+	int updateSubRe(SubReply sReply);
+
+	/**
+	 * 대댓글 삭제
+	 * @param subNo
+	 * @return result
+	 */
+	int deleteSubRe(int subNo);
 	
 
 	

@@ -112,11 +112,36 @@ public class ProjectServiceImpl2 implements ProjectService2{
 		
 		return pDao2.insertReport(report);
 	}
-
+	//신고 조회
 	@Override
 	public DetailReport selectReport(DetailReport report) {
 		
 		return pDao2.selectReport(report);
+	}
+	
+	//댓글 수정
+	@Override
+	public int updateReply(Reply reply) {
+		
+		return pDao2.updateReply(reply);
+	}
+	//댓글 삭제
+	@Override
+	public int deleteReply(int rNo) {
+		
+		return pDao2.deleteReply(rNo);
+	}
+
+	@Override
+	public int updateSubRe(SubReply sReply) {
+		
+		return pDao2.updateSubRe(sReply);
+	}
+
+	@Override
+	public int deleteSubRe(int subNo) {
+		
+		return pDao2.deleteSubRe(subNo);
 	}
 	
 	
