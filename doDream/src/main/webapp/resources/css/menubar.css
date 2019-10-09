@@ -18,6 +18,9 @@
     left: 0;
     margin: 0 auto;
 }
+#mainLogiArea img {
+    z-index: 5000;
+}
 #naviBar {
     padding-top: 30px;
 }
@@ -117,6 +120,18 @@ background-color: #8E44AD;
     #menuIcon {
         display: none;
     }
+}
+#top_btn {
+    position: fixed;
+    right: 2%;
+    bottom: 40px;
+    display: none;
+    z-index: 1000;
+    cursor: pointer;
+}
+#top_btn img {
+    width: 40px;
+    height: 40px;
 }
 /* footer관련 */
 body {

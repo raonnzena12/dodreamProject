@@ -47,7 +47,7 @@
 </head>
 <body>
 	<section id="mainMenuBar">
-	<div class="mainLogoArea" id="mainLogoArea"><a href="home.dr"><img src="${contextPath}/resources/images/DoDream-2e.png" alt="두드림" id="mainLogo"></a></div>
+	<div class="mainLogoArea" id="mainLogoArea"><a href="main.dr"><img src="${contextPath}/resources/images/DoDream-2e.png" alt="두드림" id="mainLogo"></a></div>
 	<nav class="navbar navbar-expand-lg navbar-light" id="naviBar">
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
@@ -60,7 +60,7 @@
 					<span id="menuText">메뉴</span>
 				</a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-					<a class="dropdown-item" href="home.dr">홈</a>
+					<a class="dropdown-item" href="main.dr">홈</a>
 					<a class="dropdown-item" href="category.dr">카테고리</a>
 					<!-- 카테고리 소분류 입력할것 -->
 					<a class="dropdown-item submenu" href="category.dr?cate=music"> - 음악</a>
@@ -189,7 +189,7 @@
 									<div style="display: inline-block;">
 									<c:choose>
 									<c:when test="${empty loginUser.userProfileImage}">
-									<img alt="프로필사진" src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg" class="rounded-circle float-sm ml-3" style="width: 50px; height: 50px;"/>
+									<img alt="프로필사진" src="resources/images/talent.png" class="rounded-circle float-sm ml-3" style="width: 50px; height: 50px;"/>
 									</c:when>
 									<c:when test= "${fn:contains(loginUser.userProfileImage,'http://')}">
 									<img alt="프로필사진" src="${loginUser.userProfileImage}" class="rounded-circle float-sm" style="width: 50px; height: 50px;"/>
@@ -242,6 +242,7 @@
 						</div>
 				</c:if>	   
 	</nav>
+	<a id="top_btn"><img src="resources/images/up_button_p.png" alt="탑 버튼"></a>
 	</section>
 	<script>
 		

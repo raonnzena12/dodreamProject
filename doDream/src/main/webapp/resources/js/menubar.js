@@ -18,4 +18,17 @@ $(function () {
             return false;
         }
     });
+    $(window).scroll(function(){
+        if ($(this).scrollTop() > 500 ) {
+            $("#top_btn").fadeIn();
+        } else {
+            $("#top_btn").fadeOut();
+        }
+    });
+    $("#top_btn").on("click", function(){
+        $('html, body').animate({
+            scrollTop: 0
+        }, 400);
+        return false;
+    });
 });
