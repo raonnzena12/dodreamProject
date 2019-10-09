@@ -60,7 +60,7 @@ public class ProjectController {
 	 * @return mv
 	 */
 	@RequestMapping(value="insertProject.dr", method=RequestMethod.POST)
-	public ModelAndView insertProject(Project project, RewardList rList, HttpServletRequest request, ModelAndView mv) {
+	public ModelAndView insertProject(Project project, RewardList rList, MultipartFile uploadfile1, MultipartFile uploadfile2, MultipartFile uploadfile3, HttpServletRequest request, ModelAndView mv) {
 		
 		// Project의 등록부분입니다.
 		// project의 textarea에 있는 "\n" 을 <br>태그로 전환시킵니다.
@@ -70,13 +70,10 @@ public class ProjectController {
 		project.setpSummaryText(pSummaryText);
 		project.setpStory(pStory);
 		project.setpArtistIntroduction(pArtistIntroduction);
-		project.setpThumbImage("testTN.png");
-		project.setpMainImage("testTN.png");
 		project.setpArtistPFImage("testTN.png");
 		// 파일 등록 부분
-		System.out.println(project);
 		// DB 연결을 수행합니다.
-		int result = pService.insertProject(project, request);
+		int result = pService.insertProject(project, uploadfile1, uploadfile2, uploadfile3, request);
 		
 		
 		// Reward의 등록부분입니다.
@@ -104,7 +101,6 @@ public class ProjectController {
 			String rShipCDT = "Y";
 			if(reward.getrShipCDT()==null) rShipCDT = "N"; 
 			reward.setrShipCDT(rShipCDT);
-			System.out.println(reward);
 			// DB연결을 수행합니다.
 			result = pService.insertReward(reward);
 			
