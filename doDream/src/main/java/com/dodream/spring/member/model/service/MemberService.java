@@ -66,5 +66,4 @@ public interface MemberService {
 	public abstract ArrayList<Project> myOpenProjectList(int userNo);
 
 
-
 }

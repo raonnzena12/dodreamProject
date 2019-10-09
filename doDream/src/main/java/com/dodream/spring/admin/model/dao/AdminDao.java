@@ -378,6 +378,29 @@ public class AdminDao {
 		return (ArrayList)sqlSession.selectList("adminAlarmMapper.goAlarmList");
 	}
 
+	public String getAlarmCount1() {
+		return sqlSession.selectOne("adminAlarmMapper.getAlarmCount1")+"";
+	}
+
+	public String getAlarmCount2() {
+		return sqlSession.selectOne("adminAlarmMapper.getAlarmCount2")+"";
+	}
+
+	public String getAlarmCount3() {
+		return sqlSession.selectOne("adminAlarmMapper.getAlarmCount3")+"";
+	}
+
+	/** 전체 알람 개수
+	 * @return result
+	 */
+	public int allCountAlarm() {
+		return sqlSession.selectOne("adminAlarmMapper.allCountAlarm");
+	}
+
+	public int confirmAlarm(int alNo) {
+		return sqlSession.update("adminAlarmMapper.confirmAlarm", alNo);
+	}
+
 
 
 }

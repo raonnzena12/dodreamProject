@@ -9,7 +9,12 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <!-- include summernote css/js -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-
+<style>
+	#alarmarea a:not(#showall){
+		pointer-events: none;
+		cursor: default;
+	}
+</style>
 </head>
 <body>
 
@@ -54,106 +59,16 @@
 				class="nav-link dropdown-toggle" href="#" id="alertsDropdown"
 				role="button" data-toggle="dropdown" aria-haspopup="true"
 				aria-expanded="false"> <i class="fas fa-bell fa-fw"></i> <!-- Counter - Alerts -->
-					<span class="badge badge-danger badge-counter">3+</span>
+					<span class="badge badge-danger badge-counter" id="allCountAlarm"></span>
 			</a> <!-- Dropdown - Alerts -->
 				<div
 					class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-					aria-labelledby="alertsDropdown">
-					<p class="dropdown-header" style="font-size: medium;">알 림 창</p>
-					<a class="dropdown-item d-flex align-items-center" href="#">
-						<div class="mr-3">
-							<div class="icon-circle bg-primary">
-								<i class="fas fa-file-alt text-white"></i>
-							</div>
-						</div>
-						<div>
-							<div class="small text-gray-500">December 12, 2019</div>
-							<span class="font-weight-bold">A new monthly report is
-								ready to download!</span>
-						</div>
-					</a> <a class="dropdown-item d-flex align-items-center" href="#">
-						<div class="mr-3">
-							<div class="icon-circle bg-success">
-								<i class="fas fa-donate text-white"></i>
-							</div>
-						</div>
-						<div>
-							<div class="small text-gray-500">December 7, 2019</div>
-							$290.29 has been deposited into your account!
-						</div>
-					</a> <a class="dropdown-item d-flex align-items-center" href="#">
-						<div class="mr-3">
-							<div class="icon-circle bg-warning">
-								<i class="fas fa-exclamation-triangle text-white"></i>
-							</div>
-						</div>
-						<div>
-							<div class="small text-gray-500">December 2, 2019</div>
-							Spending Alert: We've noticed unusually high spending for your
-							account.
-						</div>
-					</a> <a class="dropdown-item text-center small text-gray-500" href="goAlarmList.dr">모든 알림 보기</a>
+					aria-labelledby="alertsDropdown" id="alarmarea">
+					
+					<!-- 알람 ajax 처리 들어가는 부분 -->
+					
 				</div></li>
 
-			<!-- Nav Item - Messages -->
-			<li class="nav-item dropdown no-arrow mx-1"><a
-				class="nav-link dropdown-toggle" href="#" id="messagesDropdown"
-				role="button" data-toggle="dropdown" aria-haspopup="true"
-				aria-expanded="false"> <i class="fas fa-envelope fa-fw"></i> <!-- Counter - Messages -->
-					<span class="badge badge-danger badge-counter">7</span>
-			</a> <!-- Dropdown - Messages -->
-				<div
-					class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-					aria-labelledby="messagesDropdown">
-					<p class="dropdown-header">Message Center</p>
-					<a class="dropdown-item d-flex align-items-center" href="#">
-						<div class="dropdown-list-image mr-3">
-							<img class="rounded-circle"
-								src="https://source.unsplash.com/fn_BT9fwg_E/60x60" alt="">
-							<div class="status-indicator bg-success"></div>
-						</div>
-						<div class="font-weight-bold">
-							<div class="text-truncate">Hi there! I am wondering if you
-								can help me with a problem I've been having.</div>
-							<div class="small text-gray-500">Emily Fowler · 58m</div>
-						</div>
-					</a> <a class="dropdown-item d-flex align-items-center" href="#">
-						<div class="dropdown-list-image mr-3">
-							<img class="rounded-circle"
-								src="https://source.unsplash.com/AU4VPcFN4LE/60x60" alt="">
-							<div class="status-indicator"></div>
-						</div>
-						<div>
-							<div class="text-truncate">I have the photos that you
-								ordered last month, how would you like them sent to you?</div>
-							<div class="small text-gray-500">Jae Chun · 1d</div>
-						</div>
-					</a> <a class="dropdown-item d-flex align-items-center" href="#">
-						<div class="dropdown-list-image mr-3">
-							<img class="rounded-circle"
-								src="https://source.unsplash.com/CS2uCrpNzJY/60x60" alt="">
-							<div class="status-indicator bg-warning"></div>
-						</div>
-						<div>
-							<div class="text-truncate">Last month's report looks great,
-								I am very happy with the progress so far, keep up the good work!</div>
-							<div class="small text-gray-500">Morgan Alvarez · 2d</div>
-						</div>
-					</a> <a class="dropdown-item d-flex align-items-center" href="#">
-						<div class="dropdown-list-image mr-3">
-							<img class="rounded-circle"
-								src="https://source.unsplash.com/Mv9hjnEUHR4/60x60" alt="">
-							<div class="status-indicator bg-success"></div>
-						</div>
-						<div>
-							<div class="text-truncate">Am I a good boy? The reason I
-								ask is because someone told me that people say this to all dogs,
-								even if they aren't good...</div>
-							<div class="small text-gray-500">Chicken the Dog · 2w</div>
-						</div>
-					</a> <a class="dropdown-item text-center small text-gray-500" href="#">Read
-						More Messages</a>
-				</div></li>
 
 			<div class="topbar-divider d-none d-sm-block"></div>
 			
@@ -202,6 +117,46 @@
 
 	</nav>
 	<!-- End of Topbar -->
+	<script>
+		$(document).on("click","#alertsDropdown",function(){
+			$.ajax({
+				url : "getAlarmCount.dr",
+				success: function(result){
+					var count1 = result[0];
+					var count2 = result[1];
+					var count3 = result[2];
+					$("#alarmarea").empty();
+					var input = '<p class="dropdown-header" style="font-size: medium;">알 림 창</p>';
+					if(count1>0){
+						input += '<a class="dropdown-item d-flex align-items-center" href="#"><div class="mr-3"><div class="icon-circle bg-primary"><i class="fas fa-file-alt text-white"></i></div></div><div>';
+						input += '<div class="small text-gray-500"></div>미확인  알림 : <br> 금일 마감하는 프로젝트가 '+ count1 +'개 있습니다.</div></a>';
+					} 
+					if(count2>0){
+						input += '<a class="dropdown-item d-flex align-items-center" href="#"><div class="mr-3"><div class="icon-circle bg-warning"><i class="fas fa-exclamation-triangle text-white"></i></div></div><div>';
+						input += '<div class="small text-gray-500"></div>미확인 알림 : <br> 신고사항이 '+ count2 +'개 있습니다.</div></a>';
+					}
+					if(count3>0){
+						input += '<a class="dropdown-item d-flex align-items-center" href="#"><div class="mr-3"><div class="icon-circle bg-success"><i class="fas fa-donate text-white"></i></div></div><div>';
+						input += '<div class="small text-gray-500"></div>미확인 알림 : <br> 성공한 프로젝트가 '+ count3 +'개 있습니다.</div></a>';
+					}
+					input += '<a class="dropdown-item text-center small text-gray-500" href="goAlarmList.dr" id="showall">모든 알림 보기</a>';
+					$("#alarmarea").append(input);
+				}
+			});
+		});
+		
+		$.ajax({
+			url: "allCountAlarm.dr",
+			success: function(result){
+				console.log(result);
+				$("#allCountAlarm").prop("style","font-size:13px").text(result+ "+");
+			} 
+		});		  	
+			
+		
+		
+		
+	</script>
 
 </body>
 </html>

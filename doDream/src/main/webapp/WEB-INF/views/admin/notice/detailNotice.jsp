@@ -50,10 +50,14 @@
 }
 #tb{
 	border-top: 3px solid lightgray; 
+	border-bottom: 3px solid lightgray; 
 }
 #tb td, #tb th{
 	border-bottom: 1px solid lightgray;
 }
+.th{
+	border-right: 1px solid lightgray;
+  }
 #tb th{
 	background: #f8f9fc;
 }
@@ -112,19 +116,19 @@
 													<th colspan="2" id="tb-header">${ notice.nNo }번 글 상세보기</th>
 												</tr>
 												<tr>
-													<th height="15" width="70">제목</th>
+													<th height="15" width="70" class="th">제목</th>
 													<td>${ notice.nTitle }</td>
 												</tr>
 												<tr>
-													<th>작성자</th>
+													<th class="th">작성자</th>
 													<td>${ notice.userNickname }</td>
 												</tr>		
 												<tr>
-													<th>작성일</th>
+													<th class="th">작성일</th>
 													<td>${ notice.nEnrollDate}</td>
 												</tr>		
 												<tr height="300">
-													<th>내용</th>
+													<th class="th">내용</th>
 													<td>${ notice.nContent }</td>
 												</tr>
 											</table>

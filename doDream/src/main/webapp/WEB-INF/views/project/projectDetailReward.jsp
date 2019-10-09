@@ -461,12 +461,7 @@
 	                            </div>
 	                            <div class="hiddenBox">
 		                           	<div class="rewardText4">
-		                           	<c:if test="${r.rLimit > '0'}">
-		                                <input type="number" class="form-control reCount" placeholder="수량을 입력하세요." value="1" min="1" max="${r.rAmount }">
-		                            </c:if>
-		                            <c:if test="${r.rLimit eq '-1'}">
-		                            	<input type="number" class="form-control reCount" placeholder="수량을 입력하세요." value="1" min="1">
-		                            </c:if>
+		                                	<input type="number" class="form-control reCount" placeholder="수량을 입력하세요." value="1">
 		                            </div>
 		                            <script>
 		                            	$(function(){
@@ -483,7 +478,6 @@
 		                            		});
 		                            	});
 		                            </script>
-		                            
 		                            <div class="rewardText5">
 			                           
 			                            <c:if test="${r.rOptionNo eq '1'}">
@@ -543,7 +537,7 @@
    	</section>
    	
    	<script>
-	   
+	   	/* 리워드 수량 합산 하는것 완성하기 */
    	
    		$(function(){
    			
@@ -555,9 +549,6 @@
    						goReserve();
    					}
    				});
-   			
-   			
-   			
    			var total = ${project.pCurrentFunding };
    			if(${project.pDDay} < 0 || total > ${project.pGoal}){
    				
@@ -586,8 +577,6 @@
 	   					$("#"+rNo +" .check").prop("checked", true);
 	   					$("#"+rNo +" .rewardIcon").css("color","#F39C12");
 	   					$("#"+rNo +" .hiddenBox").css("display","block");
-	   					$("#"+rNo +" .reCount").val("1");
-	   					
 	   					rewardsum();
 	   				}else{
 	   					$(".check").prop("checked", false);
@@ -613,12 +602,10 @@
 				if(checked == true){
 					$("#"+ ch +" .rewardIcon").css("color","#F39C12");
 					$("#"+ ch +" .hiddenBox").css("display","block");
-					$("#"+ ch +" .reCount").val("1");
 					
 				}else{
 					$("#"+ ch +" .rewardIcon").css("color","#444");
 					$("#"+ ch +" .hiddenBox").css("display","none");
-					//$("#"+ ch +" .reCount").val("0");
 				}
 					rewardsum();
 			});
@@ -636,31 +623,44 @@
    			var price = 0;
    			var checkName="";
    			
-   			var count= 0;
-   			var comma = "";
-   			var reCount = 0;
-   			var cPrice = 0;
-   			//var mainRNo = $("#"+rNo).attr("id");
+   			var count= 1;
+   			var comma="";
+   			var reCount=0;
+   			var cPrice=0;
    			
    			/* ============================================================================== */
-   			//$(".check").change(function(){
-   				
-   				$("#rewardSum").text("");
-   				
+   			
+   			
    				$("input:checkbox[name='reCheck']:checked").each(function(){
-   					sum();
-   	   				/* count += $(this).parent().parent().find(".reCount").val()*1;
-   	   				console.log("count : " + count);
+   	   				count += $(this).parent().parent().find(".reCount").val()*1;
    	   				price += $(this).val()*1*count; // 리워드 가격
-   	   				console.log("price : " + price);
-   	   				checkName += $(this).parent().parent().find(".rewardText6").text()+"<br>"; */
+   	   				checkName += $(this).parent().parent().find(".rewardText6").text()+"<br>";
    	   			});
-   				/* console.log(count);
    				comma = price + $("#rewardInput").val()*1;
    				$("#rewardSum").text(comma.toLocaleString());
-   				$("#asideText3").html("<div id='rewardname'>"+checkName+"</div>"); */
+   				$("#asideText3").html("<div id='rewardname'>"+checkName+"</div>");
    			
-   			//});
+   				
+   			
+   			
+   			
+			
+   			
+   			
+   			
+   			
+   			
+   			
+   			
+   			
+   			
+   			
+   			
+   			
+   			
+   			
+   			
+   			
    			
    				$(".reCount").focus(function(){
    					
@@ -690,6 +690,72 @@
    	
    			
    			/* ============================================================================== */
+   			
+   			
+   			
+   			
+   			
+   			
+   			// 수량 까지 합쳐서 총 금액 합산 / 수량 보다 많은 숫자 입력안되게 조치
+   			/* $("input:checkbox[name='reCheck']:checked").each(function(){
+   				count +=$(this).parent().parent().find(".reCount").val()*1;
+   				price += $(this).val()*1*count;
+   				//count +=$(this).parent().parent().find(".reCount").val()+"<br>";
+   				checkName += $(this).parent().parent().find(".rewardText6").text()+"<br>";
+   				
+   				//console.log(price);
+   				//console.log($("#rewardInput").val()*1);
+   				console.log(checkName);
+   				
+   			}); */
+   			
+   			
+   			/* comma = price + $("#rewardInput").val()*1;
+			$("#rewardSum").text(comma.toLocaleString());
+			$("#asideText3").html("<div id='rewardname'>"+checkName+"</div>");
+   			
+   			
+   			$(".reCount").on("blur", function(){
+   				$("#rewardSum").text("");
+   				$("input:checkbox[name='reCheck']:checked").each(function(){
+   	   				/* reCount +=$(this).parent().parent().find(".reCount").val()*1;
+   	   				reCount +=$(this).parent().parent().find(".reCount").val() + "/";
+   	   				console.log(reCount);
+   	   				cPrice += $(this).val()*1*reCount;
+   	   			 */	//count +=$(this).parent().parent().find(".reCount").val()+"<br>";
+   	   				//checkName += $(this).parent().parent().find(".rewardText6").text()+"<br>";
+   	   				
+   	   				//console.log(price);
+   	   				//console.log($("#rewardInput").val()*1);
+   	   				//console.log(checkName);
+   	   				
+   	   			//});
+   				/* console.log($(this).val());
+   				reCount = $(this).val()*1;
+   				cPrice = $(this).parent().parent().parent().find(".rewardMo").text()*1;
+   				console.log(cPrice);
+   				
+   				var sum = cPrice*reCount;
+   				
+   				console.log(sum); */
+   				
+   				//comma = cPrice + $("#rewardInput").val()*1;
+   				//$("#rewardSum").text(comma.toLocaleString());
+   				//$("#asideText3").html("<div id='rewardname'>"+checkName+"</div>");
+   				
+   				
+   			//});
+   			
+   				/* comma = cPrice + $("#rewardInput").val()*1;
+   				$("#rewardSum").text(comma.toLocaleString());
+   				$("#asideText3").html("<div id='rewardname'>"+checkName+"</div>"); */
+   			
+   				//comma = price + $("#rewardInput").val()*1;
+   				//$("#rewardSum").text(comma.toLocaleString());
+   				//$("#asideText3").html("<div id='rewardname'>"+checkName+"</div>");
+   				//$("#recount").html(count);
+   				//수량수량
+   				
 		
 			}
    		

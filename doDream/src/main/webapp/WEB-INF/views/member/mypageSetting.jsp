@@ -30,10 +30,6 @@
       background-color: white;
       padding: 0; 
    }
-   
-   #deleteMember{
-   	cursor: pointer;
-   }
 
 </style>
 
@@ -227,7 +223,6 @@
 			   if(result > 0){
 				   alert("진행중인 프로젝트가"+result+"건이 있습니다. 탈퇴를 진행할 수 없습니다.");
 				   $("#deleteMember").bind("click", false);
-				   //프로젝트 오픈건이 있으면 비활성화
 			   }else{
 				   alert("진행중인 프로젝트가 없습니다.");
 				   location.href = "deleteForm.dr?userNo=${loginUser.userNo}";

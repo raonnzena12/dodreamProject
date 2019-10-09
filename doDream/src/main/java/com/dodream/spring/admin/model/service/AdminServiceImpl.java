@@ -258,6 +258,31 @@ public class AdminServiceImpl implements AdminService {
 		return aDao.goAlarmList();
 	}
 
+	@Override
+	public String getAlarmCount1() {
+		return aDao.getAlarmCount1();
+	}
+
+	@Override
+	public String getAlarmCount2() {
+		return aDao.getAlarmCount2();
+	}
+
+	@Override
+	public String getAlarmCount3() {
+		return aDao.getAlarmCount3();
+	}
+
+	@Override
+	public int allCountAlarm() {
+		return aDao.allCountAlarm();
+	}
+
+	@Override
+	public int confirmAlarm(int alNo) {
+		return aDao.confirmAlarm(alNo);
+	}
+
 	
 
 }

@@ -3,7 +3,8 @@ $(function(){
 	// summernote 출력 및 부가 기능 메소드
 	$('#summernote').summernote({
 		width : 800,		// 에디터 넓이
-		height: 300,        // 에디터 높이
+		height: 500,        // 에디터 높이
+		disableResizeEditor: true,
 		focus: true,        // set focus to editable area after initializing summernote
 		lang: 'ko-KR',		// 언어 : 한국어 설정
 		

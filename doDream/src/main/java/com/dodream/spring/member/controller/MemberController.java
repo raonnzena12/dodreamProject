@@ -321,10 +321,6 @@ public class MemberController {
 	}
 	
 	
-	/** 회원이 오픈한 프로젝트
-	 * @param userNo
-	 * @return
-	 */
 	@ResponseBody
 	@RequestMapping("countOpenPJT.dr")
 	public int countOpenProject(int userNo) {
@@ -384,30 +380,9 @@ public class MemberController {
 	 * @return
 	 */
 	@RequestMapping("deleteForm.dr")
-	public String deleteMemberFormView(int userNo) {
+	public String deleteMemberFormView(int userNo, Model model) {
 		
 		return "member/deleteMemberView";
-	}
-	
-	/** 회원탈퇴
-	 * @param userNo
-	 * @param status
-	 * @param rdAttr
-	 * @param model
-	 * @return
-	 */
-	@RequestMapping("deleteMember.dr")
-	public String deleteMember(int userNo, SessionStatus status, RedirectAttributes rdAttr, Model model) {
-		
-		int result = mService.deleteMember(userNo);
-		if(result > 0) {
-			rdAttr.addFlashAttribute("msg", "두드림에서 탈퇴되었습니다.");
-			status.setComplete();
-			return "redirect:home.dr";
-		}else {
-			model.addAttribute("msg", "탈퇴에 실패하였습니다. 관리자에게 문의해주세요.");
-			return "common/errorPage";
-		}
 	}
 	
 
