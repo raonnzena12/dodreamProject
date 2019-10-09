@@ -48,11 +48,12 @@
                <h3 class= "text-center">나의 정보</h3>
                <br>
                <form action="myInfoUpdate.dr" id="myInfoForm" method="post" class="form-group" enctype="multipart/form-data">
-               <input type="hidden" value="${loginUser.userNo}" name="userNo">
-               <input type="hidden" value="${loginUser.userEmail}" name="userEmail">
-               <input type="hidden" value="${loginUser.userProfileImage}" name="userProfileImage">
-               <input type="hidden" value="${loginUser.userAddress}" name="userAddress" id="userAddress">
-               
+	               <input type="hidden" value="${loginUser.userNo}" name="userNo">
+	               <input type="hidden" value="${loginUser.userEmail}" name="userEmail">
+	               <input type="hidden" value="${loginUser.userProfileImage}" name="userProfileImage">
+	               <input type="hidden" value="${loginUser.userAddress}" name="userAddress" id="userAddress">
+	               <input type="hidden" value="${loginUser.userSelf}" name="userSelf">
+	               <input type="hidden" value="${loginUser.userPhone}" name="userPhone">
                   <table>
                      <tr>
                         <td style="width: 20%">
@@ -85,7 +86,7 @@
                      </tr>
                      <tr>
                         <td class="text-center">자기소개</td>
-                        <td colspan="2"><input type="text" class="form-control" name="userSelf" value="${loginUser.userSelf}" placeholder="자기소개를 입력해주세요."></td>
+                        <td colspan="2"><input type="text" class="form-control" name="userSelf"  id="userSelf" value="${loginUser.userSelf}" placeholder="자기소개를 입력해주세요."></td>
                      </tr>
                      <tr>
                         <td class="text-center" rowspan="2">주소</td>
@@ -110,7 +111,7 @@
                      <td colspan="2">
                         <div class="row">
                         <div class="col-md-12 text-center">
-                        <button class="btn btn-sm mb-2 btn-warning">수정하기</button> <button class="btn btn-sm mb-2 btn-warning" onclick="location.href='home.dr'">돌아가기</button>
+                        <button class="btn btn-sm mb-2 btn-warning">수정하기</button><button class="btn btn-sm mb-2 btn-warning" onclick="location.href='home.dr'">돌아가기</button>
                         </div>
                         </div>
                      </td>
@@ -231,6 +232,10 @@
 	   });
    });
    
+   $(document).ready(function() {
+		var userSelf = $("#userSelf").val();
+		console.log(userSelf);
+	});
    
    
    

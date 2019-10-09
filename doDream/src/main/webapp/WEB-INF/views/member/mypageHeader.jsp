@@ -23,17 +23,15 @@
 		</div>
 		<div></div>			
 		<div class="row">
-			<c:if test="${ !empty sessionScope.loginUser }">
+			<c:if test="${ ! empty sessionScope.loginUser }">
 			<div class="col-md-4"></div>
 			<div class="col-md-4 myPagehead">
 				<h4 class="mb-3">My Page</h4>
 				<h4 class="text-left">
-						<c:out value="${ loginUser.userNickname }님 환영합니다"/>
+						${ loginUser.userNickname }님 환영합니다.
 					<img src="" class="rounded-circle float-sm" />
 				</h4>
-				<blockquote class="blockquote">
 					<p class="mb-0" id="userSelf">${ loginUser.userSelf }</p>
-				</blockquote>
 				<div id="followOuter">
 					<p class="text-left">팔로워 <span id="follower"></span>명 &nbsp; 팔로잉 <span id="follow"></span>명</p>
 				</div>

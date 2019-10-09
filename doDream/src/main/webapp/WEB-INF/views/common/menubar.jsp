@@ -140,7 +140,7 @@
 			<div id="login-menu" class="loginmenu">
 				<div style="text-align:center;" class="mb-2"> LOGIN </div>
 				<form action="login.dr" method="POST" id="loginFrm">
-					<input type="hidden" value="" name="prevPage" id="prevPage">
+					<input type="hidden" value="prevPage" name="prevPage" id="prevPage">
 					<table id="login-table" class="form-group">
 						<tr>
 							<td><input class="form-control" type="email" name="userEmail" id="userEmail" placeholder="이메일 주소" autocomplete="off" required></td>
@@ -215,7 +215,7 @@
 										<div class="col-md-4">
 											<i class="material-icons">favorite</i>
 											<br>
-											<a href="#">찜</a> <!-- 좋아요한 프로젝트목록 -->
+											<a href="myLikePRJList.dr?userNo=${loginUser.userNo}">찜</a> <!-- 좋아요한 프로젝트목록 -->
 										</div>
 										<div class="col-md-4">
 											<i class="material-icons">folder</i>
@@ -227,10 +227,9 @@
 							</div>
 							<div class="row" id="myinfobtn">
 								<div class="col-md-12 text-center">
-								<c:url var="mypage" value="mypage.dr"/>
 								<c:url var="adminPage" value="adminHome.dr"/>
 								<c:url var="logout" value="logout.dr"/>
-								<button class="btn btn-sm mb-2" id="mypagebtn"onclick="location.href='${mypage}'">My Page</button>
+								<button class="btn btn-sm mb-2" id="mypagebtn"onclick="location.href='myFundingList.dr?userNo=${loginUser.userNo}'">My Page</button>
 								&nbsp; &nbsp;
 								<%-- <button class="btn btn-sm mb-2" id="logoutbtn" onclick="location.href='${logout}'">로그아웃</button> --%>
 								<button class="btn btn-sm mb-2" id="logoutbtn"">로그아웃</button>
@@ -311,12 +310,18 @@
 			var form = document.createElement("form");
 			var param = new Array();
 			var input = new Array();
+
+			var path = window.location.pathname;
+			var arr = path.split("/");
+			var prevPage = arr[2];
+
 			
 			form.action = url;
 			form.method = "post";
 			
 			param.push(["userEmail",userEmail]);
 			param.push(["userPwd",userPwd]);
+			param.push(["prevPage",prevPage]);
 			
 			for(var i=0; i<param.length; i++){
 				input[i] = document.createElement("input");
@@ -325,8 +330,8 @@
 	            input[i].setAttribute("value", param[i][1]);
 	            form.appendChild(input[i]);
 			}
-			
 			document.body.appendChild(form);
+						
 			form.submit();
 		}
 	
