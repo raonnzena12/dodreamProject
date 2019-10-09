@@ -38,6 +38,7 @@
     right: 0;
     left: 0;
     box-shadow: 1px 1px 3px #ccc;
+    cursor: pointer;
 }
 #category .fundCon:hover {
     box-shadow: 1px 1px 4px #aaa;
@@ -133,10 +134,21 @@
 .more {
     font-size: 14px;
     font-weight: 600;
-    color: #777;
     cursor: pointer;
 }
+.more a {
+    color: #777;
+    text-decoration: none;
+}
+.ggArea {
+    width: 90%;
+    height: 200px;
+    border-radius: 5px;
+    background-color: #F39C12;
+    margin: 20px auto;
+}
 </style>
+<script src="https://cdn.jsdelivr.net/npm/@mojs/core"></script>
 </head>
 <body>
 <section id="mainSection">
@@ -259,6 +271,8 @@
         </div>
         <div class="my-4 ggArea">
             광고 영역
+
+            <!-- <DIV class=video-container style="TEXT-ALIGN: center"><object type="text/html" width="100%" height="500" data="//www.youtube.com/embed/dJXZRZvqbYg" allowFullScreen></object> </DIV> -->
         </div>
         <div class="newest">
             <div class="newestLink clear-both my-4">
@@ -393,4 +407,81 @@
 </div>
 </section>
 </body>
+<script>
+$(function() {
+   // 리뷰 좋아요 체크하는 함수
+   $(document).on("click",".heartIcon", function(e){
+      if ( ${ empty loginUser } ) {
+          Swal.fire( '로그인이 필요합니다!', '좋아요를 누르기 전 로그인을 해주세요!', 'warning' );
+          return false;
+      }
+      var icheck = $(this).children().text();
+      var pno = $(this).parent().attr("id");
+      if ( icheck == 'favorite_border') {
+         likeProject(pno, 1);
+         $(this).children().text('favorite');
+         $("body div[data-name='mojs-shape']").css({"z-index":"0","cursor":"pointer"});
+         const coords = { x: $(this).offset().left+15, y: $(this).offset().top+18};
+         burst.tune( coords ).replay();
+         circle.tune( coords ).replay();
+         /* 이펙트 실행후 이펙트 플레이 div를 아래로 숨겨준다 */
+         setTimeout(function(){
+         $("body div[data-name='mojs-shape']").css({"z-index":"-10","cursor":"pointer"});
+         },800);
+      } else {
+         likeProject(pno, 0);
+         $(this).children().text('favorite_border');
+      }
+   });
+   $(document).on("click",".fundItem div:not(.heartIcon)", function(){
+      location.href='detailSt.dr?pNo='+$(this).parent().attr("id");
+   });
+});
+// 좋아요 누르고/취소하는 함수
+// status로 1을 보내면 좋아요 누르기
+// status로 0을 보내면 좋아요 취소
+function likeProject(pno, status) {
+   var uno = "${ loginUser.userNo }";
+   $.ajax({
+      url: "ajaxProjectLike.dr",
+      type: "POST",
+      data: { uNo: uno,
+              pNo: pno,
+              status: status},
+      error: function(e){ console.log(e); },
+      success: function(result){ console.log(result); }
+   });
+}
+</script>
+<script>
+    const CIRCLE_RADIUS = 20;
+    const RADIUS = 32;
+    const circle = new mojs.Shape({
+      left: 0, top: 0,
+      stroke:   '#FF9C00',
+      strokeWidth: { [2*CIRCLE_RADIUS] : 0 },
+      fill:       'none',
+      scale:      { 0: 1 },
+      radius:     CIRCLE_RADIUS,
+      duration:   400,
+      easing:     'cubic.out'
+    });
+ 
+    const burst = new mojs.Burst({
+      left: 0, top: 0,
+      radius:   { 4: RADIUS },
+      angle:    45,
+      count:    14,
+      timeline: { delay: 300 },
+      children: {
+        radius:       2.5,
+        fill:         '#FD7932',
+        scale:        { 1: 0, easing: 'quad.in' },
+        pathScale:    [ .8, null ],
+        degreeShift:  [ 13, null ],
+        duration:     [ 500, 700 ],
+        easing:       'quint.out'
+      }
+    });
+ </script>
 </html>

@@ -160,7 +160,47 @@
 	<!-- 진행중/종료된 프로젝트 갯수 조회용 쿼리 -->
 	<select id="countList" resultType="_int">
 		SELECT COUNT(*) FROM PROJECT_TB
-		WHERE PROJECT_ST_NO IN ( 4, 5 )
+		WHERE PROJECT_ST_NO IN ( 4, 5, 7 )
+	</select>
+	
+	<!-- 필터링된 프로젝트 갯수 조회용 쿼리 -->
+	<select id="countListS" resultType="_int" parameterType="FilteringList">
+		SELECT COUNT(*) FROM PROJECT_TB
+		WHERE 
+		<choose>
+			<when test="category == 'total'">
+			PROJECT_CT_NO IN ( 1, 2, 3, 4, 9 )
+			</when>
+			<when test="category == 'music'">
+			PROJECT_CT_NO = 1
+			</when>
+			<when test="category == 'movie'">
+			PROJECT_CT_NO = 2
+			</when>
+			<when test="category == 'play'">
+			PROJECT_CT_NO = 3
+			</when>
+			<when test="category == 'art'">
+			PROJECT_CT_NO = 4
+			</when>
+			<when test="category == 'etc'">
+			PROJECT_CT_NO = 9
+			</when>
+		</choose>
+		<if test="keyword != null">
+		AND ( PROJECT_TITLE LIKE '%'||#{ keyword } ||'%' OR PROJECT_STITLE LIKE '%'||#{ keyword } ||'%' OR PROJECT_HASHTAG LIKE '%'||#{ keyword } ||'%' )
+		</if>
+		<choose>
+			<when test="endYn == 'ALL'">
+			AND PROJECT_ST_NO IN ( 4, 5, 7 )
+			</when>
+			<when test='endYn == "N"'>
+			AND PROJECT_ST_NO = 4
+			</when>
+			<when test='endYn == "Y"'>
+			AND PROJECT_ST_NO IN ( 5, 7 )
+			</when>
+		</choose>
 	</select>
 	
 	<!-- 선택한 카테고리에 따라 프로젝트 리스트 조회용 쿼리 -->
@@ -168,7 +208,7 @@
 	 	SELECT * FROM PROJECT_LIST_VIEW
 	 	<choose>
 	 		<when test="_parameter.equals('total')">
-	 		WHERE PROJECT_CT_NO IN ( 1, 2, 3, 4, 5 )
+	 		WHERE PROJECT_CT_NO IN ( 1, 2, 3, 4, 9 )
 	 		</when>
 	 		<when test="_parameter.equals('music')">
 		 	WHERE PROJECT_CT_NO = 1
@@ -183,7 +223,7 @@
 	 		WHERE PROJECT_CT_NO = 4
 	 		</when>
 	 		<when test="_parameter.equals('etc')">
-	 		WHERE PROJECT_CT_NO = 5
+	 		WHERE PROJECT_CT_NO = 9
 	 		</when>
 	 	</choose>
 	</select>

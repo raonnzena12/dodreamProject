@@ -40,7 +40,7 @@ public class ProjectServiceImpl implements ProjectService {
 	public ArrayList<Project> selectPrjList(FilteringList filter, int currentPage) {
 		
 		// 진행중/진행완료 상태의 프로젝트 갯수 조회
-		int listCount = pDao.countList();
+		int listCount = pDao.countListS(filter);
 		
 		// 프로젝트 페이징 처리
 		PageInfo pi = Pagination.getPageInfo(currentPage, listCount);

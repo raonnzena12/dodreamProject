@@ -137,10 +137,10 @@
 // 페이지 접속하면 currentPage = 1;
 var currentPage = 1;
 var maxPage = ${ pi.maxPage };
-var cate = "";
-var order = "";
-var endYn = "";
-var keyword = "";
+var cate = "${ empty cate ? '' : cate }";
+var order = "${ empty order ? '' : order }";
+var endYn = "${ empty endYn ? '' : endYn }";
+var keyword = "${ empty keyword ? '' : keyword }";
 
 
    // 좋아요 누르는 함수 만들것
