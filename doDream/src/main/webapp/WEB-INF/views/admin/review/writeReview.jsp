@@ -234,6 +234,10 @@
 					alert("후기 부제목을 작성해주세요.");
 					return false;
 				}
+				if ($("input[name=revRefPno]").val().trim() == "") {
+					alert("프로젝트 번호를 작성해주세요.");
+					return false;
+				}
 				if ($("input[name=revCategoryNo]").val().trim() == "") {
 					alert("카테고리를 선택해주세요.");
 					return false;

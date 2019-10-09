@@ -114,7 +114,7 @@ tbody tr:hover{
 														<th class="sorting" tabindex="0" aria-controls="dataTable"
 															rowspan="1" colspan="1"
 															style="width: 150px;">알림확인</th>
-													</tr>
+													</tr>    
 												</thead>
 												<tfoot>
 													<tr>
@@ -124,9 +124,10 @@ tbody tr:hover{
 														<th rowspan="1" colspan="1">알림 내용</th>
 														<th rowspan="1" colspan="1">알림 날짜</th>
 														<th rowspan="1" colspan="1">알림 확인 여부</th>
-														<th rowspan="1" colspan="1">알림확인 
-															<input type="checkbox" id="chkall">
-															<button type="button" id="alarmcheck">확인처리</button>														
+														<th rowspan="1" colspan="1">알림확인 <br>
+															전체선택 <input type="checkbox" id="chkall"> <br>
+															<button type="button" class="btn btn-primary btn-lg btn-block rewardBtn"
+															 id="alarmcheck" align="center">확인처리</button>														
 														</th>
 													</tr>
 												</tfoot>
@@ -148,8 +149,7 @@ tbody tr:hover{
 															</td>
 															<td>
 																<c:if test="${a.alStatus=='Y' }">
-																	<input type="checkbox" class="alarmchkinput" value="${a.alNo }">
-
+																	<input type="checkbox" name="alchecked" value="${a.alNo }">
 																</c:if>
 															</td>
 														</tr>
@@ -219,9 +219,21 @@ tbody tr:hover{
   			}
   		});
   		$(document).on("click","#alarmcheck",function(){
-  			var value = $(".alarmchkinput").val();
-  			console.log(value);
+  			var checkedValue = document.getElementsByName("alchecked");
+  			var temp = "";
+  			for (var i = 0; i < checkedValue.length; i++) {
+				if(checkedValue[i].checked){
+					temp += checkedValue[i].value + ",";
+				}
+			}
+  			var arr = temp.split(",");
+  			if(arr.length>1){
+  				location.href = "confirmAlarm.dr?arr="+arr;
+  			}
   		});
+  		
+  		
+  		
 	</script>
 	
 	<!-- Bootstrap core JavaScript-->

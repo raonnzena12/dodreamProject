@@ -1,6 +1,7 @@
 package com.dodream.spring.admin.controller.alarm;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -52,5 +53,23 @@ public class adminAlarmController {
 		str[2] = aService.getAlarmCount3();
 		return str;
 	}
+	
+	// 전체 알람 개수 구하기 
+	@ResponseBody
+	@RequestMapping("allCountAlarm.dr")
+	public int allCountAlarm() {
+		return aService.allCountAlarm();
+	}
+	
+	@RequestMapping("confirmAlarm.dr")
+	public String confirmAlarm(String[] arr) {
+		for (int i = 0; i < arr.length-1; i++) {
+			int result = aService.confirmAlarm(Integer.parseInt(arr[i]));
+		}
+		return "redirect:goAlarmList.dr";
+	}
+	
+	
+	
 	
 }

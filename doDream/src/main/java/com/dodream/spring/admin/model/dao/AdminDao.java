@@ -390,6 +390,17 @@ public class AdminDao {
 		return sqlSession.selectOne("adminAlarmMapper.getAlarmCount3")+"";
 	}
 
+	/** 전체 알람 개수
+	 * @return result
+	 */
+	public int allCountAlarm() {
+		return sqlSession.selectOne("adminAlarmMapper.allCountAlarm");
+	}
+
+	public int confirmAlarm(int alNo) {
+		return sqlSession.update("adminAlarmMapper.confirmAlarm", alNo);
+	}
+
 
 
 }
