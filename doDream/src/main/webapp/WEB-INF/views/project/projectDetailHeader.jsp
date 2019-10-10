@@ -103,9 +103,16 @@
                width: 450px;
                height: 350px;
                clear: both;
+               display:none;
            }
            #mainVideo{
                width: 450px;
+               height: 350px;
+               /* clear: both;
+               display:none; */
+           }
+           .video{
+           		width: 450px;
                height: 350px;
                clear: both;
                display:none;
@@ -325,17 +332,32 @@
                     	<div id="detailDday">D-${project.pDDay}</div>
                     	<img src="resources/images/projectImg/mainImg/${project.pMainImage}" id="mainImg">
                    		
-                   		<video controls autoplay loop id="mainVideo">
-                   			<source src="${project.pMainImage}" type="video/mp4">
-                   		</video>
+                   		<div class="video-container video" style="TEXT-ALIGN: center; height: 100%;">
+                   			<object type="text/html" width="100%" height="100%" data="//www.youtube.com/embed/${project.pMainImage}?&amp;autoplay=1&amp;loop=1" id="mainVideo"></object>
+                   		</div>
+                   		
+                   		<%-- <video controls autoplay loop id="mainVideo">
+                   			<source src="https://www.youtube.com/watch?v=${project.pMainImage}" type="video/mp4">
+                   		</video> --%>
                    	
                    	</article>
                 </article>
                 
                 <script>
                 	$(function(){
-                		var mainImg = "${project.pMainImage}";
-                		//var mainImg = "906_20191009165732_main.jsp";
+                		
+                		//var mainImg = "906_20191009165732_main.jpg";
+                		var mainImg = $("#mainImg").attr("src");
+                		console.log(mainImg);
+                		mainImg.indexOf("_main");
+                		if(mainImg.indexOf("_main") != -1 || mainImg.indexOf(".jpg") != -1 || mainImg.indexOf(".png") != -1){
+                			$("#mainImg").css("display","block");
+                		}else{
+                			$(".video").css("display","block");
+                		}
+                		
+                		
+                		/* 
                     	var miArray = mainImg.split('.');
                     	//var main = miArray[1];
                     	console.log(miArray[0]);
@@ -347,9 +369,9 @@
                         		$("#mainImg").css("display","block");
                         	}
                     	}else{
-                    		$("#mainVideo").css("display","block");
+                    		$(".video").css("display","block");
                     	}
-                    	
+                    	 */
                     	
                 	});
                 </script>
@@ -504,8 +526,8 @@
 				var uno = "${loginUser.userNo}";
 				var pNo = ${project.pNo};
 				
-				console.log(uno);
-				console.log(pNo);
+				//console.log(uno);
+				//console.log(pNo);
 				
 				
 					if(confirm("프로젝트 좋아요를 취소하시겠습니까?")){
@@ -536,8 +558,8 @@
 	
 		function detailLike(){
 			
-					var uno = "${loginUser.userNo}";
-					var pNo = ${project.pNo};
+				var uno = "${loginUser.userNo}";
+				var pNo = ${project.pNo};
 					
 					$.ajax({
 						url: "detailLike.dr",
@@ -558,7 +580,7 @@
 						}
 						
 					});
-					
+				
 		}
 		
 		

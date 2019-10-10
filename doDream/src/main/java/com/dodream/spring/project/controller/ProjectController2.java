@@ -202,8 +202,10 @@ public class ProjectController2 {
 	public HashMap<String, Object> selectReply(int pNo, Reply reply, SubReply subre) {
 		
 		ArrayList<Reply> reList = pService2.selectReply(pNo);
-		
-		ArrayList<SubReply> srList = pService2.selectSubReply(reList);
+		ArrayList<SubReply> srList = new ArrayList<SubReply>();
+		if(reList != null && !reList.isEmpty() ) {
+			srList = pService2.selectSubReply(reList);
+		}
 		
 		HashMap<String, Object> map = new HashMap<>();
 		
