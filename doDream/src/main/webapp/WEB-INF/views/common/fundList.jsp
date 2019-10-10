@@ -33,33 +33,42 @@
       </div>
    </div>
    <div class="container-fluid" id="categoryResult">
+      <div class="row sticky-top">
+         <div class="col-md-1"></div>
+         <div class="col-md-10">
+            <div id="resultMenu" class="my-4">
+               <span class="reset" onclick="location.href='category.dr'">전체보기</span>
+               <span class="float-right">
+                  <form action="${ keywordSearch }">
+                  <input type="hidden" name="cate" value="${ cate }">
+                  <input type="search" name="keyword" id="fundKeyword" placeholder="Search">
+                  <i class="ver-super material-icons" id="searchSubmit">search</i>
+                  <select name="endYn" id="filter">
+                     <option value="ALL" ${ ( empty endYn || endYn == "ALL" ) ? 'selected' : '' }>전체</option>
+                     <option value="N" ${ ( endYn == "N" ) ? 'selected' : '' }>진행중인 펀딩</option>
+                     <option value="Y" ${ ( endYn == "Y" ) ? 'selected' : '' }>종료된 펀딩</option>
+                  </select>
+                  <select name="order" id="filter2">
+                     <option value="popluar" ${ ( order == "popluar" ) ? 'selected' : '' }>인기순</option>
+                     <option value="recent" ${ ( order == "recent" ) ? 'selected' : '' }>최신순</option>
+                     <option value="amount" ${ ( order == "amount" ) ? 'selected' : '' }>최고금액순</option>
+                     <option value="support" ${ ( order == "support" ) ? 'selected' : '' }>최다후원순</option>
+                     <option value="closing" ${ ( order == "closing" ) ? 'selected' : '' }>마감임박순</option>
+                  </select>
+                  </form>
+               </span>
+            </div>
+         </div>
+         <div class="col-md-1"></div>
+      </div>
          <div class="row">
             <div class="col-md-1">
             </div>
             <div class="col-md-10">
-               <div id="resultMenu" class="my-4">
-                  <span>전체보기</span>
-                  <span class="float-right">
-                     <form action="${ keywordSearch }">
-                     <input type="hidden" name="cate" value="${ cate }">
-                     <input type="search" name="keyword" id="fundKeyword" placeholder="Search">
-                     <i class="ver-super material-icons" id="searchSubmit">search</i>
-                     <select name="endYn" id="filter">
-                        <option value="ALL" ${ ( empty endYn || endYn == "ALL" ) ? 'selected' : '' }>전체</option>
-                        <option value="N" ${ ( endYn == "N" ) ? 'selected' : '' }>진행중인 펀딩</option>
-                        <option value="Y" ${ ( endYn == "Y" ) ? 'selected' : '' }>종료된 펀딩</option>
-                     </select>
-                     <select name="order" id="filter2">
-                        <option value="popluar" ${ ( order == "popluar" ) ? 'selected' : '' }>인기순</option>
-                        <option value="recent" ${ ( order == "recent" ) ? 'selected' : '' }>최신순</option>
-                        <option value="amount" ${ ( order == "amount" ) ? 'selected' : '' }>최고금액순</option>
-                        <option value="support" ${ ( order == "support" ) ? 'selected' : '' }>최다후원순</option>
-                        <option value="closing" ${ ( order == "closing" ) ? 'selected' : '' }>마감임박순</option>
-                     </select>
-                     </form>
-                  </span>
-               </div>
                <div class="resultPrint">
+                  <c:if test="${fn:length(pList) == 0}">
+                     조회 결과가 없습니당
+                  </c:if>
                   <c:forEach var="prj" items="${ pList }" >
                   <div>
                      <div class="fundCon">

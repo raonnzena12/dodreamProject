@@ -76,16 +76,16 @@
                 
            } */
            #projectInformation{
-           		width: 680px;
+           		width: 100%;
                 height: auto;
                 min-height: 350px;
                 border: 1px solid #ced4da;
                 display: block;
                 float: left;
-                margin: 10px 0 10px 8px;
-                padding:10px 5px 5px 5px;
+                padding:30px 22px 30px 22px;
                 border-radius: 3px;
                 background-color: #f1f3f5;
+                word-break: keep-all;
                 
            }
            /* #detailTag{
@@ -130,10 +130,7 @@
 	    
 		<section id="detailcontent" class="clearfix">
 			<section id="detailContent2">
-				<div id="detailStory">
-					<%-- <div id="storyContent">
-						${project.pStory }
-					</div> --%>
+				<div id="detailStory" class="p-4">
 					<div id="projectInformation">
 						프로젝트의 환불 및 교환 정책<br>
 						- 프로젝트 마감일 후에는 즉시 제작 및 실행에 착수하는 프로젝트 특성상 단순 변심에 의한 후원금 환불이 불가능합니다.<br>

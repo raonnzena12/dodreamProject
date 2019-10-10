@@ -66,14 +66,12 @@
                 
            }
            #storyContent{
-           		width: 680px;
+           		width: 100%;
                 height: auto;
                 min-height: 470px;
                 /* border: 1px solid black; */
                 display: block;
                 float: left;
-                margin: 10px 0 0 9px;
-                 
            }
           /*  #projectInformation{
            		width: 680px;
@@ -88,14 +86,14 @@
                 
            } */
            #detailTag{
-           		width: 680px;
+           		width: 100%;
                 height: auto;
                 min-height: 60px;
                /*  border: 1px solid black; */
                 display: block;
                 float: left;
                 /* margin:auto; */
-                margin: 10px 0 10px 9px;
+                /* margin: 10px 0 10px 9px; */
                 border-radius: 3px;
                 background-color: #F39C12;
                 padding:auto;
@@ -129,14 +127,14 @@
 	    
 		<section id="detailcontent" class="clearfix">
 			<section id="detailContent2">
-				<div id="detailStory">
-					<div id="storyContent">
+				<div id="detailStory" class="py-3 px-2">
+					<div id="storyContent" class="p-2">
 						${project.pStory }
 					</div>
 					<!-- <div id="projectInformation">
 						프로젝트 안내가 들어갑니다.
 					</div> -->
-					<div id="detailTag">
+					<div id="detailTag" class="p-2 mt-4 mb-2">
 						<!-- <div class="projectTag"></div> -->
 					</div>
 				</div>                
