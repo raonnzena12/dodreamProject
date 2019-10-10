@@ -179,6 +179,7 @@ public class ProjectServiceImpl implements ProjectService {
 	@Override
 	public ArrayList<Reward> selectPrjRwdList(int pno) {
 		return pDao.selectPrjRwdList(pno);
+	}
 
   @Override
   public void insertTest(Project project, MultipartFile uploadfile1, MultipartFile uploadfile2,

@@ -119,7 +119,7 @@
            }
            #detailcon > #text1{
                margin: 60px 0 0 13px;
-               font-size: 22px;
+               font-size: 20px;
            }
            #profile{
                width: 100%;
@@ -267,8 +267,6 @@
            }
            
            #detailnav{
-               border-top: 1px solid #ced4da;
-               border-bottom: 1px solid #ced4da;
                width: 1000px;
                height: 70px;
                margin: 0;
@@ -312,7 +310,12 @@
            	
            }
            
-          
+          #mid-menu {
+            border-top: 1px solid #ced4da;
+            border-bottom: 1px solid #ced4da;
+            background-color: rgba(255,255,255,0.9);
+            padding-top: 5px;
+          }
            
        </style>
        
@@ -461,19 +464,21 @@
             </section>
     
             
-            <div class="row sticky-top">
-            	<div class="col-md-12">
+        </section>
+        <div class="row sticky-top mb-4" id="mid-menu">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
                 <nav class="nav">
                     <div class="container-fluid" id="detailnav">
-                      <div id="story" onclick="location.href='detailSt.dr?pNo='+${project.pNo};">스토리</div>
-                      <div id="guide" onclick="location.href='detailSt.dr?page=4&pNo='+${project.pNo};">펀딩 안내</div>
-                      <div id="community" onclick="location.href='detailSt.dr?page=3&pNo='+${project.pNo};">커뮤니티</div>
-                      <div id="reward" onclick="location.href='detailSt.dr?page=2&pNo='+${project.pNo};">리워드</div>
+                        <div id="story" onclick="location.href='detailSt.dr?pNo='+${project.pNo};">스토리</div>
+                        <div id="guide" onclick="location.href='detailSt.dr?page=4&pNo='+${project.pNo};">펀딩 안내</div>
+                        <div id="community" onclick="location.href='detailSt.dr?page=3&pNo='+${project.pNo};">커뮤니티</div>
+                        <div id="reward" onclick="location.href='detailSt.dr?page=2&pNo='+${project.pNo};">리워드</div>
                     </div>
                 </nav>
-                </div>
             </div>
-	</section>
+            <div class="col-md-2"></div>
+        </div>
 	
 	<script>
 	

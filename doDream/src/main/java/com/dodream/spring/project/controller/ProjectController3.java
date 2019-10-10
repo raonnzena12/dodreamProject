@@ -48,7 +48,6 @@ public class ProjectController3 {
 		model.addAttribute("cate", category);
 		model.addAttribute("order", order1);
 		model.addAttribute("endYn", endYn1);
-		System.out.println(pList.get(0));
 		return "common/fundList";
 	}
 	

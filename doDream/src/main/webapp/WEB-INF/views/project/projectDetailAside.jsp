@@ -133,10 +133,10 @@
                 /* 하트 아이콘 */
            }
            #introduce{
-           		width:270px;
+           		width:255px;
            		height:auto;
            		min-height:100px;
-           		border-bottom: 2px solid #ced4ba;
+           		border-bottom: 1px solid #ced4ba;
            		margin: 0 0 0 10px;
            		padding: 0 0 10px 0;
            		font-size:14px;
@@ -244,19 +244,19 @@
            		width: 100%;
            		height: auto;
            		min-height: 50px;
-           		padding: 0 0 0 10px;
+           		padding: 0 10px;
            		font-size:14px;
            }
            .rewardBtn{
-           		width: 272px;
+           		width: 255px;
 	            height: 50px;
 	            background-color: #F39C12;
 	            border: #F39C12;
-	            margin: 7px 0 0 8px; 
+	            margin: 15px 0 0 8px; 
 	            float: left;
 	            display: block;
 	            font-size:18px;
-	            padding: 0 0 5px 0;
+	            padding: 2px 0 5px 0;
 	            
            }
            
@@ -300,7 +300,8 @@
            		height:auto;
            		border: 1px solid #ddd;
            		display: block;
-           		float:left;
+				float:left;
+				text-align: center;
            		margin: 20px 0 0 0;
            		border-radius: 3px;
            		font-size: 13px;
@@ -330,13 +331,26 @@
            .reSubmit{
            		background-color: #F39C12;
            		border: #F39C12;
-           }
+		   }
+		   #asideReward .rewardTitle {
+			   font-weight: 600;
+			   font-size: 17px;
+			   white-space: nowrap;
+			   overflow: hidden; 
+			   text-overflow: ellipsis; /* 여러 줄 자르기 추가 스타일 */ 
+			   white-space: normal; line-height: 1.2;
+			   /* max-height: 4em; */
+			   height: auto;
+			   margin-bottom: 5px;
+			   word-break: keep-all;
+			   text-overflow: ellipsis;
+		   }
        </style>
 </head>
 <body>
 	
 	<section id="detailAside">
-		<section id="artist">
+		<section id="artist" class="p-2">
 			<div id="artProfile" class="clearfix">
 				 <div id="artistText1">창작자 소개</div>
 				 <div id="artistImg">
@@ -373,12 +387,12 @@
 		
 		<section id="asideReward">
 		
-			<p id="RewardText1">선택 할 수 있는 총 ${fn:length(reward) }종의 리워드가 있습니다.</p><!-- 리워드 정보 불러오기 -->
+			<p id="RewardText1" class="mt-3 mb-1">선택 할 수 있는 총 ${fn:length(reward) }종의 리워드가 있습니다.</p><!-- 리워드 정보 불러오기 -->
 			
 		<c:forEach var="r" items="${reward }">
 			<form action="detailSubReward.dr" method="post">
 			
-				<section class="projectReward">
+				<section class="projectReward px-2 py-3 mb-2 mt-1">
 					<div class="rewardTitle">
 						<i class="material-icons rewardIcon">keyboard_arrow_right</i>
 						
@@ -409,6 +423,9 @@
 					
 					</div>
 					<p class="RewardText3">${r.rPrice }원</p> <!-- 리워드 정보 불러오기 -->
+					<div class="rewardTitle px-2 pb-1"> 
+						${ r.rName}
+					</div>
 					<div class="rewardIntroduce"> <!-- 리워드 정보 불러오기 -->
 		            	${r.rExplain }
 	            	</div>
@@ -426,11 +443,11 @@
 			</form>
 		</c:forEach>
 		
-		<div id="reportbox" class="clearfix">
+		<div id="reportbox" class="clearfix px-2 pt-3 pb-2">
 			<!-- 신고하기 -->
 			해당 프로젝트에 허위내용 및 지적재산권을 <br>
 			침해하는 내용이 있다면 신고해주세요.
-			<button type="button" class="btn btn-primary btn-lg btn-block reportBtn">프로젝트 신고하기</button>
+			<button type="button" class="btn btn-primary btn-lg btn-block reportBtn mt-3">프로젝트 신고하기</button>
 		</div>
 		
 		<div class="modal">
