@@ -11,7 +11,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"/>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"/> -->
 	<link rel="stylesheet" href="resources/css/mypageHeader.css">
-	
+
 
 </head>
 <body>
@@ -42,7 +42,7 @@
 					<a href="myInfo.dr">
 					<c:choose>
 					<c:when test="${empty loginUser.userProfileImage}">
-					<img alt="프로필사진" src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg" class="rounded-circle float-sm ml-3" style="width: 150px; height: 150px;"/>
+					<img alt="프로필사진" src="resources/images/talent.png" class="rounded-circle float-sm ml-3" style="width: 150px; height: 150px;"/>
 					</c:when>
 					<c:when test= "${fn:contains(loginUser.userProfileImage,'http://')}">
 					<img alt="프로필사진" src="${loginUser.userProfileImage}" class="rounded-circle float-sm" style="width: 150px; height: 150px;"/>
@@ -57,15 +57,15 @@
 			</div>
 		</div>
 		<div style="height: 20px;"></div>
-		<div class="row" id="navOuter">
+		<div class="row sticky-top" id="navOuter">
 			<div class="col-md-12">
-				<div class="row sticky-top">
+				<div class="row">
 					<div class="col-md-2"></div>
 					<div class="col-md-6">
 						<ul class="nav">
-							<li class="nav-item"><a class="nav-link" href="myFundingList.dr?userNo=${loginUser.userNo}">프로젝트로그</a></li>
-							<li class="nav-item"><a class="nav-link" href="followList.dr?userNo=${loginUser.userNo}"><i class="material-icons">favorite</i></a></li>
-							<li class="nav-item"><a class="nav-link" href="myReportList.dr?userNo=${loginUser.userNo}">나의신고내역</a></li>
+							<li class="nav-item"><a class="nav-link" id="menu1" href="myFundingList.dr?userNo=${loginUser.userNo}">프로젝트로그</a></li>
+							<li class="nav-item"><a class="nav-link" id="menu2" href="followList.dr?userNo=${loginUser.userNo}"><i class="material-icons">favorite</i></a></li>
+							<li class="nav-item"><a class="nav-link" id="menu3" href="myReportList.dr?userNo=${loginUser.userNo}">나의신고내역</a></li>
 						</ul>
 					</div>
 					<div class="col-md-4">
@@ -105,6 +105,17 @@
 				}
 			});
 		});	
+		$(function(){
+			var menu = ${menu} + "";
+			if(menu==3){
+				$("#menu3").addClass("active");
+			}else if(menu==2){
+				$("#menu2>i").addClass("active");
+			}else{
+				$("#menu1").addClass("active");
+			}
+		});
+		
 	</script>
 </body>
 </html>

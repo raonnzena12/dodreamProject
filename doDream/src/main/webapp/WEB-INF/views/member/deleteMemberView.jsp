@@ -26,6 +26,8 @@
    #deletemsg{
    	line-height: 40px;
    }
+   
+
 
 </style>
 </head>
@@ -68,7 +70,7 @@
                   <br><br>
                   <div id="btnArea" class="text-center">
                      <button id="yes" class="btn btn-outline-warning btn-sm">네, 탈퇴하겠습니다.</button>
-                     <button id="no" onclick="location.href='mypage.dr'" class="btn btn-outline-warning btn-sm">아니요.</button>
+                     <button id="no" onclick="location.href='main.dr'" class="btn btn-outline-warning btn-sm">아니요.</button>
                   </div>
                </div>
             </div>
@@ -114,7 +116,8 @@
    });
    
    $("#yes").click(function(){
-	   //탈퇴하겠습니다 버튼 클릭 시 완료된 프로젝트 결제 취소 후 취소 성공 시 탈퇴처리
+	   //탈퇴하겠습니다 버튼 클릭 시 완료된 프로젝트 결제 취소 후 취소 성공 시 탈퇴처리		   
+	   location.href = "deleteMember.dr?userNo=${loginUser.userNo}";
    });
    
    
