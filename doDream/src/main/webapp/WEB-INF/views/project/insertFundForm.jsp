@@ -1358,7 +1358,7 @@
 		Swal.fire({
 			title: '썸네일 이미지 등록',
 			html: input,
-			confirmButtonText: '닫기'	,
+			confirmButtonText: '닫기',
 			onClose: function(){
 				if($("#timg").attr("src")!=""){
 					$("#thumbimg").attr("src",$("#timg").attr("src"));

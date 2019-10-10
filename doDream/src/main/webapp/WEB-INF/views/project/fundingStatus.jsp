@@ -461,11 +461,39 @@ $(function(){
             confirmButtonColor: '#F39C12',
             cancelButtonColor: '#8E44AD',
             confirmButtonText: '예약 취소',
-            cancelButtonText: '취소'
+            cancelButtonText: '취소',
+            showLoaderOnConfirm: true
+            // ,preConfirm: ( aa ) => {
+            //     var oldBKey = "${ rsv.bKey }";
+            //     console.log("oldBK : " + oldBKey);
+            //     return fetch('//localhost:8081/deleteBKey', {
+            //         method: "POST",
+            //         body: JSON.stringify({
+            //             customer_uid: oldBKey
+            //         }),
+            //         headers: {
+            //             "Content-type": "application/json; charset=UTF-8"
+            //         }
+            //     }).then(response => {
+            //         console.log(response);
+            //         console.log(response.text());
+            //         console.log(response.body);
+            //         console.log(response.body.text());
+            //         if (response.ok=="false") {
+            //             console.log("에러발생");
+            //             throw new Error(response.statusText);
+            //         }
+            //     })
+            //     .catch(error => {
+            //         Swal.showValidationMessage(
+            //         '결제취소 실패'
+            //         )
+            //     })
+            //     }
+            // ,allowOutsideClick: () => !Swal.isLoading()
             }).then((result) => {
             if (result.value) {
-                ajaxDeleteBillingKey();
-                cancelFundingAjax();
+                ajaxDeleteBillingKey(0);
             }
         });
     });
@@ -570,7 +598,6 @@ function ajaxBilling() {
 		dataType: "JSON",
 		error: function(e){ console.log(e) },
 		success: function( result ){
-			console.log(result);
             // 카드정보 갱신에 성공하면 ajax로 reserve의 customer_uid를 갱신한다
             ajaxCustomerUid(customer_uid);
 		}
@@ -587,6 +614,7 @@ function ajaxCustomerUid(uid) {
         success: function(result) {
             console.log(result);
             if ( result == 1) { // 성공값이 넘어 왔을 경우
+                ajaxDeleteBillingKey(2);
                 Swal.fire({
                 title: '결제 정보 변경 완료!',
                 text: '결제 정보가 업데이트 되었습니다',
@@ -608,15 +636,24 @@ function ajaxCustomerUid(uid) {
     });
 }
 // 예약취소/카드변경등으로 인한 빌링키 재발급시 구 빌링키 폐기하는 메서드
-function ajaxDeleteBillingKey(){
+function ajaxDeleteBillingKey(num){
     var oldBKey = "${ rsv.bKey }";
     $.ajax({
         url: "http://localhost:8081/deleteBKey",
         type: "POST",
         data: { customer_uid: oldBKey },
-        error: function(e) { console.log(e); },
+        error: function(e) { console.log(e); 
+            Swal.fire({
+                type: 'error',
+                title: '예약 취소 실패',
+                text: '관리자에게 문의하여 주세요',
+            });
+        },
         success: function(result) {
             console.log("bKey 삭제결과 : " + result);
+            if ( num == 0 ) {
+                cancelFundingAjax();
+            } 
         }
     });
 }
