@@ -20,6 +20,9 @@ public class FReviewController {
 	@RequestMapping("fReview.dr")
 	public ModelAndView ReviewList(ModelAndView mv, Integer page, String cate) {
 		
+
+ 
+	// 프로젝트 후기 / 필요 변수 : 조회수, 후기 이미지, 제목, 내용 
 		String category = (cate == null) ? "total" : cate; // 합계
 		int currentPage = (page == null) ? 1 : page; // 페이지 번호 확인 삼항 연산자 
 		// page이라는 매개변수 값이 null과 경우 1을 대입하며,
@@ -38,6 +41,7 @@ public class FReviewController {
 		System.out.println(revList);
 		
 		if (revList != null) {
+			System.out.println("성공");
 			mv.addObject("revList", revList)
 			  .addObject("pi", Pagination.getPageInfo())
 			  .setViewName("customerCenter/fReview");
@@ -46,21 +50,26 @@ public class FReviewController {
 			  .setViewName("common/errorPage");
 		}
 		return mv;
+
 	}
 	
 	@RequestMapping("fReviewDetail.dr")
 	public ModelAndView fReviewDetail(int revNo, ModelAndView mv, Integer page) {
 		int currentPage = page == null ? 1 : page;
 
-		Review review = frService.selectReview(revNo);
-
-		if (review != null) {
-			mv.addObject("review", review).addObject("currentPage", currentPage).setViewName("customerCenter/fReviewDetail");
+		Review revdetail = frService.selectReview(revNo);
+		System.out.println(revdetail);
+		System.out.println("후기 상세 컨트롤러 리턴옴");
+		if (revdetail != null) {
+			System.out.println("성공");
+			mv.addObject("revdetail", revdetail)
+			  .addObject("currentPage", currentPage)
+			  .setViewName("customerCenter/fReviewDetail");
 		} else {
+			System.out.println("실패");
 			mv.addObject("msg", "프로젝트 후기 상세조회 실패").setViewName("common/errorPage");
 		}
 
 		return mv;
 	}	
-	
 }

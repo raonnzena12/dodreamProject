@@ -23,7 +23,9 @@ public class FReviewServiceImpl implements FReviewService {
 		
 		// 1) 조회수 증가
 		frDao.addReadCount(revNo);	
-				// 2) 게시글 상세 조회
+		System.out.println(revNo);
+		System.out.println("조회수 증가 성공");		
+		// 2) 게시글 상세 조회
 		return frDao.selectReview(revNo);
 	}
 
@@ -39,5 +41,5 @@ public class FReviewServiceImpl implements FReviewService {
 		
 		return frDao.selectList(pi);
 	}
-
 }
+ 

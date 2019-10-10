@@ -15,7 +15,7 @@ public class Review {
 	private String ReviewImg;	  // 리뷰 이미지
 	private int    revConut;	  // 조회수
 	private String revsubTitle;	  // 부제목
-	private int    revCNo;	  // 부제목
+	private int    revCNo;	      // 카테고리 번호
 	
 	
 	public Review() {  

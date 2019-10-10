@@ -24,6 +24,7 @@ public class FReviewDao {
 	 */
 	public ArrayList<Review> selectList(PageInfo pi) {
 		
+
 		// 페이징 처리가 적용된 목록 조회
 				// -> Mybatis RowBounds 사용
 				
@@ -56,7 +57,7 @@ public class FReviewDao {
 	}
 
 	public Review selectReview(int revNo) {
-		
+		System.out.println("DAO까지 성공");
 		return sqlSession.selectOne(
 				"centerMapper.selectRevDetail", revNo);
 	}
@@ -67,10 +68,18 @@ public class FReviewDao {
 		// -> MyBatis RowBounds 사용
 		
 		// offset : 몇개의 게시글을 건너 뛰고 조회를 할 건지에 대한 계산
+
+		/* 
+>>>>>>> refs/remotes/origin/master
 		int offset = ( pi.getCurrentPage() - 1 ) * pi.getLimit();
 		RowBounds rowBounds = new RowBounds(offset, pi.getLimit());
+<<<<<<< HEAD
 		
 		return (ArrayList)sqlSession.selectList("centerMapper.selectrevList", category, rowBounds);
-	}
+=======
+		*/
+		System.out.println("dao 전달");
+		return (ArrayList)sqlSession.selectList("centerMapper.selectfrList", category);
 
+	}
 }

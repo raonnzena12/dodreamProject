@@ -15,6 +15,7 @@
 #categoryTop {
 	border-bottom: 1px solid #ddd;
 }
+
 #categoryArea input[type=radio] {
 	display: none;
 }
@@ -237,16 +238,6 @@
 	width: 100%;
 	height: 180px;
 }
-/* {
-    margin: 5%;
-   /*  min-width: 300px; */
-/*  height: 400px;
-    flex: 1;
-    flex-basis: 20%;
-    padding: 10px;
-    position: relative; */
-}
-* /
 
 .reviewCon {
 	/* border: 1px solid red; */
@@ -288,7 +279,7 @@
 					<ul class="nav" style="background-color: #E1F5A9;">
 						<li class="nav-item"><a class="nav-link" href="cCenter.dr">공지사항</a></li>
 						<li class="nav-item"><a class="nav-link"
-							href="T_O_Service.dr">이용약관</a></li>
+							href="T_O_Service.dr">이용약관 </a></li>
 						<li class="nav-item"><a class="nav-link" href="fReview.dr">프로젝트
 								후기</a></li>
 						<li class="nav-item"><a class="nav-link" href="faq.dr">FAQ</a></li>
@@ -300,7 +291,7 @@
 				<div class="col-md-12"></div>
 			</div>
 			<h3>프로젝트 후기</h3>
-				<hr id=Review_bar>
+			<hr id=Review_bar>
 			<div class="container-fluid clearfix" id="categoryTop">
 				<div class="row">
 
@@ -323,73 +314,53 @@
 
 				<div class="container-fluid" id="categoryResult">
 					<div class="row">
-						
+
 						<div>
-							<%-- <div id="resultMenu" class="my-4">
-								<span>전체보기</span> <span class="float-right">
-									<form action="${ keywordSearch }">
-										<input type="search" name="fundKeyword" id="fundKeyword">
-										<i class="ver-super material-icons" id="titleSearchSubmit">search</i>
-										<select name="filter" id="filter">
-											<option value="allFunding" selected>전체</option>
-											<option value="runFunding">진행중인 펀딩</option>
-											<option value="endFunding">종료된 펀딩</option>
-										</select> <select name="filter2" id="filter2">
-											<option value="popularClick">인기순</option>
-											<option value="newest">최신순</option>
-											<option value="priceless">최고금액순</option>
-											<option value="popularFund">최다후원순</option>
-											<option value="Deadline">마감임박순</option>
-										</select>
-									</form>
-								</span>
-							</div> --%>
 							<div class="resultPrint">
 								<c:forEach var="rev" items="${ revList }">
 									<div>
+
+
 										<div class="fundCon">
+
+
 											<div class="fundItem" id="${ rev.revNo }">
+
+
 												<div class="fundImg">
-													<img
-														src="resources/images/projectImg/thumbnail/${ rev.reviewTnImg }">
+
+
+													<img src="/spring/resources/images/summernoteimg/${ rev.reviewTnImg }">
+													<!-- <img src="resources/images/backgroundImg/배경로고시안 (2).png" style="width: 100%"> -->
+
 												</div>
+
+
 												<div class="nameArea">
+
+
 													<p class="categoryName mb-0">${ rev.revCNo }</p>
+
+
 													<!-- 카테고리 -->
-													<p class="fundName">제목 : ${ rev.revTitle }<!-- 제목 -->
+
+													<!-- 부제목 -->
+													<p class="fundName">${ rev.revTitle }
 													</p>
-													<span class="fundName">내용 : ${ rev.revContent }<!-- 제목 -->
-													</span>
+
+													<!-- 부제목 -->
+													<span class="fundName">${ rev.revsubTitle }</span>
+
+
 												</div>
-												<!-- <div class="heartIcon">
-													<i class="material-icons heart-fund">favorite_border</i>
-												</div> -->
+
+
+
 												<div class="detailArea my-1"></div>
-												<%--      <div class="chartArea px-3 mt-2">
-                              <div class="chartInfo clearfix">
-                                 <span class="chartInfo1">￦<fmt:formatNumber value="${ rev.pCurrentFunding }" groupingUsed="true" /></span>
-                                 <span class="chartInfo2"><fmt:parseNumber value="${ (rev.pCurrentFunding / rev.pGoal) * 100 }" integerOnly="true" />%</span>
-                              </div>
-                              <div class="chartBar">
-                              <c:choose>
-                                 <c:when test="${ ((rev.pCurrentFunding / rev.pGoal) * 100) < 100 }">
-                                 <div class="purpleBar" style="width:${ (rev.pCurrentFunding / rev.pGoal) * 100 }%"></div>
-                                 </c:when>
-                                 <c:otherwise>
-                                 <div class="purpleBar"></div>                                       
-                                 </c:otherwise>
-                              </c:choose>
-                              </div>
-                              <c:choose>
-                                 <c:when test="${ rev.pDDay > 0 }">
-                                 <div class="chartDate">${ rev.pDDay }일 남음</div>
-                                 </c:when>
-                                 <c:otherwise>
-                                 <div class="chartDate">펀딩 종료</div>
-                                 </c:otherwise>
-                              </c:choose>
-                           </div> --%>
+
 											</div>
+
+
 										</div>
 									</div>
 								</c:forEach>
@@ -398,7 +369,7 @@
 								<img src="resources/images/loadingSpin.gif" id="loadingImg">
 							</div>
 						</div>
-						
+
 					</div>
 				</div>
 	</section>
@@ -472,12 +443,18 @@ function printFunds(list) {
       $detailArea.append($detailText);
       var $chartArea = $("<div>").addClass("chartArea px-3 mt-2");
       var $chartInfo = $("<div>").addClass("chartInfo clearfix")
-      var $chartInfo1 = $("<span>").addClass("chartInfo1").text("￦"+addComma(list[i].pCurrentFunding));
-      var $chartInfo2 = $("<span>").addClass("chartInfo2").text(Math.floor((list[i].pCurrentFunding/list[i].pGoal)*100)+"%");
+      var $chartInfo1 = $("<span>").addClass("chartInfo1").text("￦"+addComma(list
+
+[i].pCurrentFunding));
+      var $chartInfo2 = $("<span>").addClass("chartInfo2").text(Math.floor((list[i].pCurrentFunding/list
+
+[i].pGoal)*100)+"%");
       $chartInfo.append($chartInfo1, $chartInfo2);
       var $chartBar = $("<div>").addClass("chartBar");
       // 진행바 가로길이 지정
-      var $purpleBar = $("<div>").addClass("purpleBar").css("width", (list[i].pCurrentFunding/list[i].pGoal)*100+"%");
+      var $purpleBar = $("<div>").addClass("purpleBar").css("width", (list[i].pCurrentFunding/list
+
+[i].pGoal)*100+"%");
       $chartBar.append($purpleBar);
       var $chartDate = $("<div>").addClass("chartDate").text(list[i].pDDay+"일 남음");
       $chartArea.append($chartInfo,$chartBar,$chartDate);
@@ -546,9 +523,9 @@ $(function(){
                  page: currentPage },
          dataType: "JSON",
          error: function(e){ console.log(e); },
-         success: function(pList) {
+         success: function(revList) {
             $(".resultPrint").html("");
-            printFunds(pList);
+            printFunds(revList);
          }
       });
    });
