@@ -87,5 +87,8 @@ public interface ProjectService {
 	 */
 	public abstract ArrayList<Project> selectMainList(int userNo);
 
+	public abstract void insertTest(Project project, MultipartFile uploadfile1, MultipartFile uploadfile2,
+			MultipartFile uploadfile3, HttpServletRequest request);
+
 
 }

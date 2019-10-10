@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -113,6 +114,33 @@ public class ProjectController {
 		return mv;
 	}
 	
+	// 임시테스트
+	@RequestMapping(value="insertTest.dr",method=RequestMethod.POST)
+	public String insertTest(Project project, RewardList rList, MultipartFile uploadfile1, MultipartFile uploadfile2, MultipartFile uploadfile3, HttpServletRequest request, ModelAndView mv) {
+		System.out.println("ㅎㅇ");
+		String pSummaryText = project.getpSummaryText().replaceAll("\n", "<br>");
+		String pStory = project.getpStory().replaceAll("\n", "<br>");
+		String pArtistIntroduction = project.getpArtistIntroduction().replaceAll("\n", "<br>");
+		project.setpSummaryText(pSummaryText);
+		project.setpStory(pStory);
+		project.setpArtistIntroduction(pArtistIntroduction);
+		project.setpArtistPFImage("testTN.png");
+		// 파일 등록 부분
+		// DB 연결을 수행합니다.
+		pService.insertTest(project, uploadfile1, uploadfile2, uploadfile3, request);
+		ArrayList<Reward> rewardList = new ArrayList<Reward>();
+		for (int i = 0; i < rList.getrList().size(); i++) {
+			Reward reward = rList.getrList().get(i);
+			if(reward.getrName()!=null)	rewardList.add(reward);
+		}
+		System.out.println("리워드");
+		for (Reward reward : rewardList) {
+			System.out.println(reward.toString());
+		}
+		return "";
+	}
+	
+	
 	/**
 	 * 프로젝트 등록하기에서 썸네일 이미지 등록시 서버에 파일을 저장해주는 메소드입니다.
 	 * @return file
@@ -125,9 +153,4 @@ public class ProjectController {
 	}
 	
 	
-	
-	public void modifyImageSize() {
-		Image image;
-		
-	}
 }
