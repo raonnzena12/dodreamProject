@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>두드림</title>
-<%@ include file ="../common/menubar.jsp" %>
+<%@ include file ="mypageHeader.jsp" %>
 <style>
 #myProjectList {
 
@@ -105,11 +105,33 @@
 .ended {
 	background-color: rgb(248,248,248);
 }
+
+	#historysub{
+		text-decoration: none;
+	}
+	#historysub>a{
+		color: #444;
+	}
+	
+	#historysub a.active{
+		color: #8E44AD;
+	}
 </style>
 </head>
 <body>
 <section id="myProjectList">
 <div class="container-fluid">
+	<br>
+	<div class="row">
+		<div class="col-md-2">
+		</div>
+		<div class="col-md-8" id="historysub">	
+			<a class="" id="sub1" href="myReserveList.dr?userNo=${loginUser.userNo}">나의 참여프로젝트 결제내역</a> ｜ <a class="" id="sub2" href="myProjectList.dr?userNo=${loginUser.userNo}">나의 오픈프로젝트 결제내역</a>
+		</div>
+		<div class="col-md-2">
+		</div>
+	</div>
+	<br>
 	<div class="row">
 		<div class="col-md-2">
 		</div>
@@ -199,6 +221,21 @@ $(function(){
 	$("#filter").on("change", function(){
 		location.href='myProjectList.dr?order='+$(this).val();
 	});
+});
+
+$(function(){
+	var menu = ${menu} + "";
+	
+	if(menu ==4){
+		$("menu4").addClass("active");
+	}
+	
+	var sub = ${sub} + "";
+	if(sub==2){
+		$("#sub2").addClass("active");
+	}else{
+		$("#sub1").addClass("active");
+	}
 });
 </script>
 </body>

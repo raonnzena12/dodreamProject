@@ -70,7 +70,7 @@
 					</div>
 					<div class="col-md-4">
 						<ul class="nav">
-							<li class="nav-item"><a class="nav-link" href="#">프로젝트결제내역</a></li>
+							<li class="nav-item"><a class="nav-link" id="menu4" href="myReserveList.dr?userNo=${loginUser.userNo}">프로젝트결제내역</a></li>
 						</ul>
 					</div>
 				</div>
@@ -107,7 +107,9 @@
 		});	
 		$(function(){
 			var menu = ${menu} + "";
-			if(menu==3){
+			if(menu==4){
+				$("#menu4").addClass("active");
+			}else if(menu==3){
 				$("#menu3").addClass("active");
 			}else if(menu==2){
 				$("#menu2>i").addClass("active");

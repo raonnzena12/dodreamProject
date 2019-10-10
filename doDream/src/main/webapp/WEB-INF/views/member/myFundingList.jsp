@@ -166,6 +166,7 @@
 	<jsp:include page="../member/mypageHeader.jsp"/>
 	<br>
 	<div class="container-fluid">
+	<br>
 		<div class="row">
 			<div class="col-md-2"></div>
 			<div class="col-md-8" id="myfundingsub">
@@ -178,7 +179,9 @@
 			<div class="col-md-2"></div>
 			<div class="col-md-8 resultPrint">
 					<c:if test="${ empty pList }">
-						<h4 class="text-center">참여한 프로젝트가 없습니다.</h4>
+					<div class="text-center">후원 내역이 없습니다.<br>
+					당신의 아티스트를 후원해보세요!
+					</div>
 					</c:if>
 					<c:if test="${ fn:length(pList) >0 }">
 						<c:forEach var="pList" items="${ pList }">
