@@ -103,12 +103,15 @@
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-2 text-gray-800"># 프로젝트 수정</h1>
+					<h1 class="h3 mb-2 text-gray-800"># 프로젝트 후기 수정</h1>
 					<br>
 					<!-- DataTales Example -->
 					<div class="card shadow mb-4">
 						<div class="card-header py-3">
-						<form action="updateReview.dr" name="updateReviewForm" id="updateReviewForm" method="post" enctype="multipart/form-data">
+						<c:url var="updateReview" value="updateReview.dr">
+							<c:param name="revNo" value="${review.revNo }"></c:param>					
+						</c:url>
+						<form action="${updateReview}" name="updateReviewForm" id="updateReviewForm" method="post" enctype="multipart/form-data">
 						<span class = "float-right">
 							<button type="button" id="submitBtn" class="btn btn-primary btn-lg btn-inline rewardBtn" style="background: #8E44AD; border: #8E44AD;"
 							onclick="">프로젝트 수정하기</button>
@@ -122,29 +125,35 @@
 									class="dataTables_wrapper dt-bootstrap4">
 									<div class="row">
 										<div class="col-sm-12">
-												<!-- summnote 에디터 출력 -->
-												<input type="hidden" name="revNo" value="${review.revNo }">
-												프로젝트 후기 제목 : <input type="text" name="revTitle">
-												<br><br>
-												프로젝트 후기 부제목 : <input type="text" name="revSubTitle">
-												<br><br>
-												프로젝트 번호 : <input type="text" name="revRefPno" value="${review.revRefPno }" readonly>
-												<br><br>
-												카테고리 번호 : <input type="text" name="revCategoryNo">
-												<br><br>
-												<div class="filebox preview-image">
-													<label for="input-file">썸네일 이미지 업로드 : </label>
-													<input type="file" id="input-file" class="upload-hidden" name="reloadFile">
-												</div>
-												<br><br>
-												<input type="hidden" name="reviewTnImg" value="${review.reviewTnImg }">
-												<textarea id="summernote" name="revContent"></textarea>
-												<br><br>
-												   
+											<table align="center" id="tb" cellpadding="5" cellspacing="0" width="1000px">
+												<tr>
+													<th>프로젝트 후기 제목 : </th>
+													<td><input type="text" name="revTitle" type="text" size="97" placeholder="제목을 입력해주세요."></td>
+												</tr>
+												<tr>
+													<th>프로젝트 후기 부제목 : </th>
+													<td><input type="text" name="revSubTitle" type="text" size="97" placeholder="부제목을 입력해주세요."></td>
+												</tr>
+													<input type="hidden" name="revRefPno" value="${review.revRefPno }">
+													<input type="hidden" name="revCatNo" value="${review.revCatNo }">
+												<tr>
+													<th>썸네일 이미지 :</th>
+													<td>
+														<div class="filebox preview-image">
+															<input type="file" id="input-file" class="upload-hidden" name="reloadFile">
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<th>리뷰 내용 : </th>
+													<input type="hidden" name="reviewTnImg" value="${review.reviewTnImg }">
+													<td><textarea id="summernote" name="revContent"></textarea></td>
+												</tr>
 												<!-- 등록된 이미지 목록 -->
-												<input type="hidden" name="revWriter" value="${loginUser.userNo}">
+												<input type="hidden" name="revWriter" value="${loginUser.userNo}"> 
 												<input type="hidden" name="imgList" value="">
-											</form>
+												</form>
+											</table>
 										</div>
 									</div>
 								</div>
@@ -210,10 +219,6 @@
 				}
 				if($("input[name=revSubTitle]").val().trim() == ""){
 					alert("후기 부제목을 작성해주세요.");
-					return false;
-				}
-				if($("input[name=revCategoryNo]").val().trim() == ""){
-					alert("카테고리를 선택해주세요.");
 					return false;
 				}
 				if($("input[name=reloadFile]").val().trim() == ""){

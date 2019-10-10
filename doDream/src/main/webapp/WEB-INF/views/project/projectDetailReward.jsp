@@ -401,7 +401,6 @@
                         
                         <div class="rewardText3">
                             	추가로 후원하기 <br>
-                            -리워드 수령없이 아티스트를 후원합니다.
                         </div>
                         <!-- <div class="rewardText4"></div>
                         <div class="rewardText5"></div> -->
@@ -547,6 +546,12 @@
    	
    		$(function(){
    			
+   				$("#reward").css("color","#8E44AD");
+   				/* $("#rewardInput").on("input", function(){
+   					var input = $(this).val()*1;
+   					console.log(input);
+   					$("#rewardSum").text(input.toLocaleString());
+   				}); */
    			
    				$(".rewardBtn").on("click", function(){
    					if(${empty sessionScope.loginUser}){
@@ -618,7 +623,9 @@
 				}else{
 					$("#"+ ch +" .rewardIcon").css("color","#444");
 					$("#"+ ch +" .hiddenBox").css("display","none");
-					//$("#"+ ch +" .reCount").val("0");
+					$("#"+ ch +" .reCount").val("0");
+					//$("#rewardSum").text("");
+					
 				}
 					rewardsum();
 			});
@@ -646,6 +653,7 @@
    			//$(".check").change(function(){
    				
    				$("#rewardSum").text("");
+   				$("#asideText3").html("");
    				
    				$("input:checkbox[name='reCheck']:checked").each(function(){
    					sum();

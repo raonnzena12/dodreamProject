@@ -136,7 +136,8 @@ public class SummerNoteController {
 	 */
 	@RequestMapping("updateReview.dr")
 	public ModelAndView updateReview(ModelAndView mv, Review review, HttpServletRequest request,MultipartFile reloadFile) {
-		System.out.println(review);
+		
+		System.out.println("review: " + review);
 		int result = sService.updateReview(review, reloadFile, request);
 		
 		if(result > 0) {

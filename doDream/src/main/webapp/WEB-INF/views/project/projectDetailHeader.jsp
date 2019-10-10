@@ -103,6 +103,19 @@
                width: 450px;
                height: 350px;
                clear: both;
+               display:none;
+           }
+           #mainVideo{
+               width: 450px;
+               height: 350px;
+               /* clear: both;
+               display:none; */
+           }
+           .video{
+           		width: 450px;
+               height: 350px;
+               clear: both;
+               display:none;
            }
            #detailcon > #text1{
                margin: 60px 0 0 13px;
@@ -114,7 +127,6 @@
                margin: 10px 0 0 0;
                display: block;
                /* border: 1px solid black; */
-
            }
            #text2{
                font-size: 20px;
@@ -124,6 +136,13 @@
            }
            #profileimg{
                 border-radius: 50%;
+                border: 1px solid #495057;
+                display: block;
+                float: right;
+                margin: 0 15px 0 0;
+           }
+           .noImg{
+           		border-radius: 50%;
                 border: 1px solid #495057;
                 display: block;
                 float: right;
@@ -311,15 +330,65 @@
                 <article id="detailimg">
                     <article id="img">
                     	<div id="detailDday">D-${project.pDDay}</div>
-                    	<img src="resources/images/projectImg/mainImg/${project.pMainImage}" alt="" id="mainImg">
+                    	<img src="resources/images/projectImg/mainImg/${project.pMainImage}" id="mainImg">
+                   		
+                   		<div class="video-container video" style="TEXT-ALIGN: center; height: 100%;">
+                   			<object type="text/html" width="100%" height="100%" data="//www.youtube.com/embed/${project.pMainImage}?&amp;autoplay=1&amp;loop=1" id="mainVideo"></object>
+                   		</div>
+                   		
+                   		<%-- <video controls autoplay loop id="mainVideo">
+                   			<source src="https://www.youtube.com/watch?v=${project.pMainImage}" type="video/mp4">
+                   		</video> --%>
+                   	
                    	</article>
                 </article>
+                
+                <script>
+                	$(function(){
+                		
+                		//var mainImg = "906_20191009165732_main.jpg";
+                		var mainImg = $("#mainImg").attr("src");
+                		console.log(mainImg);
+                		mainImg.indexOf("_main");
+                		if(mainImg.indexOf("_main") != -1 || mainImg.indexOf(".jpg") != -1 || mainImg.indexOf(".png") != -1){
+                			$("#mainImg").css("display","block");
+                		}else{
+                			$(".video").css("display","block");
+                		}
+                		
+                		
+                		/* 
+                    	var miArray = mainImg.split('.');
+                    	//var main = miArray[1];
+                    	console.log(miArray[0]);
+                    	var maArray = miArray[0].split('_');
+                    	console.log("maArray[2] : " + maArray[2]);
+                    	
+                    	if(maArray[2] != ""){
+                    		if(maArray[2] == "main"){
+                        		$("#mainImg").css("display","block");
+                        	}
+                    	}else{
+                    		$(".video").css("display","block");
+                    	}
+                    	 */
+                    	
+                	});
+                </script>
+                
                 <article id="detailcon">
                     <p id="text1">
                        ${project.pSummaryText}
                     </p>
                     <div id="profile">
-                        <img src="resources/images/projectImg/artistImg/${project.pArtistPFImage}" id="profileimg" width="60px" height="60px">
+                    
+                    <c:if test='${project.pArtistPFImage ne ""}'>
+                    	<img src="resources/images/projectImg/artistImg/${project.pArtistPFImage}" id="profileimg" width="60px" height="60px">
+                    </c:if>
+                    <c:if test='${project.pArtistPFImage eq ""}'>
+                    	<i class="material-icons noImg">account_circle</i>
+                    </c:if>
+                        
                         <p id="text2">${project.pArtistName }님 </p>
                     </div>
                     
@@ -408,6 +477,8 @@
 	
 	<script>
 	
+	
+	
 	/* 아티스트 이미지 클릭시 아티스트 마이페이지로 이동 */
 	$(function(){
 		
@@ -455,8 +526,8 @@
 				var uno = "${loginUser.userNo}";
 				var pNo = ${project.pNo};
 				
-				console.log(uno);
-				console.log(pNo);
+				//console.log(uno);
+				//console.log(pNo);
 				
 				
 					if(confirm("프로젝트 좋아요를 취소하시겠습니까?")){
@@ -487,8 +558,8 @@
 	
 		function detailLike(){
 			
-					var uno = "${loginUser.userNo}";
-					var pNo = ${project.pNo};
+				var uno = "${loginUser.userNo}";
+				var pNo = ${project.pNo};
 					
 					$.ajax({
 						url: "detailLike.dr",
@@ -509,7 +580,7 @@
 						}
 						
 					});
-					
+				
 		}
 		
 		

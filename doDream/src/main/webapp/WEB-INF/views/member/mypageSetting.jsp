@@ -30,6 +30,10 @@
       background-color: white;
       padding: 0; 
    }
+   
+    #deleteMember{
+   	cursor: pointer;
+   }
 
 </style>
 
@@ -61,7 +65,7 @@
                            <div class="text-center">
                               <c:choose>
 								<c:when test="${empty loginUser.userProfileImage}">
-								<img alt="프로필사진" src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg" class="rounded-circle float-sm ml-3" style="width: 150px; height: 150px;"/>
+								<img alt="프로필사진" src="resources/images/talent.png" class="rounded-circle float-sm ml-3" style="width: 150px; height: 150px;"/>
 								</c:when>
 								<c:when test= "${fn:contains(loginUser.userProfileImage,'http://')}">
 								<img alt="프로필사진" src="${loginUser.userProfileImage}" class="rounded-circle float-sm" style="width: 150px; height: 150px;"/>
@@ -109,7 +113,7 @@
                      <td colspan="2">
                         <div class="row">
                         <div class="col-md-12 text-center">
-                        <button class="btn btn-sm mb-2 mr-1 btn-warning">수정하기</button> <button class="btn btn-sm mb-2 btn-warning" onclick="location.href='home.dr'">돌아가기</button>
+                        <button class="btn btn-sm mb-2 mr-1 btn-warning">수정하기</button> <button class="btn btn-sm mb-2 btn-warning" onclick="location.href='main.dr'">돌아가기</button>
                         </div>
                         </div>
                      </td>

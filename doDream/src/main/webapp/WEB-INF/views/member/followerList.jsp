@@ -14,6 +14,11 @@
 	#followsub>a{
 		color: #444;
 	}
+	
+	#followsub a.active{
+		color: #8E44AD;
+	}
+	
 
 </style>
 </head>
@@ -25,7 +30,7 @@
 		<div class="col-md-2">
 		</div>
 		<div class="col-md-8" id="followsub">	
-			<a class="" href="followList.dr?userNo=${loginUser.userNo}">내가 팔로잉한</a> ｜ <a class="" href="followerList.dr?userNo=${loginUser.userNo}">나를 팔로잉한</a>
+			<a class="" id="sub1" href="followList.dr?userNo=${loginUser.userNo}">내가 팔로잉한</a> ｜ <a class="" id="sub2" href="followerList.dr?userNo=${loginUser.userNo}">나를 팔로잉한</a>
 		</div>
 		<div class="col-md-2">
 		</div>
@@ -40,12 +45,17 @@
 				<c:forEach var="followerList" items="${ followerList }">
 				<div class="row my-2">
 				<div class="col-md-3 text-right">
-					<c:if test="${ empty followerList.followerPfImg }">
-					<img alt="프로필사진" src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg" class="rounded-circle" style="width: 100px; height: 100px;"/>
-					</c:if>
-					<c:if test="${ !empty followerList.followerPfImg }">
-					<img alt="프로필사진" src="resources/images/userProfileImage/${followerList.followerPfImg }" class="rounded-circle text-center" style="width: 100px; height: 100px;"/>
-					</c:if>					
+                    <c:choose>
+					<c:when test="${ empty followerList.followerPfImg }">
+					<img alt="프로필사진" src="resources/images/talent.png" class="rounded-circle float-sm ml-3" style="width: 100px; height: 100px;"/>
+					</c:when>
+					<c:when test= "${fn:contains(followerList.followerPfImg,'http://')}">
+					<img alt="프로필사진" src="${followerList.followerPfImg}" class="rounded-circle float-sm" style="width: 100px; height: 100px;"/>
+					</c:when>
+					<c:otherwise>
+					<img alt="프로필사진" src="resources/images/userProfileImage/${followerList.followerPfImg}" class="rounded-circle float-sm" style="width: 100px; height: 100px;"/>
+					</c:otherwise>
+					</c:choose>				
 				</div>
 				<div class="col-md-5 text-center" style="padding-top: 30px">
 					<h6 class="text-left">
@@ -55,7 +65,6 @@
 						<c:if test="${! empty followerList.followerName }">
 							${followerList.followerName}
 						</c:if>
-						<img class="float-sm align-top" src="resources/images/alertBadge/star.png" style="width: 25px; height: 25px;"/>
 					</h6>
 					<div class="text-left">
 						<c:if test="${empty followerList.followerSelf }">
@@ -91,12 +100,26 @@
 	
 	<script>
 
-
-
-	
 	$(function() {
 		console.log("${fn:length(followerList)}");
 	});
+	
+	$(function(){
+		var menu = ${menu} + "";
+		
+		if(menu ==2){
+			$("menu2>i").addClass("active");
+		}
+		
+		var sub = ${sub} + "";
+		if(sub==2){
+			$("#sub2").addClass("active");
+		}else{
+			$("#sub1").addClass("active");
+		}
+	});
+	
+	
 
 </script>
 

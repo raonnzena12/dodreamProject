@@ -41,15 +41,13 @@ public class MemberController {
 	 * @return page
 	 */
 	@RequestMapping("login.dr")
-	public String memberLogin(Member member, Model model, String prevPage, HttpSession session, HttpServletResponse response) {
+	public String memberLogin(Member member, String prevPage, HttpSession session, HttpServletResponse response, RedirectAttributes ra, Model model) {
 
 		Member loginUser = mService.loginMember(member);
-		
-		 System.out.println("로그인전"+member);
+		System.out.println("로그인전"+member);
 
 		if (loginUser != null) {
 			session.setAttribute("loginUser", loginUser);
-
 			System.out.println("로그인후"+loginUser);
 			
 			// 로그인 카운트 해주는 함수 호출;
@@ -64,8 +62,9 @@ public class MemberController {
 			return "redirect:"+prevPage;
 			
 		}else {
-			model.addAttribute("msg", "로그인 실패");
-			return "common/errorPage";
+			ra.addFlashAttribute("msg", "이메일과 비밀번호를 다시 확인해주세요.");
+			System.out.println("redirect:"+prevPage);
+			return "redirect:"+prevPage;
 		}
 	}
 
@@ -82,6 +81,7 @@ public class MemberController {
 		Member member = new Member();
 		member.setUserEmail(userEmail);
 		member.setUserPwd(userPwd);
+		
 		return mService.checkValidate(member);
 	}
 
@@ -133,7 +133,7 @@ public class MemberController {
 	public String memberLogout(SessionStatus status, HttpSession session) {
 		status.setComplete();
 		session.invalidate();
-		return "redirect:home.dr";
+		return "redirect:main.dr";
 	}
 
 	/**
@@ -316,6 +316,10 @@ public class MemberController {
 	}
 	
 	
+	/** 회원이 오픈한 프로젝트 건수
+	 * @param userNo
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping("countOpenPJT.dr")
 	public int countOpenProject(int userNo) {
@@ -380,6 +384,27 @@ public class MemberController {
 		return "member/deleteMemberView";
 	}
 	
+	/** 회원탈퇴
+	 * @param userNo
+	 * @param status
+	 * @param rdAttr
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("deleteMember.dr")
+	public String deleteMember(int userNo, SessionStatus status, RedirectAttributes rdAttr, Model model) {
+
+		int result = mService.deleteMember(userNo);
+		if(result > 0) {
+			rdAttr.addFlashAttribute("msg", "두드림에서 탈퇴되었습니다.");
+			status.setComplete();
+			return "redirect:home.dr";
+		}else {
+			model.addAttribute("msg", "탈퇴에 실패하였습니다. 관리자에게 문의해주세요.");
+			return "common/errorPage";
+		}
+	}
+	
 
 	/** SNS로그인
 	 * @param member
@@ -435,6 +460,8 @@ public class MemberController {
 		System.out.println("myFundingList"+pList);
 
 		if (pList != null) {
+			mv.addObject("menu",1);
+			mv.addObject("sub",1);
 			mv.addObject("pList", pList);
 			mv.setViewName("member/myFundingList");
 		} else {
@@ -457,6 +484,8 @@ public class MemberController {
 		System.out.println(pList);
 		
 		if(pList != null) {
+			mv.addObject("menu",1);
+			mv.addObject("sub",2);
 			mv.addObject("pList", pList);
 			mv.setViewName("member/myOpenProjectList");
 		} else {
@@ -480,6 +509,8 @@ public class MemberController {
 		System.out.println(pList);
 		
 		if(pList != null) {
+			mv.addObject("menu",1);
+			mv.addObject("sub",3);
 			mv.addObject("pList", pList);
 			mv.setViewName("member/myLikePRJList");
 		} else {
@@ -498,6 +529,7 @@ public class MemberController {
 		System.out.println(rList);
 		
 		if(rList != null) {
+			mv.addObject("menu",3);
 			mv.addObject("rList", rList);
 			mv.setViewName("member/myReportList");
 		}else {

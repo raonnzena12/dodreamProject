@@ -37,6 +37,13 @@ public class FollowServiceImpl implements FollowService{
 		
 		return fDao.selectFollowerList(userNo);
 	}
-	
+
+	@Override
+	public int deleteFollow(Follow follow) {
+		
+		return fDao.deleteFollow(follow);
+	}
+
+
 	
 }

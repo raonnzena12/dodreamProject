@@ -125,7 +125,7 @@ tbody tr:hover{
 													<c:forEach var="p" items="${ pList }">
 														<tr role="row" class="odd">
 															<td class="sorting_1">${ p.pNo }</td>
-															<td>${ p.pTitle}</td>
+															<td><a href="myFundingInfo.dr?rsvNo=${r.resNo}" style="text-decoration:none; color: gray;">${ p.pTitle}</a></td>
 															<td>${ p.pCloseDate}</td>
 															<td>${ p.pGoal}</td>
 															<td>${ p.pCurrentFunding}</td>

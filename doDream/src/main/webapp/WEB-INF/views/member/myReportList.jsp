@@ -35,7 +35,7 @@
 						<div id="card-577404">
 							<div class="card">
 								<div class="card-header">
-									<a class="card-link" data-toggle="collapse" data-parent="#card-577404" href="#card-element-289975">
+									<a class="card-link" data-toggle="collapse" data-parent="#card-${rList.repNo }" href="#card-${rList.repNo }">
 									신고한 프로젝트: ${ rList.pTitle } ｜ 신고일자: ${ rList.repDate } ｜ 답변상태: 
 									<c:choose>
 										<c:when test="${rList.repStatus eq 'Y'}">
@@ -48,7 +48,7 @@
 									</a>
 								</div>
 								<!-- 신고내용 출력 -->
-								<div id="card-element-289975" class="collapse show">
+								<div id="card-${rList.repNo }" class="collapse show">
 									<div class="card-body">${rList.repContent }
 									<!-- 신고답변내용출력 -->
 									<div id="reportReply" class="text-left mt-3">

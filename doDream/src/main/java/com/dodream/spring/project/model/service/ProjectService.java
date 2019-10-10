@@ -101,5 +101,8 @@ public interface ProjectService {
 	 */
 	public abstract ArrayList<Reward> selectPrjRwdList(int pno);
 
+  public abstract void insertTest(Project project, MultipartFile uploadfile1, MultipartFile uploadfile2,
+			MultipartFile uploadfile3, HttpServletRequest request);
+
 
 }

@@ -357,7 +357,8 @@
 	
 	<!-- 서브 댓글 조회 -->
 	<select id="selectSubReply" parameterType="Reply" resultMap="subReplyResultSet">
-		SELECT * FROM PROJECT_DETAIL_SUBREPLY_2ND WHERE SUBRE_REF_RNO IN 
+		SELECT * FROM PROJECT_DETAIL_SUBREPLY_2ND 
+		WHERE SUBRE_REF_RNO IN 
 		<foreach collection="list" item="num" index="index" open="(" close=")" separator=",">
 			#{num.reNo}
 		</foreach>

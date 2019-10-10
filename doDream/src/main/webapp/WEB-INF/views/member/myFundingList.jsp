@@ -155,6 +155,11 @@
 #myfundingsub>a {
 	color: #444;
 }
+
+#myfundingsub>a.active {
+	color: #8E44AD;
+	font-weight: 600;
+}
 </style>
 </head>
 <body>
@@ -164,7 +169,7 @@
 		<div class="row">
 			<div class="col-md-2"></div>
 			<div class="col-md-8" id="myfundingsub">
-				<a href="myFundingList.dr?userNo=${loginUser.userNo}">내가	참여한</a> ｜ <a href="myOpenProjectList.dr?userNo=${loginUser.userNo}">내가 오픈한</a> ｜ <a href="myLikePRJList.dr?userNo=${loginUser.userNo}">내가 관심있는</a>
+				<a id="sub1" href="myFundingList.dr?userNo=${loginUser.userNo}">내가	참여한</a> ｜ <a id="sub2" href="myOpenProjectList.dr?userNo=${loginUser.userNo}">내가 오픈한</a> ｜ <a id="sub3" href="myLikePRJList.dr?userNo=${loginUser.userNo}">내가 관심있는</a>
 			</div>
 			<div class="col-md-2"></div>
 		</div>
@@ -350,6 +355,23 @@
 	    $(document).on("click",".fundItem div:not(.heartIcon)", function(){
 		       location.href='detailSt.dr?pNo='+$(this).parent().attr("id");
 		  });
+	    
+	    $(function(){
+			var menu = ${menu} + "";
+			
+			if(menu ==1){
+				$("menu1").addClass("active");
+			}
+			
+			var sub = ${sub} + "";
+			if(sub==3){
+				$("#sub3").addClass("active");
+			}else if(sub==2){
+				$("#sub2").addClass("active");
+			}else{
+				$("#sub1").addClass("active");
+			}
+		});
     </script>
 
 </body>

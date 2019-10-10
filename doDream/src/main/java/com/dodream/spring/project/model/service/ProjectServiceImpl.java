@@ -179,8 +179,27 @@ public class ProjectServiceImpl implements ProjectService {
 	@Override
 	public ArrayList<Reward> selectPrjRwdList(int pno) {
 		return pDao.selectPrjRwdList(pno);
+
+  @Override
+  public void insertTest(Project project, MultipartFile uploadfile1, MultipartFile uploadfile2,
+			MultipartFile uploadfile3, HttpServletRequest request) {
+		String renameTImageName = null;
+		String renamePImageName = null;
+		String renameAImageName = null;
+		if(uploadfile1!=null && !uploadfile1.getOriginalFilename().equals("")) {
+			renameTImageName = renameFile(project, uploadfile1, 1); // 변경된 파일명 (1:썸네일, 2:메인, 3:아티스트)
+			project.setpThumbImage((renameTImageName));
+		}
+		if(uploadfile2!=null && !uploadfile2.getOriginalFilename().equals("")) {
+			renamePImageName = renameFile(project, uploadfile2, 2); // 변경된 파일명 (1:썸네일, 2:메인, 3:아티스트)
+			project.setpMainImage((renamePImageName));
+		}
+		if(uploadfile3!=null && !uploadfile3.getOriginalFilename().equals("")) {
+			renameAImageName = renameFile(project, uploadfile3, 3); // 변경된 파일명 (1:썸네일, 2:메인, 3:아티스트)
+			project.setpArtistPFImage((renameAImageName));
+		}
+		System.out.println("프로젝트--------------");
+		System.out.println(project.toString());
 	}
-
-
 
 }
