@@ -24,6 +24,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.dodream.spring.member.model.service.MemberService;
 import com.dodream.spring.member.model.vo.Member;
 import com.dodream.spring.project.model.vo.Project;
+import com.dodream.spring.report.model.vo.Report;
 
 @SessionAttributes({ "loginUser", "msg" })
 @Controller
@@ -39,18 +40,17 @@ public class MemberController {
 	 * @param model
 	 * @return page
 	 */
-	@RequestMapping(value = "login.dr", method = RequestMethod.POST)
+	@RequestMapping("login.dr")
 	public String memberLogin(Member member, Model model, String prevPage, HttpSession session, HttpServletResponse response) {
 
 		Member loginUser = mService.loginMember(member);
 		
-		 System.out.println(member);
+		 System.out.println("로그인전"+member);
 
 		if (loginUser != null) {
 			session.setAttribute("loginUser", loginUser);
-			model.addAttribute("loginUser", loginUser);
 
-			System.out.println(loginUser);
+			System.out.println("로그인후"+loginUser);
 			
 			// 로그인 카운트 해주는 함수 호출;
 			int result = mService.checkVisitToday(loginUser.getUserNo());
@@ -59,7 +59,8 @@ public class MemberController {
 				if (result > 0)
 					System.out.println("userNo : " + loginUser.getUserNo() + "번 회원이 DAYCOUNT 테이블에 삽입됨");
 			}
-						
+				
+			System.out.println("redirect:"+prevPage);
 			return "redirect:"+prevPage;
 			
 		}else {
@@ -246,7 +247,8 @@ public class MemberController {
 	 * @return
 	 */
 	@RequestMapping("myInfo.dr")
-	public String myInfoView() {
+	public String myInfoView(HttpServletRequest request, Model model) {
+		model.addAttribute("loginUser",request.getSession().getAttribute("loginUser"));
 		return "member/mypageSetting";
 	}
 
@@ -264,19 +266,19 @@ public class MemberController {
 	 * @return
 	 */
 	@RequestMapping("myInfoUpdate.dr")
-	public String memberUpdate(Member mem, String address, String details, String postcode, String userSelf, String userPhone, HttpServletRequest request,
-			Model model, MultipartFile uploadImg) {
-
-		mem.setUserAddress(address + "," + details + "," + postcode);
-		mem.setUserSelf(userSelf);
-		mem.setUserPhone(userPhone);
+	public String memberUpdate(Member mem, String address, String details, String postcode, HttpServletRequest request,
+			Model model, MultipartFile uploadImg, RedirectAttributes ra) {
 		
+		System.out.println("회원정보수정하기"+mem);
+		mem.setUserAddress(address + "," + details + "," + postcode);
+			
 		int result = mService.updateMember(mem, request, uploadImg);
 		System.out.println(result);
 		if (result > 0) {
-			model.addAttribute("loginUser", mem);
-			model.addAttribute("msg", "회원정보를 수정하였습니다!");
-			return "redirect:mypage.dr";
+			ra.addFlashAttribute("msg", "회원정보를 수정하였습니다!");
+			request.getSession().setAttribute("loginUser", mem);
+//			model.addAttribute("loginUser", mem);
+			return "redirect:myInfo.dr";
 		} else {
 			model.addAttribute("msg", "회원정보 수정에 실패하였습니다.");
 			return "common/errorPage";
@@ -321,7 +323,7 @@ public class MemberController {
 		System.out.println(userNo);
 		
 		int result = mService.countOpenProject(userNo);
-		System.out.println(result);
+		System.out.println("countOpenProject"+result);
 		
 		if(result > 0) {
 			return result;
@@ -340,7 +342,7 @@ public class MemberController {
 		System.out.println(userNo);
 		
 		int result = mService.projectJoinCount(userNo);
-		System.out.println(result);
+		System.out.println("projectJoinCount"+result);
 		
 		if(result>0) {
 			return result;
@@ -359,7 +361,7 @@ public class MemberController {
 		System.out.println(userNo);
 		
 		int result = mService.projectCloseCount(userNo);
-		System.out.println(result);
+		System.out.println("projectCloseCount"+result);
 		
 		if(result>0) {
 			return result;
@@ -420,7 +422,7 @@ public class MemberController {
 		
 	}
 	
-	/** 회원이 참여한 펀딩 리스트 조회
+	/** 회원이 참여한 프로젝트 리스트 조회
 	 * @param userNo
 	 * @param mv
 	 * @return mv
@@ -430,7 +432,7 @@ public class MemberController {
 
 		ArrayList<Project> pList = mService.myFundingList(userNo);
 
-		System.out.println(pList);
+		System.out.println("myFundingList"+pList);
 
 		if (pList != null) {
 			mv.addObject("pList", pList);
@@ -443,6 +445,11 @@ public class MemberController {
 		return mv;
 	}
 	
+	/** 회원이 오픈한 프로젝트 리스트 조회
+	 * @param userNo
+	 * @param mv
+	 * @return
+	 */
 	@RequestMapping("myOpenProjectList.dr")
 	public ModelAndView myOpenProjectList(int userNo, ModelAndView mv) {
 		
@@ -461,6 +468,11 @@ public class MemberController {
 		
 	}
 	
+	/** 회원이 좋아요한 프로젝트 조회
+	 * @param userNo
+	 * @param mv
+	 * @return
+	 */
 	@RequestMapping("myLikePRJList.dr")
 	public ModelAndView myLikePRJList(int userNo, ModelAndView mv) {
 		
@@ -478,6 +490,24 @@ public class MemberController {
 		return mv;
 		
 	}
+	
+	@RequestMapping("myReportList.dr")
+	public ModelAndView myReportList(int userNo, ModelAndView mv) {
+		
+		ArrayList<Report> rList = mService.myReportList(userNo);
+		System.out.println(rList);
+		
+		if(rList != null) {
+			mv.addObject("rList", rList);
+			mv.setViewName("member/myReportList");
+		}else {
+			mv.addObject("msg", "목록 조회에 실패하였습니다.");
+			mv.setViewName("common/errorPage");
+		}
+		
+		return mv;
+	}
+	
 	
 
 	

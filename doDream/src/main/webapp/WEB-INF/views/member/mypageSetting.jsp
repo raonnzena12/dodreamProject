@@ -48,12 +48,10 @@
                <h3 class= "text-center">나의 정보</h3>
                <br>
                <form action="myInfoUpdate.dr" id="myInfoForm" method="post" class="form-group" enctype="multipart/form-data">
-	               <input type="hidden" value="${loginUser.userNo}" name="userNo">
+               <!--  -->
+	              <input type="hidden" value="${loginUser.userNo}" name="userNo">
 	               <input type="hidden" value="${loginUser.userEmail}" name="userEmail">
 	               <input type="hidden" value="${loginUser.userProfileImage}" name="userProfileImage">
-	               <input type="hidden" value="${loginUser.userAddress}" name="userAddress" id="userAddress">
-	               <input type="hidden" value="${loginUser.userSelf}" name="userSelf">
-	               <input type="hidden" value="${loginUser.userPhone}" name="userPhone">
                   <table>
                      <tr>
                         <td style="width: 20%">
@@ -111,7 +109,7 @@
                      <td colspan="2">
                         <div class="row">
                         <div class="col-md-12 text-center">
-                        <button class="btn btn-sm mb-2 btn-warning">수정하기</button><button class="btn btn-sm mb-2 btn-warning" onclick="location.href='home.dr'">돌아가기</button>
+                        <button class="btn btn-sm mb-2 mr-1 btn-warning">수정하기</button> <button class="btn btn-sm mb-2 btn-warning" onclick="location.href='home.dr'">돌아가기</button>
                         </div>
                         </div>
                      </td>
@@ -137,7 +135,7 @@
       //버튼 클릭 시 주소 검색 팝업 후 input태그 insert
       $("#postcodify_search_button").postcodifyPopUp({
            insertPostcode5 :"#postcode",
-           insertAddress : "#address",
+           insertAddress : "#address"
        });
       
       //사진 등록      
@@ -232,12 +230,14 @@
 	   });
    });
    
-   $(document).ready(function() {
+/*    $(document).ready(function() {
 		var userSelf = $("#userSelf").val();
 		console.log(userSelf);
+		var userNo = "${loginUser.userNo}";
+		console.log(userNo);
 	});
    
-   
+    */
    
    
 </script>

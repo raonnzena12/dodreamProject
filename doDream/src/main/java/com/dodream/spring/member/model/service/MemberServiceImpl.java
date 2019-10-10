@@ -16,6 +16,7 @@ import com.dodream.spring.member.model.dao.MemberDao;
 import com.dodream.spring.member.model.exception.MemberException;
 import com.dodream.spring.member.model.vo.Member;
 import com.dodream.spring.project.model.vo.Project;
+import com.dodream.spring.report.model.vo.Report;
 
 @Service("mService")
 public class MemberServiceImpl implements MemberService {
@@ -183,6 +184,20 @@ public class MemberServiceImpl implements MemberService {
 	public ArrayList<Project> myLikePRJList(int userNo) {
 		
 		return mDao.myLikePRJList(userNo);
+	}
+
+
+	@Override
+	public ArrayList<Report> myReportList(int userNo) {
+		
+		return mDao.myReportList(userNo);
+	}
+
+
+	@Override
+	public ArrayList<Report> myReportReplyList(int userNo) {
+		
+		return mDao.myReportReplyList(userNo);
 	}
 
 

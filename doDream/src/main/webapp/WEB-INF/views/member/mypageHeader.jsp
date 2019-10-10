@@ -59,18 +59,18 @@
 		<div style="height: 20px;"></div>
 		<div class="row" id="navOuter">
 			<div class="col-md-12">
-				<div class="row">
+				<div class="row sticky-top">
 					<div class="col-md-2"></div>
 					<div class="col-md-6">
 						<ul class="nav">
-							<li class="nav-item"><a class="nav-link" href="myFundingList.dr?userNo=${loginUser.userNo}">펀딩로그</a></li>
-							<li class="nav-item"><a class="nav-link" href="followList.dr?userNo=${loginUser.userNo}"><i class="material-icons">favorite </i></a></li>
-							<li class="nav-item"><a class="nav-link" href="#">나의문의사항</a></li>
+							<li class="nav-item"><a class="nav-link" href="myFundingList.dr?userNo=${loginUser.userNo}">프로젝트로그</a></li>
+							<li class="nav-item"><a class="nav-link" href="followList.dr?userNo=${loginUser.userNo}"><i class="material-icons">favorite</i></a></li>
+							<li class="nav-item"><a class="nav-link" href="myReportList.dr?userNo=${loginUser.userNo}">나의신고내역</a></li>
 						</ul>
 					</div>
 					<div class="col-md-4">
 						<ul class="nav">
-							<li class="nav-item"><a class="nav-link" href="#">펀딩결제내역</a></li>
+							<li class="nav-item"><a class="nav-link" href="#">프로젝트결제내역</a></li>
 						</ul>
 					</div>
 				</div>

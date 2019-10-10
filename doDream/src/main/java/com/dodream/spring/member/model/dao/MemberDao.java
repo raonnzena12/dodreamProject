@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.dodream.spring.member.model.vo.Member;
 import com.dodream.spring.project.model.vo.Project;
+import com.dodream.spring.report.model.vo.Report;
 
 @Repository("mDao")
 public class MemberDao {
@@ -92,6 +93,16 @@ public class MemberDao {
 	public ArrayList<Project> myLikePRJList(int userNo) {
 	
 		return (ArrayList)sqlSession.selectList("projectMapper.myLikePRJList", userNo);
+	}
+
+	public ArrayList<Report> myReportList(int userNo) {
+		
+		return (ArrayList)sqlSession.selectList("adminReportMapper.myReportList", userNo);
+	}
+
+	public ArrayList<Report> myReportReplyList(int userNo) {
+		
+		return (ArrayList)sqlSession.selectList("adminReportMapper.myReportReplyList", userNo);
 	}
 
 	
