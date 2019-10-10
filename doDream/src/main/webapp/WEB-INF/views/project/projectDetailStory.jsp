@@ -73,7 +73,7 @@
                 display: block;
                 float: left;
                 margin: 10px 0 0 9px;
-                
+                 
            }
           /*  #projectInformation{
            		width: 680px;

@@ -319,7 +319,7 @@
 		DELETE FROM FOLLOW_TB WHERE FOLLOW=#{followNo} AND FOLLOWER=#{followerNo}
 	</delete>
 	
-	<!-- 프로젝트 신고 -->
+	<!-- 프로젝트 신고 --> 
 	<insert id="insertReport" parameterType="DetailReport">
 		INSERT INTO REPORT_TB VALUES(SEQ_REP_NO.NEXTVAL, SYSDATE, #{repContent}, #{repRefPno}, #{repWriter}, 'Y')
 	</insert>

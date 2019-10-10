@@ -670,7 +670,7 @@
    					$(".reCount").on("input", function(){
    						sum();
    						/* cPrice = 0;
-   						$("#rewardSum").text("");
+   						$("#rewardSum").text("");  
    						
    						//if($(".reCount").val() > $())
    						
