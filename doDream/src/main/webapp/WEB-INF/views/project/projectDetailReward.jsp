@@ -547,6 +547,12 @@
    	
    		$(function(){
    			
+   				$("#reward").css("color","#8E44AD");
+   				/* $("#rewardInput").on("input", function(){
+   					var input = $(this).val()*1;
+   					console.log(input);
+   					$("#rewardSum").text(input.toLocaleString());
+   				}); */
    			
    				$(".rewardBtn").on("click", function(){
    					if(${empty sessionScope.loginUser}){

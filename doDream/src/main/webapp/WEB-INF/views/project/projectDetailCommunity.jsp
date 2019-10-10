@@ -46,7 +46,7 @@
            #detailCommunity{
            		width:100%;
                 height: auto;
-                min-height: 700px;
+                min-height: 200px;
                 border: 1px solid #ddd;
                 display: block;
                 float: left;
@@ -86,7 +86,7 @@
            		/* border: 1px solid black; */
            		width: 680px;
            		height: auto;
-           		min-height: 500px;
+           		min-height: 10px;
            		float:left;
            		display:block;
            		margin: 0 0 10px 10px;
@@ -509,8 +509,11 @@
 	
 	<script>
 	
-	/* 댓글 , 대댓글 수정 삭제 기능 */
+	
 		$(function(){
+			
+			$("#community").css("color","#8E44AD");
+			
 			replyList();
 			
 			
@@ -530,19 +533,25 @@
 					var reContent =$("#exampleTextarea").val();
 					var reRefPNo = ${project.pNo};
 					
-					$.ajax({
-						url:"detailReply.dr",
-						data:{reCGNo:reCGNo, reContent:reContent, reRefPNo:reRefPNo},
-						type:"post",
-						success: function(result){
-							if(result == "success"){
-								console.log("1111111");
-								$("#exampleTextarea").val("");
-								$("#comSelect").val("category");
-								replyList();
+					if(reCGNo == "category"){
+						alert("카테고리를 선택해주세요");
+						return false;
+					}else{
+						
+						$.ajax({
+							url:"detailReply.dr",
+							data:{reCGNo:reCGNo, reContent:reContent, reRefPNo:reRefPNo},
+							type:"post",
+							success: function(result){
+								if(result == "success"){
+									console.log("1111111");
+									$("#exampleTextarea").val("");
+									$("#comSelect").val("category");
+									replyList();
+								}
 							}
-						}
-					});
+						});
+					}
 					
 				}
 				
@@ -574,6 +583,8 @@
 				success: function(result){
 					//console.log(data.map);
 					//var result = data.json;
+					
+						
 					
 					console.log(result.reList);
 					console.log(result.srList);
@@ -614,6 +625,8 @@
 					var $subCreate;//대댓글 수정 버튼
 					var $subDelete;// 대댓글 삭제 버튼
 					var user = "${loginUser.userNo}";
+					
+					
 					
 					if(result.reList.length > 0){
 						$.each(result.reList, function(i){
@@ -757,7 +770,7 @@
 								
 						}); 
 					}	
-					
+				
 				}
 			});
 		}
