@@ -863,7 +863,9 @@
 					<div class="acc-box">
 						<div class="title-box" style="width: '';">
 							<div class="acctitle">아티스트 정보</div>
-							<div class="accdesc">누군가 이 정보를 본다면 제발 여기좀 채워주세요 이 편지는 영국으로부터 시작해 2019년 10월 10일 오후 9시 1분에 KH정보교육원에 도착했습니다. 여기좀 제발 채워줘ㅓㅓㅓㅓㅓㅓㅓ</div>
+							<div class="accdesc">누군가 이 정보를 본다면 제발 여기좀 채워주세요 이 편지는 영국으로부터 시작해 2019년 10월 10일 오후 9시 1분에 KH정보교육원에 도착했습니다. 여기좀 제발 채워줘ㅓㅓㅓㅓㅓㅓㅓ
+								<br>프로젝트를 오픈하는 아티스트님의 정보를 알려주세요. 여기에 기입하신 모든 정보는 프로젝트 소개란에 함께 기재됩니다. 서포터님과의 원활한 소통이 가능한 정확한 정보를 기입해주세요!
+							</div>
 						</div>
 						<div class="info-box" style="width: '';">
 					        <div class="artistarea">
