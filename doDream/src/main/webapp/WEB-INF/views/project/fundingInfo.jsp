@@ -402,7 +402,12 @@ function ajaxBilling() {
 	var expiry = $("#expiry").val();
 	var birth = $("#authentication").val();
 	var pwd_2digit = $("#pwd2").val();
-	$( "input[name=bKey]" ).val("${ loginUser.userNo }" + "_" + $("#cardNo4").val() );
+	var result = "";
+	for ( var i = 0 ; i < 5 ; i++ ) {
+		result += Math.floor(Math.random() * 10);
+	}
+	console.log(result)
+	$( "input[name=bKey]" ).val("${ prj.pNo }" + "_" + "${ loginUser.userNo }" + "_"+ result+ "_" + $("#cardNo4").val() );
 	var customer_uid = $("input[name=bKey]").val();
 	$.ajax({
 		url: "http://localhost:8081/ajaxBillingServer",

@@ -173,7 +173,7 @@
 			<div class="col-md-2"></div>
 			<div class="col-md-8 resultPrint">
 					<c:if test="${ empty pList }">
-						<h4 class="text-center">참여한 프로젝트가 없습니다.</h4>
+						<h4 class="text-center">좋아요한 펀딩이 없습니다.</h4>
 					</c:if>
 					<c:if test="${ fn:length(pList) >0 }">
 						<c:forEach var="pList" items="${ pList }">
@@ -189,7 +189,7 @@
 											<span class="fundName"> ${ pList.pTitle } </span>
 										</div>
 										<div class="heartIcon">
-			                                <!--  <i class="material-icons heart-fund">favorite</i> -->
+			                                 <i class="material-icons heart-fund">favorite</i>
 			                           </div>
 			                           <div class="detailArea my-1"></div>
 										<div class="chartArea px-3 mt-2">
@@ -239,15 +239,15 @@
 		 var cate = null;
 		 var order = null;
 		 var endYn = null;
-		 var keyword = null; 
+		 var keyword = null; */
 		  // 좋아요 누르는 함수 만들것
- 		 $(function() { 
+		 $(function() {
 		    // 리뷰 좋아요 체크하는 함수
 		    $(document).on("click",".heartIcon", function(e){
- 		       if ( ${ empty loginUser } ) {
+/* 		       if ( ${ empty loginUser } ) {
 		           Swal.fire( '로그인이 필요합니다!', '좋아요를 누르기 전 로그인을 해주세요!', 'warning' );
 		           return false;
-		       } 
+		       } */
 		       var icheck = $(this).children().text();
 		       
 		       var pno = $(this).parent().attr("id");
@@ -255,23 +255,23 @@
 		       if ( icheck == 'favorite_border') {
 		          likeProject(pno, 1);
 		          $(this).children().text('favorite');
-		          $("body div[data-name='mojs-shape']").css({"z-index":"0","cursor":"pointer"});
+/* 		          $("body div[data-name='mojs-shape']").css({"z-index":"0","cursor":"pointer"});
 		          const coords = { x: $(this).offset().left+15, y: $(this).offset().top+18};
 		          burst.tune( coords ).replay();
 		          circle.tune( coords ).replay();
 		          /* 이펙트 실행후 이펙트 플레이 div를 아래로 숨겨준다 
 		          setTimeout(function(){
 		          $("body div[data-name='mojs-shape']").css({"z-index":"-10","cursor":"pointer"});
-		          },800); 
+		          },800); */
 		       } else {
 		          likeProject(pno, 0);
 		          $(this).children().text('favorite_border');
 		          
 		       }
 		    });
- 		    $(document).on("click",".fundItem div:not(.heartIcon)", function(){
+/* 		    $(document).on("click",".fundItem div:not(.heartIcon)", function(){
 		       location.href='detailSt.dr?pNo='+$(this).parent().attr("id");
-		    }); 
+		    }); */
 		 });
 		 // 좋아요 누르고/취소하는 함수
 		 // status로 1을 보내면 좋아요 누르기
@@ -287,7 +287,7 @@
 		       error: function(e){ console.log(e); },
 		       success: function(result){ console.log(result); location.reload();}
 		    });
-		 } */
+		 }
 
 		// 펀드 리스트 출력하는 함수(수정중)
 		function printFunds(list) {
@@ -312,14 +312,14 @@
 						$nameArea.append($categoryName, $fundName);
 						
 						 // 하트 누른 값에따라 채워진 하트/빈하트 구분
-					  /*     var $heartIcon = $("<div>").addClass("heartIcon");
-					      var $heart_fund = $("<i>").addClass("material-icons heart-fund"); */
-					     /*  if ( list[i].iLike == 1 ) { // 좋아요 찍은 내력이 있을 시 꽉찬 하트를 프린트한다
+					      var $heartIcon = $("<div>").addClass("heartIcon");
+					      var $heart_fund = $("<i>").addClass("material-icons heart-fund");
+					      if ( list[i].iLike == 1 ) { // 좋아요 찍은 내력이 있을 시 꽉찬 하트를 프린트한다
 					         $heart_fund.text("favorite");
 					      } else { // 내역이 없을 시 빈하트를 프린트한다
 					         $heart_fund.text("favorite_border");
 					      }
-					      $heartIcon.append($heart_fund); */
+					      $heartIcon.append($heart_fund);
 						var $detailArea = $("<div>").addClass("detailArea my-1");
 						var $detailText = $("<span>").addClass("detailText")/*.text(list[i].pSummaryText)*/;
 						$detailArea.append($detailText);
@@ -351,6 +351,38 @@
 		       location.href='detailSt.dr?pNo='+$(this).parent().attr("id");
 		  });
     </script>
+    
+<!--     <script>
+ 	const CIRCLE_RADIUS = 20;
+ 	 const RADIUS = 32;
+ 	 const circle = new mojs.Shape({
+	     left: 0, top: 0,
+	     stroke:   '#FF9C00',
+	     strokeWidth: { [2*CIRCLE_RADIUS] : 0 },
+	     fill:       'none',
+	     scale:      { 0: 1 },
+	     radius:     CIRCLE_RADIUS,
+	     duration:   400,
+	     easing:     'cubic.out'
+ 	 });
 
+  	const burst = new mojs.Burst({
+	     left: 0, top: 0,
+	     radius:   { 4: RADIUS },
+	     angle:    45,
+	     count:    14,
+	     timeline: { delay: 300 },
+	     children: {
+	       radius:       2.5,
+	       fill:         '#FD7932',
+	       scale:        { 1: 0, easing: 'quad.in' },
+	       pathScale:    [ .8, null ],
+	       degreeShift:  [ 13, null ],
+	       duration:     [ 500, 700 ],
+	       easing:       'quint.out'
+	     }
+	  });
+    </script>
+  -->
 </body>
 </html> 

@@ -464,6 +464,7 @@ $(function(){
             cancelButtonText: '취소'
             }).then((result) => {
             if (result.value) {
+                ajaxDeleteBillingKey();
                 cancelFundingAjax();
             }
         });
@@ -552,8 +553,12 @@ function ajaxBilling() {
 	var card_number = c1 + "-" + c2 + "-" + c3 + "-" + c4;
 	var expiry = $("#expiry").val();
 	var birth = $("#authentication").val();
-	var pwd_2digit = $("#pwd2").val();
-	var customer_uid = "${ loginUser.userNo }" + "_" + $("#cardNo4").val();
+    var pwd_2digit = $("#pwd2").val();
+    var result = "";
+	for ( var i = 0 ; i < 5 ; i++ ) {
+		result += Math.floor(Math.random() * 10);
+	}
+	var customer_uid = "${ prj.pNo }" + "_" +"${ loginUser.userNo }" + "_" + result + "_" + $("#cardNo4").val();
 	$.ajax({
 		url: "http://localhost:8081/ajaxBillingServer",
 		type: "POST",
@@ -571,6 +576,7 @@ function ajaxBilling() {
 		}
 	});
 }
+// 카드정보 갱신하는 함수
 function ajaxCustomerUid(uid) {
     $.ajax({
         url: "ajaxChangeCredit.dr",
@@ -598,6 +604,19 @@ function ajaxCustomerUid(uid) {
                 text: '관리자에게 문의하여 주세요',
                 });
             }
+        }
+    });
+}
+// 예약취소/카드변경등으로 인한 빌링키 재발급시 구 빌링키 폐기하는 메서드
+function ajaxDeleteBillingKey(){
+    var oldBKey = "${ rsv.bKey }";
+    $.ajax({
+        url: "http://localhost:8081/deleteBKey",
+        type: "POST",
+        data: { customer_uid: oldBKey },
+        error: function(e) { console.log(e); },
+        success: function(result) {
+            console.log("bKey 삭제결과 : " + result);
         }
     });
 }

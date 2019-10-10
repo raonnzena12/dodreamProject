@@ -55,8 +55,8 @@
                      <h4 class="text-center">${loginUser.userNickname }님</h4>
                      <div class="text-center">
                      <mark>참여한 프로젝트</mark> 중 <mark>진행중</mark>인 프로젝트는 자동으로 <mark>환불 처리</mark>됩니다.<br>
-                     <div id="projectJoin">&nbsp; &nbsp;<mark>참여한 프로젝트</mark> 중 <mark>진행중</mark>인 프로젝트는 <span id="projectJoinCount"></span>건입니다.<br></div>
-                     <div id="projectClose">&nbsp; &nbsp;<mark>참여한 프로젝트</mark> 중 <mark>완료</mark>된 프로젝트는 <span id="projectCloseCount"></span>건입니다.</div> 
+                     <div id="projectJoin">&nbsp; &nbsp; <mark>참여한 프로젝트</mark> 중 <mark>진행중</mark>인 프로젝트는 <span id="projectJoinCount"></span>건입니다.<br></div>
+                     <div id="projectClose">&nbsp; &nbsp; <mark>참여한 프로젝트</mark> 중 <mark>완료</mark>된 프로젝트는 <span id="projectCloseCount"></span>건입니다.</div> 
 					<br>
                      <mark>참여한 프로젝트</mark> 중 <mark>완료</mark>된 프로젝트의 <mark>리워드</mark> 수령 주소지는 <mark>변경이 불가</mark>합니다. <br>
                      <mark>리워드</mark>의 <mark>환불</mark>이 <mark>불가</mark>합니다.<br>
@@ -82,7 +82,7 @@
    	
    $(document).ready(function(){
 	
-	   //참여한 프로젝트 중 진행중인 갯수 카운트
+	   //참여한 프로젝트 갯수 카운트
 	   $.ajax({
 		   url: "projectJoinCount.dr",
 		   type: "post",
@@ -97,7 +97,7 @@
 		   }
 	   });
 	   
-	   //참여한 프로젝트 중 완료된 프로젝트 갯수 카운트
+	   //완료된 프로젝트 갯수 카운트
 	   $.ajax({
 		   url: "projectCloseCount.dr",
 		   type: "post",
@@ -114,7 +114,7 @@
    });
    
    $("#yes").click(function(){
-	   location.href = "deleteMember.dr?userNo=${loginUser.userNo}";
+	   //탈퇴하겠습니다 버튼 클릭 시 완료된 프로젝트 결제 취소 후 취소 성공 시 탈퇴처리
    });
    
    

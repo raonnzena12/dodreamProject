@@ -46,13 +46,8 @@
 </style>
 </head>
 <body>
-
-	<c:if test="${!empty msg}">
-		<script>alert("${msg}")</script>
-	</c:if>
-
 	<section id="mainMenuBar">
-	<div class="mainLogoArea" id="mainLogoArea"><a href="home.dr"><img src="${contextPath}/resources/images/DoDream-2e.png" alt="두드림" id="mainLogo"></a></div>
+	<div class="mainLogoArea" id="mainLogoArea"><a href="main.dr"><img src="${contextPath}/resources/images/DoDream-2e.png" alt="두드림" id="mainLogo"></a></div>
 	<nav class="navbar navbar-expand-lg navbar-light" id="naviBar">
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
@@ -65,10 +60,14 @@
 					<span id="menuText">메뉴</span>
 				</a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-					<a class="dropdown-item" href="home.dr">홈</a>
+					<a class="dropdown-item" href="main.dr">홈</a>
 					<a class="dropdown-item" href="category.dr">카테고리</a>
 					<!-- 카테고리 소분류 입력할것 -->
-					<a class="dropdown-item" href="#">Something else here</a>
+					<a class="dropdown-item submenu" href="category.dr?cate=music"> - 음악</a>
+					<a class="dropdown-item submenu" href="category.dr?cate=movie"> - 영화</a>
+					<a class="dropdown-item submenu" href="category.dr?cate=play"> - 연극</a>
+					<a class="dropdown-item submenu" href="category.dr?cate=art"> - 미술</a>
+					<a class="dropdown-item submenu" href="category.dr?cate=etc"> - 기타</a>
 				</div>
 			</li>
 			<li class="nav-item">
@@ -102,8 +101,8 @@
 			<ul class="navbar-nav ml-auto mr-3">
 				<li>
 					<!-- FORM ACTION 지정할것 -->
-					<form class="form-inline" id="titleSearchForm" action="#" method="GET">
-						<input class="mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="titleSearch">
+					<form class="form-inline" id="titleSearchForm" action="category.dr" method="GET">
+						<input class="mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="titleSearch" name="keyword">
 						<i class="material-icons" id="titleSearchSubmit">search</i>
 					</form>
 				</li>
@@ -141,7 +140,7 @@
 			<div id="login-menu" class="loginmenu">
 				<div style="text-align:center;" class="mb-2"> LOGIN </div>
 				<form action="login.dr" method="POST" id="loginFrm">
-					<input type="hidden" value="" name="prevPage" id="prevPage">
+					<input type="hidden" value="prevPage" name="prevPage" id="prevPage">
 					<table id="login-table" class="form-group">
 						<tr>
 							<td><input class="form-control" type="email" name="userEmail" id="userEmail" placeholder="이메일 주소" autocomplete="off" required></td>
@@ -190,7 +189,7 @@
 									<div style="display: inline-block;">
 									<c:choose>
 									<c:when test="${empty loginUser.userProfileImage}">
-									<img alt="프로필사진" src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg" class="rounded-circle float-sm ml-3" style="width: 50px; height: 50px;"/>
+									<img alt="프로필사진" src="resources/images/talent.png" class="rounded-circle float-sm ml-3" style="width: 50px; height: 50px;"/>
 									</c:when>
 									<c:when test= "${fn:contains(loginUser.userProfileImage,'http://')}">
 									<img alt="프로필사진" src="${loginUser.userProfileImage}" class="rounded-circle float-sm" style="width: 50px; height: 50px;"/>
@@ -216,7 +215,7 @@
 										<div class="col-md-4">
 											<i class="material-icons">favorite</i>
 											<br>
-											<a href="#">찜</a> <!-- 좋아요한 프로젝트목록 -->
+											<a href="myLikePRJList.dr?userNo=${loginUser.userNo}">찜</a> <!-- 좋아요한 프로젝트목록 -->
 										</div>
 										<div class="col-md-4">
 											<i class="material-icons">folder</i>
@@ -228,10 +227,9 @@
 							</div>
 							<div class="row" id="myinfobtn">
 								<div class="col-md-12 text-center">
-								<c:url var="mypage" value="mypage.dr"/>
 								<c:url var="adminPage" value="adminHome.dr"/>
 								<c:url var="logout" value="logout.dr"/>
-								<button class="btn btn-sm mb-2" id="mypagebtn"onclick="location.href='${mypage}'">My Page</button>
+								<button class="btn btn-sm mb-2" id="mypagebtn"onclick="location.href='myFundingList.dr?userNo=${loginUser.userNo}'">My Page</button>
 								&nbsp; &nbsp;
 								<%-- <button class="btn btn-sm mb-2" id="logoutbtn" onclick="location.href='${logout}'">로그아웃</button> --%>
 								<button class="btn btn-sm mb-2" id="logoutbtn"">로그아웃</button>
@@ -244,6 +242,7 @@
 						</div>
 				</c:if>	   
 	</nav>
+	<a id="top_btn"><img src="resources/images/up_button_p.png" alt="탑 버튼"></a>
 	</section>
 	<script>
 		
@@ -312,12 +311,18 @@
 			var form = document.createElement("form");
 			var param = new Array();
 			var input = new Array();
+
+			var path = window.location.pathname;
+			var arr = path.split("/");
+			var prevPage = arr[2];
+
 			
 			form.action = url;
 			form.method = "post";
 			
 			param.push(["userEmail",userEmail]);
 			param.push(["userPwd",userPwd]);
+			param.push(["prevPage",prevPage]);
 			
 			for(var i=0; i<param.length; i++){
 				input[i] = document.createElement("input");
@@ -326,8 +331,8 @@
 	            input[i].setAttribute("value", param[i][1]);
 	            form.appendChild(input[i]);
 			}
-			
 			document.body.appendChild(form);
+						
 			form.submit();
 		}
 	

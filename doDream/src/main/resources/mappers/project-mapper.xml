@@ -31,6 +31,22 @@
 		<result property="pCurrentFunding" column="TOTAL" />
 		<result property="pOpenCount" column="PROJECT_OPEN_COUNT" />
 		<result property="pArtistIntroduction" column="PROJECT_AT_INT" />
+		<result property="pUserCount" column="USERCOUNT" />
+	</resultMap>
+	
+	<resultMap id="projectResultSet2" type="Project">
+		<id property="pNo" column="PROJECT_NO" />
+		<result property="pTitle" column="PROJECT_TITLE" />
+		<result property="pGoal" column="PROJECT_GOAL" />
+		<result property="pThumbImage" column="PROJECT_THUMB_IMG" />
+		<result property="pWriter" column="PROJECT_WRITER" />
+		<result property="pCategoryNum" column="PROJECT_CT_NO" />
+		<result property="pCategoryName" column="PROJECT_CT_NAME" />
+		<result property="pStatusNum" column="PROJECT_ST_NO" />
+		<result property="pCount" column="PROJECT_COUNT" />
+		<result property="pDDay" column="D_DAY"/>
+		<result property="pCurrentFunding" column="TOTAL" />
+		<result property="iLike" column="ILIKE" />
 	</resultMap>
 	
 	<resultMap type="Reward" id="rewardResultSet">
@@ -144,7 +160,47 @@
 	<!-- 진행중/종료된 프로젝트 갯수 조회용 쿼리 -->
 	<select id="countList" resultType="_int">
 		SELECT COUNT(*) FROM PROJECT_TB
-		WHERE PROJECT_ST_NO IN ( 4, 5 )
+		WHERE PROJECT_ST_NO IN ( 4, 5, 7 )
+	</select>
+	
+	<!-- 필터링된 프로젝트 갯수 조회용 쿼리 -->
+	<select id="countListS" resultType="_int" parameterType="FilteringList">
+		SELECT COUNT(*) FROM PROJECT_TB
+		WHERE 
+		<choose>
+			<when test="category == 'total'">
+			PROJECT_CT_NO IN ( 1, 2, 3, 4, 9 )
+			</when>
+			<when test="category == 'music'">
+			PROJECT_CT_NO = 1
+			</when>
+			<when test="category == 'movie'">
+			PROJECT_CT_NO = 2
+			</when>
+			<when test="category == 'play'">
+			PROJECT_CT_NO = 3
+			</when>
+			<when test="category == 'art'">
+			PROJECT_CT_NO = 4
+			</when>
+			<when test="category == 'etc'">
+			PROJECT_CT_NO = 9
+			</when>
+		</choose>
+		<if test="keyword != null">
+		AND ( PROJECT_TITLE LIKE '%'||#{ keyword } ||'%' OR PROJECT_STITLE LIKE '%'||#{ keyword } ||'%' OR PROJECT_HASHTAG LIKE '%'||#{ keyword } ||'%' )
+		</if>
+		<choose>
+			<when test="endYn == 'ALL'">
+			AND PROJECT_ST_NO IN ( 4, 5, 7 )
+			</when>
+			<when test='endYn == "N"'>
+			AND PROJECT_ST_NO = 4
+			</when>
+			<when test='endYn == "Y"'>
+			AND PROJECT_ST_NO IN ( 5, 7 )
+			</when>
+		</choose>
 	</select>
 	
 	<!-- 선택한 카테고리에 따라 프로젝트 리스트 조회용 쿼리 -->
@@ -152,7 +208,7 @@
 	 	SELECT * FROM PROJECT_LIST_VIEW
 	 	<choose>
 	 		<when test="_parameter.equals('total')">
-	 		WHERE PROJECT_CT_NO IN ( 1, 2, 3, 4, 5 )
+	 		WHERE PROJECT_CT_NO IN ( 1, 2, 3, 4, 9 )
 	 		</when>
 	 		<when test="_parameter.equals('music')">
 		 	WHERE PROJECT_CT_NO = 1
@@ -167,13 +223,13 @@
 	 		WHERE PROJECT_CT_NO = 4
 	 		</when>
 	 		<when test="_parameter.equals('etc')">
-	 		WHERE PROJECT_CT_NO = 5
+	 		WHERE PROJECT_CT_NO = 9
 	 		</when>
 	 	</choose>
 	</select>
 	
 	<!-- 여러 필터링을 한번에 처리하는 필터링된 리스트 받아오는 쿼리 -->
-	<select id="selectPrjListS" resultMap="projectResultSet" parameterType="FilteringList">
+	<select id="selectPrjListS" resultMap="projectResultSet2" parameterType="FilteringList">
 		SELECT P.*, (CASE WHEN PROJECT_NO IN (SELECT LIKE_PRJ FROM LIKE_TB WHERE LIKE_USER = #{ userNo }) THEN 1 ELSE 0 END) AS ILIKE
 		FROM PROJECT_LIST_VIEW_2ND P
 		WHERE 
@@ -200,6 +256,17 @@
 		<if test="keyword != null">
 		AND ( PROJECT_TITLE LIKE '%'||#{ keyword } ||'%' OR PROJECT_STITLE LIKE '%'||#{ keyword } ||'%' OR PROJECT_HASHTAG LIKE '%'||#{ keyword } ||'%' )
 		</if>
+		<choose>
+			<when test="endYn == 'ALL'">
+			AND PROJECT_ST_NO IN ( 4, 5, 7 )
+			</when>
+			<when test='endYn == "N"'>
+			AND PROJECT_ST_NO = 4
+			</when>
+			<when test='endYn == "Y"'>
+			AND PROJECT_ST_NO IN ( 5, 7 )
+			</when>
+		</choose>
 		ORDER BY
 		<choose>
 			<when test="order == 'popluar'">
@@ -226,8 +293,6 @@
 		SET PROJECT_COUNT = PROJECT_COUNT+1
 		WHERE PROJECT_NO = #{ pNo }
 	</update>
-	
-
 	<!-- =======================리워드=========================== -->
 	
 	<!-- 리워드 조회 쿼리 -->
@@ -379,6 +444,12 @@
 	<select id="myOpenProjectList" resultMap="projectResultSet" parameterType="_int">
 		SELECT * FROM PROJECT_MYLIST_VIEW JOIN USER_TB ON(USER_NO = PROJECT_WRITER)
 		WHERE PROJECT_WRITER= #{userNo} AND PROJECT_ST_NO IN(1,2,3,4,5,6,7)
+	</select>
+	
+	<!-- 회원이 좋아요한 프로젝트 리스트 조회 -->
+	<select id="myLikePRJList" resultMap="projectResultSet" parameterType="_int">
+		SELECT * FROM LIKE_TB JOIN USER_TB ON(LIKE_USER = USER_NO) JOIN PROJECT_LIST_VIEW ON(LIKE_PRJ = PROJECT_NO) 
+		WHERE LIKE_USER = #{userNo}
 	</select>
 	
 	<!-- ====================== mainPage =========================== -->

@@ -179,4 +179,11 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 
+	@Override
+	public ArrayList<Project> myLikePRJList(int userNo) {
+		
+		return mDao.myLikePRJList(userNo);
+	}
+
+
 }

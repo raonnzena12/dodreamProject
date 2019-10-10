@@ -198,15 +198,6 @@ public class MemberController {
 		return "member/changePwdForm";
 	}
 
-	/**
-	 * 로그인 후 마이페이지 메뉴 레이어팝업
-	 * 
-	 * @return
-	 */
-	@RequestMapping("mypage.dr")
-	public String mypage() {
-		return "member/mypageHeader";
-	}
 
 	/**
 	 * 회원가입 시 닉네임 중복 검사
@@ -273,16 +264,18 @@ public class MemberController {
 	 * @return
 	 */
 	@RequestMapping("myInfoUpdate.dr")
-	public String memberUpdate(Member mem, String address, String details, String postcode, HttpServletRequest request,
-			Model model, MultipartFile uploadImg, RedirectAttributes rd) {
+	public String memberUpdate(Member mem, String address, String details, String postcode, String userSelf, String userPhone, HttpServletRequest request,
+			Model model, MultipartFile uploadImg) {
 
 		mem.setUserAddress(address + "," + details + "," + postcode);
-
+		mem.setUserSelf(userSelf);
+		mem.setUserPhone(userPhone);
+		
 		int result = mService.updateMember(mem, request, uploadImg);
-
+		System.out.println(result);
 		if (result > 0) {
 			model.addAttribute("loginUser", mem);
-			rd.addFlashAttribute("msg", "회원정보를 수정하였습니다!");
+			model.addAttribute("msg", "회원정보를 수정하였습니다!");
 			return "redirect:mypage.dr";
 		} else {
 			model.addAttribute("msg", "회원정보 수정에 실패하였습니다.");
@@ -321,10 +314,6 @@ public class MemberController {
 	}
 	
 	
-	/** 회원이 오픈한 프로젝트
-	 * @param userNo
-	 * @return
-	 */
 	@ResponseBody
 	@RequestMapping("countOpenPJT.dr")
 	public int countOpenProject(int userNo) {
@@ -384,30 +373,9 @@ public class MemberController {
 	 * @return
 	 */
 	@RequestMapping("deleteForm.dr")
-	public String deleteMemberFormView(int userNo) {
+	public String deleteMemberFormView(int userNo, Model model) {
 		
 		return "member/deleteMemberView";
-	}
-	
-	/** 회원탈퇴
-	 * @param userNo
-	 * @param status
-	 * @param rdAttr
-	 * @param model
-	 * @return
-	 */
-	@RequestMapping("deleteMember.dr")
-	public String deleteMember(int userNo, SessionStatus status, RedirectAttributes rdAttr, Model model) {
-		
-		int result = mService.deleteMember(userNo);
-		if(result > 0) {
-			rdAttr.addFlashAttribute("msg", "두드림에서 탈퇴되었습니다.");
-			status.setComplete();
-			return "redirect:home.dr";
-		}else {
-			model.addAttribute("msg", "탈퇴에 실패하였습니다. 관리자에게 문의해주세요.");
-			return "common/errorPage";
-		}
 	}
 	
 
@@ -475,7 +443,7 @@ public class MemberController {
 		return mv;
 	}
 	
-	@RequestMapping("myOpenProjectList")
+	@RequestMapping("myOpenProjectList.dr")
 	public ModelAndView myOpenProjectList(int userNo, ModelAndView mv) {
 		
 		ArrayList<Project> pList = mService.myOpenProjectList(userNo);
@@ -484,6 +452,24 @@ public class MemberController {
 		if(pList != null) {
 			mv.addObject("pList", pList);
 			mv.setViewName("member/myOpenProjectList");
+		} else {
+			mv.addObject("msg", "목록 조회에 실패하였습니다.");
+			mv.setViewName("common/errorPage");
+		}
+
+		return mv;
+		
+	}
+	
+	@RequestMapping("myLikePRJList.dr")
+	public ModelAndView myLikePRJList(int userNo, ModelAndView mv) {
+		
+		ArrayList<Project> pList = mService.myLikePRJList(userNo);
+		System.out.println(pList);
+		
+		if(pList != null) {
+			mv.addObject("pList", pList);
+			mv.setViewName("member/myLikePRJList");
 		} else {
 			mv.addObject("msg", "목록 조회에 실패하였습니다.");
 			mv.setViewName("common/errorPage");

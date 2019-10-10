@@ -332,21 +332,14 @@ input:focus, input:active, textarea:focus, textarea:active, select:focus,
 	color: #F39C12;
 }
 
-#deleteMainImage i {
+#pmainimgdelete i {
 	color: #F39C12;
 	opacity: 0.6;
 }
 
-#deleteMainImage:hover i {
+#pmainimgdelete:hover i {
 	color: #F39C12;
 	opacity: 1;
-}
-
-.contentarea {
-	margin: auto;
-    border: 1px solid #ced4da;
-	width: 85%;
-	padding: 15px;
 }
 
 .contentagreement {
@@ -475,4 +468,3 @@ input:focus, input:active, textarea:focus, textarea:active, select:focus,
 #pstartyear, #pstartmonth, #pstartday{
 	color:unset;		
 }
-

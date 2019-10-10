@@ -7,16 +7,9 @@ var express = require('express')
 var bodyParser = require('body-parser');
 const axios = require('axios');
 
-// app.get('/', function (req, res) {
-//   res.send('Hello /');
-// });
-
-// app.get('/world.html', function (req, res) {
-//   res.send('Hello World');
-// });
-
 app.use(bodyParser.urlencoded({extended : true}));
 
+// 빌링키 발급받는 코드
 app.post("/ajaxBillingServer", async (req, res) => {
 console.log("im start!");
 console.log(req);
@@ -136,3 +129,41 @@ console.log(paymentResult);
   res.status(400).send(e);
 }
 });
+
+// 빌링키 폐기용
+app.post("/deleteBKey", async (req, res) => {
+  try {
+    const { 
+      customer_uid,
+    } = req.body;
+    console.log("빌링키넘어가는중" + customer_uid);
+    // 인증 토큰 발급 받기
+    const getToken = await axios({
+      url: "https://api.iamport.kr/users/getToken",
+      method: "post", // POST method
+      headers: { "Content-Type": "application/json" }, // "Content-Type": "application/json"
+      data: {
+        imp_key: "9558032955028384", // REST API키
+        imp_secret: "vpmDt0zqx5jCqBCWaEa301sHl74jy7X4wjHZkhqRmKuNl6JwLTALU2tgaxzJExNbQvbaNB2amwXHDHeo" // REST API Secret
+      }
+    });
+    const { access_token } = getToken.data.response; // 인증 토큰
+    // 빌링키 폐기 요청
+    const deleteResult = await axios({
+      url: 'https://api.iamport.kr/subscribe/customers/'+customer_uid,
+      method: "delete",
+      headers: { "Authorization": access_token }, // 인증 토큰 Authorization header에 추가
+    });
+    console.log(deleteResult);
+    var code = deleteResult.data.code;
+    console.log(code);
+    if (code == 0) { 
+      res.send(code);
+    } else { // 카드사 요청에 실패 (paymentResult is null)
+      res.send(code + " / " + deleteResult.data.message);
+    }
+  } catch (e) {
+    console.log("bKey삭제 에러 : " + e);
+    res.send(e);
+  }
+  });

@@ -269,6 +269,18 @@ public interface AdminService {
 	public abstract ArrayList<Alarm> goAlarmList();
 
 	
+	public abstract String getAlarmCount1();
+
+	public abstract String getAlarmCount2();
+
+	public abstract String getAlarmCount3();
+
+	/** 전체 알림 개수 
+	 * @return result
+	 */
+	public abstract int allCountAlarm();
+
+	public abstract int confirmAlarm(int alNo);
 
 
 }

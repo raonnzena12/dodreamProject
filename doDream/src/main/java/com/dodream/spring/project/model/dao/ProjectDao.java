@@ -37,6 +37,14 @@ public class ProjectDao {
 	public int countList() {
 		return sqlSession.selectOne("projectMapper.countList");
 	}
+	
+	/**
+	 * 필터링된 프로젝트 갯수를 받아오는 DAO
+	 * @return listCount
+	 */
+	public int countListS(FilteringList filter) {
+		return sqlSession.selectOne("projectMapper.countListS", filter);
+	}
 
 	/**
 	 * 진행중/종료된 프로젝트 리스트를 받아오는 DAO

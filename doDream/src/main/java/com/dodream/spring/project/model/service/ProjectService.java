@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.dodream.spring.project.model.vo.FilteringList;
 import com.dodream.spring.project.model.vo.Like;
 import com.dodream.spring.project.model.vo.Project;
@@ -51,7 +53,7 @@ public interface ProjectService {
 	 * @param request
 	 * @return result;
 	 */
-	public abstract int insertProject(Project project, HttpServletRequest request);
+	public abstract int insertProject(Project project, MultipartFile uploadfile1, MultipartFile uploadfile2, MultipartFile uploadfile3, HttpServletRequest request);
 
 	/**
 	 * 리워드 번호 스트링으로 해당하는 리워드 리스트를 반환하는 Service

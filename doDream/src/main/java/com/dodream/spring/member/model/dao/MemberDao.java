@@ -11,7 +11,6 @@ import org.springframework.stereotype.Repository;
 import com.dodream.spring.member.model.vo.Member;
 import com.dodream.spring.project.model.vo.Project;
 
-
 @Repository("mDao")
 public class MemberDao {
 
@@ -88,6 +87,11 @@ public class MemberDao {
 	public ArrayList<Project> myOpenProjectList(int userNo) {
 		
 		return (ArrayList)sqlSession.selectList("projectMapper.myOpenProjectList", userNo);
+	}
+
+	public ArrayList<Project> myLikePRJList(int userNo) {
+	
+		return (ArrayList)sqlSession.selectList("projectMapper.myLikePRJList", userNo);
 	}
 
 	

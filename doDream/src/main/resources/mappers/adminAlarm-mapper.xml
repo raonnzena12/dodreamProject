@@ -3,15 +3,36 @@
 <mapper namespace="adminAlarmMapper">
 
 	<resultMap type="Alarm" id="alarmResultSet">
-		<id property="alNo" column=""/>		
-		<result property="alSj" column=""/>
-		<result property="alContent" column=""/>
-		<result property="alStatus" column=""/>
-		<result property="alDate" column=""/>
-		<result property="alRefPno" column=""/>
-		<result property="alRefResNo" column=""/>
-		<result property="alRefRepNo" column=""/>
+		<id property="alNo" column="ALARM_NO"/>		
+		<result property="alTitle" column="ALARM_TITLE"/>
+		<result property="alContent" column="ALARM_CONTENT"/>
+		<result property="alStatus" column="ALARM_STATUS"/>
+		<result property="alDate" column="ALARM_DATE"/>
+		<result property="alCategory" column="ALARM_CAT_NO"/>
 	</resultMap>
 	
+	<select id="goAlarmList" resultMap="alarmResultSet">
+		SELECT*FROM ALARM
+		ORDER BY ALARM_NO DESC
+	</select>
+	
+	<select id="getAlarmCount1" resultType="_int">
+		SELECT COUNT(*) FROM ALARM WHERE ALARM_CAT_NO = 1 AND ALARM_STATUS = 'Y' 
+	</select>
+	<select id="getAlarmCount2" resultType="_int">
+		SELECT COUNT(*) FROM ALARM WHERE ALARM_CAT_NO = 2 AND ALARM_STATUS = 'Y' 
+	</select>
+	<select id="getAlarmCount3" resultType="_int">
+		SELECT COUNT(*) FROM ALARM WHERE ALARM_CAT_NO = 3 AND ALARM_STATUS = 'Y' 
+	</select>
 
+	<!-- 전체 알람 개수 구하는 쿼리 -->
+	<select id="allCountAlarm" resultType="_int">
+		SELECT COUNT(*) FROM ALARM
+	</select>
+	
+	<update id="confirmAlarm" parameterType="_int">
+		UPDATE ALARM SET ALARM_STATUS = 'N' WHERE ALARM_NO = #{alNo}
+	</update>
+ 
 </mapper>
