@@ -1,146 +1,143 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="centerMapper">
-	
-	<!-- 공지사항 -->
-	<resultMap id="NoticeResultSet" type="Notice">
-		<id     property="nNo"         column="NOTICE_NO" />
-		<result property="nTitle"      column="NOTICE_TITLE" />
-		<result property="nContent"    column="NOTICE_CONTENT" />
-		<result property="nEnrollDate" column="NOTICE_ER_DT" />
-		<result property="nModifyDate" column="NOTICE_MF_DT" />
-		<result property="nStatus"     column="NOTICE_STATUS" />
-		<result property="nWriter"     column="NOTICE_WRITER" />
-	</resultMap> 
 
-	<!-- 프로젝트 리뷰 -->
-	<resultMap id="ReviewResultSet" type="Review">
-		<id     property="revNo"         column="REVIEW_NO" />
-		<result property="revTitle"      column="REVIEW_TITLE" />
-		<result property="revContent"    column="REVIEW_CONTENT" />
-		<result property="revEnrollDate" column="REVIEW_ER_DT" />
-		<result property="revModifyDate" column="REVIEW_MF_DT" />
-		<result property="revStatus"     column="REVIEW_STATUS" />
-		<result property="revRefPno"     column="REVIEW_REF_PNO" />
-		<result property="revWriter"     column="REVIEW_WRITER" />
-		<result property="reviewTnImg"   column="REVIEW_TN_IMG"/>
-		<result property="reviewImg"     column="REVIEW_IMG"/>
-		<result property="revConut"      column="REVIEW_COUNT"/>
-		<result property="revsubTitle"   column="REVIEW_SUBTITLE"/>
-		<result property="revCNo"   column="REVIEW_CNO"/>
-		
-	</resultMap>
-	   
-	<!-- FAQ -->
-	<resultMap id="FaqResultSet" type="Faq">
-		<id     property="fNo"         column="FAQ_NO" />
-		<result property="fTitle"      column="FAQ_TITLE" />
-		<result property="fContent"    column="FAQ_CONTENT" />
-		<result property="fEnrollDate" column="FAQ_ENROLL_DATE" />
-		<result property="fModifyDate" column="FAQ_MODIFY_DATE" />
-		<result property="fStatus"     column="FAQ_STATUS" />
-		<result property="fWriter"     column="FAQ_WRITER" />
-	</resultMap>
+   <!-- 공지사항 --> 
+   <resultMap id="NoticeResultSet" type="Notice">
+      <id property="nNo" column="NOTICE_NO" />
+      <result property="nTitle" column="NOTICE_TITLE" />
+      <result property="nContent" column="NOTICE_CONTENT" />
+      <result property="nEnrollDate" column="NOTICE_ER_DT" />
+      <result property="nModifyDate" column="NOTICE_MF_DT" />
+      <result property="nStatus" column="NOTICE_STATUS" />
+      <result property="nWriter" column="NOTICE_WRITER" />
+   </resultMap>
 
-	<!-- ========== 공지사항 ==================== -->
+   <!-- 프로젝트 리뷰 -->
+   <resultMap id="ReviewResultSet" type="Review">
+      <id property="revNo" column="REVIEW_NO" />
+      <result property="revTitle" column="REVIEW_TITLE" />
+      <result property="revContent" column="REVIEW_CONTENT" />
+      <result property="revEnrollDate" column="REVIEW_ER_DT" />
+      <result property="revModifyDate" column="REVIEW_MF_DT" />
+      <result property="revStatus" column="REVIEW_STATUS" />
+      <result property="revRefPno" column="REVIEW_REF_PNO" />
+      <result property="revWriter" column="REVIEW_WRITER" />
+      <result property="reviewTnImg" column="REVIEW_TN_IMG" />
+      <result property="reviewImg" column="REVIEW_IMG" />
+      <result property="userNickname" column="USER_NICKNAME" />
+      <result property="revCount" column="REVIEW_COUNT" />
+      <result property="revSubTitle" column="REVIEW_SUBTITLE" />
+      <result property="revCatNo" column="REVIEW_CNO" />
+      <result property="revCatName" column="PROJECT_CT_NAME"/>
+         <result property="revRefPname" column="PROJECT_TITLE"/>
+   </resultMap>
 
-	<!-- 공지사항 리스트 쿼리 -->
-	<select id="noticeSelect" resultMap="NoticeResultSet">
-		SELECT * FROM NOTICE 
-		ORDER BY NOTICE_ER_DT DESC
-	</select>
+   <!-- FAQ -->
+   <resultMap id="FaqResultSet" type="Faq">
+      <id property="fNo" column="FAQ_NO" />
+      <result property="fTitle" column="FAQ_TITLE" />
+      <result property="fContent" column="FAQ_CONTENT" />
+      <result property="fEnrollDate" column="FAQ_ENROLL_DATE" />
+      <result property="fModifyDate" column="FAQ_MODIFY_DATE" />
+      <result property="fStatus" column="FAQ_STATUS" />
+      <result property="fWriter" column="FAQ_WRITER" />
+   </resultMap>
+
+   <!-- ========== 공지사항 ==================== -->
+
+   <!-- 공지사항 리스트 쿼리 -->
+   <select id="noticeSelect" resultMap="NoticeResultSet">
+      SELECT * FROM NOTICE
+      ORDER BY NOTICE_ER_DT DESC
+   </select>
 
 
-	<!-- ========== 프로젝트 후기 ==================== -->
-	<!-- 전체 후기 수 조회 쿼리 -->
-	<select id="getListCount" resultType="_int">
-		SELECT COUNT(*)
-		FROM REVIEW
-		WHERE REVIEW_STATUS = 'Y'
-	</select>
-	
-	<!-- 후기 목록 조회 쿼리 -->
-	<select id="selectfrList" resultMap="ReviewResultSet">
-		SELECT * 
-		FROM REVIEW
-		ORDER BY REVIEW_NO DESC
-	</select>  
-	
-	<!-- 조회수  증가 쿼리-->
-	<update id="updateCount" parameterType="_int">
-		UPDATE REVIEW
-		SET REVIEWCOUNT = REVIEWCOUNT + 1
-		WHERE REVIEW_NO = #{revNo}
-	</update>
-	
-	<!-- 후기 상세조회 쿼리 -->
-	<select id="selectRevDetail" parameterType="_int" resultMap="ReviewResultSet">
-		SELECT *
-		FROM REVIEW
-		WHERE REVIEW_NO = #{revNo}
-		AND REVIEW_STATUS = 'Y'
-	</select>
-	
-	 <!-- 선택한 카테고리에 따라 프로젝트 리스트 조회용 쿼리 -->
-	 
-	 <!-- 문제점 : PROJECT_LIST_VIEW 라는 뷰와 같은 뷰를 만들어야 된다. -->
-	<!-- <select id="selectrevList" resultMap="ReviewResultSet" parameterType="string">
-	 	SELECT * FROM PROJECT_LIST_VIEW
-	 	<choose>
-	 		<when test="_parameter.equals('total')">
-	 		WHERE REVIEW_CNO IN ( 1, 2, 3, 4, 5 )
-	 		</when>
-	 		<when test="_parameter.equals('music')">
-		 	WHERE REVIEW_CNO = 1
-	 		</when>
-	 		<when test="_parameter.equals('movie')">
-	 		WHERE REVIEW_CNO = 2
-	 		</when>
-	 		<when test="_parameter.equals('play')">
-	 		WHERE REVIEW_CNO = 3
-	 		</when>
-	 		<when test="_parameter.equals('art')">
-	 		WHERE REVIEW_CNO = 4
-	 		</when>
-	 		<when test="_parameter.equals('etc')">
-	 		WHERE REVIEW_CNO = 5
-	 		</when>
-	 	</choose>
-	</select> -->
-	
-	
-	
-	
-	<!-- ========== FAQ ==================== -->
+   <!-- ========== 프로젝트 후기 ==================== -->
+   <!-- 전체 후기 수 조회 쿼리 -->
+   <select id="getListCount" resultType="_int">
+      SELECT COUNT(*)
+      FROM REVIEW       
+      WHERE REVIEW_STATUS = 'Y'
+   </select>
 
-	<!-- FAQ 리스트 쿼리 -->
-	<select id="faqSelect" resultMap="FaqResultSet">
-		SELECT * FROM FAQ 
-		ORDER BY FAQ_ENROLL_DATE DESC
-	</select>
+   <!-- 후기 목록 조회 쿼리 -->
+   <select id="selectfrList" resultMap="ReviewResultSet">
+      SELECT *
+      FROM REVIEW
+      JOIN PROJECT_CG ON(REVIEW_CNO = PROJECT_CT_NO)
+      ORDER BY REVIEW_NO DESC
+   </select>
 
-	<!-- FAQ 검색쿼리 -->
-	<select id="searchList" parameterType="Search" resultMap="FaqResultSet">
-	<bind name="sv" value="'%' + _parameter.getSearchValue() +'%'" />
+   <!-- 조회수 증가 쿼리 -->
+   <update id="updateCount" parameterType="_int">
+      UPDATE REVIEW
+      SET
+      REVIEW_COUNT = REVIEW_COUNT + 1
+      WHERE REVIEW_NO = #{revNo}
+   </update>
 
-	SELECT * FROM FAQ
-	<where>
-		<choose>
-			<when test="searchCondition == 'title'">
-				AND FAQ_TITLE LIKE #{sv}
-			</when>
-			<when test="searchCondition == 'content'">
-				AND FAQ_CONTENT LIKE #{sv}
-			</when>
-			<otherwise>
-				AND (FAQ_TITLE LIKE #{sv} OR FAQ_CONTENT LIKE #{sv})
-			</otherwise>
-		</choose>
-	</where>
-	ORDER BY FAQ_ENROLL_DATE DESC
+   <!-- 후기 상세조회 쿼리 -->
+   <select id="selectRevDetail" parameterType="_int"
+      resultMap="ReviewResultSet">
+      SELECT *
+      FROM REVIEW
+      JOIN PROJECT_CG ON(REVIEW_CNO = PROJECT_CT_NO)
+      WHERE REVIEW_NO = #{revNo}
+      AND
+      REVIEW_STATUS = 'Y'
+   </select>
 
-	</select>
-	
-	
-	
+   <!-- 선택한 카테고리에 따라 프로젝트 리스트 조회용 쿼리 -->
+
+   <!-- 문제점 : PROJECT_LIST_VIEW 라는 뷰와 같은 뷰를 만들어야 된다. -->
+   <!-- <select id="selectrevList" resultMap="ReviewResultSet" parameterType="string"> 
+      SELECT * FROM PROJECT_LIST_VIEW <choose> <when test="_parameter.equals('total')"> 
+      WHERE REVIEW_CNO IN ( 1, 2, 3, 4, 5 ) </when> <when test="_parameter.equals('music')"> 
+      WHERE REVIEW_CNO = 1 </when> <when test="_parameter.equals('movie')"> WHERE 
+      REVIEW_CNO = 2 </when> <when test="_parameter.equals('play')"> WHERE REVIEW_CNO 
+      = 3 </when> <when test="_parameter.equals('art')"> WHERE REVIEW_CNO = 4 </when> 
+      <when test="_parameter.equals('etc')"> WHERE REVIEW_CNO = 5 </when> </choose> 
+      </select> -->
+
+
+   <!-- 진행중/종료된 프로젝트 갯수 조회용 쿼리 -->
+   <select id="countList" resultType="_int">
+      SELECT COUNT(*) FROM REVIEW
+      WHERE PROJECT_ST_NO IN ( 4, 5 )
+   </select>
+
+   <!-- ========== FAQ ==================== -->
+
+   <!-- FAQ 리스트 쿼리 -->
+   <select id="faqSelect" resultMap="FaqResultSet">
+      SELECT * FROM FAQ
+      ORDER BY FAQ_ENROLL_DATE DESC
+   </select>
+
+   <!-- FAQ 검색쿼리 -->
+   <select id="searchList" parameterType="Search"
+      resultMap="FaqResultSet">
+      <bind name="sv" value="'%' + _parameter.getSearchValue() +'%'" />
+
+      SELECT * FROM FAQ
+      <where>
+         <choose>
+            <when test="searchCondition == 'title'">
+               AND FAQ_TITLE LIKE #{sv}
+            </when>
+            <when test="searchCondition == 'content'">
+               AND FAQ_CONTENT LIKE #{sv}
+            </when>
+            <otherwise>
+               AND (FAQ_TITLE LIKE #{sv} OR FAQ_CONTENT LIKE #{sv})
+            </otherwise>
+         </choose>
+      </where>
+      ORDER BY FAQ_ENROLL_DATE DESC
+
+   </select>
+
+
+
 </mapper>

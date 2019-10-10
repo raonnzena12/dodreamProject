@@ -29,6 +29,7 @@
 	<!-- 전체 알람 개수 구하는 쿼리 -->
 	<select id="allCountAlarm" resultType="_int">
 		SELECT COUNT(*) FROM ALARM
+		WHERE ALARM_STATUS='Y'
 	</select>
 	
 	<update id="confirmAlarm" parameterType="_int">

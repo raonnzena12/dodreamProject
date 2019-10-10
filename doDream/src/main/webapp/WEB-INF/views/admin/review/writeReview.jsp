@@ -82,7 +82,10 @@
 	height: auto;
 }
 
-
+select {
+   padding: 5px;
+   border-radius: 4px;
+}
 
 </style>
 
@@ -144,13 +147,21 @@
 												</tr>
 												<tr>
 													<th>카테고리 번호 : </th>
-													<td><input type="text" name="revCategoryNo" type="text" size="97" placeholder="카테고리 번호를 입력해주세요."></td>
+													<td>
+														<select name="revCatNo" >
+															<option value="1">음악</option>
+															<option value="2">영화</option>
+															<option value="3">연극</option>
+															<option value="4">미술</option>
+															<option value="9">기타</option>
+														</select>
+													</td>
 												</tr>
 												<tr>
 													<th>썸네일 이미지 :</th>
 													<td>
-														<div class="filebox preview-image">
-															<input type="file" id="input-file" class="upload-hidden" name="uploadFile">
+														<div class="filebox preview-image" style="">
+															<input type="file" id="input-file" class="upload-hidden" name="uploadFile" style="">
 														</div>
 													</td>
 												</tr>
@@ -236,10 +247,6 @@
 				}
 				if ($("input[name=revRefPno]").val().trim() == "") {
 					alert("프로젝트 번호를 작성해주세요.");
-					return false;
-				}
-				if ($("input[name=revCategoryNo]").val().trim() == "") {
-					alert("카테고리를 선택해주세요.");
 					return false;
 				}
 				if ($("input[name=uploadFile]").val().trim() == "") {

@@ -133,7 +133,7 @@ tbody tr:hover{
 													<c:forEach var="m" items="${ list }">
 														<tr role="row" class="odd">
 															<td class="sorting_1">${ m.userNo }</td>
-															<td>${ m.userNickname }</td>
+															<td><a href="#" style="text-decoration:none; color: gray;">${ m.userNickname }</a></td>
 															<td>${ m.userPhone}</td>
 															<td>${ m.userEmail}</td>
 															<td>${ m.userEnrollDate }</td>
