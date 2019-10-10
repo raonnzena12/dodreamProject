@@ -657,6 +657,12 @@ function ajaxDeleteBillingKey(num){
         }
     });
 }
+
+$(function(){
+    $("#backToList").on("click", function(){
+        location.href='myReserveList.dr';
+    });
+});
 </script>
 </body>
 </html>

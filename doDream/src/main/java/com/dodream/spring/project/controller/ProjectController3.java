@@ -95,18 +95,22 @@ public class ProjectController3 {
 	}
 	
 	// 내가 오픈한 프로젝트 리스트 조회하는 뷰
-	@RequestMapping("myPrjList.dr")
+	@RequestMapping("myProjectList.dr")
 	public String testtest(HttpServletRequest request, String order, Model model) {
 		int userNo = 0 ;
 		Object loginUser = request.getSession().getAttribute("loginUser");
 		if ( loginUser != null ) {
 			userNo = ((Member)loginUser).getUserNo();
 		}
-		userNo = 3; // 테스트 uno
+		
 		String order1 = (order == null || order.equals("") ) ? "ALL" : order;
 		ArrayList<Project> pList = pService.selectOpenPrjList(new FilteringList(userNo, order1));
+		
+		model.addAttribute("menu", 4);
+		model.addAttribute("sub", 2);
 		model.addAttribute("pList", pList);
 		model.addAttribute("order", order1);
+		
 		return "member/myProjectList";
 	}
 	

@@ -153,6 +153,7 @@
 	<jsp:include page="../member/mypageHeader.jsp"/>
 	<br>
 	<div class="container-fluid">
+		<br>
 		<div class="row">
 			<div class="col-md-2"></div>
 			<div class="col-md-8" id="myfundingsub">
@@ -161,11 +162,13 @@
 			<div class="col-md-2"></div>
 		</div>
 		<br>
+		<br>
 		<div class="row">
 			<div class="col-md-2"></div>
 			<div class="col-md-8 resultPrint">
 					<c:if test="${ empty pList }">
-						<h4 class="text-center">오픈한 프로젝트가 없습니다.</h4>
+						<div class="text-center">프로젝트 오픈 내역이 없습니다.<br>
+						모두를 두드릴 당신의 꿈을 보여주세요!</div>
 					</c:if>
 					<c:if test="${ fn:length(pList) >0 }">
 						<c:forEach var="pList" items="${ pList }">

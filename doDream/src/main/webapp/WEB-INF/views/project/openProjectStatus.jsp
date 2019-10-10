@@ -256,7 +256,7 @@
 <script>
 $(function(){
     $("#backToList").on("click", function(){
-        location.href='myPrjList.dr';
+        location.href='myProjectList.dr';
     });
 });
 </script>

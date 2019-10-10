@@ -130,11 +130,13 @@ public class ReserveController {
 			userNo = ((Member)loginUser).getUserNo();
 		}
 		String order1 = (order == null)? "ALL" : order;
-		userNo = 17;
+		
 		ArrayList<Reserve> rList = rsvService.selectReserveList(new FilteringList(userNo, order1));
+		model.addAttribute("menu", 4);
+		model.addAttribute("sub", 1);
 		model.addAttribute("rList", rList);
 		System.out.println(rList);
 		model.addAttribute("order", order1);
-		return "member/reserveList";
+		return "member/myReserveList";
 	}
 }
