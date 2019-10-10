@@ -242,7 +242,7 @@
 						</div>
 				</c:if>	   
 	</nav>
-	<a id="top_btn"><img src="resources/images/up_button_p.png" alt="탑 버튼"></a>
+	<!-- <a id="top_btn"><img src="resources/images/up_button_p.png" alt="탑 버튼"></a> -->
 	</section>
 	<script>
 		

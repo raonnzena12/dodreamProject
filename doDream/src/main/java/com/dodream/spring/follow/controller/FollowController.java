@@ -57,6 +57,8 @@ public class FollowController {
 		System.out.println(followList);
 		
 		if(followList !=null) {
+			model.addAttribute("menu", 2);
+			model.addAttribute("sub", 1);
 			model.addAttribute("followList", followList);
 			return "member/followList";
 		}else {
@@ -73,6 +75,8 @@ public class FollowController {
 		System.out.println(followerList);
 		
 		if(followerList !=null) {
+			model.addAttribute("menu", 2);
+			model.addAttribute("sub", 2);
 			model.addAttribute("followerList", followerList);
 			return "member/followerList";
 		}else {

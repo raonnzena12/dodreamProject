@@ -14,6 +14,10 @@
 	#followsub>a{
 		color: #444;
 	}
+	
+	#followsub a.active{
+		color: #8E44AD;
+	}
 
 </style>
 </head>
@@ -25,7 +29,7 @@
 		<div class="col-md-2">
 		</div>
 		<div class="col-md-8" id="followsub">	
-			<a class="" href="followList.dr?userNo=${loginUser.userNo}">내가 팔로잉한</a> ｜ <a class="" href="followerList.dr?userNo=${loginUser.userNo}">나를 팔로잉한</a>
+			<a class="" id="sub1" href="followList.dr?userNo=${loginUser.userNo}">내가 팔로잉한</a> ｜ <a class="" id="sub2" href="followerList.dr?userNo=${loginUser.userNo}">나를 팔로잉한</a>
 		</div>
 		<div class="col-md-2">
 		</div>
@@ -92,6 +96,19 @@
 	$(function() {
 		console.log("${fn:length(followList)}");
 		
+	});
+	
+	$(function(){
+		var menu = ${menu} + "";
+		if(menu ==2){
+			$("menu2>i").addClass("active");
+		}
+		var sub = ${sub} + "";
+		if(sub==2){
+			$("#sub2").addClass("active");
+		}else{
+			$("#sub1").addClass("active");
+		}
 	});
 
 </script>

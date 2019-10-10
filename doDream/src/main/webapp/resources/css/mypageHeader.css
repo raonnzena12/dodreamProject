@@ -10,15 +10,14 @@
 	color: #444;
 }
 
-/* .myPagehead{
-	display: inline;
+#navOuter ul li a.active{
+	color: #8E44AD;
+	font-weight: 600;
 }
- */
-
-/* #userProfileImage{
-	width: 140px;
-	height: 140px;
-} */
+.active{
+	color: #8E44AD;
+	font-weight: 600;
+}
 
 
 
