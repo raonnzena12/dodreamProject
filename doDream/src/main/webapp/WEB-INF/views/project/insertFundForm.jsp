@@ -261,17 +261,20 @@
 }
 .insertformcont { 
 	position: fixed; 
-	right: 47%; 
+	right: 43%; 
 	top: 500px;
 	margin-right: -730px; 
 	text-align:center; 
 	width: 150px;
 	height: 240px;
-	border: 1px solid #8E44AD80;
-	border-bottom: 2px solid #8E44AD;
-	border-right: 2px solid #8E44AD;
+	border: 1px solid #8E44AD99;
+	border-bottom: 2px solid #8E44AD99;
+	border-right: 2px solid #8E44AD99;
 	border-radius: 5px;
 	padding:5px;
+}
+.insertformcont:hover{
+	box-shadow: 1px 1px 4px #aaa;
 }
 
 
@@ -435,7 +438,7 @@
 							<div class="edit-box">
 								<input type="text" class="form-control" name="pTitle"
 									placeholder="52자 내외로 입력하여 주세요" maxlength="52"
-									style="font-size: 13px;">
+									style="font-size: 13px;"  autocomplete="off">
 								<div class="form-length-chk">
 									<span id="pTitleLengthChk">0</span>/52
 								</div>
@@ -454,7 +457,7 @@
 							<div class="edit-box">
 								<input type="text" class="form-control" name="pSTitle"
 									placeholder="52자 내외로 입력하여 주세요" maxlength="52"
-									style="font-size: 13px;">
+									style="font-size: 13px;"  autocomplete="off">
 								<div class="form-length-chk">
 									<span id="pSTitleLengthChk">0</span>/52
 								</div>
@@ -471,10 +474,10 @@
 						</div>
 						<div class="info-box">
 							<div class="edit-box nonborder" style="width: 800px;">
-								<input type="hidden" name="pGoal">
+								<input type="hidden" name="pGoal" value="0">
 								<input type="text" class="form-control" id="pgoalregexp"
 									placeholder="0" min="0" maxlength="12" oninput="this.value=this.value.replace(/[^0-9]/g,'');"
-									style="width: 250px; display: inline; margin-right: 5px;">
+									style="width: 250px; display: inline; margin-right: 5px;"  autocomplete="off">
 								<span id="pgoalarea" style="font-family: 'Jua'; color: #F39C12; font-size: 18px; letter-spacing:2px;"></span>
 							</div>
 						</div>
@@ -491,9 +494,8 @@
 							<div class="edit-box">
 								<div class="box-img-area">
 									<div id="box-img-area-noimg" style="height:100%;">
-										<a href="javascript:void(0);" id="pThumbNailImgUpload"> <i
-											class="material-icons" id="pThumbNailImg"
-											style="font-size: 52px;"> camera_alt </i>
+										<a href="javascript:void(0);" id="pThumbNailImgUpload"> 
+										<i class="material-icons" id="pThumbNailImg" style="font-size: 52px; color: #999;"> camera_alt </i>
 										</a>
 										<p>사진등록</p>
 									</div>
@@ -569,7 +571,7 @@
 								<input type="text"
 									class="form-control form-control-sm" name="pHashTag"
 									style="width: 96%; display: inline;"
-									value="해시태그를, 다음과같이, 입력해주세요!">
+									value="해시태그를, 다음과같이, 입력해주세요!"  autocomplete="off">
 							</div>
 							<div class="edit-box" id="hashtagarea">
 							</div>
@@ -604,7 +606,7 @@
 								<div class="rewardContentLeft">리워드 이름</div>
 								<div class="rewardContentRight">
 									<input type="text" class="form-control form-control-sm"
-										name="rList[0].rName" style="width: 88%; required">
+										name="rList[0].rName" style="width: 88%;"  autocomplete="off">
 								</div>
 							</div>
 							<div class="rewardContent">
@@ -612,7 +614,7 @@
 								<div class="rewardContentRight">
 									<input type="number" class="form-control form-control-sm"
 										name="rList[0].rPrice"
-										style="width: 30%; display: inline-block;" min="0"><label
+										style="width: 30%; display: inline-block;" min="0"   autocomplete="off"><label
 										style="padding: 5px;">원</label>
 								</div>
 							</div>
@@ -729,7 +731,13 @@
 						</div>
 						<div
 							style="width: 42%; float: left; text-align: right; line-height: 18px; padding-top: 30px;">
-							<span> </span>
+							<span>
+								프로젝트의 특징을 가장 잘 보여줄 수 있는 공간입니다. <br>
+								프로젝트의 성공을 위해서는 해당 프로젝트의 매력 포인트를 
+								스토리에서 잘 전달되어야 합니다.<br>
+								개성이 돋보이는 사진과 문구로 스토리를 작성해주세요.
+
+							 </span>
 						</div>
 						<div class="clearFloat"></div>
 					</div>
@@ -843,125 +851,75 @@
 						</div>
 						<div
 							style="width: 42%; float: left; text-align: right; line-height: 18px; padding-top: 30px;">
-							<span> </span>
+							<span> 
+								이제 거의 다 왔습니다! <br>
+								프로젝트의 주인공인 아티스트를 소개하는 부분입니다.<br>
+								서포터 분들의 시선과 관심을 사로잡을 수 있는 개성을 뽐내주세요.<br>
+							</span>
 						</div>
 						<div class="clearFloat"></div>
 					</div>
 					<div class="accHeadDrawline"></div>
 					<div class="acc-box">
-						<div class="title-box">
+						<div class="title-box" style="width: '';">
 							<div class="acctitle">아티스트 정보</div>
-							<div class="accdesc">아티스트님의 활동 정보를 입력해주세요</div>
+							<div class="accdesc">누군가 이 정보를 본다면 제발 여기좀 채워주세요 이 편지는 영국으로부터 시작해 2019년 10월 10일 오후 9시 1분에 KH정보교육원에 도착했습니다. 여기좀 제발 채워줘ㅓㅓㅓㅓㅓㅓㅓ</div>
 						</div>
-						<div class="info-box">
-							<div class="edit-box artistInfo">
-								<div class="artistinfoarea">
-									<span>아티스트 이름 : </span> <input type="text"
-										class="form-control form-control-sm" name="pArtistName"
-										style="display: inline-block; width: 50%; height: 28px;"
-										placeholder="예) Sun희">
-								</div>
-								<div class="artistinfoarea">
-									<span>아티스트 소개 : </span>
-									<textarea rows="5" class="form-control form-control-sm" name="pArtistIntroduction"
-										style="display: inline-block; width: 74%; font-size: 12px; resize: none;"
-										placeholder="아티스트님을 소개할 수 있는 문구를 간략히 적어주세요!"></textarea>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="acc-box">
-						<div class="title-box">
-							<div class="acctitle">프로필 이미지</div>
-							<div class="accdesc">
-								아티스트 프로필 영역에<br> 노출되는 이미지입니다.
-							</div>
-						</div>
-						<div class="info-box">
-							<div class="edit-box">
-								<div class="profileimgarea">
-									<div class="profilenoimg">
-										<i class="material-icons">account_circle</i> <span>등록된
-											이미지가 없습니다.</span>
-									</div>
-								</div>
-								<div class="profileimgdesc">
-									<input type="file" name="uploadfile2"
-										style="background-color: #fff; width: 100%; height: 20px; font-size: 8px;">
-								</div>
-								<div class="clearFloat"></div>
-							</div>
-						</div>
-					</div>
-					<div class="acc-box">
-						<div class="title-box">
-							<div class="acctitle">소셜 네트워크</div>
-							<div class="accdesc">
-								서포터가 확인할 수 있는 <br> 아티스트님의 페이스북, 인스타그램 <br> 링크 등을
-								등록해주세요!
-							</div>
-						</div>
-						<div class="info-box">
-							<div class="edit-box">
-								<div>
-									<img src="resources/images/insertFormImages/facebook.jpg"
-										style="width: 20px; height: 20px; border-radius: 4px; opacity: 0.9; margin-right: 10px;">
-									<label for="pArtistSns1">https://www.facebook.com/</label> <input
-										class="form-control form-control-sm" type="text"
-										id="pArtistSns1" name="pArtistSns1"
-										style="display: inline; width: 150px; height: 24px;">
-								</div>
-								<div>
-									<img src="resources/images/insertFormImages/instagram.jpg"
-										style="width: 20px; height: 20px; border-radius: 4px; opacity: 0.9; margin-right: 10px;">
-									<label for="pArtistSns2">https://www.instagram.com/</label> <input
-										class="form-control form-control-sm" type="text"
-										id="pArtistSns2" name="pArtistSns2"
-										style="display: inline; width: 150px; height: 24px;">
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="acc-box">
-						<div class="title-box">
-							<div class="acctitle">이메일 & 전화번호</div>
-							<div class="accdesc">
-								서포터 문의시 연락이 가능하고 <br> 프로젝트 페이지에서 노출이 가능한<br> 대표 이메일,
-								전화번호를 입력해주세요
-							</div>
-						</div>
-						<div class="info-box">
-							<div class="edit-box artistInfo">
-								<div class="artistinfoarea">
-									<div
-										style="display: inline-block; width: 100px; text-align: right;"
-										align="right">
-										<span>이메일 : </span>
-									</div>
-									<input type="text" class="form-control form-control-sm"
-										name="pArtistEmail"
-										style="display: inline; width: 50%; height: 28px;">
-								</div>
-								<div class="artistinfoarea">
-									<div
-										style="display: inline-block; width: 100px; text-align: right;"
-										align="right">
-										<span>전화번호 : </span>
-									</div>
-									<input type="text" class="form-control form-control-sm"
-										name="pArtistPhone"
-										style="display: inline; width: 50%; height: 28px;">
-								</div>
-							</div>
+						<div class="info-box" style="width: '';">
+					        <div class="artistarea">
+					            <div class="artistbox">
+					                <div class="ribbon ribbon-top-left"><span>두드림 아티스트</span>
+					            </div>
+					            <div class="artistinputarea">
+					                <div class="artistprofile" align="right">
+					                    <input type="text" class="artistinput1" name="pArtistName" placeholder="아티스트 이름" style="margin-right: 30px; height: 50px; margin-bottom: 5px;" autocomplete="off">
+					                    <div id="putunderline"></div>
+					                    <div class="emailphonedesc">
+					                        <span><i class="material-icons">email</i></span>
+					                        <span><i class="material-icons">phone</i></span>
+					                        <span><img src="resources/images/insertFormImages/facebook.jpg" style="width: 17px; height: 17px; border-radius: 5px; opacity: 0.70; margin-right: 15px;"></span>
+					                        <span><img src="resources/images/insertFormImages/instagram.jpg" style="width: 17px; height: 17px; border-radius: 5px; opacity: 0.70; margin-right: 15px;"></span>
+					                    </div>
+					                    <div class="emailphoneinput">
+					                        <input type="text" class="artistinput2" name="pArtistEmail" placeholder="이메일 주소" autocomplete="off">
+					                        <input type="text" class="artistinput2" name="pArtistPhone" placeholder="전화번호" maxlength="14;"
+					                        style="letter-spacing: 5px; font-size: 17px;" oninput="this.value=this.value.replace(/[^0-9]/g,'');inputPhoneNumber(this);"  autocomplete="off">
+					                        <label>https://facebook.com/</label>
+					                        <input type="text" class="artistinput2" name="pArtistSns1" placeholder="페이스북" style="height: 32px; width: 129px; display: inline; letter-spacing: 0; font-size: 16px; font-family: 'Do Hyeon';" autocomplete="off">
+					                        <label>https://instagram.com/</label>
+					                        <input type="text" class="artistinput2" name="pArtistSns2" placeholder="인스타그램" style="height: 32px; width: 123px; display: inline; letter-spacing: 0; font-size: 16px; font-family: 'Do Hyeon';" autocomplete="off">
+					                    </div>    
+					                </div>
+					                <div class="artistimage">
+					                    <div id="aimagebox">
+					                        <div id="aimage-noimage">
+					                            <i class="material-icons">person</i>
+					                            <p>이미지를 등록해주세요!</p>
+					                        </div>
+					                        <div id="aimage-onimage">
+					
+					                        </div>
+					                    </div>
+					                </div>
+					                <div style="clear: both; margin:0; padding: 0; border: 0;"></div>
+					                <div class="artistintro">
+					                    <textarea name="pArtistIntroduction" id="pArtistIntroduction" rows="2" 
+					                    wrap="off"   
+					                    placeholder="자신을 소개하는 문구를 
+짧게 두 줄 정도로 적어주세요!"></textarea>
+					                </div>
+					                <div class="artistfooter">
+					                <span>두드림컴퍼니</span>
+					                </div>
+					            </div>
+					        </div>
 						</div>
 					</div>
 				</div>
 			</form>
-			<button type="button" onclick="goSave();">임시저장하기</button>
-			<button onclick="insertTest();">값 들어간거 확인하기</button>
-			
 		</div>
-		
+		<button type="button" onclick="goSave();">임시저장하기</button>
+		<button onclick="insertTest();">값 들어간거 확인하기(개인테스트용)</button>
 	</div>
 
 	<script src="resources/summernote/dist/summernote.js"></script>
@@ -1068,7 +1026,7 @@
 		if(loginchk==true){
 			$("#agreementForm").hide();
 			$("#insertFundForm").show();
-			$("#insertFormRC").show();
+			$("#insertFormRC").fadeIn(3000);
 			$('html').animate({
 				scrollTop : 0
 			}, 300);
@@ -1078,6 +1036,9 @@
 	// 임시저장하는 메소드입니다. pStatusNum = 1 으로 세팅합니다. 
 	function goSave() {
 		var frm = $("#insertFrm");
+		frm.target = "";
+		frm.method = "POST";
+		frm.action = "insertProject.dr";
 		$("#pStatusNum").val(1);
 		frm.submit();
 	}
@@ -1665,12 +1626,50 @@
 	function insertTest(){
 		var win;
 		var frm = document.insertFrm;
+		$("#pStatusNum").val(1);
 		win = open("","w","width=300,height=200");
 		frm.target = "w";
 		frm.method = "POST";
 		frm.action = "insertTest.dr";
 		frm.submit();
 	}
+</script>
+
+<!-- 아티스트 폼 관련  -->
+<script>
+	function inputPhoneNumber(obj) {
+	    var number = obj.value.replace(/[^0-9]/g, "");
+	    var phone = "";
+	    if(number.length < 4) {
+	        return number;
+	    } else if(number.length < 7) {
+	        phone += number.substr(0, 3);
+	        phone += "-";
+	        phone += number.substr(3);
+	    } else if(number.length < 11) {
+	        phone += number.substr(0, 3);
+	        phone += "-";
+	        phone += number.substr(3, 3);
+	        phone += "-";
+	        phone += number.substr(6);
+	    } else {
+	        phone += number.substr(0, 3);
+	        phone += "-";
+	        phone += number.substr(3, 4);
+	        phone += "-";
+	        phone += number.substr(7);
+	    }
+	    obj.value = phone;
+	}
+	$('#pArtistIntroduction').on("input",function(){
+	    var rows = $('#pArtistIntroduction').val().split('\n').length;
+	    var maxRows = 2;
+	    if( rows > maxRows){
+	        modifiedText = $('#pArtistIntroduction').val().split("\n").slice(0, maxRows);
+	        $('#pArtistIntroduction').val(modifiedText.join("\n"));
+	        return false;
+	    }
+	});
 </script>
 </body>
 </html>
