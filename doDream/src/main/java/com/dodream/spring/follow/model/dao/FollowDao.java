@@ -36,6 +36,11 @@ public class FollowDao {
 		return (ArrayList)sqlSession.selectList("followMapper.selectFollowerList", userNo);
 	}
 
+	public int deleteFollow(Follow follow) {
+		
+		return sqlSession.delete("followMapper.deleteFollow", follow);
+	}
+
 
 
 }

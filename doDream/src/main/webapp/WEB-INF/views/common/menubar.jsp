@@ -401,7 +401,6 @@
 					setCookie("userEmail", userEmail, 15); //15일저장
 					var userPwd = $("#userPwd").val();
 					setCookie("userPwd", userPwd, 15); //15일저장
-
 				}else{
 					deleteCookie("userEmail");
 					deleteCookie("userPwd");

@@ -14,12 +14,17 @@ public class Follow {
 	private Date followerDate; //none -> sysdate
 	private String followPfImg; //프로필사진
 	private String followerPfImg;
+	private int prjCount; // 프로젝트 갯수 카운트
+	private String pWriter;
+	
 	
 	public Follow() {}
+
 	
-	
+
 	public Follow(int followNo, int followerNo, String followName, String followerName, String followSelf,
-			String followerSelf, Date followDate, Date followerDate, String followPfImg, String followerPfImg) {
+			String followerSelf, Date followDate, Date followerDate, String followPfImg, String followerPfImg,
+			int prjCount, String pWriter) {
 		super();
 		this.followNo = followNo;
 		this.followerNo = followerNo;
@@ -31,7 +36,11 @@ public class Follow {
 		this.followerDate = followerDate;
 		this.followPfImg = followPfImg;
 		this.followerPfImg = followerPfImg;
+		this.prjCount = prjCount;
+		this.pWriter = pWriter;
 	}
+
+
 
 	public int getFollowNo() {
 		return followNo;
@@ -113,13 +122,33 @@ public class Follow {
 		this.followerPfImg = followerPfImg;
 	}
 
+	public int getPrjCount() {
+		return prjCount;
+	}
+
+	public void setPrjCount(int prjCount) {
+		this.prjCount = prjCount;
+	}
+	
+	
+	public String getpWriter() {
+		return pWriter;
+	}
+
+	public void setpWriter(String pWriter) {
+		this.pWriter = pWriter;
+	}
+
 	@Override
 	public String toString() {
 		return "Follow [followNo=" + followNo + ", followerNo=" + followerNo + ", followName=" + followName
 				+ ", followerName=" + followerName + ", followSelf=" + followSelf + ", followerSelf=" + followerSelf
 				+ ", followDate=" + followDate + ", followerDate=" + followerDate + ", followPfImg=" + followPfImg
-				+ ", followerPfImg=" + followerPfImg + "]";
+				+ ", followerPfImg=" + followerPfImg + ", prjCount=" + prjCount + ", pWriter=" + pWriter + "]";
 	}
+
+	
+	
 	
 	
 }

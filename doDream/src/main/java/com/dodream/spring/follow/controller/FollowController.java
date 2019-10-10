@@ -57,9 +57,12 @@ public class FollowController {
 		System.out.println(followList);
 		
 		if(followList !=null) {
+						
 			model.addAttribute("menu", 2);
 			model.addAttribute("sub", 1);
+			
 			model.addAttribute("followList", followList);
+			
 			return "member/followList";
 		}else {
 			model.addAttribute("msg", "목록조회에 실패하였습니다.");
@@ -83,6 +86,23 @@ public class FollowController {
 			model.addAttribute("msg", "목록조회에 실패하였습니다.");
 			return "common/errorPage";
 		}
+	}
+	
+	@ResponseBody
+	@RequestMapping("unfollow.dr")
+	public int unfollow(int followerNo, int followNo) {
+		
+		Follow follow = new Follow();
+		follow.setFollowerNo(followerNo);
+		follow.setFollowNo(followNo);
+		
+		System.out.println("followerNo"+followerNo);
+		System.out.println("followNo"+followNo);
+		
+		int result = fService.deleteFollow(follow);
+		
+		System.out.println(result);
+		return result;
 	}
 	
 }

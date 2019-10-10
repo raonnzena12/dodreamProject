@@ -14,4 +14,8 @@ public interface FollowService {
 
 	public abstract List<Follow> selectFollowerList(int userNo);
 
+	public abstract int deleteFollow(Follow follow);
+
+
+
 }
