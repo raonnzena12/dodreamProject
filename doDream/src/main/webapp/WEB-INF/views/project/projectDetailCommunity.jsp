@@ -14,7 +14,7 @@
                height: auto;
                margin: auto;
                min-height: 1600px;
-           }
+           } 
            #content{
                width: 100%;
                min-height: 1000px;

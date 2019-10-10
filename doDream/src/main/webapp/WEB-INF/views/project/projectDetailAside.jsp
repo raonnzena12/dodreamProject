@@ -15,7 +15,7 @@
               /*  border: 1px solid black; */
                margin: 0;
                padding:0;
-           }
+           } 
            #artist{
            		width:290px;
            		height:auto;

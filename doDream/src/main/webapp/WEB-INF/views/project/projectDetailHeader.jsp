@@ -14,7 +14,7 @@
               /*  height: auto; */
               /*  min-height:1000px; */
                margin: auto;
-               
+                
            }
            /* #content{
                width: 100%;
