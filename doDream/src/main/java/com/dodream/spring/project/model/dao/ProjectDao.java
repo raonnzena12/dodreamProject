@@ -151,6 +151,24 @@ public class ProjectDao {
 		return (ArrayList)sqlSession.selectList("projectMapper.selectMainList", userNo);
 	}
 
+	/**
+	 * 자신이 오픈한 프로젝트 리스트 받아오는 DAO
+	 * @param filter
+	 * @return pList
+	 */
+	public ArrayList<Project> selectOpenPrjList(FilteringList filter) {
+		return (ArrayList)sqlSession.selectList("projectMapper.selectOpenPrjList", filter);
+	}
+
+	/**
+	 * 프로젝트 번호에 딸린 리워드 리스트 받아오는 DAO
+	 * @param pno
+	 * @return rList
+	 */
+	public ArrayList<Reward> selectPrjRwdList(int pno) {
+		return (ArrayList)sqlSession.selectList("projectMapper.selectPrjRwdList", pno);
+	}
+
 
 
 	

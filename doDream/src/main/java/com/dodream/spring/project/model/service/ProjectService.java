@@ -87,7 +87,21 @@ public interface ProjectService {
 	 */
 	public abstract ArrayList<Project> selectMainList(int userNo);
 
-	public abstract void insertTest(Project project, MultipartFile uploadfile1, MultipartFile uploadfile2,
+	/**
+	 * 자신이 오픈한 프로젝트 리스트 반환하는 Service
+	 * @param filteringList
+	 * @return pList
+	 */
+	public abstract ArrayList<Project> selectOpenPrjList(FilteringList filteringList);
+
+	/**
+	 * 프로젝트 번호로 딸린 리워드 리스트를 반환하는 Service
+	 * @param pno
+	 * @return rList
+	 */
+	public abstract ArrayList<Reward> selectPrjRwdList(int pno);
+
+  public abstract void insertTest(Project project, MultipartFile uploadfile1, MultipartFile uploadfile2,
 			MultipartFile uploadfile3, HttpServletRequest request);
 
 

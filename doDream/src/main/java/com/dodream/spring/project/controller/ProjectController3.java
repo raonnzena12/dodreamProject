@@ -19,6 +19,7 @@ import com.dodream.spring.project.model.service.ProjectService;
 import com.dodream.spring.project.model.vo.FilteringList;
 import com.dodream.spring.project.model.vo.Like;
 import com.dodream.spring.project.model.vo.Project;
+import com.dodream.spring.project.model.vo.Reward;
 
 @Controller
 public class ProjectController3 {
@@ -94,9 +95,33 @@ public class ProjectController3 {
 		return result;
 	}
 	
-	@RequestMapping("kakaotest.dr")
-	public String testtest() {
-		return "common/main";
+	// 내가 오픈한 프로젝트 리스트 조회하는 뷰
+	@RequestMapping("myPrjList.dr")
+	public String testtest(HttpServletRequest request, String order, Model model) {
+		int userNo = 0 ;
+		Object loginUser = request.getSession().getAttribute("loginUser");
+		if ( loginUser != null ) {
+			userNo = ((Member)loginUser).getUserNo();
+		}
+		userNo = 3; // 테스트 uno
+		String order1 = (order == null || order.equals("") ) ? "ALL" : order;
+		ArrayList<Project> pList = pService.selectOpenPrjList(new FilteringList(userNo, order1));
+		model.addAttribute("pList", pList);
+		model.addAttribute("order", order1);
+		return "member/myProjectList";
+	}
+	
+	// 내가 오픈한 프로젝트 현황 조회하는 뷰
+	@RequestMapping("myPrjInfo.dr")
+	public String testtesttest(Integer pNo, Model model) {
+		int pno = (pNo == null)? 0 : pNo;
+		Project prj = pService.selectProjectS(pno);
+		ArrayList<Reward> rList = pService.selectPrjRwdList(pno);
+		
+		model.addAttribute("prj", prj);
+		model.addAttribute("rList", rList);
+		
+		return "project/openProjectStatus";
 	}
 
 }

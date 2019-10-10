@@ -147,6 +147,9 @@
     background-color: #F39C12;
     margin: 20px auto;
 }
+.carousel-item h4, .carousel-item p {
+    text-shadow: 1px 1px 5px #666;
+}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@mojs/core"></script>
 </head>

@@ -32,6 +32,7 @@
 		<result property="pOpenCount" column="PROJECT_OPEN_COUNT" />
 		<result property="pArtistIntroduction" column="PROJECT_AT_INT" />
 		<result property="pUserCount" column="USERCOUNT" />
+		<result property="additional" column="ADDITIONAL" />
 	</resultMap>
 	
 	<resultMap id="projectResultSet2" type="Project">
@@ -116,9 +117,6 @@
 		<result property="repStatus" column="REPORT_STATUS"/>
 	</resultMap>
 	
-	
-	
-	
 	<!-- 프로젝트 등록  -->
 	<insert id="insertProject" parameterType="Project">
 		UPDATE PROJECT_TB SET 
@@ -153,7 +151,7 @@
 	<select id="selectProject" parameterType="_int" resultMap="projectResultSet">
 		<!-- SELECT P.*, FLOOR(PROJECT_CLOSE_DT - SYSDATE) AS D_DAY FROM PROJECT_TB P
 		WHERE PROJECT_NO = #{ pNo }  -->
-		SELECT * FROM PROJECT_DETAIL_VIEW_2ND
+		SELECT * FROM PROJECT_LIST_VIEW_3RD
 		WHERE PROJECT_NO = #{ pNo }
 	</select>
 	
@@ -452,6 +450,33 @@
 	<select id="myLikePRJList" resultMap="projectResultSet" parameterType="_int">
 		SELECT * FROM LIKE_TB JOIN USER_TB ON(LIKE_USER = USER_NO) JOIN PROJECT_LIST_VIEW ON(LIKE_PRJ = PROJECT_NO) 
 		WHERE LIKE_USER = #{userNo}
+	</select>
+	
+	<!-- 자신이 오픈한 프로젝트 리스트 조회 -->
+	<select id="selectOpenPrjList" parameterType="FilteringList" resultMap="projectResultSet">
+		SELECT * FROM PROJECT_LIST_VIEW_2ND 
+		WHERE PROJECT_WRITER = #{ userNo }
+		<choose>
+			<when test='order == "ALL"'>
+			AND PROJECT_ST_NO IN ( 4, 5, 7 )
+			</when>
+			<when test='order == "ING"'>
+			AND PROJECT_ST_NO = 4
+			</when>
+			<when test='order == "END"'>
+			AND PROJECT_ST_NO = 7
+			</when>
+			<when test='order == "CAN"'>
+			AND PROJECT_ST_NO = 5
+			</when>
+		</choose>
+		ORDER BY RECENT DESC NULLS LAST
+	</select>
+	
+	<!-- 자신이 오픈한 프로젝트 리워드 리스트 조회 -->
+	<select id="selectPrjRwdList" parameterType="_int" resultMap="rewardResultSet">
+		SELECT R.*, NVL((SELECT SUM(REWARD_SUM) FROM HISTORY H JOIN RESERVE RES ON (H.RESERVE_NO = RES.RESERVE_NO) WHERE H.REWARD_NO = R.REWARD_NO AND RESERVE_STATUS_NO IN (1, 2, 4) ),0) AS SUMM FROM REWARD R
+		WHERE REWARD_REF_PNO = #{ pno }
 	</select>
 	
 	<!-- ====================== mainPage =========================== -->

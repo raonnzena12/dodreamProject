@@ -172,7 +172,16 @@ public class ProjectServiceImpl implements ProjectService {
 	}
 
 	@Override
-	public void insertTest(Project project, MultipartFile uploadfile1, MultipartFile uploadfile2,
+	public ArrayList<Project> selectOpenPrjList(FilteringList filter) {
+		return pDao.selectOpenPrjList(filter);
+	}
+
+	@Override
+	public ArrayList<Reward> selectPrjRwdList(int pno) {
+		return pDao.selectPrjRwdList(pno);
+
+  @Override
+  public void insertTest(Project project, MultipartFile uploadfile1, MultipartFile uploadfile2,
 			MultipartFile uploadfile3, HttpServletRequest request) {
 		String renameTImageName = null;
 		String renamePImageName = null;
@@ -192,7 +201,5 @@ public class ProjectServiceImpl implements ProjectService {
 		System.out.println("프로젝트--------------");
 		System.out.println(project.toString());
 	}
-
-
 
 }
