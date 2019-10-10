@@ -3,6 +3,7 @@ package com.dodream.spring.customerCenter.model.vo;
 import java.sql.Date;
 
 public class Review {
+	
 	private int    revNo;         // 번호
 	private String revTitle;      // 제목
 	private String revContent;    // 내용
@@ -12,20 +13,21 @@ public class Review {
 	private int    revRefPno;     // 프로젝트 번호
 	private int    revWriter;     // 작성자번호(관리자)
 	private String reviewTnImg;   // 썸네일
-	private String ReviewImg;	  // 리뷰 이미지
-	private int    revConut;	  // 조회수
-	private String revsubTitle;	  // 부제목
-	private int    revCNo;	  // 부제목
-	
+	private String reviewImg;	  // 리뷰 이미지
+	private int    revCount;	  // 조회수
+	private String revSubTitle;	  // 부제목
+	private int    revCatNo;	  // 부제목
+	private String userNickname;  // 글쓴이 이름
+	private String revCatName;    // 카테고리명
+	private String revRefPname;	  // 프로젝트명
 	
 	public Review() {  
 		
 	}
 
-
 	public Review(int revNo, String revTitle, String revContent, Date revEnrollDate, Date revModifyDate,
-			String revStatus, int revRefPno, int revWriter, String reviewTnImg, String reviewImg, int revConut,
-			String revsubTitle, int revCNo) {
+			String revStatus, int revRefPno, int revWriter, String reviewTnImg, String reviewImg, int revCount,
+			String revSubTitle, int revCatNo, String userNickname, String revCatName, String revRefPname) {
 		super();
 		this.revNo = revNo;
 		this.revTitle = revTitle;
@@ -36,231 +38,155 @@ public class Review {
 		this.revRefPno = revRefPno;
 		this.revWriter = revWriter;
 		this.reviewTnImg = reviewTnImg;
-		ReviewImg = reviewImg;
-		this.revConut = revConut;
-		this.revsubTitle = revsubTitle;
-		this.revCNo = revCNo;
+		this.reviewImg = reviewImg;
+		this.revCount = revCount;
+		this.revSubTitle = revSubTitle;
+		this.revCatNo = revCatNo;
+		this.userNickname = userNickname;
+		this.revCatName = revCatName;
+		this.revRefPname = revRefPname;
 	}
 
-
-	/**
-	 * @return the revNo
-	 */
 	public int getRevNo() {
 		return revNo;
 	}
 
-
-	/**
-	 * @param revNo the revNo to set
-	 */
 	public void setRevNo(int revNo) {
 		this.revNo = revNo;
 	}
 
-
-	/**
-	 * @return the revTitle
-	 */
 	public String getRevTitle() {
 		return revTitle;
 	}
 
-
-	/**
-	 * @param revTitle the revTitle to set
-	 */
 	public void setRevTitle(String revTitle) {
 		this.revTitle = revTitle;
 	}
 
-
-	/**
-	 * @return the revContent
-	 */
 	public String getRevContent() {
 		return revContent;
 	}
 
-
-	/**
-	 * @param revContent the revContent to set
-	 */
 	public void setRevContent(String revContent) {
 		this.revContent = revContent;
 	}
 
-
-	/**
-	 * @return the revEnrollDate
-	 */
 	public Date getRevEnrollDate() {
 		return revEnrollDate;
 	}
 
-
-	/**
-	 * @param revEnrollDate the revEnrollDate to set
-	 */
 	public void setRevEnrollDate(Date revEnrollDate) {
 		this.revEnrollDate = revEnrollDate;
 	}
 
-
-	/**
-	 * @return the revModifyDate
-	 */
 	public Date getRevModifyDate() {
 		return revModifyDate;
 	}
 
-
-	/**
-	 * @param revModifyDate the revModifyDate to set
-	 */
 	public void setRevModifyDate(Date revModifyDate) {
 		this.revModifyDate = revModifyDate;
 	}
 
-
-	/**
-	 * @return the revStatus
-	 */
 	public String getRevStatus() {
 		return revStatus;
 	}
 
-
-	/**
-	 * @param revStatus the revStatus to set
-	 */
 	public void setRevStatus(String revStatus) {
 		this.revStatus = revStatus;
 	}
 
-
-	/**
-	 * @return the revRefPno
-	 */
 	public int getRevRefPno() {
 		return revRefPno;
 	}
 
-
-	/**
-	 * @param revRefPno the revRefPno to set
-	 */
 	public void setRevRefPno(int revRefPno) {
 		this.revRefPno = revRefPno;
 	}
 
-
-	/**
-	 * @return the revWriter
-	 */
 	public int getRevWriter() {
 		return revWriter;
 	}
 
-
-	/**
-	 * @param revWriter the revWriter to set
-	 */
 	public void setRevWriter(int revWriter) {
 		this.revWriter = revWriter;
 	}
 
-
-	/**
-	 * @return the reviewTnImg
-	 */
 	public String getReviewTnImg() {
 		return reviewTnImg;
 	}
 
-
-	/**
-	 * @param reviewTnImg the reviewTnImg to set
-	 */
 	public void setReviewTnImg(String reviewTnImg) {
 		this.reviewTnImg = reviewTnImg;
 	}
 
-
-	/**
-	 * @return the reviewImg
-	 */
 	public String getReviewImg() {
-		return ReviewImg;
+		return reviewImg;
 	}
 
-
-	/**
-	 * @param reviewImg the reviewImg to set
-	 */
 	public void setReviewImg(String reviewImg) {
-		ReviewImg = reviewImg;
+		this.reviewImg = reviewImg;
 	}
 
-
-	/**
-	 * @return the revConut
-	 */
-	public int getRevConut() {
-		return revConut;
+	public int getRevCount() {
+		return revCount;
 	}
 
-
-	/**
-	 * @param revConut the revConut to set
-	 */
-	public void setRevConut(int revConut) {
-		this.revConut = revConut;
+	public void setRevCount(int revCount) {
+		this.revCount = revCount;
 	}
 
-
-	/**
-	 * @return the revsubTitle
-	 */
-	public String getRevsubTitle() {
-		return revsubTitle;
+	public String getRevSubTitle() {
+		return revSubTitle;
 	}
 
-
-	/**
-	 * @param revsubTitle the revsubTitle to set
-	 */
-	public void setRevsubTitle(String revsubTitle) {
-		this.revsubTitle = revsubTitle;
+	public void setRevSubTitle(String revSubTitle) {
+		this.revSubTitle = revSubTitle;
 	}
 
-
-	/**
-	 * @return the revCNo
-	 */
-	public int getRevCNo() {
-		return revCNo;
+	public int getRevCatNo() {
+		return revCatNo;
 	}
 
-
-	/**
-	 * @param revCNo the revCNo to set
-	 */
-	public void setRevCNo(int revCNo) {
-		this.revCNo = revCNo;
+	public void setRevCatNo(int revCatNo) {
+		this.revCatNo = revCatNo;
 	}
 
+	public String getUserNickname() {
+		return userNickname;
+	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
+	public void setUserNickname(String userNickname) {
+		this.userNickname = userNickname;
+	}
+
+	public String getRevCatName() {
+		return revCatName;
+	}
+
+	public void setRevCatName(String revCatName) {
+		this.revCatName = revCatName;
+	}
+
+	public String getRevRefPname() {
+		return revRefPname;
+	}
+
+	public void setRevRefPname(String revRefPname) {
+		this.revRefPname = revRefPname;
+	}
+
 	@Override
 	public String toString() {
 		return "Review [revNo=" + revNo + ", revTitle=" + revTitle + ", revContent=" + revContent + ", revEnrollDate="
 				+ revEnrollDate + ", revModifyDate=" + revModifyDate + ", revStatus=" + revStatus + ", revRefPno="
-				+ revRefPno + ", revWriter=" + revWriter + ", reviewTnImg=" + reviewTnImg + ", ReviewImg=" + ReviewImg
-				+ ", revConut=" + revConut + ", revsubTitle=" + revsubTitle + ", revCNo=" + revCNo + "]";
+				+ revRefPno + ", revWriter=" + revWriter + ", reviewTnImg=" + reviewTnImg + ", reviewImg=" + reviewImg
+				+ ", revCount=" + revCount + ", revSubTitle=" + revSubTitle + ", revCatNo=" + revCatNo
+				+ ", userNickname=" + userNickname + ", revCatName=" + revCatName + ", revRefPname=" + revRefPname
+				+ "]";
 	}
+
+	
+	
 	
 	
 	

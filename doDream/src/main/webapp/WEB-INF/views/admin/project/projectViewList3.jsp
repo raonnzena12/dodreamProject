@@ -139,7 +139,9 @@ tbody tr:hover{
 													<c:forEach var="p" items="${ list }">
 														<tr role="row" class="odd">
 															<td class="sorting_1">${ p.pNo }</td>
-															<td>${ p.pTitle }</td>
+															<td>
+																<a href="detailSt.dr?pNo=${p.pNo}" style="text-decoration:none; color: gray;">${ p.pTitle }</a>
+															</td>
 															<td>${ p.pGoal}</td>
 															<td>${ p.pStartDate}</td>
 															<td>${ p.pCloseDate }</td>

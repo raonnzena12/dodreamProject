@@ -1,408 +1,375 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <%@ include file="../common/menubar.jsp"%>
-<link rel="stylesheet" href="resources/css/fundList.css">
+<link rel="stylesheet" href="resources/css/fReview.css">
 <style>
 .fundItem {
-	cursor: pointer;
-}
+   cursor: pointer;
+} 
 
 #categoryTop {
-	border-bottom: 1px solid #ddd;
+   border-bottom: 1px solid #ddd;
 }
+
 #categoryArea input[type=radio] {
-	display: none;
+   display: none; 
 }
 
 #categoryArea input[type=radio]:checked+label {
-	color: #fff;
-	background-color: #F39C12;
+   color: #fff;
+   background-color: #F39C12;
 }
 
 #categoryArea label {
-	display: inline-block;
-	width: 100px;
-	height: 40px;
-	margin: 0 20px;
-	background-color: #ddd;
-	text-align: center;
-	vertical-align: center;
-	border-radius: 5px;
-	line-height: 40px;
+   display: inline-block;
+   width: 100px;
+   height: 40px;
+   margin: 0 20px;
+   background-color: #ddd;
+   text-align: center;
+   vertical-align: center;
+   border-radius: 5px;
+   line-height: 40px;
 }
 
 #categoryTopMenu {
-	text-align: center;
-	padding-top: 20px;
-	padding-bottom: 20px;
-	width: 100%;
+   text-align: center;
+   padding-top: 20px;
+   padding-bottom: 20px;
+   width: 100%;
 }
 
 .font15 {
-	font-size: 15px;
+   font-size: 15px;
 }
 
 #resultMenu input, #resultMenu select, #resultMenu option {
-	border: none;
-	text-align: right;
+   border: none;
+   text-align: right;
 }
 
 #resultMenu input[type=search]:focus, #resultMenu select:focus {
-	outline: none;
+   outline: none;
 }
 
 #category .ver-super {
-	vertical-align: sub;
+   vertical-align: sub;
 }
 
 #category .resultPrint {
-	display: inline-flex;
-	width: 100%;
-	flex-wrap: wrap;
-	justify-content: space-around;
-	align-content: space-around;
+   display: inline-flex;
+   width: 100%;
+   flex-wrap: wrap;
+   justify-content: space-around;
+   align-content: space-around;
 }
 
 #category .resultPrint>div {
-	margin: 10px;
-	min-width: 250px;
-	height: 400px;
-	flex: 1;
-	flex-basis: 20%;
-	padding: 10px;
-	position: relative;
+   margin: 10px;
+   min-width: 250px;
+   height: 400px;
+   flex: 1;
+   flex-basis: 20%;
+   padding: 10px;
+   position: relative;
 }
 
 #category .fundCon {
-	/* border: 1px solid red; */
-	width: 250px;
-	height: 350px;
-	position: absolute;
-	margin: auto;
-	right: 0;
-	left: 0;
-	box-shadow: 1px 1px 3px #ccc;
+   /* border: 1px solid red; */
+   width: 250px;
+   height: 350px;
+   position: absolute;
+   margin: auto;
+   right: 0;
+   left: 0;
+   box-shadow: 1px 1px 3px #ccc;
 }
 
 #category .fundCon:hover {
-	box-shadow: 1px 1px 4px #aaa;
+   box-shadow: 1px 1px 4px #aaa;
 }
 
 #category .fundItem {
-	display: grid;
-	grid-template-columns: 200px 50px;
-	grid-template-rows: 180px 50px 50px 70px;
+   display: grid;
+   grid-template-columns: 200px 50px;
+   grid-template-rows: 180px 50px 50px 70px;
 }
 
 #category .fundImg, #category .chartArea {
-	grid-column-start: 1;
-	grid-column-end: 3;
+   grid-column-start: 1;
+   grid-column-end: 3;
 }
 
 #category .detailArea {
-	grid-column-start: 1;
-	grid-column-end: 3;
-	padding-left: 15px;
-	padding-right: 15px;
-	line-height: 15px;
-	padding-top: 3px;
+   grid-column-start: 1;
+   grid-column-end: 3;
+   padding-left: 15px;
+   padding-right: 15px;
+   line-height: 15px;
+   padding-top: 3px;
 }
 
 #category .nameArea {
-	grid-column-start: 1;
-	grid-column-end: 3;
-	padding-left: 15px;
-	line-height: 21px;
-	padding-top: 12px;
+   grid-column-start: 1;
+   grid-column-end: 3;
+   padding-left: 15px;
+   line-height: 21px;
+   padding-top: 12px;
 }
 
 #category .fundImg>img {
-	width: 100%;
-	height: 180px;
+   width: 100%;
+   height: 180px;
 }
 
 #category .categoryName {
-	font-weight: 800;
-	font-size: 15px;
-	color: #F39C12;
+   font-weight: 800;
+   font-size: 15px;
+   color: #F39C12;
 }
 
 #category .fundName {
-	font-weight: 900;
-	font-size: 18px;
+   font-weight: 900;
+   font-size: 18px;
 }
 
 #category .detailText {
-	font-size: 14px;
-	color: #777;
+   font-size: 14px;
+   color: #777;
 }
 
 #category .chartBar {
-	width: 100%;
-	height: 5px;
-	background-color: #ddd;
-	border-radius: 5px;
+   width: 100%;
+   height: 5px;
+   background-color: #ddd;
+   border-radius: 5px;
 }
 
 #category .purpleBar {
-	border-radius: 5px;
-	background-color: #8E44AD;
-	height: 100%;
-	/* width: 25%; */
+   border-radius: 5px;
+   background-color: #8E44AD;
+   height: 100%;
+   /* width: 25%; */
 }
 
 #category .chartInfo1 {
-	float: left;
+   float: left;
 }
 
 #category .chartInfo2 {
-	float: right;
+   float: right;
 }
 
 #category .chartInfo>span {
-	font-size: 14px;
-	font-weight: bold;
+   font-size: 14px;
+   font-weight: bold;
 }
 
 #category .chartDate {
-	font-size: 13px;
-	font-weight: bold;
-	float: right;
-	color: #777;
-	margin-right: 5px;
+   font-size: 13px;
+   font-weight: bold;
+   float: right;
+   color: #777;
+   margin-right: 5px;
 }
 
 #category .heartIcon {
-	text-align: right;
-	padding-right: 7px;
-	padding-top: 5px;
-	cursor: pointer;
-	position: absolute;
-	float: right;
-	top: 180px;
-	right: 0;
+   text-align: right;
+   padding-right: 7px;
+   padding-top: 5px;
+   cursor: pointer;
+   position: absolute;
+   float: right;
+   top: 180px;
+   right: 0;
 }
 
 #category .heart-fund {
-	color: #F39C12;
-	font-size: 30px;
+   color: #F39C12;
+   font-size: 30px;
 }
 
 #loadingImg {
-	width: 40px;
-	height: auto;
-	opacity: 0;
+   width: 40px;
+   height: auto;
+   opacity: 0;
 }
 
 #ReviewCon {
-	width: 1200px;
-	min-height: 900px;
-	height: auto;
+   width: 1200px;
+   min-height: 900px;
+   height: auto;
 }
 
 #Review_bar {
-	border-bottom: 3px solid #8E44AD;
+   border-bottom: 3px solid #8E44AD;
 }
 
 #Review_table {
-	padding-top: 20px;
-	width: 100%;
-	margin: auto;
+   padding-top: 20px;
+   width: 100%;
+   margin: auto;
 }
 
 #FReview_title {
-	position: absolute;
-	align-content: center;
-	right: 0;
-	left: 0;
-	margin: 0 auto;
-	width: 500px;
+   position: absolute;
+   align-content: center;
+   right: 0;
+   left: 0;
+   margin: 0 auto;
+   width: 500px;
 }
 
 .jumbotron {
-	padding: 0;
+   padding: 0;
 }
 
 #categoryTopMenu {
-	text-align: center;
-	padding: 0 20px;
+   text-align: center;
+   padding: 0 20px;
 }
 
 .fundImg>img {
-	width: 100%;
-	height: 180px;
+   width: 100%;
+   height: 180px;
 }
-/* {
-    margin: 5%;
-   /*  min-width: 300px; */
-/*  height: 400px;
-    flex: 1;
-    flex-basis: 20%;
-    padding: 10px;
-    position: relative; */
-}
-* /
 
 .reviewCon {
-	/* border: 1px solid red; */
-	width: 250px;
-	height: 350px;
-	/* position: absolute; */
-	float: left;
-	margin: 2%;
-	right: 0;
-	left: 0;
-	box-shadow: 1px 1px 3px #ccc;
+   /* border: 1px solid red; */
+   width: 250px;
+   height: 350px;
+   /* position: absolute; */
+   float: left;
+   margin: 2%;
+   right: 0;
+   left: 0;
+   box-shadow: 1px 1px 3px #ccc;
 }
 
 .reviewCon:hover {
-	box-shadow: 1px 1px 4px #aaa;
+   box-shadow: 1px 1px 4px #aaa;
 }
 
 #img, #Name {
-	padding: 10px;
+   padding: 10px;
 }
 </style>
 <!-- mojs(좋아요 클릭시 효과) 추가 -->
 <script src="https://cdn.jsdelivr.net/npm/@mojs/core"></script>
 </head>
 <body>
-	<c:url var="keywordSearch" value="tmptmp" />
-	<section id="category">
-		<div class="container-fluid" id="ReviewCon">
-			<div class="row">
-				<div class="col-md-12" align="center">
-					<div class="jumbotron">
-						<img src="resources/images/backgroundImg/배경로고시안 (2).png"
-							style="width: 100%">
-					</div>
-				</div>
-			</div>
-			<div class="sticky-top row" style="background-color: white;">
-				<div class="col-md-12" id="cCenter_menu">
-					<ul class="nav" style="background-color: #E1F5A9;">
-						<li class="nav-item"><a class="nav-link" href="cCenter.dr">공지사항</a></li>
-						<li class="nav-item"><a class="nav-link"
-							href="T_O_Service.dr">이용약관</a></li>
-						<li class="nav-item"><a class="nav-link" href="fReview.dr">프로젝트
-								후기</a></li>
-						<li class="nav-item"><a class="nav-link" href="faq.dr">FAQ</a></li>
+   <c:url var="keywordSearch" value="tmptmp" />
+   <section id="category">
+      <div class="container-fluid" id="ReviewCon">
+         <div class="row">
+            <div class="col-md-12" align="center">
+               <div class="jumbotron">
+                  <img src="resources/images/backgroundImg/배경로고시안 (2).png"
+                     style="width: 100%">
+               </div>
+            </div>
+         </div>
+         <div class="sticky-top row" style="background-color: white;">
+            <div class="col-md-12" id="cCenter_menu">
+               <ul class="nav" style="background-color: #E1F5A9;">
+                  <li class="nav-item"><a class="nav-link" href="cCenter.dr">공지사항</a></li>
+                  <li class="nav-item"><a class="nav-link"
+                     href="T_O_Service.dr">이용약관 </a></li>
+                  <li class="nav-item"><a class="nav-link" href="fReview.dr">프로젝트
+                        후기</a></li>
+                  <li class="nav-item"><a class="nav-link" href="faq.dr">FAQ</a></li>
 
-					</ul>
-				</div>
-			</div>
-			<div class="row" id="Review_table">
-				<div class="col-md-12"></div>
-			</div>
-			<h3>프로젝트 후기</h3>
-				<hr id=Review_bar>
-			<div class="container-fluid clearfix" id="categoryTop">
-				<div class="row">
+               </ul>
+            </div>
+         </div>
+         <div class="row" id="Review_table">
+            <div class="col-md-12"></div>
+         </div>
+         <h3>프로젝트 후기</h3>
+         <hr id=Review_bar>
+         <div class="container-fluid clearfix" id="categoryTop">
+            <div class="row">
 
-					<div id="categoryTopMenu">
-						<div id="categoryArea" class="my-5">
-							<input type="radio" name="category" id="total" value="total"
-								checked><label for="total">전체</label> <input
-								type="radio" name="category" id="music" value="music"><label
-								for="music">음악</label> <input type="radio" name="category"
-								id="movie" value="movie"><label for="movie">영화</label> <input
-								type="radio" name="category" id="play" value="play"><label
-								for="play">연극</label> <input type="radio" name="category"
-								id="art" value="art"><label for="art">미술</label> <input
-								type="radio" name="category" id="etc" value="etc"><label
-								for="etc">ETC</label>
-						</div>
-					</div>
+               <div id="categoryTopMenu">
+                  <div id="categoryArea" class="my-5">
+                     <input type="radio" name="category" id="total" value="total" checked><label for="total">전체</label> 
+                     <input type="radio" name="category" id="music" value="music"><label   for="music">음악</label> 
+                     <input type="radio" name="category"   id="movie" value="movie"><label for="movie">영화</label> 
+                     <input type="radio" name="category" id="play" value="play"><label for="play">연극</label> 
+                     <input type="radio" name="category" id="art" value="art"><label for="art">미술</label> 
+                     <input type="radio" name="category" id="etc" value="etc"><label for="etc">ETC</label>
+                  </div>
+               </div>
 
-				</div>
+            </div>
 
-				<div class="container-fluid" id="categoryResult">
-					<div class="row">
-						
-						<div>
-							<%-- <div id="resultMenu" class="my-4">
-								<span>전체보기</span> <span class="float-right">
-									<form action="${ keywordSearch }">
-										<input type="search" name="fundKeyword" id="fundKeyword">
-										<i class="ver-super material-icons" id="titleSearchSubmit">search</i>
-										<select name="filter" id="filter">
-											<option value="allFunding" selected>전체</option>
-											<option value="runFunding">진행중인 펀딩</option>
-											<option value="endFunding">종료된 펀딩</option>
-										</select> <select name="filter2" id="filter2">
-											<option value="popularClick">인기순</option>
-											<option value="newest">최신순</option>
-											<option value="priceless">최고금액순</option>
-											<option value="popularFund">최다후원순</option>
-											<option value="Deadline">마감임박순</option>
-										</select>
-									</form>
-								</span>
-							</div> --%>
-							<div class="resultPrint">
-								<c:forEach var="rev" items="${ revList }">
-									<div>
-										<div class="fundCon">
-											<div class="fundItem" id="${ rev.revNo }">
-												<div class="fundImg">
-													<img
-														src="resources/images/projectImg/thumbnail/${ rev.reviewTnImg }">
-												</div>
-												<div class="nameArea">
-													<p class="categoryName mb-0">${ rev.revCNo }</p>
-													<!-- 카테고리 -->
-													<p class="fundName">제목 : ${ rev.revTitle }<!-- 제목 -->
-													</p>
-													<span class="fundName">내용 : ${ rev.revContent }<!-- 제목 -->
-													</span>
-												</div>
-												<!-- <div class="heartIcon">
-													<i class="material-icons heart-fund">favorite_border</i>
-												</div> -->
-												<div class="detailArea my-1"></div>
-												<%--      <div class="chartArea px-3 mt-2">
-                              <div class="chartInfo clearfix">
-                                 <span class="chartInfo1">￦<fmt:formatNumber value="${ rev.pCurrentFunding }" groupingUsed="true" /></span>
-                                 <span class="chartInfo2"><fmt:parseNumber value="${ (rev.pCurrentFunding / rev.pGoal) * 100 }" integerOnly="true" />%</span>
+            <div class="container-fluid" id="categoryResult">
+               <div class="row">
+
+                  <div>
+                     <div class="resultPrint">
+                        <c:forEach var="rev" items="${ revList }">
+                           <div>
+
+
+                              <div class="fundCon">
+
+
+                                 <div class="fundItem" id="${ rev.revNo }">
+
+
+                                    <div class="fundImg">
+
+
+                                       <img src="/spring/resources/images/summernoteimg/${ rev.reviewTnImg }">
+                                       <!-- <img src="resources/images/backgroundImg/배경로고시안 (2).png" style="width: 100%"> -->
+
+                                    </div>
+
+
+                                    <div class="nameArea">
+
+
+                                       <p class="categoryName mb-0">${ rev.revCatName }</p>
+
+
+                                       <!-- 카테고리 -->
+
+                                       <!-- 부제목 -->
+                                       <p class="fundName">${ rev.revTitle }
+                                       </p>
+
+                                       <!-- 부제목 -->
+                                       <span class="fundName">${ rev.revSubTitle }</span>
+
+
+                                    </div>
+
+
+
+                                    <div class="detailArea my-1"></div>
+
+                                 </div>
+
+
                               </div>
-                              <div class="chartBar">
-                              <c:choose>
-                                 <c:when test="${ ((rev.pCurrentFunding / rev.pGoal) * 100) < 100 }">
-                                 <div class="purpleBar" style="width:${ (rev.pCurrentFunding / rev.pGoal) * 100 }%"></div>
-                                 </c:when>
-                                 <c:otherwise>
-                                 <div class="purpleBar"></div>                                       
-                                 </c:otherwise>
-                              </c:choose>
-                              </div>
-                              <c:choose>
-                                 <c:when test="${ rev.pDDay > 0 }">
-                                 <div class="chartDate">${ rev.pDDay }일 남음</div>
-                                 </c:when>
-                                 <c:otherwise>
-                                 <div class="chartDate">펀딩 종료</div>
-                                 </c:otherwise>
-                              </c:choose>
-                           </div> --%>
-											</div>
-										</div>
-									</div>
-								</c:forEach>
-							</div>
-							<div class="text-center">
-								<img src="resources/images/loadingSpin.gif" id="loadingImg">
-							</div>
-						</div>
-						
-					</div>
-				</div>
-	</section>
-	<script>
+                           </div>
+                        </c:forEach>
+                     </div>
+                     <div class="text-center">
+                        <img src="resources/images/loadingSpin.gif" id="loadingImg">
+                     </div>
+                  </div>
+
+               </div>
+            </div>
+   </section>
+   <script>
 // 페이지 접속하면 currentPage = 1;
 var currentPage = 1;
 var maxPage = ${ pi.maxPage };
@@ -472,12 +439,18 @@ function printFunds(list) {
       $detailArea.append($detailText);
       var $chartArea = $("<div>").addClass("chartArea px-3 mt-2");
       var $chartInfo = $("<div>").addClass("chartInfo clearfix")
-      var $chartInfo1 = $("<span>").addClass("chartInfo1").text("￦"+addComma(list[i].pCurrentFunding));
-      var $chartInfo2 = $("<span>").addClass("chartInfo2").text(Math.floor((list[i].pCurrentFunding/list[i].pGoal)*100)+"%");
+      var $chartInfo1 = $("<span>").addClass("chartInfo1").text("￦"+addComma(list
+
+[i].pCurrentFunding));
+      var $chartInfo2 = $("<span>").addClass("chartInfo2").text(Math.floor((list[i].pCurrentFunding/list
+
+[i].pGoal)*100)+"%");
       $chartInfo.append($chartInfo1, $chartInfo2);
       var $chartBar = $("<div>").addClass("chartBar");
       // 진행바 가로길이 지정
-      var $purpleBar = $("<div>").addClass("purpleBar").css("width", (list[i].pCurrentFunding/list[i].pGoal)*100+"%");
+      var $purpleBar = $("<div>").addClass("purpleBar").css("width", (list[i].pCurrentFunding/list
+
+[i].pGoal)*100+"%");
       $chartBar.append($purpleBar);
       var $chartDate = $("<div>").addClass("chartDate").text(list[i].pDDay+"일 남음");
       $chartArea.append($chartInfo,$chartBar,$chartDate);
@@ -546,9 +519,9 @@ $(function(){
                  page: currentPage },
          dataType: "JSON",
          error: function(e){ console.log(e); },
-         success: function(pList) {
+         success: function(revList) {
             $(".resultPrint").html("");
-            printFunds(pList);
+            printFunds(revList);
          }
       });
    });
@@ -557,7 +530,7 @@ $(function(){
 
 </script>
 
-	<script>
+   <script>
    const CIRCLE_RADIUS = 20;
    const RADIUS = 32;
    const circle = new mojs.Shape({

@@ -16,7 +16,9 @@
 		<result property="userNickname" column="USER_NICKNAME"/>
 		<result property="revCount" column="REVIEW_COUNT"/>
 		<result property="revSubTitle" column="REVIEW_SUBTITLE"/>
-		<result property="revCategoryNo" column="REVIEW_CNO"/>
+		<result property="revCatNo" column="REVIEW_CNO"/>
+		<result property="revCatName" column="PROJECT_CT_NAME"/>
+		<result property="revRefPname" column="PROJECT_TITLE"/>
 	</resultMap>
 	
 	<!-- 리뷰 목록 -->
@@ -34,16 +36,18 @@
 	<insert id="insertReview" parameterType="Review">
 		INSERT INTO REVIEW VALUES(
   			SEQ_PROJ_RV_NO.NEXTVAL,#{revTitle},#{revContent},SYSDATE,SYSDATE, DEFAULT, #{revRefPno}, #{revWriter} ,
-  			#{reviewTnImg}, #{reviewImg}, DEFAULT, #{revSubTitle} ,#{revCategoryNo}
+  			#{reviewTnImg}, #{reviewImg}, DEFAULT, #{revSubTitle} ,#{revCatNo}
 		)
 	</insert>
 	
 	<!-- 해당 리뷰 조회 -->
 	<select id="selectReview" resultMap="ReviewResultSet" parameterType="_int">
 		SELECT  REVIEW_NO,REVIEW_TITLE,REVIEW_CONTENT,REVIEW_ER_DT,REVIEW_MF_DT,REVIEW_STATUS,REVIEW_REF_PNO,USER_NICKNAME,REVIEW_TN_IMG,
-        REVIEW_IMG,REVIEW_COUNT,REVIEW_SUBTITLE, REVIEW_CNO
+        REVIEW_IMG,REVIEW_COUNT,REVIEW_SUBTITLE, REVIEW_CNO, PROJECT_TITLE, PROJECT_CT_NAME
 		FROM REVIEW
 		JOIN USER_TB ON(USER_NO=REVIEW_WRITER)
+        JOIN PROJECT_TB ON(PROJECT_NO=REVIEW_REF_PNO)
+        JOIN PROJECT_CG USING(PROJECT_CT_NO)
 		WHERE REVIEW_STATUS = 'Y'
 		AND REVIEW_NO = #{revNo}
 	</select>
@@ -52,7 +56,6 @@
 	<update id="updateReview" parameterType="Review">
 		UPDATE REVIEW SET 
 		REVIEW_TITLE = #{revTitle}, REVIEW_CONTENT = #{revContent}, REVIEW_MF_DT = SYSDATE,
-		REVIEW_CNO = #{revCategoryNo} ,
 		REVIEW_TN_IMG = #{reviewTnImg}, 
 		REVIEW_SUBTITLE = #{revSubTitle}
 		WHERE REVIEW_NO = #{revNo}

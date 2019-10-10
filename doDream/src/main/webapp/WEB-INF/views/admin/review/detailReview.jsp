@@ -117,7 +117,7 @@
 													<th colspan="2">${ review.revNo }번 글 상세보기</th>
 												</tr>
 												<tr>
-													<th height="15" width="70" class="th">제목</th>
+													<th height="15" width="150" class="th">제목</th>
 													<td>${ review.revTitle }</td>
 												</tr>
 												<tr>
@@ -125,12 +125,22 @@
 													<td>${ review.userNickname }</td>
 												</tr>		
 												<tr>
+													<th class="th">프로젝트 이름</th>
+													<td>${ review.revRefPname}</td>
+												</tr>		
+												<tr>
+													<th class="th">카테고리 이름</th>
+													<td>${ review.revCatName}</td>
+												</tr>		
+												<tr>
 													<th class="th">작성일</th>
 													<td>${ review.revEnrollDate}</td>
 												</tr>		
 												<tr>
 													<th class="th">썸네일 이미지</th>
-													<td>${ review.reviewTnImg}</td>
+													<td>
+														<img src="resources/images/summernoteimg/${ review.reviewTnImg}" style="height: 300px; width: 300px;">
+													</td>
 												</tr>		
 												<tr height="300" >
 													<th class="th">내용</th>
