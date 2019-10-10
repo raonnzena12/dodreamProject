@@ -169,7 +169,7 @@
 
    	</section>
 	<script>
-	
+		$("#guide").css("color","#8E44AD");
 		/* $(function(){
 			var ht = "${project.pHashTag}";
 			var hashTag = ht.split(",");
