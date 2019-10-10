@@ -4,7 +4,7 @@ $(function () {
     // 로그인/인포 메뉴창 토글 함수
     $("#loginMenuLink").click(function(){
         $(".loginmenu").toggle();
-    });
+    }); 
     $("#veil").on("click", function(){
         $(".loginmenu").toggle();
     });

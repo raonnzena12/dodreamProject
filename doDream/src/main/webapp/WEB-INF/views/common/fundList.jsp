@@ -229,6 +229,7 @@ function printFunds(list) {
       if ( (list[i].pCurrentFunding/list[i].pGoal)*100 > 100 ) {
          $purpleBar.css("width", "100%");
       } else {
+         console.log(list[i].pCurrentFunding/list[i].pGoal*100 + " / " + list[i].pTitle);
          $purpleBar.css("width", (list[i].pCurrentFunding/list[i].pGoal)*100+"%");
       }
       $chartBar.append($purpleBar);

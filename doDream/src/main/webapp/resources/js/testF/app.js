@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 const axios = require('axios');
 
 app.use(bodyParser.urlencoded({extended : true}));
+app.use(bodyParser.json());
 
 // 빌링키 발급받는 코드
 app.post("/ajaxBillingServer", async (req, res) => {
@@ -133,6 +134,7 @@ console.log(paymentResult);
 // 빌링키 폐기용
 app.post("/deleteBKey", async (req, res) => {
   try {
+    console.log(req);
     const { 
       customer_uid,
     } = req.body;
@@ -158,9 +160,9 @@ app.post("/deleteBKey", async (req, res) => {
     var code = deleteResult.data.code;
     console.log(code);
     if (code == 0) { 
-      res.send(code);
+      res.send({code: 0});
     } else { // 카드사 요청에 실패 (paymentResult is null)
-      res.send(code + " / " + deleteResult.data.message);
+      res.send({code: 1, msg: deleteResult.data.message});
     }
   } catch (e) {
     console.log("bKey삭제 에러 : " + e);
