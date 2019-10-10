@@ -563,26 +563,28 @@
 			var followerNo = "${loginUser.userNo}";
 			var followNo = ${project.pWriter};
 			
-			$.ajax({
-				url:"followInsert.dr",
-				data:{followerNo:followerNo, followNo:followNo},
-				type:"post",
-				success: function(result){
-					if(result == 1){
-						$("#asideFavorite").css("color", "#8E44AD");
-						alert("팔로우를 성공했습니다.");
+			if(followerNo != followNo){
+				
+				$.ajax({
+					url:"followInsert.dr",
+					data:{followerNo:followerNo, followNo:followNo},
+					type:"post",
+					success: function(result){
+						if(result == 1){
+							$("#asideFavorite").css("color", "#8E44AD");
+							alert("팔로우를 성공했습니다.");
+							
+						}else{
+							alert("팔로우 실패");
+						}
 						
-					}else{
-						alert("팔로우 실패");
+					},
+					error: function(e){
+						console.log(e);
 					}
-					
-				},
-				error: function(e){
-					console.log(e);
-				}
-			});
+				});
 			
-			
+			}
 		}
 		
 		// 팔로우 취소
