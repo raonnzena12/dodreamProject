@@ -41,15 +41,13 @@ public class MemberController {
 	 * @return page
 	 */
 	@RequestMapping("login.dr")
-	public String memberLogin(Member member, Model model, String prevPage, HttpSession session, HttpServletResponse response) {
+	public String memberLogin(Member member, String prevPage, HttpSession session, HttpServletResponse response, RedirectAttributes ra, Model model) {
 
 		Member loginUser = mService.loginMember(member);
-		
-		 System.out.println("로그인전"+member);
+		System.out.println("로그인전"+member);
 
 		if (loginUser != null) {
 			session.setAttribute("loginUser", loginUser);
-
 			System.out.println("로그인후"+loginUser);
 			
 			// 로그인 카운트 해주는 함수 호출;
@@ -64,8 +62,9 @@ public class MemberController {
 			return "redirect:"+prevPage;
 			
 		}else {
-			model.addAttribute("msg", "로그인 실패");
-			return "common/errorPage";
+			ra.addFlashAttribute("msg", "이메일과 비밀번호를 다시 확인해주세요.");
+			System.out.println("redirect:"+prevPage);
+			return "redirect:"+prevPage;
 		}
 	}
 
@@ -82,6 +81,7 @@ public class MemberController {
 		Member member = new Member();
 		member.setUserEmail(userEmail);
 		member.setUserPwd(userPwd);
+		
 		return mService.checkValidate(member);
 	}
 
