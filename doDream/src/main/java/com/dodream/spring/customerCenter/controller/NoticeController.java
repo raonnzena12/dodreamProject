@@ -13,7 +13,7 @@ import com.dodream.spring.customerCenter.model.vo.Notice;
 @Controller
 public class NoticeController {
 
-	@Autowired
+	@Autowired 
 	private NoticeService noticeService;
   
 	/** 공지사항 목록 조회

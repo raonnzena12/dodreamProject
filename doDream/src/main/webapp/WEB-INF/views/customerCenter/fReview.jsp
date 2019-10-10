@@ -6,11 +6,11 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <%@ include file="../common/menubar.jsp"%>
-<link rel="stylesheet" href="resources/css/fundList.css">
+<link rel="stylesheet" href="resources/css/fReview.css">
 <style>
 .fundItem {
 	cursor: pointer;
-}
+} 
 
 #categoryTop {
 	border-bottom: 1px solid #ddd;
@@ -297,16 +297,12 @@
 
 					<div id="categoryTopMenu">
 						<div id="categoryArea" class="my-5">
-							<input type="radio" name="category" id="total" value="total"
-								checked><label for="total">전체</label> <input
-								type="radio" name="category" id="music" value="music"><label
-								for="music">음악</label> <input type="radio" name="category"
-								id="movie" value="movie"><label for="movie">영화</label> <input
-								type="radio" name="category" id="play" value="play"><label
-								for="play">연극</label> <input type="radio" name="category"
-								id="art" value="art"><label for="art">미술</label> <input
-								type="radio" name="category" id="etc" value="etc"><label
-								for="etc">ETC</label>
+							<input type="radio" name="category" id="total" value="total" checked><label for="total">전체</label> 
+							<input type="radio" name="category" id="music" value="music"><label	for="music">음악</label> 
+							<input type="radio" name="category"	id="movie" value="movie"><label for="movie">영화</label> 
+							<input type="radio" name="category" id="play" value="play"><label for="play">연극</label> 
+							<input type="radio" name="category" id="art" value="art"><label for="art">미술</label> 
+							<input type="radio" name="category" id="etc" value="etc"><label for="etc">ETC</label>
 						</div>
 					</div>
 
@@ -339,7 +335,7 @@
 												<div class="nameArea">
 
 
-													<p class="categoryName mb-0">${ rev.revCNo }</p>
+													<p class="categoryName mb-0">${ rev.revCatName }</p>
 
 
 													<!-- 카테고리 -->
@@ -349,7 +345,7 @@
 													</p>
 
 													<!-- 부제목 -->
-													<span class="fundName">${ rev.revsubTitle }</span>
+													<span class="fundName">${ rev.revSubTitle }</span>
 
 
 												</div>

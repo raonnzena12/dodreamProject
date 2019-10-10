@@ -1,0 +1,144 @@
+#categoryTop { border-bottom: 1px solid #ddd; }
+#categoryArea input[type=radio] { display: none; }
+#categoryArea input[type=radio]:checked+label { color: #fff; background-color: #F39C12; }
+#categoryArea label { display: inline-block; width: 100px; height: 40px; margin: 0 20px; background-color: #ddd; 
+                      text-align: center; vertical-align: center; border-radius: 5px; line-height: 40px; }
+#categoryTopMenu {
+    text-align: center;
+    padding-top: 60px;
+    padding-bottom: 20px;
+}
+.font15 {
+    font-size: 15px;
+}
+#resultMenu input, #resultMenu select, #resultMenu option {
+    border: none;
+    text-align: right;
+}
+#resultMenu input[type=search]:focus, #resultMenu select:focus {
+    outline: none;
+}
+#category .ver-super {
+    vertical-align: sub;
+}
+#category .resultPrint {
+    display: inline-flex;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-content: space-around;
+}
+#category .resultPrint>div {
+    margin: 10px;
+    min-width: 300px;
+    height: 400px;
+    flex: 1;
+    flex-basis: 20%;
+    padding: 10px;
+    position: relative;
+}
+#category .fundCon {
+    /* border: 1px solid red; */
+    width: 250px;
+    height: 350px;
+    position: absolute;
+    margin: auto;
+    right: 0;
+    left: 0;
+    box-shadow: 1px 1px 3px #ccc;
+}
+#category .fundCon:hover {
+    box-shadow: 1px 1px 4px #aaa;
+}
+#category .fundItem {
+    display: grid;
+    grid-template-columns: 200px 50px;
+    grid-template-rows: 180px 50px 50px 70px;
+}
+#category .fundImg,  #category .chartArea {
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+#category .detailArea {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    padding-left: 15px;
+    padding-right: 15px;
+    line-height: 15px;
+    padding-top: 3px;
+}
+#category .nameArea {
+    grid-column-start: 1;
+    grid-column-end: 3;
+    padding-left: 15px;
+    line-height: 21px;
+    padding-top: 12px;
+}
+#category .fundImg>img {
+    width: 100%;
+    height: 180px;
+}
+#category .categoryName {
+    font-weight: 800;
+    font-size: 15px;
+    color: #F39C12;
+}
+#category .fundName {
+    font-weight: 900;
+    font-size: 18px;
+}
+#category .detailText {
+    font-size: 14px;
+    color: #777;
+}
+#category .chartBar {
+    width: 100%;
+    height: 5px;
+    background-color: #ddd;
+    border-radius: 5px;
+}
+#category .purpleBar {
+    border-radius: 5px;
+    background-color:#8E44AD;
+    height: 100%;
+    /* width: 25%; */
+}
+#category .chartInfo1 {
+    float: left;
+}
+#category .chartInfo2 {
+    float: right;
+}
+#category .chartInfo>span {
+    font-size: 14px;
+    font-weight: bold;
+}
+#category .chartDate {
+    font-size: 13px;
+    font-weight: bold;
+    float: right;
+    color: #777;
+    margin-right: 5px;
+}
+#category .heartIcon {
+    text-align: right;
+    padding-right: 7px;
+    padding-top: 5px;
+    cursor: pointer;
+    position: absolute;
+    float: right;
+    top:180px;
+    right: 0;
+}
+#category .heart-fund {
+    color: #F39C12;
+    font-size: 30px;
+}
+#loadingImg {
+    width: 40px;
+    height: auto;
+    opacity: 0;
+}
+#category .fundItem {
+    cursor: pointer;
+ }

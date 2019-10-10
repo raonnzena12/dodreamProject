@@ -76,7 +76,7 @@
 		</div>
 		
 		<div class="row" id="Review_table">
-			<div class="col-md-12"></div>
+			<div class="col-md-12"></div> 
 		</div>
 		<div class="row">
 			<div class="col-md-12">
@@ -84,11 +84,11 @@
 					<div style="text-align: center;">
 					<h2> 제목 들어가는 곳 : ${revdetail.revTitle} </h2>
 					</div>
-					<div style="text-align: center;"><h4>"부제목 들어가는 곳" : ${revdetail.revsubTitle}</h4></div>
-					<div id="revdetailCategory"><b>음악 : ${revdetail.revCNo}</b>
+					<div style="text-align: center;"><h4>"부제목 들어가는 곳" : ${revdetail.revSubTitle}</h4></div>
+					<div id="revdetailCategory"><b>카테고리명 : ${revdetail.revCatName}</b>
 					<!-- 날짜 / 조회수  -->
 					</div>
-					<div class="revdetailCategory1">날짜 ${revdetail.revEnrollDate } / 조회수 : ${revdetail.revConut }</div>
+					<div class="revdetailCategory1">날짜 ${revdetail.revEnrollDate } / 조회수 : ${revdetail.revCount }</div>
 					<div class="revdetailCategory1"> http://www.dodream.com/detailSt.dr?pNo=54 해당 펀딩정보로 이동 </div>
 					
 					<!-- 줄 -->
@@ -104,6 +104,8 @@
 							${revdetail.revContent}
 						</div>
 					</c:if>
+					
+					
 					<c:if test="${ empty revdetail }">
 						<div>
 						<br>

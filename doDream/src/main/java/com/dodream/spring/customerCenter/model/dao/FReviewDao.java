@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.dodream.spring.common.model.vo.PageInfo;
 import com.dodream.spring.customerCenter.model.vo.Review;
+import com.dodream.spring.project.model.vo.FilteringList;
 import com.dodream.spring.project.model.vo.Project;
 
 @Repository("FReviewDao")
@@ -68,7 +69,7 @@ public class FReviewDao {
 		// -> MyBatis RowBounds 사용
 		
 		// offset : 몇개의 게시글을 건너 뛰고 조회를 할 건지에 대한 계산
-
+ 
 		/* 
 >>>>>>> refs/remotes/origin/master
 		int offset = ( pi.getCurrentPage() - 1 ) * pi.getLimit();
@@ -82,4 +83,15 @@ public class FReviewDao {
 		return (ArrayList)sqlSession.selectList("centerMapper.selectfrList", category);
 
 	}
+
+	public int countList() {
+		
+		return sqlSession.selectOne("centerMapper.countList");
+	}
+
+	public ArrayList<Review> selectfrevList(FilteringList filter, PageInfo pi) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
