@@ -142,23 +142,28 @@
 	border-bottom: 2px solid #dddddd;
 	margin-left: 106px;
 }
-#pthumbimgdelete{
+
+#pthumbimgdelete {
 	display: inline-block;
 	vertical-align: top;
 	margin-top: 15px;
 	margin-left: 2px;
 }
-#pthumbimgdelete a i{
+
+#pthumbimgdelete a i {
 	color: #F39C12;
 	font-size: 24px;
 	opacity: 0.6;
 }
-#pthumbimgdelete a i:hover{
+
+#pthumbimgdelete a i:hover {
 	opacity: 1;
 }
-#box-img-area-noimg{
+
+#box-img-area-noimg {
 	margin-top: 50px;
 }
+
 .box-img-area p {
 	font-size: 11px;
 	color: #666;
@@ -280,10 +285,21 @@
 	font-size: 13px;
 }
 
-.accBtn:not (.active ){
-	cursor: pointer;
-}
+.accBtn
+:not
+ 
+(
+.active
+ 
+){
+cursor
+:
+ 
+pointer
+;
 
+
+}
 .customized {
 	font-size: 11px;
 	height: 28px;
@@ -324,8 +340,12 @@ input:focus, input:active, textarea:focus, textarea:active, select:focus,
 	text-align: center;
 }
 
-#pThimbNailImgUpload:hover i {
-	color: #F39C12;
+#pThumbNailImgUpload:hover i {
+	color: #F39C12 !important;
+}
+
+#pThumbNailImgUpload i:hover {
+	color: #F39C12 !important;
 }
 
 .removeReward:hover i {
@@ -447,14 +467,15 @@ input:focus, input:active, textarea:focus, textarea:active, select:focus,
 	float: left;
 }
 
-#hashtagarea{
+#hashtagarea {
 	background-color: #F39C12;
 	border-radius: 5px;
 	border: none;
 	margin-top: 15px;
 	width: 88%;
 }
-#hashtagarea>span{
+
+#hashtagarea>span {
 	display: inline-block;
 	background-color: white;
 	border-radius: 5px;
@@ -465,6 +486,262 @@ input:focus, input:active, textarea:focus, textarea:active, select:focus,
 	font-size: 16px;
 	margin: 5px;
 }
-#pstartyear, #pstartmonth, #pstartday{
-	color:unset;		
+
+#pstartyear, #pstartmonth, #pstartday {
+	color: unset;
+}
+
+.artistarea {
+	width: 850px;
+	height: 500px;
+	padding: 15px;
+}
+
+.artistbox {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	background: #fff;
+	border: 1px solid #ddd;
+	border-bottom: 3px solid #ddd;
+	border-right: 3px solid #ddd;
+	box-shadow: 0 0 5px rgba(0, 0, 0, .2);
+	padding: 15px;
+}
+
+/* common */
+.ribbon {
+	width: 150px;
+	height: 150px;
+	overflow: hidden;
+	position: absolute;
+}
+
+.ribbon::before, .ribbon::after {
+	position: absolute;
+	z-index: -1;
+	content: '';
+	display: block;
+	border: 5px solid #8E44AD;
+}
+
+.ribbon span {
+	position: absolute;
+	display: block;
+	width: 225px;
+	padding: 15px 0;
+	background-color: #8E44AD;
+	box-shadow: 0 5px 10px rgba(0, 0, 0, .1);
+	color: #fff;
+	font: 18px/1 'Jua', sans-serif;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, .2);
+	text-transform: uppercase;
+	text-align: center;
+}
+
+/* top left*/
+.ribbon-top-left {
+	top: -10px;
+	left: -10px;
+}
+
+.ribbon-top-left::before, .ribbon-top-left::after {
+	border-top-color: transparent;
+	border-left-color: transparent;
+}
+
+.ribbon-top-left::before {
+	top: 0;
+	right: 0;
+}
+
+.ribbon-top-left::after {
+	bottom: 0;
+	left: 0;
+}
+
+.ribbon-top-left span {
+	right: -25px;
+	top: 30px;
+	transform: rotate(-45deg);
+}
+
+.artistinputarea {
+	margin: auto;
+	width: 720px;
+	height: 100%;
+}
+
+.artistprofile {
+	float: left;
+	width: 60%;
+	height: 60%;
+	padding-top: 20px;
+	padding-left: 30px;
+	padding-right: 60px;
+}
+
+.artistprofile input {
+	height: 32px;
+	border: none;
+	display: block;
+	width: 100%;
+	font-family: 'Jua';
+	color: #666;
+	letter-spacing: 2px;
+	text-align: center;
+	margin-bottom: 10px;
+}
+
+.artistprofile input::placeholder {
+	font-family: 'Jua';
+	color: #bbb;
+	letter-spacing: 2px;
+	text-align: center;
+}
+
+.artistprofile input:focus {
+	outline: none;
+}
+
+.artistprofile input:focus::placeholder, #pArtistIntroduction:focus::placeholder
+	{
+	color: transparent;
+}
+
+.artistinput1 {
+	font-size: 32px;
+	overflow: visible;
+}
+
+.artistinput2 {
+	font-size: 20px;
+	text-align: left !important;
+	overflow: visible !important;
+}
+
+.artistinput2::placeholder {
+	text-align: left !important;
+}
+
+#putunderline {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	margin-bottom: 10px;
+	border-bottom: 1px solid #ddd;
+}
+
+.emailphonedesc {
+	float: left;
+	width: 15%;
+}
+
+.emailphonedesc i {
+	line-height: 12px;
+}
+
+.emailphoneinput {
+	float: left;
+	width: 85%;
+}
+
+.emailphonedesc span {
+	display: block;
+	height: 32px;
+	margin-bottom: 10px;
+}
+
+.emailphonedesc i {
+	font-size: 20px;
+	color: #999;
+	margin-right: 15px;
+	line-height: 30px;
+}
+
+.emailphoneinput label {
+	display: inline;
+	font-family: 'Jua';
+	font-size: 16px;
+	color: #666;
+}
+
+.artistimage {
+	float: left;
+	width: 40%;
+	height: 60%;
+	border: 1px solid #ddd;
+	border-right: 2px solid #ddd;
+	border-bottom: 2px solid #ddd;
+	border-radius: 5px;
+}
+
+.artistimage:hover {
+	box-shadow: 1px 1px 5px #888;
+}
+
+#aimage-noimage {
+	text-align: center;
+	padding-top: 50px;
+}
+
+#aimage-noimage i {
+	display: inline;
+	font-size: 128px;
+	color: #ddd;
+	cursor: pointer;
+}
+
+#aimage-noimage i:hover {
+	color: #8E44AD;
+	opacity: 0.5;
+}
+
+#aimage-noimage p {
+	color: #bbb;
+	font-family: 'Nanum Gothic';
+	font-size: 12px;
+}
+
+.artistintro {
+	width: 100%;
+	height: 37%;
+	border-bottom: 1px solid #ddd;
+	padding: 25px;
+	padding-top: 50px;
+}
+
+.artistintro textarea {
+	text-align: center;
+	font-family: 'Jua';
+	color: #666;
+	resize: none;
+	width: 100%;
+	height: 100%;
+	letter-spacing: 4px;
+	font-size: 24px;
+	border: none;
+	line-height: 36px;
+	overflow: hidden;
+}
+
+.artistintro textarea:focus {
+	outline: none;
+}
+
+.artistintro textarea::placeholder {
+	color: #bbb;
+}
+
+.artistfooter {
+	text-align: right;
+}
+
+.artistfooter span {
+	font-size: 10px;
+	font-family: 'Do Hyeon';
+	letter-spacing: 3px;
+	font-weight: bolder;
+	color: #8E44AD;
+	opacity: 0.8;
 }
