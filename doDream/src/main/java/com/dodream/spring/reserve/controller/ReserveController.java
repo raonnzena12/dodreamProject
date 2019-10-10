@@ -31,14 +31,15 @@ public class ReserveController {
 	@RequestMapping("myFundingInfo.dr")
 	public String tmp3(Integer rsvNo, HttpServletRequest request, Model model) {
 		int uNo = 0;
-		
+		String adminYn = "";
 		if ( request.getSession().getAttribute("loginUser") != null ) {
 			uNo = ((Member)(request.getSession().getAttribute("loginUser"))).getUserNo();
+			adminYn = ((Member)(request.getSession().getAttribute("loginUser"))).getUserAdminYn();
 		}
 		Reserve rsv = rsvService.selectReserve(rsvNo.intValue());
 		
 		// uNo 검사
-		if ( uNo != rsv.getResUser() ) {
+		if ( uNo != rsv.getResUser() && adminYn.equals("N")  ) {
 			return "redirect:home.dr";
 			// 자신의 예약조회가 아닐경우 홈으로 넘김
 		}

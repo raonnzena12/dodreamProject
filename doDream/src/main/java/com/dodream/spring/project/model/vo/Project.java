@@ -34,6 +34,7 @@ public class Project {
 	private int pOpenCount; // 프로젝트 작성자가 오픈한 프로젝트 개수
 	private int pUserCount; // 프로젝트 후원자 수
 	private int iLike; 
+	private int additional; // 추가 후원금
 	
 	public Project() {}
 
@@ -74,6 +75,14 @@ public class Project {
 		this.pCount = pCount;
 		this.pOpenCount = pOpenCount;
 		this.pUserCount = pUserCount;
+	}
+
+	public int getAdditional() {
+		return additional;
+	}
+
+	public void setAdditional(int additional) {
+		this.additional = additional;
 	}
 
 	public int getpNo() {

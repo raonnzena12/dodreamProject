@@ -171,6 +171,16 @@ public class ProjectServiceImpl implements ProjectService {
 		return pDao.selectMainList(userNo);
 	}
 
+	@Override
+	public ArrayList<Project> selectOpenPrjList(FilteringList filter) {
+		return pDao.selectOpenPrjList(filter);
+	}
+
+	@Override
+	public ArrayList<Reward> selectPrjRwdList(int pno) {
+		return pDao.selectPrjRwdList(pno);
+	}
+
 
 
 }
