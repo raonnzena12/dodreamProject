@@ -259,6 +259,20 @@
     font-size: 11px;
     display: inline;
 }
+.insertformcont { 
+	position: fixed; 
+	right: 47%; 
+	top: 500px;
+	margin-right: -730px; 
+	text-align:center; 
+	width: 150px;
+	height: 240px;
+	border: 1px solid #8E44AD80;
+	border-bottom: 2px solid #8E44AD;
+	border-right: 2px solid #8E44AD;
+	border-radius: 5px;
+	padding:5px;
+}
 
 
 </style>
@@ -266,6 +280,9 @@
 <body>
 	<jsp:include page="../common/menubar.jsp" />
 	<link rel="stylesheet" href="resources/css/fundinginsertform.css">
+	<!-- 리모컨영역 -->
+	<div class="insertformcont" id="insertFormRC">
+	</div>
 	<div class="clearfix"></div>
 	<div id="agreementForm">
 		<div class="mt-5 mb-5 pt-3 pb-3"></div>
@@ -337,7 +354,7 @@
 	</div>
 	<div id="insertFundForm">
 		<div class="accWrapper">
-			<form id="insertFrm" action="insertProject.dr" method="POST"
+			<form id="insertFrm" name="insertFrm" action="insertProject.dr" method="POST"
 				enctype="multipart/form-data">
 				<input type="hidden" name="pNo" value="${pNo }">
 				<input type="hidden" name="pStatusNum" id="pStatusNum" value="0">
@@ -417,10 +434,10 @@
 						<div class="info-box">
 							<div class="edit-box">
 								<input type="text" class="form-control" name="pTitle"
-									placeholder="36자 내외로 입력하여 주세요" maxlength="36"
+									placeholder="52자 내외로 입력하여 주세요" maxlength="52"
 									style="font-size: 13px;">
 								<div class="form-length-chk">
-									<span id="pTitleLengthChk">0</span>/36
+									<span id="pTitleLengthChk">0</span>/52
 								</div>
 							</div>
 						</div>
@@ -436,10 +453,10 @@
 						<div class="info-box">
 							<div class="edit-box">
 								<input type="text" class="form-control" name="pSTitle"
-									placeholder="36자 내외로 입력하여 주세요" maxlength="36"
+									placeholder="52자 내외로 입력하여 주세요" maxlength="52"
 									style="font-size: 13px;">
 								<div class="form-length-chk">
-									<span id="pSTitleLengthChk">0</span>/36
+									<span id="pSTitleLengthChk">0</span>/52
 								</div>
 							</div>
 						</div>
@@ -746,8 +763,7 @@
 									</div>
 								</div>
 								<input type="file" name="uploadfile2" id="uploadfile2" multiple="multiple" onchange="loadPImg(this);" style="display: none;">
-								<input type="hidden" name="
-								pMainImage" id="videoURL">
+								<input type="hidden" name="pMainImage" id="videoURL">
 								<a href="javascript:void(0)" id="pmainimgdelete"
 									style="display: inline-block; vertical-align: top; margin-top: 20px;">
 									<i class="material-icons">highlight_off</i>
@@ -942,8 +958,10 @@
 				</div>
 			</form>
 			<button type="button" onclick="goSave();">임시저장하기</button>
+			<button onclick="insertTest();">값 들어간거 확인하기</button>
+			
 		</div>
-
+		
 	</div>
 
 	<script src="resources/summernote/dist/summernote.js"></script>
@@ -956,6 +974,7 @@
 	// 페이지 로드 완료시 인서트폼은 숨깁니다. (동의를 완료해야 보여집니다)
 	$(function() {
 		$("#insertFundForm").hide();
+		$("#insertFormRC").hide();
 		validate();
 	});
 	// 만약 동의 버튼중 하나라도 변한다면 validate() 메소드 실행
@@ -1049,6 +1068,7 @@
 		if(loginchk==true){
 			$("#agreementForm").hide();
 			$("#insertFundForm").show();
+			$("#insertFormRC").show();
 			$('html').animate({
 				scrollTop : 0
 			}, 300);
@@ -1642,10 +1662,15 @@
 		// 파일의 직접적인 경로 노출 방지
 		reader.readAsDataURL(value.files[0]);
 	}
+	function insertTest(){
+		var win;
+		var frm = document.insertFrm;
+		win = open("","w","width=300,height=200");
+		frm.target = "w";
+		frm.method = "POST";
+		frm.action = "insertTest.dr";
+		frm.submit();
+	}
 </script>
-
-
-
- 
 </body>
 </html>
