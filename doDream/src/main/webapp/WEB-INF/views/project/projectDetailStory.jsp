@@ -118,6 +118,10 @@
            		cursor: pointer;
            		color: #8E44AD;
            }
+           #storyContent img {
+           		max-width: 100%;
+           		height: auto !important;
+           }
        </style>
 </head>
 <body>
