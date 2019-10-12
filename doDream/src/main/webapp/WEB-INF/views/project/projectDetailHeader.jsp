@@ -273,7 +273,9 @@
                padding: 0;
                float: left;
                display: block;
-               
+           }
+           #detailnavpadding {
+               padding-left: 80px;
            }
 			#detailnav > div{
                width: 100px;
@@ -467,7 +469,7 @@
         </section>
         <div class="row sticky-top mb-4" id="mid-menu">
             <div class="col-md-2"></div>
-            <div class="col-md-8">
+            <div class="col-md-8" id="detailnavpadding">
                 <nav class="nav">
                     <div class="container-fluid" id="detailnav">
                         <div id="story" onclick="location.href='detailSt.dr?pNo='+${project.pNo};">스토리</div>
