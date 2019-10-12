@@ -519,10 +519,10 @@
 		if(${project.pDDay} < 0){
 			$("#detailDday").text("종료된 프로젝트 입니다.").css("background-color","gray");
 			$("#supportbtn").css({"background-color":"gray", "border":"#F39C12"});
-		}else if( total > ${project.pGoal}){
+		}/* else if( total > ${project.pGoal}){
 			$("#detailDday").text("성공한 프로젝트 입니다.").css("background-color","gray");
 			$("#supportbtn").css({"background-color":"gray", "border":"#F39C12"});
-		}
+		} */
 	});
 	/* ===========================좋아요 버튼 취소=========================== */
 	
