@@ -192,6 +192,7 @@
                padding: 0;
                float: left;
                display: block;
+               padding-left: 70px;
                
            }
 			#detailnav > div{
