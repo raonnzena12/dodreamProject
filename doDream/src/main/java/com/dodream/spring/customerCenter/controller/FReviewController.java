@@ -23,7 +23,7 @@ public class FReviewController {
    @Autowired 
    private FReviewService frService;
    
-   @RequestMapping("fReview.dr")
+   @RequestMapping("fReview.dr") 
    public ModelAndView ReviewList(ModelAndView mv, Integer page, String cate) {
        
 
