@@ -213,7 +213,7 @@
                     <p class="rewardTitle">${ rwd.rName }</p>
                     <table class="funddeT rewardInfo">
                         <tr>
-                            <td colspan="2"><fmt:formatNumber value="${ rwd.rPrice }" groupingUsed="true"/> / ${ rwd.rLimit }개 제한 / ${ rwd.rSum }개 주문</td>
+                            <td colspan="2"><fmt:formatNumber value="${ rwd.rPrice }" groupingUsed="true"/> / ${ (rwd.rLimit == -1) ? '제한수량없음' : rwd.rLimit+'개 제한' } / ${ rwd.rSum }개 주문</td>
                         </tr>
                         <tr>
                             <td>

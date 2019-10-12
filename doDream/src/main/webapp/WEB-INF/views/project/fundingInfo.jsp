@@ -25,13 +25,13 @@
 </script>
 <c:url var="fundingComplete" value="thankYou.dr" />
 	<section id="payingInfo" class="my-5">
-		<h1 align="center">뚝딱뚝딱</h1>
+		<h1 align="center">프로젝트 후원하기</h1>
 		<div class="container-fluid mb-5">
 			<div class="row">
 				<div class="col-md-3">
 				</div>
 				<div class="col-md-6">
-					<h3 class="text-center">결제창입니다</h3>
+					<h3 class="text-center"></h3>
 					<div class="row">
 						<div class="col-md-12 mx-auto innerMain">
 							<h3 class="text-left">리워드 구성</h3>
@@ -42,7 +42,7 @@
 											<form action="${ fundingComplete }" method="post" id="fndInsert2">
 											<c:forEach var="rwd" items="${ rList }" varStatus="status" >
 												<input type="hidden" name="hList[${ status.index }].rwdNo" value="${ rwd.rNo }">
-												<br><span class="rewardTitle" id="${ rwd.rNo }">${ rwd.rName } _ <input type="number" name="hList[${ status.index }].rwdAmount" class="rwd-amount${ status.index }" maxlength="3" oninput="maxLengthCheck(this);" idx="${ status.index }" limit="${ rwd.rAmount }" data-toggle="tooltip" data-placement="bottom" title="펀딩가능한 최대수량 : ${ rwd.rAmount }개" value="${ hList[status.index].rwdAmount }" readonly> 개</span><br><br>
+												<br><span class="rewardTitle" id="${ rwd.rNo }">${ rwd.rName } _ <input type="number" name="hList[${ status.index }].rwdAmount" class="rwd-amount${ status.index }" maxlength="3" oninput="maxLengthCheck(this);" idx="${ status.index }" limit="${ rwd.rAmount }" data-toggle="tooltip" data-placement="bottom" title="펀딩가능한 최대수량 : ${ (rwd.rAmount > 0)? 'rwd.rAmount' : '수량제한이 없는 리워드입니다' }" value="${ hList[status.index].rwdAmount }" readonly> 개</span><br><br>
 											<span class="rewardDetail textSize-14">${ rwd.rExplain}</span><br>
 											<c:if test="${ hList[status.index].rwdOption != '-1' }" >
 											<input type="hidden" name="hList[${ status.index }].rwdOption" value="${ hList[status.index].rwdOption }">
