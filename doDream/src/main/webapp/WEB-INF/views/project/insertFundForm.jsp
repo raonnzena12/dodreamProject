@@ -366,6 +366,9 @@
 		<div class="mt-5 mb-5 pt-3 pb-3"></div>
 	</div>
 	<div id="insertFundForm">
+		<div class="btnWrapper" align="right">
+			<button type="button" onclick="goSave();" class="btn btn-primary" style="background-color: #8E44AD; border: none;">임시저장하기</button>
+		</div>
 		<div class="accWrapper">
 			<form id="insertFrm" name="insertFrm" action="insertProject.dr" method="POST"
 				enctype="multipart/form-data">
@@ -934,7 +937,7 @@
 				</div>
 			</form>
 		</div>
-		<button type="button" onclick="goSave();">임시저장하기</button>
+
 	</div>
 
 	<script src="resources/summernote/dist/summernote.js"></script>
@@ -1050,12 +1053,57 @@
 	
 	// 임시저장하는 메소드입니다. pStatusNum = 1 으로 세팅합니다. 
 	function goSave() {
-		var frm = $("#insertFrm");
-		frm.target = "";
-		frm.method = "POST";
-		frm.action = "insertProject.dr";
 		$("#pStatusNum").val(1);
-		frm.submit();
+ 		var formData = new FormData(document.getElementById("insertFrm"));
+		$.ajax({
+			url : "insertProject.dr",
+			type: "post",
+			data: formData,
+			encType: "multipart/form-data",
+			processData: false,
+			contentType: false,
+			success: function(result){
+				if(result>0){
+					Swal.fire({
+						position: 'top-end',
+						type: 'success',
+						title: '임시저장에 성공하였습니다.',
+						showConfirmButton: false,
+						timer: 1500
+					});
+				}else{
+					Swal.fire({
+						position: 'top-end',
+						type: 'error',
+						title: '임시저장에 실패하였습니다.',
+						showConfirmButton: false,
+						timer: 1500
+					});
+				}
+			},error: function(e){
+				console.log(e);
+				Swal.fire({
+					position: 'top-end',
+					type: 'error',
+					title: '임시저장에 실패하였습니다.',
+					showConfirmButton: false,
+					timer: 1500
+				});
+			}
+		}); 
+		/*
+		var queryString = $("#insertFrm").serialize();
+		$.ajax({
+			type: "post",
+			url: "insertProject.dr",
+			data : queryString,
+			dataType : "json",
+			success: function(result){
+				console.log(result);
+			}
+		})
+		*/
+
 	}
 
 	// 프로젝트 내용 입력전 동의를 체크해야 입력폼이 보이게하는 메소드입니다.

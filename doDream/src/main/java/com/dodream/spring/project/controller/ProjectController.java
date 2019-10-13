@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -60,9 +61,10 @@ public class ProjectController {
 	 * @param uploadfile2
 	 * @return mv
 	 */
+	@ResponseBody
 	@RequestMapping(value="insertProject.dr", method=RequestMethod.POST)
-	public ModelAndView insertProject(Project project, RewardList rList, MultipartFile uploadfile1, MultipartFile uploadfile2, MultipartFile uploadfile3, HttpServletRequest request, ModelAndView mv) {
-		
+	//public int insertProject(Project project, RewardList rList, MultipartFile uploadfile1, MultipartFile uploadfile2, MultipartFile uploadfile3, HttpServletRequest request, ModelAndView mv) {
+	public int insertProject(@ModelAttribute Project project, @ModelAttribute RewardList rList, MultipartFile uploadfile1, MultipartFile uploadfile2, MultipartFile uploadfile3, HttpServletRequest request, ModelAndView mv) {	
 		// Project의 등록부분입니다.
 		// project의 textarea에 있는 "\n" 을 <br>태그로 전환시킵니다.
 		String pSummaryText = project.getpSummaryText().replaceAll("\n", "<br>");
@@ -110,7 +112,7 @@ public class ProjectController {
 		
 		if(result>0) mv.setViewName("project/projectInsertComplete");
 		else mv.addObject("msg", "프로젝트 등록 실패").setViewName("common/errorPage");
-		return mv;
+		return result;
 	}
 	
 	// 임시테스트

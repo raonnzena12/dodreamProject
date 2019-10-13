@@ -116,7 +116,10 @@
 		<result property="repWriter" column="REPORT_WRITER"/>
 		<result property="repStatus" column="REPORT_STATUS"/>
 	</resultMap>
-	
+	<!-- 프로젝트 파일 가져오기 -->
+	<select id="getOriginFile" parameterType="_int" resultMap="projectResultSet">
+		SELECT PROJECT_THUMB_IMG, PROJECT_MAIN_IMG, PROJECT_AT_PF FROM PROJECT_TB WHERE PROJECT_NO = #{pNo} 
+	</select>
 	<!-- 프로젝트 등록  -->
 	<insert id="insertProject" parameterType="Project">
 		UPDATE PROJECT_TB SET 
