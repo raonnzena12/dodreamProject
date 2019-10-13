@@ -169,6 +169,10 @@ public class ProjectDao {
 		return (ArrayList)sqlSession.selectList("projectMapper.selectPrjRwdList", pno);
 	}
 
+	public Project getOriginFile(int pNo) {
+		return sqlSession.selectOne("projectMapper.getOriginFile",pNo);
+	}
+
 
 
 	

@@ -74,6 +74,15 @@ public class ProjectServiceImpl implements ProjectService {
 		String renameTImageName = null;
 		String renamePImageName = null;
 		String renameAImageName = null;
+		Project originFiles = pDao.getOriginFile(project.getpNo());
+		String originFile1 = "";
+		String originFile2 = "";
+		String originFile3 = "";
+		try {
+			originFile1 = originFiles.getpThumbImage();
+			originFile2 = originFiles.getpMainImage();
+			originFile3 = originFiles.getpArtistPFImage();
+		}catch(NullPointerException n) {}
 		if(uploadfile1!=null && !uploadfile1.getOriginalFilename().equals("")) {
 			renameTImageName = renameFile(project, uploadfile1, 1); // 변경된 파일명 (1:썸네일, 2:메인, 3:아티스트)
 			project.setpThumbImage((renameTImageName));
@@ -89,13 +98,27 @@ public class ProjectServiceImpl implements ProjectService {
 		int result = pDao.insertProject(project);
 		if(result>0) {
 			if(renameTImageName!=null)
+				deleteFile(originFile1, request, 1);
 				result = saveFile(renameTImageName, uploadfile1, request,1);
 			if(renamePImageName!=null && result>0)
+				deleteFile(originFile2, request, 2);
 				result = saveFile(renamePImageName, uploadfile2, request,2);
 			if(renameAImageName!=null && result>0)
-				result = saveFile(renameAImageName, uploadfile2, request,3);
+				deleteFile(originFile3, request, 3);
+				result = saveFile(renameAImageName, uploadfile3, request,3);
 		}
 		return result;
+	}
+	
+	private void deleteFile(String originFile,HttpServletRequest request, int separator) {
+		String root = request.getSession().getServletContext().getRealPath("resources");
+		String path = "";
+		if(separator==1) path = root + "\\images\\projectImg\\thumbnail\\" + originFile;
+		else if(separator==2) path = root + "\\images\\projectImg\\mainImg\\" + originFile;
+		else if(separator==3) path = root + "\\images\\projectImg\\artistImg\\" + originFile;
+		File deleteFile = new File(path);
+		if(deleteFile.exists()) 
+			deleteFile.delete();
 	}
 
 	// 파일명 변경 메소드
