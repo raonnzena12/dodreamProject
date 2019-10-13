@@ -143,20 +143,18 @@
 	margin-left: 106px;
 }
 
-#pthumbimgdelete {
+#pthumbimgdelete, #partistimgdelete {
 	display: inline-block;
 	vertical-align: top;
 	margin-top: 15px;
 	margin-left: 2px;
 }
-
-#pthumbimgdelete a i {
+#pthumbimgdelete a i, #partistimgdelete a i {
 	color: #F39C12;
 	font-size: 24px;
 	opacity: 0.6;
 }
-
-#pthumbimgdelete a i:hover {
+#pthumbimgdelete a i:hover #partistimgdelete a i:hover{
 	opacity: 1;
 }
 
@@ -670,34 +668,29 @@ input:focus, input:active, textarea:focus, textarea:active, select:focus,
 	float: left;
 	width: 40%;
 	height: 60%;
-	border: 1px solid #ddd;
-	border-right: 2px solid #ddd;
-	border-bottom: 2px solid #ddd;
-	border-radius: 5px;
 }
-
-.artistimage:hover {
-	box-shadow: 1px 1px 5px #888;
+#box-aimage-image{
+	height: 100%;
+	width: 100%;
 }
-
-#aimage-noimage {
+#box-aimage-noimage {
 	text-align: center;
 	padding-top: 50px;
 }
 
-#aimage-noimage i {
+#box-aimage-noimage i {
 	display: inline;
 	font-size: 128px;
 	color: #ddd;
 	cursor: pointer;
 }
 
-#aimage-noimage i:hover {
+#box-aimage-noimage i:hover {
 	color: #8E44AD;
 	opacity: 0.5;
 }
 
-#aimage-noimage p {
+#box-aimage-noimage p {
 	color: #bbb;
 	font-family: 'Nanum Gothic';
 	font-size: 12px;

@@ -71,7 +71,6 @@ public class ProjectController {
 		project.setpSummaryText(pSummaryText);
 		project.setpStory(pStory);
 		project.setpArtistIntroduction(pArtistIntroduction);
-		project.setpArtistPFImage("testTN.png");
 		// 파일 등록 부분
 		// DB 연결을 수행합니다.
 		int result = pService.insertProject(project, uploadfile1, uploadfile2, uploadfile3, request);

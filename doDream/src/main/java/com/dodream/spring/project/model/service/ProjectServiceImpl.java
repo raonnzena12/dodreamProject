@@ -93,7 +93,7 @@ public class ProjectServiceImpl implements ProjectService {
 			if(renamePImageName!=null && result>0)
 				result = saveFile(renamePImageName, uploadfile2, request,2);
 			if(renameAImageName!=null && result>0)
-				result = saveFile(renameAImageName, uploadfile2, request,3);
+				result = saveFile(renameAImageName, uploadfile3, request,3);
 		}
 		return result;
 	}

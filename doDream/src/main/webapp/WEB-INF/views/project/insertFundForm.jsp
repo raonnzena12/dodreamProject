@@ -30,18 +30,18 @@
 #goSubmit:hover, #goPreview:hover {
 	opacity: 1;
 }
-#timagearea{
+#timagearea, #aimagearea{
   border: 1px solid #dddddd;
   width: 470px;
   height: 270px;
   padding: 15px;
   text-align: left;
 }
-#timageinputarea{
+#timageinputarea, #aimageinputarea{
   width: 100%;
   height: 190px;
 }
-#timagecontentarea{
+#timagecontentarea, #aimagecontentarea{
   float: left;
   width: 184px;
   padding: 5px;
@@ -58,43 +58,53 @@
   margin-top: 26px;
   overflow: hidden;
 }
-#timageshowarea img{
+#aimageshowarea{
+  float: right;
+  border: 1px solid #dddddd;
+  width: 200px;
+  height: 200px;
+  border-radius: 100px;
+  margin-top: 15px;
+  margin-right: 15px;
+  overflow: hidden;
+}
+#timageshowarea img, #aimageshowarea img{
   width: 100%;
   height: 100%;
 }
-#timage-noimage{
+#timage-noimage, #aimage-noimage{
   margin: auto;
   text-align: center;
   padding: 25px;
 }
-#timage-noimage i{
+#timage-noimage i, #aimage-noimage i{
   color: #999;
   font-size: 92px;
   opacity: 0.7;
   display: block;
 }
-#timage-noimage i:hover{
+#timage-noimage i:hover, #aimage-noimage i:hover{
   color: #F39C12;
   font-size: 92px;
   opacity: 0.7;
   display: block;
 }
-#timage-noimage span{
+#timage-noimage span, #aimage-noimage span{
   font-size: 12px;
   display: block;
   color: #888;
 }
-#timagecontrolarea{
+#timagecontrolarea, #aimagecontrolarea{
   border: 1px solid #ddd;
   width: 100%;
   height: 100px;
 }
-#timagebtnarea{
+#timagebtnarea, #aimagebtnarea{
   width: 100%;
   height: 50px;
   text-align: right;
 }
-#timagebtnarea button{
+#timagebtnarea button, #aimagebtnarea button{
   font-family: 'Noto Sans KR';
   font-size: 13px;
   height: 28px;
@@ -109,7 +119,7 @@
   margin-top: 6px;
   margin-right: 100px;
 }
-#timagebtnarea button:hover{
+#timagebtnarea button:hover, #aimagebtnarea button:hover{
   background-color: #F39C12;
   border-color: #fff;
   color: #ffffff;
@@ -893,15 +903,19 @@
 					                    </div>    
 					                </div>
 					                <div class="artistimage">
-					                    <div id="aimagebox">
-					                        <div id="aimage-noimage">
-					                            <i class="material-icons">person</i>
+					                    <div id="aimagebox" style="display: inline-block; width: 240px; height: 240px;">
+					                        <div id="box-aimage-noimage">
+					                            <i class="material-icons" id="pArtistImgUpload">person</i>
 					                            <p>이미지를 등록해주세요!</p>
 					                        </div>
-					                        <div id="aimage-onimage">
-					
+					                        <div id="box-aimage-image" style="padding: 20px; height:100%; width: 100%;">
+												<img src="" style="width: 100%; height: 100%; border-radius: 100px;" id="artistimg">
 					                        </div>
 					                    </div>
+					                    <div id="partistimgdelete" style="margin-top: 18px; display: inline-block;">
+											<a href="javascript:void(0)"><i class="material-icons">image</i></a>
+										</div>
+					                    <input type="file" name="uploadfile3" id="uploadfile3" multiple="multiple" onchange="loadAImg(this);" style="display: none;">
 					                </div>
 					                <div style="clear: both; margin:0; padding: 0; border: 0;"></div>
 					                <div class="artistintro">
@@ -921,7 +935,6 @@
 			</form>
 		</div>
 		<button type="button" onclick="goSave();">임시저장하기</button>
-		<button onclick="insertTest();">값 들어간거 확인하기(개인테스트용)</button>
 	</div>
 
 	<script src="resources/summernote/dist/summernote.js"></script>
@@ -1337,7 +1350,7 @@
 	$("#pThumbNailImgUpload, #pthumbimgdelete a").on("click", function(){
 		var input = "";
 		input += '<div id="timagearea"><div id="timageinputarea"><div id="timagecontentarea"><p>· 이미지 파일 형식에 맞는 파일을<br> 업로드해주세요. <span style="font-size: 5px; color: #888;">(jpg,jpeg,png,gif,bmp)</span></p><p>· 이미지 크기는 최대 10mb까지 <br>첨부 가능합니다.</p><p>· 이미지의 가로 세로 사이즈는 <br>자동조정됩니다.</p><p>· 사진의 크기는 자동조정 사이즈를 <br>고려하여 올려주세요.</p><p>· 가로 : 250px, 세로 : 180px</p></div>';
-		input += '<div id="timageshowarea"><div id="timage-noimage"><a href="javascript:pthumbimgclick();"><i class="material-icons">broken_image</i></a><span>사진을 등록해주세요.</span></div><div id="timage-image" style="display: none;"><a href="javascript:pthumbimgclick();"><img src="" style="width: 100%; height: 100%;" id="timg"></a></div></div><div style="clear: both; padding: 0; border: none; margin: 0;"></div></div></div>';
+		input += '<div id="timageshowarea"><div id="timage-noimage"><a href="javascript:pthumbimgclick();"><i class="material-icons">broken_image</i></a><span>사진을 등록해주세요.</span></div><div id="timage-image" style="display: none; width:100%; height: 100%;"><a href="javascript:pthumbimgclick();"><img src="" style="width: 100%; height: 100%;" id="timg"></a></div></div><div style="clear: both; padding: 0; border: none; margin: 0;"></div></div></div>';
 		Swal.fire({
 			title: '썸네일 이미지 등록',
 			html: input,
@@ -1356,7 +1369,7 @@
 			$("#box-img-area-noimg").hide();
 			$("#box-img-area-img").show();
 			$("#pthumbimgdelete").show();
-			$(".box-img-area").css({"border": "none"});
+			$("#box-img-area").css({"border": "none"});
 		}else{
 			$("#box-img-area-img").hide();
 			$("#box-img-area-noimg").show();
@@ -1366,6 +1379,39 @@
 	pthumbimgload();
 	function pthumbimgclick(){
 		var input = $("#uploadfile1");
+		input.click();
+	};
+	$("#pArtistImgUpload, #partistimgdelete a").on("click", function(){
+		var input = "";
+		input += '<div id="aimagearea"><div id="aimageinputarea"><div id="aimagecontentarea"><p>· 이미지 파일 형식에 맞는 파일을<br> 업로드해주세요. <span style="font-size: 5px; color: #888;">(jpg,jpeg,png,gif,bmp)</span></p><p>· 이미지 크기는 최대 10mb까지 <br>첨부 가능합니다.</p><p>· 이미지의 가로 세로 사이즈는 <br>자동조정됩니다.</p><p>· 사진의 크기는 자동조정 사이즈를 <br>고려하여 올려주세요.</p><p>· 가로 : 60px, 세로 : 60px</p></div>';
+		input += '<div id="aimageshowarea"><div id="aimage-noimage" style="margin-top: 20px;"><a href="javascript:partistimgclick();"><i class="material-icons">broken_image</i></a><span>사진을 등록해주세요.</span></div><div id="aimage-image" style="display: none; width: 100%; height: 100%;"><a href="javascript:partistimgclick();"><img src="" style="width: 100%; height: 100%;" id="aimg"></a></div></div><div style="clear: both; padding: 0; border: none; margin: 0;"></div></div></div>';
+		Swal.fire({
+			title: '아티스트 이미지 등록',
+			html: input,
+			confirmButtonText: '닫기',
+			onClose: function(){
+				if($("#aimg").attr("src")!=""){
+					$("#artistimg").attr("src",$("#aimg").attr("src"));
+				}
+				pArtistImgload();
+			}
+		});
+	});
+	function pArtistImgload(){
+		var image = $("#uploadfile3").val();
+		if(image!=""){
+			$("#box-aimage-noimage").hide();
+			$("#box-aimage-image").show();
+			$("#partistimgdelete").show();
+		}else{
+			$("#box-aimage-image").hide();
+			$("#box-aiamge-noimage").show();
+			$("#partistimgdelete").hide();
+		}
+	}
+	pArtistImgload();
+	function partistimgclick(){
+		var input = $("#uploadfile3");
 		input.click();
 	};
 	
@@ -1608,9 +1654,17 @@
 			$("#timage-image").show();
 			$("#timg").attr("src", e.target.result);
 		}
-		// 보안처리(Data URI)
-		// RFC 2397에 정의되어있는 개발규약
-		// 파일의 직접적인 경로 노출 방지
+
+		reader.readAsDataURL(value.files[0]);
+	}
+	function loadAImg(value){
+		var reader = new FileReader();
+		reader.onload = function(e){
+			$("#aimage-noimage").hide();
+			$("#aimage-image").show();
+			$("#aimg").attr("src", e.target.result);
+		}
+
 		reader.readAsDataURL(value.files[0]);
 	}
 	function loadPImg(value){
@@ -1620,20 +1674,8 @@
 			$("#mimageimgcontent").show();
 			$("#mimg").attr("src", e.target.result);
 		}
-		// 보안처리(Data URI)
-		// RFC 2397에 정의되어있는 개발규약
-		// 파일의 직접적인 경로 노출 방지
+
 		reader.readAsDataURL(value.files[0]);
-	}
-	function insertTest(){
-		var win;
-		var frm = document.insertFrm;
-		$("#pStatusNum").val(1);
-		win = open("","w","width=300,height=200");
-		frm.target = "w";
-		frm.method = "POST";
-		frm.action = "insertTest.dr";
-		frm.submit();
 	}
 </script>
 
