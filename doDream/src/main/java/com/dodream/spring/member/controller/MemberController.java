@@ -540,6 +540,20 @@ public class MemberController {
 		return mv;
 	}
 	
+	/*
+	 * @RequestMapping("social.dr") public ModelAndView socialSelect(int pWriter,
+	 * ModelAndView mv) {
+	 * 
+	 * ArrayList<Member> social = mService.socialSelect(pWriter);
+	 * System.out.println(social);
+	 * 
+	 * if(social != null) { mv.addObject("social", social);
+	 * mv.setViewName("member/SocialHeader"); }else { mv.addObject("msg",
+	 * "목록 조회에 실패하였습니다."); mv.setViewName("common/errorPage"); }
+	 * 
+	 * return mv; }
+	 */
+	
 	
 
 	

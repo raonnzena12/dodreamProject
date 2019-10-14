@@ -182,16 +182,7 @@
 											<p class="categoryName mb-0">${ pList.pCategoryName }</p>
 											<span class="fundName"> ${ pList.pTitle } </span>
 										</div>
-										<div class="heartIcon">
-<%-- 			                              <c:choose>
-			                                 <c:when test="${ prj.iLike == 0 }">
-			                                 <i class="material-icons heart-fund">favorite_border</i>
-			                                 </c:when>
-			                                 <c:otherwise>
-			                                 <i class="material-icons heart-fund">favorite</i>
-			                                 </c:otherwise>
-			                              </c:choose> --%>
-			                           </div>
+
 										<div class="detailArea my-1">
 											<c:choose>
 												<c:when test="${pList.pStatusNum eq 1 }">
@@ -219,8 +210,15 @@
            		                        </div>
 										<div class="chartArea px-3 mt-2">
 											<div class="chartInfo clearfix">
-												<span class="chartInfo1">￦<fmt:formatNumber value="${ pList.pCurrentFunding }" groupingUsed="true" /></span>
-												<span class="chartInfo2"><fmt:parseNumber value="${ (pList.pCurrentFunding / pList.pGoal) * 100 }" integerOnly="true" />%</span>
+												<c:choose>
+													<c:when test="${pList.pStatusNum eq 1 }">
+														<span class="chartInfo1">-</span>													
+													</c:when>
+													<c:otherwise>
+														<span class="chartInfo1">￦<fmt:formatNumber value="${ pList.pCurrentFunding }" groupingUsed="true" /></span>
+														<span class="chartInfo2"><fmt:parseNumber value="${ (pList.pCurrentFunding / pList.pGoal) * 100 }" integerOnly="true" />%</span>
+													</c:otherwise>
+												</c:choose>
 											</div>
 											<div class="chartBar">
 												<c:choose>

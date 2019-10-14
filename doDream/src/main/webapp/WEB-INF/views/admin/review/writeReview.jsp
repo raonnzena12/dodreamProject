@@ -87,6 +87,20 @@ select {
    border-radius: 4px;
 }
 
+.filebox label {
+	display: inline-block;
+	padding: .5em .75em;
+	color: #999;
+	font-size: inherit;
+	line-height: normal;
+	vertical-align: middle;
+	background-color: #fdfdfd;
+	cursor: pointer;
+	border: 1px solid #ebebeb;
+	border-bottom-color: #e2e2e2;
+	border-radius: .25em;
+}
+
 </style>
 
 </head>
@@ -161,7 +175,8 @@ select {
 													<th>썸네일 이미지 :</th>
 													<td>
 														<div class="filebox preview-image" style="">
-															<input type="file" id="input-file" class="upload-hidden" name="uploadFile" style="">
+															<label for="ex_file">업로드</label>
+															<input type="file" id="input-file" class="upload-hidden" name="uploadFile" style="display: none;">
 														</div>
 													</td>
 												</tr>

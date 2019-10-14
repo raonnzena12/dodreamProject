@@ -92,17 +92,31 @@ public class AdminMemberController {
 	}
 	
 	// 일반회원 -> 블랙리스트 처리
-	@ResponseBody
 	@RequestMapping("blackListBtn.dr")
-	public int goBlackList(int userNo) {
-		return aService.goBlackList(userNo);
+	public String goBlackList(int userNo) {
+		
+		int result = aService.goBlackList(userNo);
+		 
+		if(result > 0) {
+			return "redirect:adminMlist.dr"; 
+		} else {
+			return "redirect:adminMlist.dr";
+		}
+		
 	}
 	
 	// 블랙리스트-> 일반회원 처리
-	@ResponseBody
 	@RequestMapping("returnUser.dr")
-	public int goReturnUser(int userNo) {
-		return aService.goReturnuser(userNo);
+	public String goReturnUser(int userNo) {
+		
+		int result = aService.goReturnuser(userNo);
+		
+		if(result > 0) {
+			return "redirect:adminBlist.dr"; 
+		} else {
+			return "redirect:adminBlist.dr";
+		}
+		
 	}
 	
 }

@@ -286,7 +286,22 @@
 .insertformcont:hover{
 	box-shadow: 1px 1px 4px #aaa;
 }
-
+.btnWrapper button{
+	width: 160px;
+	opacity: 0.85;
+	margin-left: 15px;
+	font-size: 18px;
+	letter-spacing: 1px;
+}
+.btnWrapper button i{
+	color: #fff;
+	font-size: 16px;
+	font-weight: bolder;
+	margin-right: 5px;
+}
+.btnWrapper button:hover{
+	opacity: 1;
+}
 
 </style>
 </head>
@@ -367,7 +382,9 @@
 	</div>
 	<div id="insertFundForm">
 		<div class="btnWrapper" align="right">
-			<button type="button" onclick="goSave();" class="btn btn-primary" style="background-color: #8E44AD; border: none;">임시저장하기</button>
+			<button type="button" onclick="preview();" class="btn btn-primary" style="background-color: #8E44AD; border: none; width: 140px;"><i class="material-icons">search</i>미리보기</button>
+			<button type="button" onclick="temporarySave();" class="btn btn-primary" style="background-color: #8E44AD; border: none;"><i class="material-icons">cloud_download</i>임시저장하기</button>
+			<button type="button" onclick="submitToAdmin();" class="btn btn-primary" style="background-color: #F39C12; border: none;"><i class="material-icons">done</i>검토요청하기</button>
 		</div>
 		<div class="accWrapper">
 			<form id="insertFrm" name="insertFrm" action="insertProject.dr" method="POST"
@@ -430,7 +447,7 @@
 							<div class="edit-box nonborder">
 								<select class="form-control" name="pCategoryNum"
 									style="font-size: 14px; width: 85%;">
-									<option>카테고리 선택</option>
+									<option value="0">카테고리 선택</option>
 									<option value="1">음악</option>
 									<option value="2">영화</option>
 									<option value="3">연극</option>
@@ -450,10 +467,10 @@
 						<div class="info-box">
 							<div class="edit-box">
 								<input type="text" class="form-control" name="pTitle"
-									placeholder="52자 내외로 입력하여 주세요" maxlength="52"
+									placeholder="100자 내외로 입력하여 주세요" maxlength="100"
 									style="font-size: 13px;"  autocomplete="off">
 								<div class="form-length-chk">
-									<span id="pTitleLengthChk">0</span>/52
+									<span id="pTitleLengthChk">0</span>/100
 								</div>
 							</div>
 						</div>
@@ -469,10 +486,10 @@
 						<div class="info-box">
 							<div class="edit-box">
 								<input type="text" class="form-control" name="pSTitle"
-									placeholder="52자 내외로 입력하여 주세요" maxlength="52"
+									placeholder="100자 내외로 입력하여 주세요" maxlength="100"
 									style="font-size: 13px;"  autocomplete="off">
 								<div class="form-length-chk">
-									<span id="pSTitleLengthChk">0</span>/52
+									<span id="pSTitleLengthChk">0</span>/100
 								</div>
 							</div>
 						</div>
@@ -627,7 +644,7 @@
 								<div class="rewardContentRight">
 									<input type="number" class="form-control form-control-sm"
 										name="rList[0].rPrice"
-										style="width: 30%; display: inline-block;" min="0"   autocomplete="off"><label
+										style="width: 30%; display: inline-block;" min="0" value="0" autocomplete="off"><label
 										style="padding: 5px;">원</label>
 								</div>
 							</div>
@@ -676,7 +693,7 @@
 								<div class="rewardContentRight" style="padding-left: 10px;">
 									<p style="display:inline;">
 										리워드를 <input type="number" class="form-control form-control-sm"
-											name="rList[0].rLimit" style="display: inline; width: 15%;" min="0">
+											name="rList[0].rLimit" style="display: inline; width: 15%;" min="1" value="1">
 										개로 제한합니다.
 									</p>
 									<div class="custom-control custom-checkbox" style="display:inline; padding:10px; vertical-align: bottom; margin-left: 10px;">
@@ -715,7 +732,7 @@
 										<option value="15">중순(11일 ~ 20일)</option>
 										<option value="25">말(21일 ~ 말일)</option>
 									</select>										
-									<input type="hidden" name="rList[0].rShipDate" value="">
+									<input type="hidden" name="rList[0].rShipDate" value="2020-01-01">
 								</div>
 							</div>
 						</div>
@@ -805,11 +822,11 @@
 						</div>
 						<div class="info-box">
 							<div class="edit-box">
-								<textarea rows="5" maxlength="100"
+								<textarea rows="5" maxlength="500"
 									class="form-control form-control-sm" id="pSummaryText"
 									name="pSummaryText" style="width: 100%; resize: none;"></textarea>
 								<div class="form-length-chk">
-									<span id="pSummaryTextChk">0</span>/100
+									<span id="pSummaryTextChk">0</span>/500
 								</div>
 							</div>
 						</div>
@@ -990,37 +1007,45 @@
 		}
 		validate();
 	});
+	function doLogin(){
+		var frm = $("#modal-loginfrm");
+		var v_userEmail = $("#modal-user-email").val();
+		var v_userPwd = $("#modal-user-pwd").val();
+		$.ajax({
+			url : "checkValidate.dr",
+			data : {userEmail : v_userEmail, userPwd : v_userPwd},
+			type : "POST",
+			success : function(result){
+				if(result>0){
+					frm.submit();
+				}else{
+					Swal.fire({
+						type: 'error',
+						title: '로그인 실패!',
+						html: '이메일과 비밀번호가 일치하지 않거나 <br> 해당하는 이메일이 없습니다.',
+						showConfirmButton: false,
+						footer: '<a href="javascript:goLogin();">다시 로그인하기</a>'
+					});
+				}
+			},
+			error : function(e){
+			}
+		});
+	}
+	function modalenter(event){
+		if(event.keyCode=='13'){
+			doLogin();
+		}
+	}
 	function goLogin(){
 		Swal.fire({
 			showConfirmButton: false,
-			html: '<div id="login-menu" class="loginmenu text-center" style="display: block; position: relative; width:375px; padding: 10px; margin-left: 59px;"><div style="text-align:center;" class="mb-2"> LOGIN </div><form action="loginmodal.dr" method="POST" id="modal-loginfrm"><input type="hidden" value="" name="prevPage" id="modal-prevPage"><table id="login-table" class="form-group"><tr><td><input class="form-control" type="email" name="userEmail" id="modal-user-email" placeholder="이메일 주소" autocomplete="off" required></td></tr><tr><td><input class="form-control" type="password" name="userPwd" id="modal-user-pwd" placeholder="비밀번호" required></td></tr><tr><td class="loginmenuText custom-control custom-checkbox my-1"></td></tr><tr><td><button type="button" class="btn btn-warning btn-block mb-2" id="modal-loginBtn">L O G I N</button></td></tr><tr><td class="text-center naverKakaoArea"><img src="resources/images/naver_sns_icon.png" data-toggle="tooltip" data-placement="left" title="NAVER ID로 로그인" class="mx-2" style="width:40px; height:auto;"><a href="javascript:loginWithKakao()"><img src="resources/images/kakao_sns_icon.png" data-toggle="tooltip" data-placement="left" title="KAKAO ID로 로그인" class="mx-2" style="width:40px; height:auto;"></a><img src="resources/images/faceB_sns_icon.png" data-toggle="tooltip" data-placement="left" title="FACEBOOK ID로 로그인" class="mx-2" style="width:40px; height:auto;"></td></tr><tr><td class="loginmenuText text-center"><hr>회원이 아니신가요?<br> <a href="insertForm.dr" class="emp blue">가입하기</a></td></tr></table></form></div>'
+			html: '<div id="login-menu" class="loginmenu text-center" style="display: block; position: relative; width:375px; padding: 10px; margin-left: 59px;"><div style="text-align:center;" class="mb-2"> LOGIN </div><form action="loginmodal.dr" method="POST" id="modal-loginfrm"><input type="hidden" value="" name="prevPage" id="modal-prevPage"><table id="login-table" class="form-group"><tr><td><input class="form-control" type="email" name="userEmail" id="modal-user-email" placeholder="이메일 주소" autocomplete="off" required></td></tr><tr><td><input class="form-control" type="password" name="userPwd" id="modal-user-pwd" placeholder="비밀번호" onKeyDown="modalenter(event);" required></td></tr><tr><td class="loginmenuText custom-control custom-checkbox my-1"></td></tr><tr><td><button type="button" class="btn btn-warning btn-block mb-2" id="modal-loginBtn">L O G I N</button></td></tr><tr><td class="text-center naverKakaoArea"><img src="resources/images/naver_sns_icon.png" data-toggle="tooltip" data-placement="left" title="NAVER ID로 로그인" class="mx-2" style="width:40px; height:auto;"><a href="javascript:loginWithKakao()"><img src="resources/images/kakao_sns_icon.png" data-toggle="tooltip" data-placement="left" title="KAKAO ID로 로그인" class="mx-2" style="width:40px; height:auto;"></a><img src="resources/images/faceB_sns_icon.png" data-toggle="tooltip" data-placement="left" title="FACEBOOK ID로 로그인" class="mx-2" style="width:40px; height:auto;"></td></tr><tr><td class="loginmenuText text-center"><hr>회원이 아니신가요?<br> <a href="insertForm.dr" class="emp blue">가입하기</a></td></tr></table></form></div>'
 		});
 	};
 	$(function(){
 		$(document).on("click","#modal-loginBtn",function(e){
-			var frm = $("#modal-loginfrm");
-			var v_userEmail = $("#modal-user-email").val();
-			var v_userPwd = $("#modal-user-pwd").val();
-			$.ajax({
-				url : "checkValidate.dr",
-				data : {userEmail : v_userEmail, userPwd : v_userPwd},
-				type : "POST",
-				success : function(result){
-					if(result>0){
-						frm.submit();
-					}else{
-						Swal.fire({
-							type: 'error',
-							title: '로그인 실패!',
-							html: '이메일과 비밀번호가 일치하지 않거나 <br> 해당하는 이메일이 없습니다.',
-							showConfirmButton: false,
-							footer: '<a href="javascript:goLogin();">다시 로그인하기</a>'
-						});
-					}
-				},
-				error : function(e){
-				}
-			});
+			doLogin();
 		});
 	});
 	function checklogin(){
@@ -1050,9 +1075,69 @@
 			}, 300);
 		}
 	};
-	
+	// 검토요청하기 메소드입니다. pStatusNum = 2
+	function submitToAdmin(){
+		$("#pStatusNum").val(2);
+		var formData = new FormData(document.getElementById("insertFrm"));
+		Swal.fire({
+			title : '정말로 제출하시겠어요?',
+			html : '한 번 제출하시면 수정하실 수 없습니다. <br> 신중히 검토후 제출해 주세요',
+			type: 'warning',
+			width: 500,
+			padding: '3em',
+			backdrop: `rgba(0,0,123,0.4)`,
+			showCancelButton: true,
+			confirmButtonText: '예, 제출할게요!',
+			cancelButtonText: '계속 작성하기',
+			reverseButtons: true,
+			showLoaderOnConfirm: true,
+			preConfirm: function(){
+				$.ajax({
+					url : "insertProject.dr",
+					type: "post",
+					data: formData,
+					encType: "multipart/form-data",
+					processData: false,
+					contentType: false,
+					success: function(result){
+						var page = result;
+						if(page!="error"){
+							Swal.fire({
+								title: '<strong>제출에 성공하였습니다!</strong>',
+								type: 'success',
+								html:
+								  '검토는 평균 5~7일정도 소요됩니다. <br>검토사항에 문제가 있을 경우 개인적으로 연락드립니다.',
+								focusConfirm: false,
+								confirmButtonText: '확인',
+								onClose: function(){
+									location.href = page;
+								}
+							})
+						}else{
+							Swal.fire({
+								position: 'center',
+								type: 'error',
+								title: '제출에 실패하였습니다.',
+								showConfirmButton: false,
+								timer: 1500
+							});
+						}
+					},error: function(e){
+						console.log(e);
+						Swal.fire({
+							position: 'center',
+							type: 'error',
+							title: '제출에 실패하였습니다.',
+							showConfirmButton: false,
+							timer: 1500
+						});
+					}
+				}); 
+			}
+		});
+	}
 	// 임시저장하는 메소드입니다. pStatusNum = 1 으로 세팅합니다. 
-	function goSave() {
+	function temporarySave() {
 		$("#pStatusNum").val(1);
  		var formData = new FormData(document.getElementById("insertFrm"));
 		$.ajax({

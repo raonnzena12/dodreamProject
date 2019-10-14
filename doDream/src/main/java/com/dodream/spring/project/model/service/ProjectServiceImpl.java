@@ -82,7 +82,7 @@ public class ProjectServiceImpl implements ProjectService {
 			originFile1 = originFiles.getpThumbImage();
 			originFile2 = originFiles.getpMainImage();
 			originFile3 = originFiles.getpArtistPFImage();
-		}catch(NullPointerException n) {}
+		}catch(NullPointerException e) {}
 		if(uploadfile1!=null && !uploadfile1.getOriginalFilename().equals("")) {
 			renameTImageName = renameFile(project, uploadfile1, 1); // 변경된 파일명 (1:썸네일, 2:메인, 3:아티스트)
 			project.setpThumbImage((renameTImageName));
@@ -97,15 +97,21 @@ public class ProjectServiceImpl implements ProjectService {
 		}
 		int result = pDao.insertProject(project);
 		if(result>0) {
-			if(renameTImageName!=null)
+			if(renameTImageName!=null) {
 				deleteFile(originFile1, request, 1);
 				result = saveFile(renameTImageName, uploadfile1, request,1);
-			if(renamePImageName!=null && result>0)
+			}
+			if(renamePImageName!=null && result>0) {
 				deleteFile(originFile2, request, 2);
 				result = saveFile(renamePImageName, uploadfile2, request,2);
-			if(renameAImageName!=null && result>0)
+			}
+			if(renameAImageName!=null && result>0) {
 				deleteFile(originFile3, request, 3);
 				result = saveFile(renameAImageName, uploadfile3, request,3);
+			}
+			if(!originFile3.contains("artist")) {
+				deleteFile(originFile3, request, 3);
+			}
 		}
 		return result;
 	}

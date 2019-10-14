@@ -106,7 +106,7 @@ tbody tr:hover{
 															aria-label="Start date: activate to sort column ascending">리뷰 작성일</th>
 														<th class="sorting" tabindex="0" aria-controls="dataTable"
 															rowspan="1" colspan="1"
-															aria-label="Salary: activate to sort column ascending">해당 프로젝트 번호</th>
+															aria-label="Salary: activate to sort column ascending">프로젝트명</th>
 														<th class="sorting" tabindex="0" aria-controls="dataTable"
 															rowspan="1" colspan="1"
 															aria-label="Salary: activate to sort column ascending">작성자 닉네임</th>
@@ -124,7 +124,7 @@ tbody tr:hover{
 														<th rowspan="1" colspan="1">리뷰 제목</th>
 														<th rowspan="1" colspan="1">리뷰 부제목</th>
 														<th rowspan="1" colspan="1">리뷰 작성일</th>
-														<th rowspan="1" colspan="1">해당 프로젝트 번호</th>
+														<th rowspan="1" colspan="1">프로젝트명</th>
 														<th rowspan="1" colspan="1">작성자 닉네임</th>
 														<th rowspan="1" colspan="1">리뷰 조회수</th>
 														<th rowspan="1" colspan="1">리뷰 수정</th>
@@ -134,10 +134,10 @@ tbody tr:hover{
 													<c:forEach var="r" items="${ list }">
 														<tr role="row" class="odd">
 															<td class="sorting_1">${ r.revNo }</td>
-															<td>${ r.revTitle}</td>
+															<td><a href="fReviewDetail.dr?revNo=${r.revNo}" style="text-decoration:none; color: gray;">${ r.revTitle}</a></td>
 															<td>${ r.revSubTitle}</td>
 															<td>${ r.revEnrollDate}</td>
-															<td>${ r.revRefPno}</td>
+															<td>${ r.revRefPname}</td>
 															<td>${ r.userNickname}</td>
 															<td>${ r.revCount}</td>
 															<td>
