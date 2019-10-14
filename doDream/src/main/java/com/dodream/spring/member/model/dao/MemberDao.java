@@ -105,5 +105,6 @@ public class MemberDao {
 		return (ArrayList)sqlSession.selectList("adminReportMapper.myReportReplyList", userNo);
 	}
 
+
 	
 }

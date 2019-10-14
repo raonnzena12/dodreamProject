@@ -73,4 +73,5 @@ public interface MemberService {
 	public abstract ArrayList<Report> myReportReplyList(int userNo);
 
 
+
 }
