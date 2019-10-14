@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.dodream.spring.member.model.vo.Member;
 import com.dodream.spring.project.model.service.ProjectService;
-import com.dodream.spring.project.model.service.ProjectService2;
 import com.dodream.spring.project.model.vo.Project;
 import com.dodream.spring.project.model.vo.Reward;
 import com.dodream.spring.project.model.vo.RewardList;
@@ -24,8 +24,6 @@ public class ProjectController {
 
 	@Autowired
 	private ProjectService pService;
-	@Autowired
-	private ProjectService2 pService2;
 
 	/**
 	 * 메뉴바에서 펀드 등록하기 클릭시 프로젝트 동의 페이지로 이동
@@ -83,11 +81,16 @@ public class ProjectController {
 		System.out.println(project);
 		// Reward의 등록부분입니다.
 		// 먼저 전달받은 리워드리스트에 null이 아닌 reward만을 저장합니다. (인덱스의 공백이 있을 수 있기 때문입니다.)
+		if(result==0) return "error";
 		ArrayList<Reward> rewardList = new ArrayList<Reward>();
 		for (int i = 0; i < rList.getrList().size(); i++) {
 			Reward reward = rList.getrList().get(i);
 			if(reward.getIsSaved().equals("true")) rewardList.add(reward);
 		}
+		// 리워드가 존재할 경우 기존에 있던 리워드를 전부 삭제시킵니다.
+		if(rewardList.size()>0) 
+			result = pService.deleteRewards(project.getpNo());
+		if(result<0) return "error";
 		// 체크된 reward의 개수만큼 DB에 insert시킵니다.
 		for (Reward reward : rewardList) {
 			
@@ -129,9 +132,14 @@ public class ProjectController {
 	}
 	
 	@RequestMapping("selectCurrentProject.dr")
-	public ModelAndView selectCurrentProject(int pNo, ModelAndView mv) {
+	public ModelAndView selectCurrentProject(int pNo, HttpServletRequest request, ModelAndView mv) {
 		Project project = pService.selectCurrentProject(pNo);
-		ArrayList<Reward> rList = pService2.selectReward(pNo);
+		Member loginUser = (Member)request.getSession().getAttribute("loginUser");
+		if(loginUser==null || loginUser.getUserNo() != project.getpWriter()) {
+			mv.addObject("msg","비정상적인 접근입니다.").setViewName("common/errorPage");
+			return mv;
+		}
+		ArrayList<Reward> rList = pService.selectCurrentReward(pNo);
 		int size = rList.size();
 		try{
 			String pSummaryText = project.getpSummaryText();
