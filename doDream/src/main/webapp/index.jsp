@@ -8,12 +8,12 @@
 </head>
 <style>
 </style>
-<body>
+<body onload="location.href='main.dr'">
 	
 	<div>
-		<button onclick="javascript:location.href='home.dr';">당신 마음 두드림</button>
+		<!-- <button onclick="javascript:location.href='home.dr';">당신 마음 두드림</button>
 		
-		<button onclick="javascript:location.href='adminHome.dr';">관리자쓰</button>
+		<button onclick="javascript:location.href='adminHome.dr';">관리자쓰</button> -->
 	</div>
 	
 </body>
