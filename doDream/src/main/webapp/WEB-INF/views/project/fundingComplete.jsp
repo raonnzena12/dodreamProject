@@ -62,7 +62,7 @@
                                 결제예약결과 및 배송예상일 조회는<br>나의 펀딩현황에서 확인하세요.
                             </div>
                             <div class="col-md-4 text-center">
-                                <button class="btn btn-light" id="myFund">나의 펀딩현황</button>
+                                <button class="btn btn-light fundBtn" id="myFund">나의 펀딩현황</button>
                             </div>
                         </div>
                         <div class="mb-5 px-4 row">
@@ -70,7 +70,7 @@
                                 이런 프로젝트는 어떠세요?
                             </div>
                             <div class="col-md-4 text-center">
-                                <button class="btn btn-light" id="myFund">다른 프로젝트 찾기</button>
+                                <button class="btn btn-light fundBtn" id="goCategory">다른 프로젝트 찾기</button>
                             </div>
                         </div>
                     </div>
@@ -86,11 +86,10 @@
 <script>
 $(function(){
     $("#myFund").on("click",function(){
-        // if( ${ empty loginUser } ) {
-        //     Swal.fire( '로그인이 필요합니다!', '좋아요를 누르기 전 로그인을 해주세요!', 'warning' );
-        //     return false;
-        // }
         location.href="${ myFundingStatus }";
+    });
+    $("#goCategory").on("click", function(){
+        location.href='category.dr';
     });
     $("#shareBtn").on("click", function(){
         $("#area1").hide();
@@ -108,20 +107,20 @@ function sendKakaoLink() {
           description: '#두드림 #테스트 #두드림 #두드림',
           imageUrl: 'https://i.imgur.com/rA4AbTP.png',
           link: {
-            mobileWebUrl: 'https://www.google.com',
-            webUrl: 'https://www.google.com'
+            mobileWebUrl: 'http://192.168.10.57:8080/spring/detailSt.dr?pNo=${ prj.pNo }',
+            webUrl: 'http://192.168.10.57:8080/spring/detailSt.dr?pNo=${ prj.pNo }'
           }
         },
         social: {
-          likeCount: "286",
-          viewCount: "${ prj.pCount }"
+        //   likeCount: "286",
+          viewCount: ${ prj.pCount }
         },
         buttons: [
           {
             title: '웹으로 보기',
             link: {
-              mobileWebUrl: 'https://www.google.com',
-              webUrl: 'https://www.google.com'
+              mobileWebUrl: 'http://192.168.10.57:8080/spring/detailSt.dr?pNo=${ prj.pNo }',
+              webUrl: 'http://192.168.10.57:8080/spring/detailSt.dr?pNo=${ prj.pNo }'
             }
           }
         ]
