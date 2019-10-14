@@ -64,9 +64,12 @@ public class ProjectController {
 	@ResponseBody
 	@RequestMapping(value="insertProject.dr", method=RequestMethod.POST)
 	//public int insertProject(Project project, RewardList rList, MultipartFile uploadfile1, MultipartFile uploadfile2, MultipartFile uploadfile3, HttpServletRequest request, ModelAndView mv) {
-	public int insertProject(@ModelAttribute Project project, @ModelAttribute RewardList rList, MultipartFile uploadfile1, MultipartFile uploadfile2, MultipartFile uploadfile3, HttpServletRequest request, ModelAndView mv) {	
+	public String insertProject(Project project, RewardList rList, MultipartFile uploadfile1, MultipartFile uploadfile2, MultipartFile uploadfile3, HttpServletRequest request) {	
 		// Project의 등록부분입니다.
 		// project의 textarea에 있는 "\n" 을 <br>태그로 전환시킵니다.
+		int pStatusNum = project.getpStatusNum();
+		int userNo = project.getpWriter();
+		int pNo = project.getpNo();
 		String pSummaryText = project.getpSummaryText().replaceAll("\n", "<br>");
 		String pStory = project.getpStory().replaceAll("\n", "<br>");
 		String pArtistIntroduction = project.getpArtistIntroduction().replaceAll("\n", "<br>");
@@ -109,38 +112,10 @@ public class ProjectController {
 			// 오류가 있을 경우에만 콘솔창에 해당 리워드를 출력합니다.
 			if(result==0) System.out.println("리워드 DB 저장 실패, 리워드 정보 : \n"+reward.toString());
 		}
-		
-		if(result>0) mv.setViewName("project/projectInsertComplete");
-		else mv.addObject("msg", "프로젝트 등록 실패").setViewName("common/errorPage");
-		return result;
+		if(pStatusNum==1) return result + "";
+		else if(pStatusNum==2) return "myOpenProjectList.dr?userNo="+userNo;
+		else return "error";
 	}
-	
-	// 임시테스트
-	@RequestMapping(value="insertTest.dr",method=RequestMethod.POST)
-	public String insertTest(Project project, RewardList rList, MultipartFile uploadfile1, MultipartFile uploadfile2, MultipartFile uploadfile3, HttpServletRequest request, ModelAndView mv) {
-		System.out.println("ㅎㅇ");
-		String pSummaryText = project.getpSummaryText().replaceAll("\n", "<br>");
-		String pStory = project.getpStory().replaceAll("\n", "<br>");
-		String pArtistIntroduction = project.getpArtistIntroduction().replaceAll("\n", "<br>");
-		project.setpSummaryText(pSummaryText);
-		project.setpStory(pStory);
-		project.setpArtistIntroduction(pArtistIntroduction);
-		project.setpArtistPFImage("testTN.png");
-		// 파일 등록 부분
-		// DB 연결을 수행합니다.
-		pService.insertTest(project, uploadfile1, uploadfile2, uploadfile3, request);
-		ArrayList<Reward> rewardList = new ArrayList<Reward>();
-		for (int i = 0; i < rList.getrList().size(); i++) {
-			Reward reward = rList.getrList().get(i);
-			if(reward.getrName()!=null)	rewardList.add(reward);
-		}
-		System.out.println("리워드");
-		for (Reward reward : rewardList) {
-			System.out.println(reward.toString());
-		}
-		return "";
-	}
-	
 	
 	/**
 	 * 프로젝트 등록하기에서 썸네일 이미지 등록시 서버에 파일을 저장해주는 메소드입니다.
