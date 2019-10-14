@@ -418,7 +418,11 @@
 			location.href='${logout}';
 		});
 		
-
+		$(document).on("keydown","#userPwd",function(event){
+			if(event.keyCode=='13'){
+				beforeLogin();
+			}
+		});
 	</script>
 	
 
