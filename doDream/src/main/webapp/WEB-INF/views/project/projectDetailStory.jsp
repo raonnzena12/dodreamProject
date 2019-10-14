@@ -73,7 +73,7 @@
                 display: block;
                 float: left;
            }
-           #storyContent img{
+           #storyContent *{
            		max-width: 100%;
                 height: auto;
            }
