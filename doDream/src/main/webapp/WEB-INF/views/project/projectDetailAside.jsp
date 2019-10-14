@@ -365,7 +365,7 @@
                  </div>
             </div>
             <div id="introduce">
-            	${project.pArtistIntroduction }
+            	${project.pArtistIntroduction}
             </div>
             <div id="artInformation">
             	<div id="artistText3">
@@ -476,7 +476,9 @@
 	</section>
 	<script>
 	
-	/* 아티스트 클릭시 아티스트 마이페이지로 이동  */
+	
+		var info = "${project.pArtistIntroduction }";
+		console.log("아티스트 소개 : "+ info);
 		
 	$(function(){
 			//처음 들어왔을때 색 바뀌는 기능 
