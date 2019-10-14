@@ -110,7 +110,6 @@
 				
 					<c:forEach var="n" items="${ nList }">
 						<div class="card">
-						
 							<div class="card-header">
 								<a class="card-link collapsed" href="#card-${n.nNo}" target="#card-${n.nNo}"
 									data-toggle="collapse"> 

@@ -129,7 +129,7 @@ tbody tr:hover{
 													</tr>
 												</tfoot>
 												<tbody>
-													<c:forEach var="b" items="${ list }">
+													<c:forEach var="b" items="${ list }" varStatus="status">
 														<tr role="row" class="odd">
 															<td class="sorting_1">${ b.userNo }</td>
 															<td>${ b.userNickname }</td>
@@ -138,8 +138,31 @@ tbody tr:hover{
 															<td>${ b.userEnrollDate }</td>
 															<td> 블랙리스트 회원</td>
 															<td>
-																<button type="button" onclick="goReturnUser(${b.userNo})" 
-																class="btn btn-primary btn-lg btn-block rewardBtn">일반회원 처리</button>
+																<button type="button" data-toggle="modal" data-target="#exampleModal${ status.index }" data-whatever="일반회원 처리"
+ 																 id="returnUser" class="btn btn-primary btn-lg btn-block rewardBtn">일반회원 처리</button>
+ 																 <!-- Modal -->
+ 																<form action ="returnUser.dr" method="post">
+																<div class="modal fade" id="exampleModal${ status.index }" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+																  <div class="modal-dialog" role="document">
+																    <div class="modal-content">
+																      <div class="modal-header">
+																        <h5 class="modal-title" id="exampleModalLabel">일반회원 처리</h5>
+																        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																          <span aria-hidden="true">&times;</span>
+																        </button>
+																      </div>
+																      <div class="modal-body">
+																        	해당 회원을 일반회원 처리하시겠습니까?
+																      </div>
+																      <div class="modal-footer">
+																        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+																        <button type="submit" class="btn btn-primary">처리하기</button>
+																        <input type="hidden" name="userNo" value="${b.userNo}">
+																      </div>
+																    </div>
+																  </div>
+																</div>
+																</form>
 															</td>
 														</tr>
 													</c:forEach>
@@ -219,22 +242,6 @@ tbody tr:hover{
 
 	<!-- Demo scripts for this page-->
 	<script src="resources/js/demo/datatables-demo.js"></script>
-	
-	<script>
-		function goReturnUser(num){
-			if(confirm("일반회원 처리 하시겠습니까? ")){
-				$.ajax({
-					url : "returnUser.dr",
-					data : {userNo : num},
-					type : "POST",
-					async : true,
-					success : function(result){
-					}
-				});
-			}
-		} 
-	</script>
-	
 	
 	
 </body>
