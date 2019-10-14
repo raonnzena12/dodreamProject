@@ -149,7 +149,11 @@
 			PROJECT_TOTAL = DEFAULT
 		WHERE PROJECT_NO = #{pNo} 
 	</insert>
-	
+	<!-- 작성중인 프로젝트 내용 가져오는 쿼리 -->
+	<select id="selectCurrentProject" parameterType="_int" resultMap="projectResultSet">
+		SELECT * FROM PROJECT_TB 
+		WHERE PROJECT_NO = #{ pNo } 
+	</select>
 	<!-- 프로젝트 디테일 조회용 쿼리 -->
 	<select id="selectProject" parameterType="_int" resultMap="projectResultSet">
 		<!-- SELECT P.*, FLOOR(PROJECT_CLOSE_DT - SYSDATE) AS D_DAY FROM PROJECT_TB P
