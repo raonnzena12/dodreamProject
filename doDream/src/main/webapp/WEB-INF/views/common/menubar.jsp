@@ -31,8 +31,9 @@
 <!-- 카카오 로그인 -->
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <!-- 네이버 로그인 -->
+<c:if test="${ empty loginUser }" >
 <script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
-
+</c:if>
 <style>
 	* {
 		box-sizing: border-box;
@@ -252,12 +253,13 @@
 	</nav>
 	<a id="top_btn"><img src="resources/images/up_button_p.png" alt="탑 버튼"></a>
 	</section>
+<c:if test="${ empty loginUser }" >
 <script>
 
 var naverLogin = new naver.LoginWithNaverId(
 	{
 		clientId: "CLgmNZMbjGe7TApfTPy_",
-		callbackUrl: "http://localhost:8080/",
+		callbackUrl: "http://localhost:8080/spring/naverLoginRedirect.jsp",
 		isPopup: true, /* 팝업을 통한 연동처리 여부 */
 		loginButton: {color: "green", type: 1, height: 40} /* 로그인 버튼의 타입을 지정 */
 	}
@@ -265,7 +267,40 @@ var naverLogin = new naver.LoginWithNaverId(
 
 /* 설정정보를 초기화하고 연동을 준비 */
 naverLogin.init();
-		
+
+function loginWithNaver(email, nickName, profileImg, unqId) {
+	var form = document.createElement("form");
+	var param = new Array();
+	var input = new Array();
+
+	var path = window.location.pathname;
+	var arr = path.split("/");
+	var prevPage = arr[2];
+
+	
+	form.action = "naverSNSLogin.dr";
+	form.method = "post";
+	
+	param.push(["userEmail",email]);
+	param.push(["userNickname",nickName]);
+	param.push(["userProfileImage",profileImg]);
+	param.push(["userPwd",unqId]);
+	param.push(["prevPage",prevPage]);
+	
+	for(var i=0; i<param.length; i++){
+		input[i] = document.createElement("input");
+		input[i].setAttribute("type", "hidden");
+		input[i].setAttribute('name', param[i][0]);
+		input[i].setAttribute("value", param[i][1]);
+		form.appendChild(input[i]);
+	}
+	document.body.appendChild(form);
+				
+	form.submit();
+}
+</script>
+</c:if>
+<script>
 	/* 로그인폼 submit */
 	function beforeLogin(){
 		var frm = $("#loginFrm");
@@ -325,6 +360,7 @@ naverLogin.init();
 			}
 		});
 	};
+	
 	
 	/* SNS로그인 시 가상 로그인 폼 생성 후 submit */
 	function snsLoginFrm(url, userEmail, userPwd){

@@ -554,6 +554,35 @@ public class MemberController {
 	 * return mv; }
 	 */
 	
+	/**
+	 * 네이버 이메일로 로그인하는 Controller
+	 * @param email
+	 * @param nickName
+	 * @param profileImg
+	 * @param model
+	 */
+	@RequestMapping("naverSNSLogin.dr")
+	public String naverSNSlogin(Member member, String prevPage, Model model) {
+		
+		Member loginUser = mService.naverLogin(member.getUserEmail());
+		
+		if ( loginUser == null ) {
+			int result = mService.insertSNS(member);
+			if ( result > 0 ) {
+				loginUser = member;
+			}
+		}
+		model.addAttribute("loginUser", loginUser);
+		
+		int result = mService.checkVisitToday(loginUser.getUserNo());
+		if (result == 0) {
+			result = mService.countVisitToday(loginUser.getUserNo());
+			if (result > 0)
+				System.out.println("userNo : " + loginUser.getUserNo() + "번 회원이 DAYCOUNT 테이블에 삽입됨");
+		}
+		
+		return "redirect:"+prevPage;
+	}
 	
 
 	

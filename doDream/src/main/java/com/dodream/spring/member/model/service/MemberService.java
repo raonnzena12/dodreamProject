@@ -72,6 +72,13 @@ public interface MemberService {
 
 	public abstract ArrayList<Report> myReportReplyList(int userNo);
 
+	/**
+	 * 네이버 로그인하는 Service
+	 * @param email
+	 * @return loginUser
+	 */
+	public abstract Member naverLogin(String email);
+
 
 
 }
