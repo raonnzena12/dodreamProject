@@ -467,10 +467,10 @@
 						<div class="info-box">
 							<div class="edit-box">
 								<input type="text" class="form-control" name="pTitle"
-									placeholder="52자 내외로 입력하여 주세요" maxlength="52"
+									placeholder="100자 내외로 입력하여 주세요" maxlength="100"
 									style="font-size: 13px;"  autocomplete="off">
 								<div class="form-length-chk">
-									<span id="pTitleLengthChk">0</span>/52
+									<span id="pTitleLengthChk">0</span>/100
 								</div>
 							</div>
 						</div>
@@ -486,10 +486,10 @@
 						<div class="info-box">
 							<div class="edit-box">
 								<input type="text" class="form-control" name="pSTitle"
-									placeholder="52자 내외로 입력하여 주세요" maxlength="52"
+									placeholder="100자 내외로 입력하여 주세요" maxlength="100"
 									style="font-size: 13px;"  autocomplete="off">
 								<div class="form-length-chk">
-									<span id="pSTitleLengthChk">0</span>/52
+									<span id="pSTitleLengthChk">0</span>/100
 								</div>
 							</div>
 						</div>
@@ -822,11 +822,11 @@
 						</div>
 						<div class="info-box">
 							<div class="edit-box">
-								<textarea rows="5" maxlength="100"
+								<textarea rows="5" maxlength="500"
 									class="form-control form-control-sm" id="pSummaryText"
 									name="pSummaryText" style="width: 100%; resize: none;"></textarea>
 								<div class="form-length-chk">
-									<span id="pSummaryTextChk">0</span>/100
+									<span id="pSummaryTextChk">0</span>/500
 								</div>
 							</div>
 						</div>
@@ -1007,37 +1007,45 @@
 		}
 		validate();
 	});
+	function doLogin(){
+		var frm = $("#modal-loginfrm");
+		var v_userEmail = $("#modal-user-email").val();
+		var v_userPwd = $("#modal-user-pwd").val();
+		$.ajax({
+			url : "checkValidate.dr",
+			data : {userEmail : v_userEmail, userPwd : v_userPwd},
+			type : "POST",
+			success : function(result){
+				if(result>0){
+					frm.submit();
+				}else{
+					Swal.fire({
+						type: 'error',
+						title: '로그인 실패!',
+						html: '이메일과 비밀번호가 일치하지 않거나 <br> 해당하는 이메일이 없습니다.',
+						showConfirmButton: false,
+						footer: '<a href="javascript:goLogin();">다시 로그인하기</a>'
+					});
+				}
+			},
+			error : function(e){
+			}
+		});
+	}
+	function modalenter(event){
+		if(event.keyCode=='13'){
+			doLogin();
+		}
+	}
 	function goLogin(){
 		Swal.fire({
 			showConfirmButton: false,
-			html: '<div id="login-menu" class="loginmenu text-center" style="display: block; position: relative; width:375px; padding: 10px; margin-left: 59px;"><div style="text-align:center;" class="mb-2"> LOGIN </div><form action="loginmodal.dr" method="POST" id="modal-loginfrm"><input type="hidden" value="" name="prevPage" id="modal-prevPage"><table id="login-table" class="form-group"><tr><td><input class="form-control" type="email" name="userEmail" id="modal-user-email" placeholder="이메일 주소" autocomplete="off" required></td></tr><tr><td><input class="form-control" type="password" name="userPwd" id="modal-user-pwd" placeholder="비밀번호" required></td></tr><tr><td class="loginmenuText custom-control custom-checkbox my-1"></td></tr><tr><td><button type="button" class="btn btn-warning btn-block mb-2" id="modal-loginBtn">L O G I N</button></td></tr><tr><td class="text-center naverKakaoArea"><img src="resources/images/naver_sns_icon.png" data-toggle="tooltip" data-placement="left" title="NAVER ID로 로그인" class="mx-2" style="width:40px; height:auto;"><a href="javascript:loginWithKakao()"><img src="resources/images/kakao_sns_icon.png" data-toggle="tooltip" data-placement="left" title="KAKAO ID로 로그인" class="mx-2" style="width:40px; height:auto;"></a><img src="resources/images/faceB_sns_icon.png" data-toggle="tooltip" data-placement="left" title="FACEBOOK ID로 로그인" class="mx-2" style="width:40px; height:auto;"></td></tr><tr><td class="loginmenuText text-center"><hr>회원이 아니신가요?<br> <a href="insertForm.dr" class="emp blue">가입하기</a></td></tr></table></form></div>'
+			html: '<div id="login-menu" class="loginmenu text-center" style="display: block; position: relative; width:375px; padding: 10px; margin-left: 59px;"><div style="text-align:center;" class="mb-2"> LOGIN </div><form action="loginmodal.dr" method="POST" id="modal-loginfrm"><input type="hidden" value="" name="prevPage" id="modal-prevPage"><table id="login-table" class="form-group"><tr><td><input class="form-control" type="email" name="userEmail" id="modal-user-email" placeholder="이메일 주소" autocomplete="off" required></td></tr><tr><td><input class="form-control" type="password" name="userPwd" id="modal-user-pwd" placeholder="비밀번호" onKeyDown="modalenter(event);" required></td></tr><tr><td class="loginmenuText custom-control custom-checkbox my-1"></td></tr><tr><td><button type="button" class="btn btn-warning btn-block mb-2" id="modal-loginBtn">L O G I N</button></td></tr><tr><td class="text-center naverKakaoArea"><img src="resources/images/naver_sns_icon.png" data-toggle="tooltip" data-placement="left" title="NAVER ID로 로그인" class="mx-2" style="width:40px; height:auto;"><a href="javascript:loginWithKakao()"><img src="resources/images/kakao_sns_icon.png" data-toggle="tooltip" data-placement="left" title="KAKAO ID로 로그인" class="mx-2" style="width:40px; height:auto;"></a><img src="resources/images/faceB_sns_icon.png" data-toggle="tooltip" data-placement="left" title="FACEBOOK ID로 로그인" class="mx-2" style="width:40px; height:auto;"></td></tr><tr><td class="loginmenuText text-center"><hr>회원이 아니신가요?<br> <a href="insertForm.dr" class="emp blue">가입하기</a></td></tr></table></form></div>'
 		});
 	};
 	$(function(){
 		$(document).on("click","#modal-loginBtn",function(e){
-			var frm = $("#modal-loginfrm");
-			var v_userEmail = $("#modal-user-email").val();
-			var v_userPwd = $("#modal-user-pwd").val();
-			$.ajax({
-				url : "checkValidate.dr",
-				data : {userEmail : v_userEmail, userPwd : v_userPwd},
-				type : "POST",
-				success : function(result){
-					if(result>0){
-						frm.submit();
-					}else{
-						Swal.fire({
-							type: 'error',
-							title: '로그인 실패!',
-							html: '이메일과 비밀번호가 일치하지 않거나 <br> 해당하는 이메일이 없습니다.',
-							showConfirmButton: false,
-							footer: '<a href="javascript:goLogin();">다시 로그인하기</a>'
-						});
-					}
-				},
-				error : function(e){
-				}
-			});
+			doLogin();
 		});
 	});
 	function checklogin(){
