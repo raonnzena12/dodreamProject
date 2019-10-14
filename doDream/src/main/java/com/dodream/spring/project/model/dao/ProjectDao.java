@@ -173,6 +173,10 @@ public class ProjectDao {
 		return sqlSession.selectOne("projectMapper.getOriginFile",pNo);
 	}
 
+	public Project selectCurrentProject(int pNo) {
+		return sqlSession.selectOne("projectMapper.selectCurrentProject",pNo);
+	}
+
 
 
 	

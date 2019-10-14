@@ -70,7 +70,7 @@
       }
   };
 
-  var editor = renderer.create('<div class="note-editor note-frame panel panel-default"/>');
+  var editor = renderer.create('<div class="note-editor note-frame panel panel-default" style="margin: auto;"/>');
   var toolbar = renderer.create('<div class="note-toolbar panel-heading" role="toolbar"></div></div>');
   var editingArea = renderer.create('<div class="note-editing-area"/>');
   var codable = renderer.create('<textarea class="note-codable" role="textbox" aria-multiline="true"/>');
