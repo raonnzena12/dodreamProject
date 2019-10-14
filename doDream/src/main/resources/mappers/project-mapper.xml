@@ -154,7 +154,7 @@
 	<select id="selectProject" parameterType="_int" resultMap="projectResultSet">
 		<!-- SELECT P.*, FLOOR(PROJECT_CLOSE_DT - SYSDATE) AS D_DAY FROM PROJECT_TB P
 		WHERE PROJECT_NO = #{ pNo }  -->
-		SELECT * FROM PROJECT_LIST_VIEW_3RD
+		SELECT * FROM PROJECT_DETAIL_VIEW_2ND
 		WHERE PROJECT_NO = #{ pNo }
 	</select>
 	

@@ -368,7 +368,7 @@
 					</a>
 			</div>
 			<div id="introduce">
-            	아티스트 소개
+            	${project.pArtistIntroduction }
             </div>
             <div id="artInformation">
             	<div id="artistText3">
