@@ -12,8 +12,8 @@
       <result property="nStatus" column="NOTICE_STATUS" />
       <result property="nWriter" column="NOTICE_WRITER" />
    </resultMap>
-
-   <!-- 프로젝트 리뷰 -->
+ 
+   <!-- 프로젝트 리뷰 --> 
    <resultMap id="ReviewResultSet" type="Review">
       <id property="revNo" column="REVIEW_NO" />
       <result property="revTitle" column="REVIEW_TITLE" />
@@ -46,10 +46,18 @@
 
    <!-- ========== 공지사항 ==================== -->
 
+	<!-- 전체 후기 수 조회 쿼리 -->
+   <select id="noticeListCount" resultType="_int">
+      SELECT COUNT(*)
+      FROM NOTICE       
+      WHERE NOTICE_STATUS = 'Y'
+   </select>
+
    <!-- 공지사항 리스트 쿼리 -->
    <select id="noticeSelect" resultMap="NoticeResultSet">
-      SELECT * FROM NOTICE
-      ORDER BY NOTICE_ER_DT DESC
+      SELECT * 
+      FROM NOTICE
+      ORDER BY NOTICE_NO DESC
    </select>
 
 
@@ -60,15 +68,16 @@
       FROM REVIEW       
       WHERE REVIEW_STATUS = 'Y'
    </select>
-
+   
    <!-- 후기 목록 조회 쿼리 -->
+   <!-- 
    <select id="selectfrList" resultMap="ReviewResultSet">
       SELECT *
       FROM REVIEW
       JOIN PROJECT_CG ON(REVIEW_CNO = PROJECT_CT_NO)
       ORDER BY REVIEW_NO DESC
    </select>
-
+-->
    <!-- 조회수 증가 쿼리 -->
    <update id="updateCount" parameterType="_int">
       UPDATE REVIEW
@@ -77,6 +86,42 @@
       WHERE REVIEW_NO = #{revNo}
    </update>
 
+   <!-- 진행중/종료된 프로젝트 갯수 조회용 쿼리 -->
+   <select id="countList" resultType="_int">
+      SELECT COUNT(*) FROM REVIEW
+      WHERE PROJECT_ST_NO IN ( 4, 5 )
+   </select>
+   
+  
+   	<!-- 카테고리 필터링하여 리스트 받아오는 쿼리 -->
+	 
+	<select id="selectfrList" resultMap="ReviewResultSet" parameterType="revKategorie">
+		SELECT * FROM REVIEW   
+		JOIN PROJECT_CG ON(REVIEW_CNO = PROJECT_CT_NO)
+		WHERE REVIEW_STATUS = 'Y' AND
+		<choose>
+			<when test="category == 'total'">
+			REVIEW_CNO IN ( 1, 2, 3, 4, 9 )
+			</when>
+			<when test="category == 'music'">
+			REVIEW_CNO = 1
+			</when>
+			<when test="category == 'movie'">
+			REVIEW_CNO = 2
+			</when>
+			<when test="category == 'play'">
+			REVIEW_CNO = 3
+			</when>
+			<when test="category == 'art'">
+			REVIEW_CNO = 4
+			</when>
+			<when test="category == 'etc'">
+			REVIEW_CNO = 9
+			</when>
+		</choose>
+		ORDER BY REVIEW_NO DESC
+	</select>
+	
    <!-- 후기 상세조회 쿼리 -->
    <select id="selectRevDetail" parameterType="_int"
       resultMap="ReviewResultSet">
@@ -88,30 +133,19 @@
       REVIEW_STATUS = 'Y'
    </select>
 
-   <!-- 선택한 카테고리에 따라 프로젝트 리스트 조회용 쿼리 -->
-
-   <!-- 문제점 : PROJECT_LIST_VIEW 라는 뷰와 같은 뷰를 만들어야 된다. -->
-   <!-- <select id="selectrevList" resultMap="ReviewResultSet" parameterType="string"> 
-      SELECT * FROM PROJECT_LIST_VIEW <choose> <when test="_parameter.equals('total')"> 
-      WHERE REVIEW_CNO IN ( 1, 2, 3, 4, 5 ) </when> <when test="_parameter.equals('music')"> 
-      WHERE REVIEW_CNO = 1 </when> <when test="_parameter.equals('movie')"> WHERE 
-      REVIEW_CNO = 2 </when> <when test="_parameter.equals('play')"> WHERE REVIEW_CNO 
-      = 3 </when> <when test="_parameter.equals('art')"> WHERE REVIEW_CNO = 4 </when> 
-      <when test="_parameter.equals('etc')"> WHERE REVIEW_CNO = 5 </when> </choose> 
-      </select> -->
-
-
-   <!-- 진행중/종료된 프로젝트 갯수 조회용 쿼리 -->
-   <select id="countList" resultType="_int">
-      SELECT COUNT(*) FROM REVIEW
-      WHERE PROJECT_ST_NO IN ( 4, 5 )
-   </select>
-
    <!-- ========== FAQ ==================== -->
+	
+	<!-- 전체 후기 수 조회 쿼리 -->
+   <select id="faqListCount" resultType="_int">
+      SELECT COUNT(*)
+      FROM FAQ       
+      WHERE FAQ_STATUS = 'Y'
+   </select>
 
    <!-- FAQ 리스트 쿼리 -->
    <select id="faqSelect" resultMap="FaqResultSet">
-      SELECT * FROM FAQ
+      SELECT * 
+      FROM FAQ
       ORDER BY FAQ_ENROLL_DATE DESC
    </select>
 

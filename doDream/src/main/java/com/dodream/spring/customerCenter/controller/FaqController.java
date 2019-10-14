@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.dodream.spring.customerCenter.model.service.FaqService;
 import com.dodream.spring.customerCenter.model.vo.Faq;
+import com.dodream.spring.customerCenter.model.vo.Review;
 import com.dodream.spring.customerCenter.model.vo.Search;
  
 @Controller
@@ -20,18 +21,22 @@ public class FaqController {
 	
 	
 	/** FAQ 목록 조회 
-	 * @param mv
+	 * @param mv  
 	 * @return
 	 */
 	@RequestMapping("faq.dr")
-	public ModelAndView faqList(ModelAndView mv) {
+	public ModelAndView faqList(ModelAndView mv, Integer page) {
+		int currentPage = ( page == null ) ? 1 : page; // 페이지 체크 
 		
-		ArrayList<Faq> fList = faqService.selectList();
+		ArrayList<Faq> fList = faqService.selectList(currentPage);
 		System.out.println(fList);
+		// 조회 성공시
 		if (fList != null) {
 			mv.addObject("fList", fList);
 			mv.setViewName("customerCenter/faq");
-		} else {
+		} 
+		// 조회 실패시 
+		else {
 			mv.addObject("msg", "FAQ 목록 조회 실패!!!");
 			mv.setViewName("common/errorPage");
 		}

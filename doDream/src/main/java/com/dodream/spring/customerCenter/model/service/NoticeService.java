@@ -10,10 +10,10 @@ public interface NoticeService {
 	/** 공지사항 전체 조회 서비스
 	 * @return nList
 	 */
-	public abstract ArrayList<Notice> selectList();
+	public abstract ArrayList<Notice> selectList(int currentPage);
 
 	
 
-
-} 
  
+} 
+  

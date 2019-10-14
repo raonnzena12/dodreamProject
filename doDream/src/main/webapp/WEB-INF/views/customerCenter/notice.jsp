@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <title>공지사항</title>
-<jsp:include page="../common/menubar.jsp"></jsp:include>
+<%@ include file="../common/menubar.jsp"%>
 <meta name="description" content="Source code generated using layoutit.com">
 <meta name="author" content="LayoutIt!">
 
@@ -44,25 +44,21 @@
 .jumbotron{
 	padding: 0;
 }
+#loadingImg {
+   width: 40px;
+   height: auto;
+   opacity: 0;
+}
 </STYLE>
 </head>
 <body>
 
-
+	<section id="category">
 	<div class="container-fluid" id="noticeCon">
 		<div class="row">
 			<div class="col-md-12" align="center">
 				<div id=mounImage class="jumbotron">
 					<img src="resources/images/backgroundImg/배경로고시안 (3).png" style="width: 100%">
-					
-					<!-- <h2>Hello, world!</h2>
-					<p>This is a template for a simple marketing or informational
-						website. It includes a large callout called the hero unit and
-						three supporting pieces of content. Use it as a starting point to
-						create something more unique.</p>
-					<p>
-						<a class="btn btn-primary btn-large" href="#">Learn more</a>
-					</p> -->
 				</div>
 			</div>
 		</div>
@@ -83,31 +79,7 @@
 				<h3>공지사항</h3>
 				<hr id=notice_bar>
 				<!-- 공지사항 제목, 내용부분 / 악코디언 부분 -->
-				<div id="card-611390"><!-- 내용을 묶는 틀 -->
-				
-					<!--
-					<div class="card">
-						<div class="card-header">
-							<a class="card-link" href="#card-element-02"
-								data-toggle="collapse" data-parent="#card-611390">
-								게시글 2 [W9] 전세계가 사랑한 아티스트 데이비드 호크니 작품을 프라이빗하게 즐겨보세요!</a>
-						</div>
-						<div class="collapse show" id="card-element-02">
-							<div class="card-body">Anim pariatur cliche...</div>
-						</div>
-					</div>
-					<div class="card">
-						<div class="card-header">
-							<a class="card-link" href="#card-element-03" data-toggle="collapse"
-								data-parent="#card-611390">
-								게시글 3 [투자] 제 2회 뉴딜로 희망드림 투자형 크라우드펀딩 지원사업!</a>
-						</div>
-						<div class="collapse" id="card-element-03">
-							<div class="card-body">Anim pariatur cliche...</div>
-						</div>
-					</div>
-					-->
-				
+				<div id="resultPrint card-611390"><!-- 내용을 묶는 틀 -->
 					<c:forEach var="n" items="${ nList }">
 						<div class="card">
 						
@@ -123,27 +95,149 @@
 						</div>
 					</c:forEach>
 				</div>
+				<div class="text-center">
+                        <img src="resources/images/loadingSpin.gif" id="loadingImg">
+                </div>
 			</div>
 		</div>
 	</div>
+</section>
+<script>
+var currentPage = 1;
+var maxPage = "${ pi.maxPage }";
 
-	<!-- <script type="text/javascript">
-	
-		$card.click(function() {
-			var obj = $(this);
-			var target = $(this).attr("target");
-	
-/* 			$card.find("a").removeClass("on");
-			obj.addClass("on"); */
-	
-			$card.find(".content").hide();
-			if (tab_urls[target] != null) {
-				loadPage(target, 1);
-			}
-			$card.find(target).show();
-		});
-		
-	</script> -->
+$(function () {
+	$(window).scroll(function(){   //스크롤이 최하단 으로 내려가면 리스트를 조회하고 page를 증가시킨다.
+	     // console.log($(window).scrollTop());
+	     // console.log($(document).height());
+	     // console.log($(window).height());
+	     // console.log($(document).height() - $(window).height());
+	     // console.log($(window).scrollTop() >= ($(document).height() - $(window).height() - 0.5));
+	     if($(window).scrollTop() >= ($(document).height() - $(window).height()-0.5 ) ) {
+	        if ( currentPage == maxPage ) return false;
+	        var oldDocHei = $(document).height();
+	        $("#loadingImg").css("opacity","1");
+	        setTimeout(function(){
+	        listLoading();
+	        $("#loadingImg").css("opacity","0");
+	        $(window).scrollTop(oldDocHei-($(window)/* 스크롤바의 상단 위치 */
+	        		.height()+($(window)/* 스크롤바를 갖는 div의 높이 */
+	        				.height()/4)));
+	        },500);
+	     } 
+	  });
+})
+//펀드 리스트 출력하는 함수(수정중)
+function printFunds(list) {
+	console.log("프린트펀드즈 호출");
+	console.log(list);
+var $resultPrint = $(".resultPrint");
+
+   $.each(list, function(i){
+   var $conDiv = $("<div>");
+   // 펀딩 인덱스 아이디로 추가할 것
+   var $card = $("<div>").addClass("card");
+   var $card_header = $("<div>").addClass("card-header");   
+   var $card_link = $("<a>").addClass("card-link").attr("href","#card-"+list[i].nNo)
+                   .attr("target", "#card-" + list[i].nNo).attr("data-toggle","collapse")
+                   .text(list[i].nTitle);
+   
+   $card_header.append($card_link);
+   $card.append($card_header);
+   
+   var $collapse = $("<div>").addClass("collapse").attr("id","card-" + list[i].revNo);
+   var $card_body = $("<div>").addClass("card-body").text(list[i].nContent);
+   
+   $collapse.append($card_body);
+   $card.append($collapse);
+   $conDiv.append($card);
+   $resultPrint.append($conDiv);
+});
+}
+//컴마 추가하는 함수
+function addComma(num) { 
+var regexp = /\B(?=(\d{3})+(?!\d))/g;
+return num.toString().replace(regexp, ',');
+}
+
+//후기 카테고리별 리스트 호출
+function listLoading() {
+	console.log("테스트");
+if ( currentPage > maxPage ) {
+   console.log(currentPage);
+   return false;
+}
+currentPage += 1;
+
+console.log("리스트 로딩중 ");
+
+$.ajax({
+   url: "noticeListByAjax.dr",
+   type: "GET",
+   data: { page: currentPage},
+   dataType: "json",
+   success: function(nList){
+      printFunds(nList);
+   },
+   error: function(e){
+       console.log(e);
+   }  
+});
+}
+$(function(){
+	$(window).scroll(function(){   //스크롤이 최하단 으로 내려가면 리스트를 조회하고 page를 증가시킨다.
+		console.log("스크롤");
+	   // console.log($(window).scrollTop());
+	   // console.log($(document).height());
+	   // console.log($(window).height());
+	   // console.log($(document).height() - $(window).height());
+	   // console.log($(window).scrollTop() >= ($(document).height() - $(window).height() - 0.5));
+	   if($(window).scrollTop() >= ($(document).height() - $(window).height()-0.5 ) ) {
+		   console.log("스크롤 로딩");
+	      if ( currentPage == maxPage ) return false;
+	      var oldDocHei = $(document).height();
+	      $("#loadingImg").css("opacity","1");
+	      setTimeout(function(){
+	      listLoading();
+	      $("#loadingImg").css("opacity","0");
+	      $(window).scrollTop(oldDocHei-($(window).height()+($(window).height()/4)));
+	      },500);
+	   } 
+	});
+})
+</script>
+
+<script>
+const CIRCLE_RADIUS = 20;
+const RADIUS = 32;
+const circle = new mojs.Shape({
+  left: 0, top: 0,
+  stroke:   '#FF9C00',
+  strokeWidth: { [2*CIRCLE_RADIUS] : 0 },
+  fill:       'none',
+  scale:      { 0: 1 },
+  radius:     CIRCLE_RADIUS,
+  duration:   400,
+  easing:     'cubic.out'
+});
+
+const burst = new mojs.Burst({
+  left: 0, top: 0,
+  radius:   { 4: RADIUS },
+  angle:    45,
+  count:    14,
+  timeline: { delay: 300 },
+  children: {
+    radius:       2.5,
+    fill:         '#FD7932',
+    scale:        { 1: 0, easing: 'quad.in' },
+    pathScale:    [ .8, null ],
+    degreeShift:  [ 13, null ],
+    duration:     [ 500, 700 ],
+    easing:       'quint.out'
+  }
+});
+</script>
 	<script src="webapp/resources/js/Center-js/jquery.min.js"></script>
 	<script src="webapp/resources/js/Center-js/bootstrap.min.js"></script>
 	<script src="webapp/resources/js/Center-js/scripts.js"></script>
