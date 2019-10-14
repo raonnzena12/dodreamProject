@@ -408,9 +408,24 @@
                         
                         <br>
                         <div id="text5">
-				                            목표금액인 ${project.pCommaGoal}원이 모이면 펀딩이 성공합니다. <br>
-				                            펀딩 성공시 예상 결제일은 ${project.pCloseDate } 입니다.
+				                           <%--  목표금액인 ${project.pCommaGoal}원이 모이면 펀딩이 성공합니다. <br>
+				                            펀딩 성공시 예상 결제일은 ${project.pCloseDate } 입니다. --%>
                         </div>
+                        
+                        <script>
+                        	var closeDate = "${project.pCloseDate }";
+                        	var goal = "${project.pCommaGoal}";
+                        	console.log(closeDate);
+                        	var str = closeDate.split("-");
+                        	
+                        	console.log(str[0]+"년 "+str[1]+"월 "+str[2]+"일");
+                        	
+                        	$("#text5").html(" 목표금액인 " + goal + "원이 모이면 펀딩이 성공합니다. <br> 펀딩 성공시 예상 결제일은 "+
+                        			str[0]+"년 "+str[1]+"월 "+str[2]+"일"+" 입니다.");
+                        </script>
+                        
+                        
+                        
                         
                         <button type="button" class="btn btn-primary btn-lg btn-block" id="supportbtn" onclick="location.href='detailSt.dr?page=2&pNo='+${project.pNo};">후 원 하 기</button>
                      
@@ -624,37 +639,7 @@
 		      });
 		}
 			
-
-		
-		
-		
-		
-		
-		
 	</script>
 	
-	
-	<!-- <div class="container-fluid">
-		<div class="row sticky-top" id="navOuter">
-
-
-			<div class="col-md-2"></div>
-			<div class="col-md-6">
-				<ul class="nav">
-					<li class="nav-item"><a class="nav-link" href="#">펀딩</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">♥</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">알림</a></li>
-				</ul>
-			</div>
-			<div class="col-md-4">
-				<ul class="nav">
-					<li class="nav-item"><a class="nav-link" href="#">펀딩로그</a></li>
-				</ul>
-			</div>
-		</div>
-	</div>
- -->
-
-
 </body>
 </html>
