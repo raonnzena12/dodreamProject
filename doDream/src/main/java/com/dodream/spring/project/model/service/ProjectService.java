@@ -119,4 +119,18 @@ public interface ProjectService {
 	 * @return project
 	 */
 	public abstract Project selectCurrentProject(int pNo);
+
+	/**
+	 * 리워드를 전부 삭제시키는 Service
+	 * @param getpNo
+	 * @return result
+	 */
+	public abstract int deleteRewards(int pNo);
+
+	/**
+	 * 현재 프로젝트에 딸린 리워드를 불러오는 Service
+	 * @param pNo
+	 * @return rList
+	 */
+	public abstract ArrayList<Reward> selectCurrentReward(int pNo);
 }

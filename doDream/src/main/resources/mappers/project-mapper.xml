@@ -306,6 +306,11 @@
 		SELECT * FROM PROJECT_DETAIL_REWARD WHERE REWARD_REF_PNO=#{pno}
 	</select>
 	
+	<!-- 리워드 조회 쿼리 수정페이지용-->
+	<select id="selectCurrentReward" parameterType="_int" resultMap="rewardResultSet">
+		SELECT * FROM REWARD WHERE REWARD_REF_PNO = #{pNo} ORDER BY REWARD_NO ASC
+	</select>
+	
 	<!-- 프로젝트 등록 페이지 이동시 pNo를 생성해주는 쿼리  -->
 	<insert id="createProject">
 		INSERT INTO PROJECT_TB (PROJECT_NO, PROJECT_ST_NO) VALUES (SEQ_PROJ_NO.NEXTVAL, 0)
@@ -335,6 +340,11 @@
 		ORDER BY REWARD_NO ASC
 	</select>
 	
+	<!-- 리워드 삭제 쿼리문  -->
+	<delete id="deleteRewards" parameterType="_int">
+		DELETE FROM REWARD 
+		WHERE REWARD_REF_PNO = #{pNo}
+	</delete>
 	<!-- ========================Like============================ -->
 	
 	<!-- 좋아요 등록 -->

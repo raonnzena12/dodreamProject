@@ -225,5 +225,15 @@ public class ProjectServiceImpl implements ProjectService {
 		return pDao.selectCurrentProject(pNo);
 	}
 
+	@Override
+	public int deleteRewards(int pNo) {
+		return pDao.deleteRewards(pNo);
+	}
+
+	@Override
+	public ArrayList<Reward> selectCurrentReward(int pNo) {
+		return pDao.selectCurrentReward(pNo);
+	}
+
 
 }
