@@ -14,11 +14,11 @@
                width: 1000px;
                height: auto;
                margin: auto;
-               min-height: 1600px;
+               min-height: 800px;
            }
            #content{
                width: 100%;
-               min-height: 1000px;
+               min-height: 600px;
                height:auto;
                clear: both;
               
@@ -26,7 +26,7 @@
            #detailContent2{
                 width:70%;
                 height: auto;
-                min-height: 1000px;
+                min-height: 600px;
                /*  border: 1px solid black; */
                 display: block;
                 float: left;
@@ -40,7 +40,7 @@
            #aside{
                width: 30%;
                height: auto;
-               min-height: 1000px;
+               min-height: 300px;
                /* border: 1px solid black; */
                display: block;
                float: right;
@@ -48,7 +48,8 @@
            #detailReward{
            		width:100%;
                 height: auto;
-                min-height: 990px;
+                /* min-height: 990px; */
+                min-height: 300px;
                 /* border: 1px solid #ddd; */
                 display: block;
                 float: left;
