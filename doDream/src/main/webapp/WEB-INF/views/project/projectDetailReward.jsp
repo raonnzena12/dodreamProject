@@ -564,7 +564,7 @@
    			
    			
    			var total = ${project.pCurrentFunding };
-   			if(${project.pDDay} < 0 || total > ${project.pGoal}){
+   			if(${project.pDDay} < 0){
    				
    				$(".rewardBtn2").css("display","block");
    				$(".rewardBtn").css("display","none");

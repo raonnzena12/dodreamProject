@@ -350,7 +350,7 @@
                 
                 <script>
                 	$(function(){
-                		
+                		console.log("${project.pArtistPFImage}");
                 		//var mainImg = "906_20191009165732_main.jpg";
                 		var mainImg = $("#mainImg").attr("src");
                 		console.log(mainImg);
@@ -387,12 +387,12 @@
                     </p>
                     <div id="profile">
                     
-                    <c:if test='${project.pArtistPFImage ne ""}'>
+                   <%--  <c:if test='${project.pArtistPFImage ne ""}'> --%>
                     	<img src="resources/images/projectImg/artistImg/${project.pArtistPFImage}" id="profileimg" width="60px" height="60px">
-                    </c:if>
+                   <%--  </c:if>
                     <c:if test='${project.pArtistPFImage eq ""}'>
                     	<i class="material-icons noImg">account_circle</i>
-                    </c:if>
+                    </c:if> --%>
                         
                         <p id="text2">${project.pArtistName }님 </p>
                     </div>
