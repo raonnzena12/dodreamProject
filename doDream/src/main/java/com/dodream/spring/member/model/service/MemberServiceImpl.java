@@ -201,4 +201,10 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 
+	@Override
+	public Member naverLogin(String email) {
+		return mDao.naverLogin(email);
+	}
+
+
 }

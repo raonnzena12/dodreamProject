@@ -164,8 +164,8 @@
 		<br>
 		<br>
 		<div class="row">
-			<div class="col-md-2"></div>
-			<div class="col-md-8 resultPrint">
+			<div class="col-md-1"></div>
+			<div class="col-md-10 resultPrint">
 					<c:if test="${ empty pList }">
 						<div class="text-center">프로젝트 오픈 내역이 없습니다.<br>
 						모두를 두드릴 당신의 꿈을 보여주세요!</div>
@@ -179,40 +179,41 @@
 											<img src="resources/images/projectImg/thumbnail/${ pList.pThumbImage }">
 										</div>
 										<div class="nameArea">
-											<p class="categoryName mb-0">${ pList.pCategoryName }</p>
+											<p class="categoryName mb-0">${ pList.pCategoryName } 
+												<span class="detailArea float-right"><c:choose>
+														<c:when test="${pList.pStatusNum eq 1 }">
+															<span>임시저장</span>
+														</c:when>
+														<c:when test="${pList.pStatusNum eq 2 }">
+															<span>심사대기</span>
+														</c:when>
+														<c:when test="${pList.pStatusNum eq 3 }">
+															<span>심사완료</span>
+														</c:when>
+														<c:when test="${pList.pStatusNum eq 4 }">
+															<span>펀딩중</span>
+														</c:when>
+														<c:when test="${pList.pStatusNum eq 5 }">
+															<span>펀딩마감</span>
+														</c:when>
+														<c:when test="${pList.pStatusNum eq 6 }">
+															<span>심사탈락</span>
+														</c:when>
+														<c:when test="${pList.pStatusNum eq 7 }">
+															<span>펀딩성공</span>
+														</c:when>																							
+													</c:choose></span>
+											</p>
 											<span class="fundName"> ${ pList.pTitle } </span>
 										</div>
 
 										<div class="detailArea my-1">
-											<c:choose>
-												<c:when test="${pList.pStatusNum eq 1 }">
-													<span>임시저장</span>
-												</c:when>
-												<c:when test="${pList.pStatusNum eq 2 }">
-													<span>심사대기</span>
-												</c:when>
-												<c:when test="${pList.pStatusNum eq 3 }">
-													<span>심사완료</span>
-												</c:when>
-												<c:when test="${pList.pStatusNum eq 4 }">
-													<span>펀딩중</span>
-												</c:when>
-												<c:when test="${pList.pStatusNum eq 5 }">
-													<span>펀딩마감</span>
-												</c:when>
-												<c:when test="${pList.pStatusNum eq 6 }">
-													<span>심사탈락</span>
-												</c:when>
-												<c:when test="${pList.pStatusNum eq 7 }">
-													<span>펀딩성공</span>
-												</c:when>																							
-											</c:choose>
            		                        </div>
 										<div class="chartArea px-3 mt-2">
 											<div class="chartInfo clearfix">
 												<c:choose>
 													<c:when test="${pList.pStatusNum eq 1 }">
-														<span class="chartInfo1">-</span>													
+														<span class="chartInfo1">&nbsp;</span>													
 													</c:when>
 													<c:otherwise>
 														<span class="chartInfo1">￦<fmt:formatNumber value="${ pList.pCurrentFunding }" groupingUsed="true" /></span>
@@ -222,6 +223,9 @@
 											</div>
 											<div class="chartBar">
 												<c:choose>
+													<c:when test="${pList.pStatusNum eq 1 }">
+														<div></div>
+													</c:when>
 													<c:when test="${ ((pList.pCurrentFunding / pList.pGoal) * 100) < 100 }">
 														<div class="purpleBar"style="width:${ (pList.pCurrentFunding / pList.pGoal) * 100 }%"></div>
 													</c:when>
@@ -231,6 +235,9 @@
 												</c:choose>
 											</div>
 											<c:choose>
+												<c:when test="${pList.pStatusNum eq 1 }">
+													<div class="chartDate">미등록</div>
+												</c:when>
 												<c:when test="${ pList.pDDay > 0 }">
 													<div class="chartDate">${ pList.pDDay }일남음</div>
 												</c:when>
@@ -246,10 +253,17 @@
 					</c:if>
 				</div>
 			</div>
-		<div class="col-md-2"></div>
+		<div class="col-md-1"></div>
 	</div>
 	
 	<script>
+		// 페이지 접속하면 currentPage = 1;
+		/* var currentPage = 1;
+		 var maxPage = ${ pi.maxPage };
+		 var cate = null;
+		 var order = null;
+		 var endYn = null;
+		 var keyword = null; */
 
 		// 펀드 리스트 출력하는 함수(수정중)
 		function printFunds(list) {

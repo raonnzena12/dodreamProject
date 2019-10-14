@@ -17,11 +17,11 @@ public class Reward {
 	private int rAmount;// 리워드 재고 수량
 	private int userAmount; // 유저가 주문한 리워드 갯수
 	private int rSum;// 결제된 리워드 개수;
-	
+	private String isSaved; // 필요해서 씁니다(창혁)
 	public Reward() {
 
 	}
-
+	
 	public Reward(int rNo, int rPrice, String rName, String rExplain, int rLimit, String rShipCDT, Date rShipDate,
 			String rOptionAdd, int rRefPno, int rOptionNo, int rAmount, int userAmount, int rSum) {
 		super();
@@ -39,7 +39,7 @@ public class Reward {
 		this.userAmount = userAmount;
 		this.rSum = rSum;
 	}
-
+	
 	public int getrNo() {
 		return rNo;
 	}
@@ -142,6 +142,15 @@ public class Reward {
 
 	public void setrSum(int rSum) {
 		this.rSum = rSum;
+	}
+
+	
+	public String getIsSaved() {
+		return isSaved;
+	}
+
+	public void setIsSaved(String isSaved) {
+		this.isSaved = isSaved;
 	}
 
 	@Override

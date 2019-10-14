@@ -1,21 +1,18 @@
 package com.dodream.spring.project.controller;
 
-import java.awt.Image;
-import java.net.BindException;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.dodream.spring.member.model.vo.Member;
 import com.dodream.spring.project.model.service.ProjectService;
 import com.dodream.spring.project.model.vo.Project;
 import com.dodream.spring.project.model.vo.Reward;
@@ -37,11 +34,13 @@ public class ProjectController {
 	public ModelAndView insertFundForm(ModelAndView mv, String isDoneByModal) {
 		int result = pService.createProject();
 		int pNo;
+		Project project = new Project();
 		if(isDoneByModal != null) mv.addObject("isDoneByModal","true");
 		if(result>0) {
 			mv.setViewName("project/insertFundForm");
 			pNo = pService.selectThisProject();
-			mv.addObject("pNo", pNo);
+			project.setpNo(pNo);
+			mv.addObject("project",project);
 		}else {
 			mv.addObject("msg","프로젝트 번호 생성 실패");
 			mv.setViewName("common/errorPage");
@@ -69,7 +68,6 @@ public class ProjectController {
 		// project의 textarea에 있는 "\n" 을 <br>태그로 전환시킵니다.
 		int pStatusNum = project.getpStatusNum();
 		int userNo = project.getpWriter();
-		int pNo = project.getpNo();
 		String pSummaryText = project.getpSummaryText().replaceAll("\n", "<br>");
 		String pStory = project.getpStory().replaceAll("\n", "<br>");
 		String pArtistIntroduction = project.getpArtistIntroduction().replaceAll("\n", "<br>");
@@ -80,14 +78,19 @@ public class ProjectController {
 		// DB 연결을 수행합니다.
 		int result = pService.insertProject(project, uploadfile1, uploadfile2, uploadfile3, request);
 		
-		
+		System.out.println(project);
 		// Reward의 등록부분입니다.
 		// 먼저 전달받은 리워드리스트에 null이 아닌 reward만을 저장합니다. (인덱스의 공백이 있을 수 있기 때문입니다.)
+		if(result==0) return "error";
 		ArrayList<Reward> rewardList = new ArrayList<Reward>();
 		for (int i = 0; i < rList.getrList().size(); i++) {
 			Reward reward = rList.getrList().get(i);
-			if(reward.getrName()!=null)	rewardList.add(reward);
+			if(reward.getIsSaved().equals("true")) rewardList.add(reward);
 		}
+		// 리워드가 존재할 경우 기존에 있던 리워드를 전부 삭제시킵니다.
+		if(rewardList.size()>0) 
+			result = pService.deleteRewards(project.getpNo());
+		if(result<0) return "error";
 		// 체크된 reward의 개수만큼 DB에 insert시킵니다.
 		for (Reward reward : rewardList) {
 			
@@ -108,7 +111,7 @@ public class ProjectController {
 			reward.setrShipCDT(rShipCDT);
 			// DB연결을 수행합니다.
 			result = pService.insertReward(reward);
-			
+			System.out.println(reward);
 			// 오류가 있을 경우에만 콘솔창에 해당 리워드를 출력합니다.
 			if(result==0) System.out.println("리워드 DB 저장 실패, 리워드 정보 : \n"+reward.toString());
 		}
@@ -128,5 +131,33 @@ public class ProjectController {
 		return uploadFile+"";
 	}
 	
-	
+	@RequestMapping("selectCurrentProject.dr")
+	public ModelAndView selectCurrentProject(int pNo, HttpServletRequest request, ModelAndView mv) {
+		Project project = pService.selectCurrentProject(pNo);
+		Member loginUser = (Member)request.getSession().getAttribute("loginUser");
+		if(loginUser==null || loginUser.getUserNo() != project.getpWriter()) {
+			mv.addObject("msg","비정상적인 접근입니다.").setViewName("common/errorPage");
+			return mv;
+		}
+		ArrayList<Reward> rList = pService.selectCurrentReward(pNo);
+		int size = rList.size();
+		try{
+			String pSummaryText = project.getpSummaryText();
+			if(pSummaryText!=null && !pSummaryText.equals("")) {
+				pSummaryText = pSummaryText.replace("<br>", "\n");
+				project.setpSummaryText(pSummaryText);
+			}
+			String pArtistIntroduction = project.getpArtistIntroduction();
+			if(pArtistIntroduction != null && !pArtistIntroduction.equals("")) {
+				pArtistIntroduction = pArtistIntroduction.replace("<br>", "\n");
+				project.setpArtistIntroduction(pArtistIntroduction);
+			}
+		}catch(NullPointerException e) {}
+		mv.addObject("rSize",size);
+		mv.addObject("project",project);
+		mv.addObject("rList",rList);
+		mv.addObject("isUpdate","true");
+		mv.setViewName("project/insertFundForm");
+		return mv;
+	}
 }

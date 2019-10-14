@@ -106,16 +106,16 @@
 	background-color: rgb(248,248,248);
 }
 
-	#historysub{
-		text-decoration: none;
-	}
-	#historysub>a{
-		color: #444;
-	}
-	
-	#historysub a.active{
-		color: #8E44AD;
-	}
+#historysub{
+	text-decoration: none;
+}
+#historysub>a{
+	color: #444;
+}
+
+#historysub a.active{
+	color: #8E44AD;
+}
 </style>
 </head>
 <body>
