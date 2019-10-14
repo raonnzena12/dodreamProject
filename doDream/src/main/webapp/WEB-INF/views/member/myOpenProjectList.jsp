@@ -250,13 +250,6 @@
 	</div>
 	
 	<script>
-		// 페이지 접속하면 currentPage = 1;
-		/* var currentPage = 1;
-		 var maxPage = ${ pi.maxPage };
-		 var cate = null;
-		 var order = null;
-		 var endYn = null;
-		 var keyword = null; */
 
 		// 펀드 리스트 출력하는 함수(수정중)
 		function printFunds(list) {
