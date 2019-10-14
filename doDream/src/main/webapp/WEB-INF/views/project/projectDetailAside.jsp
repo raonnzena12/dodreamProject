@@ -352,19 +352,22 @@
 	<section id="detailAside">
 		<section id="artist" class="p-2">
 			<div id="artProfile" class="clearfix">
-				 <div id="artistText1">창작자 소개</div>
-				 <div id="artistImg">
-                 	<img src="resources/images/projectImg/artistImg/${project.pArtistPFImage}" id="artProfileImg">
-                 </div>
-                 <div id="artistName">
-		                 <div id="artistText2">${project.pArtistName }님
-			                 <div id="iconbox" class="clearfix">
-				                 	<i class="material-icons" id="asideFavorite">favorite_border</i>
-				             </div>
-			             </div>
-                 </div>
-            </div>
-            <div id="introduce">
+				<div id="artistText1">창작자 소개</div>
+				<div id="artistImg">
+					<img
+						src="resources/images/projectImg/artistImg/${project.pArtistPFImage}"
+						id="artProfileImg">
+				</div>
+				<div id="artistName">
+					<a href="social.dr?pWriter=${project.pWriter}">
+						<div id="artistText2">${project.pArtistName }님
+					<div id="iconbox" class="clearfix">
+						<i class="material-icons" id="asideFavorite">favorite_border</i>
+					</div>
+				</div>
+					</a>
+			</div>
+			<div id="introduce">
             	${project.pArtistIntroduction }
             </div>
             <div id="artInformation">

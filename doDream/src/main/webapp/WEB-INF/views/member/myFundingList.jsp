@@ -170,7 +170,7 @@
 		<div class="row">
 			<div class="col-md-2"></div>
 			<div class="col-md-8" id="myfundingsub">
-				<a id="sub1" href="myFundingList.dr?userNo=${loginUser.userNo}">내가	참여한</a> ｜ <a id="sub2" href="myOpenProjectList.dr?userNo=${loginUser.userNo}">내가 오픈한</a> ｜ <a id="sub3" href="myLikePRJList.dr?userNo=${loginUser.userNo}">내가 관심있는</a>
+				<a id="sub1" href="myFundingList.dr?userNo=${loginUser.userNo}">참여한</a> ｜ <a id="sub2" href="myOpenProjectList.dr?userNo=${loginUser.userNo}">오픈한</a> ｜ <a id="sub3" href="myLikePRJList.dr?userNo=${loginUser.userNo}">관심있는</a>
 			</div>
 			<div class="col-md-2"></div>
 		</div>
@@ -179,8 +179,10 @@
 			<div class="col-md-2"></div>
 			<div class="col-md-8 resultPrint">
 					<c:if test="${ empty pList }">
-					<div class="text-center">후원 내역이 없습니다.<br>
+					<div class="text-center">
+					후원 내역이 없습니다.<br>
 					당신의 아티스트를 후원해보세요!
+					<br>
 					</div>
 					</c:if>
 					<c:if test="${ fn:length(pList) >0 }">

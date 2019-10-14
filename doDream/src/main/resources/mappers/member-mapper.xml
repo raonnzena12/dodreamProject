@@ -17,12 +17,12 @@
 		<result property="userPhone" column="USER_PHONE" />
 		<result property="userProfileImage" column="USER_PF_IMG" />
 		<result property="userSelf" column="USER_SELF" />
+		<result property="pWriter" column="PROJECT_WRITER" />
 	</resultMap>
 	
 
 	<!-- 로그인용 쿼리 -->
-	<select id="selectOne" parameterType="Member"
-		resultMap="memberResultSet">
+	<select id="selectOne" parameterType="Member" resultMap="memberResultSet">
 		SELECT * FROM USER_TB
 		WHERE USER_EMAIL = #{userEmail}
 		AND USER_PWD = #{userPwd}
@@ -93,13 +93,14 @@
 		WHERE USER_NO = #{userNo}		
 	</select>
 	
+	<!-- 회원탈퇴 -->
 	<update id="deleteMember" parameterType="_int">
 		UPDATE USER_TB 
 		SET USER_STATUS = 'N' WHERE USER_NO = #{userNo}
 	</update>
 	
-	
-    
+	<!-- Social page -->
+
 	
   
 </mapper>
