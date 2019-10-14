@@ -96,7 +96,7 @@
     padding: 20px;
     padding-left: 45px;
 }
-#fdComplete #myFund {
+#fdComplete .fundBtn {
     background-color: #F39C12;
     color: #fff;
 }

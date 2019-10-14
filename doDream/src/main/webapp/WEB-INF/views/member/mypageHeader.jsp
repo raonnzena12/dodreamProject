@@ -57,7 +57,8 @@
 			</div>
 		</div>
 		<div style="height: 20px;"></div>
-		<div class="row" id="navOuter">
+	</div>
+		<div class="row sticky-top" id="navOuter">
 			<div class="col-md-12">
 				<div class="row">
 					<div class="col-md-2"></div>
@@ -77,7 +78,6 @@
 			</div>
 		</div>
 		<!-- <div style="height: 2000px;"></div> -->
-	</div>
 	<%-- </c:if> --%>
 	<script>
 		$(document).ready(function(){

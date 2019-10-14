@@ -7,9 +7,6 @@
 <title>Insert title here</title>
 <%@ include file ="mypageHeader.jsp" %>
 <style>
-#myFundList {
-
-}
 #myFundList #innerCon {
 	max-width: 1000px;
 	margin: 0 auto;
@@ -94,17 +91,19 @@
 .artist {
     font-size: 14px;
 }
-
-	#historysub{
-		text-decoration: none;
-	}
-	#historysub>a{
-		color: #444;
-	}
-	
-	#historysub a.active{
-		color: #8E44AD;
-	}
+#historysub{
+	text-decoration: none;
+}
+#historysub>a{
+	color: #444;
+}
+#historysub a.active{
+	color: #8E44AD;
+}
+.projectStatus i {
+	font-size: 12px;
+	font-weight: bold;
+}
 </style>
 </head>
 <body>
