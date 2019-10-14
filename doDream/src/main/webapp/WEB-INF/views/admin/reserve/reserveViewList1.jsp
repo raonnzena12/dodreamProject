@@ -105,6 +105,9 @@ tbody tr:hover{
 															aria-label="Start date: activate to sort column ascending">주문일자</th>
 														<th class="sorting" tabindex="0" aria-controls="dataTable"
 															rowspan="1" colspan="1"
+															aria-label="Salary: activate to sort column ascending">결제 금액</th>
+														<th class="sorting" tabindex="0" aria-controls="dataTable"
+															rowspan="1" colspan="1"
 															aria-label="Salary: activate to sort column ascending">추가 후원금</th>
 														<th class="sorting" tabindex="0" aria-controls="dataTable"
 															rowspan="1" colspan="1"
@@ -126,6 +129,7 @@ tbody tr:hover{
 														<th rowspan="1" colspan="1">프로젝트 이름</th>
 														<th rowspan="1" colspan="1">회원 이름</th>
 														<th rowspan="1" colspan="1">주문일자 </th>
+														<th rowspan="1" colspan="1">결제 금액</th>
 														<th rowspan="1" colspan="1">추가 후원금</th>
 														<th rowspan="1" colspan="1">배송 이름</th>
 														<th rowspan="1" colspan="1">배송 전화번호</th>
@@ -134,12 +138,13 @@ tbody tr:hover{
 													</tr>
 												</tfoot>
 												<tbody>
-													<c:forEach var="r" items="${ list }">
+													<c:forEach var="r" items="${ list }" varStatus="status">
 														<tr role="row" class="odd">
 															<td class="sorting_1">${ r.resNo }</td>
 															<td><a href="myFundingInfo.dr?rsvNo=${r.resNo}" style="text-decoration:none; color: gray;">${ r.pTitle}</a></td>
 															<td>${ r.userNickname}</td>
 															<td>${ r.resDate}</td>
+															<td>${ r.total}</td>
 															<td>${ r.addi}</td>
 															<td>${ r.resName}</td>
 															<td>${ r.resContact}</td>

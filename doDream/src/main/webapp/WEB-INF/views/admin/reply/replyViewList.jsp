@@ -242,17 +242,6 @@ tbody tr:hover{
 	<script src="resources/js/demo/datatables-demo.js"></script>
 
 </body>
-
-
-
-
-
-
-
-
-
 </html>
 
 
-</body>
-</html>
