@@ -18,6 +18,8 @@
 		<result property="userProfileImage" column="USER_PF_IMG" />
 		<result property="userSelf" column="USER_SELF" />
 		<result property="pWriter" column="PROJECT_WRITER" />
+		<result property="follow" column="FOLLOW" />
+		<result property="follower" column="FOLLOWER" />
 	</resultMap>
 	
 
@@ -101,7 +103,7 @@
 	
 	<!-- Social page -->
 	<select id="socialSelect" parameterType="_int" resultMap="memberResultSet">
-		SELECT * FROM USER_TB WHERE USER_NO = #{userNo}
+		SELECT * FROM USER_FF_VIEW WHERE USER_NO = #{userNo}
 	</select>
 	
 	<!-- 네이버 로그인 -->

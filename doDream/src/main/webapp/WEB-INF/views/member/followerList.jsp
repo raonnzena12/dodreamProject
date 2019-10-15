@@ -30,10 +30,16 @@
 		<div class="col-md-2">
 		</div>
 		<div class="col-md-8" id="followsub">
-			<a class="" id="sub1" href="followList.dr?userNo=${loginUser.userNo}">팔로잉</a> ｜ <a class="" id="sub2" href="followerList.dr?userNo=${loginUser.userNo}">팔로워</a>
+		<c:choose>	
+		<c:when test="${ !empty social }">
+		<a class="" id="sub1" href="socialfollowList.dr?userNo=${social.userNo}&page=1">팔로잉한</a> ｜ <a class="" id="sub2" href="socialfollowList.dr?userNo=${social.userNo}&page=2">팔로잉한</a>
+		</c:when>
+		<c:otherwise>
+		<a class="" id="sub1" href="followList.dr?userNo=${loginUser.userNo}">팔로잉한</a> ｜ <a class="" id="sub2" href="followerList.dr?userNo=${loginUser.userNo}">팔로잉한</a>
+		</c:otherwise>
+		</c:choose>
 		</div>
-		<div class="col-md-2">
-		</div>
+		<div class="col-md-2"></div>
 	</div>
 	<br>
 	<div class="row">
@@ -108,7 +114,7 @@
 		var menu = ${menu} + "";
 		
 		if(menu ==2){
-			$("menu2>i").addClass("active");
+			$("#menu2>i").addClass("active");
 		}
 		
 		var sub = ${sub} + "";

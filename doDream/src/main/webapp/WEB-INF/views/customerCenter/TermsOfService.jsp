@@ -17,6 +17,16 @@
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet">
 <STYLE>
+#ReviewCon {
+   width: 1200px; 
+   min-height: 700px;
+    
+}
+#ReviewCon1 {
+   width: 1200px; 
+   min-height: 900px;
+   height: auto;
+}
 #noticeCon {
 	width: 1200px;
 	min-height: 900px;
@@ -45,37 +55,78 @@
 .jumbotron{
 	padding: 0;
 }
+
+/* 메뉴바 CSS */
+#mid-menu 
+{
+	border-top: 1px solid #ced4da;
+	border-bottom: 1px solid #ced4da;
+	background-color: rgba(255,255,255,0.9);
+	padding-top: 5px;
+}
+#detailnavpadding 
+{
+    padding-left: 80px;
+    width: 1000px;
+}
+#detailnav
+{
+    width: 1000px;
+    height: 70px;
+    margin: 0;
+    padding: 0;
+    float: left;
+    display: block;
+}
+#detailnav > div
+{
+    width: 100px;
+    height: 70px;
+    display: block;
+    float: left;
+    /* border: 1px solid black; */
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    padding-top:20px; 
+    font-weight: bold;
+}
+#detailnav > div:hover{
+	color: #8E44AD;
+	cursor: pointer;
+}
 </STYLE>
 </head>
 <body>
 
-	<div class="container-fluid" id="noticeCon">
-		<div class="row">
-			<div class="col-md-12">
-				<div class="jumbotron">
-					<img src="resources/images/backgroundImg/배경로고시안 (4).png" style="width: 100%">
-					<!-- <h2>Hello, world!</h2>
-					<p>This is a template for a simple marketing or informational
-						website. It includes a large callout called the hero unit and
-						three supporting pieces of content. Use it as a starting point to
-						create something more unique.</p>
-					<p>
-						<a class="btn btn-primary btn-large" href="#">Learn more</a>
-					</p> -->
-				</div>
-			</div>
-		</div>
-		<div class="sticky-top row" style="background-color: white;">
-			<div class="col-md-12" id="cCenter_menu">
-				<ul class="nav" style="background-color: #E1F5A9; ">
-					<li class="nav-item"><a class="nav-link" href="cCenter.dr">공지사항</a></li>
-					<li class="nav-item"><a class="nav-link" href="T_O_Service.dr">이용약관</a></li>
-					<li class="nav-item"><a class="nav-link" href="fReview.dr">프로젝트 후기</a></li>
-					<li class="nav-item"><a class="nav-link" href="faq.dr">FAQ</a></li>
-
-				</ul>
-			</div>
-		</div>
+	<div class="container-fluid" id="ReviewCon">
+      <!-- 후기 상세 - 메인로고 -->
+      <div class="row">
+         <div class="col-md-12" align="center">
+            <div class="jumbotron">
+            <img src="resources/images/backgroundImg/art2.jpeg" style="width: 100%">
+            </div>
+         </div>
+      </div>
+	</div>
+	<div class="sticky-top">
+      <!-- 고객센터 메뉴바 -->
+      <div class="row" id="mid-menu">
+            <div class="col-md-1"></div>
+            <div class="col-md-10" id="detailnavpadding">
+                <nav class="nav">
+                    <div class="container-fluid" id="detailnav">
+                        <div id="story" onclick="location.href='cCenter.dr'" >공지사항</div>
+                        <div id="guide" onclick="location.href='T_O_Service.dr'" style="color: rgb(142, 68, 173);">이용약관</div>
+                        <div id="community" onclick="location.href='fReview.dr'">프로젝트 후기</div>
+                        <div id="reward" onclick="location.href='faq.dr'">FAQ</div>
+                    </div>
+                </nav>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+	</div>
+	<div class="container-fluid" id="ReviewCon1">
 		<hr style="background-color: black;">
 		<div id="Terms_table">
 			<h3>이용약관</h3>

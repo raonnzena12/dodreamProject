@@ -1,7 +1,7 @@
 package com.dodream.spring.customerCenter.model.vo;
 
 import java.sql.Date;
-
+ 
 public class Faq {
 	private int    fNo;         // 번호 
 	private String fTitle;      // 제목
