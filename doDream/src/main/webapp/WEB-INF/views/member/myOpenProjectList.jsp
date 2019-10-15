@@ -257,7 +257,6 @@
 			</div>
 		<div class="col-md-1"></div>
 	</div>
-	</c:if>
 	
 	<script>
 		// 페이지 접속하면 currentPage = 1;
