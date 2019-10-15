@@ -139,8 +139,11 @@ public class AdminProjectController {
 	
 	// 심사 완료 -> 프로젝트 오픈 
 	@RequestMapping("openProjectBtn.dr")
-	public String openProject(int pNo) {
-		int result = aService.openProject(pNo);
+	public String openProject(int pNo, int termDate) {
+		Project prj = new Project();
+		prj.setpNo(pNo);
+		prj.setTermDate(termDate);
+		int result = aService.openProject(prj);
 		
 		if(result > 0) {
 			return "redirect:adminPlist2.dr";
