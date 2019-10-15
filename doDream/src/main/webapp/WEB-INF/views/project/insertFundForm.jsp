@@ -438,8 +438,8 @@
 		</div>
 		<div class="insertformcont">
 		    <div class="functionbtnarea" align="center">
-		        <i class="material-icons">search</i>
-		        <i class="material-icons">save_alt</i>
+		        <i id="remotepreview" class="material-icons">search</i>
+		        <i id="remotesave" class="material-icons">save_alt</i>
 		        <i id="remotesubmit" class="material-icons notouch">mail_outline</i>
 		    </div>
 		    <div class="menubararea">
@@ -537,7 +537,7 @@
 	</div>
 	<div id="insertFundForm" style="margin-top: 100px; margin-bottom: 100px;">
 		<div class="btnWrapper" align="right">
-			<button type="button" onclick="preview(${project.pNo});" class="btn btn-primary" style="background-color: #8E44AD; border: none; width: 140px; box-shadow: 2px 2px 6px 1px #999;"><i class="material-icons">search</i>미리보기</button>
+			<button type="button" onclick="preview();" class="btn btn-primary" style="background-color: #8E44AD; border: none; width: 140px; box-shadow: 2px 2px 6px 1px #999;"><i class="material-icons">search</i>미리보기</button>
 			<button type="button" onclick="temporarySave();" class="btn btn-primary" style="background-color: #8E44AD; border: none; box-shadow: 2px 2px 6px 1px #999;"><i class="material-icons">cloud_download</i>임시저장하기</button>
 			<button type="button" id="submitToAdmin" onclick="submitToAdmin();" class="btn btn-primary disabledbtn" style="background-color: #F39C12; border: none; box-shadow: 2px 2px 6px 1px #999;" disabled ><i class="material-icons">done</i>검토요청하기</button>
 		</div>
@@ -1480,10 +1480,9 @@
 			}
 		})
 		*/
-	
 	}
 	// 미리보기 메소드입니다.
-	function preview(num){
+	function preview(){
 		$("#pStatusNum").val(1);
  		var formData = new FormData(document.getElementById("insertFrm"));
 		$.ajax({
@@ -2529,7 +2528,19 @@
     		$("#submitToAdmin").prop("disabled",true);
     	}
    	};
-
+	$(document).on("click","#remotepreview",function(){
+		preview();
+	});
+	$(document).on("click","#remotesave",function(){
+		temporarySave();
+	});
+	$(document).on("click","#remotesubmit",function(){
+		if(!$("#remotesubmit").hasClass("notouch")){
+			submitToAdmin();
+		}
+	});
+	
+	
 </script>
 </body>
 </html>
