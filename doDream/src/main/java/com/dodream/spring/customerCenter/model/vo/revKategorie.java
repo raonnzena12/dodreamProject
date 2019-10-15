@@ -12,7 +12,7 @@ public class revKategorie{
 		super();
 		this.userNo = userNo;
 		this.category = category;
-	}
+	} 
 	public int getUserNo() {
 		return userNo;
 	}

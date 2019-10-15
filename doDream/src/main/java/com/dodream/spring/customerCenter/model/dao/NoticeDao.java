@@ -13,7 +13,7 @@ import com.dodream.spring.customerCenter.model.vo.Notice;
  
 @Repository("NoticeDao")
 public class NoticeDao {
-
+ 
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 

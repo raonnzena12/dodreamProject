@@ -24,7 +24,7 @@ public class FReviewController {
    
    @Autowired 
    private FReviewService frService;
-    
+     
    // 후기 목록 불러오는 코드 필요 
    
    @RequestMapping("fReview.dr")

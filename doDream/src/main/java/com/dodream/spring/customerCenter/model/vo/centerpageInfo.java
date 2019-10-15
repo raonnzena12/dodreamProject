@@ -3,7 +3,7 @@ package com.dodream.spring.customerCenter.model.vo;
 import com.dodream.spring.common.model.vo.PageInfo;
 
 public class centerpageInfo {
-	
+	 
 	// 해당 vo는 공지사항과 FAQ 페이지 출력
 	
 	// 페이지 정보를 담아줄 PageInfo 참조변수 선언

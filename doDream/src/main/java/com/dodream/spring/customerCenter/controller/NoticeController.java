@@ -22,7 +22,7 @@ public class NoticeController {
 
 	@Autowired
 	private NoticeService noticeService;
-  
+   
 	/** 공지사항 목록 조회
 	 * @param mv 
 	 * @return 

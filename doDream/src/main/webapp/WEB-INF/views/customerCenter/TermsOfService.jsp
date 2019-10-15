@@ -20,7 +20,7 @@
 #ReviewCon {
    width: 1200px; 
    min-height: 700px;
-   
+    
 }
 #ReviewCon1 {
    width: 1200px; 

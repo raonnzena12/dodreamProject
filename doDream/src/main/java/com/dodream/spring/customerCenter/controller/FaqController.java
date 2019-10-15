@@ -24,8 +24,8 @@ public class FaqController {
 	@Autowired
 	private FaqService faqService;
 	
-	
-	/** FAQ 목록 조회 
+	 
+	/** FAQ 목록 조회     
 	 * @param mv  
 	 * @return
 	 */

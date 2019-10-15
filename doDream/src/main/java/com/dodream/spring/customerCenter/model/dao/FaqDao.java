@@ -13,7 +13,7 @@ import com.dodream.spring.customerCenter.model.vo.Search;
  
 
 @Repository("FaqDao")
-public class FaqDao {
+public class FaqDao { 
 
 	@Autowired
 	private SqlSessionTemplate sqlSession;

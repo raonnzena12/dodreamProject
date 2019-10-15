@@ -12,7 +12,7 @@
       <result property="nStatus" column="NOTICE_STATUS" />
       <result property="nWriter" column="NOTICE_WRITER" />
    </resultMap>
- 
+  
    <!-- 프로젝트 리뷰 --> 
    <resultMap id="ReviewResultSet" type="Review">
       <id property="revNo" column="REVIEW_NO" />

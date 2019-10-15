@@ -16,7 +16,7 @@ import com.dodream.spring.customerCenter.model.vo.centerpageInfo;
  
 @Service("FaqService")
 public class FaqServiceImpl implements FaqService {
-
+ 
 	@Autowired
 	private FaqDao faqDao;
 

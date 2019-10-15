@@ -21,7 +21,7 @@
 .fundItem {
    cursor: pointer;
 } 
-
+ 
 #categoryTop {
    border-bottom: 1px solid #ddd;
 }  
