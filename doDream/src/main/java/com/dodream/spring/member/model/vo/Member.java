@@ -19,29 +19,11 @@ public class Member {
 	private String userProfileImage;
 	private String userSelf;
 	private int pWriter;
+
 		
 	public Member() {}
 
-	public Member(int userNo, String userEmail, String userNickname, String userPwd, String userEmailAuthYn,
-			String userAdminYn, String userStatus, Date userEnrollDate, Date userLoginDate, Date userModifyDate,
-			String userAddress, String userPhone, String userProfileImage, String userSelf) {
-		super();
-		this.userNo = userNo;
-		this.userEmail = userEmail;
-		this.userNickname = userNickname;
-		this.userPwd = userPwd;
-		this.userEmailAuthYn = userEmailAuthYn;
-		this.userAdminYn = userAdminYn;
-		this.userStatus = userStatus;
-		this.userEnrollDate = userEnrollDate;
-		this.userLoginDate = userLoginDate;
-		this.userModifyDate = userModifyDate;
-		this.userAddress = userAddress;
-		this.userPhone = userPhone;
-		this.userProfileImage = userProfileImage;
-		this.userSelf = userSelf;
-	}
-	
+
 	public Member(int userNo, String userEmail, String userNickname, String userPwd, String userEmailAuthYn,
 			String userAdminYn, String userStatus, Date userEnrollDate, Date userLoginDate, Date userModifyDate,
 			String userAddress, String userPhone, String userProfileImage, String userSelf, int pWriter) {
@@ -61,7 +43,9 @@ public class Member {
 		this.userProfileImage = userProfileImage;
 		this.userSelf = userSelf;
 		this.pWriter = pWriter;
-	}
+		}
+
+
 
 	public int getUserNo() {
 		return userNo;
@@ -182,6 +166,8 @@ public class Member {
 	public void setpWriter(int pWriter) {
 		this.pWriter = pWriter;
 	}
+	
+	
 
 	@Override
 	public String toString() {
@@ -189,8 +175,10 @@ public class Member {
 				+ userPwd + ", userEmailAuthYn=" + userEmailAuthYn + ", userAdminYn=" + userAdminYn + ", userStatus="
 				+ userStatus + ", userEnrollDate=" + userEnrollDate + ", userLoginDate=" + userLoginDate
 				+ ", userModifyDate=" + userModifyDate + ", userAddress=" + userAddress + ", userPhone=" + userPhone
-				+ ", userProfileImage=" + userProfileImage + ", userSelf=" + userSelf + ", pWriter=" + pWriter + "]";
+				+ ", userProfileImage=" + userProfileImage + ", userSelf=" + userSelf + ", pWriter=" + pWriter
+				;
 	}
+
 
 
 	

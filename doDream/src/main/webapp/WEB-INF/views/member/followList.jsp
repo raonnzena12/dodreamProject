@@ -22,17 +22,22 @@
 </style>
 </head>
 <body>
-	<jsp:include page="../member/mypageHeader.jsp"/>
+<jsp:include page="../member/mypageHeader.jsp"/>
+<c:if test="${ ! empty sessionScope.loginUser }">
 	<br>
 	<div class="container-fluid">
 	<div class="row">
 		<div class="col-md-2">
 		</div>
 		<div class="col-md-8" id="followsub">	
-			<a class="" id="sub1" href="followList.dr?userNo=${loginUser.userNo}">내가 팔로잉한</a> ｜ <a class="" id="sub2" href="followerList.dr?userNo=${loginUser.userNo}">나를 팔로잉한</a>
+			<c:if test="${loginUser.userNo eq social.pWriter}">	
+			<a class="" id="sub1" href="followList.dr?userNo=${loginUser.userNo}">팔로잉한</a> ｜ <a class="" id="sub2" href="followerList.dr?userNo=${loginUser.userNo}">팔로잉한</a>
+			</c:if>
+			<c:if test="${loginUser.userNo ne social.pWriter}">	
+			<a class="" id="sub1" href="followList.dr?userNo=${social.pWriter}">팔로잉한</a> ｜ <a class="" id="sub2" href="followerList.dr?userNo=${social.pWriter}">팔로잉한</a>
+			</c:if>
 		</div>
-		<div class="col-md-2">
-		</div>
+		<div class="col-md-2"></div>
 	</div>
 	<br>
 	<div class="row">
@@ -77,8 +82,10 @@
 						</c:if>
 					</div>
 				</div>
-				<div class="col-md-4" style="padding-top: 30px">					 
+				<div class="col-md-4" style="padding-top: 30px">	
+					<c:if test="${loginUser.userNo eq social.pWriter}">				 
 					<button type="button" class="btn btn-warning btn-sm" id="unfollow" follow="${  followList.followNo }">언팔로우</button>
+					</c:if>
 				</div>
 				</div>
 				<br>
@@ -97,6 +104,7 @@
 		</div>
 	</div>
 </div>
+</c:if>
 
 <script>
 	

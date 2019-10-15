@@ -79,6 +79,8 @@ public interface MemberService {
 	 */
 	public abstract Member naverLogin(String email);
 
+	public abstract Member socialSelect(int userNo);
+
 
 
 }

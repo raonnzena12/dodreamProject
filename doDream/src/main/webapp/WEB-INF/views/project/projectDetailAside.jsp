@@ -357,7 +357,7 @@
                  	<img src="resources/images/projectImg/artistImg/${project.pArtistPFImage}" id="artProfileImg">
                  </div>
                  <div id="artistName">
-                   <a href="social.dr?pWriter=${project.pWriter}">
+                   <a href="social.dr?userNo=${project.pWriter}">
 		                 <div id="artistText2">${project.pArtistName }님
 			                 <div id="iconbox" class="clearfix">
 				                 	<i class="material-icons" id="asideFavorite">favorite_border</i>

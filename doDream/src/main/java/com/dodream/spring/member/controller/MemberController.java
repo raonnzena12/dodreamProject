@@ -540,19 +540,23 @@ public class MemberController {
 		return mv;
 	}
 	
-	/*
-	 * @RequestMapping("social.dr") public ModelAndView socialSelect(int pWriter,
-	 * ModelAndView mv) {
-	 * 
-	 * ArrayList<Member> social = mService.socialSelect(pWriter);
-	 * System.out.println(social);
-	 * 
-	 * if(social != null) { mv.addObject("social", social);
-	 * mv.setViewName("member/SocialHeader"); }else { mv.addObject("msg",
-	 * "목록 조회에 실패하였습니다."); mv.setViewName("common/errorPage"); }
-	 * 
-	 * return mv; }
-	 */
+	
+	  @RequestMapping("social.dr")
+	  public ModelAndView socialSelect(int userNo, ModelAndView mv) {
+	  
+		  Member social = mService.socialSelect(userNo);
+		  System.out.println("소셜"+social);
+		  
+		  if(social != null) { 
+			  mv.addObject("social", social);
+			mv.setViewName("member/mypageHeader");
+		} else { 
+			mv.addObject("msg",
+			"목록 조회에 실패하였습니다."); mv.setViewName("common/errorPage");
+		}
+		  return mv; 
+	  }
+	 
 	
 	/**
 	 * 네이버 이메일로 로그인하는 Controller

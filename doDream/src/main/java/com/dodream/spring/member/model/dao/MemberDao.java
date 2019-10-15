@@ -114,6 +114,11 @@ public class MemberDao {
 		return sqlSession.selectOne("memberMapper.naverLogin", email);
 	}
 
+	public Member socialSelect(int userNo) {
+		
+		return sqlSession.selectOne("memberMapper.socialSelect", userNo);
+	}
+
 
 	
 }

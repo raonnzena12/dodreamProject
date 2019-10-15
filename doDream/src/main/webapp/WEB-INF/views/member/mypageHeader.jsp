@@ -26,35 +26,72 @@
 			<c:if test="${ ! empty sessionScope.loginUser }">
 			<div class="col-md-4"></div>
 			<div class="col-md-4 myPagehead">
-				<h4 class="mb-3">My Page</h4>
-				<h4 class="text-left">
-						${ loginUser.userNickname }님 환영합니다.
-					<img src="" class="rounded-circle float-sm" />
-				</h4>
-					<p class="mb-0" id="userSelf">${ loginUser.userSelf }</p>
-				<div id="followOuter">
-					<p class="text-left">팔로워 <span id="follower"></span>명 &nbsp; 팔로잉 <span id="follow"></span>명</p>
-				</div>
+				<c:if test="${loginUser.userNo eq social.pWriter}">
+					<h4 class="mb-3">My Page</h4>
+					<h4 class="text-left">
+							${ loginUser.userNickname }님 환영합니다.
+						<img src="" class="rounded-circle float-sm" />
+					</h4>
+						<p class="mb-0" id="userSelf">${ loginUser.userSelf }</p>
+					<div id="followOuter">
+						<p class="text-left">팔로워 <span id="follower"></span>명 &nbsp; 팔로잉 <span id="follow"></span>명</p>
+					</div>
+				</c:if>
+				
+				<c:if test="${loginUser.userNo ne social.pWriter}">
+				<c:if test="${! empty social }">
+					<h4 class="text-left">
+							${ social.userNickname }님의 페이지입니다.
+						<img src="" class="rounded-circle float-sm" />
+					</h4>
+						<p class="mb-0" id="userSelf">${ social.userSelf }</p>
+						<c:if test="${empty social.userSelf }">
+							<p class="mb-0" id="userSelf"></p>
+						</c:if>
+					<div id="followOuter">
+						<p class="text-left">팔로워 <span id="follower"></span>명 &nbsp; 팔로잉 <span id="follow"></span>명</p>
+					</div>
+				</c:if>
+				</c:if>
 			</div>
-			</c:if>
+			
 			<div class="col-md-4">
 				<div id="pfImgOuter">
+					<c:if test="${loginUser.userNo eq social.pWriter}">
 					<a href="myInfo.dr">
-					<c:choose>
-					<c:when test="${empty loginUser.userProfileImage}">
-					<img alt="프로필사진" src="resources/images/talent.png" class="rounded-circle float-sm ml-3" style="width: 150px; height: 150px;"/>
-					</c:when>
-					<c:when test= "${fn:contains(loginUser.userProfileImage,'http://')}">
-					<img alt="프로필사진" src="${loginUser.userProfileImage}" class="rounded-circle float-sm" style="width: 150px; height: 150px;"/>
-					</c:when>
-					<c:otherwise>
-					<img alt="프로필사진" src="resources/images/userProfileImage/${loginUser.userProfileImage}" class="rounded-circle float-sm" style="width: 150px; height: 150px;"/>
-					</c:otherwise>
-					</c:choose>
-					<img src="resources/images/settings_icon.png" class="float-sm align-top" id="setting" style="width: 35px;"/>
+						<c:choose>
+							<c:when test="${empty loginUser.userProfileImage}">
+								<img alt="프로필사진" src="resources/images/talent.png" class="rounded-circle float-sm ml-3" style="width: 150px; height: 150px;"/>
+							</c:when>
+							<c:when test= "${fn:contains(loginUser.userProfileImage,'http://')}">
+								<img alt="프로필사진" src="${loginUser.userProfileImage}" class="rounded-circle float-sm" style="width: 150px; height: 150px;"/>
+							</c:when>
+							<c:otherwise>
+								<img alt="프로필사진" src="resources/images/userProfileImage/${loginUser.userProfileImage}" class="rounded-circle float-sm" style="width: 150px; height: 150px;"/>
+							</c:otherwise>
+						</c:choose>
+							<img src="resources/images/settings_icon.png" class="float-sm align-top" id="setting" style="width: 35px;"/>
 					</a>
+					</c:if>
+					
+					<c:if test="${loginUser.userNo ne social.pWriter}">
+					<c:if test="${! empty social }">
+						<c:choose>
+							<c:when test="${empty social.userProfileImage}">
+								<img alt="프로필사진" src="resources/images/talent.png" class="rounded-circle float-sm ml-3" style="width: 150px; height: 150px;"/>
+							</c:when>
+							<c:when test= "${fn:contains(social.userProfileImage,'http://')}">
+								<img alt="프로필사진" src="${social.userProfileImage}" class="rounded-circle float-sm" style="width: 150px; height: 150px;"/>
+							</c:when>
+							<c:otherwise>
+								<img alt="프로필사진" src="resources/images/userProfileImage/${social.userProfileImage}" class="rounded-circle float-sm" style="width: 150px; height: 150px;"/>
+							</c:otherwise>
+						</c:choose>
+					</c:if>
+					</c:if>
 				</div>
 			</div>
+			
 		</div>
 		<div style="height: 20px;"></div>
 	</div>
@@ -64,16 +101,28 @@
 					<div class="col-md-2"></div>
 					<div class="col-md-6">
 						<ul class="nav">
+							<c:if test="${loginUser.userNo eq social.pWriter}">
 							<li class="nav-item"><a class="nav-link" id="menu1" href="myFundingList.dr?userNo=${loginUser.userNo}">프로젝트로그</a></li>
 							<li class="nav-item"><a class="nav-link" id="menu2" href="followList.dr?userNo=${loginUser.userNo}"><i class="material-icons">favorite</i></a></li>
 							<li class="nav-item"><a class="nav-link" id="menu3" href="myReportList.dr?userNo=${loginUser.userNo}">나의신고내역</a></li>
+							</c:if>
+							<c:if test="${loginUser.userNo ne social.pWriter}">
+							<c:if test="${! empty social }">
+							<li class="nav-item"><a class="nav-link" id="menu1" href="myFundingList.dr?userNo=${social.pWriter}">프로젝트로그</a></li>
+							<li class="nav-item"><a class="nav-link" id="menu2" href="followList.dr?userNo=${social.pWriter}"><i class="material-icons">favorite</i></a></li>
+							<li class="nav-item"><a class="nav-link" id="menu3" href="myReportList.dr?userNo=${social.pWriter}">나의신고내역</a></li>
+							</c:if>
+							</c:if>
 						</ul>
 					</div>
 					<div class="col-md-4">
 						<ul class="nav">
+						<c:if test="${loginUser.userNo eq social.pWriter}">
 							<li class="nav-item"><a class="nav-link" id="menu4" href="myReserveList.dr?userNo=${loginUser.userNo}">프로젝트결제내역</a></li>
+						</c:if>
 						</ul>
 					</div>
+			</c:if>
 				</div>
 			</div>
 		</div>
@@ -105,6 +154,33 @@
 				}
 			});
 		});	
+		
+		$(document).ready(function(){
+			$.ajax({
+				url: "countFollow.dr",
+				data: {userNo: ${social.userNo}},
+				success: function(result){
+					if(result != 0){
+						$("#follow").text(result);
+					}else{
+						$("#follow").text(0);
+					}
+				}
+			});
+			
+			$.ajax({
+				url:"countFollower.dr",
+				data: {userNo: ${social.userNo}},
+				success: function(result){
+					if(result != 0){
+						$("#follower").text(result);
+					}else{
+						$("#follower").text(0);
+					}
+				}
+			});
+		});	
+		
 		$(function(){
 			var menu = ${menu} + "";
 			if(menu==4){
