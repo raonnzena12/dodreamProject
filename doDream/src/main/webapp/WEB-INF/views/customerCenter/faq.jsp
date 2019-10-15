@@ -88,6 +88,9 @@
 .accBtn1{
 color : #8E44AD;
 }
+.faqbtn{
+	background-color: #F39C12;
+}
 </STYLE>
 </head>
 <body>
@@ -138,7 +141,7 @@ color : #8E44AD;
 							</select>
 						
 							<input class="form-control mr-sm-2" type="search" name="searchValue" value="${search.searchValue}">
-							<button class="btn btn-primary my-2 my-sm-0">검색</button><br>
+							<button class="faqbtn btn btn-primary my-2 my-sm-0">검색</button><br>
 						</form>
 					</div>
 				</div>
