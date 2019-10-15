@@ -79,7 +79,7 @@
 	<select id="countCategory" resultType="_int">
 		SELECT COUNT(*) 
 		FROM PROJECT_TB 
-		GROUP BY PROJECT_CT_NO 
+		GROUP BY PROJECT_CT_NO HAVING PROJECT_CT_NO != 0 
 		ORDER BY PROJECT_CT_NO ASC
 	</select>
 	
