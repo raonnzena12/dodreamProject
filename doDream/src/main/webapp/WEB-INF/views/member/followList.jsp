@@ -23,19 +23,13 @@
 </head>
 <body>
 <jsp:include page="../member/mypageHeader.jsp"/>
-<c:if test="${ ! empty sessionScope.loginUser }">
 	<br>
 	<div class="container-fluid">
 	<div class="row">
 		<div class="col-md-2">
 		</div>
 		<div class="col-md-8" id="followsub">	
-			<c:if test="${loginUser.userNo eq social.pWriter}">	
 			<a class="" id="sub1" href="followList.dr?userNo=${loginUser.userNo}">팔로잉한</a> ｜ <a class="" id="sub2" href="followerList.dr?userNo=${loginUser.userNo}">팔로잉한</a>
-			</c:if>
-			<c:if test="${loginUser.userNo ne social.pWriter}">	
-			<a class="" id="sub1" href="followList.dr?userNo=${social.pWriter}">팔로잉한</a> ｜ <a class="" id="sub2" href="followerList.dr?userNo=${social.pWriter}">팔로잉한</a>
-			</c:if>
 		</div>
 		<div class="col-md-2"></div>
 	</div>
@@ -104,7 +98,6 @@
 		</div>
 	</div>
 </div>
-</c:if>
 
 <script>
 	
