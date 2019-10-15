@@ -29,8 +29,8 @@
 	<div class="row">
 		<div class="col-md-2">
 		</div>
-		<div class="col-md-8" id="followsub">	
-			<a class="" id="sub1" href="followList.dr?userNo=${loginUser.userNo}">내가 팔로잉한</a> ｜ <a class="" id="sub2" href="followerList.dr?userNo=${loginUser.userNo}">나를 팔로잉한</a>
+		<div class="col-md-8" id="followsub">
+			<a class="" id="sub1" href="followList.dr?userNo=${loginUser.userNo}">팔로잉한</a> ｜ <a class="" id="sub2" href="followerList.dr?userNo=${loginUser.userNo}">팔로잉한</a>
 		</div>
 		<div class="col-md-2">
 		</div>

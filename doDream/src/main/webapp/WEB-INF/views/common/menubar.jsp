@@ -26,12 +26,14 @@
 <script src="resources/js/menubar.js"></script>
 <!-- Swal 추가 -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
-
-	<!-- 주소 api -->
-	<script src="//cdn.poesis.kr/post/search.min.js"></script>
-	<!-- 카카오 로그인 -->
-	<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-
+<!-- 주소 api -->
+<script src="//cdn.poesis.kr/post/search.min.js"></script>
+<!-- 카카오 로그인 -->
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+<!-- 네이버 로그인 -->
+<c:if test="${ empty loginUser }" >
+<script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
+</c:if>
 <style>
 	* {
 		box-sizing: border-box;
@@ -168,11 +170,10 @@
 						<!-- 소셜 로그인 아이콘 들어가는 부분 -->
 							<td class="text-center naverKakaoArea">
 								<div>
-								<div id="naver_id_login" class="text-left mx-2" style="display: inline-block;">
+								<div id="naverIdLogin" class="text-left mx-2" style="display: inline-block;">
 								</div>
 								<a href="javascript:loginWithKakao()"><img src="resources/images/kakao_sns_icon.png" data-toggle="tooltip" data-placement="left" title="KAKAO ID로 로그인" class="mx-2"></a>
-								<img src="resources/images/faceB_sns_icon.png" data-toggle="tooltip" data-placement="left" title="FACEBOOK ID로 로그인" class="mx-2">
-								<!-- <img src="resources/images/naver_sns_icon.png" data-toggle="tooltip" data-placement="left" title="NAVER ID로 로그인" class="mx-2"> -->
+								<!-- <img src="resources/images/faceB_sns_icon.png" data-toggle="tooltip" data-placement="left" title="FACEBOOK ID로 로그인" class="mx-2"> -->
 								</div>
 							</td>
 						</tr>
@@ -251,177 +252,228 @@
 	</nav>
 	<a id="top_btn"><img src="resources/images/up_button_p.png" alt="탑 버튼"></a>
 	</section>
-	<script>
+<c:if test="${ empty loginUser }" >
+<script>
+
+var naverLogin = new naver.LoginWithNaverId(
+	{
+		clientId: "CLgmNZMbjGe7TApfTPy_",
+		callbackUrl: "http://localhost:8080/spring/naverLoginRedirect.jsp",
+		isPopup: true, /* 팝업을 통한 연동처리 여부 */
+		loginButton: {color: "green", type: 1, height: 40} /* 로그인 버튼의 타입을 지정 */
+	}
+);
+
+/* 설정정보를 초기화하고 연동을 준비 */
+naverLogin.init();
+
+function loginWithNaver(email, nickName, profileImg, unqId) {
+	var form = document.createElement("form");
+	var param = new Array();
+	var input = new Array();
+
+	var path = window.location.pathname;
+	var arr = path.split("/");
+	var prevPage = arr[2];
+
+	
+	form.action = "naverSNSLogin.dr";
+	form.method = "post";
+	
+	param.push(["userEmail",email]);
+	param.push(["userNickname",nickName]);
+	param.push(["userProfileImage",profileImg]);
+	param.push(["userPwd",unqId]);
+	param.push(["prevPage",prevPage]);
+	
+	for(var i=0; i<param.length; i++){
+		input[i] = document.createElement("input");
+		input[i].setAttribute("type", "hidden");
+		input[i].setAttribute('name', param[i][0]);
+		input[i].setAttribute("value", param[i][1]);
+		form.appendChild(input[i]);
+	}
+	document.body.appendChild(form);
+				
+	form.submit();
+}
+</script>
+</c:if>
+<script>
+	/* 로그인폼 submit */
+	function beforeLogin(){
+		var frm = $("#loginFrm");
+		var path = window.location.pathname;
+		var arr = path.split("/");
+		$("#prevPage").val(arr[2]);
+		frm.submit();
+	};
+	
+	
+	$("#loginBtn").click(function() {
+		var useCookie = $("input[name=useCookie]").is(":checked");
+		console.log(useCookie); 
+		/* true */
+	});
+	
+	/* 카카오 로그인 */
+	function loginWithKakao() {
 		
-		/* 로그인폼 submit */
-		function beforeLogin(){
+		Kakao.init('ff3dadde4ab297ea0f244c294c45e600')			
+		Kakao.Auth.loginForm({
+			success: function(authObj) {
+				Kakao.API.request({
+					url:"/v2/user/me",
+					success: function(res){
+						/* var userEmail = res.kaccount_email; */
+						var info = res;
+						console.log(res);
+						console.log(res.kakao_account.email);
+						
+						var userEmail = res.kakao_account.email; //email
+						var userPwd = res.id;
+						var userNickname = res.properties.nickname;
+						var userProfileImage = res.properties.profile_image;
+						
+						console.log(userEmail+"/"+userNickname+"/"+userProfileImage+"/"+userPwd);
+						//userId+userNickname -> userNickname에 insert
+						$.ajax({
+							url:"checkEmail.dr", //회원가입여부 확인
+							data: {userEmail:userEmail},
+							type: "post",
+							success: function(result) {
+								console.log(result);
+								if(result == "0"){//email이 없을경우
+									location.href="insertSNS.dr?userEmail="+userEmail+"&userNickname="+userNickname+"&userProfileImage="+userProfileImage+"&userPwd="+userPwd;
+								}else if(result == "1"){
+									snsLoginFrm("login.dr", userEmail, userPwd);
+									/* location.href="login.dr?userEmail="+userEmail+"&userPwd="+userPwd; */
+								}
+							}
+						});
+					},
+					fail: function(err){
+							console.log(err);
+					}
+				});
+			}
+		});
+	};
+	
+	
+	/* SNS로그인 시 가상 로그인 폼 생성 후 submit */
+	function snsLoginFrm(url, userEmail, userPwd){
+		var form = document.createElement("form");
+		var param = new Array();
+		var input = new Array();
+
+		var path = window.location.pathname;
+		var arr = path.split("/");
+		var prevPage = arr[2];
+
+		
+		form.action = url;
+		form.method = "post";
+		
+		param.push(["userEmail",userEmail]);
+		param.push(["userPwd",userPwd]);
+		param.push(["prevPage",prevPage]);
+		
+		for(var i=0; i<param.length; i++){
+			input[i] = document.createElement("input");
+			input[i].setAttribute("type", "hidden");
+			input[i].setAttribute('name', param[i][0]);
+			input[i].setAttribute("value", param[i][1]);
+			form.appendChild(input[i]);
+		}
+		document.body.appendChild(form);
+					
+		form.submit();
+	}
+
+	/* 쿠키생성 */
+	function setCookie(cookieName, value, exdays) {
+		var exdate = new Date();
+		exdate.setDate(exdate.getDate() + exdays);
+		
+		var cookieValue =  escape(value) + ((exdays==null) ? "" : "; expires=" + exdate.toGMTString());
+		document.cookie = cookieName + "=" + cookieValue;
+	}
+	
+	/* 쿠키삭제 */
+	function deleteCookie(cookieName) {
+		var expireDate = new Date();
+		expireDate.setDate(expireDate.getDate()- 1);
+		document.cookie = cookieName + "=" +"; expires=" + expireDate.toGMTString();
+	}
+	
+	/* 쿠키 얻기 */
+	function getCookie(cookieName) {
+		cookieName = cookieName + '=';
+		var cookieData = document.cookie;
+		var start = cookieData.indexOf(cookieName);
+		var cookieValue = '';
+		if(start != -1){
+			start += cookieName.length;
+			var end = cookieData.indexOf(';', start);
+			if(end == -1)end = cookieData.length;
+			cookieValue = cookieData.substring(start, end);
+		}
+		return unescape(cookieValue);
+	}
+	
+	/* 쿠키저장 */
+	$(document).ready(function() {
+		
+		if(getCookie("userEmail") && getCookie("userPwd")){
+			$("#userEmail").val(getCookie("userEmail"));
+			$("#userPwd").val(getCookie("userPwd"));
+			
 			var frm = $("#loginFrm");
 			var path = window.location.pathname;
 			var arr = path.split("/");
 			$("#prevPage").val(arr[2]);
-			frm.submit();
-		};
+			
+			$("#loginFrm").submit();
+		}
+					
+		var userEmail = getCookie("userEmail");
+		//$("#userEmail").val(userEmail);
 		
+		var userPwd = getCookie("userPwd");
+		//$("#userPwd").val(userPwd);
 		
-		$("#loginBtn").click(function() {
-			var useCookie = $("input[name=useCookie]").is(":checked");
-			console.log(useCookie); 
-			/* true */
+		$("#useCookie").change(function() {
+			if($("#useCookie").is(":checked", true)){ //자동로그인 체크박스 선택 할때
+				var userEmail = $("#userEmail").val();
+				setCookie("userEmail", userEmail, 15); //15일저장
+				var userPwd = $("#userPwd").val();
+				setCookie("userPwd", userPwd, 15); //15일저장
+			}else{
+				deleteCookie("userEmail");
+				deleteCookie("userPwd");
+			}	
+		
 		});
 		
-		/* 카카오 로그인 */
-		function loginWithKakao() {
-			
-			Kakao.init('ff3dadde4ab297ea0f244c294c45e600')			
-			Kakao.Auth.loginForm({
-				success: function(authObj) {
-					Kakao.API.request({
-						url:"/v2/user/me",
-						success: function(res){
-							/* var userEmail = res.kaccount_email; */
-							var info = res;
-							console.log(res);
-							console.log(res.kakao_account.email);
-							
-							var userEmail = res.kakao_account.email; //email
-							var userPwd = res.id;
-							var userNickname = res.properties.nickname;
-							var userProfileImage = res.properties.profile_image;
-							
-							console.log(userEmail+"/"+userNickname+"/"+userProfileImage+"/"+userPwd);
-							//userId+userNickname -> userNickname에 insert
-							$.ajax({
-								url:"checkEmail.dr", //회원가입여부 확인
-								data: {userEmail:userEmail},
-								type: "post",
-								success: function(result) {
-									console.log(result);
-									if(result == "0"){//email이 없을경우
-										location.href="insertSNS.dr?userEmail="+userEmail+"&userNickname="+userNickname+"&userProfileImage="+userProfileImage+"&userPwd="+userPwd;
-									}else if(result == "1"){
-										snsLoginFrm("login.dr", userEmail, userPwd);
-										/* location.href="login.dr?userEmail="+userEmail+"&userPwd="+userPwd; */
-									}
-								}
-							});
-						},
-						fail: function(err){
-	                           console.log(err);
-						}
-					});
-				}
-			});
-		};
 		
-		/* SNS로그인 시 가상 로그인 폼 생성 후 submit */
-		function snsLoginFrm(url, userEmail, userPwd){
-			var form = document.createElement("form");
-			var param = new Array();
-			var input = new Array();
-
-			var path = window.location.pathname;
-			var arr = path.split("/");
-			var prevPage = arr[2];
-
-			
-			form.action = url;
-			form.method = "post";
-			
-			param.push(["userEmail",userEmail]);
-			param.push(["userPwd",userPwd]);
-			param.push(["prevPage",prevPage]);
-			
-			for(var i=0; i<param.length; i++){
-				input[i] = document.createElement("input");
-				input[i].setAttribute("type", "hidden");
-	            input[i].setAttribute('name', param[i][0]);
-	            input[i].setAttribute("value", param[i][1]);
-	            form.appendChild(input[i]);
-			}
-			document.body.appendChild(form);
-						
-			form.submit();
-		}
+	});
 	
-		/* 쿠키생성 */
-		function setCookie(cookieName, value, exdays) {
-			var exdate = new Date();
-			exdate.setDate(exdate.getDate() + exdays);
-			
-			var cookieValue =  escape(value) + ((exdays==null) ? "" : "; expires=" + exdate.toGMTString());
-			document.cookie = cookieName + "=" + cookieValue;
+	$("#logoutbtn").click(function(){
+		deleteCookie("userEmail");
+		deleteCookie("userPwd");
+		
+		location.href='${logout}';
+	});
+	
+	$(document).on("keydown","#userPwd",function(event){
+		if(event.keyCode=='13'){
+			beforeLogin();
 		}
-		
-		/* 쿠키삭제 */
-		function deleteCookie(cookieName) {
-			var expireDate = new Date();
-			expireDate.setDate(expireDate.getDate()- 1);
-			document.cookie = cookieName + "=" +"; expires=" + expireDate.toGMTString();
-		}
-		
-		/* 쿠키 얻기 */
-		function getCookie(cookieName) {
-			cookieName = cookieName + '=';
-	        var cookieData = document.cookie;
-	        var start = cookieData.indexOf(cookieName);
-	        var cookieValue = '';
-	        if(start != -1){
-	            start += cookieName.length;
-	            var end = cookieData.indexOf(';', start);
-	            if(end == -1)end = cookieData.length;
-	            cookieValue = cookieData.substring(start, end);
-	        }
-	        return unescape(cookieValue);
-		}
-		
-		/* 쿠키저장 */
-		$(document).ready(function() {
-			
-			if(getCookie("userEmail") && getCookie("userPwd")){
-				$("#userEmail").val(getCookie("userEmail"));
-				$("#userPwd").val(getCookie("userPwd"));
-				
-				var frm = $("#loginFrm");
-				var path = window.location.pathname;
-				var arr = path.split("/");
-				$("#prevPage").val(arr[2]);
-				
-				$("#loginFrm").submit();
-			}
-						
-			var userEmail = getCookie("userEmail");
-			//$("#userEmail").val(userEmail);
-			
-			var userPwd = getCookie("userPwd");
-			//$("#userPwd").val(userPwd);
-			
-			$("#useCookie").change(function() {
-				if($("#useCookie").is(":checked", true)){ //자동로그인 체크박스 선택 할때
-					var userEmail = $("#userEmail").val();
-					setCookie("userEmail", userEmail, 15); //15일저장
-					var userPwd = $("#userPwd").val();
-					setCookie("userPwd", userPwd, 15); //15일저장
-				}else{
-					deleteCookie("userEmail");
-					deleteCookie("userPwd");
-				}	
-			
-			});
-			
-			
-		});
-		
-		$("#logoutbtn").click(function(){
-			deleteCookie("userEmail");
-			deleteCookie("userPwd");
-			
-			location.href='${logout}';
-		});
-		
-
-	</script>
+	});
+</script>
 	
 
-	<%@ include file="footer.jsp" %>
+<%@ include file="footer.jsp" %>
 </body>
 </html>

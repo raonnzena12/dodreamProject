@@ -169,14 +169,14 @@
 		<div class="row">
 			<div class="col-md-2"></div>
 			<div class="col-md-8" id="myfundingsub">
-					<a id="sub1" href="myFundingList.dr?userNo=${loginUser.userNo}">내가	참여한</a> ｜ <a id="sub2" href="myOpenProjectList.dr?userNo=${loginUser.userNo}">내가 오픈한</a> ｜ <a id="sub3" href="myLikePRJList.dr?userNo=${loginUser.userNo}">내가 관심있는</a>
+			<a id="sub1" href="myFundingList.dr?userNo=${loginUser.userNo}">참여한</a> ｜ <a id="sub2" href="myOpenProjectList.dr?userNo=${loginUser.userNo}">오픈한</a> ｜ <a id="sub3" href="myLikePRJList.dr?userNo=${loginUser.userNo}">관심있는</a>
 			</div>
 			<div class="col-md-2"></div>
 		</div>
 		<br>
 		<div class="row">
-			<div class="col-md-2"></div>
-			<div class="col-md-8 resultPrint">
+			<div class="col-md-1"></div>
+			<div class="col-md-10 resultPrint">
 					<c:if test="${ empty pList }">
 						<h4 class="text-center">좋아요한 프로젝트가 없습니다.</h4>
 					</c:if>
@@ -235,7 +235,7 @@
 					</c:if>
 				</div>
 			</div>
-		<div class="col-md-2"></div>
+		<div class="col-md-1"></div>
 	</div>
 		<script>
 		// 페이지 접속하면 currentPage = 1;

@@ -23,6 +23,7 @@ public class Reserve {
 	private String prjCategoryName; // 프로젝트 카테고리 이름
 	private int dDay; // 프로젝트 남은 일수
 	private int resRefPst; // 참조하는 프로젝트 스테이터스
+	private int total;		// 예약 번호당 총 결제 금액 
 	
 	public Reserve() {
 	}
@@ -35,7 +36,8 @@ public class Reserve {
 
 	public Reserve(int resNo, String bKey, int addi, Date resDate, String resName, String resContact, String resAddress,
 			String resRequest, int resUser, int resRefPno, int resStatusNo, String pTitle, String userNickname,
-			int resRwdPriceSum, Date resFundDate) {
+			String artistNickname, int resRwdPriceSum, Date resFundDate, String prjCategoryName, int dDay,
+			int resRefPst, int total) {
 		super();
 		this.resNo = resNo;
 		this.bKey = bKey;
@@ -50,16 +52,13 @@ public class Reserve {
 		this.resStatusNo = resStatusNo;
 		this.pTitle = pTitle;
 		this.userNickname = userNickname;
+		this.artistNickname = artistNickname;
 		this.resRwdPriceSum = resRwdPriceSum;
 		this.resFundDate = resFundDate;
-	}
-
-	public int getResRefPst() {
-		return resRefPst;
-	}
-
-	public void setResRefPst(int resRefPst) {
+		this.prjCategoryName = prjCategoryName;
+		this.dDay = dDay;
 		this.resRefPst = resRefPst;
+		this.total = total;
 	}
 
 	public int getResNo() {
@@ -72,22 +71,6 @@ public class Reserve {
 
 	public String getbKey() {
 		return bKey;
-	}
-
-	public String getPrjCategoryName() {
-		return prjCategoryName;
-	}
-
-	public void setPrjCategoryName(String prjCategoryName) {
-		this.prjCategoryName = prjCategoryName;
-	}
-
-	public int getdDay() {
-		return dDay;
-	}
-
-	public void setdDay(int dDay) {
-		this.dDay = dDay;
 	}
 
 	public void setbKey(String bKey) {
@@ -182,6 +165,14 @@ public class Reserve {
 		this.userNickname = userNickname;
 	}
 
+	public String getArtistNickname() {
+		return artistNickname;
+	}
+
+	public void setArtistNickname(String artistNickname) {
+		this.artistNickname = artistNickname;
+	}
+
 	public int getResRwdPriceSum() {
 		return resRwdPriceSum;
 	}
@@ -197,13 +188,37 @@ public class Reserve {
 	public void setResFundDate(Date resFundDate) {
 		this.resFundDate = resFundDate;
 	}
-	
-	public String getArtistNickname() {
-		return artistNickname;
+
+	public String getPrjCategoryName() {
+		return prjCategoryName;
 	}
 
-	public void setArtistNickname(String artistNickname) {
-		this.artistNickname = artistNickname;
+	public void setPrjCategoryName(String prjCategoryName) {
+		this.prjCategoryName = prjCategoryName;
+	}
+
+	public int getdDay() {
+		return dDay;
+	}
+
+	public void setdDay(int dDay) {
+		this.dDay = dDay;
+	}
+
+	public int getResRefPst() {
+		return resRefPst;
+	}
+
+	public void setResRefPst(int resRefPst) {
+		this.resRefPst = resRefPst;
+	}
+
+	public int getTotal() {
+		return total;
+	}
+
+	public void setTotal(int total) {
+		this.total = total;
 	}
 
 	@Override
@@ -213,6 +228,8 @@ public class Reserve {
 				+ ", resUser=" + resUser + ", resRefPno=" + resRefPno + ", resStatusNo=" + resStatusNo + ", pTitle="
 				+ pTitle + ", userNickname=" + userNickname + ", artistNickname=" + artistNickname + ", resRwdPriceSum="
 				+ resRwdPriceSum + ", resFundDate=" + resFundDate + ", prjCategoryName=" + prjCategoryName + ", dDay="
-				+ dDay + ", resRefPst=" + resRefPst + "]";
+				+ dDay + ", resRefPst=" + resRefPst + ", total=" + total + "]";
 	}
+
+	
 }

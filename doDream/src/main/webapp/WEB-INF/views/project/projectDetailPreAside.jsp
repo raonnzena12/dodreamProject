@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>ProjectDetailAside</title>
+<title>ProjectDetailPreAside</title>
        <style>
            #detailAside{
                width: 300px;
@@ -253,14 +253,20 @@
            		padding: 5px 0 0 8px;
            }
            
-           #reportbox > .reportBtn{
+           .preBtn{
            		width: 272px;
 	            height: 50px;
-           		background-color: gray;
+	            margin: auto;
+	            margin-top : 10px;
+	            margin-bottom: 10px;
+           		background-color: gray !important;
 	            border: gray;
-	            margin:4px 5px 5px 0;
            }
-           
+            preBtn:hover{
+           		background-color: gray !important;
+           		outline: none !important;
+           		border: none !important;
+           }
        </style>
 </head>
 <body>
@@ -281,16 +287,16 @@
                  </div>
             </div>
             <div id="introduce">
-            	아티스트 소개
+            	${project.pArtistIntroduction}
             </div>
             <div id="artInformation">
             	<div id="artistText3">
             		<div id="artistsns">
 	            		<div id="fb">
-	            			<a  href="https://www.facebook.com/${project.pArtistSns1 }"><img src="resources/images/faceB_gray_icon.png" width="20px" height="20px"></a>
+	            			<a  href="javascript:void(0);"><img src="resources/images/faceB_gray_icon.png" width="20px" height="20px"></a>
 	            		</div>
 	            		<div id="ig">
-	            			<a  href="https://www.instagram.com/${project.pArtistSns2 }"><img src="resources/images/inStar_gray_icon.png" width="20px" height="20px"></a>
+	            			<a  href="javascript:void(0);"><img src="resources/images/inStar_gray_icon.png" width="20px" height="20px"></a>
 	            		</div>
             		</div>
             		
@@ -317,7 +323,23 @@
 					             ${r.rSum}명 선택
 						</p> 
 					
-		            		<span class="badge badge-primary rewardBadge1">${r.rAmount }개 남음</span>
+		            		<%-- <span class="badge badge-primary rewardBadge1">${r.rAmount }개 남음</span> --%>
+		            		
+		            	<c:if test="${r.rLimit ne '-1'}">
+						
+							<c:if test="${r.rAmount eq '0' }">
+			            		<span class="badge badge-primary rewardBadge1">${r.rAmount }개 남음</span><!-- 리워드 정보 불러오기 -->
+			            	</c:if>
+			            	<c:if test="${r.rAmount ne '0' }">
+			            		<span class="badge badge-primary rewardBadge1">${r.rAmount }개 남음</span><!-- 리워드 정보 불러오기 -->
+			            	</c:if>
+							
+						</c:if>
+						<c:if test="${r.rLimit eq '-1'}">
+							
+						</c:if>
+		            		
+		            		
 						
 					</div>
 					<p class="RewardText3">${r.rPrice }원</p>
@@ -327,7 +349,7 @@
 	            	<input type="hidden" name="rNo" value="${r.rNo }">
 	            	<input type="hidden" name="pNo" value="${project.pNo }">
 	            	
-	            		<button type="submit" class="btn btn-primary btn-lg btn-block rewardBtn">리워드 선택하고 후원하기</button>
+	            		<button type="button" class="btn btn-primary btn-lg btn-block preBtn" disabled>리워드 선택하고 후원하기</button>
 	            		
 				</section>
 			
@@ -338,7 +360,7 @@
 			<!-- 신고하기 -->
 			해당 프로젝트에 허위내용 및 지적재산권을 <br>
 			침해하는 내용이 있다면 신고해주세요.
-			<button type="button" class="btn btn-primary btn-lg btn-block reportBtn">프로젝트 신고하기</button>
+			<button type="button" class="btn btn-primary btn-lg btn-block preBtn" disabled style="margin-right:10px;">프로젝트 신고하기</button>
 		</div>
 		
 		</section>

@@ -73,6 +73,10 @@
                 display: block;
                 float: left;
            }
+           #storyContent *{
+           		max-width: 100%;
+                height: auto;
+           }
           /*  #projectInformation{
            		width: 680px;
                 height: auto;

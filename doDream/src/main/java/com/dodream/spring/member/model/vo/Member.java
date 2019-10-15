@@ -18,12 +18,15 @@ public class Member {
 	private String userPhone;
 	private String userProfileImage;
 	private String userSelf;
+	private int pWriter;
+
 		
 	public Member() {}
 
+
 	public Member(int userNo, String userEmail, String userNickname, String userPwd, String userEmailAuthYn,
 			String userAdminYn, String userStatus, Date userEnrollDate, Date userLoginDate, Date userModifyDate,
-			String userAddress, String userPhone, String userProfileImage, String userSelf) {
+			String userAddress, String userPhone, String userProfileImage, String userSelf, int pWriter) {
 		super();
 		this.userNo = userNo;
 		this.userEmail = userEmail;
@@ -39,7 +42,10 @@ public class Member {
 		this.userPhone = userPhone;
 		this.userProfileImage = userProfileImage;
 		this.userSelf = userSelf;
-	}
+		this.pWriter = pWriter;
+		}
+
+
 
 	public int getUserNo() {
 		return userNo;
@@ -153,14 +159,28 @@ public class Member {
 		this.userSelf = userSelf;
 	}
 
+	public int getpWriter() {
+		return pWriter;
+	}
+
+	public void setpWriter(int pWriter) {
+		this.pWriter = pWriter;
+	}
+	
+	
+
 	@Override
 	public String toString() {
 		return "Member [userNo=" + userNo + ", userEmail=" + userEmail + ", userNickname=" + userNickname + ", userPwd="
 				+ userPwd + ", userEmailAuthYn=" + userEmailAuthYn + ", userAdminYn=" + userAdminYn + ", userStatus="
 				+ userStatus + ", userEnrollDate=" + userEnrollDate + ", userLoginDate=" + userLoginDate
 				+ ", userModifyDate=" + userModifyDate + ", userAddress=" + userAddress + ", userPhone=" + userPhone
-				+ ", userProfileImage=" + userProfileImage + ", userSelf=" + userSelf + "]";
+				+ ", userProfileImage=" + userProfileImage + ", userSelf=" + userSelf + ", pWriter=" + pWriter
+				;
 	}
+
+
+
 	
 	
 	

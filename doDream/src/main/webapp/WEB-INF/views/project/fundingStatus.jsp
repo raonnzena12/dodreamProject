@@ -243,7 +243,19 @@
                         </tr>
                         <tr>
                             <td colspan="2">
-                                발송 시작일 : ${ rwd.rShipDate } 예정
+                                발송 시작일 : ${ fn:substring(rwd.rShipDate, 0, 4) }년 ${ fn:substring(rwd.rShipDate, 5 , 7) }월 
+                                <c:choose>
+                                    <c:when test="${ fn:substring(rwd.rShipDate, 8 , 10)*1 <= 10 }">
+                                        초(1일 ~ 10일)
+                                    </c:when>
+                                    <c:when test="${ fn:substring(rwd.rShipDate, 8 , 10)*1 <= 20 }">
+                                        중순(11일 ~ 20일) 
+                                    </c:when>
+                                    <c:otherwise>
+                                        말(21일 ~ 말일) 
+                                    </c:otherwise>
+                                </c:choose>
+                                예정
                             </td>
                         </tr>
                     </table><br>

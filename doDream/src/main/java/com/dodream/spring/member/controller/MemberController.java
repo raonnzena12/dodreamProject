@@ -233,7 +233,7 @@ public class MemberController {
 
 		String result = null;
 		if (!mList.isEmpty()) {
-			result = "1";
+			result = "1"; //이메일이 있음
 		} else {
 			result = "0";
 		}
@@ -540,6 +540,53 @@ public class MemberController {
 		return mv;
 	}
 	
+	
+	  @RequestMapping("social.dr")
+	  public ModelAndView socialSelect(int userNo, ModelAndView mv) {
+	  
+		  Member social = mService.socialSelect(userNo);
+		  System.out.println("소셜"+social);
+		  
+		  if(social != null) { 
+			  mv.addObject("social", social);
+			mv.setViewName("member/mypageHeader");
+		} else { 
+			mv.addObject("msg",
+			"목록 조회에 실패하였습니다."); mv.setViewName("common/errorPage");
+		}
+		  return mv; 
+	  }
+	 
+	
+	/**
+	 * 네이버 이메일로 로그인하는 Controller
+	 * @param email
+	 * @param nickName
+	 * @param profileImg
+	 * @param model
+	 */
+	@RequestMapping("naverSNSLogin.dr")
+	public String naverSNSlogin(Member member, String prevPage, Model model) {
+		
+		Member loginUser = mService.naverLogin(member.getUserEmail());
+		
+		if ( loginUser == null ) {
+			int result = mService.insertSNS(member);
+			if ( result > 0 ) {
+				loginUser = member;
+			}
+		}
+		model.addAttribute("loginUser", loginUser);
+		
+		int result = mService.checkVisitToday(loginUser.getUserNo());
+		if (result == 0) {
+			result = mService.countVisitToday(loginUser.getUserNo());
+			if (result > 0)
+				System.out.println("userNo : " + loginUser.getUserNo() + "번 회원이 DAYCOUNT 테이블에 삽입됨");
+		}
+		
+		return "redirect:"+prevPage;
+	}
 	
 
 	

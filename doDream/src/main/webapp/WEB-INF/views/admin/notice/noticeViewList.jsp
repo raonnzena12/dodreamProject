@@ -127,7 +127,9 @@ tbody tr:hover{
 													<c:forEach var="n" items="${ list }"  varStatus="status" >
 														<tr role="row" class="odd">
 															<td class="sorting_1">${ n.nNo }</td>
-															<td>${ n.nTitle}</td>
+															<td>
+																<a href="cCenter.dr?nNo=${n.nNo}" style="text-decoration:none; color: gray;">${ n.nTitle}</a>
+															</td>
 															<td>${ n.nEnrollDate}</td>
 															<td>${ n.nModifyDate}</td>
 															<td>${ n.userNickname}</td>
