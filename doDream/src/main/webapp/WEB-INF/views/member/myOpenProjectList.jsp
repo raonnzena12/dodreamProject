@@ -159,7 +159,14 @@
 		<div class="row">
 			<div class="col-md-2"></div>
 			<div class="col-md-8" id="myfundingsub">
+			<c:choose>
+			<c:when test="${ !empty social }">
+			<a id="sub1" href="social.dr?userNo=${social.userNo}&page=1">참여한</a> ｜ <a id="sub2" href="social.dr?userNo=${social.userNo}&page=2">오픈한</a> ｜ <a id="sub3" href="social.dr?userNo=${social.userNo}&page=3">관심있는</a>
+			</c:when>
+			<c:otherwise>
 			<a id="sub1" href="myFundingList.dr?userNo=${loginUser.userNo}">참여한</a> ｜ <a id="sub2" href="myOpenProjectList.dr?userNo=${loginUser.userNo}">오픈한</a> ｜ <a id="sub3" href="myLikePRJList.dr?userNo=${loginUser.userNo}">관심있는</a>
+			</c:otherwise>
+			</c:choose>
 			</div>
 			<div class="col-md-2"></div>
 		</div>
@@ -170,7 +177,10 @@
 			<div class="col-md-10 resultPrint">
 					<c:if test="${ empty pList }">
 						<h4 class="text-center">프로젝트 오픈 내역이 없습니다.<br>
-						모두를 두드릴 당신의 꿈을 보여주세요!</h4>
+						<c:if test="${ empty social }">
+						모두를 두드릴 당신의 꿈을 보여주세요!
+						</c:if>
+						</h4>
 					</c:if>
 					<c:if test="${ fn:length(pList) >0 }">
 						<c:forEach var="pList" items="${ pList }">
@@ -318,7 +328,7 @@
 			var menu = ${menu} + "";
 			
 			if(menu ==1){
-				$("menu1").addClass("active");
+				$("#menu1").addClass("active");
 			}
 			
 			var sub = ${sub} + "";
