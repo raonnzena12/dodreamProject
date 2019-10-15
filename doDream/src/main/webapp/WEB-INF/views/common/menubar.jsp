@@ -226,12 +226,12 @@
 										<div class="col-md-4">
 											<i class="material-icons">favorite</i>
 											<br>
-											<a href="myLikePRJList.dr?userNo=${loginUser.userNo}">찜</a> <!-- 좋아요한 프로젝트목록 -->
+											<a href="myLikePRJList.dr?userNo=${loginUser.userNo}">좋아요</a> <!-- 좋아요한 프로젝트목록 -->
 										</div>
 										<div class="col-md-4">
 											<i class="material-icons">folder</i>
 											<br>
-											<a href="myFundingList.dr?userNo=${loginUser.userNo}">펀딩로그</a> <!-- 내가 참여한 프로젝트 -->
+											<a href="myFundingList.dr?userNo=${loginUser.userNo}">프로젝트</a> <!-- 내가 참여한 프로젝트 -->
 										</div>
 									</div>
 								</div>
