@@ -71,12 +71,19 @@
                width: 450px;
                height: 350px;
                clear: both;
+                display: block;
            }
            #mainVideo{
                width: 450px;
                height: 350px;
+               /* clear: both;
+               display:none; */
+           }
+           .video{
+           	   width: 450px;
+               height: 350px;
                clear: both;
-               display:none;
+               display: block;
            }
            #detailcon > #text1{
                margin: 60px 0 0 13px;
@@ -243,11 +250,24 @@
                 <article id="detailimg">
                     <article id="img">
                     	<div id="detailDday">D-${project.pDDay}</div>
+                    	
+                    	<c:choose>
+                    	<c:when test="${ fn:contains(project.pMainImage, '_main') }">
                     	<img src="resources/images/projectImg/mainImg/${project.pMainImage}" id="mainImg">
+                    	</c:when>
+                    	<c:otherwise>
+                   		<div class="video-container video" style="TEXT-ALIGN: center; height: 100%;">
+                   			<object type="text/html" width="100%" height="100%" data="//www.youtube.com/embed/${project.pMainImage}?&amp;autoplay=1&amp;loop=1" id="mainVideo"></object>
+                   		</div>
+                   		</c:otherwise>
+                   		</c:choose>
+                    	
+                    	
+                    	<%-- <img src="resources/images/projectImg/mainImg/${project.pMainImage}" id="mainImg">
                    		
                    		<video controls autoplay loop id="mainVideo">
                    			<source src="${project.pMainImage}" type="video/mp4">
-                   		</video>
+                   		</video> --%>
                    	
                    	</article>
                 </article>
@@ -267,16 +287,35 @@
                         </div>
                         <br>
                         <div id="text4">
-                   			달성률 <fmt:parseNumber value="${(project.pCurrentFunding / project.pGoal) * 100 }" integerOnly = "true"/>% 
+                   			달성률 0% 
                         </div>
                         
                         <br>
                         <div id="text5">
-				                            목표금액인 ${project.pCommaGoal}원이 모이면 펀딩이 성공합니다. <br>
-				                            펀딩 성공시 예상 결제일은 ${project.pCloseDate } 입니다.
+				                            <%-- 목표금액인 ${project.pCommaGoal}원이 모이면 펀딩이 성공합니다. <br>
+				                            펀딩 성공시 예상 결제일은 ${project.pCloseDate } 입니다. --%>
                         </div>
                         
-                        <button type="button" class="btn btn-primary btn-lg btn-block" id="supportbtn" onclick="location.href='detailSt.dr?page=2&pNo='+${project.pNo};">후 원 하 기</button>
+                         <script>
+                        	var closeDate = "${project.pCloseDate }";
+                        	var goal = "${project.pCommaGoal}";
+                        	console.log(closeDate);
+                        	var str = closeDate.split("-");
+                        	
+                        	console.log(str[0]+"년 "+str[1]+"월 "+str[2]+"일");
+                        	
+                        	$("#text5").html(" 목표금액인 " + goal + "원이 모이면 펀딩이 성공합니다. <br> 펀딩 성공시 예상 결제일은 "+
+                        			str[0]+"년 "+str[1]+"월 "+str[2]+"일"+" 입니다.");
+                        	
+                        	
+                        	var total = ${project.pCurrentFunding };
+                    		var userCount = ${project.pUserCount};
+                    		$("#text3").text("총 "+ userCount + "명이 " + total.toLocaleString() + "원을 후원하셨습니다.");
+                        	
+                        	
+                        </script>
+                        
+                        <button type="button" class="btn btn-primary btn-lg btn-block" id="supportbtn" disabled>후 원 하 기</button>
                     
 		                        <div id="icon">
 		                                <i class="material-icons" id="favorite">favorite_border</i>
