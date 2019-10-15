@@ -54,7 +54,7 @@ public class MailController {
 		System.out.println(code);
 
 		 try {
-			 if(mList.size() >= 0) {
+			 if(mList.size() < 0) {
 				 throw new ExistsEmailException();
 			 }else {
 				 MimeMessage msg = mailSender.createMimeMessage();
@@ -102,7 +102,7 @@ public class MailController {
 		System.out.println(code);
 		
 		try {
-			if(mList.size() <= 0) {
+			if(mList.size() < 0) {
 				throw new ExistsEmailException(); //없는 이메일				 
 			 }else {
 				 MimeMessage msg = mailSender.createMimeMessage();
