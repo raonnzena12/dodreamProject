@@ -22,7 +22,7 @@ public class NoticeDao {
 	      
 		// RowBounds는 ibatis의 속성이며, ibatis는 mybatis의 이전 버전이다.
 		RowBounds rowBounds = new RowBounds(offset, pi.getLimit());
-		System.out.println(rowBounds);
+		
 		return (ArrayList) sqlSession.selectList("centerMapper.noticeSelect", null,  rowBounds);
 	
 	} 

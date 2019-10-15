@@ -21,7 +21,7 @@
 #ReviewCon {
    width: 1200px; 
    min-height: 700px;
-    
+   
 }
 #ReviewCon1 {
    width: 1200px; 
@@ -209,7 +209,7 @@ var $resultPrint = $(".resultPrint");
    var $accBtn = $("<div>").addClass("accBtn");   
    var $card_link = $("<a>").addClass("card-link").attr("href","#card-"+list[i].nNo)
                    .attr("target", "#card-" + list[i].nNo).attr("data-toggle","collapse");
-   var $card_link = $("<b>").addClass("accBtn1").text(list[i].nTitle);
+   var $accBtn1 = $("<b>").addClass("accBtn1").text(list[i].nTitle);
    $card_link.append($accBtn1);
    $accBtn.append($card_link);
    $card.append($accBtn);

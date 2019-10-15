@@ -88,6 +88,9 @@
 .accBtn1{
 color : #8E44AD;
 }
+.faqbtn{
+	background-color: #F39C12;
+}
 </STYLE>
 </head>
 <body>
@@ -98,7 +101,7 @@ color : #8E44AD;
       <div class="row">
          <div class="col-md-12" align="center">
             <div class="jumbotron">
-            <img src="resources/images/backgroundImg/art2.jpeg" style="width: 100%">
+            <img src="resources\images\backgroundImg\배경로고시안 (4).png" style="width: 100%">
             </div>
          </div>
       </div>
@@ -138,7 +141,7 @@ color : #8E44AD;
 							</select>
 						
 							<input class="form-control mr-sm-2" type="search" name="searchValue" value="${search.searchValue}">
-							<button class="btn btn-primary my-2 my-sm-0">검색</button><br>
+							<button class="faqbtn btn btn-primary my-2 my-sm-0">검색</button><br>
 						</form>
 					</div>
 				</div>
@@ -173,9 +176,9 @@ color : #8E44AD;
 					<c:if test="${ empty fList }">
 					<div class="card">
 						
-							<div class="card-header">
+							<div class="accBtn">
 								<a class="card-link collapsed" href="#card-01" data-toggle="collapse"> 
-									해당 검색 내용이 없습니다.
+									<b class="accBtn1">해당 검색 내용이 없습니다.</b>
 								</a>
 							</div>
 							<div class="collapse content show" id="card-01">

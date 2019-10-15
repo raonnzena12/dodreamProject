@@ -29,7 +29,6 @@ public class FaqDao {
 		      
 		// RowBounds는 ibatis의 속성이며, ibatis는 mybatis의 이전 버전이다.
 		RowBounds rowBounds = new RowBounds(offset, pi.getLimit());
-		System.out.println("여긴 dao로 db 가기전 테스트");
 		
 		return (ArrayList)sqlSession.selectList("centerMapper.faqSelect", null,  rowBounds);
 	}

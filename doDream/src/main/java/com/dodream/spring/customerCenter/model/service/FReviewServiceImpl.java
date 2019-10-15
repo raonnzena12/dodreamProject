@@ -39,7 +39,7 @@ public class FReviewServiceImpl implements FReviewService {
    public ArrayList<Review> selectfrevList(revKategorie kategorie, int currentPage) {
 	   int listCount = frDao.getListCount();
 	   PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
-	   System.out.println(pi);
+	  
 	   ArrayList<Review> revList = frDao.selectList(kategorie, pi);
    	return revList;
    }
@@ -53,8 +53,7 @@ public class FReviewServiceImpl implements FReviewService {
        
       // 1) 조회수 증가
       frDao.addReadCount(revNo);   
-      System.out.println(revNo);
-      System.out.println("조회수 증가 성공");      
+        
       // 2) 게시글 상세 조회
       return frDao.selectReview(revNo);
    }
