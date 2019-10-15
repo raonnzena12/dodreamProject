@@ -12,6 +12,7 @@ import com.dodream.spring.project.model.vo.Project;
 import com.dodream.spring.report.model.vo.Report;
 
 public interface MemberService {
+	
 
 	/**
 	 * 로그인을 위한 Service
