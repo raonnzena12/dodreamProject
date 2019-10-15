@@ -152,6 +152,18 @@ public class AdminProjectController {
 		}
 	}
 	
+	// 심사 완료 -> 프로젝트 오픈(마이페이지)
+	@ResponseBody
+	@RequestMapping("ajaxopenProjectBtn.dr")
+	public int ajaxopenProject(int pNo, int termDate) {
+		Project prj = new Project();
+		prj.setpNo(pNo);
+		prj.setTermDate(termDate);
+				
+		int result = aService.openProject(prj);
+		return result;
+	}
+	
 	
 	// 오픈 중 -> 심사 대기중
 	@RequestMapping("stopProjectBtn.dr")

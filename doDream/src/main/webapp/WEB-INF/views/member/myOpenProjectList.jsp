@@ -273,7 +273,7 @@
 											</c:when>
 											<c:when test="${pList.pStatusNum eq 3 }">
 												<div>
-												<button class="btn-sm btn-warning" id="openPRJ" project = "${pList.pNo}">프로젝트오픈하기</button>
+												<button class="btn-sm btn-warning" id="openPRJ" project = "${pList.pNo}" termdate="${pList.termDate }">프로젝트오픈하기</button>
 												</div>
 											</c:when>
 											<c:when test="${ ((pList.pCurrentFunding / pList.pGoal) * 100) < 100 }">
@@ -386,17 +386,17 @@
 		});
 	    
 	    $("#openPRJ").click(function(){
-	    	var project = $(this).attr("project");
+	    	var pNo = $(this).attr("project");
+	    	var termDate = $(this).attr("termDate");
 			var ck = confirm("해당 프로젝트를 오픈합니다.");
-			
 			if(ck == true){
 				$.ajax({
-					url:"unfollow.dr",
+					url:"ajaxopenProjectBtn.dr",
 					type: "post",
-					data: {followNo:followNo, followerNo:followerNo},
+					data: {pNo:pNo, termDate:termDate},
 					success:function(result){
 						if(result>0){
-							alert("언팔로우 되었습니다.");
+							alert("프로젝트가 오픈되었습니다.");
 							location.reload();
 						}
 					}
