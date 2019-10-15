@@ -85,7 +85,9 @@ public class ProjectController {
 		ArrayList<Reward> rewardList = new ArrayList<Reward>();
 		for (int i = 0; i < rList.getrList().size(); i++) {
 			Reward reward = rList.getrList().get(i);
-			if(reward.getIsSaved().equals("true")) rewardList.add(reward);
+			try {
+				if(reward.getIsSaved().equals("true")) rewardList.add(reward);
+			}catch(NullPointerException e) {}
 		}
 		// 리워드가 존재할 경우 기존에 있던 리워드를 전부 삭제시킵니다.
 		if(rewardList.size()>0) 

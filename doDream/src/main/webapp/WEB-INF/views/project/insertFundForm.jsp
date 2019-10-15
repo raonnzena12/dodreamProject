@@ -685,45 +685,48 @@
 										<div class="rewardContentLeft">옵션</div>
 										<div class="rewardContentRight" style="line-height: 40px;">
 											<div class="custom-control custom-radio" style="padding-left: 0;">
-												<input type="radio" id="option${status.count }-1" class="optionrad custom-control-input" name="rList[${status.count }].rOptionNo"	value="1" checked> 
+												<input type="radio" id="option${status.count }-1" class="optionrad custom-control-input" name="rList[${status.count }].rOptionNo" value="1" <c:if test="${r.rOptionNo==1 }"> checked </c:if>> 
 												<label for="option${status.count }-1" class="custom-control-label" style="margin-left: 35px; padding-top: 1px; padding-left: 5px; line-height: 20px;">옵션 입력이 필요 없는 리워드입니다.</label><br> 
 											</div>
 											<div class="custom-control custom-radio" style="padding-left: 0;">
-												<input type="radio" id="option${status.count }-2" class="optionrad custom-control-input" name="rList[${status.count }].rOptionNo" value="2"> 
+												<input type="radio" id="option${status.count }-2" class="optionrad custom-control-input" name="rList[${status.count }].rOptionNo" value="2" <c:if test="${r.rOptionNo==2 }"> checked </c:if>> 
 												<label for="option${status.count }-2" class="custom-control-label" style="margin-left: 35px; padding-top: 1px; padding-left: 5px;">선택 옵션이 필요한 리워드입니다. <span>(사이즈, 색상 등)</span></label><br>
 											</div>
 											<div class="custom-control custom-radio" style="padding-left: 0;">
-												<input type="radio" id="option${status.count }-3" class="optionrad custom-control-input" name="rList[${status.count }].rOptionNo" value="3"> 
+												<input type="radio" id="option${status.count }-3" class="optionrad custom-control-input" name="rList[${status.count }].rOptionNo" value="3" <c:if test="${r.rOptionNo==3 }"> checked </c:if>> 
 												<label for="option${status.count }-3" class="custom-control-label" style="margin-left: 35px; padding-top: 1px; padding-left: 5px;">직접 입력 옵션이 필요한 리워드입니다. <span>(각인, 메세지 등)</span></label>
 											</div>
 										</div>
 									</div>
-									<div class="rewardContent" style="display: none;">
+									<div class="rewardContent" style="<c:if test="${r.rOptionNo==1 }"> display: none;</c:if>">
 										<div class="rewardContentLeft"></div>
 										<div class="rewardContentRight">
 											<input type="hidden" name="optionradchk${status.count }" value="0">
 											<c:set var="rOptionAdd" value="${fn:replace(r.rOptionAdd,'<br>','') }"/>
 											<textarea rows="4" name="rList[${status.count }].rOptionAdd"
-												class="form-control form-control-sm optionradtarea" style="resize: none;">${rOptionAdd}</textarea>
+												class="form-control form-control-sm" style="resize: none; <c:if test="${r.rOptionNo==1 }"> display: none;</c:if>">${rOptionAdd}</textarea>
 										</div>
+										<select class="form-control form-control sm" style="width: 300px; font-size: 12px; height: 32px; margin: auto; margin-left: 325px; margin-bottom: 15px; <c:if test="${r.rOptionNo!=2 }"> display:none; </c:if>">
+											<option value="-1">옵션을 선택해 주세요</option>
+										</select>
 									</div>
 									<div class="rewardContent">
 										<div class="rewardContentLeft">배송조건</div>
 										<div class="rewardContentRight custom-control custom-checkbox">
-											<input type="checkbox" class="custom-control-input" id="shipChk${status.count }" name="rList[${status.count }].rShipCDT" value="1">
+											<input type="checkbox" class="custom-control-input" id="shipChk${status.count }" name="rList[${status.count }].rShipCDT" value="1" <c:if test="${r.rShipCDT == 'Y'}"> checked</c:if>>
 											<label class="custom-control-label" for="shipChk${status.count }" style="margin-left: 35px; padding-left: 6px; line-height: 24px; margin-bottom: 3px;">배송을 위해 주소지가 필요합니다.</label>
 										</div>
 									</div>
 									<div class="rewardContent">
 										<div class="rewardContentLeft">제한수량</div>
 										<div class="rewardContentRight" style="padding-left: 10px;">
-											<p style="display:inline;">
+											<p style="display:inline;  <c:if test="${r.rLimit==-1 }"> display: none;</c:if>">
 												리워드를 <input type="number" class="form-control form-control-sm"
 													name="rList[${status.count }].rLimit" style="display: inline; width: 15%;" min="1" value="${r.rLimit }">
 												개로 제한합니다.
 											</p>
 											<div class="custom-control custom-checkbox" style="display:inline; padding:10px; vertical-align: bottom; margin-left: 10px;">
-												<input type="checkbox" class="rewardLimitChk custom-control-input" id="rewardLimitChk${status.count+1}">
+												<input type="checkbox" class="rewardLimitChk custom-control-input" id="rewardLimitChk${status.count+1}"  <c:if test="${r.rLimit==-1 }"> checked</c:if>>
 												<label class="custom-control-label" for="rewardLimitChk${status.count+1}" style="margin-left: 15px; padding-left: 6px; line-height: 24px; margin-bottom: 3px;">수량에 제한 없음</label>
 											</div>
 										</div>
@@ -731,29 +734,30 @@
 									<div class="rewardContent">
 										<div class="rewardContentLeft">발송시작일</div>
 										<div class="rewardContentRight">
+										<c:set var="tel" value="${fn:split(r.rShipDate,'-')}" />
 											<select class="form-control form-control-sm rsd" style="width:110px; height:34px; display: inline;" name="rList[${status.count }].shipYear">
-												<option value="2019" selected>2019년</option>
-												<option value="2020">2020년</option>
-												<option value="2021">2021년</option>
+												<option value="2019" <c:if test="${tel[0] == '2019'}"> selected</c:if>>2019년</option>
+												<option value="2020" <c:if test="${tel[0] == '2020'}"> selected</c:if>>2020년</option>
+												<option value="2021" <c:if test="${tel[0] == '2021'}"> selected</c:if>>2021년</option>
 											</select>										
 											<select class="form-control form-control-sm rsd" style="width:110px; height:34px; display: inline;" name="rList[${status.count }].shipMonth">
-												<option value="01">1월</option>
-												<option value="02">2월</option>
-												<option value="03">3월</option>
-												<option value="04">4월</option>
-												<option value="05">5월</option>
-												<option value="06">6월</option>
-												<option value="07">7월</option>
-												<option value="08">8월</option>
-												<option value="09">9월</option>
-												<option value="10">10월</option>
-												<option value="11">11월</option>
-												<option value="12">12월</option>
+												<option value="01" <c:if test="${tel[1] == '01'}"> selected</c:if>>1월</option>
+												<option value="02" <c:if test="${tel[1] == '02'}"> selected</c:if>>2월</option>
+												<option value="03" <c:if test="${tel[1] == '03'}"> selected</c:if>>3월</option>
+												<option value="04" <c:if test="${tel[1] == '04'}"> selected</c:if>>4월</option>
+												<option value="05" <c:if test="${tel[1] == '05'}"> selected</c:if>>5월</option>
+												<option value="06" <c:if test="${tel[1] == '06'}"> selected</c:if>>6월</option>
+												<option value="07" <c:if test="${tel[1] == '07'}"> selected</c:if>>7월</option>
+												<option value="08" <c:if test="${tel[1] == '08'}"> selected</c:if>>8월</option>
+												<option value="09" <c:if test="${tel[1] == '09'}"> selected</c:if>>9월</option>
+												<option value="10" <c:if test="${tel[1] == '10'}"> selected</c:if>>10월</option>
+												<option value="11" <c:if test="${tel[1] == '11'}"> selected</c:if>>11월</option>
+												<option value="12" <c:if test="${tel[1] == '12'}"> selected</c:if>>12월</option>
 											</select>										
 											<select class="form-control form-control-sm rsd" style="width:155px; height:34px; display: inline;" name="rList[${status.count }].shipDay">
-												<option value="05">초(1일 ~ 10일)</option>
-												<option value="15">중순(11일 ~ 20일)</option>
-												<option value="25">말(21일 ~ 말일)</option>
+												<option value="05" <c:if test="${tel[2] == '05'}"> selected</c:if>>초(1일 ~ 10일)</option>
+												<option value="15" <c:if test="${tel[2] == '15'}"> selected</c:if>>중순(11일 ~ 20일)</option>
+												<option value="25" <c:if test="${tel[2] == '25'}"> selected</c:if>>말(21일 ~ 말일)</option>
 											</select>										
 											<input type="hidden" name="rList[${status.count }].rShipDate" value="${r.rShipDate }">
 										</div>
@@ -825,6 +829,9 @@
 									<textarea rows="4" name="rList[0].rOptionAdd"
 										class="form-control form-control-sm optionradtarea" style="resize: none;"></textarea>
 								</div>
+								<select class="form-control form-control sm" style="width: 300px; font-size: 12px; height: 32px; margin: auto; margin-left: 325px; margin-bottom: 15px; display:none;">
+									<option value="-1">옵션 선택 예 입니다.</option>
+								</select>
 							</div>
 							<div class="rewardContent">
 								<div class="rewardContentLeft">배송조건</div>
@@ -1707,7 +1714,7 @@
 	var bi = 1;
 	var count = 1;
 	function addReward() {
-		var addbox = '<div class="rewardBox"><div class="leftBoxArea"><div class="nthReward"></div></div><div class="rewardContentBox" id="reward'+bi+'Box"><div class="rewardContent"><input type="hidden" name="rList['+bi+'].isSaved" id="reward'+bi+'isSaved" value="false"><div class="rewardContentLeft">리워드 이름</div><div class="rewardContentRight"><input type="text" class="form-control form-control-sm" name="rList['+bi+'].rName" style="width: 88%;"  autocomplete="off"></div></div><div class="rewardContent"><div class="rewardContentLeft">금액</div><div class="rewardContentRight"><input type="number" class="form-control form-control-sm" name="rList['+bi+'].rPrice" style="width: 30%; display: inline-block;" min="0" value="0" autocomplete="off"><label style="padding: 5px;">원</label></div></div><div class="rewardContent"><div class="rewardContentLeft">리워드 설명</div><div class="rewardContentRight"><textarea rows="8" class="form-control form-control-sm" id="reward'+bi+'Explain" name="rList['+bi+'].rExplain" style="width: 100%; resize: none;"></textarea></div></div><div class="rewardContent"><div class="rewardContentLeft">옵션</div><div class="rewardContentRight" style="line-height: 40px;"><div class="custom-control custom-radio" style="padding-left: 0;"><input type="radio" id="option'+bi+'-1" class="optionrad custom-control-input" name="rList['+bi+'].rOptionNo"	value="1" checked><label for="option'+bi+'-1" class="custom-control-label" style="margin-left: 35px; padding-top: 1px; padding-left: 5px; line-height: 20px;">옵션 입력이 필요 없는 리워드입니다.</label><br></div><div class="custom-control custom-radio" style="padding-left: 0;"><input type="radio" id="option'+bi+'-2" class="optionrad custom-control-input" name="rList['+bi+'].rOptionNo" value="2"><label for="option'+bi+'-2" class="custom-control-label" style="margin-left: 35px; padding-top: 1px; padding-left: 5px;">선택 옵션이 필요한 리워드입니다. <span>(사이즈, 색상 등)</span></label><br></div><div class="custom-control custom-radio" style="padding-left: 0;"><input type="radio" id="option'+bi+'-3" class="optionrad custom-control-input" name="rList['+bi+'].rOptionNo" value="3"><label for="option'+bi+'-3" class="custom-control-label" style="margin-left: 35px; padding-top: 1px; padding-left: 5px;">직접 입력 옵션이 필요한 리워드입니다. <span>(각인, 메세지 등)</span></label></div></div></div><div class="rewardContent" style="display: none;"><div class="rewardContentLeft"></div><div class="rewardContentRight"><input type="hidden" name="optionradchk'+bi+'" value="0"><textarea rows="4" name="rList['+bi+'].rOptionAdd" class="form-control form-control-sm optionradtarea" style="resize: none;"></textarea></div></div><div class="rewardContent"><div class="rewardContentLeft">배송조건</div><div class="rewardContentRight custom-control custom-checkbox"><input type="checkbox" class="custom-control-input" id="shipChk'+bi+'" name="rList['+bi+'].rShipCDT" value="1"><label class="custom-control-label" for="shipChk'+bi+'" style="margin-left: 35px; padding-left: 6px; line-height: 24px; margin-bottom: 3px;">배송을 위해 주소지가 필요합니다.</label></div></div><div class="rewardContent"><div class="rewardContentLeft">제한수량</div><div class="rewardContentRight" style="padding-left: 10px;"><p style="display:inline;">리워드를 <input type="number" class="form-control form-control-sm" name="rList['+bi+'].rLimit" style="display: inline; width: 15%;" min="1" value="1"> 개로 제한합니다.</p><div class="custom-control custom-checkbox" style="display:inline; padding:10px; vertical-align: bottom; margin-left: 10px;"><input type="checkbox" class="rewardLimitChk custom-control-input" id="rewardLimitChk'+(bi+1)+'"><label class="custom-control-label" for="rewardLimitChk1" style="margin-left: 15px; padding-left: 6px; line-height: 24px; margin-bottom: 3px;">수량에 제한 없음</label></div></div></div><div class="rewardContent"><div class="rewardContentLeft">발송시작일</div><div class="rewardContentRight"><select class="form-control form-control-sm rsd" style="width:110px; height:34px; display: inline;" name="rList['+bi+'].shipYear"><option value="2019" selected>2019년</option><option value="2020">2020년</option><option value="2021">2021년</option></select> <select class="form-control form-control-sm rsd" style="width:110px; height:34px; display: inline;" name="rList['+bi+'].shipMonth"><option value="01">1월</option><option value="02">2월</option><option value="03">3월</option><option value="04">4월</option><option value="05">5월</option><option value="06">6월</option><option value="07">7월</option><option value="08">8월</option><option value="09">9월</option><option value="10">10월</option><option value="11">11월</option><option value="12">12월</option></select> <select class="form-control form-control-sm rsd" style="width:155px; height:34px; display: inline;" name="rList['+bi+'].shipDay"><option value="05">초(1일 ~ 10일)</option><option value="15">중순(11일 ~ 20일)</option><option value="25">말(21일 ~ 말일)</option></select><input type="hidden" name="rList['+bi+'].rShipDate" value="2000-01-01"></div></div><div align="right" style="margin-top: 20px;" id="reward'+bi+'Warningarea"><span class="rewardsavewarning">저장하지 않은 리워드는 사라집니다!</span><button class="btn btn-primary btnopacity" type="button" onclick="saveReward('+bi+')" style="background-color: #8E44AD;border: none;">저장하기</button></div><div align="right" style="display: none;" id="reward'+bi+'Savingarea"><span class="rewardsavedmessage">저장되었습니다.</span></div></div>	<div class="rightBoxArea"><a href="javascript: void(0);" class="removeReward"><i class="material-icons">delete_forever</i></a></div><div class="clearFloat"></div></div>';
+		var addbox = '<div class="rewardBox"><div class="leftBoxArea"><div class="nthReward"></div></div><div class="rewardContentBox" id="reward'+bi+'Box"><div class="rewardContent"><input type="hidden" name="rList['+bi+'].isSaved" id="reward'+bi+'isSaved" value="false"><div class="rewardContentLeft">리워드 이름</div><div class="rewardContentRight"><input type="text" class="form-control form-control-sm" name="rList['+bi+'].rName" style="width: 88%;"  autocomplete="off"></div></div><div class="rewardContent"><div class="rewardContentLeft">금액</div><div class="rewardContentRight"><input type="number" class="form-control form-control-sm" name="rList['+bi+'].rPrice" style="width: 30%; display: inline-block;" min="0" value="0" autocomplete="off"><label style="padding: 5px;">원</label></div></div><div class="rewardContent"><div class="rewardContentLeft">리워드 설명</div><div class="rewardContentRight"><textarea rows="8" class="form-control form-control-sm" id="reward'+bi+'Explain" name="rList['+bi+'].rExplain" style="width: 100%; resize: none;"></textarea></div></div><div class="rewardContent"><div class="rewardContentLeft">옵션</div><div class="rewardContentRight" style="line-height: 40px;"><div class="custom-control custom-radio" style="padding-left: 0;"><input type="radio" id="option'+bi+'-1" class="optionrad custom-control-input" name="rList['+bi+'].rOptionNo"	value="1" checked><label for="option'+bi+'-1" class="custom-control-label" style="margin-left: 35px; padding-top: 1px; padding-left: 5px; line-height: 20px;">옵션 입력이 필요 없는 리워드입니다.</label><br></div><div class="custom-control custom-radio" style="padding-left: 0;"><input type="radio" id="option'+bi+'-2" class="optionrad custom-control-input" name="rList['+bi+'].rOptionNo" value="2"><label for="option'+bi+'-2" class="custom-control-label" style="margin-left: 35px; padding-top: 1px; padding-left: 5px;">선택 옵션이 필요한 리워드입니다. <span>(사이즈, 색상 등)</span></label><br></div><div class="custom-control custom-radio" style="padding-left: 0;"><input type="radio" id="option'+bi+'-3" class="optionrad custom-control-input" name="rList['+bi+'].rOptionNo" value="3"><label for="option'+bi+'-3" class="custom-control-label" style="margin-left: 35px; padding-top: 1px; padding-left: 5px;">직접 입력 옵션이 필요한 리워드입니다. <span>(각인, 메세지 등)</span></label></div></div></div><div class="rewardContent" style="display: none;"><div class="rewardContentLeft"></div><div class="rewardContentRight"><input type="hidden" name="optionradchk'+bi+'" value="0"><textarea rows="4" name="rList['+bi+'].rOptionAdd" class="form-control form-control-sm optionradtarea" style="resize: none;"></textarea></div>								<select class="form-control form-control sm" style="width: 300px; font-size: 12px; height: 32px; margin: auto; margin-left: 325px; margin-bottom: 15px; display:none;"><option value="-1">옵션 선택 예 입니다.</option></select></div><div class="rewardContent"><div class="rewardContentLeft">배송조건</div><div class="rewardContentRight custom-control custom-checkbox"><input type="checkbox" class="custom-control-input" id="shipChk'+bi+'" name="rList['+bi+'].rShipCDT" value="1"><label class="custom-control-label" for="shipChk'+bi+'" style="margin-left: 35px; padding-left: 6px; line-height: 24px; margin-bottom: 3px;">배송을 위해 주소지가 필요합니다.</label></div></div><div class="rewardContent"><div class="rewardContentLeft">제한수량</div><div class="rewardContentRight" style="padding-left: 10px;"><p style="display:inline;">리워드를 <input type="number" class="form-control form-control-sm" name="rList['+bi+'].rLimit" style="display: inline; width: 15%;" min="1" value="1"> 개로 제한합니다.</p><div class="custom-control custom-checkbox" style="display:inline; padding:10px; vertical-align: bottom; margin-left: 10px;"><input type="checkbox" class="rewardLimitChk custom-control-input" id="rewardLimitChk'+(bi+1)+'"><label class="custom-control-label" for="rewardLimitChk1" style="margin-left: 15px; padding-left: 6px; line-height: 24px; margin-bottom: 3px;">수량에 제한 없음</label></div></div></div><div class="rewardContent"><div class="rewardContentLeft">발송시작일</div><div class="rewardContentRight"><select class="form-control form-control-sm rsd" style="width:110px; height:34px; display: inline;" name="rList['+bi+'].shipYear"><option value="2019" selected>2019년</option><option value="2020">2020년</option><option value="2021">2021년</option></select> <select class="form-control form-control-sm rsd" style="width:110px; height:34px; display: inline;" name="rList['+bi+'].shipMonth"><option value="01">1월</option><option value="02">2월</option><option value="03">3월</option><option value="04">4월</option><option value="05">5월</option><option value="06">6월</option><option value="07">7월</option><option value="08">8월</option><option value="09">9월</option><option value="10">10월</option><option value="11">11월</option><option value="12">12월</option></select> <select class="form-control form-control-sm rsd" style="width:155px; height:34px; display: inline;" name="rList['+bi+'].shipDay"><option value="05">초(1일 ~ 10일)</option><option value="15">중순(11일 ~ 20일)</option><option value="25">말(21일 ~ 말일)</option></select><input type="hidden" name="rList['+bi+'].rShipDate" value="2000-01-01"></div></div><div align="right" style="margin-top: 20px;" id="reward'+bi+'Warningarea"><span class="rewardsavewarning">저장하지 않은 리워드는 사라집니다!</span><button class="btn btn-primary btnopacity" type="button" onclick="saveReward('+bi+')" style="background-color: #8E44AD;border: none;">저장하기</button></div><div align="right" style="display: none;" id="reward'+bi+'Savingarea"><span class="rewardsavedmessage">저장되었습니다.</span></div></div>	<div class="rightBoxArea"><a href="javascript: void(0);" class="removeReward"><i class="material-icons">delete_forever</i></a></div><div class="clearFloat"></div></div>';
 		$("#rewardBtnArea").before(addbox);
 		var scrollPosition = $("#rewardBtnArea").offset().top-800;
 		$("html").animate({
@@ -1771,36 +1778,19 @@
 	<script>
 	// 리워드에서 옵션선택 (라디오)를 선택시 동작하는 메소드
 	$(document).on("change",".optionrad",function() {
-		
 		var value = $(this).val();
+		var chked = $("input[type='hidden']",$(this).parent()).val();
 		if (value == 2) {
-			$(this).parent().parent().parent().next().css(
-					"display", "block");
-			$(this)
-					.parent()
-					.parent()
-					.parent()
-					.next()
-					.children()
-					.next()
-					.children()
-					.text("예)\n화이트골드 / XL \n오리엔탈블루 / L");
+			$(this).parent().parent().parent().next().css("display", "block");
+			$($(this).parent().parent().parent().next().children().next().next()).css("display", "block");
+			$($(this).parent().parent().parent().next().children().next().children().next()).text("예)\n화이트골드 / XL \n오리엔탈블루 / L");
 		} else if (value == 3) {
-			$(this).parent().parent().parent().next().css(
-					"display", "block");
-			$(this)
-					.parent()
-					.parent()
-					.parent()
-					.next()
-					.children()
-					.next()
-					.children()
-					.text(
-							"각인 메시지, 카드에 담길 메시지 등 \n서포터가 남길 메시지를 위해 \n설명을 충분히 적어주세요.");
+			$(this).parent().parent().parent().next().css("display", "block");
+			$($(this).parent().parent().parent().next().children().next().next()).css("display", "none");
+			$($(this).parent().parent().parent().next().children().next().children().next()).text("각인 메시지, 카드에 담길 메시지 등 \n서포터가 남길 메시지를 위해 \n설명을 충분히 적어주세요.");
 		} else {
-			$(this).parent().parent().parent().next().addClass().css(
-					"display", "none");
+			$($(this).parent().parent().parent().next().children().next().next()).css("display", "none");
+			$(this).parent().parent().parent().next().css("display", "none");
 		}
 	});
 	// 리워드에서 옵션 (텍스트에어리어)의 내용물을 지워주는 메소드
@@ -1811,6 +1801,16 @@
 			$("input[type='hidden']",$(this).parent()).val(1);
 		}
 	});
+	// 리워드에서 옵션을 선택옵션을 체크하였을 경우에 텍스트에어리어 내용을 옵션에 뿌려주는 메소드
+    $(document).on("input",".optionradtarea",function(){
+        var value = $(this).val().replace(/(?:\r\n|\r|\n)/g,"<br>");
+        var options = value.split("<br>");
+        $($(this).parent().next()).empty();
+        $($(this).parent().next()).append("<option value='-1'>옵션을 선택하세요</option>");
+        for (var i = 0; i < options.length; i++){
+            $($(this).parent().next()).append("<option value="+i+">"+options[i]+"</option>");                    
+        }
+    });
 	
 	// 배송선택필요없음에 value값을 -1로 넘기는 메소드
 	$(document).on("change",".rewardLimitChk",function(){
