@@ -1224,7 +1224,6 @@
 		}
 	};
 	// 동의를 모두 체크하고 넘어가면 인서트폼을 보여주는 메소드
-	/*
 	function checkAgreement() {
 		var loginchk = checklogin();
 		if(loginchk==true){
@@ -1236,7 +1235,6 @@
 			}, 300);
 		}
 	};
-	*/
 	// 검토요청하기 메소드입니다. pStatusNum = 2
 	function submitToAdmin(){
 		$("#pStatusNum").val(2);
