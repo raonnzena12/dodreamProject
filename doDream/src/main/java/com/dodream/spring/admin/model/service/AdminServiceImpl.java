@@ -283,6 +283,7 @@ public class AdminServiceImpl implements AdminService {
 		return aDao.confirmAlarm(alNo);
 	}
 
+
 	
 
 }
