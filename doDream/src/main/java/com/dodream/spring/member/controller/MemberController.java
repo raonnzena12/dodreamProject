@@ -233,7 +233,7 @@ public class MemberController {
 
 		String result = null;
 		if (!mList.isEmpty()) {
-			result = "1";
+			result = "1"; //이메일이 있음
 		} else {
 			result = "0";
 		}
