@@ -7,11 +7,16 @@
 	width: 1200px;
 	margin: auto;
 	margin-top : 80px;
+	margin-bottom: 20px;
+	padding-right: 30px;
 }
 .accContainer {
 	border: 1px solid #d9d9de;
 	padding-top: 20px;
 	padding-bottom: 20px;
+	box-shadow: 2px 2px 6px #999;
+	margin-bottom: 6px;
+	border-radius: 4px;
 }
 
 .accHeadBox {
@@ -62,6 +67,9 @@
 	padding-left: 25px;
 	background-color: #8E44AD;
 	opacity: 0.75;
+	box-shadow: 2px 2px 6px 1px #999;
+	margin-bottom: 4px;
+	border-radius: 4px;
 }
 
 .accBtn span {
@@ -284,22 +292,6 @@
 	font-family: 'Nanum Gothic';
 	font-weight: bolder;
 	font-size: 13px;
-}
-
-.accBtn
-:not
- 
-(
-.active
- 
-){
-cursor
-:
- 
-pointer
-;
-
-
 }
 .customized {
 	font-size: 11px;
@@ -740,4 +732,7 @@ input:focus, input:active, textarea:focus, textarea:active, select:focus,
 	font-weight: bolder;
 	color: #8E44AD;
 	opacity: 0.8;
+}
+.active{
+	margin-bottom: 2px;	
 }
