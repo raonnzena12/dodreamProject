@@ -143,7 +143,7 @@ tbody tr:hover{
 																<a href="goPreview.dr?pNo=${p.pNo}" style="text-decoration:none; color: gray;">${ p.pTitle }</a>
 															</td>
 															<td>${ p.pGoal}</td>
-															<td>${ p.pStartDate}</td>
+															<td>${ p.pStartDate}</td> 
 															<td>${ p.pCloseDate }</td>
 															<td>${ p.pArtistName }</td>
 															<td>${ p.pArtistPhone }</td>
