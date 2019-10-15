@@ -143,7 +143,8 @@ tbody tr:hover{
 																<a href="goPreview.dr?pNo=${p.pNo}" style="text-decoration:none; color: gray;">${ p.pTitle }</a>
 															</td>
 															<td>${ p.pGoal}</td>
-															<td>${ p.pStartDate}</td> 
+															<td>${ p.pStartDate}
+															</td> 
 															<td>${ p.pCloseDate }</td>
 															<td>${ p.pArtistName }</td>
 															<td>${ p.pArtistPhone }</td>
@@ -168,6 +169,7 @@ tbody tr:hover{
 																      <div class="modal-footer">
 																        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
 																        <button type="submit" class="btn btn-primary">진행하기</button>
+																		<input type="hidden" name="termDate" value="${p.termDate }">
 																        <input type="hidden" name="pNo" value="${p.pNo}">
 																      </div>
 																    </div>

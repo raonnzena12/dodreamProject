@@ -165,10 +165,10 @@ public interface AdminService {
 	public abstract int dropOutProject(int pNo);
 
 	/** 심사 완료  > 프로젝트 오픈
-	 * @param pNo
+	 * @param prj
 	 * @return result
 	 */
-	public abstract int openProject(int pNo);
+	public abstract int openProject(Project prj);
 
 	/** 오픈 중 > 심사 대기 중
 	 * @param pNo

@@ -205,11 +205,11 @@ public class AdminDao {
 	}
 
 	/** 심사 완료 > 프로젝트 오픈
-	 * @param pNo
+	 * @param prj
 	 * @return result 
 	 */
-	public int openProject(int pNo) {
-		return sqlSession.update("adminProjectMapper.openProject", pNo);
+	public int openProject(Project prj) {
+		return sqlSession.update("adminProjectMapper.openProject", prj);
 	}
 
 	/** 오픈 중 > 심사 대기 중
