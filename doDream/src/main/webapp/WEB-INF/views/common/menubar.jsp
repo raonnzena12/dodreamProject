@@ -56,7 +56,8 @@
 		<c:remove var="msg"/>
 	</c:if>
 		<section id="mainMenuBar">
-	<div class="mainLogoArea" id="mainLogoArea"><a href="main.dr"><img src="${contextPath}/resources/images/DoDream-2e.png" alt="두드림" id="mainLogo"></a></div>
+		<div class="mainBtn" onclick="location.href='main.dr'"></div>
+	<div class="mainLogoArea" id="mainLogoArea"><img src="${contextPath}/resources/images/DoDream-2e.png" alt="두드림" id="mainLogo"></div>
 	<nav class="navbar navbar-expand-lg navbar-light" id="naviBar">
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
