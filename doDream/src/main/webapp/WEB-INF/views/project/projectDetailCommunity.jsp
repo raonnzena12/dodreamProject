@@ -13,7 +13,7 @@
                width: 1000px;
                height: auto;
                margin: auto;
-               min-height: 1600px;
+               min-height: 1000px;
            } 
            #content{
                width: 100%;

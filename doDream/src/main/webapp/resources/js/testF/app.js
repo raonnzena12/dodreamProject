@@ -5,8 +5,10 @@ var express = require('express')
 , app = express()
 , server = http.createServer(app);
 var bodyParser = require('body-parser');
+var cors = require('cors');
 const axios = require('axios');
 
+app.use(cors());
 app.use(bodyParser.urlencoded({extended : true}));
 app.use(bodyParser.json());
 

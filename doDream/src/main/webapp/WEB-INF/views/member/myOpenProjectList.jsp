@@ -89,7 +89,15 @@
 .fundName {
     font-weight: 900;
     font-size: 18px;
+    
 }
+
+.fundName>a {
+    font-weight: 900;
+    font-size: 18px;
+    color: #777;
+}
+
 
 .detailText {
     font-size: 14px;
@@ -150,25 +158,37 @@
 </style>
 </head>
 <body>
+
 	<jsp:include page="../member/mypageHeader.jsp"/>
+
 	<br>
 	<div class="container-fluid">
 		<br>
 		<div class="row">
 			<div class="col-md-2"></div>
 			<div class="col-md-8" id="myfundingsub">
-			<a id="sub1" href="myFundingList.dr?userNo=${loginUser.userNo}">내가	참여한</a> ｜ <a id="sub2" href="myOpenProjectList.dr?userNo=${loginUser.userNo}">내가 오픈한</a> ｜ <a id="sub3" href="myLikePRJList.dr?userNo=${loginUser.userNo}">내가 관심있는</a>
+			<c:choose>
+			<c:when test="${ !empty social }">
+			<a id="sub1" href="social.dr?userNo=${social.userNo}&page=1">참여한</a> ｜ <a id="sub2" href="social.dr?userNo=${social.userNo}&page=2">오픈한</a> ｜ <a id="sub3" href="social.dr?userNo=${social.userNo}&page=3">관심있는</a>
+			</c:when>
+			<c:otherwise>
+			<a id="sub1" href="myFundingList.dr?userNo=${loginUser.userNo}">참여한</a> ｜ <a id="sub2" href="myOpenProjectList.dr?userNo=${loginUser.userNo}">오픈한</a> ｜ <a id="sub3" href="myLikePRJList.dr?userNo=${loginUser.userNo}">관심있는</a>
+			</c:otherwise>
+			</c:choose>
 			</div>
 			<div class="col-md-2"></div>
 		</div>
 		<br>
 		<br>
 		<div class="row">
-			<div class="col-md-2"></div>
-			<div class="col-md-8 resultPrint">
+			<div class="col-md-1"></div>
+			<div class="col-md-10 resultPrint">
 					<c:if test="${ empty pList }">
-						<div class="text-center">프로젝트 오픈 내역이 없습니다.<br>
-						모두를 두드릴 당신의 꿈을 보여주세요!</div>
+						<h4 class="text-center">프로젝트 오픈 내역이 없습니다.<br>
+						<c:if test="${ empty social }">
+						모두를 두드릴 당신의 꿈을 보여주세요!
+						</c:if>
+						</h4>
 					</c:if>
 					<c:if test="${ fn:length(pList) >0 }">
 						<c:forEach var="pList" items="${ pList }">
@@ -179,51 +199,67 @@
 											<img src="resources/images/projectImg/thumbnail/${ pList.pThumbImage }">
 										</div>
 										<div class="nameArea">
-											<p class="categoryName mb-0">${ pList.pCategoryName }</p>
-											<span class="fundName"> ${ pList.pTitle } </span>
-										</div>
-										<div class="heartIcon">
-<%-- 			                              <c:choose>
-			                                 <c:when test="${ prj.iLike == 0 }">
-			                                 <i class="material-icons heart-fund">favorite_border</i>
-			                                 </c:when>
-			                                 <c:otherwise>
-			                                 <i class="material-icons heart-fund">favorite</i>
-			                                 </c:otherwise>
-			                              </c:choose> --%>
-			                           </div>
-										<div class="detailArea my-1">
+											<p class="categoryName mb-0">${ pList.pCategoryName } 
+												<span class="detailArea float-right">
+												<c:choose>
+														<c:when test="${pList.pStatusNum eq 1 }">
+															<span>임시저장</span>
+														</c:when>
+														<c:when test="${pList.pStatusNum eq 2 }">
+															<span>심사대기</span>
+														</c:when>
+														<c:when test="${pList.pStatusNum eq 3 }">
+															<span>심사완료</span>
+														</c:when>
+														<c:when test="${pList.pStatusNum eq 4 }">
+															<span>펀딩중</span>
+														</c:when>
+														<c:when test="${pList.pStatusNum eq 5 }">
+															<span>펀딩마감</span>
+														</c:when>
+														<c:when test="${pList.pStatusNum eq 6 }">
+															<span>심사탈락</span>
+														</c:when>
+														<c:when test="${pList.pStatusNum eq 7 }">
+															<span>펀딩성공</span>
+														</c:when>																							
+													</c:choose></span>
+											</p>
+											
 											<c:choose>
-												<c:when test="${pList.pStatusNum eq 1 }">
-													<span>임시저장</span>
-												</c:when>
-												<c:when test="${pList.pStatusNum eq 2 }">
-													<span>심사대기</span>
-												</c:when>
-												<c:when test="${pList.pStatusNum eq 3 }">
-													<span>심사완료</span>
-												</c:when>
-												<c:when test="${pList.pStatusNum eq 4 }">
-													<span>펀딩중</span>
-												</c:when>
-												<c:when test="${pList.pStatusNum eq 5 }">
-													<span>펀딩마감</span>
-												</c:when>
-												<c:when test="${pList.pStatusNum eq 6 }">
-													<span>심사탈락</span>
-												</c:when>
-												<c:when test="${pList.pStatusNum eq 7 }">
-													<span>펀딩성공</span>
-												</c:when>																							
+											<c:when test="${pList.pStatusNum eq 1 }">
+												<c:if test="${!empty pList.pTitle }">
+												<span class="fundName"><a href="selectCurrentProject.dr?pNo=${pList.pNo }">${ pList.pTitle }</a> </span>
+												</c:if>	
+												<c:if test="${empty pList.pTitle }">
+												<span class="fundName"><a href="selectCurrentProject.dr?pNo=${pList.pNo }">제목없음</a> </span>
+												</c:if>										
+											</c:when>
+											<c:otherwise>
+												<span class="fundName"> ${ pList.pTitle } </span>
+											</c:otherwise>
 											</c:choose>
+										</div>
+
+										<div class="detailArea my-1">
            		                        </div>
 										<div class="chartArea px-3 mt-2">
 											<div class="chartInfo clearfix">
-												<span class="chartInfo1">￦<fmt:formatNumber value="${ pList.pCurrentFunding }" groupingUsed="true" /></span>
-												<span class="chartInfo2"><fmt:parseNumber value="${ (pList.pCurrentFunding / pList.pGoal) * 100 }" integerOnly="true" />%</span>
+												<c:choose>
+													<c:when test="${pList.pStatusNum eq 1 }">
+														<span class="chartInfo1">&nbsp;</span>													
+													</c:when>
+													<c:otherwise>
+														<span class="chartInfo1">￦<fmt:formatNumber value="${ pList.pCurrentFunding }" groupingUsed="true" /></span>
+														<span class="chartInfo2"><fmt:parseNumber value="${ (pList.pCurrentFunding / pList.pGoal) * 100 }" integerOnly="true" />%</span>
+													</c:otherwise>
+												</c:choose>
 											</div>
 											<div class="chartBar">
 												<c:choose>
+													<c:when test="${pList.pStatusNum eq 1 }">
+														<div></div>
+													</c:when>
 													<c:when test="${ ((pList.pCurrentFunding / pList.pGoal) * 100) < 100 }">
 														<div class="purpleBar"style="width:${ (pList.pCurrentFunding / pList.pGoal) * 100 }%"></div>
 													</c:when>
@@ -233,6 +269,9 @@
 												</c:choose>
 											</div>
 											<c:choose>
+												<c:when test="${pList.pStatusNum eq 1 }">
+													<div class="chartDate">미등록</div>
+												</c:when>
 												<c:when test="${ pList.pDDay > 0 }">
 													<div class="chartDate">${ pList.pDDay }일남음</div>
 												</c:when>
@@ -248,7 +287,7 @@
 					</c:if>
 				</div>
 			</div>
-		<div class="col-md-2"></div>
+		<div class="col-md-1"></div>
 	</div>
 	
 	<script>
@@ -307,11 +346,12 @@
 			return num.toString().replace(regexp, ',');
 		}
 		
+		
 	    $(function(){
 			var menu = ${menu} + "";
 			
 			if(menu ==1){
-				$("menu1").addClass("active");
+				$("#menu1").addClass("active");
 			}
 			
 			var sub = ${sub} + "";
@@ -324,6 +364,14 @@
 			}
 		});
 	</script>
+	
+	<c:if test="${pList.pStatusNum ne 1 }">
+	<script>
+		$(document).on("click",".fundItem div:not(.heartIcon)", function(){
+		       location.href='detailSt.dr?pNo='+$(this).parent().attr("id");
+		  });
+	</script>
+	</c:if>
 
 </body>
 </html> 

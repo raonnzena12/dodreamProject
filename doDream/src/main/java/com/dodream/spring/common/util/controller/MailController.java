@@ -47,14 +47,14 @@ public class MailController {
 	public String userEmail(@RequestParam(value = "userEmail") String userEmail) throws MessagingException, IOException {
 		
 		System.out.println(userEmail);
-		String code = cm.setCode(5, false); //인증번호 코드 입력
+		String code = cm.setCode(); //인증번호 코드 입력
 		
 		List<Member> mList = mService.checkEmail(userEmail); //이메일 중복검사
 		
 		System.out.println(code);
 
 		 try {
-			 if(mList.size() > 0) {
+			 if(mList.size() < 0) {
 				 throw new ExistsEmailException();
 			 }else {
 				 MimeMessage msg = mailSender.createMimeMessage();
@@ -96,11 +96,15 @@ public class MailController {
 	@ResponseBody
 	@RequestMapping("sendAuth.dr")
 	public String sendEmail(@RequestParam(value = "userEmail") String userEmail) throws MessagingException, IOException {
-		String code = cm.setCode(5, false);
+		String code = cm.setCode();
+		
 		List<Member> mList = mService.checkEmail(userEmail);
+		System.out.println(code);
 		
 		try {
-			if(!mList.isEmpty()) {
+			if(mList.size() < 0) {
+				throw new ExistsEmailException(); //없는 이메일				 
+			 }else {
 				 MimeMessage msg = mailSender.createMimeMessage();
 				 MimeMessageHelper msgHelper = new MimeMessageHelper(msg, true, "UTF-8");
 				 
@@ -109,27 +113,25 @@ public class MailController {
 				 msgHelper.setSubject("Do Dream 비밀번호 초기화 인증번호 발송 메일입니다.");
 				 
 				 String htmlContent = "<h3 style=\"text-align: center\"><u>Find Your PassWord</u></h3><div align=\"center\"><br>"
-						 	+"<div align=\"center\"><img src=\"https://i.imgur.com/2wVLUA0.png\" style=\"width: 10%;\"><br></div>"
-						 	+" 본 메일은 발신 전용 메일입니다.<br> 아래의 인증번호를 정확히 입력해주세요. <br>"
-						 	+"인증번호 "+"<u><mark>"+ code +"</mark></u>"+"를 입력해주세요."+"</div>";
+						 +"<div align=\"center\"><img src=\"https://i.imgur.com/2wVLUA0.png\" style=\"width: 10%;\"><br></div>"
+						 +" 본 메일은 발신 전용 메일입니다.<br> 아래의 인증번호를 정확히 입력해주세요. <br>"
+						 +"인증번호 "+"<u><mark>"+ code +"</mark></u>"+"를 입력해주세요."+"</div>";
 				 
 				 msgHelper.setText(htmlContent, true);
 				 
 				 msgHelper.setTo(userEmail);
-				 			 
-				 mailSender.send(msg);	 
 				 
-			 }else {
-				 throw new ExistsEmailException();
+				 mailSender.send(msg);
 			 }
-		} catch (ExistsEmailException e) {
-			code = "1"; //없는 이메일
-		}catch (Exception e) {
-			e.printStackTrace();
-			code = "0"; //인증메일발송이 실패
-		}
-		
-		return code;
+		 }catch (ExistsEmailException e) {
+				code = "1"; //없는 이메일
+			}catch (Exception e) {
+				e.printStackTrace();
+				code = "0"; //인증메일발송이 실패
+			}
+			 
+			return code;
 	}
+
 
 }

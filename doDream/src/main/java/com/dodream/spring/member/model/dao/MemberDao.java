@@ -105,5 +105,20 @@ public class MemberDao {
 		return (ArrayList)sqlSession.selectList("adminReportMapper.myReportReplyList", userNo);
 	}
 
+	/**
+	 * 네이버 로그인하는 DAO
+	 * @param email
+	 * @return loginUser
+	 */
+	public Member naverLogin(String email) {
+		return sqlSession.selectOne("memberMapper.naverLogin", email);
+	}
+
+	public Member socialSelect(int userNo) {
+		
+		return sqlSession.selectOne("memberMapper.socialSelect", userNo);
+	}
+
+
 	
 }

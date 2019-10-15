@@ -64,6 +64,7 @@
 	}
 }
 
+
 .filebox .upload-thumb-wrap { /* 추가될 이미지를 감싸는 요소 */
 	display: inline-block;
 	width: 54px;
@@ -80,6 +81,26 @@
 	width: 100% \9;
 	height: auto;
 }
+
+select {
+   padding: 5px;
+   border-radius: 4px;
+}
+
+.filebox label {
+	display: inline-block;
+	padding: .5em .75em;
+	color: #999;
+	font-size: inherit;
+	line-height: normal;
+	vertical-align: middle;
+	background-color: #fdfdfd;
+	cursor: pointer;
+	border: 1px solid #ebebeb;
+	border-bottom-color: #e2e2e2;
+	border-radius: .25em;
+}
+
 
 
 </style>
@@ -140,7 +161,8 @@
 													<th>썸네일 이미지 :</th>
 													<td>
 														<div class="filebox preview-image">
-															<input type="file" id="input-file" class="upload-hidden" name="reloadFile">
+															<label for="input-file">이미지 업로드</label>
+															<input type="file" id="input-file" class="upload-hidden" name="reloadFile" style="display: none;">
 														</div>
 													</td>
 												</tr>

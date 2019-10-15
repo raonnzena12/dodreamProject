@@ -17,6 +17,7 @@
 <!-- <script src="https://cdn.bootpay.co.kr/js/bootpay-3.0.2.min.js" type="application/javascript"></script> -->
 <!-- iamport.payment.js -->
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+<script type="text/javascript" src="resources/js/jquery.ajax-cross-origin.min.js"></script>
 </head>
 <body>
 <script>
@@ -410,7 +411,7 @@ function ajaxBilling() {
 	$( "input[name=bKey]" ).val("${ prj.pNo }" + "_" + "${ loginUser.userNo }" + "_"+ result+ "_" + $("#cardNo4").val() );
 	var customer_uid = $("input[name=bKey]").val();
 	$.ajax({
-		url: "http://localhost:8081/ajaxBillingServer",
+		url: "http://192.168.10.57:8081/ajaxBillingServer",
 		type: "POST",
 		data: { card_number: card_number,
 				expiry: expiry,

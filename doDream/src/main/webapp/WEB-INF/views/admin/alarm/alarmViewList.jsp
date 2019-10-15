@@ -26,7 +26,7 @@
 <!-- Custom styles for this page -->
 <link href="resources/vendor/datatables/dataTables.bootstrap4.css"
 	rel="stylesheet">
-
+	
 <style>
 
 .collapse-item p{
@@ -48,6 +48,9 @@
 tbody tr:hover{
 	background: #f8f9fc;
 }
+
+
+
 </style>
 
 </head>
@@ -125,14 +128,17 @@ tbody tr:hover{
 														<th rowspan="1" colspan="1">알림 날짜</th>
 														<th rowspan="1" colspan="1">알림 확인 여부</th>
 														<th rowspan="1" colspan="1">알림확인 <br>
-															전체선택 <input type="checkbox" id="chkall"> <br>
+														<div class="custom-control custom-checkbox">
+															<input type="checkbox" id="chkall" class="custom-control-input">
+															<label class="custom-control-label" for="chkall">전체선택</label>
+														</div>
 															<button type="button" class="btn btn-primary btn-lg btn-block rewardBtn"
-															 id="alarmcheck" align="center">확인처리</button>														
+															 id="alarmcheck" align="center">확인처리</button>
 														</th>
 													</tr>
 												</tfoot>
 												<tbody>
-													<c:forEach var="a" items="${ list }">
+													<c:forEach var="a" items="${ list }" varStatus="status">
 														<tr role="row" class="odd">
 															<td class="sorting_1">${ a.alNo}</td>
 															<td>${ a.alCategory}</td>
@@ -149,7 +155,10 @@ tbody tr:hover{
 															</td>
 															<td>
 																<c:if test="${a.alStatus=='Y' }">
-																	<input type="checkbox" name="alchecked" value="${a.alNo }">
+																<div class="custom-control custom-checkbox">
+																	<input type="checkbox" class="custom-control-input temp" id="alchecked${status.index }" name="alchecked" value="${a.alNo }">
+																	<label class="custom-control-label" for="alchecked${status.index }">확인</label>
+																</div>
 																</c:if>
 															</td>
 														</tr>
@@ -231,7 +240,23 @@ tbody tr:hover{
   				location.href = "confirmAlarm.dr?arr="+arr;
   			}
   		});
-  		
+  		/* 체크 박스 개별 처리 */
+  		$(document).on("click",".temp",function(){
+  			$chkArr = $(".temp");
+  			var count = 0;
+  			for(var i = 0; i < $chkArr.length ; i++){
+  				if($($(".temp")[i]).is(":checked")){
+	  				count++;
+  				}
+  			}
+			if(count==$chkArr.length){
+				$("#chkall").prop("checked",true);  	
+			}else{
+				$("#chkall").prop("checked",false);  	
+			}		
+  			
+  		});
+	  		
   		
   		
 	</script>

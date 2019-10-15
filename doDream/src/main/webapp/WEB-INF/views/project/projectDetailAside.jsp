@@ -83,6 +83,11 @@
            		
            		/* 아티스트 이름, 아이콘 감싼것 */
            }
+           
+           #artistText2 a{
+           	color:#444;
+           }
+           
            #nameBox{
            		width:auto;	
            		min-width:162px;
@@ -357,15 +362,16 @@
                  	<img src="resources/images/projectImg/artistImg/${project.pArtistPFImage}" id="artProfileImg">
                  </div>
                  <div id="artistName">
-		                 <div id="artistText2">${project.pArtistName }님
+		                 <div id="artistText2"><a href="social.dr?userNo=${project.pWriter}">${project.pArtistName }님</a>
 			                 <div id="iconbox" class="clearfix">
 				                 	<i class="material-icons" id="asideFavorite">favorite_border</i>
 				             </div>
 			             </div>
+                  
                  </div>
             </div>
             <div id="introduce">
-            	아티스트 소개
+            	${project.pArtistIntroduction}
             </div>
             <div id="artInformation">
             	<div id="artistText3">
@@ -389,94 +395,96 @@
 		
 			<p id="RewardText1" class="mt-3 mb-1">선택 할 수 있는 총 ${fn:length(reward) }종의 리워드가 있습니다.</p><!-- 리워드 정보 불러오기 -->
 			
-		<c:forEach var="r" items="${reward }">
-			<form action="detailSubReward.dr" method="post">
-			
-				<section class="projectReward px-2 py-3 mb-2 mt-1">
-					<div class="rewardTitle">
-						<i class="material-icons rewardIcon">keyboard_arrow_right</i>
+			<c:forEach var="r" items="${reward }">
+				<form action="detailSubReward.dr" method="post">
+				
+					<section class="projectReward px-2 py-3 mb-2 mt-1">
+						<div class="rewardTitle">
+							<i class="material-icons rewardIcon">keyboard_arrow_right</i>
+							
+							
+							<p class="RewardText2">
+								<c:if test="${r.rSum eq '0'}">
+						             0명 선택
+						        </c:if>
+						        <c:if test="${r.rSum ne '0'}">
+						             ${r.rSum}명 선택
+						        </c:if>
+							</p> <!-- 리워드 정보 불러오기 -->
+						
+						<c:if test="${r.rLimit ne '-1'}">
+						
+							<c:if test="${r.rAmount eq '0' }">
+			            		<span class="badge badge-primary rewardBadge1">${r.rAmount }개 남음</span><!-- 리워드 정보 불러오기 -->
+			            	</c:if>
+			            	<c:if test="${r.rAmount ne '0' }">
+			            		<span class="badge badge-primary rewardBadge">${r.rAmount }개 남음</span><!-- 리워드 정보 불러오기 -->
+			            	</c:if>
+							
+						</c:if>
+						<c:if test="${r.rLimit eq '-1'}">
+							
+						</c:if>
 						
 						
-						<p class="RewardText2">
-							<c:if test="${r.rSum eq '0'}">
-					             0명 선택
-					        </c:if>
-					        <c:if test="${r.rSum ne '0'}">
-					             ${r.rSum}명 선택
-					        </c:if>
-						</p> <!-- 리워드 정보 불러오기 -->
-					
-					<c:if test="${r.rLimit ne '-1'}">
-					
-						<c:if test="${r.rAmount eq '0' }">
-		            		<span class="badge badge-primary rewardBadge1">${r.rAmount }개 남음</span><!-- 리워드 정보 불러오기 -->
+						</div>
+						<p class="RewardText3">${r.rPrice }원</p> <!-- 리워드 정보 불러오기 -->
+						<div class="rewardTitle px-2 pb-1"> 
+							${ r.rName}
+						</div>
+						<div class="rewardIntroduce"> <!-- 리워드 정보 불러오기 -->
+			            	${r.rExplain }
+		            	</div>
+		            	<input type="hidden" name="rNo" value="${r.rNo }">
+		            	<input type="hidden" name="pNo" value="${project.pNo }">
+		            	<c:if test="${r.rAmount eq '0' }">
+		            		<button type="button" class="btn btn-primary btn-lg btn-block rewardBtn2">리워드 선택하고 후원하기</button><!-- 리워드 정보 불러오기 -->
 		            	</c:if>
 		            	<c:if test="${r.rAmount ne '0' }">
-		            		<span class="badge badge-primary rewardBadge">${r.rAmount }개 남음</span><!-- 리워드 정보 불러오기 -->
+		            		<button type="submit" class="btn btn-primary btn-lg btn-block rewardBtn">리워드 선택하고 후원하기</button><!-- 리워드 정보 불러오기 -->
 		            	</c:if>
-						
-					</c:if>
-					<c:if test="${r.rLimit eq '-1'}">
-						
-					</c:if>
-					
-					
-					</div>
-					<p class="RewardText3">${r.rPrice }원</p> <!-- 리워드 정보 불러오기 -->
-					<div class="rewardTitle px-2 pb-1"> 
-						${ r.rName}
-					</div>
-					<div class="rewardIntroduce"> <!-- 리워드 정보 불러오기 -->
-		            	${r.rExplain }
-	            	</div>
-	            	<input type="hidden" name="rNo" value="${r.rNo }">
-	            	<input type="hidden" name="pNo" value="${project.pNo }">
-	            	<c:if test="${r.rAmount eq '0' }">
-	            		<button type="button" class="btn btn-primary btn-lg btn-block rewardBtn2">리워드 선택하고 후원하기</button><!-- 리워드 정보 불러오기 -->
-	            	</c:if>
-	            	<c:if test="${r.rAmount ne '0' }">
-	            		<button type="submit" class="btn btn-primary btn-lg btn-block rewardBtn">리워드 선택하고 후원하기</button><!-- 리워드 정보 불러오기 -->
-	            	</c:if>
-	            	
-				</section>
+		            	
+					</section>
+				
+				</form>
+			</c:forEach>
 			
-			</form>
-		</c:forEach>
-		
-		<div id="reportbox" class="clearfix px-2 pt-3 pb-2">
-			<!-- 신고하기 -->
-			해당 프로젝트에 허위내용 및 지적재산권을 <br>
-			침해하는 내용이 있다면 신고해주세요.
-			<button type="button" class="btn btn-primary btn-lg btn-block reportBtn mt-3">프로젝트 신고하기</button>
-		</div>
-		
-		<div class="modal">
-		  <div class="modal-dialog" role="document">
-		    <div class="modal-content">
-		      <div class="modal-header">
-		        <h5 class="modal-title">신고하기</h5>
-		        <button type="button" class="close reportModal" data-dismiss="modal" aria-label="Close">
-		          <span aria-hidden="true">&times;</span>
-		        </button>
-		      </div>
-		      <div class="modal-body">
-		        <p>신고 내용</p>
-		        <textarea id="reportContent" placeholder="신고내용을 작성해주세요."></textarea>
-		      </div>
-		      <div class="modal-footer">
-		        <button type="button" class="btn btn-primary reSubmit">신고하기</button>
-		        <button type="button" class="btn btn-secondary reportModal" data-dismiss="modal">취소</button>
-		      </div>
-		    </div>
-		  </div>
-		</div>
-		
-		
+			<div id="reportbox" class="clearfix px-2 pt-3 pb-2">
+				<!-- 신고하기 -->
+				해당 프로젝트에 허위내용 및 지적재산권을 <br>
+				침해하는 내용이 있다면 신고해주세요.
+				<button type="button" class="btn btn-primary btn-lg btn-block reportBtn mt-3">프로젝트 신고하기</button>
+			</div>
+			
+			<div class="modal">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h5 class="modal-title">신고하기</h5>
+			        <button type="button" class="close reportModal" data-dismiss="modal" aria-label="Close">
+			          <span aria-hidden="true">&times;</span>
+			        </button>
+			      </div>
+			      <div class="modal-body">
+			        <p>신고 내용</p>
+			        <textarea id="reportContent" placeholder="신고내용을 작성해주세요."></textarea>
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-primary reSubmit">신고하기</button>
+			        <button type="button" class="btn btn-secondary reportModal" data-dismiss="modal">취소</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+			
 		</section>
 	</section>
+	
 	<script>
 	
-	/* 아티스트 클릭시 아티스트 마이페이지로 이동  */
+	
+		var info = "${project.pArtistIntroduction }";
+		console.log("아티스트 소개 : "+ info);
 		
 	$(function(){
 			//처음 들어왔을때 색 바뀌는 기능 

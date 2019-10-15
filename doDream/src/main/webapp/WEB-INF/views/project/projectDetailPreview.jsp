@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>ProjectDetailStory</title>
+<title>ProjectDetailPreview</title>
 
        <style>
            
@@ -64,6 +64,10 @@
                 margin: 10px 0 0 9px;
                  
            }
+           #storyContent *{
+           		max-width: 100%;
+                height: auto;
+           }
            #detailTag{
            		width: 680px;
                 height: auto;
@@ -119,7 +123,7 @@
 
    	</section>
 	<script>
-	/* 
+	
 		$(function(){
 			// 해시 태그 출력 
 			var ht = "${project.pHashTag}";
@@ -135,7 +139,7 @@
 				}
 			}
 			
-		}); */
+		});
 	
 	
 		

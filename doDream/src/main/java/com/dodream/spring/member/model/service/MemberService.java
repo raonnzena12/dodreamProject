@@ -12,6 +12,7 @@ import com.dodream.spring.project.model.vo.Project;
 import com.dodream.spring.report.model.vo.Report;
 
 public interface MemberService {
+	
 
 	/**
 	 * 로그인을 위한 Service
@@ -71,6 +72,16 @@ public interface MemberService {
 	public abstract ArrayList<Report> myReportList(int userNo);
 
 	public abstract ArrayList<Report> myReportReplyList(int userNo);
+
+	/**
+	 * 네이버 로그인하는 Service
+	 * @param email
+	 * @return loginUser
+	 */
+	public abstract Member naverLogin(String email);
+
+	public abstract Member socialSelect(int userNo);
+
 
 
 }

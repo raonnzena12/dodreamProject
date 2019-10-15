@@ -34,7 +34,7 @@ public class HomeController {
 		if(user != null && ((Member)user).getUserAdminYn().equals("Y")) {
 			return "admin/adminHome";
 		} else {
-			return "redirect:home.dr";
+			return "redirect:main.dr";
 		}
 		
 	}
@@ -52,7 +52,5 @@ public class HomeController {
 		return "common/main";
 	}
 }
-
-
 
 

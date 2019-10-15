@@ -22,17 +22,23 @@
 </style>
 </head>
 <body>
-	<jsp:include page="../member/mypageHeader.jsp"/>
+<jsp:include page="../member/mypageHeader.jsp"/>
 	<br>
 	<div class="container-fluid">
 	<div class="row">
 		<div class="col-md-2">
 		</div>
-		<div class="col-md-8" id="followsub">	
+		<div class="col-md-8" id="followsub">
+		<c:choose>	
+		<c:when test="${ !empty social }">
+		<a class="" id="sub1" href="socialfollowList.dr?userNo=${social.userNo}&page=1">아티스트가 팔로잉한</a> ｜ <a class="" id="sub2" href="socialfollowList.dr?userNo=${social.userNo}&page=2">아티스트를 팔로잉한</a>
+		</c:when>
+		<c:otherwise>
 			<a class="" id="sub1" href="followList.dr?userNo=${loginUser.userNo}">내가 팔로잉한</a> ｜ <a class="" id="sub2" href="followerList.dr?userNo=${loginUser.userNo}">나를 팔로잉한</a>
+		</c:otherwise>
+		</c:choose>
 		</div>
-		<div class="col-md-2">
-		</div>
+		<div class="col-md-2"></div>
 	</div>
 	<br>
 	<div class="row">
@@ -77,8 +83,10 @@
 						</c:if>
 					</div>
 				</div>
-				<div class="col-md-4" style="padding-top: 30px">					 
+				<div class="col-md-4" style="padding-top: 30px">	
+					<c:if test="${ empty social }">				 
 					<button type="button" class="btn btn-warning btn-sm" id="unfollow" follow="${  followList.followNo }">언팔로우</button>
+					</c:if>
 				</div>
 				</div>
 				<br>
@@ -107,7 +115,7 @@
 	$(function(){
 		var menu = ${menu} + "";
 		if(menu ==2){
-			$("menu2>i").addClass("active");
+			$("#menu2>i").addClass("active");
 		}
 		var sub = ${sub} + "";
 		if(sub==2){

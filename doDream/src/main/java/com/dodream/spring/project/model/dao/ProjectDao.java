@@ -173,6 +173,28 @@ public class ProjectDao {
 		return sqlSession.selectOne("projectMapper.getOriginFile",pNo);
 	}
 
+	public Project selectCurrentProject(int pNo) {
+		return sqlSession.selectOne("projectMapper.selectCurrentProject",pNo);
+	}
+
+	/**
+	 * 프로젝트에 딸린 리워드들을 삭제하는 DAO
+	 * @param pNo
+	 * @return result
+	 */
+	public int deleteRewards(int pNo) {
+		return sqlSession.delete("projectMapper.deleteRewards",pNo);
+	}
+
+	/**
+	 * 현재 프로젝트에 딸린 리워드들을 호출하는 DAO
+	 * @param pNo
+	 * @return rList
+	 */
+	public ArrayList<Reward> selectCurrentReward(int pNo) {
+		return (ArrayList)sqlSession.selectList("projectMapper.selectCurrentReward", pNo);
+	}
+
 
 
 	

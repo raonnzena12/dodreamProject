@@ -1,6 +1,5 @@
 package com.dodream.spring.member.controller;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,15 +40,16 @@ public class MemberController {
 	 * @return page
 	 */
 	@RequestMapping("login.dr")
-	public String memberLogin(Member member, String prevPage, HttpSession session, HttpServletResponse response, RedirectAttributes ra, Model model) {
+	public String memberLogin(Member member, String prevPage, HttpSession session, HttpServletResponse response,
+			RedirectAttributes ra, Model model) {
 
 		Member loginUser = mService.loginMember(member);
-		System.out.println("로그인전"+member);
+		System.out.println("로그인전" + member);
 
 		if (loginUser != null) {
 			session.setAttribute("loginUser", loginUser);
-			System.out.println("로그인후"+loginUser);
-			
+			System.out.println("로그인후" + loginUser);
+
 			// 로그인 카운트 해주는 함수 호출;
 			int result = mService.checkVisitToday(loginUser.getUserNo());
 			if (result == 0) {
@@ -57,14 +57,14 @@ public class MemberController {
 				if (result > 0)
 					System.out.println("userNo : " + loginUser.getUserNo() + "번 회원이 DAYCOUNT 테이블에 삽입됨");
 			}
-				
-			System.out.println("redirect:"+prevPage);
-			return "redirect:"+prevPage;
-			
-		}else {
+
+			System.out.println("redirect:" + prevPage);
+			return "redirect:" + prevPage;
+
+		} else {
 			ra.addFlashAttribute("msg", "이메일과 비밀번호를 다시 확인해주세요.");
-			System.out.println("redirect:"+prevPage);
-			return "redirect:"+prevPage;
+			System.out.println("redirect:" + prevPage);
+			return "redirect:" + prevPage;
 		}
 	}
 
@@ -81,12 +81,13 @@ public class MemberController {
 		Member member = new Member();
 		member.setUserEmail(userEmail);
 		member.setUserPwd(userPwd);
-		
+
 		return mService.checkValidate(member);
 	}
 
 	/**
 	 * 모달창 로그인시 에러가 발생해서 새로 만들어서 해결한 Controller입니다.
+	 * 
 	 * @param member
 	 * @param model
 	 * @param prevPage
@@ -167,9 +168,9 @@ public class MemberController {
 			if (result2 > 0) {
 				System.out.println("userNo : " + loginUser.getUserNo() + "번 회원이 DAYCOUNT 테이블에 삽입됨");
 			}
-			
-			return "redirect:"+prevPage;
-		}else {
+
+			return "redirect:main.dr";
+		} else {
 			model.addAttribute("msg", "회원가입에 실패하였습니다.");
 			return "common/errorPage";
 		}
@@ -184,9 +185,10 @@ public class MemberController {
 	public String findPwd() {
 		return "member/findPwdForm";
 	}
-	
-	
-	/** 비밀번호 변경페이지
+
+	/**
+	 * 비밀번호 변경페이지
+	 * 
 	 * @param userEmail
 	 * @param model
 	 * @return
@@ -198,7 +200,6 @@ public class MemberController {
 		model.addAttribute("userEmail", userEmail);
 		return "member/changePwdForm";
 	}
-
 
 	/**
 	 * 회원가입 시 닉네임 중복 검사
@@ -233,7 +234,7 @@ public class MemberController {
 
 		String result = null;
 		if (!mList.isEmpty()) {
-			result = "1";
+			result = "1"; //이메일이 있음
 		} else {
 			result = "0";
 		}
@@ -248,7 +249,7 @@ public class MemberController {
 	 */
 	@RequestMapping("myInfo.dr")
 	public String myInfoView(HttpServletRequest request, Model model) {
-		model.addAttribute("loginUser",request.getSession().getAttribute("loginUser"));
+		model.addAttribute("loginUser", request.getSession().getAttribute("loginUser"));
 		return "member/mypageSetting";
 	}
 
@@ -268,10 +269,10 @@ public class MemberController {
 	@RequestMapping("myInfoUpdate.dr")
 	public String memberUpdate(Member mem, String address, String details, String postcode, HttpServletRequest request,
 			Model model, MultipartFile uploadImg, RedirectAttributes ra) {
-		
-		System.out.println("회원정보수정하기"+mem);
+
+		System.out.println("회원정보수정하기" + mem);
 		mem.setUserAddress(address + "," + details + "," + postcode);
-			
+
 		int result = mService.updateMember(mem, request, uploadImg);
 		System.out.println(result);
 		if (result > 0) {
@@ -285,7 +286,9 @@ public class MemberController {
 		}
 	}
 
-	/** 비밀번호 변경
+	/**
+	 * 비밀번호 변경
+	 * 
 	 * @param mem
 	 * @param userEmail
 	 * @param userPwd
@@ -314,29 +317,32 @@ public class MemberController {
 		}
 
 	}
-	
-	
-	/** 회원이 오픈한 프로젝트 건수
+
+	/**
+	 * 회원이 오픈한 프로젝트 건수
+	 * 
 	 * @param userNo
 	 * @return
 	 */
 	@ResponseBody
 	@RequestMapping("countOpenPJT.dr")
 	public int countOpenProject(int userNo) {
-		
+
 		System.out.println(userNo);
-		
+
 		int result = mService.countOpenProject(userNo);
-		System.out.println("countOpenProject"+result);
-		
-		if(result > 0) {
+		System.out.println("countOpenProject" + result);
+
+		if (result > 0) {
 			return result;
-		}else {
+		} else {
 			return 0;
 		}
 	}
-	
-	/** 회원이 참여한 프로젝트 중 결제 대기 건수
+
+	/**
+	 * 회원이 참여한 프로젝트 중 결제 대기 건수
+	 * 
 	 * @param userNo
 	 * @return
 	 */
@@ -344,18 +350,20 @@ public class MemberController {
 	@RequestMapping("projectJoinCount.dr")
 	public int projectJoinCount(int userNo) {
 		System.out.println(userNo);
-		
+
 		int result = mService.projectJoinCount(userNo);
-		System.out.println("projectJoinCount"+result);
-		
-		if(result>0) {
+		System.out.println("projectJoinCount" + result);
+
+		if (result > 0) {
 			return result;
-		}else {
+		} else {
 			return 0;
 		}
 	}
-	
-	/** 완료된 프로젝트 갯수
+
+	/**
+	 * 완료된 프로젝트 갯수
+	 * 
 	 * @param userNo
 	 * @return
 	 */
@@ -363,28 +371,31 @@ public class MemberController {
 	@RequestMapping("projectCloseCount.dr")
 	public int projectCloseCount(int userNo) {
 		System.out.println(userNo);
-		
+
 		int result = mService.projectCloseCount(userNo);
-		System.out.println("projectCloseCount"+result);
-		
-		if(result>0) {
+		System.out.println("projectCloseCount" + result);
+
+		if (result > 0) {
 			return result;
-		}else {
+		} else {
 			return 0;
 		}
 	}
-	
 
-	/** 회원탈퇴페이지
+	/**
+	 * 회원탈퇴페이지
+	 * 
 	 * @return
 	 */
 	@RequestMapping("deleteForm.dr")
 	public String deleteMemberFormView(int userNo, Model model) {
-		
+
 		return "member/deleteMemberView";
 	}
-	
-	/** 회원탈퇴
+
+	/**
+	 * 회원탈퇴
+	 * 
 	 * @param userNo
 	 * @param status
 	 * @param rdAttr
@@ -395,18 +406,19 @@ public class MemberController {
 	public String deleteMember(int userNo, SessionStatus status, RedirectAttributes rdAttr, Model model) {
 
 		int result = mService.deleteMember(userNo);
-		if(result > 0) {
+		if (result > 0) {
 			rdAttr.addFlashAttribute("msg", "두드림에서 탈퇴되었습니다.");
 			status.setComplete();
 			return "redirect:home.dr";
-		}else {
+		} else {
 			model.addAttribute("msg", "탈퇴에 실패하였습니다. 관리자에게 문의해주세요.");
 			return "common/errorPage";
 		}
 	}
-	
 
-	/** SNS로그인
+	/**
+	 * SNS로그인
+	 * 
 	 * @param member
 	 * @param userEmail
 	 * @param userNickname
@@ -418,36 +430,39 @@ public class MemberController {
 	 * @return
 	 */
 	@RequestMapping("insertSNS.dr")
-	public String insertSNS(Member member, String userEmail, String userNickname, String userPwd, String userProfileImage, Model model, RedirectAttributes rd, String prevPage){
-		
+	public String insertSNS(Member member, String userEmail, String userNickname, String userPwd,
+			String userProfileImage, Model model, RedirectAttributes rd, String prevPage) {
+
 		member.setUserEmail(userEmail);
 		member.setUserPwd(userPwd);
-		member.setUserNickname(userNickname+userPwd);
+		member.setUserNickname(userNickname + userPwd);
 		member.setUserProfileImage(userProfileImage);
-		
+
 		int result = mService.insertSNS(member);
-		
-		if(result>0) {
+
+		if (result > 0) {
 			rd.addFlashAttribute("msg", "회원가입 완료!만나서 반갑습니다!");
 			Member loginUser = mService.loginMember(member);
 			model.addAttribute("loginUser", loginUser);
-			
+
 			int result2 = mService.countVisitToday(loginUser.getUserNo());
 
 			if (result2 > 0) {
 				System.out.println("userNo : " + loginUser.getUserNo() + "번 회원이 DAYCOUNT 테이블에 삽입됨");
 			}
 
-			return "redirect:"+prevPage;
-			
-		}else {
+			return "redirect:" + prevPage;
+
+		} else {
 			model.addAttribute("msg", "회원가입에 실패하였습니다.");
 			return "common/errorPage";
 		}
-		
+
 	}
-	
-	/** 회원이 참여한 프로젝트 리스트 조회
+
+	/**
+	 * 회원이 참여한 프로젝트 리스트 조회
+	 * 
 	 * @param userNo
 	 * @param mv
 	 * @return mv
@@ -457,11 +472,11 @@ public class MemberController {
 
 		ArrayList<Project> pList = mService.myFundingList(userNo);
 
-		System.out.println("myFundingList"+pList);
+		System.out.println("myFundingList" + pList);
 
 		if (pList != null) {
-			mv.addObject("menu",1);
-			mv.addObject("sub",1);
+			mv.addObject("menu", 1);
+			mv.addObject("sub", 1);
 			mv.addObject("pList", pList);
 			mv.setViewName("member/myFundingList");
 		} else {
@@ -471,21 +486,23 @@ public class MemberController {
 
 		return mv;
 	}
-	
-	/** 회원이 오픈한 프로젝트 리스트 조회
+
+	/**
+	 * 회원이 오픈한 프로젝트 리스트 조회
+	 * 
 	 * @param userNo
 	 * @param mv
 	 * @return
 	 */
 	@RequestMapping("myOpenProjectList.dr")
 	public ModelAndView myOpenProjectList(int userNo, ModelAndView mv) {
-		
+
 		ArrayList<Project> pList = mService.myOpenProjectList(userNo);
 		System.out.println(pList);
-		
-		if(pList != null) {
-			mv.addObject("menu",1);
-			mv.addObject("sub",2);
+
+		if (pList != null) {
+			mv.addObject("menu", 1);
+			mv.addObject("sub", 2);
 			mv.addObject("pList", pList);
 			mv.setViewName("member/myOpenProjectList");
 		} else {
@@ -494,23 +511,25 @@ public class MemberController {
 		}
 
 		return mv;
-		
+
 	}
-	
-	/** 회원이 좋아요한 프로젝트 조회
+
+	/**
+	 * 회원이 좋아요한 프로젝트 조회
+	 * 
 	 * @param userNo
 	 * @param mv
 	 * @return
 	 */
 	@RequestMapping("myLikePRJList.dr")
 	public ModelAndView myLikePRJList(int userNo, ModelAndView mv) {
-		
+
 		ArrayList<Project> pList = mService.myLikePRJList(userNo);
 		System.out.println(pList);
-		
-		if(pList != null) {
-			mv.addObject("menu",1);
-			mv.addObject("sub",3);
+
+		if (pList != null) {
+			mv.addObject("menu", 1);
+			mv.addObject("sub", 3);
 			mv.addObject("pList", pList);
 			mv.setViewName("member/myLikePRJList");
 		} else {
@@ -519,29 +538,103 @@ public class MemberController {
 		}
 
 		return mv;
-		
+
 	}
-	
+
 	@RequestMapping("myReportList.dr")
 	public ModelAndView myReportList(int userNo, ModelAndView mv) {
-		
+
 		ArrayList<Report> rList = mService.myReportList(userNo);
 		System.out.println(rList);
-		
-		if(rList != null) {
-			mv.addObject("menu",3);
+
+		if (rList != null) {
+			mv.addObject("menu", 3);
 			mv.addObject("rList", rList);
 			mv.setViewName("member/myReportList");
-		}else {
+		} else {
 			mv.addObject("msg", "목록 조회에 실패하였습니다.");
 			mv.setViewName("common/errorPage");
 		}
-		
+
 		return mv;
 	}
-	
-	
 
-	
-	
+	@RequestMapping("social.dr")
+	public ModelAndView socialSelect(HttpServletRequest request,Integer userNo, Integer page, ModelAndView mv, RedirectAttributes rd) {
+
+		Object loginUser = request.getSession().getAttribute("loginUser");
+		if ( loginUser == null ) {
+			rd.addFlashAttribute("msg", "로그인을 해주세요");
+			mv.setViewName("redirect:main.dr");
+			return mv;
+		}
+		
+		int uNo = (userNo == null) ? 0 : userNo;
+		int pageNo = (page == null) ? 1 : page;
+
+		Member social = mService.socialSelect(uNo);
+		if (social != null) {
+			mv.addObject("social", social);
+		} else {
+			mv.addObject("msg", "목록 조회에 실패하였습니다.");
+			mv.setViewName("common/errorPage");
+			return mv;
+		}
+
+		if ( pageNo == 1 )  {
+			ArrayList<Project> pList = mService.myFundingList(uNo);
+			mv.addObject("pList", pList);
+			mv.addObject("menu", 1);
+			mv.addObject("sub", 1);
+			mv.setViewName("member/myFundingList");
+		} else if ( pageNo == 2 ) {
+			ArrayList<Project> pList = mService.myOpenProjectList(uNo);
+			mv.addObject("menu", 1);
+			mv.addObject("sub", 2);
+			mv.addObject("pList", pList);
+			mv.setViewName("member/myOpenProjectList");
+		} else if ( pageNo == 3 ) {
+			ArrayList<Project> pList = mService.myLikePRJList(uNo);
+			mv.addObject("menu", 1);
+			mv.addObject("sub", 3);
+			mv.addObject("pList", pList);
+			mv.setViewName("member/myLikePRJList");
+		} else if ( pageNo == 5 ) {
+			
+		}
+
+		return mv;
+	}
+
+	/**
+	 * 네이버 이메일로 로그인하는 Controller
+	 * 
+	 * @param email
+	 * @param nickName
+	 * @param profileImg
+	 * @param model
+	 */
+	@RequestMapping("naverSNSLogin.dr")
+	public String naverSNSlogin(Member member, String prevPage, Model model) {
+
+		Member loginUser = mService.naverLogin(member.getUserEmail());
+
+		if (loginUser == null) {
+			int result = mService.insertSNS(member);
+			if (result > 0) {
+				loginUser = member;
+			}
+		}
+		model.addAttribute("loginUser", loginUser);
+
+		int result = mService.checkVisitToday(loginUser.getUserNo());
+		if (result == 0) {
+			result = mService.countVisitToday(loginUser.getUserNo());
+			if (result > 0)
+				System.out.println("userNo : " + loginUser.getUserNo() + "번 회원이 DAYCOUNT 테이블에 삽입됨");
+		}
+
+		return "redirect:" + prevPage;
+	}
+
 }

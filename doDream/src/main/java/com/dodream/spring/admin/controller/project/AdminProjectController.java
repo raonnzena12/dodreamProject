@@ -113,32 +113,61 @@ public class AdminProjectController {
 	}
 	
 	// 심사 대기중  -> 심사 완료 
-	@ResponseBody
 	@RequestMapping("passProjectBtn.dr")
-	public int passProject(int pNo) {
-		return aService.passProject(pNo);
+	public String passProject(int pNo) {
+		int result = aService.passProject(pNo);
+		
+		if(result > 0) {
+			return "redirect:adminPlist1.dr";
+		} else {
+			return "redirect:adminPlist1.dr";
+		}
 	}
 	
 	// 심사 대기중  -> 심사 탈락 
-	@ResponseBody
 	@RequestMapping("dropOutProjectBtn.dr")
-	public int dropOutProject(int pNo) {
-		return aService.dropOutProject(pNo);
+	public String dropOutProject(int pNo) {
+		int result = aService.dropOutProject(pNo);
+		
+		if(result > 0) {
+			return "redirect:adminPlist1.dr";
+		} else {
+			return "redirect:adminPlist1.dr";
+		}
 	}
+	
 	
 	// 심사 완료 -> 프로젝트 오픈 
-	@ResponseBody
 	@RequestMapping("openProjectBtn.dr")
-	public int openProject(int pNo) {
-		return aService.openProject(pNo);
+	public String openProject(int pNo, int termDate) {
+		Project prj = new Project();
+		prj.setpNo(pNo);
+		prj.setTermDate(termDate);
+		int result = aService.openProject(prj);
+		
+		if(result > 0) {
+			return "redirect:adminPlist2.dr";
+		} else {
+			return "redirect:adminPlist2.dr";
+		}
 	}
 	
+	
 	// 오픈 중 -> 심사 대기중
-	@ResponseBody
 	@RequestMapping("stopProjectBtn.dr")
-	public int stopProject(int pNo) {
-		return aService.stopProject(pNo);
+	public String stopProject(int pNo) {
+		int result = aService.stopProject(pNo);
+		
+		if(result > 0) {
+			return "redirect:adminPlist3.dr";
+		} else {
+			return "redirect:adminPlist3.dr";
+		}
 	}
+	
+	
+	
+	
 	
 	
 	

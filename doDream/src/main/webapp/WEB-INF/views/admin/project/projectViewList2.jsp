@@ -136,19 +136,46 @@ tbody tr:hover{
 													</tr>
 												</tfoot>
 												<tbody>
-													<c:forEach var="p" items="${ list }">
+													<c:forEach var="p" items="${ list }" varStatus="status">
 														<tr role="row" class="odd">
 															<td class="sorting_1">${ p.pNo }</td>
-															<td>${ p.pTitle }</td>
+															<td>
+																<a href="goPreview.dr?pNo=${p.pNo}" style="text-decoration:none; color: gray;">${ p.pTitle }</a>
+															</td>
 															<td>${ p.pGoal}</td>
-															<td>${ p.pStartDate}</td>
+															<td>${ p.pStartDate}
+															</td> 
 															<td>${ p.pCloseDate }</td>
 															<td>${ p.pArtistName }</td>
 															<td>${ p.pArtistPhone }</td>
 															<td>${ p.pArtistEmail }</td>
 															<td>
-																<button type="button" onclick="openProject(${p.pNo})"
-																 class="btn btn-primary btn-lg btn-block rewardBtn">프로젝트 오픈</button>
+																 <button type="button" data-toggle="modal" data-target="#exampleModal${ status.index }" data-whatever="프로젝트 오픈"
+ 																 id="openProjectBtn" class="btn btn-primary btn-lg btn-block rewardBtn">프로젝트 오픈</button>
+ 																 <!-- Modal -->
+ 																<form action ="openProjectBtn.dr" method="post">
+																<div class="modal fade" id="exampleModal${ status.index }" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+																  <div class="modal-dialog" role="document">
+																    <div class="modal-content">
+																      <div class="modal-header">
+																        <h5 class="modal-title" id="exampleModalLabel">프로젝트 오픈</h5>
+																        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																          <span aria-hidden="true">&times;</span>
+																        </button>
+																      </div>
+																      <div class="modal-body">
+																        	해당 프로젝트 오픈을 진행하시겠습니까?
+																      </div>
+																      <div class="modal-footer">
+																        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+																        <button type="submit" class="btn btn-primary">진행하기</button>
+																		<input type="hidden" name="termDate" value="${p.termDate }">
+																        <input type="hidden" name="pNo" value="${p.pNo}">
+																      </div>
+																    </div>
+																  </div>
+																</div>
+																</form>
 															</td>
 														</tr>
 													</c:forEach>
@@ -228,20 +255,6 @@ tbody tr:hover{
 
 	<!-- Demo scripts for this page-->
 	<script src="resources/js/demo/datatables-demo.js"></script>
-
-	<script>
-		function openProject(num){
-			if(confirm("해당 프로젝트 오픈을 진행하시겠습니까?")){
-				$.ajax({
-					url: "openProjectBtn.dr",
-					data: {pNo : num},
-					type: "POST",
-					success:function(result){}
-				});
-				
-			}
-		}
-	</script>
 
 
 </body>

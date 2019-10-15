@@ -17,12 +17,14 @@
 		<result property="userPhone" column="USER_PHONE" />
 		<result property="userProfileImage" column="USER_PF_IMG" />
 		<result property="userSelf" column="USER_SELF" />
+		<result property="pWriter" column="PROJECT_WRITER" />
+		<result property="follow" column="FOLLOW" />
+		<result property="follower" column="FOLLOWER" />
 	</resultMap>
 	
 
 	<!-- 로그인용 쿼리 -->
-	<select id="selectOne" parameterType="Member"
-		resultMap="memberResultSet">
+	<select id="selectOne" parameterType="Member" resultMap="memberResultSet">
 		SELECT * FROM USER_TB
 		WHERE USER_EMAIL = #{userEmail}
 		AND USER_PWD = #{userPwd}
@@ -93,13 +95,21 @@
 		WHERE USER_NO = #{userNo}		
 	</select>
 	
+	<!-- 회원탈퇴 -->
 	<update id="deleteMember" parameterType="_int">
 		UPDATE USER_TB 
 		SET USER_STATUS = 'N' WHERE USER_NO = #{userNo}
 	</update>
 	
+	<!-- Social page -->
+	<select id="socialSelect" parameterType="_int" resultMap="memberResultSet">
+		SELECT * FROM USER_FF_VIEW WHERE USER_NO = #{userNo}
+	</select>
 	
-    
-	
+	<!-- 네이버 로그인 -->
+	<select id="naverLogin" parameterType="string" resultMap="memberResultSet">
+		SELECT * FROM USER_TB
+		WHERE USER_EMAIL = #{ email } 
+	</select>
   
 </mapper>

@@ -65,6 +65,7 @@ public class ProjectController2 {
 		Like lk = pService2.selectLike(like);// 프로젝트 좋아요 조회
 		
 		Project prj = pService.selectProject(pno);
+		System.out.println(prj);
 		
 		follow.setFollowNo(prj.getpWriter());
 		
@@ -77,6 +78,7 @@ public class ProjectController2 {
 		DetailReport dr = pService2.selectReport(report);
 		
 		System.out.println("report : " + dr);
+		
 		ArrayList<Reward> rw = pService2.selectReward(pno);
 		
 		if(rNo != null) {

@@ -130,7 +130,7 @@ tbody tr:hover{
 													</tr>
 												</tfoot>
 												<tbody>
-													<c:forEach var="m" items="${ list }">
+													<c:forEach var="m" items="${ list }" varStatus="status">
 														<tr role="row" class="odd">
 															<td class="sorting_1">${ m.userNo }</td>
 															<td><a href="#" style="text-decoration:none; color: gray;">${ m.userNickname }</a></td>
@@ -143,9 +143,31 @@ tbody tr:hover{
 																	탈퇴 회원
 																</c:if></td>
 															<td>
-																<button type="button" onclick="goblacklist(${m.userNo});"
-																	class="btn btn-primary btn-lg btn-block rewardBtn">블랙리스트
-																	등록</button>
+																<button type="button" data-toggle="modal" data-target="#exampleModal${ status.index }" data-whatever="블랙리스트 등록"
+ 																 id="blackListBtn" class="btn btn-primary btn-lg btn-block rewardBtn">블랙리스트 등록</button>
+ 																 <!-- Modal -->
+ 																<form action ="blackListBtn.dr" method="post">
+																<div class="modal fade" id="exampleModal${ status.index }" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+																  <div class="modal-dialog" role="document">
+																    <div class="modal-content">
+																      <div class="modal-header">
+																        <h5 class="modal-title" id="exampleModalLabel">블랙리스트 등록</h5>
+																        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																          <span aria-hidden="true">&times;</span>
+																        </button>
+																      </div>
+																      <div class="modal-body">
+																        	해당 회원을 블랙리스트 처리하시겠습니까?
+																      </div>
+																      <div class="modal-footer">
+																        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+																        <button type="submit" class="btn btn-primary">처리하기</button>
+																        <input type="hidden" name="userNo" value="${m.userNo}">
+																      </div>
+																    </div>
+																  </div>
+																</div>
+																</form>
 															</td>
 														</tr>
 													</c:forEach>
@@ -227,20 +249,6 @@ tbody tr:hover{
 
 	<!-- Demo scripts for this page-->
 	<script src="resources/js/demo/datatables-demo.js"></script>
-	<script>
-		function goblacklist(num){
-			if(confirm("블랙리스트 처리 하시겠습니까? ")){
-				$.ajax({
-					url : "blackListBtn.dr",
-					data : {userNo : num},
-					type : "POST",
-					async : true,
-					success : function(result){
-					}
-				});
-			}
-		} 
-	</script>
 
 </body>
 

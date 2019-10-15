@@ -9,6 +9,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -23,12 +24,20 @@ public class MemberServiceImpl implements MemberService {
 
 	@Autowired
 	private MemberDao mDao;
+	
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	@Override
 	public Member loginMember(Member mem) {
-		return mDao.selectMember(mem);
-	}
-	
+		
+		Member loginUser = mDao.selectMember(mem);
+		/*
+		 * if(!bCryptPasswordEncoder.matches(mem.getUserPwd(), loginUser.getUserPwd()))
+		 * { loginUser = null; }
+		 */
+		return loginUser;
+	}	
 
 	@Override
 	public List<Member> checkEmail(String userEmail) {
@@ -42,6 +51,9 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public int insertMember(Member member) {
+		
+		String encPwd = bCryptPasswordEncoder.encode(member.getUserPwd());
+		member.setUserPwd(encPwd);
 		return mDao.insertMember(member);
   }
   
@@ -127,6 +139,8 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public int updatePwd(Member mem) {
 		
+		String encPwd = bCryptPasswordEncoder.encode(mem.getUserPwd());
+		mem.setUserPwd(encPwd);
 		return mDao.updatePwd(mem);
 	}
 
@@ -198,6 +212,19 @@ public class MemberServiceImpl implements MemberService {
 	public ArrayList<Report> myReportReplyList(int userNo) {
 		
 		return mDao.myReportReplyList(userNo);
+	}
+
+
+	@Override
+	public Member naverLogin(String email) {
+		return mDao.naverLogin(email);
+	}
+
+
+	@Override
+	public Member socialSelect(int userNo) {
+		
+		return mDao.socialSelect(userNo);
 	}
 
 

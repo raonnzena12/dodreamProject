@@ -39,6 +39,7 @@
 
 </head>
 <body>
+
    <jsp:include page="../member/mypageHeader.jsp"/>
    
    <div class="container-fluid">

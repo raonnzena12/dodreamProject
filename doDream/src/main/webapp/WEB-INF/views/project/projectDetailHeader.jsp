@@ -68,7 +68,7 @@
            }
            #headerContent{
                height: 500px;
-               /* border: 1px solid black; */
+              /*  border: 1px solid black; */
 
            }
            #detailimg{
@@ -76,14 +76,15 @@
                float: left;
                width: 49%;
                height: 100%;
-               /* border: 1px solid black; */
+             /*   border: 1px solid black; */
            }
            #detailcon{
                display: block;
                float: right;
                width: 50%;
                height: 100%;
-               /* border: 1px solid black; */
+               padding-bottom: 20px;
+              /*  border: 1px solid black; */
            }
            #detailNav{
                width: 100%;
@@ -103,7 +104,7 @@
                width: 450px;
                height: 350px;
                clear: both;
-               display:none;
+               display: block;
            }
            #mainVideo{
                width: 450px;
@@ -112,14 +113,18 @@
                display:none; */
            }
            .video{
-           		width: 450px;
+           	   width: 450px;
                height: 350px;
                clear: both;
-               display:none;
+               display: block;
            }
            #detailcon > #text1{
-               margin: 60px 0 0 13px;
+               margin: 61px 0 0 13px;
                font-size: 20px;
+              /* border: 1px solid black; */
+               padding: 0 0 0 5px;
+               min-height: 77px;
+               height:auto;
            }
            #profile{
                width: 100%;
@@ -132,7 +137,7 @@
                font-size: 20px;
                display: block;
                float: right;
-               margin: 15px 15px 0 0;
+               margin: 20px 15px 5px 0;
            }
            #profileimg{
                 border-radius: 50%;
@@ -154,9 +159,9 @@
                 font-size: 15px;
                 margin: 0;
                 padding: 0;
-                width: 100%;
+                width: 450px;
                 text-align: right;
-                margin: 10px 15px 0 0;
+                margin: 15px 15px 0 0;
            }
            #text4{
                 /*border: 1px solid black;*/
@@ -165,6 +170,7 @@
                 font-size: 18px;
                 text-align: right;
                 margin-right: 15px;
+                margin-bottom: 5px;
            }
           
            #text5{
@@ -335,11 +341,16 @@
                 <article id="detailimg">
                     <article id="img">
                     	<div id="detailDday">D-${project.pDDay}</div>
+                    	<c:choose>
+                    	<c:when test="${ fn:contains(project.pMainImage, '_main') }">
                     	<img src="resources/images/projectImg/mainImg/${project.pMainImage}" id="mainImg">
-                   		
+                    	</c:when>
+                    	<c:otherwise>
                    		<div class="video-container video" style="TEXT-ALIGN: center; height: 100%;">
                    			<object type="text/html" width="100%" height="100%" data="//www.youtube.com/embed/${project.pMainImage}?&amp;autoplay=1&amp;loop=1" id="mainVideo"></object>
                    		</div>
+                   		</c:otherwise>
+                   		</c:choose>
                    		
                    		<%-- <video controls autoplay loop id="mainVideo">
                    			<source src="https://www.youtube.com/watch?v=${project.pMainImage}" type="video/mp4">
@@ -350,7 +361,7 @@
                 
                 <script>
                 	$(function(){
-                		
+                		/* console.log("${project.pArtistPFImage}");
                 		//var mainImg = "906_20191009165732_main.jpg";
                 		var mainImg = $("#mainImg").attr("src");
                 		console.log(mainImg);
@@ -359,7 +370,7 @@
                 			$("#mainImg").css("display","block");
                 		}else{
                 			$(".video").css("display","block");
-                		}
+                		} */
                 		
                 		
                 		/* 
@@ -387,12 +398,12 @@
                     </p>
                     <div id="profile">
                     
-                    <c:if test='${project.pArtistPFImage ne ""}'>
+                   <%--  <c:if test='${project.pArtistPFImage ne ""}'> --%>
                     	<img src="resources/images/projectImg/artistImg/${project.pArtistPFImage}" id="profileimg" width="60px" height="60px">
-                    </c:if>
+                   <%--  </c:if>
                     <c:if test='${project.pArtistPFImage eq ""}'>
                     	<i class="material-icons noImg">account_circle</i>
-                    </c:if>
+                    </c:if> --%>
                         
                         <p id="text2">${project.pArtistName }님 </p>
                     </div>
@@ -408,9 +419,24 @@
                         
                         <br>
                         <div id="text5">
-				                            목표금액인 ${project.pCommaGoal}원이 모이면 펀딩이 성공합니다. <br>
-				                            펀딩 성공시 예상 결제일은 ${project.pCloseDate } 입니다.
+				                           <%--  목표금액인 ${project.pCommaGoal}원이 모이면 펀딩이 성공합니다. <br>
+				                            펀딩 성공시 예상 결제일은 ${project.pCloseDate } 입니다. --%>
                         </div>
+                        
+                        <script>
+                        	var closeDate = "${project.pCloseDate }";
+                        	var goal = "${project.pCommaGoal}";
+                        	console.log(closeDate);
+                        	var str = closeDate.split("-");
+                        	
+                        	console.log(str[0]+"년 "+str[1]+"월 "+str[2]+"일");
+                        	
+                        	$("#text5").html(" 목표금액인 " + goal + "원이 모이면 펀딩이 성공합니다. <br> 펀딩 성공시 예상 결제일은 "+
+                        			str[0]+"년 "+str[1]+"월 "+str[2]+"일"+" 입니다.");
+                        </script>
+                        
+                        
+                        
                         
                         <button type="button" class="btn btn-primary btn-lg btn-block" id="supportbtn" onclick="location.href='detailSt.dr?page=2&pNo='+${project.pNo};">후 원 하 기</button>
                      
@@ -483,8 +509,6 @@
         </div>
 	
 	<script>
-	
-	
 	
 	/* 아티스트 이미지 클릭시 아티스트 마이페이지로 이동 */
 	$(function(){
@@ -624,37 +648,7 @@
 		      });
 		}
 			
-
-		
-		
-		
-		
-		
-		
 	</script>
 	
-	
-	<!-- <div class="container-fluid">
-		<div class="row sticky-top" id="navOuter">
-
-
-			<div class="col-md-2"></div>
-			<div class="col-md-6">
-				<ul class="nav">
-					<li class="nav-item"><a class="nav-link" href="#">펀딩</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">♥</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">알림</a></li>
-				</ul>
-			</div>
-			<div class="col-md-4">
-				<ul class="nav">
-					<li class="nav-item"><a class="nav-link" href="#">펀딩로그</a></li>
-				</ul>
-			</div>
-		</div>
-	</div>
- -->
-
-
 </body>
 </html>

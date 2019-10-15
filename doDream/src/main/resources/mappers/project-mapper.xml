@@ -149,12 +149,16 @@
 			PROJECT_TOTAL = DEFAULT
 		WHERE PROJECT_NO = #{pNo} 
 	</insert>
-	
+	<!-- 작성중인 프로젝트 내용 가져오는 쿼리 -->
+	<select id="selectCurrentProject" parameterType="_int" resultMap="projectResultSet">
+		SELECT * FROM PROJECT_TB 
+		WHERE PROJECT_NO = #{ pNo } 
+	</select>
 	<!-- 프로젝트 디테일 조회용 쿼리 -->
 	<select id="selectProject" parameterType="_int" resultMap="projectResultSet">
 		<!-- SELECT P.*, FLOOR(PROJECT_CLOSE_DT - SYSDATE) AS D_DAY FROM PROJECT_TB P
 		WHERE PROJECT_NO = #{ pNo }  -->
-		SELECT * FROM PROJECT_LIST_VIEW_3RD
+		SELECT * FROM PROJECT_DETAIL_VIEW_2ND
 		WHERE PROJECT_NO = #{ pNo }
 	</select>
 	
@@ -302,6 +306,11 @@
 		SELECT * FROM PROJECT_DETAIL_REWARD WHERE REWARD_REF_PNO=#{pno}
 	</select>
 	
+	<!-- 리워드 조회 쿼리 수정페이지용-->
+	<select id="selectCurrentReward" parameterType="_int" resultMap="rewardResultSet">
+		SELECT * FROM REWARD WHERE REWARD_REF_PNO = #{pNo} ORDER BY REWARD_NO ASC
+	</select>
+	
 	<!-- 프로젝트 등록 페이지 이동시 pNo를 생성해주는 쿼리  -->
 	<insert id="createProject">
 		INSERT INTO PROJECT_TB (PROJECT_NO, PROJECT_ST_NO) VALUES (SEQ_PROJ_NO.NEXTVAL, 0)
@@ -331,6 +340,11 @@
 		ORDER BY REWARD_NO ASC
 	</select>
 	
+	<!-- 리워드 삭제 쿼리문  -->
+	<delete id="deleteRewards" parameterType="_int">
+		DELETE FROM REWARD 
+		WHERE REWARD_REF_PNO = #{pNo}
+	</delete>
 	<!-- ========================Like============================ -->
 	
 	<!-- 좋아요 등록 -->
