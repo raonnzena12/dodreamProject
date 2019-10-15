@@ -100,7 +100,10 @@
 	</update>
 	
 	<!-- Social page -->
-
+	<select id="socialSelect" parameterType="_int" resultMap="memberResultSet">
+		SELECT * FROM USER_TB WHERE USER_NO = #{userNo}
+	</select>
+	
 	<!-- 네이버 로그인 -->
 	<select id="naverLogin" parameterType="string" resultMap="memberResultSet">
 		SELECT * FROM USER_TB

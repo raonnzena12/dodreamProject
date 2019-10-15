@@ -150,14 +150,23 @@
 </style>
 </head>
 <body>
+
 	<jsp:include page="../member/mypageHeader.jsp"/>
+	<c:if test="${ ! empty sessionScope.loginUser }">
 	<br>
 	<div class="container-fluid">
 		<br>
 		<div class="row">
 			<div class="col-md-2"></div>
 			<div class="col-md-8" id="myfundingsub">
-			<a id="sub1" href="myFundingList.dr?userNo=${loginUser.userNo}">내가	참여한</a> ｜ <a id="sub2" href="myOpenProjectList.dr?userNo=${loginUser.userNo}">내가 오픈한</a> ｜ <a id="sub3" href="myLikePRJList.dr?userNo=${loginUser.userNo}">내가 관심있는</a>
+			<c:if test="${loginUser.userNo eq social.pWriter}">
+			<a id="sub1" href="myFundingList.dr?userNo=${loginUser.userNo}">참여한</a> ｜ <a id="sub2" href="myOpenProjectList.dr?userNo=${loginUser.userNo}">오픈한</a> ｜ <a id="sub3" href="myLikePRJList.dr?userNo=${loginUser.userNo}">관심있는</a>
+			</c:if>
+			<c:if test="${! empty social }">
+			<c:if test="${loginUser.userNo ne social.pWriter}">
+			<a id="sub1" href="myFundingList.dr?userNo=${social.pWriter}">참여한</a> ｜ <a id="sub2" href="myOpenProjectList.dr?userNo=${social.pWriter}">오픈한</a> ｜ <a id="sub3" href="myLikePRJList.dr?userNo=${social.pWriter}">관심있는</a>
+			</c:if>
+			</c:if>
 			</div>
 			<div class="col-md-2"></div>
 		</div>
@@ -167,8 +176,8 @@
 			<div class="col-md-1"></div>
 			<div class="col-md-10 resultPrint">
 					<c:if test="${ empty pList }">
-						<div class="text-center">프로젝트 오픈 내역이 없습니다.<br>
-						모두를 두드릴 당신의 꿈을 보여주세요!</div>
+						<h4 class="text-center">프로젝트 오픈 내역이 없습니다.<br>
+						모두를 두드릴 당신의 꿈을 보여주세요!</h4>
 					</c:if>
 					<c:if test="${ fn:length(pList) >0 }">
 						<c:forEach var="pList" items="${ pList }">
@@ -255,6 +264,7 @@
 			</div>
 		<div class="col-md-1"></div>
 	</div>
+	</c:if>
 	
 	<script>
 		// 페이지 접속하면 currentPage = 1;

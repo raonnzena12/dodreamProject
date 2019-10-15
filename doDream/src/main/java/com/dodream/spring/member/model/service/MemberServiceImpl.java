@@ -207,4 +207,11 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 
+	@Override
+	public Member socialSelect(int userNo) {
+		
+		return mDao.socialSelect(userNo);
+	}
+
+
 }
