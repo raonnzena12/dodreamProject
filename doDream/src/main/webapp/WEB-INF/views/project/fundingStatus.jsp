@@ -149,6 +149,7 @@
 <!-- 가상 숫자패드 CSS/JS --> 
 <link rel="stylesheet" type="text/css" href="resources/css/jquery.numberKeypad.css">
 <script type="text/javascript" src="resources/js/jquery.numberKeypad.js"></script>
+<script type="text/javascript" src="resources/js/jquery.ajax-cross-origin.min.js"></script>
 </head>
 <body>
 <c:set var="aa" value="aa" />
@@ -600,7 +601,7 @@ function ajaxBilling() {
 	}
 	var customer_uid = "${ prj.pNo }" + "_" +"${ loginUser.userNo }" + "_" + result + "_" + $("#cardNo4").val();
 	$.ajax({
-		url: "http://localhost:8081/ajaxBillingServer",
+		url: "http://192.168.10.57:8081/ajaxBillingServer",
 		type: "POST",
 		data: { card_number: card_number,
 				expiry: expiry,
@@ -651,7 +652,7 @@ function ajaxCustomerUid(uid) {
 function ajaxDeleteBillingKey(num){
     var oldBKey = "${ rsv.bKey }";
     $.ajax({
-        url: "http://localhost:8081/deleteBKey",
+        url: "http://192.168.10.57:8081/deleteBKey",
         type: "POST",
         data: { customer_uid: oldBKey },
         error: function(e) { console.log(e); 

@@ -77,10 +77,12 @@
 					<a class="dropdown-item submenu" href="category.dr?cate=play"> - 연극</a>
 					<a class="dropdown-item submenu" href="category.dr?cate=art"> - 미술</a>
 					<a class="dropdown-item submenu" href="category.dr?cate=etc"> - 기타</a>
+					<div class="dropdown-divider"></div>
+          			<a class="dropdown-item" href="cCenter.dr">고객센터</a>
 				</div>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="insertFundForm.dr">펀딩 등록하기</a>
+				<a class="nav-link active" href="insertFundForm.dr">펀딩 등록하기</a>
 			</li>
 			<li class="nav-item dropdown">
 				<!-- <a class="nav-link dropdown" href="#" id="nbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
