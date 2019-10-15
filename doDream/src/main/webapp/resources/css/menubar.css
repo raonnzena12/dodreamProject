@@ -7,6 +7,17 @@
     height: 70px;
     width: auto;
 } 
+.mainBtn {
+	width: 200px;
+	height: 100px;
+	position: absolute;
+	z-index: 5000;
+	top: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+ 	cursor: pointer;
+}
 #mainLogoArea {
     display: block;
     float: left;
@@ -105,6 +116,7 @@ background-color: #8E44AD;
 #titleSearch  {
     border:none;
     text-align: right;
+    background-color: rgba(255,255,255,0);
 }
 #titleSearch:focus  {
     outline: none;
