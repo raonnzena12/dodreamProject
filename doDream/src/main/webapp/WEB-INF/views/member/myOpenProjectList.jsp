@@ -346,6 +346,7 @@
 			return num.toString().replace(regexp, ',');
 		}
 		
+		
 	    $(function(){
 			var menu = ${menu} + "";
 			
@@ -363,6 +364,14 @@
 			}
 		});
 	</script>
+	
+	<c:if test="${pList.pStatusNum ne 1 }">
+	<script>
+		$(document).on("click",".fundItem div:not(.heartIcon)", function(){
+		       location.href='detailSt.dr?pNo='+$(this).parent().attr("id");
+		  });
+	</script>
+	</c:if>
 
 </body>
 </html> 
