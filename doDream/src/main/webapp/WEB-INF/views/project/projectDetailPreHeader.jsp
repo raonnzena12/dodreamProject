@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>ProjectDetailHeader</title>
+<title>ProjectDetailPreHeader</title>
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <%@ include file = "../common/menubar.jsp" %>
        <style>
@@ -20,7 +20,7 @@
            		margin: 45px 0 10px 0;
            }
            #cgbox > #detailCG{
-           		width: 70px;
+           		width: 100%;
            		height: auto;
            		min-height: 30px;
            		font-size: 20px;
@@ -71,7 +71,7 @@
                width: 450px;
                height: 350px;
                clear: both;
-                display: block;
+               display: block;
            }
            #mainVideo{
                width: 450px;
@@ -88,6 +88,8 @@
            #detailcon > #text1{
                margin: 60px 0 0 13px;
                font-size: 22px;
+               height:auto;
+               min-height:80px;
            }
            #profile{
                width: 100%;
@@ -177,11 +179,13 @@
            }
           
            
-           #share{
+           .preShare{
                 font-size: 50px;
                 text-align: center;
                 color:#495057;
+                padding:0;
            }
+          
             .btn-group{
            		width:50px;
            		height:50px;
@@ -224,12 +228,23 @@
            		font-weight: bold;
            		text-align: center;
            		padding: 0 5px 0 5px;
-           		background-color: #8E44AD;
+           		background-color: gray;
            		color: white;
            		position:absolute;
            		top:0;
            		right:0;
+           		
+           	}
+           
            	
+           #noImg{
+               width: 450px;
+               height: 350px;
+               clear: both;
+               display: block;
+               border:1px solid gray;
+               text-align:center;
+               padding-top:160px;
            }
            
           
@@ -254,6 +269,9 @@
                     	<c:choose>
                     	<c:when test="${ fn:contains(project.pMainImage, '_main') }">
                     	<img src="resources/images/projectImg/mainImg/${project.pMainImage}" id="mainImg">
+                    	</c:when>
+                    	<c:when test="${ fn:contains(project.pMainImage, '') }">
+                    	<div id="noImg">이미지가 없습니다.</div>
                     	</c:when>
                     	<c:otherwise>
                    		<div class="video-container video" style="TEXT-ALIGN: center; height: 100%;">
@@ -299,6 +317,12 @@
                          <script>
                         	var closeDate = "${project.pCloseDate }";
                         	var goal = "${project.pCommaGoal}";
+                        	/* var noGoal = "${project.pGoal}";
+                        	
+                        	if(noGoal == 0){
+                        		 
+                        		
+                        	} */
                         	console.log(closeDate);
                         	var str = closeDate.split("-");
                         	
@@ -321,8 +345,8 @@
 		                                <i class="material-icons" id="favorite">favorite_border</i>
 		                        </div>
 	                      <div id="icon2">
-	                        <div class="btn-group "> 
-	                            <i class="material-icons btn btn-default">share</i>
+	                        <div class="btn-group"> 
+	                            <i class="material-icons btn btn-default preShare">share</i>
 	                        </div>
                         </div>
                        

@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>ProjectDetailStory</title>
+<title>ProjectDetailPreview</title>
 
        <style>
            
