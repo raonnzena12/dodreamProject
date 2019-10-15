@@ -26,7 +26,6 @@ public class HomeController {
 		
 		return "home";
 	}
-	
 	@RequestMapping(value = "adminHome.dr", method = RequestMethod.GET)
 	public String temp(HttpServletRequest request) {
 		
@@ -53,7 +52,5 @@ public class HomeController {
 		return "common/main";
 	}
 }
-
-
 
 
