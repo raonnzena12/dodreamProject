@@ -18,6 +18,11 @@
 <STYLE>
 #ReviewCon {
    width: 1200px; 
+   min-height: 700px;
+    
+}
+#ReviewCon1 {
+   width: 1200px; 
    min-height: 900px;
    height: auto;
 }
@@ -44,13 +49,56 @@
    color: #F39C12;
    float: left;
 }
+#nav {
+margin: auto;
+}
 
 .revdetailCategory1{
    text-align: right;
 }
 .jumbotron { padding: 0; }
 
-#dContent{ height: 500px; }
+#dContent{ height: 500px; height: auto; }
+
+/* 메뉴바 CSS */
+#mid-menu 
+{
+	border-top: 1px solid #ced4da;
+	border-bottom: 1px solid #ced4da;
+	background-color: rgba(255,255,255,0.9);
+	padding-top: 5px;
+}
+#detailnavpadding 
+{
+    padding-left: 80px;
+    width: 1000px;
+}
+#detailnav
+{
+    width: 1000px;
+    height: 70px;
+    margin: 0;
+    padding: 0;
+    float: left;
+    display: block;
+}
+#detailnav > div
+{
+    width: 100px;
+    height: 70px;
+    display: block;
+    float: left;
+    /* border: 1px solid black; */
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    padding-top:20px; 
+    font-weight: bold;
+}
+#detailnav > div:hover{
+	color: #8E44AD;
+	cursor: pointer;
+}
 </STYLE>
 </head>
 <body>
@@ -63,18 +111,25 @@
             </div>
          </div>
       </div>
+	</div>
+	<div class="sticky-top">
       <!-- 고객센터 메뉴바 -->
-      <div class="sticky-top row" style="background-color: white;">
-         <div class="col-md-12" id="cCenter_menu">
-            <ul class="nav" style="background-color: #E1F5A9; ">
-               <li class="nav-item"><a class="nav-link" href="notice.dr">      공지사항</a></li>
-               <li class="nav-item"><a class="nav-link" href="T_O_Service.dr"> 이용약관</a></li>
-               <li class="nav-item"><a class="nav-link" href="fReview.dr">     프로젝트 후기</a></li>
-               <li class="nav-item"><a class="nav-link" href="faq.dr">         FAQ</a></li>
-            </ul>
-         </div>
-      </div>
-      
+      <div class="row" id="mid-menu">
+            <div class="col-md-1"></div>
+            <div class="col-md-10" id="detailnavpadding">
+                <nav class="nav">
+                    <div class="container-fluid" id="detailnav">
+                        <div id="story" onclick="location.href='cCenter.dr'">공지사항</div>
+                        <div id="guide" onclick="location.href='T_O_Service.dr'">이용약관</div>
+                        <div id="community" onclick="location.href='fReview.dr'" style="color: rgb(142, 68, 173);">프로젝트 후기</div>
+                        <div id="reward" onclick="location.href='faq.dr'">FAQ</div>
+                    </div>
+                </nav>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+	</div>
+	<div class="container-fluid" id="ReviewCon1">
       <div class="row" id="Review_table">
          <div class="col-md-12"></div> 
       </div>
@@ -89,7 +144,7 @@
                <!-- 날짜 / 조회수  -->
                </div>
                <div class="revdetailCategory1">날짜 ${revdetail.revEnrollDate } / 조회수 : ${revdetail.revCount }</div>
-               <div class="revdetailCategory1"> http://www.dodream.com/detailSt.dr?pNo=54 해당 펀딩정보로 이동 </div>
+               <div class="revdetailCategory1"><a href="detailSt.dr?pNo=${revdetail.revRefPno}">해당 펀딩정보로 이동</a></div>
                
                <!-- 줄 -->
                <hr id=Review_bar>
@@ -97,10 +152,9 @@
                <!-- <img class="carevdetail-img-top" alt="Bootstrap Thumbnail First"
                   src="resources/img/아이콘1.PNG" style="padding: 10px; height: 400px"> -->
                <!-- 후기 내용 리스트 -->
-               ${revdetail.reviewTnImg}
+               <%-- ${revdetail.reviewTnImg} --%>
                <c:if test="${ !empty revdetail }">
                   <div id="dContent">
-                     내용
                      ${revdetail.revContent}
                   </div>
                </c:if>

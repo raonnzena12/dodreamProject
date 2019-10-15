@@ -8,13 +8,23 @@
 <%@ include file="../common/menubar.jsp"%>
 <link rel="stylesheet" href="resources/css/fReview.css">
 <style>
+#ReviewCon {
+   width: 1200px; 
+   min-height: 700px;
+   
+}
+#ReviewCon1 {
+   width: 1200px; 
+   min-height: 900px;
+   height: auto;
+}
 .fundItem {
    cursor: pointer;
 } 
-
+ 
 #categoryTop {
    border-bottom: 1px solid #ddd;
-}
+}  
 
 #categoryArea input[type=radio] {
    display: none; 
@@ -258,6 +268,46 @@
 #img, #Name {
    padding: 10px;
 }
+/* 메뉴바 CSS */
+#mid-menu 
+{
+	border-top: 1px solid #ced4da;
+	border-bottom: 1px solid #ced4da;
+	background-color: rgba(255,255,255,0.9);
+	padding-top: 5px;
+}
+#detailnavpadding 
+{
+    padding-left: 80px;
+    width: 1000px;
+}
+#detailnav
+{
+    width: 1000px;
+    height: 70px;
+    margin: 0;
+    padding: 0;
+    float: left;
+    display: block;
+}
+#detailnav > div
+{
+    width: 100px;
+    height: 70px;
+    display: block;
+    float: left;
+    /* border: 1px solid black; */
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    padding-top:20px; 
+    font-weight: bold;
+}
+#detailnav > div:hover{
+	color: #8E44AD;
+	cursor: pointer;
+}
+
 </style>
 <!-- mojs(좋아요 클릭시 효과) 추가 -->
 <script src="https://cdn.jsdelivr.net/npm/@mojs/core"></script>
@@ -265,196 +315,127 @@
 <body>
    <c:url var="keywordSearch" value="tmptmp" />
    <section id="category">
-      <div class="container-fluid" id="ReviewCon">
-         <div class="row">
-            <div class="col-md-12" align="center">
-               <div class="jumbotron">
-                  <img src="resources/images/backgroundImg/배경로고시안 (2).png"
-                     style="width: 100%">
-               </div>
+	<div class="container-fluid" id="ReviewCon">
+      <!-- 후기 상세 - 메인로고 -->
+      <div class="row">
+         <div class="col-md-12" align="center">
+            <div class="jumbotron">
+            <img src="resources/images/backgroundImg/art2.jpeg" style="width: 100%">
             </div>
          </div>
-         <div class="sticky-top row" style="background-color: white;">
-            <div class="col-md-12" id="cCenter_menu">
-               <ul class="nav" style="background-color: #E1F5A9;">
-                  <li class="nav-item"><a class="nav-link" href="cCenter.dr">공지사항</a></li>
-                  <li class="nav-item"><a class="nav-link"
-                     href="T_O_Service.dr">이용약관 </a></li>
-                  <li class="nav-item"><a class="nav-link" href="fReview.dr">프로젝트
-                        후기</a></li>
-                  <li class="nav-item"><a class="nav-link" href="faq.dr">FAQ</a></li>
-
-               </ul>
+      </div>
+	</div>
+	<div class="sticky-top">
+      <!-- 고객센터 메뉴바 -->
+      <div class="row" id="mid-menu">
+            <div class="col-md-1"></div>
+            <div class="col-md-10" id="detailnavpadding">
+                <nav class="nav">
+                    <div class="container-fluid" id="detailnav">
+                        <div id="story" onclick="location.href='cCenter.dr'" >공지사항</div>
+                        <div id="guide" onclick="location.href='T_O_Service.dr'">이용약관</div>
+                        <div id="community" onclick="location.href='fReview.dr'" style="color: rgb(142, 68, 173);">프로젝트 후기</div>
+                        <div id="reward" onclick="location.href='faq.dr'">FAQ</div>
+                    </div>
+                </nav>
             </div>
-         </div>
-         <div class="row" id="Review_table">
-            <div class="col-md-12"></div>
-         </div>
-         <h3>프로젝트 후기</h3>
-         <hr id=Review_bar>
-         <div class="container-fluid clearfix" id="categoryTop">
-            <div class="row">
-
-               <div id="categoryTopMenu">
-                  <div id="categoryArea" class="my-5">
-                     <input type="radio" name="category" id="total" value="total" checked><label for="total">전체</label> 
-                     <input type="radio" name="category" id="music" value="music"><label   for="music">음악</label> 
-                     <input type="radio" name="category"   id="movie" value="movie"><label for="movie">영화</label> 
-                     <input type="radio" name="category" id="play" value="play"><label for="play">연극</label> 
-                     <input type="radio" name="category" id="art" value="art"><label for="art">미술</label> 
-                     <input type="radio" name="category" id="etc" value="etc"><label for="etc">ETC</label>
-                  </div>
-               </div>
-
-            </div>
-
-            <div class="container-fluid" id="categoryResult">
-               <div class="row">
-
-                  <div>
-                     <div class="resultPrint">
-                        <c:forEach var="rev" items="${ revList }">
-                           <div>
-
-
-                              <div class="fundCon">
-
-
-                                 <div class="fundItem" id="${ rev.revNo }">
-
-
-                                    <div class="fundImg">
-
-
-                                       <img src="/spring/resources/images/summernoteimg/${ rev.reviewTnImg }">
-                                       <!-- <img src="resources/images/backgroundImg/배경로고시안 (2).png" style="width: 100%"> -->
-
-                                    </div>
-
-
-                                    <div class="nameArea">
-
-
-                                       <p class="categoryName mb-0">${ rev.revCatName }</p>
-
-
-                                       <!-- 카테고리 -->
-
-                                       <!-- 부제목 -->
-                                       <p class="fundName">${ rev.revTitle }
-                                       </p>
-
-                                       <!-- 부제목 -->
-                                       <span class="fundName">${ rev.revSubTitle }</span>
-
-
-                                    </div>
-
-
-
-                                    <div class="detailArea my-1"></div>
-
-                                 </div>
-
-
-                              </div>
-                           </div>
-                        </c:forEach>
-                     </div>
-                     <div class="text-center">
-                        <img src="resources/images/loadingSpin.gif" id="loadingImg">
-                     </div>
-                  </div>
-
-               </div>
-            </div>
-   </section>
-   <script>
+            <div class="col-md-1"></div>
+        </div>
+	</div>
+	<div class="container-fluid" id="ReviewCon1">
+	   <div class="row" id="Review_table">
+	      <div class="col-md-12"></div>
+	   </div>
+	   <h3>프로젝트 후기</h3>
+	   <hr id=Review_bar>
+	   <div class="container-fluid clearfix" id="categoryTop">
+	      <div class="row">
+	         <div id="categoryTopMenu">
+	            <div id="categoryArea" class="my-5">
+	               <input type="radio" name="category" id="total" value="total" ${ (empty cate || cate == 'total')? 'checked':''  } ><label for="total">전체</label> 
+	               <input type="radio" name="category" id="music" value="music" ${ ( cate == 'music')? 'checked':''  }>        <label for="music">음악</label> 
+	               <input type="radio" name="category" id="movie" value="movie" ${ ( cate == 'movie')? 'checked':''  }>        <label for="movie">영화</label> 
+	               <input type="radio" name="category" id="play"  value="play" ${ ( cate == 'play')? 'checked':''  }>         <label for="play" >연극</label> 
+	               <input type="radio" name="category" id="art"   value="art" ${ ( cate == 'art')? 'checked':''  }>          <label for="art"  >미술</label> 
+	               <input type="radio" name="category" id="etc"   value="etc" ${ ( cate == 'etc')? 'checked':''  }>          <label for="etc"  >ETC</label>
+	            </div>
+	         </div>
+	      </div>
+	<div class="container-fluid" id="categoryResult">
+	   <div class="row">
+	      <div>
+	         <div class="resultPrint">
+	            <c:forEach var="rev" items="${ revList }">
+	               <div>
+	                  <div class="fundCon">
+	                     <div class="fundItem" id="${ rev.revNo }">
+	                        <div class="fundImg">
+	                           <img src="/spring/resources/images/summernoteimg/${ rev.reviewTnImg }">
+	                           <!-- <img src="resources/images/backgroundImg/배경로고시안 (2).png" style="width: 100%"> -->
+	                        </div>
+	
+	                        <div class="nameArea">
+	                           <p class="categoryName mb-0">${ rev.revCatName }</p>
+	
+	                           <!-- 카테고리 -->
+	                           <!-- 부제목 -->
+	                           <p class="fundName">${ rev.revTitle }
+	                           </p>
+	
+	                           <!-- 부제목 -->
+	                           <span class="fundName">${ rev.revSubTitle }</span>
+	                        </div>
+	                        <div class="detailArea my-1"></div>
+	                     </div>
+	                  </div>
+	               </div>
+	            </c:forEach>
+	         </div>
+	         <div class="text-center">
+	            <img src="resources/images/loadingSpin.gif" id="loadingImg">
+	         </div>
+	      </div>
+	   </div>
+	</div>
+	</div>
+	</div>
+</section>
+<script>
 // 페이지 접속하면 currentPage = 1;
 var currentPage = 1;
 var maxPage = ${ pi.maxPage };
 
-   // 좋아요 누르는 함수 만들것
+// 좋아요 누르는 함수 만들것
 $(function() {
-   // 리뷰 좋아요 체크하는 함수
-   $(document).on("click",".heartIcon", function(e){
-      // if ( ${ empty loginUser } ) {
-      //     Swal.fire( '로그인이 필요합니다!', '좋아요를 누르기 전 로그인을 해주세요!', 'warning' );
-      //     return false;
-      // }
-      var icheck = $(this).children().text();
-      var fno = $(this).parent().parent().attr("id");
-      if ( icheck == 'favorite_border') {
-            $(this).children().text('favorite');
-            $("body div[data-name='mojs-shape']").css({"z-index":"0","cursor":"pointer"});
-            const coords = { x: $(this).offset().left+15, y: $(this).offset().top+18};
-            burst.tune(coords).replay();
-            circle.tune( coords ).replay();
-            /* 이펙트 실행후 이펙트 플레이 div를 아래로 숨겨준다 */
-            setTimeout(function(){
-            $("body div[data-name='mojs-shape']").css({"z-index":"-10","cursor":"pointer"});
-            },800);
-      } else {
-            $(this).children().text('favorite_border');
-      }
-   });
    $(document).on("click",".fundItem div:not(.heartIcon)", function(){
       // console.log($(this).parent().attr("id"));
       location.href='fReviewDetail.dr?revNo='+$(this).parent().attr("id");
    });
 
 });
-function loadList() {
 
-}
 // 펀드 리스트 출력하는 함수(수정중)
 function printFunds(list) {
+	console.log("프린트펀드즈 호출");
+	console.log(list);
    var $resultPrint = $(".resultPrint");
 
    $.each(list, function(i){
       var $conDiv = $("<div>");
       // 펀딩 인덱스 아이디로 추가할 것
       var $fundCon = $("<div>").addClass("fundCon");
-      var $fundItem = $("<div>").addClass("fundItem").attr("id",list[i].pNo);
+      var $fundItem = $("<div>").addClass("fundItem").attr("id",list[i].revNo);
       var $fundImg = $("<div>").addClass("fundImg");
       // 이미지 url 지정할것
-      var $img = $("<img>").attr("src", "resources/images/projectImg/thumbnail/"+list[i].pThumbImage);
+      var $img = $("<img>").attr("src", "resources/images/summernoteimg/"+list[i].reviewTnImg);
       $fundImg.append($img);
       var $nameArea = $("<div>").addClass("nameArea");
       // 들어갈 텍스트들 지정할 것
-      var $categoryName = $("<p>").addClass("categoryName mb-0").text(list[i].pCategoryName);
-      var $fundName = $("<span>").addClass("fundName").text(list[i].pTitle);
+      var $categoryName = $("<p>").addClass("categoryName mb-0").text(list[i].revCatName);
+      var $fundName = $("<p>").addClass("fundName").text(list[i].revTitle);
+      var $fundName = $("<span>").addClass("fundName").text(list[i].revSubTitle);
       $nameArea.append($categoryName,$fundName);
-      // 하트 누른 값에따라 채워진 하트/빈하트 구분
-      var $heartIcon = $("<div>").addClass("heartIcon");
-      var $heart_fund = $("<i>").addClass("material-icons heart-fund")
-      if ( list[i].heart == 1 ) { // 좋아요 찍은 내력이 있을 시 꽉찬 하트를 프린트한다
-         $heart_fund.text("favorite");
-      } else { // 내역이 없을 시 빈하트를 프린트한다
-         $heart_fund.text("favorite_border");
-      }
-      $heartIcon.append($heart_fund);
-      var $detailArea = $("<div>").addClass("detailArea my-1");
-      var $detailText = $("<span>").addClass("detailText")/*.text(list[i].pSummaryText)*/;
-      $detailArea.append($detailText);
-      var $chartArea = $("<div>").addClass("chartArea px-3 mt-2");
-      var $chartInfo = $("<div>").addClass("chartInfo clearfix")
-      var $chartInfo1 = $("<span>").addClass("chartInfo1").text("￦"+addComma(list
-
-[i].pCurrentFunding));
-      var $chartInfo2 = $("<span>").addClass("chartInfo2").text(Math.floor((list[i].pCurrentFunding/list
-
-[i].pGoal)*100)+"%");
-      $chartInfo.append($chartInfo1, $chartInfo2);
-      var $chartBar = $("<div>").addClass("chartBar");
-      // 진행바 가로길이 지정
-      var $purpleBar = $("<div>").addClass("purpleBar").css("width", (list[i].pCurrentFunding/list
-
-[i].pGoal)*100+"%");
-      $chartBar.append($purpleBar);
-      var $chartDate = $("<div>").addClass("chartDate").text(list[i].pDDay+"일 남음");
-      $chartArea.append($chartInfo,$chartBar,$chartDate);
-      $fundItem.append($fundImg,$nameArea,$heartIcon,$detailArea,$chartArea);
+      $fundItem.append($fundImg,$nameArea);
       $fundCon.append($fundItem);
       $conDiv.append($fundCon);
       $resultPrint.append($conDiv);
@@ -466,39 +447,33 @@ function addComma(num) {
   return num.toString().replace(regexp, ',');
 }
 
+// 후기 카테고리별 리스트 호출
 function listLoading() {
-   if ( currentPage == maxPage ) {
+   if ( currentPage > maxPage ) {
       console.log(currentPage);
       return false;
    }
-   // console.log("curP: " +currentPage);
-   // console.log("maxP: " +maxPage);
    currentPage += 1;
    var selectCate = $("input[name=category]:checked").val();
 
    console.log("리스트 로딩중 " + selectCate);
    
    $.ajax({
-      url: "fReview.dr",
+      url: "revListByAjax.dr",
       type: "GET",
       data: { page: currentPage,
               cate: selectCate },
       dataType: "json",
-      error: function(e){
-         console.log(e);
-      },
       success: function(revList){
          printFunds(revList);
-      }
+      },
+      error: function(e){
+          console.log(e);
+      }  
    });
 }
 $(function(){
    $(window).scroll(function(){   //스크롤이 최하단 으로 내려가면 리스트를 조회하고 page를 증가시킨다.
-      // console.log($(window).scrollTop());
-      // console.log($(document).height());
-      // console.log($(window).height());
-      // console.log($(document).height() - $(window).height());
-      // console.log($(window).scrollTop() >= ($(document).height() - $(window).height() - 0.5));
       if($(window).scrollTop() >= ($(document).height() - $(window).height()-0.5 ) ) {
          if ( currentPage == maxPage ) return false;
          var oldDocHei = $(document).height();
@@ -510,27 +485,20 @@ $(function(){
          },500);
       } 
    });
-   $("#categoryArea input").on("change", function(){
+   // 카테고리 검색 정렬
+   $("#categoryTopMenu input").on("change", function(){
+	  console.log("tlwkr");
+	  currentPage = 1;
+	  currentPage += 0;
       var selectCate = $("input[name=category]:checked").val();
-      currentPage = 1;
-      $.ajax({
-         url: "fReview.dr",
-         data: { cate: selectCate,
-                 page: currentPage },
-         dataType: "JSON",
-         error: function(e){ console.log(e); },
-         success: function(revList) {
-            $(".resultPrint").html("");
-            printFunds(revList);
-         }
-      });
+      location.href='fReview.dr?cate='+selectCate+'&page='+currentPage;
    });
 
 })
 
 </script>
 
-   <script>
+<!-- <script>
    const CIRCLE_RADIUS = 20;
    const RADIUS = 32;
    const circle = new mojs.Shape({
@@ -560,6 +528,6 @@ $(function(){
        easing:       'quint.out'
      }
    });
-</script>
+</script> -->
 </body>
 </html>
