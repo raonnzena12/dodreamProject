@@ -170,8 +170,8 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public int openProject(int pNo) {
-		return aDao.openProject(pNo);
+	public int openProject(Project prj) {
+		return aDao.openProject(prj);
 	}
 
 	@Override

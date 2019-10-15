@@ -35,6 +35,7 @@ public class Project {
 	private int pUserCount; // 프로젝트 후원자 수
 	private int iLike; 
 	private int additional; // 추가 후원금
+	private int termDate;  // 기간
 	
 	public Project() {}
 
@@ -75,6 +76,14 @@ public class Project {
 		this.pCount = pCount;
 		this.pOpenCount = pOpenCount;
 		this.pUserCount = pUserCount;
+	}
+	
+	public int getTermDate() {
+		return termDate;
+	}
+
+	public void setTermDate(int termDate) {
+		this.termDate = termDate;
 	}
 
 	public int getAdditional() {
