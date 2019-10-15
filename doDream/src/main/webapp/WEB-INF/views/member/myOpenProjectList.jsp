@@ -235,8 +235,20 @@
 												<span class="fundName"><a href="selectCurrentProject.dr?pNo=${pList.pNo }">제목없음</a> </span>
 												</c:if>										
 											</c:when>
+											<c:when test="${pList.pStatusNum eq 4 }">
+												<span class="fundName"> <a href="detailSt.dr?pNo=${pList.pNo }">${ pList.pTitle }</a> </span>
+											</c:when>
+											<c:when test="${pList.pStatusNum eq 5 }">
+												<span class="fundName"> <a href="detailSt.dr?pNo=${pList.pNo }">${ pList.pTitle }</a> </span>
+											</c:when>
+											<c:when test="${pList.pStatusNum eq 6 }">
+												<span class="fundName"> <a href="detailSt.dr?pNo=${pList.pNo }">${ pList.pTitle }</a> </span>
+											</c:when>
+											<c:when test="${pList.pStatusNum eq 7 }">
+												<span class="fundName"> <a href="detailSt.dr?pNo=${pList.pNo }">${ pList.pTitle }</a> </span>
+											</c:when>
 											<c:otherwise>
-												<span class="fundName"> ${ pList.pTitle } </span>
+												<span class="fundName">${ pList.pTitle } </span>
 											</c:otherwise>
 											</c:choose>
 										</div>
@@ -246,7 +258,7 @@
 										<div class="chartArea px-3 mt-2">
 											<div class="chartInfo clearfix">
 												<c:choose>
-													<c:when test="${pList.pStatusNum eq 1 }">
+													<c:when test="${pList.pStatusNum < 4 }">
 														<span class="chartInfo1">&nbsp;</span>													
 													</c:when>
 													<c:otherwise>
@@ -255,25 +267,34 @@
 													</c:otherwise>
 												</c:choose>
 											</div>
+											<c:choose>
+											<c:when test="${pList.pStatusNum < 3 }">
+												<div></div>
+											</c:when>
+											<c:when test="${pList.pStatusNum eq 3 }">
+												<div>
+												<button class="btn-sm btn-warning" id="openPRJ" project = "${pList.pNo}">프로젝트오픈하기</button>
+												</div>
+											</c:when>
+											<c:when test="${ ((pList.pCurrentFunding / pList.pGoal) * 100) < 100 }">
 											<div class="chartBar">
-												<c:choose>
-													<c:when test="${pList.pStatusNum eq 1 }">
-														<div></div>
-													</c:when>
-													<c:when test="${ ((pList.pCurrentFunding / pList.pGoal) * 100) < 100 }">
-														<div class="purpleBar"style="width:${ (pList.pCurrentFunding / pList.pGoal) * 100 }%"></div>
-													</c:when>
-													<c:otherwise>
-														<div class="purpleBar"></div>
-													</c:otherwise>
-												</c:choose>
+												<div class="purpleBar"style="width:${ (pList.pCurrentFunding / pList.pGoal) * 100 }%"></div>
 											</div>
+											</c:when>
+											<c:otherwise>
+											<div class="chartBar">
+												<div class="purpleBar"></div>
+											</div>
+											</c:otherwise>
+											</c:choose>
 											<c:choose>
 												<c:when test="${pList.pStatusNum eq 1 }">
 													<div class="chartDate">미등록</div>
 												</c:when>
 												<c:when test="${ pList.pDDay > 0 }">
+													<c:if test="${pList.pStatusNum ne 3 }">
 													<div class="chartDate">${ pList.pDDay }일남음</div>
+													</c:if>
 												</c:when>
 												<c:otherwise>
 													<div class="chartDate">펀딩 종료</div>
@@ -363,15 +384,29 @@
 				$("#sub1").addClass("active");
 			}
 		});
+	    
+	    $("#openPRJ").click(function(){
+	    	var project = $(this).attr("project");
+			var ck = confirm("해당 프로젝트를 오픈합니다.");
+			
+			if(ck == true){
+				$.ajax({
+					url:"unfollow.dr",
+					type: "post",
+					data: {followNo:followNo, followerNo:followerNo},
+					success:function(result){
+						if(result>0){
+							alert("언팔로우 되었습니다.");
+							location.reload();
+						}
+					}
+				});	
+			}else{
+				return false;
+			}
+	    });
 	</script>
-	
-	<c:if test="${pList.pStatusNum ne 1 }">
-	<script>
-		$(document).on("click",".fundItem div:not(.heartIcon)", function(){
-		       location.href='detailSt.dr?pNo='+$(this).parent().attr("id");
-		  });
-	</script>
-	</c:if>
+
 
 </body>
 </html> 
