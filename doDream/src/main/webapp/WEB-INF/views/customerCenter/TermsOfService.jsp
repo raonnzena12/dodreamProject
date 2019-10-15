@@ -104,7 +104,7 @@
       <div class="row">
          <div class="col-md-12" align="center">
             <div class="jumbotron">
-            <img src="resources/images/backgroundImg/art2.jpeg" style="width: 100%">
+            <img src="resources\images\backgroundImg\배경로고시안 (2).png" style="width: 100%">
             </div>
          </div>
       </div>

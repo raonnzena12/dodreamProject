@@ -23,8 +23,7 @@ public class NoticeServiceImpl implements NoticeService {
 		
 		int listCount = noticeDao.noticeListCount();
 		PageInfo pi = centerpageInfo.getcenterpageInfo(currentPage, listCount);
-		System.out.println("페이징");
-		System.out.println(pi);
+		
 		ArrayList<Notice> noticeList =  noticeDao.selectList(pi);
 		return noticeList;
 		

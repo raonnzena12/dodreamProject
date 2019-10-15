@@ -34,7 +34,7 @@ public class FaqController {
 		int currentPage = ( page == null ) ? 1 : page; // 페이지 체크 
 		
 		ArrayList<Faq> fList = faqService.selectList(currentPage);
-		System.out.println(fList);
+
 		// 조회 성공시
 		if (fList != null) {
 			mv.addObject("fList", fList);
@@ -56,11 +56,8 @@ public class FaqController {
 	public ArrayList<Faq> faqListByAjax(Integer page, HttpServletRequest request) {
 		int currentPage = ( page == null ) ? 1 : page;
 		
-		System.out.println("faq ajax 도착");
-		
 		ArrayList<Faq> fList = faqService.selectList(currentPage);
-		System.out.println("컨트롤");
-		System.out.println(fList);
+		
 		return fList;
 	}
 	
@@ -72,17 +69,7 @@ public class FaqController {
 	@RequestMapping("nsearch.dr")
 	public String noticeSearch(Search search, Model model) {
 
-		System.out.println(search.getSearchCondition());
-		System.out.println(search.getSearchValue());
-		System.out.println(search.getExistFile());
-		// 체크 O : on
-		// 체크 X : null
-
 		ArrayList<Faq> searchList = faqService.searchList(search);
-
-		for (Faq f : searchList) {
-			System.out.println(f);
-		}
 
 		model.addAttribute("fList", searchList);
 		model.addAttribute("search", search);

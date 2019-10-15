@@ -24,8 +24,9 @@ public class FaqServiceImpl implements FaqService {
 	public ArrayList<Faq> selectList(int currentPage) {
 		int listCount = faqDao.faqListCount();
 		PageInfo pi = centerpageInfo.getcenterpageInfo(currentPage, listCount);
+		
 		ArrayList<Faq> faqList =  faqDao.selectList(pi);
-		System.out.println(faqList);
+		
 		return faqList;
 	} 
 

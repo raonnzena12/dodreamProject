@@ -36,8 +36,7 @@ public class FReviewDao {
       
 		// RowBounds는 ibatis의 속성이며, ibatis는 mybatis의 이전 버전이다.
 		RowBounds rowBounds = new RowBounds(offset, pi.getLimit());
-		System.out.println("여긴 dao로 db 가기전 테스트");
-		System.out.println(rowBounds);
+
 		return (ArrayList) sqlSession.selectList("centerMapper.selectfrList", kategorie, rowBounds);
    }
 
@@ -72,28 +71,17 @@ public class FReviewDao {
    }
 
    public Review selectReview(int revNo) {
-      System.out.println("DAO까지 성공");
-      return sqlSession.selectOne(
-            "centerMapper.selectRevDetail", revNo);
+      
+      return sqlSession.selectOne("centerMapper.selectRevDetail", revNo);
    }
 
-   public ArrayList<Project> selectPrjList(String category, PageInfo pi) {
+   public ArrayList<Review> selectPrjList(String category, PageInfo pi) {
 
       // 페이징 처리가 적용된 목록 조회
       // -> MyBatis RowBounds 사용
       
       // offset : 몇개의 게시글을 건너 뛰고 조회를 할 건지에 대한 계산
  
-      /* 
->>>>>>> refs/remotes/origin/master
-      int offset = ( pi.getCurrentPage() - 1 ) * pi.getLimit();
-      RowBounds rowBounds = new RowBounds(offset, pi.getLimit());
-<<<<<<< HEAD
-      
-      return (ArrayList)sqlSession.selectList("centerMapper.selectrevList", category, rowBounds);
-=======
-      */
-      System.out.println("dao 전달");
       return (ArrayList)sqlSession.selectList("centerMapper.selectfrList", category);
 
    }
@@ -102,10 +90,4 @@ public class FReviewDao {
       
       return sqlSession.selectOne("centerMapper.countList");
    }
-
-   public ArrayList<Review> selectfrevList(FilteringList filter, PageInfo pi) {
-      // TODO Auto-generated method stub
-      return null;
-   }
-
 }

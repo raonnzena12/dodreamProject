@@ -107,7 +107,7 @@ margin: auto;
       <div class="row">
          <div class="col-md-12" align="center">
             <div class="jumbotron">
-            <img src="resources/images/backgroundImg/art2.jpeg" style="width: 100%">
+            <img src="resources\images\backgroundImg\배경로고시안 (3).png" style="width: 100%">
             </div>
          </div>
       </div>
@@ -137,14 +137,14 @@ margin: auto;
          <div class="col-md-12">
 
                <div style="text-align: center;">
-               <h2> 제목 들어가는 곳 : ${revdetail.revTitle} </h2>
+               <h2>${revdetail.revTitle} </h2>
                </div>
-               <div style="text-align: center;"><h4>"부제목 들어가는 곳" : ${revdetail.revSubTitle}</h4></div>
-               <div id="revdetailCategory"><b>카테고리명 : ${revdetail.revCatName}</b>
+               <div style="text-align: center;"><h4>${revdetail.revSubTitle}</h4></div>
+               <div id="revdetailCategory"><b>${revdetail.revCatName}</b>
                <!-- 날짜 / 조회수  -->
                </div>
                <div class="revdetailCategory1">날짜 ${revdetail.revEnrollDate } / 조회수 : ${revdetail.revCount }</div>
-               <div class="revdetailCategory1"><a href="detailSt.dr?pNo=${revdetail.revRefPno}">해당 펀딩정보로 이동</a></div>
+               <div class="revdetailCategory1"><a href="detailSt.dr?pNo=${revdetail.revRefPno}">해당 프로젝트 정보로 이동</a></div>
                
                <!-- 줄 -->
                <hr id=Review_bar>

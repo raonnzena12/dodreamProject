@@ -52,12 +52,9 @@ public class NoticeController {
    @RequestMapping("noticeListByAjax.dr")
 	public ArrayList<Notice> noticeListByAjax(Integer page, HttpServletRequest request) {
 		int currentPage = ( page == null ) ? 1 : page;
-		
-		System.out.println("notice ajax 도착");
-		
+	
 		ArrayList<Notice> nList = noticeService.selectList(currentPage);
-		System.out.println("컨트롤");
-		System.out.println(nList);
+		
 		return nList;
 	}
 }
