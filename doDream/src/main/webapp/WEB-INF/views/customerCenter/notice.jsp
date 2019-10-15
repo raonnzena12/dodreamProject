@@ -18,6 +18,16 @@
 
 
 <STYLE>
+#ReviewCon {
+   width: 1200px; 
+   min-height: 700px;
+   
+}
+#ReviewCon1 {
+   width: 1200px; 
+   min-height: 900px;
+   height: auto;
+}
 #noticeCon {
 	width: 1200px;
 	min-height:900px;
@@ -49,50 +59,109 @@
    height: auto;
    opacity: 0;
 }
+
+/* 메뉴바 CSS */
+#mid-menu 
+{
+	border-top: 1px solid #ced4da;
+	border-bottom: 1px solid #ced4da;
+	background-color: rgba(255,255,255,0.9);
+	padding-top: 5px;
+}
+#detailnavpadding 
+{
+    padding-left: 80px;
+    width: 1000px;
+}
+#detailnav
+{
+    width: 1000px;
+    height: 70px;
+    margin: 0;
+    padding: 0;
+    float: left;
+    display: block;
+}
+#detailnav > div
+{
+    width: 100px;
+    height: 70px;
+    display: block;
+    float: left;
+    /* border: 1px solid black; */
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    padding-top:20px; 
+    font-weight: bold;
+}
+#detailnav > div:hover{
+	color: #8E44AD;
+	cursor: pointer;
+}
+/* .card-header:hover{
+	color: #8E44AD;
+} */
+.accBtn{
+	padding: .75rem 1.25rem;
+    margin-bottom: 0;
+    /* border-bottom: 5px solid #8E44AD; */
+}
+.accBtn1{
+color : #8E44AD;
+}
 </STYLE>
 </head>
 <body>
 
-	<section id="category">
-	<div class="container-fluid" id="noticeCon">
-		<div class="row">
-			<div class="col-md-12" align="center">
-				<div id=mounImage class="jumbotron">
-					<img src="resources/images/backgroundImg/배경로고시안 (3).png" style="width: 100%">
-				</div>
-			</div>
-		</div>
-		<div class="sticky-top row">
-			<div class="col-md-12 " >
-				<ul class="nav" style="background-color: #E1F5A9; ">
-					<li class="nav-item"><a class="nav-link active" href="cCenter.dr">공지사항</a>
-					</li>
-					<li class="nav-item"><a class="nav-link" href="T_O_Service.dr">이용약관</a></li>
-					<li class="nav-item"><a class="nav-link " href="fReview.dr">프로젝트 후기</a></li>
-					<li class="nav-item"><a class="nav-link " href="faq.dr">FAQ</a></li>
-
-				</ul>
-			</div>
-		</div>
+<section id="category">
+	<div class="container-fluid" id="ReviewCon">
+      <!-- 후기 상세 - 메인로고 -->
+      <div class="row">
+         <div class="col-md-12" align="center">
+            <div class="jumbotron">
+            <img src="resources/images/backgroundImg/art2.jpeg" style="width: 100%">
+            </div>
+         </div>
+      </div>
+	</div>
+	<div class="sticky-top">
+      <!-- 고객센터 메뉴바 -->
+      <div class="row" id="mid-menu">
+            <div class="col-md-1"></div>
+            <div class="col-md-10" id="detailnavpadding">
+                <nav class="nav">
+                    <div class="container-fluid" id="detailnav">
+                        <div id="story" onclick="location.href='cCenter.dr'" style="color: rgb(142, 68, 173);">공지사항</div>
+                        <div id="guide" onclick="location.href='T_O_Service.dr'">이용약관</div>
+                        <div id="community" onclick="location.href='fReview.dr'">프로젝트 후기</div>
+                        <div id="reward" onclick="location.href='faq.dr'">FAQ</div>
+                    </div>
+                </nav>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+	</div>
+	<div class="container-fluid" id="ReviewCon1">
 		<div class="row" id="notice_table">
 			<div class="col-md-12" id="cCenter_menu">
 				<h3>공지사항</h3>
 				<hr id=notice_bar>
 				<!-- 공지사항 제목, 내용부분 / 악코디언 부분 -->
-				<div id="resultPrint card-611390"><!-- 내용을 묶는 틀 -->
+				<div id="card-611390" class="resultPrint"><!-- 내용을 묶는 틀 -->
 					<c:forEach var="n" items="${ nList }">
-						<div class="card">
+						<div class="card" style="margin-bottom: 10px">
 						
-							<div class="card-header">
-								<a class="card-link collapsed" href="#card-${n.nNo}" target="#card-${n.nNo}"
-									data-toggle="collapse"> 
-									${n.nTitle}
+							<div class="accBtn ">
+								<a class="card-link collapsed" href="#card-${n.nNo}" target="#card-${n.nNo}" data-toggle="collapse"> 
+									<b class="accBtn1">${n.nTitle}</b>
 								</a>
 							</div>
 							<div class="collapse content" id="card-${n.nNo}">
 								<div class="card-body">${n.nContent }</div>
 							</div>
 						</div>
+						
 					</c:forEach>
 				</div>
 				<div class="text-center">
@@ -137,15 +206,15 @@ var $resultPrint = $(".resultPrint");
    var $conDiv = $("<div>");
    // 펀딩 인덱스 아이디로 추가할 것
    var $card = $("<div>").addClass("card");
-   var $card_header = $("<div>").addClass("card-header");   
+   var $accBtn = $("<div>").addClass("accBtn");   
    var $card_link = $("<a>").addClass("card-link").attr("href","#card-"+list[i].nNo)
-                   .attr("target", "#card-" + list[i].nNo).attr("data-toggle","collapse")
-                   .text(list[i].nTitle);
+                   .attr("target", "#card-" + list[i].nNo).attr("data-toggle","collapse");
+   var $card_link = $("<b>").addClass("accBtn1").text(list[i].nTitle);
+   $card_link.append($accBtn1);
+   $accBtn.append($card_link);
+   $card.append($accBtn);
    
-   $card_header.append($card_link);
-   $card.append($card_header);
-   
-   var $collapse = $("<div>").addClass("collapse").attr("id","card-" + list[i].revNo);
+   var $collapse = $("<div>").addClass("collapse").attr("id","card-" + list[i].nNo);
    var $card_body = $("<div>").addClass("card-body").text(list[i].nContent);
    
    $collapse.append($card_body);
@@ -184,61 +253,23 @@ $.ajax({
    }  
 });
 }
-$(function(){
-	$(window).scroll(function(){   //스크롤이 최하단 으로 내려가면 리스트를 조회하고 page를 증가시킨다.
-		console.log("스크롤");
-	   // console.log($(window).scrollTop());
-	   // console.log($(document).height());
-	   // console.log($(window).height());
-	   // console.log($(document).height() - $(window).height());
-	   // console.log($(window).scrollTop() >= ($(document).height() - $(window).height() - 0.5));
-	   if($(window).scrollTop() >= ($(document).height() - $(window).height()-0.5 ) ) {
-		   console.log("스크롤 로딩");
-	      if ( currentPage == maxPage ) return false;
-	      var oldDocHei = $(document).height();
-	      $("#loadingImg").css("opacity","1");
-	      setTimeout(function(){
-	      listLoading();
-	      $("#loadingImg").css("opacity","0");
-	      $(window).scrollTop(oldDocHei-($(window).height()+($(window).height()/4)));
-	      },500);
-	   } 
+//아코디언과 관련된 스크립트입니다.
+$(".accBtn:not(.active)").next().slideUp();
+$(function() {
+	$(".accBtn").click(function() {
+		$(".accBtn").removeClass("active");
+		$(this).addClass("active");
+		$(this).next().slideDown();
+		$(".accBtn:not(.active)").next().slideUp();
+		var scrollPosition = $(".accWrapper").offset().top;
+		$("html").animate({
+			scrollTop : scrollPosition
+		});
 	});
-})
-</script>
-
-<script>
-const CIRCLE_RADIUS = 20;
-const RADIUS = 32;
-const circle = new mojs.Shape({
-  left: 0, top: 0,
-  stroke:   '#FF9C00',
-  strokeWidth: { [2*CIRCLE_RADIUS] : 0 },
-  fill:       'none',
-  scale:      { 0: 1 },
-  radius:     CIRCLE_RADIUS,
-  duration:   400,
-  easing:     'cubic.out'
-});
-
-const burst = new mojs.Burst({
-  left: 0, top: 0,
-  radius:   { 4: RADIUS },
-  angle:    45,
-  count:    14,
-  timeline: { delay: 300 },
-  children: {
-    radius:       2.5,
-    fill:         '#FD7932',
-    scale:        { 1: 0, easing: 'quad.in' },
-    pathScale:    [ .8, null ],
-    degreeShift:  [ 13, null ],
-    duration:     [ 500, 700 ],
-    easing:       'quint.out'
-  }
 });
 </script>
-	<script src="webapp/resources/js/Center-js/jquery.min.js"></script>
+
+<script src="webapp/resources/js/Center-js/jquery.min.js"></script>
 	<script src="webapp/resources/js/Center-js/bootstrap.min.js"></script>
 	<script src="webapp/resources/js/Center-js/scripts.js"></script>
 </body>

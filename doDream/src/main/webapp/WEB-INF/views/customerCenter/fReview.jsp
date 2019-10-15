@@ -8,6 +8,16 @@
 <%@ include file="../common/menubar.jsp"%>
 <link rel="stylesheet" href="resources/css/fReview.css">
 <style>
+#ReviewCon {
+   width: 1200px; 
+   min-height: 700px;
+   
+}
+#ReviewCon1 {
+   width: 1200px; 
+   min-height: 900px;
+   height: auto;
+}
 .fundItem {
    cursor: pointer;
 } 
@@ -258,6 +268,46 @@
 #img, #Name {
    padding: 10px;
 }
+/* 메뉴바 CSS */
+#mid-menu 
+{
+	border-top: 1px solid #ced4da;
+	border-bottom: 1px solid #ced4da;
+	background-color: rgba(255,255,255,0.9);
+	padding-top: 5px;
+}
+#detailnavpadding 
+{
+    padding-left: 80px;
+    width: 1000px;
+}
+#detailnav
+{
+    width: 1000px;
+    height: 70px;
+    margin: 0;
+    padding: 0;
+    float: left;
+    display: block;
+}
+#detailnav > div
+{
+    width: 100px;
+    height: 70px;
+    display: block;
+    float: left;
+    /* border: 1px solid black; */
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    padding-top:20px; 
+    font-weight: bold;
+}
+#detailnav > div:hover{
+	color: #8E44AD;
+	cursor: pointer;
+}
+
 </style>
 <!-- mojs(좋아요 클릭시 효과) 추가 -->
 <script src="https://cdn.jsdelivr.net/npm/@mojs/core"></script>
@@ -266,27 +316,33 @@
    <c:url var="keywordSearch" value="tmptmp" />
    <section id="category">
 	<div class="container-fluid" id="ReviewCon">
-	   <div class="row">
-	      <div class="col-md-12" align="center">
-	         <div class="jumbotron">
-	            <img src="resources/images/backgroundImg/배경로고시안 (2).png"
-	               style="width: 100%">
-	         </div>
-	      </div>
-	   </div>
-	   <div class="sticky-top row" style="background-color: white;">
-	      <div class="col-md-12" id="cCenter_menu">
-	         <ul class="nav" style="background-color: #E1F5A9;">
-	            <li class="nav-item"><a class="nav-link" href="cCenter.dr">공지사항</a></li>
-	            <li class="nav-item"><a class="nav-link"
-	               href="T_O_Service.dr">이용약관 </a></li>
-	            <li class="nav-item"><a class="nav-link" href="fReview.dr">프로젝트
-	                  후기</a></li>
-	            <li class="nav-item"><a class="nav-link" href="faq.dr">FAQ</a></li>
-	
-	         </ul>
-	      </div>
-	   </div>
+      <!-- 후기 상세 - 메인로고 -->
+      <div class="row">
+         <div class="col-md-12" align="center">
+            <div class="jumbotron">
+            <img src="resources/images/backgroundImg/art2.jpeg" style="width: 100%">
+            </div>
+         </div>
+      </div>
+	</div>
+	<div class="sticky-top">
+      <!-- 고객센터 메뉴바 -->
+      <div class="row" id="mid-menu">
+            <div class="col-md-1"></div>
+            <div class="col-md-10" id="detailnavpadding">
+                <nav class="nav">
+                    <div class="container-fluid" id="detailnav">
+                        <div id="story" onclick="location.href='cCenter.dr'" >공지사항</div>
+                        <div id="guide" onclick="location.href='T_O_Service.dr'">이용약관</div>
+                        <div id="community" onclick="location.href='fReview.dr'" style="color: rgb(142, 68, 173);">프로젝트 후기</div>
+                        <div id="reward" onclick="location.href='faq.dr'">FAQ</div>
+                    </div>
+                </nav>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+	</div>
+	<div class="container-fluid" id="ReviewCon1">
 	   <div class="row" id="Review_table">
 	      <div class="col-md-12"></div>
 	   </div>
@@ -349,6 +405,15 @@
 var currentPage = 1;
 var maxPage = ${ pi.maxPage };
 
+// 좋아요 누르는 함수 만들것
+$(function() {
+   $(document).on("click",".fundItem div:not(.heartIcon)", function(){
+      // console.log($(this).parent().attr("id"));
+      location.href='fReviewDetail.dr?revNo='+$(this).parent().attr("id");
+   });
+
+});
+
 // 펀드 리스트 출력하는 함수(수정중)
 function printFunds(list) {
 	console.log("프린트펀드즈 호출");
@@ -409,11 +474,6 @@ function listLoading() {
 }
 $(function(){
    $(window).scroll(function(){   //스크롤이 최하단 으로 내려가면 리스트를 조회하고 page를 증가시킨다.
-      // console.log($(window).scrollTop());
-      // console.log($(document).height());
-      // console.log($(window).height());
-      // console.log($(document).height() - $(window).height());
-      // console.log($(window).scrollTop() >= ($(document).height() - $(window).height() - 0.5));
       if($(window).scrollTop() >= ($(document).height() - $(window).height()-0.5 ) ) {
          if ( currentPage == maxPage ) return false;
          var oldDocHei = $(document).height();
@@ -438,7 +498,7 @@ $(function(){
 
 </script>
 
-   <script>
+<!-- <script>
    const CIRCLE_RADIUS = 20;
    const RADIUS = 32;
    const circle = new mojs.Shape({
@@ -468,6 +528,6 @@ $(function(){
        easing:       'quint.out'
      }
    });
-</script>
+</script> -->
 </body>
 </html>
