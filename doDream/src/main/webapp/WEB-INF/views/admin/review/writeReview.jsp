@@ -174,8 +174,8 @@ select {
 												<tr>
 													<th>썸네일 이미지 :</th>
 													<td>
-														<div class="filebox preview-image" style="">
-															<label for="ex_file">업로드</label>
+														<div class="filebox preview-image">
+															<label for="input-file">이미지 업로드</label>
 															<input type="file" id="input-file" class="upload-hidden" name="uploadFile" style="display: none;">
 														</div>
 													</td>
@@ -185,9 +185,8 @@ select {
 													<td><textarea id="summernote" name="revContent"></textarea></td>
 												</tr>
 												<!-- 등록된 이미지 목록 -->
-												<input type="hidden" name="revWriter"
-													value="${loginUser.userNo}"> <input type="hidden"
-													name="imgList" value="">
+												<input type="hidden" name="revWriter" value="${loginUser.userNo}">
+												<input type="hidden" name="imgList" value="">
 												</form>
 											</table>
 										</div>
@@ -302,7 +301,6 @@ select {
 			}
 		});
 
-
 	</script>
 
 	<!-- Bootstrap core JavaScript-->
@@ -326,8 +324,7 @@ select {
 	<!-- Demo scripts for this page-->
 	<script src="resources/js/demo/datatables-demo.js"></script>
 
-	<link
-		href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css"
+	<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css"
 		rel="stylesheet">
 	<!-- summernote 기능 구현 js -->
 	<script src="resources/summernote/js/summernote.js"></script>
