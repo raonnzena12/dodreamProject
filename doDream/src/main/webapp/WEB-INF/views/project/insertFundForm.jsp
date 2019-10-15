@@ -306,32 +306,164 @@
 	font-size: 15px;
 	margin: 10px;
 }
-
-.insertformcont { 
-	position: fixed; 
-	right: 43%; 
-	top: 500px;
-	margin-right: -730px; 
-	text-align:center; 
-	width: 150px;
-	height: 240px;
-	border: 1px solid #8E44AD99;
-	border-bottom: 2px solid #8E44AD99;
-	border-right: 2px solid #8E44AD99;
-	border-radius: 5px;
-	padding:5px;
-	box-shadow: 2px 2px 6px #aaa;
+.remotecontrollerarea{
+    position: fixed; 
+    right: 43%;
+    margin-right: -720px; 
+    top: 460px;
+    box-shadow: 3px 3px 6px #999;
+    border: 1px solid #8E44AD99;
+    border-right: 2px solid #8E44AD99;
+    border-bottom: 2px solid #8E44AD99;
+    border-radius: 6px;
+    transition-duration: 1s;
 }
-.insertformcont:hover{
+.remotecontrollerarea:hover{
+    box-shadow: 2px 2px 8px #555;
+}
+.insertformcont {
+    width: 150px;
+    height: 240px;
+}
+.insertformcont-head{
+    width: 150px;
+    height: 26px;
+    text-align:center; 
 }
 
+.insertformcont-head i{
+    -ms-user-select: none; -moz-user-select: -moz-none; -webkit-user-select: none; -khtml-user-select: none; user-select:none;
+    margin: auto;
+    color: #666;
+    font-size: 24px;
+    line-height: 26px;
+}
+.insertformcont-head i:hover{
+    font-weight: bolder;
+    color: #333;
+    cursor: pointer;
+}
+.insertformcont-bottom{
+    height: 26px;
+    text-align: center;
+}
+.insertformcont-bottom span{
+    -ms-user-select: none; -moz-user-select: -moz-none; -webkit-user-select: none; -khtml-user-select: none; user-select:none;
+    font-family: 'Do Hyeon';
+    font-size: 12px;
+    letter-spacing: 2px;
+    font-weight: 900;
+    color: #8E44AD;
+}
+.functionbtnarea{
+    min-height: 50px;
+    margin: auto;
+    margin-top: 5px;
+}
+.menubararea{
+    margin: auto;   
+    margin-bottom: 10px;
+    margin-left: 8px;
+    margin-right: 8px;
+}
+.functionbtnarea i{
+    -ms-user-select: none; -moz-user-select: -moz-none; -webkit-user-select: none; -khtml-user-select: none; user-select:none;
+    font-size: 30px;
+    color: #8E44AD;
+    margin: 4px;
+}
+.functionbtnarea i:hover{
+    cursor: pointer;
+    font-weight: 600;
+}
+.menubarinner{
+    margin: auto;   
+    margin-bottom: 7px;
+    border: 1px solid #8E44AD50;
+    border-right: 2px solid #8E44AD50;
+    border-bottom: 2px solid #8E44AD50;
+    border-radius: 8px;
+    height: 34px;
+    text-align: center;
+    padding-left: 2px;
+    padding-right: 2px;
+}
+.menubarinner:hover{
+    box-shadow: 2px 2px 6px #ccc;
+}
+.menubarinner span{
+    -ms-user-select: none; -moz-user-select: -moz-none; -webkit-user-select: none; -khtml-user-select: none; user-select:none;
+    cursor: pointer;
+    font-family: 'Jua';
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 37px;
+    color: #6f6f6f;
+}
+.menubarinner span:hover{
+    font-size:15px;
+    text-shadow: 2px 2px 6px #ccc;
+}
+.menubarinner img{
+    width: 40px;
+    height: 35px;
+    position: absolute;
+    left:117px;
+    opacity: 0.9;
+}
+.notouch{
+    color: #999!important;
+}
+.notouch:hover{
+    cursor: unset !important;
+    font-weight: unset !important;
+}
+.disabledbtn:hover{
+	opacity: 0.65 !important;
+}
 </style>
 </head>
 <body>
 	<jsp:include page="../common/menubar.jsp" />
 	<link rel="stylesheet" href="resources/css/fundinginsertform.css">
 	<!-- 리모컨영역 -->
-	<div class="insertformcont" id="insertFormRC" style="display:none!important;">
+	<div class="remotecontrollerarea" id="remotecontrollerarea">
+		<input type="hidden" id="menu1done" class="menudone" value="0">
+		<input type="hidden" id="menu2done" class="menudone" value="0">
+		<input type="hidden" id="menu3done" class="menudone" value="0">
+		<input type="hidden" id="menu4done" class="menudone" value="0">
+		<div class="insertformcont-head">
+		    <i class="material-icons" id="rcup">keyboard_arrow_up</i>
+		    <i class="material-icons" id="rcdown" style="display: none;">keyboard_arrow_down</i>
+		</div>
+		<div class="insertformcont">
+		    <div class="functionbtnarea" align="center">
+		        <i class="material-icons">search</i>
+		        <i class="material-icons">save_alt</i>
+		        <i id="remotesubmit" class="material-icons notouch">mail_outline</i>
+		    </div>
+		    <div class="menubararea">
+		        <div class="menubarinner">
+		            <span style="letter-spacing: 2px;" id="menu1rc">기본정보 작성하기</span>
+		            <img src="resources/images/insertFormImages/check.png" style="top:65px; display: none;" id="menu1chk">
+		        </div>
+		        <div class="menubarinner">
+		            <span style="letter-spacing: 4px;" id="menu2rc">리워드 작성하기</span>
+		            <img src="resources/images/insertFormImages/check.png" style="top:108px; display: none;" id="menu2chk">
+		        </div>
+		        <div class="menubarinner">
+		            <span style="letter-spacing: 4px;" id="menu3rc">스토리 작성하기</span>
+		            <img src="resources/images/insertFormImages/check.png" style="top:151px; display: none;" id="menu3chk">
+		        </div>
+		        <div class="menubarinner">
+		            <span id="menu4rc">아티스트정보 작성하기</span>
+		            <img src="resources/images/insertFormImages/check.png" style="top:194px; display: none;" id="menu4chk">
+	            </div>
+	        </div>
+	    </div>
+	    <div class="insertformcont-bottom">
+	        <span>두드림컴퍼니</span>
+	    </div>
 	</div>
 	<div class="clearfix"></div>
 	<input type="hidden" id="isUpdate" value="${isUpdate}">
@@ -407,7 +539,7 @@
 		<div class="btnWrapper" align="right">
 			<button type="button" onclick="preview(${project.pNo});" class="btn btn-primary" style="background-color: #8E44AD; border: none; width: 140px; box-shadow: 2px 2px 6px 1px #999;"><i class="material-icons">search</i>미리보기</button>
 			<button type="button" onclick="temporarySave();" class="btn btn-primary" style="background-color: #8E44AD; border: none; box-shadow: 2px 2px 6px 1px #999;"><i class="material-icons">cloud_download</i>임시저장하기</button>
-			<button type="button" onclick="submitToAdmin();" class="btn btn-primary" style="background-color: #F39C12; border: none; box-shadow: 2px 2px 6px 1px #999;"><i class="material-icons">done</i>검토요청하기</button>
+			<button type="button" id="submitToAdmin" onclick="submitToAdmin();" class="btn btn-primary disabledbtn" style="background-color: #F39C12; border: none; box-shadow: 2px 2px 6px 1px #999;" disabled ><i class="material-icons">done</i>검토요청하기</button>
 		</div>
 		<div class="accWrapper">
 			<form id="insertFrm" name="insertFrm" action="insertProject.dr" method="POST"
@@ -418,7 +550,7 @@
 				<div class="accBtn active">
 					<span>기본정보</span>
 				</div>
-				<div class="accContainer">
+				<div class="accContainer" id="m1">
 					<div class="accHeadBox">
 						<div style="width: 50%; float: left;">
 							<i><p>&nbsp;&nbsp;첫 번째.</p></i>
@@ -651,15 +783,16 @@
 						<div class="clearFloat"></div>
 					</div>
 					<div class="accHeadDrawline"  id="accHeadDrawLine"></div>
+					<input type="hidden" id="menu2donechk" value="${fn:length(rList)}">
 					<c:if test="${!empty rList}">
 						<c:forEach var="r" items="${rList}" varStatus="status">
 							<div class="rewardBox">
 								<div class="leftBoxArea">
 									<div class="nthReward"></div>
 								</div>
-								<div class="rewardContentBox" style="pointer-events:none; opacity:0.77;">
+								<div class="rewardContentBox donebox" style="pointer-events:none; opacity:0.77;">
 									<div class="rewardContent">
-										<input type="hidden" name="rList[${status.count }].isSaved" id="reward${status.count }isSaved" value="true">
+										<input type="hidden" class="rewarddone" name="rList[${status.count }].isSaved" id="reward${status.count }isSaved" value="true">
 										<div class="rewardContentLeft">리워드 이름</div>
 										<div class="rewardContentRight">
 											<input type="text" class="form-control form-control-sm" value="${r.rName }"
@@ -784,7 +917,7 @@
 						</div>
 						<div class="rewardContentBox" id="reward0Box">
 							<div class="rewardContent">
-								<input type="hidden" name="rList[0].isSaved" id="reward0isSaved" value="false">
+								<input type="hidden" class="rewarddone" name="rList[0].isSaved" id="reward0isSaved" value="false">
 								<div class="rewardContentLeft">리워드 이름</div>
 								<div class="rewardContentRight">
 									<input type="text" class="form-control form-control-sm"
@@ -912,7 +1045,7 @@
 				<div class="accBtn">
 					<span>스토리</span>
 				</div>
-				<div class="accContainer">
+				<div class="accContainer" id="m3">
 					<div class="accHeadBox">
 						<div style="width: 50%; float: left;">
 							<i><p>&nbsp;&nbsp;세 번째.</p></i>
@@ -1032,7 +1165,7 @@
 				<div class="accBtn">
 					<span>아티스트</span>
 				</div>
-				<div class="accContainer">
+				<div class="accContainer" id="m4">
 					<div class="accHeadBox">
 						<div style="width: 50%; float: left;">
 							<i><p>&nbsp;&nbsp;네 번째.</p></i>
@@ -1059,62 +1192,61 @@
 						<div class="info-box" style="width: '';">
 					        <div class="artistarea">
 					            <div class="artistbox">
-					                <div class="ribbon ribbon-top-left"><span>두드림 아티스트</span>
-					            </div>
-					            <div class="artistinputarea">
-					                <div class="artistprofile" align="right">
-					                    <input type="text" class="artistinput1" name="pArtistName" placeholder="아티스트 이름" style="margin-right: 30px; height: 50px; margin-bottom: 5px;" value="${project.pArtistName }" autocomplete="off">
-					                    <div id="putunderline"></div>
-					                    <div class="emailphonedesc">
-					                        <span><i class="material-icons">email</i></span>
-					                        <span><i class="material-icons">phone</i></span>
-					                        <span><img src="resources/images/insertFormImages/facebook.jpg" style="width: 17px; height: 17px; border-radius: 5px; opacity: 0.70; margin-right: 15px;"></span>
-					                        <span><img src="resources/images/insertFormImages/instagram.jpg" style="width: 17px; height: 17px; border-radius: 5px; opacity: 0.70; margin-right: 15px;"></span>
-					                    </div>
-					                    <div class="emailphoneinput">
-					                        <input type="text" class="artistinput2" name="pArtistEmail" placeholder="이메일 주소" value="${project.pArtistEmail}" autocomplete="off">
-					                        <input type="text" class="artistinput2" name="pArtistPhone" placeholder="전화번호" value="${project.pArtistPhone}" maxlength="14;"
-					                        style="letter-spacing: 5px; font-size: 17px;" oninput="this.value=this.value.replace(/[^0-9]/g,'');inputPhoneNumber(this);"  autocomplete="off">
-					                        <label>https://facebook.com/</label>
-					                        <input type="text" class="artistinput2" name="pArtistSns1" placeholder="페이스북" style="height: 32px; width: 129px; display: inline; letter-spacing: 0; font-size: 16px; font-family: 'Do Hyeon';" value="${project.pArtistSns1}" autocomplete="off">
-					                        <label>https://instagram.com/</label>
-					                        <input type="text" class="artistinput2" name="pArtistSns2" placeholder="인스타그램" style="height: 32px; width: 123px; display: inline; letter-spacing: 0; font-size: 16px; font-family: 'Do Hyeon';" value="${project.pArtistSns2}" autocomplete="off">
-					                    </div>    
-					                </div>
-					                <div class="artistimage">
-					                	<input type="hidden" name="pArtistPFImage" id="pArtistPFImage" value="${project.pArtistPFImage }">
-					                    <div id="aimagebox" style="display: inline-block; width: 240px; height: 240px;">
-					                        <div id="box-aimage-noimage">
-					                            <i class="material-icons" id="pArtistImgUpload">person</i>
-					                            <p>이미지를 등록해주세요!</p>
-					                        </div>
-					                        <div id="box-aimage-image" style="padding: 20px; height:100%; width: 100%;">
-												<img src="" style="width: 100%; height: 100%; border-radius: 100px;" id="artistimg">
-					                        </div>
-					                    </div>
-					                    <div id="partistimgdelete" style="margin-top: 18px; display: inline-block;">
-											<a href="javascript:void(0)"><i class="material-icons">image</i></a>
-										</div>
-					                    <input type="file" name="uploadfile3" id="uploadfile3" multiple="multiple" onchange="loadAImg(this);" style="display: none;">
-					                </div>
-					                <div style="clear: both; margin:0; padding: 0; border: 0;"></div>
-					                <div class="artistintro">
-					                    <textarea name="pArtistIntroduction" id="pArtistIntroduction" rows="2" 
-					                    wrap="off"   
-					                    placeholder="자신을 소개하는 문구를 
+					                <div class="ribbon ribbon-top-left"><span>두드림 아티스트</span></div>
+						            <div class="artistinputarea">
+						                <div class="artistprofile" align="right">
+						                    <input type="text" class="artistinput1" name="pArtistName" placeholder="아티스트 이름" style="margin-right: 30px; height: 50px; margin-bottom: 5px;" value="${project.pArtistName }" autocomplete="off">
+						                    <div id="putunderline"></div>
+						                    <div class="emailphonedesc">
+						                        <span><i class="material-icons">email</i></span>
+						                        <span><i class="material-icons">phone</i></span>
+						                        <span><img src="resources/images/insertFormImages/facebook.jpg" style="width: 17px; height: 17px; border-radius: 5px; opacity: 0.70; margin-right: 15px;"></span>
+						                        <span><img src="resources/images/insertFormImages/instagram.jpg" style="width: 17px; height: 17px; border-radius: 5px; opacity: 0.70; margin-right: 15px;"></span>
+						                    </div>
+						                    <div class="emailphoneinput">
+						                        <input type="text" class="artistinput2" name="pArtistEmail" placeholder="이메일 주소" value="${project.pArtistEmail}" autocomplete="off">
+						                        <input type="text" class="artistinput2" name="pArtistPhone" placeholder="전화번호" value="${project.pArtistPhone}" maxlength="14;"
+						                        style="letter-spacing: 5px; font-size: 17px;" oninput="this.value=this.value.replace(/[^0-9]/g,'');inputPhoneNumber(this);"  autocomplete="off">
+						                        <label>https://facebook.com/</label>
+						                        <input type="text" class="artistinput2" name="pArtistSns1" placeholder="페이스북" style="height: 32px; width: 129px; display: inline; letter-spacing: 0; font-size: 16px; font-family: 'Do Hyeon';" value="${project.pArtistSns1}" autocomplete="off">
+						                        <label>https://instagram.com/</label>
+						                        <input type="text" class="artistinput2" name="pArtistSns2" placeholder="인스타그램" style="height: 32px; width: 123px; display: inline; letter-spacing: 0; font-size: 16px; font-family: 'Do Hyeon';" value="${project.pArtistSns2}" autocomplete="off">
+						                    </div>    
+						                </div>
+						                <div class="artistimage">
+						                	<input type="hidden" name="pArtistPFImage" id="pArtistPFImage" value="${project.pArtistPFImage }">
+						                    <div id="aimagebox" style="display: inline-block; width: 240px; height: 240px;">
+						                        <div id="box-aimage-noimage">
+						                            <i class="material-icons" id="pArtistImgUpload">person</i>
+						                            <p>이미지를 등록해주세요!</p>
+						                        </div>
+						                        <div id="box-aimage-image" style="padding: 20px; height:100%; width: 100%;">
+													<img src="" style="width: 100%; height: 100%; border-radius: 100px;" id="artistimg">
+						                        </div>
+						                    </div>
+						                    <div id="partistimgdelete" style="margin-top: 18px; display: inline-block;">
+												<a href="javascript:void(0)"><i class="material-icons">image</i></a>
+											</div>
+						                    <input type="file" name="uploadfile3" id="uploadfile3" multiple="multiple" onchange="loadAImg(this);" style="display: none;">
+						                </div>
+						                <div style="clear: both; margin:0; padding: 0; border: 0;"></div>
+						                <div class="artistintro">
+						                    <textarea name="pArtistIntroduction" id="pArtistIntroduction" rows="2" 
+						                    wrap="off"   
+						                    placeholder="자신을 소개하는 문구를 
 짧게 두 줄 정도로 적어주세요!">${project.pArtistIntroduction }</textarea>
-					                </div>
-					                <div class="artistfooter">
-					                <span>두드림컴퍼니</span>
-					                </div>
-					            </div>
-					        </div>
+						                </div>
+						                <div class="artistfooter">
+						                	<span>두드림컴퍼니</span>
+						                </div>
+						            </div>
+						        </div>
+							</div>
 						</div>
 					</div>
 				</div>
 			</form>
 		</div>
-
 	</div>
 
 	<script src="resources/summernote/dist/summernote.js"></script>
@@ -1127,7 +1259,7 @@
 	// 페이지 로드 완료시 인서트폼은 숨깁니다. (동의를 완료해야 보여집니다)
 	$(function() {
 		$("#insertFundForm").hide();
-		$("#insertFormRC").hide();
+		$("#remotecontrollerarea").hide();
 		validate();
 	});
 	// 만약 동의 버튼중 하나라도 변한다면 validate() 메소드 실행
@@ -1229,7 +1361,7 @@
 		if(loginchk==true){
 			$("#agreementForm").hide();
 			$("#insertFundForm").show();
-			$("#insertFormRC").fadeIn(3000);
+			$("#remotecontrollerarea").fadeIn(3000);
 			$('html').animate({
 				scrollTop : 0
 			}, 300);
@@ -1755,7 +1887,7 @@
 	var bi = 1;
 	var count = 1;
 	function addReward() {
-		var addbox = '<div class="rewardBox"><div class="leftBoxArea"><div class="nthReward"></div></div><div class="rewardContentBox" id="reward'+bi+'Box"><div class="rewardContent"><input type="hidden" name="rList['+bi+'].isSaved" id="reward'+bi+'isSaved" value="false"><div class="rewardContentLeft">리워드 이름</div><div class="rewardContentRight"><input type="text" class="form-control form-control-sm" name="rList['+bi+'].rName" style="width: 88%;"  autocomplete="off"></div></div><div class="rewardContent"><div class="rewardContentLeft">금액</div><div class="rewardContentRight"><input type="number" class="form-control form-control-sm" name="rList['+bi+'].rPrice" style="width: 30%; display: inline-block;" min="0" value="0" autocomplete="off"><label style="padding: 5px;">원</label></div></div><div class="rewardContent"><div class="rewardContentLeft">리워드 설명</div><div class="rewardContentRight"><textarea rows="8" class="form-control form-control-sm" id="reward'+bi+'Explain" name="rList['+bi+'].rExplain" style="width: 100%; resize: none;"></textarea></div></div><div class="rewardContent"><div class="rewardContentLeft">옵션</div><div class="rewardContentRight" style="line-height: 40px;"><div class="custom-control custom-radio" style="padding-left: 0;"><input type="radio" id="option'+bi+'-1" class="optionrad custom-control-input" name="rList['+bi+'].rOptionNo"	value="1" checked><label for="option'+bi+'-1" class="custom-control-label" style="margin-left: 35px; padding-top: 1px; padding-left: 5px; line-height: 20px;">옵션 입력이 필요 없는 리워드입니다.</label><br></div><div class="custom-control custom-radio" style="padding-left: 0;"><input type="radio" id="option'+bi+'-2" class="optionrad custom-control-input" name="rList['+bi+'].rOptionNo" value="2"><label for="option'+bi+'-2" class="custom-control-label" style="margin-left: 35px; padding-top: 1px; padding-left: 5px;">선택 옵션이 필요한 리워드입니다. <span>(사이즈, 색상 등)</span></label><br></div><div class="custom-control custom-radio" style="padding-left: 0;"><input type="radio" id="option'+bi+'-3" class="optionrad custom-control-input" name="rList['+bi+'].rOptionNo" value="3"><label for="option'+bi+'-3" class="custom-control-label" style="margin-left: 35px; padding-top: 1px; padding-left: 5px;">직접 입력 옵션이 필요한 리워드입니다. <span>(각인, 메세지 등)</span></label></div></div></div><div class="rewardContent" style="display: none;"><div class="rewardContentLeft"></div><div class="rewardContentRight"><input type="hidden" name="optionradchk'+bi+'" value="0"><textarea rows="4" name="rList['+bi+'].rOptionAdd" class="form-control form-control-sm optionradtarea" style="resize: none;"></textarea></div>								<select class="form-control form-control sm" style="width: 300px; font-size: 12px; height: 32px; margin: auto; margin-left: 325px; margin-bottom: 15px; display:none;"><option value="-1">옵션 선택 예 입니다.</option></select></div><div class="rewardContent"><div class="rewardContentLeft">배송조건</div><div class="rewardContentRight custom-control custom-checkbox"><input type="checkbox" class="custom-control-input" id="shipChk'+bi+'" name="rList['+bi+'].rShipCDT" value="1"><label class="custom-control-label" for="shipChk'+bi+'" style="margin-left: 35px; padding-left: 6px; line-height: 24px; margin-bottom: 3px;">배송을 위해 주소지가 필요합니다.</label></div></div><div class="rewardContent"><div class="rewardContentLeft">제한수량</div><div class="rewardContentRight" style="padding-left: 10px;"><p style="display:inline;">리워드를 <input type="number" class="form-control form-control-sm" name="rList['+bi+'].rLimit" style="display: inline; width: 15%;" min="1" value="1"> 개로 제한합니다.</p><div class="custom-control custom-checkbox" style="display:inline; padding:10px; vertical-align: bottom; margin-left: 10px;"><input type="checkbox" class="rewardLimitChk custom-control-input" id="rewardLimitChk'+(bi+1)+'"><label class="custom-control-label" for="rewardLimitChk'+(bi+1)+'" style="margin-left: 15px; padding-left: 6px; line-height: 24px; margin-bottom: 3px;">수량에 제한 없음</label></div></div></div><div class="rewardContent"><div class="rewardContentLeft">발송시작일</div><div class="rewardContentRight"><select class="form-control form-control-sm rsd" style="width:110px; height:34px; display: inline;" name="rList['+bi+'].shipYear"><option value="2019" selected>2019년</option><option value="2020">2020년</option><option value="2021">2021년</option></select> <select class="form-control form-control-sm rsd" style="width:110px; height:34px; display: inline;" name="rList['+bi+'].shipMonth"><option value="01">1월</option><option value="02">2월</option><option value="03">3월</option><option value="04">4월</option><option value="05">5월</option><option value="06">6월</option><option value="07">7월</option><option value="08">8월</option><option value="09">9월</option><option value="10">10월</option><option value="11">11월</option><option value="12">12월</option></select> <select class="form-control form-control-sm rsd" style="width:155px; height:34px; display: inline;" name="rList['+bi+'].shipDay"><option value="05">초(1일 ~ 10일)</option><option value="15">중순(11일 ~ 20일)</option><option value="25">말(21일 ~ 말일)</option></select><input type="hidden" name="rList['+bi+'].rShipDate" value="2000-01-01"></div></div><div align="right" style="margin-top: 20px;" id="reward'+bi+'Warningarea"><span class="rewardsavewarning">저장하지 않은 리워드는 사라집니다!</span><button class="btn btn-primary btnopacity" type="button" onclick="saveReward('+bi+')" style="background-color: #8E44AD;border: none;">저장하기</button></div><div align="right" style="display: none;" id="reward'+bi+'Savingarea"><span class="rewardsavedmessage">저장되었습니다.</span></div></div>	<div class="rightBoxArea"><a href="javascript: void(0);" class="removeReward"><i class="material-icons">delete_forever</i></a></div><div class="clearFloat"></div></div>';
+		var addbox = '<div class="rewardBox"><div class="leftBoxArea"><div class="nthReward"></div></div><div class="rewardContentBox" id="reward'+bi+'Box"><div class="rewardContent"><input type="hidden" class="rewarddone" name="rList['+bi+'].isSaved" id="reward'+bi+'isSaved" value="false"><div class="rewardContentLeft">리워드 이름</div><div class="rewardContentRight"><input type="text" class="form-control form-control-sm" name="rList['+bi+'].rName" style="width: 88%;"  autocomplete="off"></div></div><div class="rewardContent"><div class="rewardContentLeft">금액</div><div class="rewardContentRight"><input type="number" class="form-control form-control-sm" name="rList['+bi+'].rPrice" style="width: 30%; display: inline-block;" min="0" value="0" autocomplete="off"><label style="padding: 5px;">원</label></div></div><div class="rewardContent"><div class="rewardContentLeft">리워드 설명</div><div class="rewardContentRight"><textarea rows="8" class="form-control form-control-sm" id="reward'+bi+'Explain" name="rList['+bi+'].rExplain" style="width: 100%; resize: none;"></textarea></div></div><div class="rewardContent"><div class="rewardContentLeft">옵션</div><div class="rewardContentRight" style="line-height: 40px;"><div class="custom-control custom-radio" style="padding-left: 0;"><input type="radio" id="option'+bi+'-1" class="optionrad custom-control-input" name="rList['+bi+'].rOptionNo"	value="1" checked><label for="option'+bi+'-1" class="custom-control-label" style="margin-left: 35px; padding-top: 1px; padding-left: 5px; line-height: 20px;">옵션 입력이 필요 없는 리워드입니다.</label><br></div><div class="custom-control custom-radio" style="padding-left: 0;"><input type="radio" id="option'+bi+'-2" class="optionrad custom-control-input" name="rList['+bi+'].rOptionNo" value="2"><label for="option'+bi+'-2" class="custom-control-label" style="margin-left: 35px; padding-top: 1px; padding-left: 5px;">선택 옵션이 필요한 리워드입니다. <span>(사이즈, 색상 등)</span></label><br></div><div class="custom-control custom-radio" style="padding-left: 0;"><input type="radio" id="option'+bi+'-3" class="optionrad custom-control-input" name="rList['+bi+'].rOptionNo" value="3"><label for="option'+bi+'-3" class="custom-control-label" style="margin-left: 35px; padding-top: 1px; padding-left: 5px;">직접 입력 옵션이 필요한 리워드입니다. <span>(각인, 메세지 등)</span></label></div></div></div><div class="rewardContent" style="display: none;"><div class="rewardContentLeft"></div><div class="rewardContentRight"><input type="hidden" name="optionradchk'+bi+'" value="0"><textarea rows="4" name="rList['+bi+'].rOptionAdd" class="form-control form-control-sm optionradtarea" style="resize: none;"></textarea></div>								<select class="form-control form-control sm" style="width: 300px; font-size: 12px; height: 32px; margin: auto; margin-left: 325px; margin-bottom: 15px; display:none;"><option value="-1">옵션 선택 예 입니다.</option></select></div><div class="rewardContent"><div class="rewardContentLeft">배송조건</div><div class="rewardContentRight custom-control custom-checkbox"><input type="checkbox" class="custom-control-input" id="shipChk'+bi+'" name="rList['+bi+'].rShipCDT" value="1"><label class="custom-control-label" for="shipChk'+bi+'" style="margin-left: 35px; padding-left: 6px; line-height: 24px; margin-bottom: 3px;">배송을 위해 주소지가 필요합니다.</label></div></div><div class="rewardContent"><div class="rewardContentLeft">제한수량</div><div class="rewardContentRight" style="padding-left: 10px;"><p style="display:inline;">리워드를 <input type="number" class="form-control form-control-sm" name="rList['+bi+'].rLimit" style="display: inline; width: 15%;" min="1" value="1"> 개로 제한합니다.</p><div class="custom-control custom-checkbox" style="display:inline; padding:10px; vertical-align: bottom; margin-left: 10px;"><input type="checkbox" class="rewardLimitChk custom-control-input" id="rewardLimitChk'+(bi+1)+'"><label class="custom-control-label" for="rewardLimitChk'+(bi+1)+'" style="margin-left: 15px; padding-left: 6px; line-height: 24px; margin-bottom: 3px;">수량에 제한 없음</label></div></div></div><div class="rewardContent"><div class="rewardContentLeft">발송시작일</div><div class="rewardContentRight"><select class="form-control form-control-sm rsd" style="width:110px; height:34px; display: inline;" name="rList['+bi+'].shipYear"><option value="2019" selected>2019년</option><option value="2020">2020년</option><option value="2021">2021년</option></select> <select class="form-control form-control-sm rsd" style="width:110px; height:34px; display: inline;" name="rList['+bi+'].shipMonth"><option value="01">1월</option><option value="02">2월</option><option value="03">3월</option><option value="04">4월</option><option value="05">5월</option><option value="06">6월</option><option value="07">7월</option><option value="08">8월</option><option value="09">9월</option><option value="10">10월</option><option value="11">11월</option><option value="12">12월</option></select> <select class="form-control form-control-sm rsd" style="width:155px; height:34px; display: inline;" name="rList['+bi+'].shipDay"><option value="05">초(1일 ~ 10일)</option><option value="15">중순(11일 ~ 20일)</option><option value="25">말(21일 ~ 말일)</option></select><input type="hidden" name="rList['+bi+'].rShipDate" value="2000-01-01"></div></div><div align="right" style="margin-top: 20px;" id="reward'+bi+'Warningarea"><span class="rewardsavewarning">저장하지 않은 리워드는 사라집니다!</span><button class="btn btn-primary btnopacity" type="button" onclick="saveReward('+bi+')" style="background-color: #8E44AD;border: none;">저장하기</button></div><div align="right" style="display: none;" id="reward'+bi+'Savingarea"><span class="rewardsavedmessage">저장되었습니다.</span></div></div>	<div class="rightBoxArea"><a href="javascript: void(0);" class="removeReward"><i class="material-icons">delete_forever</i></a></div><div class="clearFloat"></div></div>';
 		$("#rewardBtnArea").before(addbox);
 		var scrollPosition = $("#rewardBtnArea").offset().top-800;
 		$("html").animate({
@@ -1771,7 +1903,6 @@
 			$("#addRewardBtn").text("리워드 추가");
 		}
 		giveRewardNum();
-		console.log("카운트" + count);
 	};
 	// 리워드 삭제하기 버튼 메소드
 	$(document).on("click", ".removeReward", function() {
@@ -1780,6 +1911,9 @@
 		}
 		count--;
 		var $target = $(this).parent().parent();
+		if(($(this).parent().parent().children().next()).hasClass("donebox")){
+			$("#menu2donechk").val($("#menu2donechk").val()*1-1);
+		}
 		$target.hide('slow', function() {
 			$target.remove();
 		});
@@ -1798,7 +1932,7 @@
 		var size = document.getElementById("rewardContainer").childElementCount;
 		for (var j = 0; j < size - 3; j++) {
 			var input = '<span>리워드 #' + (j + 1) + '</span>';
-			var $target = $("#rewardContainer>div:nth-child(" + (j + 3)
+			var $target = $("#rewardContainer>div:nth-child(" + (j + 4)
 					+ ")>div:first-child>div");
 			$target.empty();
 			$target.append(input);
@@ -1807,13 +1941,13 @@
 	giveRewardNum();
 	var rSize = new Number(${rSize} + "");
 	if(rSize>0){
+		giveRewardNum();
 		bi = bi + rSize;
 		count = count + rSize;
 		if(count==10){
 			$("#addRewardBtn").attr('disabled', true);
 			$("#addRewardBtn").text("리워드는 10개까지만 가능합니다.");
 		}
-		giveRewardNum();
 	}
 	</script>
 	<script>
@@ -1910,7 +2044,9 @@
 			$("#reward"+index+"Warningarea").hide();
 			$("#reward"+index+"Savingarea").show();
 			$("#reward"+index+"Box").css("pointer-events","none").css("opacity","0.77");
+			$("#reward"+index+"Box").addClass("donebox");
 			$("#reward"+index+"isSaved").val("true");
+			$("#menu2donechk").val($("#menu2donechk").val()*1+1);
 		}else{
 			return false;
 		}
@@ -1946,6 +2082,7 @@
 					$("#isIMGorURL").val(2);
 					pmainimgload();
 				}
+		    	chkallinputvalidates();
 			}
 		});
         $("#mimageimagearea").show();
@@ -2134,7 +2271,7 @@
 		if(isUpdate=="true"){
 			$("#agreementForm").hide();
 			$("#insertFundForm").show();
-			//$("#insertFormRC").fadeIn(3000);
+			$("#remotecontrollerarea").fadeIn(3000);
 			LoadingWithMask(path);
 			setTimeout("closeLoadingWithMask()", 2000);
 		}
@@ -2252,6 +2389,147 @@
 			
 		}
 	});
+</script>
+<script>
+	// 리모콘 관련 스크립트입니다.
+	$(document).on("click","#rcup",function(){
+	    $(this).hide();
+	    $("#rcdown").show();
+	    $(".insertformcont").slideUp();
+	    $(".insertformcont-bottom").slideUp();
+	    $("#remotecontrollerarea").css({"opacity":"0.4"});
+	});
+    $(document).on("click","#rcdown",function(){
+	    $(this).hide();
+	    $("#rcup").show();
+	    $(".insertformcont").slideDown();
+	    $(".insertformcont-bottom").slideDown();
+	    $("#remotecontrollerarea").css({"opacity":"1"});
+	});
+    $(document).on("click","#menu1rc",function(){
+    	$(".accBtn")[0].click();
+    });
+    $(document).on("click","#menu2rc",function(){
+    	$(".accBtn")[1].click();
+    });
+    $(document).on("click","#menu3rc",function(){
+    	$(".accBtn")[2].click();
+    });
+    $(document).on("click","#menu4rc",function(){
+    	$(".accBtn")[3].click();
+    });
+    $(document).on("input","#m1 input,#m1 select,#m3 input,#m3 textarea,.note-editable,.note-codable,#videoURL,#m4 input,#m4 textarea",function(){
+    	chkallinputvalidates();
+    });
+    $(document).on("change","#m1 input,#m1 select,#m3 input,#m3 textarea,.note-editable,.note-codable,#videoURL,#pStorySummernote,#m4 input,#m4 textarea",function(){
+    	chkallinputvalidates();
+    });
+	$(document).on("click","#addRewardBtn, .removeReward, .btnopacity, #pmainimgdelete",function(){
+    	chkallinputvalidates();
+	});
+	$(function(){
+		chkallinputvalidates();
+	});
+	function chkallinputvalidates(){
+    	var mv1_1 = $("select[name='pCategoryNum']").val();
+    	var mv1_2 = $("input[name='pTitle']").val().length;
+    	var mv1_3 = $("input[name='pSTitle']").val().length;
+    	var mv1_4 = $("input[name='pGoal']").val();
+    	var mv1_5 = $("input[name='pStartDate']").val();
+    	var mv1_6 = $("input[name='pCloseDate']").val();
+    	var mv1_7 = $("#uploadfile1").val().length;
+    	var mv1_8 = $("input[name='pThumbImage']").val().length;
+    	var mv1_9 = $("input[name='pHashTag']").val().length;
+    	if(mv1_1!=0 && mv1_2>0 && mv1_3>0 && mv1_4>0 && mv1_5!="" &&mv1_6!=""&&(mv1_7>0||mv1_8>0)&&mv1_9>0){
+    		$("#menu1done").val(1);
+    		checkmenuvalidate();
+    	}else {
+    		$("#menu1done").val(0);
+    		checkmenuvalidate();
+    	}
+		var mv2_1 = $("#menu2donechk").val();
+		if(mv2_1>0){
+			$("#menu2done").val(1);
+    		checkmenuvalidate();
+		}else{
+			$("#menu2done").val(0);
+    		checkmenuvalidate();
+		}
+		var mv3_1 = $("#pSummaryText").val().length;
+		var mv3_2_1 = "";
+		var mv3_2_2 = "";
+		mv3_2_1 = $(".note-codable").val();
+		mv3_2_2 = $(".note-editable").text();
+		var mv3_3 = $("#uploadfile2").val().length;
+		var mv3_4 = $("input[name='pMainImage']").val();
+		if(mv3_1>0 && mv3_2_1!=null && (mv3_2_1!=""||mv3_2_2!="") && (mv3_3 >0 || mv3_4!="")){
+    		$("#menu3done").val(1);
+    		checkmenuvalidate();
+		}else{
+    		$("#menu3done").val(0);
+    		checkmenuvalidate();
+		}
+		var mv4_1 = $("input[name='pArtistName']").val().length;
+		var mv4_2 = $("input[name='pArtistEmail']").val().length;
+		var mv4_3 = $("input[name='pArtistPhone']").val().length;
+		var mv4_4 = $("input[name='pArtistSns1']").val().length;
+		var mv4_5 = $("input[name='pArtistSns2']").val().length;
+		var mv4_6 = $("#pArtistIntroduction").val();
+		var mv4_7 = $("input[name='pArtistPFImage']").val().length;
+		var mv4_8 = $("#uploadfile3").val().length;
+		if(mv4_1>0 && mv4_2>0 && mv4_3>0 && mv4_4>0 && mv4_5>0 && mv4_6!="" &&(mv4_7>0||mv4_8>0)){
+			$("#menu4done").val(1);
+    		checkmenuvalidate();
+		}else{
+			$("#menu4done").val(0);
+    		checkmenuvalidate();
+		}
+    }
+	
+    function checkmenuvalidate(){
+    	var mv1 = $("#menu1done").val();
+    	var mv2 = $("#menu2done").val();
+    	var mv3 = $("#menu3done").val();
+    	var mv4 = $("#menu4done").val();
+    	if(mv1==1) {
+    		$("#menu1chk").show();
+    		$("#menu1rc").css("color","#8E44AD");
+    	}else{
+    		$("#menu1chk").hide();
+    		$("#menu1rc").css("color","#6f6f6f");
+    	}
+    	if(mv2==1){
+    		$("#menu2chk").show();
+    		$("#menu2rc").css("color","#8E44AD");
+    	}else{
+    		$("#menu2chk").hide();
+    		$("#menu2rc").css("color","#6f6f6f");
+    	}
+    	if(mv3==1){
+    		$("#menu3chk").show();
+    		$("#menu3rc").css("color","#8E44AD");
+    	}else{
+    		$("#menu3chk").hide();
+    		$("#menu3rc").css("color","#6f6f6f");
+    	}
+    	if(mv4==1){
+    		$("#menu4chk").show();
+    		$("#menu4rc").css("color","#8E44AD");
+    	}else{
+    		$("#menu4chk").hide();
+    		$("#menu4rc").css("color","#6f6f6f");
+    	}
+    	if(mv1==1 && mv2==1 && mv3==1 && mv4==1){
+    		$("#submitToAdmin").removeClass("disabledbtn");
+    		$("#remotesubmit").removeClass("notouch");
+    		$("#submitToAdmin").prop("disabled",false);
+    	}else{
+    		$("#submitToAdmin").addClass("disabledbtn");
+    		$("#remotesubmit").addClass("notouch");
+    		$("#submitToAdmin").prop("disabled",true);
+    	}
+   	};
+
 </script>
 </body>
 </html>
