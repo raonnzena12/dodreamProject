@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -14,6 +15,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.dodream.spring.member.model.vo.Member;
 import com.dodream.spring.project.model.service.ProjectService;
+import com.dodream.spring.project.model.service.ProjectService2;
+import com.dodream.spring.project.model.vo.DetailFollow;
+import com.dodream.spring.project.model.vo.DetailReport;
+import com.dodream.spring.project.model.vo.Like;
 import com.dodream.spring.project.model.vo.Project;
 import com.dodream.spring.project.model.vo.Reward;
 import com.dodream.spring.project.model.vo.RewardList;
@@ -24,6 +29,8 @@ public class ProjectController {
 
 	@Autowired
 	private ProjectService pService;
+	@Autowired
+	private ProjectService2 pService2;
 
 	/**
 	 * 메뉴바에서 펀드 등록하기 클릭시 프로젝트 동의 페이지로 이동
@@ -85,7 +92,9 @@ public class ProjectController {
 		ArrayList<Reward> rewardList = new ArrayList<Reward>();
 		for (int i = 0; i < rList.getrList().size(); i++) {
 			Reward reward = rList.getrList().get(i);
-			if(reward.getIsSaved().equals("true")) rewardList.add(reward);
+			try {
+				if(reward.getIsSaved().equals("true")) rewardList.add(reward);
+			}catch(NullPointerException e) {}
 		}
 		// 리워드가 존재할 경우 기존에 있던 리워드를 전부 삭제시킵니다.
 		if(rewardList.size()>0) 
@@ -159,5 +168,14 @@ public class ProjectController {
 		mv.addObject("isUpdate","true");
 		mv.setViewName("project/insertFundForm");
 		return mv;
+	}
+	
+	@RequestMapping("goPreview.dr")
+	public String prjDetailView(Integer pNo, Model model) {
+		Project prj = pService.selectProject(pNo);
+		ArrayList<Reward> rw = pService2.selectReward(pNo);
+		model.addAttribute("reward", rw);
+		model.addAttribute("project", prj);
+		return "project/projectDetailPreview";
 	}
 }
