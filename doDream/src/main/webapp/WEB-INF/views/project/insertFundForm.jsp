@@ -271,27 +271,11 @@
     font-size: 11px;
     display: inline;
 }
-.insertformcont { 
-	position: fixed; 
-	right: 43%; 
-	top: 500px;
-	margin-right: -730px; 
-	text-align:center; 
-	width: 150px;
-	height: 240px;
-	border: 1px solid #8E44AD99;
-	border-bottom: 2px solid #8E44AD99;
-	border-right: 2px solid #8E44AD99;
-	border-radius: 5px;
-	padding:5px;
-}
-.insertformcont:hover{
-	box-shadow: 1px 1px 4px #aaa;
-}
+
 .btnWrapper button{
 	width: 160px;
-	opacity: 0.85;
-	margin-left: 15px;
+	opacity: 0.80;
+	margin-left: 25px;
 	font-size: 18px;
 	letter-spacing: 1px;
 }
@@ -322,13 +306,32 @@
 	font-size: 15px;
 	margin: 10px;
 }
+
+.insertformcont { 
+	position: fixed; 
+	right: 43%; 
+	top: 500px;
+	margin-right: -730px; 
+	text-align:center; 
+	width: 150px;
+	height: 240px;
+	border: 1px solid #8E44AD99;
+	border-bottom: 2px solid #8E44AD99;
+	border-right: 2px solid #8E44AD99;
+	border-radius: 5px;
+	padding:5px;
+	box-shadow: 2px 2px 6px #aaa;
+}
+.insertformcont:hover{
+}
+
 </style>
 </head>
 <body>
 	<jsp:include page="../common/menubar.jsp" />
 	<link rel="stylesheet" href="resources/css/fundinginsertform.css">
 	<!-- 리모컨영역 -->
-	<div class="insertformcont" id="insertFormRC">
+	<div class="insertformcont" id="insertFormRC" style="display:none!important;">
 	</div>
 	<div class="clearfix"></div>
 	<input type="hidden" id="isUpdate" value="${isUpdate}">
@@ -402,9 +405,9 @@
 	</div>
 	<div id="insertFundForm" style="margin-top: 100px; margin-bottom: 100px;">
 		<div class="btnWrapper" align="right">
-			<button type="button" onclick="preview(${project.pNo});" class="btn btn-primary" style="background-color: #8E44AD; border: none; width: 140px;"><i class="material-icons">search</i>미리보기</button>
-			<button type="button" onclick="temporarySave();" class="btn btn-primary" style="background-color: #8E44AD; border: none;"><i class="material-icons">cloud_download</i>임시저장하기</button>
-			<button type="button" onclick="submitToAdmin();" class="btn btn-primary" style="background-color: #F39C12; border: none;"><i class="material-icons">done</i>검토요청하기</button>
+			<button type="button" onclick="preview(${project.pNo});" class="btn btn-primary" style="background-color: #8E44AD; border: none; width: 140px; box-shadow: 2px 2px 6px 1px #999;"><i class="material-icons">search</i>미리보기</button>
+			<button type="button" onclick="temporarySave();" class="btn btn-primary" style="background-color: #8E44AD; border: none; box-shadow: 2px 2px 6px 1px #999;"><i class="material-icons">cloud_download</i>임시저장하기</button>
+			<button type="button" onclick="submitToAdmin();" class="btn btn-primary" style="background-color: #F39C12; border: none; box-shadow: 2px 2px 6px 1px #999;"><i class="material-icons">done</i>검토요청하기</button>
 		</div>
 		<div class="accWrapper">
 			<form id="insertFrm" name="insertFrm" action="insertProject.dr" method="POST"
@@ -1221,6 +1224,7 @@
 		}
 	};
 	// 동의를 모두 체크하고 넘어가면 인서트폼을 보여주는 메소드
+	/*
 	function checkAgreement() {
 		var loginchk = checklogin();
 		if(loginchk==true){
@@ -1232,6 +1236,7 @@
 			}, 300);
 		}
 	};
+	*/
 	// 검토요청하기 메소드입니다. pStatusNum = 2
 	function submitToAdmin(){
 		$("#pStatusNum").val(2);
@@ -1349,11 +1354,42 @@
 	}
 	// 미리보기 메소드입니다.
 	function preview(num){
-		var frm = document.getElementById("insertFrm");
-		window.open("","nw","width=1600, height=1000");
-		frm.target = "nw";
-		frm.action = "goPreview.dr";
-		frm.submit();
+		$("#pStatusNum").val(1);
+ 		var formData = new FormData(document.getElementById("insertFrm"));
+		$.ajax({
+			url : "insertProject.dr",
+			type: "post",
+			data: formData,
+			encType: "multipart/form-data",
+			processData: false,
+			contentType: false,
+			success: function(result){
+				if(result>0){
+					var frm = document.getElementById("insertFrm");
+					window.open("","nw","width=1600, height=1000");
+					frm.target = "nw";
+					frm.action = "goPreview.dr";
+					frm.submit();
+				}else{
+					Swal.fire({
+						position: 'top-end',
+						type: 'error',
+						title: '미리보기 정보를 불러오는데 실패하였습니다.',
+						showConfirmButton: false,
+						timer: 1500
+					});
+				}
+			},error: function(e){
+				console.log(e);
+				Swal.fire({
+					position: 'top',
+					type: 'error',
+					title: '미리보기 정보를 불러오는데 실패하였습니다.',
+					showConfirmButton: false,
+					timer: 1500
+				});
+			}
+		}); 
 	}
 	// 프로젝트 내용 입력전 동의를 체크해야 입력폼이 보이게하는 메소드입니다.
 	$(".contentinfoarea").hide();
@@ -2100,7 +2136,7 @@
 		if(isUpdate=="true"){
 			$("#agreementForm").hide();
 			$("#insertFundForm").show();
-			$("#insertFormRC").fadeIn(3000);
+			//$("#insertFormRC").fadeIn(3000);
 			LoadingWithMask(path);
 			setTimeout("closeLoadingWithMask()", 2000);
 		}
