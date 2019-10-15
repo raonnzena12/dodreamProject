@@ -23,7 +23,7 @@
 						<table id="insert-table">
 							<tr>
 								<td>
-									<input type="email" class="form-control" id="userEmail" name="userEmail" placeholder="email을 입력해 주세요" required>
+									<input type="email" class="form-control" id="userEmailInsert" name="userEmail" placeholder="email을 입력해 주세요" required>
 								</td>
 
 								<td>
@@ -59,7 +59,7 @@
 							</tr>
 							<tr>
 								<td colspan="2">
-									<input type="password" class="form-control" id="userPwd" name="userPwd" placeholder="비밀번호를 입력해주세요" required>
+									<input type="password" class="form-control" id="userPwdInsert" name="userPwd" placeholder="비밀번호를 입력해주세요" required>
 								</td>
 							</tr>
 							<tr>
@@ -102,8 +102,8 @@
 		var userEmail;
 		var auth;
 		
-		$("#userEmail").blur(function() {
-			userEmail = $("#userEmail").val().trim();
+		$("#userEmailInsert").blur(function() {
+			userEmail = $("#userEmailInsert").val().trim();
 			console.log(userEmail);
 			if(userEmail == ""){
 				$("#alertMsg").show();
@@ -114,7 +114,7 @@
 				if(! emailRegex.test(userEmail)){
 					$("#alertMsg").show();
 					$("#alertMsg").text("유효한 이메일 형식이 아닙니다.").css("color", "#8E44AD");
-					$("#userEmail").focus();
+					$("#userEmailInsert").focus();
 				}else{
 					$("#alertMsg").show().text("이메일 인증을 진행해 주세요").css("color", "#F39C12");
 				}
@@ -123,7 +123,7 @@
 	
 	$("#emailauthbtn").on("click",function(){
 		
-		userEmail = $("#userEmail").val().trim();
+		userEmail = $("#userEmailInsert").val().trim();
 		$.ajax({
 			type : "post",
 			url : "authEmail.dr",
@@ -132,10 +132,10 @@
 			success: function(data) {
 				if(data == "1"){
 					$("#alertMsg").show().text("이미 가입된 이메일입니다. 다시 입력해주세요.").css("color", "#8E44AD");
-					$("#userEmail").val("").focus();
+					$("#userEmailInsert").val("").focus();
 				} else if(data == "0"){
 					$("#alertMsg").show().text("이메일 전송에 실패하였습니다. 다시 입력해주세요.").css("color", "#8E44AD");
-					$("#userEmail").val("").focus();
+					$("#userEmailInsert").val("").focus();
 				} else{
 					$("#alertMsg").show().text("이메일 인증번호가 전송되었습니다. 인증번호를 입력해주세요.").css("color", "#F39C12");
 					$("#userEmailAuthYn").focus();
@@ -186,12 +186,13 @@
 	var userPwd;
 	var userPwdCk;
 	
-	$("#userPwd").blur(function() {
-		userPwd = $("#userPwd").val().trim();
+	$("#userPwdInsert").blur(function() {
+		userPwd = $("#userPwdInsert").val().trim();
 		var pwdRegex = /^[a-zA-Z0-9]{6,14}$/;
 		if(!pwdRegex.test(userPwd)){
 			alert("비밀번호는 숫자와 문자 포함 6이상 14자리 이내로 작성해주세요.");
-			$("#userPwd").val("").focus();
+			$("#userPwdInsert").val("").focus();
+			return false;
 		}else{
 			$("#userPwdCk").focus();
 			$("#userPwdCk").blur(function() {

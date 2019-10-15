@@ -83,6 +83,11 @@
            		
            		/* 아티스트 이름, 아이콘 감싼것 */
            }
+           
+           #artistText2 a{
+           	color:#444;
+           }
+           
            #nameBox{
            		width:auto;	
            		min-width:162px;
@@ -357,13 +362,12 @@
                  	<img src="resources/images/projectImg/artistImg/${project.pArtistPFImage}" id="artProfileImg">
                  </div>
                  <div id="artistName">
-                   <a href="social.dr?userNo=${project.pWriter}">
-		                 <div id="artistText2">${project.pArtistName }님
+		                 <div id="artistText2"><a href="social.dr?userNo=${project.pWriter}">${project.pArtistName }님</a>
 			                 <div id="iconbox" class="clearfix">
 				                 	<i class="material-icons" id="asideFavorite">favorite_border</i>
 				             </div>
 			             </div>
-                     </a>
+                  
                  </div>
             </div>
             <div id="introduce">

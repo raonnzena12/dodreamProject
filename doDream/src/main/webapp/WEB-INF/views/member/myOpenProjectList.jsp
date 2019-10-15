@@ -89,7 +89,15 @@
 .fundName {
     font-weight: 900;
     font-size: 18px;
+    
 }
+
+.fundName>a {
+    font-weight: 900;
+    font-size: 18px;
+    color: #777;
+}
+
 
 .detailText {
     font-size: 14px;
@@ -192,7 +200,8 @@
 										</div>
 										<div class="nameArea">
 											<p class="categoryName mb-0">${ pList.pCategoryName } 
-												<span class="detailArea float-right"><c:choose>
+												<span class="detailArea float-right">
+												<c:choose>
 														<c:when test="${pList.pStatusNum eq 1 }">
 															<span>임시저장</span>
 														</c:when>
@@ -216,7 +225,20 @@
 														</c:when>																							
 													</c:choose></span>
 											</p>
-											<span class="fundName"> ${ pList.pTitle } </span>
+											
+											<c:choose>
+											<c:when test="${pList.pStatusNum eq 1 }">
+												<c:if test="${!empty pList.pTitle }">
+												<span class="fundName"><a href="selectCurrentProject.dr?pNo=${pList.pNo }">${ pList.pTitle }</a> </span>
+												</c:if>	
+												<c:if test="${empty pList.pTitle }">
+												<span class="fundName"><a href="selectCurrentProject.dr?pNo=${pList.pNo }">제목없음</a> </span>
+												</c:if>										
+											</c:when>
+											<c:otherwise>
+												<span class="fundName"> ${ pList.pTitle } </span>
+											</c:otherwise>
+											</c:choose>
 										</div>
 
 										<div class="detailArea my-1">

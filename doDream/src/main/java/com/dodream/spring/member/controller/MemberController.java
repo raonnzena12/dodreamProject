@@ -169,7 +169,7 @@ public class MemberController {
 				System.out.println("userNo : " + loginUser.getUserNo() + "번 회원이 DAYCOUNT 테이블에 삽입됨");
 			}
 
-			return "redirect:" + prevPage;
+			return "redirect:main.dr";
 		} else {
 			model.addAttribute("msg", "회원가입에 실패하였습니다.");
 			return "common/errorPage";
