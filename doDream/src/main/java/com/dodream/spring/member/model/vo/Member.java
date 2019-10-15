@@ -19,10 +19,10 @@ public class Member {
 	private String userProfileImage;
 	private String userSelf;
 	private int pWriter;
-
+	private int follow;
+	private int follower;
 		
 	public Member() {}
-
 
 	public Member(int userNo, String userEmail, String userNickname, String userPwd, String userEmailAuthYn,
 			String userAdminYn, String userStatus, Date userEnrollDate, Date userLoginDate, Date userModifyDate,
@@ -167,7 +167,25 @@ public class Member {
 		this.pWriter = pWriter;
 	}
 	
-	
+	public int getFollow() {
+		return follow;
+	}
+
+
+	public void setFollow(int follow) {
+		this.follow = follow;
+	}
+
+
+	public int getFollower() {
+		return follower;
+	}
+
+
+	public void setFollower(int follower) {
+		this.follower = follower;
+	}
+
 
 	@Override
 	public String toString() {
@@ -176,15 +194,7 @@ public class Member {
 				+ userStatus + ", userEnrollDate=" + userEnrollDate + ", userLoginDate=" + userLoginDate
 				+ ", userModifyDate=" + userModifyDate + ", userAddress=" + userAddress + ", userPhone=" + userPhone
 				+ ", userProfileImage=" + userProfileImage + ", userSelf=" + userSelf + ", pWriter=" + pWriter
-				;
+				+ ", follow=" + follow + ", follower=" + follower + "]";
 	}
-
-
-
-	
-	
-	
-	
-	
 
 }

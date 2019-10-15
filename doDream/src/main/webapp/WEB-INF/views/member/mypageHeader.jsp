@@ -23,6 +23,39 @@
 		</div>
 		<div></div>			
 		<div class="row">
+		<c:choose>
+		<c:when test="${ !empty social  }">
+			<div class="col-md-4"></div>
+			<div class="col-md-4 myPagehead">
+				<h4 class="mb-3">&nbsp;</h4>
+				<h4 class="text-left">
+						${ social.userNickname }님 의 소셜페이지
+					<img src="" class="rounded-circle float-sm" />
+				</h4>
+					<p class="mb-0" id="userSelf">${ social.userSelf }</p>
+				<div id="followOuter">
+					<p class="text-left">팔로워 <span id="follower">${ social.follower }</span>명 &nbsp; 팔로잉 <span id="follow">${ social.follow }</span>명</p>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div id="pfImgOuter">
+					<c:choose>
+					<c:when test="${empty social.userProfileImage}">
+					<img alt="프로필사진" src="resources/images/talent.png" class="rounded-circle float-sm ml-3" style="width: 150px; height: 150px;"/>
+					</c:when>
+					<c:when test= "${fn:contains(social.userProfileImage,'http://')}">
+					<img alt="프로필사진" src="${social.userProfileImage}" class="rounded-circle float-sm" style="width: 150px; height: 150px;"/>
+					</c:when>
+					<c:otherwise>
+					<img alt="프로필사진" src="resources/images/userProfileImage/${social.userProfileImage}" class="rounded-circle float-sm" style="width: 150px; height: 150px;"/>
+					</c:otherwise>
+					</c:choose>
+					<!-- <img src="resources/images/settings_icon.png" class="float-sm align-top" id="setting" style="width: 35px;"/> -->
+				</div>
+			</div>
+		
+		</c:when>
+			<c:otherwise>
 			<c:if test="${ ! empty sessionScope.loginUser }">
 			<div class="col-md-4"></div>
 			<div class="col-md-4 myPagehead">
@@ -55,12 +88,29 @@
 					</a>
 				</div>
 			</div>
+			</c:otherwise>
+			</c:choose>
 		</div>
-		<div style="height: 20px;"></div>
+		<div style='height: 20px;'></div>
 	</div>
 		<div class="row sticky-top" id="navOuter">
 			<div class="col-md-12">
 				<div class="row">
+				<c:choose>
+				<c:when test="${ !empty social  }">
+				<div class="col-md-2"></div>
+					<div class="col-md-6">
+						<ul class="nav">
+							<li class="nav-item"><a class="nav-link" id="menu1" href="social.dr?userNo=${social.userNo}">프로젝트로그</a></li>
+							<li class="nav-item"><a class="nav-link" id="menu2" href="socialfollowList.dr?userNo=${social.userNo}"><i class="material-icons">favorite</i></a></li>
+						</ul>
+					</div>
+					<div class="col-md-4">
+						<ul class="nav">
+						</ul>
+					</div>
+				</c:when>
+				<c:otherwise>
 					<div class="col-md-2"></div>
 					<div class="col-md-6">
 						<ul class="nav">
@@ -74,11 +124,14 @@
 							<li class="nav-item"><a class="nav-link" id="menu4" href="myReserveList.dr?userNo=${loginUser.userNo}">프로젝트결제내역</a></li>
 						</ul>
 					</div>
+				</c:otherwise>
+				</c:choose>
 				</div>
 			</div>
 		</div>
 		<!-- <div style="height: 2000px;"></div> -->
 	<%-- </c:if> --%>
+	<c:if test="${ empty social  }">
 	<script>
 		$(document).ready(function(){
 			$.ajax({
@@ -119,5 +172,6 @@
 		});
 		
 	</script>
+	</c:if>
 </body>
 </html>

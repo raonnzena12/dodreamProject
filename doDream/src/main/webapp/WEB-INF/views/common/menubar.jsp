@@ -83,9 +83,9 @@
 				<a class="nav-link" href="insertFundForm.dr">펀딩 등록하기</a>
 			</li>
 			<li class="nav-item dropdown">
-				<a class="nav-link dropdown" href="#" id="nbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				<!-- <a class="nav-link dropdown" href="#" id="nbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					<span id="">링크페이지</span>
-				</a>
+				</a> -->
 				<div class="dropdown-menu" aria-labelledby="nbarDropdownMenuLink">
 					<a href="https://ovenapp.io/view/6PkJ9GJEJ4iv9eqJ7gJz2jDzuLfgXvIw/" target="_blank" class="dropdown-item">와이어프레임</a>
 					<a href="https://www.wadiz.kr/web/wreward/main?keyword=&endYn=ALL&order=recommend" target="_blank" class="dropdown-item">와디즈</a>
@@ -104,7 +104,7 @@
 				</div>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="kakaotest.dr">(temp) 펀딩 결제 INFO</a>
+				<!-- <a class="nav-link" href="kakaotest.dr">(temp) 펀딩 결제 INFO</a> -->
 			</li>
 			</ul>
 			<ul class="navbar-nav ml-auto mr-3">
@@ -272,9 +272,9 @@ function loginWithNaver(email, nickName, profileImg, unqId) {
 	var param = new Array();
 	var input = new Array();
 
-	var path = window.location.pathname;
+	var path = window.location.href;
 	var arr = path.split("/");
-	var prevPage = arr[2];
+	var prevPage = arr[4].replace("#","");
 
 	
 	form.action = "naverSNSLogin.dr";
@@ -303,9 +303,9 @@ function loginWithNaver(email, nickName, profileImg, unqId) {
 	/* 로그인폼 submit */
 	function beforeLogin(){
 		var frm = $("#loginFrm");
-		var path = window.location.pathname;
+		var path = window.location.href;
 		var arr = path.split("/");
-		$("#prevPage").val(arr[2]);
+		$("#prevPage").val(arr[4].replace("#",""));
 		frm.submit();
 	};
 	
@@ -367,10 +367,9 @@ function loginWithNaver(email, nickName, profileImg, unqId) {
 		var param = new Array();
 		var input = new Array();
 
-		var path = window.location.pathname;
+		var path = window.location.href;
 		var arr = path.split("/");
-		var prevPage = arr[2];
-
+		var prevPage = arr[4].replace("#","");
 		
 		form.action = url;
 		form.method = "post";

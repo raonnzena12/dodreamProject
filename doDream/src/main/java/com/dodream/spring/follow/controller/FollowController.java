@@ -2,20 +2,29 @@ package com.dodream.spring.follow.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dodream.spring.follow.model.service.FollowService;
 import com.dodream.spring.follow.model.vo.Follow;
+import com.dodream.spring.member.model.service.MemberService;
+import com.dodream.spring.member.model.vo.Member;
 
 @Controller
 public class FollowController {
 
 	@Autowired
 	private FollowService fService;
+	@Autowired
+	private MemberService mService;
 	
 	/**
 	 * 나를 팔로잉한 사람 (나의 팔로워 리스트) count
@@ -105,4 +114,43 @@ public class FollowController {
 		return result;
 	}
 	
+	@RequestMapping("socialfollowList.dr")
+	public ModelAndView test(HttpServletRequest request, Integer userNo, Integer page, ModelAndView mv, RedirectAttributes rd) {
+		
+		Object loginUser = request.getSession().getAttribute("loginUser");
+		if ( loginUser == null ) {
+			rd.addFlashAttribute("msg", "로그인을 해주세요");
+			mv.setViewName("redirect:main.dr");
+			return mv;
+		}
+		
+		
+		int uNo = (userNo == null)? 0 : userNo;
+		int pageNo = (page == null)? 1 : page;
+		
+		Member social = mService.socialSelect(uNo);
+		if (social != null) {
+			mv.addObject("social", social);
+		} else {
+			mv.addObject("msg", "목록 조회에 실패하였습니다.");
+			mv.setViewName("common/errorPage");
+			return mv;
+		}
+		
+		if ( pageNo == 1 ) {
+			List<Follow> followList = fService.selectFollowList(uNo);
+			mv.addObject("menu", 2);
+			mv.addObject("sub", 1);
+			mv.addObject("followList", followList);
+			mv.setViewName("member/followList");
+		} else {
+			List<Follow> followerList = fService.selectFollowerList(uNo);
+			mv.addObject("menu", 2);
+			mv.addObject("sub", 2);
+			mv.addObject("followerList", followerList);
+			mv.setViewName("member/followerList");
+		}
+		
+		return mv;
+	}
 }
