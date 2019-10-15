@@ -31,10 +31,10 @@
 		<div class="col-md-8" id="followsub">
 		<c:choose>	
 		<c:when test="${ !empty social }">
-		<a class="" id="sub1" href="socialfollowList.dr?userNo=${social.userNo}&page=1">팔로잉한</a> ｜ <a class="" id="sub2" href="socialfollowList.dr?userNo=${social.userNo}&page=2">팔로잉한</a>
+		<a class="" id="sub1" href="socialfollowList.dr?userNo=${social.userNo}&page=1">아티스트가 팔로잉한</a> ｜ <a class="" id="sub2" href="socialfollowList.dr?userNo=${social.userNo}&page=2">아티스트를 팔로잉한</a>
 		</c:when>
 		<c:otherwise>
-			<a class="" id="sub1" href="followList.dr?userNo=${loginUser.userNo}">팔로잉한</a> ｜ <a class="" id="sub2" href="followerList.dr?userNo=${loginUser.userNo}">팔로잉한</a>
+			<a class="" id="sub1" href="followList.dr?userNo=${loginUser.userNo}">내가 팔로잉한</a> ｜ <a class="" id="sub2" href="followerList.dr?userNo=${loginUser.userNo}">나를 팔로잉한</a>
 		</c:otherwise>
 		</c:choose>
 		</div>
