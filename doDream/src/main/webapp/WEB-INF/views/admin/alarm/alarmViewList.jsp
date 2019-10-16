@@ -97,10 +97,6 @@ tbody tr:hover{
 														<th class="sorting" tabindex="0" aria-controls="dataTable"
 															rowspan="1" colspan="1"
 															aria-label="Office: activate to sort column ascending"
-															style="width: auto;">알림 분류</th>
-														<th class="sorting" tabindex="0" aria-controls="dataTable"
-															rowspan="1" colspan="1"
-															aria-label="Office: activate to sort column ascending"
 															style="width: auto;">알림 제목</th>
 														<th class="sorting" tabindex="0" aria-controls="dataTable"
 															rowspan="1" colspan="1"
@@ -122,7 +118,6 @@ tbody tr:hover{
 												<tfoot>
 													<tr>
 														<th rowspan="1" colspan="1">알림 번호</th>
-														<th rowspan="1" colspan="1">알림 분류</th>
 														<th rowspan="1" colspan="1">알림 제목</th>
 														<th rowspan="1" colspan="1">알림 내용</th>
 														<th rowspan="1" colspan="1">알림 날짜</th>
@@ -141,7 +136,6 @@ tbody tr:hover{
 													<c:forEach var="a" items="${ list }" varStatus="status">
 														<tr role="row" class="odd">
 															<td class="sorting_1">${ a.alNo}</td>
-															<td>${ a.alCategory}</td>
 															<td>${ a.alTitle}</td>
 															<td>${ a.alContent}</td>
 															<td>${ a.alDate}</td>

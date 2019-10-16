@@ -149,11 +149,11 @@ select {
 											<table align="center" id="tb" cellpadding="5" cellspacing="0" width="1000px">
 												<tr>
 													<th>프로젝트 후기 제목 : </th>
-													<td><input type="text" name="revTitle" type="text" size="97" placeholder="제목을 입력해주세요."></td>
+													<td><input type="text" name="revTitle" type="text" size="97" placeholder="제목을 입력해주세요." value="${review.revTitle }"></td>
 												</tr>
 												<tr>
 													<th>프로젝트 후기 부제목 : </th>
-													<td><input type="text" name="revSubTitle" type="text" size="97" placeholder="부제목을 입력해주세요."></td>
+													<td><input type="text" name="revSubTitle" type="text" size="97" placeholder="부제목을 입력해주세요." value="${review.revSubTitle }" ></td>
 												</tr>
 													<input type="hidden" name="revRefPno" value="${review.revRefPno }">
 													<input type="hidden" name="revCatNo" value="${review.revCatNo }">
@@ -169,7 +169,7 @@ select {
 												<tr>
 													<th>리뷰 내용 : </th>
 													<input type="hidden" name="reviewTnImg" value="${review.reviewTnImg }">
-													<td><textarea id="summernote" name="revContent"></textarea></td>
+													<td><textarea id="summernote" name="revContent">${review.revContent }</textarea></td>
 												</tr>
 												<!-- 등록된 이미지 목록 -->
 												<input type="hidden" name="revWriter" value="${loginUser.userNo}"> 
