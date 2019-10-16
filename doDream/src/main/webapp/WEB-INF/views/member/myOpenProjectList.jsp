@@ -228,7 +228,8 @@
 														<c:when test="${pList.pStatusNum eq 7 }">
 															<span>펀딩성공</span>
 														</c:when>																							
-													</c:choose></span>
+													</c:choose>
+												</span>
 											</p>
 											
 											<c:choose>
@@ -240,16 +241,7 @@
 												<span class="fundName"><a href="selectCurrentProject.dr?pNo=${pList.pNo }">제목없음</a> </span>
 												</c:if>										
 											</c:when>
-											<c:when test="${pList.pStatusNum eq 4 }">
-												<span class="fundName"> <a href="detailSt.dr?pNo=${pList.pNo }">${ pList.pTitle }</a> </span>
-											</c:when>
-											<c:when test="${pList.pStatusNum eq 5 }">
-												<span class="fundName"> <a href="detailSt.dr?pNo=${pList.pNo }">${ pList.pTitle }</a> </span>
-											</c:when>
-											<c:when test="${pList.pStatusNum eq 6 }">
-												<span class="fundName"> <a href="detailSt.dr?pNo=${pList.pNo }">${ pList.pTitle }</a> </span>
-											</c:when>
-											<c:when test="${pList.pStatusNum eq 7 }">
+											<c:when test="${pList.pStatusNum <= 4 }">
 												<span class="fundName"> <a href="detailSt.dr?pNo=${pList.pNo }">${ pList.pTitle }</a> </span>
 											</c:when>
 											<c:otherwise>
@@ -258,8 +250,7 @@
 											</c:choose>
 										</div>
 
-										<div class="detailArea my-1">
-           		                        </div>
+										<div class="detailArea my-1"> </div>
 										<div class="chartArea px-3 mt-2">
 											<div class="chartInfo clearfix">
 												<c:choose>
@@ -372,7 +363,7 @@
 			return num.toString().replace(regexp, ',');
 		}
 		
-		
+		//해당메뉴 강조
 	    $(function(){
 			var menu = ${menu} + "";
 			
@@ -390,9 +381,10 @@
 			}
 		});
 	    
+		//심사완료 시 프로젝트 오픈
 	    $("#openPRJ").click(function(){
 	    	var pNo = $(this).attr("project");
-	    	var termDate = $(this).attr("termDate");
+	    	var termDate = $(this).attr("termdate");
 			var ck = confirm("해당 프로젝트를 오픈합니다.");
 			if(ck == true){
 				$.ajax({

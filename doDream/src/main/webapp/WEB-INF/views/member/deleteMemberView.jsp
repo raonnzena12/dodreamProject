@@ -66,7 +66,7 @@
                      <div id="projectJoin">&nbsp; &nbsp; <mark>참여한 프로젝트</mark> 중 <mark>진행중</mark>인 프로젝트는 <span id="projectJoinCount"></span>건입니다.<br></div>
                      <div id="projectClose">&nbsp; &nbsp; <mark>참여한 프로젝트</mark> 중 <mark>완료</mark>된 프로젝트는 <span id="projectCloseCount"></span>건입니다.</div> 
 					<br>
-                     <mark>참여한 프로젝트</mark> 중 <mark>완료</mark>된 프로젝트의 <mark>리워드</mark> 수령 주소지는 <mark>변경이 불가</mark>합니다. <br>
+                     <mark>참여한 프로젝트</mark> 중 <mark>완료</mark>된 프로젝트의 <mark>리워드</mark> 수령 주소지는 <mark>변경이 불가</mark>하며 <br>
                      <mark>리워드</mark>의 <mark>환불</mark>이 <mark>불가</mark>합니다.<br>
                      1개월 내 동일한 <mark>Email</mark>로 <mark>재가입</mark>이 <mark>불가</mark>합니다.<br>
                      <br>
