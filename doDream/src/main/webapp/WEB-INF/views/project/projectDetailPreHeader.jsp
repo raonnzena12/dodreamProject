@@ -270,7 +270,7 @@
                     	<c:when test="${ fn:contains(project.pMainImage, '_main') }">
                     	<img src="resources/images/projectImg/mainImg/${project.pMainImage}" id="mainImg">
                     	</c:when>
-                    	<c:when test="${project.pMainImage eq '' }">
+                    	<c:when test="${project.pMainImage == null}">
                     	<div id="noImg">이미지가 없습니다.</div>
                     	</c:when>
                     	<c:otherwise>
