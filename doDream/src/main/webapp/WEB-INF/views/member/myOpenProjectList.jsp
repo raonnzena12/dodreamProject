@@ -155,6 +155,11 @@
 	font-weight: 600;
 }
 
+#myOpenPRJView{
+	min-height: 600px;
+	height: auto;
+}
+
 </style>
 </head>
 <body>
@@ -162,7 +167,7 @@
 	<jsp:include page="../member/mypageHeader.jsp"/>
 
 	<br>
-	<div class="container-fluid">
+	<div class="container-fluid" id="myOpenPRJView">
 		<br>
 		<div class="row">
 			<div class="col-md-2"></div>

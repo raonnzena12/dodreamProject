@@ -34,6 +34,11 @@
     #deleteMember{
    	cursor: pointer;
    }
+   
+   #mySettingView{
+   	min-height: 600px;
+   	height: auto;
+   }
 
 </style>
 
@@ -42,7 +47,7 @@
 
    <jsp:include page="../member/mypageHeader.jsp"/>
    
-   <div class="container-fluid">
+   <div class="container-fluid" id="mySettingView">
    <br>
    <div class="row">
       <div class="col-md-12">

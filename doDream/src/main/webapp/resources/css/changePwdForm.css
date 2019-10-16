@@ -26,3 +26,8 @@
 #changePwd-table ::placeholder {
   font-size: 13px;
 }
+
+#changePwdForm{
+	min-height: 600px;
+	height: auto;
+}

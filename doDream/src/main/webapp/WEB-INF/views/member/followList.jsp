@@ -18,13 +18,17 @@
 	#followsub a.active{
 		color: #8E44AD;
 	}
+	#followListView{
+		min-height: 600px;
+		height: auto;
+	}
 
 </style>
 </head>
 <body>
 <jsp:include page="../member/mypageHeader.jsp"/>
 	<br>
-	<div class="container-fluid">
+	<div class="container-fluid" id="followListView">
 	<div class="row">
 		<div class="col-md-2">
 		</div>

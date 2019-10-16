@@ -160,12 +160,16 @@
 	color: #8E44AD;
 	font-weight: 600;
 }
+#myLikePRJView{
+	min-height: 600px;
+	height: auto;
+}
 </style>
 </head>
 <body>
 	<jsp:include page="../member/mypageHeader.jsp"/>
 	<br>
-	<div class="container-fluid">
+	<div class="container-fluid" id="myLikePRJView">
 		<div class="row">
 			<div class="col-md-2"></div>
 			<div class="col-md-8" id="myfundingsub">

@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 <%@ include file ="mypageHeader.jsp" %>
 <style>
+
 #myFundList #innerCon {
 	max-width: 1000px;
 	margin: 0 auto;
