@@ -367,7 +367,6 @@
 				                 	<i class="material-icons" id="asideFavorite">favorite_border</i>
 				             </div>
 			             </div>
-                  
                  </div>
             </div>
             <div id="introduce">
@@ -377,7 +376,15 @@
             	<div id="artistText3">
             		<div id="artistsns">
 	            		<div id="fb">
-	            			<a  href="https://www.facebook.com/${project.pArtistSns1 }"><img src="resources/images/faceB_gray_icon.png" width="20px" height="20px"></a>
+	            		
+	            			
+		            		<c:if test="${fn:contains(project.pArtistSns1,'없음')}">
+		            			
+		            		</c:if>
+		            		<c:otherwise>
+		            			<a  href="https://www.facebook.com/${project.pArtistSns1 }"><img src="resources/images/faceB_gray_icon.png" width="20px" height="20px"></a>
+		            		</c:otherwise>
+		            		
 	            		</div>
 	            		<div id="ig">
 	            			<a  href="https://www.instagram.com/${project.pArtistSns2 }"><img src="resources/images/inStar_gray_icon.png" width="20px" height="20px"></a>
@@ -476,15 +483,14 @@
 			    </div>
 			  </div>
 			</div>
-			
 		</section>
 	</section>
 	
 	<script>
 	
-	
+	/* 
 		var info = "${project.pArtistIntroduction }";
-		console.log("아티스트 소개 : "+ info);
+		console.log("아티스트 소개 : "+ info); */
 		
 	$(function(){
 			//처음 들어왔을때 색 바뀌는 기능 
@@ -514,6 +520,10 @@
 			
 			
 			$("#asideFavorite").on("click", function(){
+				
+				console.log("좋아요");
+				
+				
 				
 				if(${empty sessionScope.loginUser}) {
 					alert("로그인이 필요합니다.");

@@ -329,7 +329,7 @@ public class ProjectController2 {
 		
 	}
 	
-	//대댓글 수정
+	//서브댓글 수정
 	@ResponseBody
 	@RequestMapping("updateSubRe.dr")
 	public String updateSubRe(int subNo, String updateSubCon, SubReply sReply) {
@@ -346,7 +346,7 @@ public class ProjectController2 {
 		}
 	}
 	
-	//대댓글 삭제
+	//서브댓글 삭제
 	@ResponseBody
 	@RequestMapping("deleteSubRe.dr")
 	public String deleteSubRe(int subNo) {
