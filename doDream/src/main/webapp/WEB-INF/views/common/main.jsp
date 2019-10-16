@@ -148,10 +148,27 @@
 }
 .ggArea {
     width: 90%;
-    height: 200px;
-    border-radius: 5px;
-    background-color: #F39C12;
+    /* height: 200px; */
+    /* background-color: #F39C12; */
     margin: 20px auto;
+}
+.areaarea{
+    border-radius: 5px;
+    position: relative; 
+    padding-top: 56.25%; 
+    overflow: hidden;
+    /* height: 300px; */
+}
+.areaarea img {
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    right: 0; 
+    bottom: 0; 
+    min-width: 100%; 
+    max-width: 100%; 
+    height: auto;
+    margin-top: 0%;
 }
 .carousel-item h4, .carousel-item p {
     text-shadow: 1px 1px 5px #666;
@@ -292,9 +309,9 @@
             </div>
         </div>
         <div class="my-4 ggArea">
-            광고 영역
-
-            <!-- <DIV class=video-container style="TEXT-ALIGN: center"><object type="text/html" width="100%" height="500" data="//www.youtube.com/embed/dJXZRZvqbYg" allowFullScreen></object> </DIV> -->
+            <div class="areaarea">
+                <img src="resources/images/tvxq.jpg">
+            </div>
         </div>
         <div class="newest">
             <div class="newestLink clear-both my-4">
