@@ -271,7 +271,7 @@
            		cursor: pointer;
            }
            .rewardBtn2{
-           		width: 272px;
+           		width: 255px;
 	            height: 50px;
 	            background-color: #adb5bd;
 	            border: #adb5bd;
@@ -279,7 +279,7 @@
 	            float: left;
 	            display: block;
 	            font-size:18px;
-	            padding: 0 0 5px 0;
+	            padding: 2px 0 5px 0;
            
            }
            .rewardBtn2:hover{
