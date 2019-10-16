@@ -29,6 +29,12 @@
     padding: 10px;
     position: relative;
 }
+/* 화면 가로크기 990 이하일때 설정  */
+@media all and (max-width: 1497px) {
+    #category .resultPrint>div {
+    flex-basis: 40%;
+	}
+}
 #category .fundCon {
     /* border: 1px solid red; */
     width: 250px;
