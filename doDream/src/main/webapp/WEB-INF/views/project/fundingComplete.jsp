@@ -70,7 +70,7 @@
                                 이런 프로젝트는 어떠세요?
                             </div>
                             <div class="col-md-4 text-center">
-                                <button class="btn btn-light" id="myFund" onclick="lacation.href='category.dr'">다른 프로젝트 찾기</button>
+                                <button class="btn btn-light" id="myFund" onclick="location.href='category.dr'">다른 프로젝트 찾기</button>
                             </div>
                         </div>
                     </div>
