@@ -57,7 +57,7 @@ public class MemberController {
 				if (result > 0)
 					System.out.println("userNo : " + loginUser.getUserNo() + "번 회원이 DAYCOUNT 테이블에 삽입됨");
 			}
-
+			
 			System.out.println("redirect:" + prevPage);
 			return "redirect:" + prevPage;
 

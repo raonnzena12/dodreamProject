@@ -19,7 +19,8 @@ public class MemberDao {
 	private SqlSessionTemplate sqlSession;
 
 	public Member selectMember(Member mem) {
-		return sqlSession.selectOne("memberMapper.selectOne", mem);
+		Member loginUser = sqlSession.selectOne("memberMapper.selectOne", mem);
+		return loginUser;
 	}
 
 	public List<Member> selectCheckEmail(String userEmail) {
