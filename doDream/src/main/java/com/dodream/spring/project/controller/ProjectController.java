@@ -96,9 +96,8 @@ public class ProjectController {
 				if(reward.getIsSaved().equals("true")) rewardList.add(reward);
 			}catch(NullPointerException e) {}
 		}
-		// 리워드가 존재할 경우 기존에 있던 리워드를 전부 삭제시킵니다.
-		if(rewardList.size()>0) 
-			result = pService.deleteRewards(project.getpNo());
+		// 기존에 있던 리워드를 전부 삭제시킵니다.
+		result = pService.deleteRewards(project.getpNo());
 		if(result<0) return "error";
 		// 체크된 reward의 개수만큼 DB에 insert시킵니다.
 		for (Reward reward : rewardList) {

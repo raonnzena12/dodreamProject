@@ -538,8 +538,8 @@
 	<div id="insertFundForm" style="margin-top: 100px; margin-bottom: 100px;">
 		<div class="btnWrapper" align="right">
 			<button type="button" onclick="preview();" class="btn btn-primary" style="background-color: #8E44AD; border: none; width: 140px; box-shadow: 2px 2px 6px 1px #999;"><i class="material-icons">search</i>미리보기</button>
-			<button type="button" onclick="temporarySave();" class="btn btn-primary" style="background-color: #8E44AD; border: none; box-shadow: 2px 2px 6px 1px #999;"><i class="material-icons">cloud_download</i>임시저장하기</button>
-			<button type="button" id="submitToAdmin" onclick="submitToAdmin();" class="btn btn-primary disabledbtn" style="background-color: #F39C12; border: none; box-shadow: 2px 2px 6px 1px #999;" disabled ><i class="material-icons">done</i>검토요청하기</button>
+			<button type="button" onclick="temporarySave();" class="btn btn-primary" style="background-color: #8E44AD; border: none; box-shadow: 2px 2px 6px 1px #999;"><i class="material-icons">save_alt</i>임시저장하기</button>
+			<button type="button" id="submitToAdmin" onclick="submitToAdmin();" class="btn btn-primary disabledbtn" style="background-color: #F39C12; border: none; box-shadow: 2px 2px 6px 1px #999;" disabled ><i class="material-icons">mail_outline</i>검토요청하기</button>
 		</div>
 		<div class="accWrapper">
 			<form id="insertFrm" name="insertFrm" action="insertProject.dr" method="POST"
@@ -1188,6 +1188,7 @@
 							<div class="acctitle">아티스트 정보</div>
 							<div class="accdesc">
 								프로젝트를 오픈하는 아티스트님의 정보를 <br> 알려주세요. 여기에 기입하신 모든 정보는 프로젝트 소개란에 함께 기재됩니다.<br> 서포터님과의 원활한 소통이 가능한 정확한 정보를 기입해주세요!
+								<br> SNS가 없으실 경우엔 해당 입력란에 <br> "없음" 이라고 입력해주세요.
 							</div>
 						</div>
 						<div class="info-box" style="width: '';">
@@ -1333,9 +1334,10 @@
 	function goLogin(){
 		Swal.fire({
 			showConfirmButton: false,
-			html: '<div id="login-menu" class="loginmenu text-center" style="display: block; position: relative; width:375px; padding: 10px; margin-left: 59px;"><div style="text-align:center;" class="mb-2"> LOGIN </div><form action="loginmodal.dr" method="POST" id="modal-loginfrm"><input type="hidden" value="" name="prevPage" id="modal-prevPage"><table id="login-table" class="form-group"><tr><td><input class="form-control" type="email" name="userEmail" id="modal-user-email" placeholder="이메일 주소" autocomplete="off" required></td></tr><tr><td><input class="form-control" type="password" name="userPwd" id="modal-user-pwd" placeholder="비밀번호" onKeyDown="modalenter(event);" required></td></tr><tr><td class="loginmenuText custom-control custom-checkbox my-1"></td></tr><tr><td><button type="button" class="btn btn-warning btn-block mb-2" id="modal-loginBtn">L O G I N</button></td></tr><tr><td class="text-center naverKakaoArea"><img src="resources/images/naver_sns_icon.png" data-toggle="tooltip" data-placement="left" title="NAVER ID로 로그인" class="mx-2" style="width:40px; height:auto;"><a href="javascript:loginWithKakao()"><img src="resources/images/kakao_sns_icon.png" data-toggle="tooltip" data-placement="left" title="KAKAO ID로 로그인" class="mx-2" style="width:40px; height:auto;"></a><img src="resources/images/faceB_sns_icon.png" data-toggle="tooltip" data-placement="left" title="FACEBOOK ID로 로그인" class="mx-2" style="width:40px; height:auto;"></td></tr><tr><td class="loginmenuText text-center"><hr>회원이 아니신가요?<br> <a href="insertForm.dr" class="emp blue">가입하기</a></td></tr></table></form></div>'
+			html: '<div id="login-menu" class="loginmenu text-center" style="display: block; position: relative; width:375px; padding: 10px; margin-left: 59px;"><div style="text-align:center;" class="mb-2"> LOGIN </div><form action="loginmodal.dr" method="POST" id="modal-loginfrm"><input type="hidden" value="" name="prevPage" id="modal-prevPage"><table id="login-table" class="form-group"><tr><td><input class="form-control" type="email" name="userEmail" id="modal-user-email" placeholder="이메일 주소" autocomplete="off" required></td></tr><tr><td><input class="form-control" type="password" name="userPwd" id="modal-user-pwd" placeholder="비밀번호" onKeyDown="modalenter(event);" required></td></tr><tr><td class="loginmenuText custom-control custom-checkbox my-1"></td></tr><tr><td><button type="button" class="btn btn-warning btn-block mb-2" id="modal-loginBtn">L O G I N</button></td></tr><tr><td class="text-center naverKakaoArea"><a href="javascript: gonaver();"><img src="resources/images/naver_sns_icon.png" data-toggle="tooltip" data-placement="left" title="NAVER ID로 로그인" class="mx-2" style="width:40px; height:auto;"></a><a href="javascript:loginWithKakao()"><img src="resources/images/kakao_sns_icon.png" data-toggle="tooltip" data-placement="left" title="KAKAO ID로 로그인" class="mx-2" style="width:40px; height:auto;"></a></td></tr><tr><td class="loginmenuText text-center"><hr>회원이 아니신가요?<br> <a href="insertForm.dr" class="emp blue">가입하기</a></td></tr></table></form></div>'
 		});
 	};
+	
 	$(function(){
 		$(document).on("click","#modal-loginBtn",function(e){
 			doLogin();
