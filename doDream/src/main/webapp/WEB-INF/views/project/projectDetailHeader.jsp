@@ -250,21 +250,22 @@
                 color:#495057;
                 /* margin-right: 15px; */
            }
-            .btn-group{
+            #icon2 .btn-group{
            		/* border: 1px solid black; */
            		width:50px;
            		height:50px;
            		margin:0;
            		
            }
-          icon2 .dropdown-menu{
+           #icon2 .shareUl{
            		width:50px;
            		height:50px;
            		border:none;
+           		
            		/* padding: 10px; */
            }
            
-           icon2 .dropdown-menu img{
+           #icon2 img{
            		width:30px;
            		height:30px;
            		display:block;
@@ -359,39 +360,6 @@
                    	</article>
                 </article>
                 
-                <script>
-                	$(function(){
-                		/* console.log("${project.pArtistPFImage}");
-                		//var mainImg = "906_20191009165732_main.jpg";
-                		var mainImg = $("#mainImg").attr("src");
-                		console.log(mainImg);
-                		mainImg.indexOf("_main");
-                		if(mainImg.indexOf("_main") != -1 || mainImg.indexOf(".jpg") != -1 || mainImg.indexOf(".png") != -1){
-                			$("#mainImg").css("display","block");
-                		}else{
-                			$(".video").css("display","block");
-                		} */
-                		
-                		
-                		/* 
-                    	var miArray = mainImg.split('.');
-                    	//var main = miArray[1];
-                    	console.log(miArray[0]);
-                    	var maArray = miArray[0].split('_');
-                    	console.log("maArray[2] : " + maArray[2]);
-                    	
-                    	if(maArray[2] != ""){
-                    		if(maArray[2] == "main"){
-                        		$("#mainImg").css("display","block");
-                        	}
-                    	}else{
-                    		$(".video").css("display","block");
-                    	}
-                    	 */
-                    	
-                	});
-                </script>
-                
                 <article id="detailcon">
                     <p id="text1">
                        ${project.pSummaryText}
@@ -464,10 +432,10 @@
                      </c:if> --%>
                         
 	                      <div id="icon2">
-	                        <div class="btn-group "> 
+	                        <div class="btn-group"> 
 	                            <i class="material-icons btn btn-default" style="padding:0" id="share"  data-toggle="dropdown" aria-expanded="false">share</i>
 	                            
-	                            <ul class="dropdown-menu" role="menu" style="width:50px; height:50px;">
+	                            <ul class="dropdown-menu shareUl" role="menu" style="width:50px; height:50px;">
 								    <li>
 									    <a href="javascript:sendKakaoLink()" title="카카오톡 공유하기">
 	                                    	<img src="resources/images/kakao_sns_icon.png">
