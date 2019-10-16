@@ -19,7 +19,7 @@
 <STYLE>
 #ReviewCon {
    width: 1200px; 
-   min-height: 700px;
+   min-height: 400px;
     
 }
 #ReviewCon1 {
@@ -52,8 +52,11 @@
 #Terms_title {
 	border-right: 1px solid #8E44AD;
 }
-.jumbotron{
+.jumbotron1{
 	padding: 0;
+	overflow: hidden;
+	max-height: 400px;
+	margin-bottom: 2rem;
 }
 
 /* 메뉴바 CSS */
@@ -103,7 +106,7 @@
       <!-- 후기 상세 - 메인로고 -->
       <div class="row">
          <div class="col-md-12" align="center">
-            <div class="jumbotron">
+            <div class="jumbotron1">
             <img src="resources\images\backgroundImg\배경로고시안 (2).png" style="width: 100%">
             </div>
          </div>

@@ -10,7 +10,7 @@
 <style>
 #ReviewCon {
    width: 1200px; 
-   min-height: 700px;
+   min-height: 400px;
    
 }
 #ReviewCon1 {
@@ -210,11 +210,6 @@
    opacity: 0;
 }
 
-#ReviewCon {
-   width: 1200px;
-   min-height: 900px;
-   height: auto;
-}
 
 #Review_bar {
    border-bottom: 3px solid #8E44AD;
@@ -235,8 +230,11 @@
    width: 500px;
 }
 
-.jumbotron {
-   padding: 0;
+.jumbotron1{
+	padding: 0;
+	overflow: hidden;
+	max-height: 400px;
+	margin-bottom: 2rem;
 }
 
 #categoryTopMenu {
@@ -319,7 +317,7 @@
       <!-- 후기 상세 - 메인로고 -->
       <div class="row">
          <div class="col-md-12" align="center">
-            <div class="jumbotron">
+            <div class="jumbotron1">
             <img src="resources\images\backgroundImg\배경로고시안 (3).png" style="width: 100%">
             </div>
          </div>
