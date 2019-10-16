@@ -18,7 +18,7 @@
 <STYLE>
 #ReviewCon {
    width: 1200px; 
-   min-height: 700px;
+   min-height: 400px;
     
 }
 #ReviewCon1 {
@@ -56,8 +56,12 @@ margin: auto;
 .revdetailCategory1{
    text-align: right;
 }
-.jumbotron { padding: 0; }
-
+.jumbotron1{
+	padding: 0;
+	overflow: hidden;
+	max-height: 400px;
+	margin-bottom: 2rem;
+}
 #dContent{ height: 500px; height: auto; }
 
 /* 메뉴바 CSS */
@@ -106,7 +110,7 @@ margin: auto;
       <!-- 후기 상세 - 메인로고 -->
       <div class="row">
          <div class="col-md-12" align="center">
-            <div class="jumbotron">
+            <div class="jumbotron1">
             <img src="resources\images\backgroundImg\배경로고시안 (3).png" style="width: 100%">
             </div>
          </div>

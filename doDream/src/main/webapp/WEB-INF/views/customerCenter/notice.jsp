@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,18 +19,13 @@
 <STYLE>
 #ReviewCon {
    width: 1200px; 
-   min-height: 700px;
+   min-height: 400px;
    
 }
 #ReviewCon1 {
    width: 1200px; 
    min-height: 900px;
    height: auto;
-}
-#noticeCon {
-	width: 1200px;
-	min-height:900px;
-	height: auto;
 }
 #cCenter_menu{
 	padding: 0;
@@ -51,8 +45,11 @@
 #mounImage{
 	width: 100%;
 }
-.jumbotron{
+.jumbotron1{
 	padding: 0;
+	overflow: hidden;
+	max-height: 400px;
+	margin-bottom: 2rem;
 }
 #loadingImg {
    width: 40px;
@@ -119,8 +116,8 @@ color : #8E44AD;
       <!-- 후기 상세 - 메인로고 -->
       <div class="row">
          <div class="col-md-12" align="center">
-            <div class="jumbotron">
-            <img src="resources/images/backgroundImg/art2.jpeg" style="width: 100%">
+            <div class="jumbotron1">
+            <img src="resources/images/backgroundImg/art2.jpeg" style="width: 100%;">
             </div>
          </div>
       </div>
@@ -164,6 +161,7 @@ color : #8E44AD;
 						
 					</c:forEach>
 				</div>
+				<button id="" type="button" class"" onclick="" > 더보기 + </button>
 				<div class="text-center">
                         <img src="resources/images/loadingSpin.gif" id="loadingImg">
                 </div>
@@ -268,9 +266,5 @@ $(function() {
 	});
 });
 </script>
-
-<script src="webapp/resources/js/Center-js/jquery.min.js"></script>
-	<script src="webapp/resources/js/Center-js/bootstrap.min.js"></script>
-	<script src="webapp/resources/js/Center-js/scripts.js"></script>
 </body>
 </html>

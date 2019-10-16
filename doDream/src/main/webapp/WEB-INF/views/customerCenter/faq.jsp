@@ -20,7 +20,7 @@
 <STYLE> 
 #ReviewCon {
    width: 1200px; 
-   min-height: 700px;
+   min-height: 400px;
    
 }
 #ReviewCon1 { 
@@ -34,7 +34,12 @@
 #faq_table { padding-top: 20px; width: 100%; margin: auto; }
 #faqTitle  { width: 50%; float: left; padding: 0; }
 #faqSearch { float: right; padding: 0; }
-.jumbotron { padding: 0; }
+.jumbotron1{
+	padding: 0;
+	overflow: hidden;
+	max-height: 400px;
+	margin-bottom: 2rem;
+}
 
 /* 메뉴바 CSS */
 #mid-menu 
@@ -100,7 +105,7 @@ color : #8E44AD;
       <!-- 후기 상세 - 메인로고 -->
       <div class="row">
          <div class="col-md-12" align="center">
-            <div class="jumbotron">
+            <div class="jumbotron1">
             <img src="resources\images\backgroundImg\배경로고시안 (4).png" style="width: 100%">
             </div>
          </div>
