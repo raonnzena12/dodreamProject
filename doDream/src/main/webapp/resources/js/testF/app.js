@@ -22,7 +22,9 @@ try {
     pwd_2digit, // 카드 비밀번호 앞 두자리,
     customer_uid, // 카드(빌링키)와 1:1로 대응하는 값
   } = req.body; // req의 body에서 카드정보 추출
+  console.log("== 두드림 서버에서 넘어온 카드정보 =================================");
   console.log(card_number+"/"+expiry+"/"+birth+"/"+pwd_2digit+"/"+customer_uid);
+  console.log("=================================================================");
   // 인증 토큰 발급 받기
   const getToken = await axios({
     url: "https://api.iamport.kr/users/getToken",
@@ -54,6 +56,7 @@ try {
   console.log("성공 코드(0일시 성공) : " + issueBilling.data.code);
 
   if (code == 0) { // 빌링키 발급 성공
+    console.log("빌링키 발급 성공!")
     res.send({ status: "success", message: "Billing has successfully issued", code: code });
   } else { // 빌링키 발급 실패
     res.send({ status: "failed", message });
@@ -77,7 +80,8 @@ try {
     customer_uid,
     amount
   } = req.body;
-  console.log("빌링키넘어가는중" + customer_uid + " / " + amount);
+  console.log("== 두드림 서버에서 넘어온 결제요청정보 =================================");
+  console.log("빌링키 : " + customer_uid + " / 결제요청금액 :  " + amount);
   // 인증 토큰 발급 받기
   const getToken = await axios({
     url: "https://api.iamport.kr/users/getToken",
@@ -107,6 +111,7 @@ console.log(paymentResult);
   console.log(paymentResult.data.response.status);
   if (code === 0) { // 카드사 통신에 성공(실제 승인 성공 여부는 추가 판단이 필요합니다.)
     if ( paymentResult.data.response.status === "paid" ) { //카드 정상 승인
+      console.log("카드 결제 승인!")
       res.send({ code: "0" });
     } else { //카드 승인 실패 (ex. 고객 카드 한도초과, 거래정지카드, 잔액부족 등)
       //paymentResult.status : failed 로 수신됩니다.
@@ -129,7 +134,8 @@ app.post("/deleteBKey", async (req, res) => {
     const { 
       customer_uid,
     } = req.body;
-    console.log("빌링키넘어가는중" + customer_uid);
+    console.log("== 두드림 서버에서 넘어온 빌링키 폐기 요청정보 =================================");
+    console.log("폐기 요청 빌링키 : " + customer_uid);
     // 인증 토큰 발급 받기
     const getToken = await axios({
       url: "https://api.iamport.kr/users/getToken",
@@ -151,12 +157,13 @@ app.post("/deleteBKey", async (req, res) => {
     var code = deleteResult.data.code;
     console.log(code);
     if (code == 0) { 
+      console.log("빌링키 폐기 성공!")
       res.send({code: 0});
     } else { // 카드사 요청에 실패 (paymentResult is null)
       res.send({code: 1, msg: deleteResult.data.message});
     }
   } catch (e) {
-    console.log("bKey삭제 에러 : " + e);
+    console.log("빌링키 삭제 에러 : " + e);
     res.send(e);
   }
   });
