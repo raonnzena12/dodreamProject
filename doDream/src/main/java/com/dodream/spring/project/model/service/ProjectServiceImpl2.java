@@ -123,6 +123,8 @@ public class ProjectServiceImpl2 implements ProjectService2{
 	@Override
 	public int updateReply(Reply reply) {
 		
+		reply.setReContent(reply.getReContent().replace("\n", "<br>"));
+		
 		return pDao2.updateReply(reply);
 	}
 	//댓글 삭제
@@ -131,13 +133,17 @@ public class ProjectServiceImpl2 implements ProjectService2{
 		
 		return pDao2.deleteReply(rNo);
 	}
-
+	
+	//서브 댓글 수정
 	@Override
 	public int updateSubRe(SubReply sReply) {
 		
+		sReply.setSubContent(sReply.getSubContent().replace("\n","<br>"));
+		
 		return pDao2.updateSubRe(sReply);
 	}
-
+	
+	//서브 댓글 삭제
 	@Override
 	public int deleteSubRe(int subNo) {
 		
