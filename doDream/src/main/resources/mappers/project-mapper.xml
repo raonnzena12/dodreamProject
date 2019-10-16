@@ -175,7 +175,7 @@
 		WHERE 
 		<choose>
 			<when test="category == 'total'">
-			PROJECT_CT_NO IN ( 1, 2, 3, 4, 9 )
+			PROJECT_CT_NO IN ( 1, 2, 3, 4, 5, 9 )
 			</when>
 			<when test="category == 'music'">
 			PROJECT_CT_NO = 1
@@ -188,6 +188,9 @@
 			</when>
 			<when test="category == 'art'">
 			PROJECT_CT_NO = 4
+			</when>
+			<when test="category == 'show'">
+			PROJECT_CT_NO = 5
 			</when>
 			<when test="category == 'etc'">
 			PROJECT_CT_NO = 9
