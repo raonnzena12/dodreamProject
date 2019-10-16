@@ -19,7 +19,7 @@
 					<h3 align="center">두드림 회원가입 <br>
 	  					<small class="text-muted">회원가입 후 두드림 서비스가 이용가능합니다</small>
 					</h3>
-					<form action="insertMember.dr" method="POST" class="form-group"	align="center" id="insertForm">
+					<form action="insertMember.dr" method="POST" class="form-group"	align="center" id="insertForm" onsubmit="return check();">
 						<table id="insert-table">
 							<tr>
 								<td>
@@ -54,7 +54,7 @@
 							</tr>
 							<tr>
 							<td colspan="2">
-								<span style="display: none" id="nicknameAlert"></span>
+								<span id="nicknameAlert"></span>
 							</td>
 							</tr>
 							<tr>
@@ -67,6 +67,12 @@
 									<input type="password" class="form-control" id="userPwdCk" name="userPwdCk" placeholder="비밀번호를 다시 한번 입력해주세요" required>
 								</td>
 							</tr>
+							<tr>
+								<td colspan="2">
+									<span id="passwordmsg"></span>
+								</td>
+							</tr>
+							
 							<tr>
 								<td colspan="2">
 									<div class="custom-control custom-checkbox my-1">
@@ -108,7 +114,7 @@
 			if(userEmail == ""){
 				$("#alertMsg").show();
 				$("#alertMsg").text("이메일을 입력해주세요.").css("color", "#8E44AD");
-				$("#userEmail").focus();
+				$("#userEmailInsert").focus();
 			}else{
 				var emailRegex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 				if(! emailRegex.test(userEmail)){
@@ -159,27 +165,31 @@
 	
 	$("#userNickname").blur(function(){
 		var userNickname = $("#userNickname").val().trim();
-		if(userNickname.length > $("#userNickname").attr("maxlength")){
-			alert("닉네임은 20자 이내로 작성해주세요!^_^");
-			return false;
+		if(userNickname == ""){
+			$("#nicknameAlert").show().text("닉네임을 작성해주세요.").css("color", "#8E44AD");
 		}else{
-			$.ajax({
-				type : "post",
-				url : "checkNickname.dr",
-				data : {userNickname : userNickname},
-				success: function(data) {
-					if(data == "1"){
-						$("#nicknameAlert").show().text("이미 사용 중인 닉네임입니다.").css("color", "#8E44AD");
-						$("#userNickname").val("");
-					}else{
-						$("#nicknameAlert").show().text("사용 가능한 닉네임입니다.").css("color", "#F39C12");
-						
-						if(confirm("닉네임을 사용합니다.")){
-							$("#userPwd").focus();
-						};
+			if(userNickname.length >= $("#userNickname").attr("maxlength")){
+				$("#nicknameAlert").show().text("닉네임은 20자 이내로 작성해주세요!^_^").css("color", "#8E44AD");
+				return false;
+			}else{
+				$.ajax({
+					type : "post",
+					url : "checkNickname.dr",
+					data : {userNickname : userNickname},
+					success: function(data) {
+						if(data == "1"){
+							$("#nicknameAlert").show().text("이미 사용 중인 닉네임입니다.").css("color", "#8E44AD");
+							$("#userNickname").val("");
+						}else{
+							$("#nicknameAlert").show().text("사용 가능한 닉네임입니다.").css("color", "#F39C12");
+							
+							if(confirm("닉네임을 사용합니다.")){
+								$("#userPwdInsert").focus();
+							};
+						}
 					}
-				}
-			});
+				});
+			}	
 		}
 	});
 	
@@ -190,17 +200,21 @@
 		userPwd = $("#userPwdInsert").val().trim();
 		var pwdRegex = /^[a-zA-Z0-9]{6,14}$/;
 		if(!pwdRegex.test(userPwd)){
-			alert("비밀번호는 숫자와 문자 포함 6이상 14자리 이내로 작성해주세요.");
+			console.log(pwdRegex.test(userPwd));
+			$("#passwordmsg").text("비밀번호는 숫자와 문자 포함 6이상 14자리 이내로 작성해주세요.").css("color", "#8E44AD");
 			$("#userPwdInsert").val("");
-			return false;
 		}else{
-			$("#userPwdCk").focus();
-			$("#userPwdCk").blur(function() {
-				userPwdCk = $("#userPwdCk").val().trim();
-				if(userPwdCk != userPwd){
-					alert("비밀번호를 다시 입력해주세요.");
-				}
-			});
+			$("#passwordmsg").text("비밀번호 확인에 입력해주세요.").css("color", "#F39C12");
+		}
+	});
+	
+	$("#userPwdCk").blur(function() {
+		userPwd = $("#userPwdInsert").val().trim();
+		userPwdCk = $("#userPwdCk").val().trim();
+		if(userPwdCk != userPwd){
+			$("#passwordmsg").text("비밀번호를 다시 입력해주세요.").css("color", "#8E44AD");
+		}else{
+			$("#passwordmsg").text("이용약관에 동의 후 회원가입을 완료해주세요.").css("color", "#F39C12");
 		}
 	});
 	
