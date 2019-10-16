@@ -271,7 +271,7 @@
            		cursor: pointer;
            }
            .rewardBtn2{
-           		width: 272px;
+           		width: 255px;
 	            height: 50px;
 	            background-color: #adb5bd;
 	            border: #adb5bd;
@@ -279,7 +279,7 @@
 	            float: left;
 	            display: block;
 	            font-size:18px;
-	            padding: 0 0 5px 0;
+	            padding: 2px 0 5px 0;
            
            }
            .rewardBtn2:hover{
@@ -367,7 +367,6 @@
 				                 	<i class="material-icons" id="asideFavorite">favorite_border</i>
 				             </div>
 			             </div>
-                  
                  </div>
             </div>
             <div id="introduce">
@@ -377,10 +376,22 @@
             	<div id="artistText3">
             		<div id="artistsns">
 	            		<div id="fb">
-	            			<a  href="https://www.facebook.com/${project.pArtistSns1 }"><img src="resources/images/faceB_gray_icon.png" width="20px" height="20px"></a>
+	            			<c:choose>
+		            		<c:when test="${fn:contains(project.pArtistSns1,'없음')}">
+		            		</c:when>
+		            		<c:otherwise>
+		            			<a  href="https://www.facebook.com/${project.pArtistSns1 }"><img src="resources/images/faceB_gray_icon.png" width="20px" height="20px"></a>
+		            		</c:otherwise>
+		            		</c:choose>
 	            		</div>
 	            		<div id="ig">
-	            			<a  href="https://www.instagram.com/${project.pArtistSns2 }"><img src="resources/images/inStar_gray_icon.png" width="20px" height="20px"></a>
+	            			<c:choose>
+		            		<c:when test="${fn:contains(project.pArtistSns1,'없음')}">
+		            		</c:when>
+		            		<c:otherwise>
+		            			<a  href="https://www.instagram.com/${project.pArtistSns2 }"><img src="resources/images/inStar_gray_icon.png" width="20px" height="20px"></a>
+		            		</c:otherwise>
+		            		</c:choose>
 	            		</div>
             		</div>
             		
@@ -476,16 +487,15 @@
 			    </div>
 			  </div>
 			</div>
-			
 		</section>
 	</section>
 	
 	<script>
 	
-	
+	/* 
 		var info = "${project.pArtistIntroduction }";
-		console.log("아티스트 소개 : "+ info);
-		
+		console.log("아티스트 소개 : "+ info); */
+		 
 	$(function(){
 			//처음 들어왔을때 색 바뀌는 기능 
 			if(${!empty sessionScope.loginUser}){
@@ -514,6 +524,10 @@
 			
 			
 			$("#asideFavorite").on("click", function(){
+				
+				console.log("좋아요");
+				
+				
 				
 				if(${empty sessionScope.loginUser}) {
 					alert("로그인이 필요합니다.");

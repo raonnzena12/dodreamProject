@@ -104,7 +104,8 @@
 				<div class="bg-white py-2 collapse-inner rounded">
 					<a class="collapse-item" href="adminNoticeList.dr"><p>〉 공지사항</p></a> <a
 						class="collapse-item" href="adminReviewList.dr"><p>〉 프로젝트 후기</p></a> <a
-						class="collapse-item" href="adminReplyList.dr"><p>〉 댓글 관리</p></a>
+						class="collapse-item" href="adminReplyList.dr"><p>〉 댓글 관리</p></a><a
+						class="collapse-item" href="adminFaqList.dr"><p>〉 FAQ 관리</p></a>
 				</div>
 			</div></li>
 

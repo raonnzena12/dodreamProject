@@ -108,7 +108,7 @@
            		font-size: 30px;
                 text-align: center;
                 color:#F39C12;
-                cursor: pointer;
+                
            }
            #introduce{
            		width:270px;
@@ -292,12 +292,31 @@
             <div id="artInformation">
             	<div id="artistText3">
             		<div id="artistsns">
+            			<div id="fb">
+	            			<c:choose>
+		            		<c:when test="${fn:contains(project.pArtistSns1,'없음')}">
+		            		</c:when>
+		            		<c:otherwise>
+		            			<a  href="javascript:void(0);"><img src="resources/images/faceB_gray_icon.png" width="20px" height="20px"></a>
+		            		</c:otherwise>
+		            		</c:choose>
+	            		</div>
+	            		<div id="ig">
+	            			<c:choose>
+		            		<c:when test="${fn:contains(project.pArtistSns1,'없음')}">
+		            		</c:when>
+		            		<c:otherwise>
+		            			<a  href="javascript:void(0);"><img src="resources/images/inStar_gray_icon.png" width="20px" height="20px"></a>
+		            		</c:otherwise>
+		            		</c:choose>
+	            		</div>
+            		<!-- 
 	            		<div id="fb">
 	            			<a  href="javascript:void(0);"><img src="resources/images/faceB_gray_icon.png" width="20px" height="20px"></a>
 	            		</div>
 	            		<div id="ig">
 	            			<a  href="javascript:void(0);"><img src="resources/images/inStar_gray_icon.png" width="20px" height="20px"></a>
-	            		</div>
+	            		</div> -->
             		</div>
             		
             		${project.pArtistPhone} <br>

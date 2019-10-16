@@ -57,7 +57,7 @@ public class MemberController {
 				if (result > 0)
 					System.out.println("userNo : " + loginUser.getUserNo() + "번 회원이 DAYCOUNT 테이블에 삽입됨");
 			}
-
+			
 			System.out.println("redirect:" + prevPage);
 			return "redirect:" + prevPage;
 
@@ -154,7 +154,6 @@ public class MemberController {
 	 * @param model
 	 * @return page
 	 */
-	@ResponseBody
 	@RequestMapping("insertMember.dr")
 	public String insertMember(Member member, Model model, RedirectAttributes rd, String prevPage) {
 		int result = mService.insertMember(member);
@@ -168,7 +167,6 @@ public class MemberController {
 			if (result2 > 0) {
 				System.out.println("userNo : " + loginUser.getUserNo() + "번 회원이 DAYCOUNT 테이블에 삽입됨");
 			}
-
 			return "redirect:main.dr";
 		} else {
 			model.addAttribute("msg", "회원가입에 실패하였습니다.");
@@ -278,7 +276,7 @@ public class MemberController {
 		if (result > 0) {
 			ra.addFlashAttribute("msg", "회원정보를 수정하였습니다!");
 			request.getSession().setAttribute("loginUser", mem);
-//			model.addAttribute("loginUser", mem);
+			model.addAttribute("loginUser", mem);
 			return "redirect:myInfo.dr";
 		} else {
 			model.addAttribute("msg", "회원정보 수정에 실패하였습니다.");

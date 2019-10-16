@@ -12,6 +12,7 @@ import com.dodream.spring.admin.model.dao.AdminDao;
 import com.dodream.spring.admin.model.vo.Alarm;
 import com.dodream.spring.common.AdminPagination;
 import com.dodream.spring.common.model.vo.PageInfo;
+import com.dodream.spring.customerCenter.model.vo.Faq;
 import com.dodream.spring.customerCenter.model.vo.Notice;
 import com.dodream.spring.customerCenter.model.vo.Review;
 import com.dodream.spring.member.model.vo.Member;
@@ -31,6 +32,11 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public int countNewMember() {
 		return aDao.countNewMember();
+	}
+
+	@Override
+	public int countAllMember() {
+		return aDao.countAllMember();
 	}
 
 	@Override
@@ -281,6 +287,21 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public int confirmAlarm(int alNo) {
 		return aDao.confirmAlarm(alNo);
+	}
+
+	@Override
+	public ArrayList<Faq> selectFaqList() {
+		return aDao.selectFaqList();
+	}
+
+	@Override
+	public Faq selectFaq(int fNo) {
+		return aDao.selectFaq(fNo);
+	}
+
+	@Override
+	public int removeFaq(int fNo) {
+		return aDao.removeFaq(fNo);
 	}
 
 

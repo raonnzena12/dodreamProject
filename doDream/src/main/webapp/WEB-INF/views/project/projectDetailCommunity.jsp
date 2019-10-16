@@ -361,11 +361,19 @@
            .subModal{
            		display:none;
            }
-           .reModal .updateSubmit{
+           .reModal #updateSubmit{
            		background-color: #F39C12;
            		border: #F39C12;
            }
-           .subModal .subSubmit{
+           .subModal #subSubmit{
+           		background-color: #F39C12;
+           		border: #F39C12;
+           }
+           .reModal #updateSubmit:hover{
+           		background-color: #F39C12;
+           		border: #F39C12;
+           }
+           .subModal #subSubmit:hover{
            		background-color: #F39C12;
            		border: #F39C12;
            }
@@ -467,7 +475,7 @@
 					        <textarea id="updateContent" placeholder="수정할 내용을 작성해주세요."></textarea>
 					      </div>
 					      <div class="modal-footer">
-					        <button type="button" class="btn btn-primary updateSubmit">수정하기</button>
+					        <button type="button" class="btn btn-primary" id="updateSubmit">수정하기</button>
 					        <button type="button" class="btn btn-secondary RModal" data-dismiss="modal">취소</button>
 					      </div>
 					    </div>
@@ -479,17 +487,17 @@
 					  <div class="modal-dialog" role="document">
 					    <div class="modal-content">
 					      <div class="modal-header">
-					        <h5 class="modal-title">대댓글 수정하기</h5>
+					        <h5 class="modal-title">댓글 수정하기</h5>
 					        <button type="button" class="close RModal" data-dismiss="modal" aria-label="Close">
 					          <span aria-hidden="true">&times;</span>
 					        </button>
 					      </div>
 					      <div class="modal-body">
-					        <p>대댓글 수정 내용</p>
+					        <p>댓글 수정 내용</p>
 					        <textarea id="subUpdateContent" placeholder="수정할 내용을 작성해주세요."></textarea>
 					      </div>
 					      <div class="modal-footer">
-					        <button type="button" class="btn btn-primary subSubmit">수정하기</button>
+					        <button type="button" class="btn btn-primary" id="subSubmit">수정하기</button>
 					        <button type="button" class="btn btn-secondary RModal" data-dismiss="modal">취소</button>
 					      </div>
 					    </div>
@@ -508,9 +516,50 @@
    	</section>
 	
 	<script>
-	
+	var presubNo = 0;
 	
 		$(function(){
+			$(document).on("click",".subModify", function(){
+				$(".subModal").css("display","block");
+				var subCon =  $(this).parent().find(".subContent").html().replace(/(<br>|<br\/>|<br \/>)/g, '\r\n');// 서브 댓글 내용
+				
+				console.log("  서브 댓글 내용 : " + subCon);
+				
+				$("#subUpdateContent").val(subCon);
+				presubNo = $(this).attr("subNo");
+				//return false;
+				});
+			
+			$("#subSubmit").on("click", function(){
+				$("#subSubmit").css({"background-color":"#F39C12", "border":"#F39C12"});
+				var updateSubCon = $("#subUpdateContent").val();
+				var subNo = presubNo;//서브 댓글 번호
+				console.log("수정된 댓글내용 : "+ updateSubCon + "서브댓글 번호 :" + subNo);
+				
+				$.ajax({
+					url:"updateSubRe.dr",
+					data:{subNo:subNo, updateSubCon:updateSubCon},
+					type:"post",
+					success: function(result){
+						if(result == "1"){
+							$("#subUpdateContent").val("");
+							$(".subModal").css("display","none");
+							console.log("으아아악");
+							alert("댓글 수정 완료");
+							replyList();
+						}else{
+							alert("댓글 수정 실패");
+						}
+						
+					},
+					error: function(e){
+						console.log(e);
+					}
+				});
+				
+				
+			});
+			
 			
 			$("#community").css("color","#8E44AD");
 			
@@ -549,6 +598,9 @@
 									$("#comSelect").val("category");
 									replyList();
 								}
+							},
+							error: function(e){
+								console.log(e);
 							}
 						});
 					}
@@ -564,7 +616,50 @@
 				$(".subModal").css("display","none");
 			});
 			
-		
+			
+			//서브 댓글 등록
+			
+			/* $(".subwrite").on("click", function(){
+				
+			
+				if(${empty sessionScope.loginUser}){
+					
+					alert("로그인이 필요합니다.");
+					//$("#comSelect").val("category");
+					$(".subTextarea").val("");
+				
+				}else{
+					
+					var subRefRNo = $(this).parent().parent().find(".input").attr("id");
+					//var subContent = $(".subTextarea").val();
+					var subContent = $(this).parent().parent().find(".subTextarea").val();
+					
+					console.log("서브번호 : " + subRefRNo);
+					console.log("서브내용 : "+subContent);
+					
+					
+					
+					$.ajax({
+						url:"insertSubRe.dr",
+						data:{subRefRNo:subRefRNo, subContent:subContent},
+						type:"post",
+						success:function(result){
+							
+							$(this).parent().find(".subTextarea").val("");
+							replyList();
+						},
+						error: function(e){
+							console.log(e);
+						}
+					});
+					
+				}
+			
+			});
+		 */
+			
+			
+			
 			
 		});
 		
@@ -657,8 +752,8 @@
 							$subTextarea = $("<textarea>").addClass("subTextarea").attr({"rows":"3", "placeholder":"댓글을 입력해주세요."}).
 									 		css("resize", "none");// 서브댓글 입력
 							$input = $("<input>").addClass("input").attr("id",result.reList[i].reNo).css("display","none");
-							$subButton = $("<button>").addClass("btn btn-primary btn-lg btn-block subwrite").attr("onclick","insertSubRe();").text("등록");//서브댓글 입력 버튼
-							
+							$subButton = $("<button>").addClass("btn btn-primary btn-lg btn-block subwrite").attr("onclick","insertSubRe($(this));").text("등록");//서브댓글 입력 버튼
+							/* .attr("onclick","insertSubRe();") */
 							$profileBox.append($img);
 							$profileBox.append($p);
 							//$profileBox.append($artist);
@@ -721,10 +816,10 @@
 									
 									$artist = $("<span>").addClass("badge badge-primary subBadge").text("아티스트");//아티스트 서브 댓글 일때  span태그
 									$span = $("<span>").addClass("badge badge-primary subConBadge").text("펀딩참가");// 펀딩 참가자 인지
-									$subCreate = $("<i>").addClass("material-icons subCreate").attr({"title":"수정","onclick":"updateSubRe();"}).text("create");// 대댓글 수정 버튼
-									$subDelete = $("<i>").addClass("material-icons subDelete").attr({"title":"삭제", "onclick":"deleteSubRe();"}).text("delete_sweep");//대댓글 삭제 버튼
+									$subCreate = $("<i>").addClass("material-icons subCreate subModify").attr({"title":"수정","subNo":result.srList[j].subNo}).text("create");// 대댓글 수정 버튼
+									$subDelete = $("<i>").addClass("material-icons subDelete").attr({"title":"삭제", "onclick":"deleteSubRe($(this));"}).text("delete_sweep");//대댓글 삭제 버튼
 									$subContent = $("<div>").addClass("subContent").html(result.srList[j].subContent);//서브댓글 내용
-									$subDeleteContent = $("<div>").addClass("subDeleteCon").html("유저에 의해 삭제된 대댓글입니다.");//삭제된 서브댓글 내용
+									$subDeleteContent = $("<div>").addClass("subDeleteCon").html("유저에 의해 삭제된 댓글입니다.");//삭제된 서브댓글 내용
 									
 									//===============================
 									$subProfileBox.append($subcomTime);
@@ -782,8 +877,8 @@
 		
 		// subReply 등록
 		
-		function insertSubRe(){
-	
+		function insertSubRe(e){
+			console.log(e);
 			//console.log("111111111");
 			
 			if(${empty sessionScope.loginUser}){
@@ -794,26 +889,31 @@
 			
 			}else{
 				
-				var subRefRNo = $(".input").attr("id");
-				var subContent = $(".subTextarea").val();
-				//console.log(subRefRNo);
-				//console.log(subContent);
+					
+					var subRefRNo = e.parent().parent().find(".input").attr("id");
+					//var subContent = $(".subTextarea").val();
+					var subContent = $("#"+subRefRNo).parent().parent().find(".subTextarea").val();
+					
+					console.log("서브번호 : " + subRefRNo);
+					console.log("서브내용 : "+subContent);
+					
+					
+					
+					$.ajax({
+						url:"insertSubRe.dr",
+						data:{subRefRNo:subRefRNo, subContent:subContent},
+						type:"post",
+						success:function(result){
+							
+							$(this).parent().find(".subTextarea").val("");
+							replyList();
+						},
+						error: function(e){
+							console.log(e);
+						}
+					});
 				
 				
-				
-				$.ajax({
-					url:"insertSubRe.dr",
-					data:{subRefRNo:subRefRNo, subContent:subContent},
-					type:"post",
-					success:function(result){
-						
-						$(this).parent().find(".subTextarea").val("");
-						replyList();
-					},
-					error: function(e){
-						console.log(e);
-					}
-				});
 				
 			}
 		}
@@ -822,13 +922,15 @@
 		function updateRe(){
 			$(".reModal").css("display","block");
 			
-			var con = $(".comContent").html();
+			var con = $(".comContent").html().replace(/(<br>|<br\/>|<br \/>)/g, '\r\n');
 			$("#updateContent").val(con);
 			
 			console.log("con : "+ con);
 			
-			$(".updateSubmit").on("click", function(){
+			$("#updateSubmit").on("click", function(){
+				$("#updateSubmit").css({"background-color":"#F39C12", "border":"#F39C12"});
 				
+				 
 				var content = $("#updateContent").val();// 수정된 내용
 				var rNo = $(".input").attr("id");// 댓글 번호
 				console.log("content : "+ content + "rNo :" + rNo);
@@ -884,21 +986,25 @@
 			}
 		}
 		
-		//대댓글 수정
-		function updateSubRe(){
+		//서브댓글 수정
+		function updateSubRe(s){
+			
 			$(".subModal").css("display","block");
 			
-			//var subNo = $(".subCom").attr("id");//서브 댓글 번호
-			var subCon = $(".subContent").html();// 서브 댓글 내용
 			
-			console.log("subCon" + subCon);
+			//var subNo = $(".subCom").attr("id");//서브 댓글 번호
+			var subCon =  s.parent().find(".subContent").html().replace(/(<br>|<br\/>|<br \/>)/g, '\r\n');// 서브 댓글 내용
+			
+			console.log("  서브 댓글 내용 : " + subCon);
 			
 			$("#subUpdateContent").val(subCon);
-			
-			$(".subSubmit").on("click", function(){
-				var subNo = $(".subCom").attr("id");//서브 댓글 번호
+			//return false;
+			$("#subSubmit").on("click", function(){
+				$("#subSubmit").css({"background-color":"#F39C12", "border":"#F39C12"});
 				var updateSubCon = $("#subUpdateContent").val();
-				console.log("updateSubCon : "+ updateSubCon + "subNo :" + subNo);
+				var subNo = s.parent().attr("id");//서브 댓글 번호
+				console.log("수정된 댓글내용 : "+ updateSubCon + "서브댓글 번호 :" + subNo);
+				return false;
 				
 				$.ajax({
 					url:"updateSubRe.dr",
@@ -908,10 +1014,11 @@
 						if(result == "1"){
 							$("#subUpdateContent").val("");
 							$(".subModal").css("display","none");
-							alert("대댓글 수정 완료");
+							console.log("으아아악");
+							alert("댓글 수정 완료");
 							replyList();
 						}else{
-							alert("대댓글 수정 실패");
+							alert("댓글 수정 실패");
 						}
 						
 					},
@@ -927,10 +1034,12 @@
 			
 			
 		//대댓글 삭제
-		function deleteSubRe(){
+		function deleteSubRe(e){
 			
 			if(confirm("정말 삭제하시겠습니까?")){
-				var subNo = $(".subCom").attr("id");//서브 댓글 번호
+				var subNo = e.parent().parent().find(".subCom").attr("id");//서브 댓글 번호
+				
+				console.log(subNo);
 				
 				$.ajax({
 					url:"deleteSubRe.dr",
@@ -938,10 +1047,10 @@
 					type:"post",
 					success: function(result){
 						if(result == "1"){
-							alert("대댓글 삭제 완료");
+							alert("댓글 삭제 완료");
 							replyList();
 						}else{
-							alert("대댓글 삭제 실패");
+							alert("댓글 삭제 실패");
 						}
 					},
 					error: function(e){

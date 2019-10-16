@@ -9,7 +9,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -25,17 +25,26 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired
 	private MemberDao mDao;
 	
-	@Autowired
-	private BCryptPasswordEncoder bCryptPasswordEncoder;
+	/*
+	 * @Autowired private BCryptPasswordEncoder bCryptPasswordEncoder;
+	 */
 
+	
 	@Override
 	public Member loginMember(Member mem) {
 		
 		Member loginUser = mDao.selectMember(mem);
+		
+		System.out.println("mempwd"+mem.getUserPwd());
+		
 		/*
-		 * if(!bCryptPasswordEncoder.matches(mem.getUserPwd(), loginUser.getUserPwd()))
-		 * { loginUser = null; }
+		 * if( ! bCryptPasswordEncoder.matches(mem.getUserPwd(),
+		 * loginUser.getUserPwd())){ loginUser = null; }
 		 */
+		 
+		/* System.out.println("loginpwd"+loginUser.getUserPwd()); */
+		 
+		 		 
 		return loginUser;
 	}	
 
@@ -52,8 +61,8 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public int insertMember(Member member) {
 		
-		String encPwd = bCryptPasswordEncoder.encode(member.getUserPwd());
-		member.setUserPwd(encPwd);
+//		String encPwd = bCryptPasswordEncoder.encode(member.getUserPwd());
+//		member.setUserPwd(encPwd);
 		return mDao.insertMember(member);
   }
   
@@ -139,8 +148,13 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public int updatePwd(Member mem) {
 		
-		String encPwd = bCryptPasswordEncoder.encode(mem.getUserPwd());
-		mem.setUserPwd(encPwd);
+		/*
+		 * String encPwd = bCryptPasswordEncoder.encode(mem.getUserPwd());
+		 * mem.setUserPwd(encPwd);
+		 * 
+		 * System.out.println(encPwd);
+		 */
+		
 		return mDao.updatePwd(mem);
 	}
 
