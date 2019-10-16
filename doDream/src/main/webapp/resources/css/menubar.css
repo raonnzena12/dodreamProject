@@ -108,7 +108,7 @@ background-color: #8E44AD;
     left: 0;
 }
 .loginmenu {
-    z-index: 5000;
+    z-index: 1021;
 }
 #login-menu {
     display: none;
@@ -117,6 +117,9 @@ background-color: #8E44AD;
     border:none;
     text-align: right;
     background-color: rgba(255,255,255,0);
+}
+.navbar-nav .dropdown-menu {
+    z-index: 1021;
 }
 #titleSearch:focus  {
     outline: none;
