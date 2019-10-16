@@ -89,8 +89,13 @@
 
                      <tr>
                         <td class="text-center">닉네임</td>
-                        <td><input type="text" class="form-control" name="userNickname" value="${loginUser.userNickname}" placeholder="변경할 닉네임을 입력해주세요"></td>
-                        <td> <span id="nicknameAlert"></span><td>
+                        <td>
+                        	<input type="text" class="form-control" id="userNickname" name="userNickname" value="${loginUser.userNickname}" maxlength="20" placeholder="변경할 닉네임을 입력해주세요">
+                        </td>
+                     </tr>
+                     <tr>
+                     	<td></td>
+                     	<td><span id="nicknameAlert"></span><td>
                      </tr>
                      <tr>
                         <td class="text-center">자기소개</td>
@@ -182,24 +187,24 @@
       // 사진등록 끝
       
       //닉네임 변경
-      $("#userNickname").blur(function(){
+      $("#userNickname").on("change",function(){
          var originNickname = "${loginUser.userNickname}";
          var userNickname = $("#userNickname").val().trim();
-         if(ogrinNickname != userNickname){
+         if(originNickname != userNickname){
             if(userNickname.length > $("#userNickname").attr("maxlength")){
-               alert("닉네임은 20자 이내로 작성해주세요!^_^");
-               $("#userNickname").focus();
+            	$("#nicknameAlert").text("닉네임은 20자 이내로 작성해주세요!^_^").css("color", "#8E44AD");
+                $("#userNickname").val("");
             }else{
                $.ajax({
                   type : "post",
                   url : "checkNickname.dr",
                   data : {userNickname : userNickname},
-                  success: function(data) {
-                     if(data == "1"){
-                        $("#nicknameAlert").show().text("이미 사용 중인 닉네임입니다.").css("color", "#8E44AD");
-                        $("#userNickname").val("").focus();
-                     }else{
-                        $("#nicknameAlert").show().text("사용 가능한 닉네임입니다.").css("color", "#F39C12");
+                  success: function(result) {
+                     if(result == "1"){
+                        $("#nicknameAlert").text("이미 사용 중인 닉네임입니다.").css("color", "#8E44AD");
+                       $("#userNickname").val("");
+                     }else if(result == "0"){
+                        $("#nicknameAlert").text("사용 가능한 닉네임입니다.").css("color", "#F39C12");
                      }
                   }
                });

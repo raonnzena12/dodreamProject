@@ -326,10 +326,10 @@ function loginWithNaver(email, nickName, profileImg, unqId) {
 	});
 		
 	
+		Kakao.init('ff3dadde4ab297ea0f244c294c45e600');			
 	/* 카카오 로그인 */
 	function loginWithKakao() {
-		
-		Kakao.init('ff3dadde4ab297ea0f244c294c45e600')			
+	
 		Kakao.Auth.loginForm({
 			success: function(authObj) {
 				Kakao.API.request({
@@ -363,6 +363,7 @@ function loginWithNaver(email, nickName, profileImg, unqId) {
 					},
 					fail: function(err){
 							console.log(err);
+							Kakao.init();
 					}
 				});
 			}
