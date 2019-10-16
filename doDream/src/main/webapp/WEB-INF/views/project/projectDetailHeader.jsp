@@ -489,9 +489,11 @@
 		if(${!empty sessionScope.loginUser}){
 			if(${loginUser.userNo eq like.likeNo}){
 				$("#favorite").css("color","#8E44AD");
+				$("#favorote").text("favorite");
 				
 			}else if(${loginUser.userNo ne like.likeNo}){
 				$("#favorite").css("color","#F39C12");
+				$("#favorote").text("favorite_border");
 			}
 			
 		}
@@ -538,6 +540,7 @@
 						success: function(result){
 							if(result == 1){
 								$("#favorite").css("color","#F39C12");
+								$("#favorite").text("favorite_border");
 								alert("좋아요가 취소되었습니다.");
 								
 							}else{
@@ -567,6 +570,7 @@
 						success: function(result){
 							if(result == 1){
 								$("#favorite").css("color", "#8E44AD");
+								$("#favorite").text("favorite");
 								alert("좋아요를 성공했습니다.");
 								
 							}else{
