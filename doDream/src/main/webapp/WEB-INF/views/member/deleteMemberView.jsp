@@ -9,6 +9,7 @@
    
    
    
+   
    #deleteMemberForm mark{
       color: #8E44AD;
       background-color: white;
@@ -27,13 +28,18 @@
    	line-height: 40px;
    }
    
+   #deleteMemberView{
+   		min-height: 600px;
+   		height: auto;
+   }
+   
 
 
 </style>
 </head>
 <body>
    <jsp:include page="../member/mypageHeader.jsp"/>
-   <div class="container-fluid">
+   <div class="container-fluid" id="deleteMemberView">
       <div class="row">
          <div class="col-md-12">
          <br>

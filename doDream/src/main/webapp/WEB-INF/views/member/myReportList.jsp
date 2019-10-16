@@ -18,12 +18,17 @@
 	#reportReply{
 		background-color: lightgrey;
 	}
+	
+	#myReportListView{
+		min-height: 600px;
+		height: auto;
+	}
 </style>
 </head>
 <body>
 	<jsp:include page="../member/mypageHeader.jsp"/>
 	<br>
-	<div class="row">
+	<div class="row" id="myReportListView">
 		<div class="col-md-2"></div>
 			<div class="col-md-8">
 				<br>

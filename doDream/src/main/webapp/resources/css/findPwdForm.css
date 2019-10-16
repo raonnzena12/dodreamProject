@@ -26,3 +26,8 @@
 #findPwd-table ::placeholder {
   font-size: 13px;
 }
+
+#findPwdForm{
+	min-height: 600px;
+	height: auto;
+}
