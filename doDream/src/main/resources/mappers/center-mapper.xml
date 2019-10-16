@@ -101,7 +101,7 @@
 		WHERE REVIEW_STATUS = 'Y' AND
 		<choose>
 			<when test="category == 'total'">
-			REVIEW_CNO IN ( 1, 2, 3, 4, 9 )
+			REVIEW_CNO IN ( 1, 2, 3, 4, 5, 9 )
 			</when>
 			<when test="category == 'music'">
 			REVIEW_CNO = 1
@@ -114,6 +114,9 @@
 			</when>
 			<when test="category == 'art'">
 			REVIEW_CNO = 4
+			</when>
+			<when test="category == 'show'">
+			REVIEW_CNO = 5
 			</when>
 			<when test="category == 'etc'">
 			REVIEW_CNO = 9
@@ -136,7 +139,7 @@
   <!-- 전체 후기 수 조회 쿼리 -->
    <select id="projectCount" resultType="_int">
       SELECT COUNT(*)
-      FROM REVIEW       
+      FROM REVIEW    
       WHERE REVIEW_STATUS = 'Y'
    </select>
 
@@ -153,6 +156,7 @@
    <select id="faqSelect" resultMap="FaqResultSet">
       SELECT * 
       FROM FAQ
+      WHERE FAQ_STATUS = 'Y'
       ORDER BY FAQ_ENROLL_DATE DESC
    </select>
 

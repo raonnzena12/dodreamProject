@@ -62,6 +62,7 @@ public class FReviewController {
    @ResponseBody
    @RequestMapping("projectCount.dr")
    public int projectCount() {
+	   
 	   int result = frService.projectCount();
 	   System.out.println("result : " +  result);
 	   return result;
@@ -76,7 +77,10 @@ public class FReviewController {
 	 * @return
 	 */
 	@RequestMapping("fReviewDetail.dr")
-	public ModelAndView fReviewDetail(int revNo, ModelAndView mv, Integer page) {
+	public ModelAndView fReviewDetail( Review review, int revNo, ModelAndView mv, Integer page) {
+
+		if(review.getRevContent()!=null)review.setRevContent(review.getRevContent().replace("\n", "<br>"));
+		
 		int currentPage = page == null ? 1 : page;
 
 		Review revdetail = frService.selectReview(revNo);
