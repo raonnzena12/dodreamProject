@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.dodream.spring.admin.model.dao.AdminDao;
+import com.dodream.spring.customerCenter.model.vo.Faq;
 import com.dodream.spring.customerCenter.model.vo.Notice;
 import com.dodream.spring.customerCenter.model.vo.Review;
 
@@ -178,6 +179,16 @@ public class SummerServiceImpl implements SummerService {
 	@Override
 	public int removeReview(int revNo) {
 		return aDao.removeReview(revNo);
+	}
+
+	@Override  
+	public int insertFaq(Faq faq) {
+		return aDao.insertFaq(faq);
+	}
+
+	@Override
+	public int updateFaq(Faq faq) {
+		return aDao.updateFaq(faq);
 	}
 	
 	

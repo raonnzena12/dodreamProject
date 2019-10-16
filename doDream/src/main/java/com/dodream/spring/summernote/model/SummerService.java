@@ -2,8 +2,9 @@ package com.dodream.spring.summernote.model;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.web.multipart.MultipartFile;  
+import org.springframework.web.multipart.MultipartFile;
 
+import com.dodream.spring.customerCenter.model.vo.Faq;
 import com.dodream.spring.customerCenter.model.vo.Notice;
 import com.dodream.spring.customerCenter.model.vo.Review;
 
@@ -22,5 +23,9 @@ public interface SummerService {
 	public abstract int updateReview(Review review, MultipartFile reloadFile, HttpServletRequest request);
 
 	public abstract int removeReview(int revNo);
+
+	public abstract int insertFaq(Faq faq);
+
+	public abstract int updateFaq(Faq faq);
 
 }

@@ -70,6 +70,8 @@
                 <div class="card-body"> 
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">전체 회원 </div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800" id="memberAllMember"></div><br>
                       <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">신규 회원 </div>
                       <div class="h5 mb-0 font-weight-bold text-gray-800" id="memberNewMember"></div><br>
                       <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">탈퇴 회원</div>
@@ -216,7 +218,10 @@
                       <i class="fas fa-circle text-success"></i> 미술
                     </span>
                     <span class="mr-2">
-                      <i class="fas fa-circle text-info"></i> 기타
+                      <i class="fas fa-circle text-info"></i> 공연
+                    </span>
+                    <span class="mr-2">
+                      <i class="fas fa-circle text-success"></i> 기타
                     </span>
                   </div>
                 </div>
@@ -291,6 +296,15 @@
 	
 	
 	<script>
+		// 관리자 페이지 전체 회원 수
+		$.ajax({
+			url : "adminCountAllMember.dr",
+			success : function(result){
+				console.log(result);
+				$("#memberAllMember").text(result+"명");
+			}
+		});
+		
 		// 관리자 페이지 신규 회원 수
 		$.ajax({
 			url : "adminCountNewMember.dr",

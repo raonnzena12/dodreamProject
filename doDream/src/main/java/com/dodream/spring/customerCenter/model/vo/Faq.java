@@ -10,13 +10,13 @@ public class Faq {
 	private Date   fModifyDate; // 수정일
 	private String fStatus;     // 상태
 	private int    fWriter;     // 작성자(관리자)
-
+	private String userNickname; // 작성자명
+	
 	public Faq() {
 	}
 
-	// 전체 리스트
-	public Faq(int fNo, String fTitle, String fContent, Date fEnrollDate, Date fModifyDate, String fStatus,
-			int fWriter) {
+	public Faq(int fNo, String fTitle, String fContent, Date fEnrollDate, Date fModifyDate, String fStatus, int fWriter,
+			String userNickname) {
 		super();
 		this.fNo = fNo;
 		this.fTitle = fTitle;
@@ -25,6 +25,7 @@ public class Faq {
 		this.fModifyDate = fModifyDate;
 		this.fStatus = fStatus;
 		this.fWriter = fWriter;
+		this.userNickname = userNickname;
 	}
 
 	public int getfNo() {
@@ -83,9 +84,21 @@ public class Faq {
 		this.fWriter = fWriter;
 	}
 
+	public String getUserNickname() {
+		return userNickname;
+	}
+
+	public void setUserNickname(String userNickname) {
+		this.userNickname = userNickname;
+	}
+
 	@Override
 	public String toString() {
 		return "Faq [fNo=" + fNo + ", fTitle=" + fTitle + ", fContent=" + fContent + ", fEnrollDate=" + fEnrollDate
-				+ ", fModifyDate=" + fModifyDate + ", fStatus=" + fStatus + ", fWriter=" + fWriter + "]";
+				+ ", fModifyDate=" + fModifyDate + ", fStatus=" + fStatus + ", fWriter=" + fWriter + ", userNickname="
+				+ userNickname + "]";
 	}
+
+	// 전체 리스트
+	
 }

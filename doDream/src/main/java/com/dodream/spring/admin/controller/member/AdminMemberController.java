@@ -60,6 +60,12 @@ public class AdminMemberController {
 	}
 	
 	@ResponseBody
+	@RequestMapping("adminCountAllMember.dr")
+	public int countAllMember() {
+		return aService.countAllMember();
+	}
+
+	@ResponseBody
 	@RequestMapping("adminCountNewMember.dr")
 	public int countNewMember() {
 		return aService.countNewMember();
