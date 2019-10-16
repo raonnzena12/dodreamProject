@@ -167,6 +167,7 @@ select {
 															<option value="2">영화</option>
 															<option value="3">연극</option>
 															<option value="4">미술</option>
+															<option value="5">공연</option>
 															<option value="9">기타</option>
 														</select>
 													</td>
