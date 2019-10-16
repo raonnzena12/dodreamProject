@@ -34,6 +34,7 @@
 <c:if test="${ empty loginUser }" >
 <script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
 </c:if>
+
 <style>
 	* {
 		box-sizing: border-box;
@@ -176,7 +177,7 @@
 								<div id="naverIdLogin" class="text-left mx-2" style="display: inline-block;">
 								</div>
 								<a href="javascript:loginWithKakao()"><img src="resources/images/kakao_sns_icon.png" data-toggle="tooltip" data-placement="left" title="KAKAO ID로 로그인" class="mx-2"></a>
-								<!-- <img src="resources/images/faceB_sns_icon.png" data-toggle="tooltip" data-placement="left" title="FACEBOOK ID로 로그인" class="mx-2"> -->
+								<div style="display: inline-block;,color: #777; font-size: 14px">소셜ID로<br>로그인</div>
 								</div>
 							</td>
 						</tr>
