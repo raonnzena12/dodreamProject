@@ -43,7 +43,7 @@
 		font-family: 'Noto Sans KR', sans-serif;
 		color: #444;
 		text-decoration: none;
-		/* user-select: none; */
+		user-select: none;
 	}
 
 </style>
@@ -174,10 +174,10 @@
 						<!-- 소셜 로그인 아이콘 들어가는 부분 -->
 							<td class="text-center naverKakaoArea">
 								<div>
-								<div id="naverIdLogin" class="text-left mx-2" style="display: inline-block;">
+								<div id="naverIdLogin" class="text-left mr-2 ml-4" style="display: inline-block;" data-toggle="tooltip" data-placement="left" title="NAVER ID로 로그인">
 								</div>
-								<a href="javascript:loginWithKakao()"><img src="resources/images/kakao_sns_icon.png" data-toggle="tooltip" data-placement="left" title="KAKAO ID로 로그인" class="mx-2"></a>
-								<div style="display: inline-block;,color: #777; font-size: 14px">소셜ID로<br>로그인</div>
+								<a href="javascript:loginWithKakao()"><img src="resources/images/kakao_btn_medium.png" data-toggle="tooltip" data-placement="left" title="KAKAO ID로 로그인" class="mx-2"></a>
+								<div style="display: inline-block; color: #777; font-size: 13px; width:80px; margin-right: 20px;" class="align-bottom">소셜ID로<br>로그인</div>
 								</div>
 							</td>
 						</tr>
