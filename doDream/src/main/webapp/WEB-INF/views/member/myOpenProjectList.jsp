@@ -196,6 +196,8 @@
 						</h4>
 					</c:if>
 					<c:if test="${ fn:length(pList) >0 }">
+					<c:choose>
+					<c:when test="${ empty social }">
 						<c:forEach var="pList" items="${ pList }">
 							<div>
 								<div class="fundCon">
@@ -236,7 +238,7 @@
 											<c:when test="${pList.pStatusNum eq 1 }">
 												<c:if test="${!empty pList.pTitle }">
 												<span class="fundName"><a href="selectCurrentProject.dr?pNo=${pList.pNo }">${ pList.pTitle }</a> </span>
-												</c:if>	
+												</c:if>
 												<c:if test="${empty pList.pTitle }">
 												<span class="fundName"><a href="selectCurrentProject.dr?pNo=${pList.pNo }">제목없음</a> </span>
 												</c:if>										
@@ -301,6 +303,117 @@
 								</div>
 							</div>
 						</c:forEach>
+						</c:when>
+						<c:otherwise>
+							<c:forEach var="pList" items="${ pList }">
+							<c:if test="${ pList.pStatusNum eq 4 || pList.pStatusNum eq 5 || pList.pStatusNum eq 7 }" >
+							<div>
+								<div class="fundCon">
+									<div class="fundItem" id="${ pList.pNo }">
+										<div class="fundImg">
+											<img src="resources/images/projectImg/thumbnail/${ pList.pThumbImage }">
+										</div>
+										<div class="nameArea">
+											<p class="categoryName mb-0">${ pList.pCategoryName } 
+												<span class="detailArea float-right">
+												<c:choose>
+														<c:when test="${pList.pStatusNum eq 1 }">
+															<span>임시저장</span>
+														</c:when>
+														<c:when test="${pList.pStatusNum eq 2 }">
+															<span>심사대기</span>
+														</c:when>
+														<c:when test="${pList.pStatusNum eq 3 }">
+															<span>심사완료</span>
+														</c:when>
+														<c:when test="${pList.pStatusNum eq 4 }">
+															<span>펀딩중</span>
+														</c:when>
+														<c:when test="${pList.pStatusNum eq 5 }">
+															<span>펀딩마감</span>
+														</c:when>
+														<c:when test="${pList.pStatusNum eq 6 }">
+															<span>심사탈락</span>
+														</c:when>
+														<c:when test="${pList.pStatusNum eq 7 }">
+															<span>펀딩성공</span>
+														</c:when>																							
+													</c:choose>
+												</span>
+											</p>
+											
+											<c:choose>
+											<c:when test="${pList.pStatusNum eq 1 }">
+												<c:if test="${!empty pList.pTitle }">
+												<span class="fundName"><a href="selectCurrentProject.dr?pNo=${pList.pNo }">${ pList.pTitle }</a> </span>
+												</c:if>
+												<c:if test="${empty pList.pTitle }">
+												<span class="fundName"><a href="selectCurrentProject.dr?pNo=${pList.pNo }">제목없음</a> </span>
+												</c:if>										
+											</c:when>
+											<c:when test="${pList.pStatusNum <= 4 }">
+												<span class="fundName"> <a href="detailSt.dr?pNo=${pList.pNo }">${ pList.pTitle }</a> </span>
+											</c:when>
+											<c:otherwise>
+												<span class="fundName">${ pList.pTitle } </span>
+											</c:otherwise>
+											</c:choose>
+										</div>
+
+										<div class="detailArea my-1"> </div>
+										<div class="chartArea px-3 mt-2">
+											<div class="chartInfo clearfix">
+												<c:choose>
+													<c:when test="${pList.pStatusNum < 4 }">
+														<span class="chartInfo1">&nbsp;</span>													
+													</c:when>
+													<c:otherwise>
+														<span class="chartInfo1">￦<fmt:formatNumber value="${ pList.pCurrentFunding }" groupingUsed="true" /></span>
+														<span class="chartInfo2"><fmt:parseNumber value="${ (pList.pCurrentFunding / pList.pGoal) * 100 }" integerOnly="true" />%</span>
+													</c:otherwise>
+												</c:choose>
+											</div>
+											<c:choose>
+											<c:when test="${pList.pStatusNum < 3 }">
+												<div></div>
+											</c:when>
+											<c:when test="${pList.pStatusNum eq 3 }">
+												<div>
+												<button class="btn-sm btn-warning" id="openPRJ" project = "${pList.pNo}" termdate="${pList.termDate }">프로젝트오픈하기</button>
+												</div>
+											</c:when>
+											<c:when test="${ ((pList.pCurrentFunding / pList.pGoal) * 100) < 100 }">
+											<div class="chartBar">
+												<div class="purpleBar"style="width:${ (pList.pCurrentFunding / pList.pGoal) * 100 }%"></div>
+											</div>
+											</c:when>
+											<c:otherwise>
+											<div class="chartBar">
+												<div class="purpleBar"></div>
+											</div>
+											</c:otherwise>
+											</c:choose>
+											<c:choose>
+												<c:when test="${pList.pStatusNum eq 1 }">
+													<div class="chartDate">미등록</div>
+												</c:when>
+												<c:when test="${ pList.pDDay > 0 }">
+													<c:if test="${pList.pStatusNum ne 3 }">
+													<div class="chartDate">${ pList.pDDay }일남음</div>
+													</c:if>
+												</c:when>
+												<c:otherwise>
+													<div class="chartDate">펀딩 종료</div>
+												</c:otherwise>
+											</c:choose>
+										</div>
+									</div>
+								</div>
+							</div>
+							</c:if>
+						</c:forEach>
+						</c:otherwise>
+						</c:choose>
 					</c:if>
 				</div>
 			</div>
