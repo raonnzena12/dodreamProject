@@ -99,7 +99,7 @@
            		
            }
            #artistText2{
-           		min-width:50px;
+           		max-width:200px;
            		width:auto;
            		height:auto;
            		min-height:30px;
@@ -107,8 +107,8 @@
                	display: block;
               	float: left;
                	padding: 0 32px 0 10px;
-               	margin:15px 0 0 0;
-               /* 	border: 1px solid black; */
+               	margin:15px 0 5px 0;
+               /* border: 1px solid black; */
                	position: relative;
                	
                	/* 아티스트 이름 */
