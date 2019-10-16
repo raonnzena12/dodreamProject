@@ -516,9 +516,50 @@
    	</section>
 	
 	<script>
-	
+	var presubNo = 0;
 	
 		$(function(){
+			$(document).on("click",".subModify", function(){
+				$(".subModal").css("display","block");
+				var subCon =  $(this).parent().find(".subContent").html().replace(/(<br>|<br\/>|<br \/>)/g, '\r\n');// 서브 댓글 내용
+				
+				console.log("  서브 댓글 내용 : " + subCon);
+				
+				$("#subUpdateContent").val(subCon);
+				presubNo = $(this).attr("subNo");
+				//return false;
+				});
+			
+			$("#subSubmit").on("click", function(){
+				$("#subSubmit").css({"background-color":"#F39C12", "border":"#F39C12"});
+				var updateSubCon = $("#subUpdateContent").val();
+				var subNo = presubNo;//서브 댓글 번호
+				console.log("수정된 댓글내용 : "+ updateSubCon + "서브댓글 번호 :" + subNo);
+				
+				$.ajax({
+					url:"updateSubRe.dr",
+					data:{subNo:subNo, updateSubCon:updateSubCon},
+					type:"post",
+					success: function(result){
+						if(result == "1"){
+							$("#subUpdateContent").val("");
+							$(".subModal").css("display","none");
+							console.log("으아아악");
+							alert("댓글 수정 완료");
+							replyList();
+						}else{
+							alert("댓글 수정 실패");
+						}
+						
+					},
+					error: function(e){
+						console.log(e);
+					}
+				});
+				
+				
+			});
+			
 			
 			$("#community").css("color","#8E44AD");
 			
@@ -775,7 +816,7 @@
 									
 									$artist = $("<span>").addClass("badge badge-primary subBadge").text("아티스트");//아티스트 서브 댓글 일때  span태그
 									$span = $("<span>").addClass("badge badge-primary subConBadge").text("펀딩참가");// 펀딩 참가자 인지
-									$subCreate = $("<i>").addClass("material-icons subCreate").attr({"title":"수정","onclick":"updateSubRe($(this));"}).text("create");// 대댓글 수정 버튼
+									$subCreate = $("<i>").addClass("material-icons subCreate subModify").attr({"title":"수정","subNo":result.srList[j].subNo}).text("create");// 대댓글 수정 버튼
 									$subDelete = $("<i>").addClass("material-icons subDelete").attr({"title":"삭제", "onclick":"deleteSubRe($(this));"}).text("delete_sweep");//대댓글 삭제 버튼
 									$subContent = $("<div>").addClass("subContent").html(result.srList[j].subContent);//서브댓글 내용
 									$subDeleteContent = $("<div>").addClass("subDeleteCon").html("유저에 의해 삭제된 댓글입니다.");//삭제된 서브댓글 내용
