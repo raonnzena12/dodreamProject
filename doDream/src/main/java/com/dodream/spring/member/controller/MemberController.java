@@ -310,7 +310,7 @@ public class MemberController {
 		System.out.println(result);
 		if (result > 0) {
 			rd.addFlashAttribute("msg", "비밀번호를 변경하였습니다. 로그인해주세요.");
-			return "redirect:home.dr";
+			return "redirect:main.dr";
 		} else {
 			rd.addFlashAttribute("msg", "비밀번호 변경에 실패하였습니다.");
 			return "common/errorPage";
@@ -409,7 +409,7 @@ public class MemberController {
 		if (result > 0) {
 			rdAttr.addFlashAttribute("msg", "두드림에서 탈퇴되었습니다.");
 			status.setComplete();
-			return "redirect:home.dr";
+			return "redirect:main.dr";
 		} else {
 			model.addAttribute("msg", "탈퇴에 실패하였습니다. 관리자에게 문의해주세요.");
 			return "common/errorPage";
