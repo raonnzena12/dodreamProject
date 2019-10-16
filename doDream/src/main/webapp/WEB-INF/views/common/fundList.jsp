@@ -25,6 +25,7 @@
                <input type="radio" name="category" id="movie" value="movie" ${ (cate == "movie") ? 'checked' : '' }><label for="movie">영화</label>
                <input type="radio" name="category" id="play" value="play" ${ (cate == "play") ? 'checked' : '' }><label for="play">연극</label>
                <input type="radio" name="category" id="art" value="art" ${ (cate == "art") ? 'checked' : '' }><label for="art">미술</label>
+               <input type="radio" name="category" id="show" value="show" ${ (cate == "show") ? 'checked' : '' }><label for="show">공연</label>
                <input type="radio" name="category" id="etc" value="etc" ${ (cate == "etc") ? 'checked' : '' }><label for="etc">ETC</label>
             </div>
          </div>
