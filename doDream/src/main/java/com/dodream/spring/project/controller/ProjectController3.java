@@ -40,7 +40,7 @@ public class ProjectController3 {
 		if ( request.getSession().getAttribute("loginUser") != null ) userNo = ((Member)(request.getSession().getAttribute("loginUser"))).getUserNo();
 		
 		FilteringList filter = new FilteringList(userNo, category, order1, keyword1, endYn1);
-		
+		System.out.println(filter);
 		ArrayList<Project> pList = pService.selectPrjList(filter, currentPage);
 		model.addAttribute("pList", pList);
 		model.addAttribute("pi", Pagination.getPageInfo());

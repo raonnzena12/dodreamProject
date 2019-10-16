@@ -231,6 +231,9 @@
 	 		<when test="_parameter.equals('art')">
 	 		WHERE PROJECT_CT_NO = 4
 	 		</when>
+	 		<when test="_parameter.equals('show')">
+			WHERE PROJECT_CT_NO = 5
+			</when>
 	 		<when test="_parameter.equals('etc')">
 	 		WHERE PROJECT_CT_NO = 9
 	 		</when>
@@ -257,6 +260,9 @@
 			</when>
 			<when test="category == 'art'">
 			PROJECT_CT_NO = 4
+			</when>
+			<when test="category == 'show'">
+			PROJECT_CT_NO = 5
 			</when>
 			<when test="category == 'etc'">
 			PROJECT_CT_NO = 9

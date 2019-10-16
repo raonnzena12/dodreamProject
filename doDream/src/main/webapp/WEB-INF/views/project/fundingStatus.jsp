@@ -445,7 +445,7 @@ $(function(){
                     $(".shipPhone").text(newPhone);
                     $(".shipAddr1").text("("+newPost5+") "+newAddr1);
                     $(".shipAddr2").text(newAddr2);
-                    $(".shipRequest").text(newRequest);
+                    $(".shipRequest").text("배송 요청사항 : "+newRequest);
                     $(".changeShip").hide();
                     $(".shipPrint").show();
                 } else {
@@ -601,7 +601,7 @@ function ajaxBilling() {
 	}
 	var customer_uid = "${ prj.pNo }" + "_" +"${ loginUser.userNo }" + "_" + result + "_" + $("#cardNo4").val();
 	$.ajax({
-		url: "http://192.168.10.57:8081/ajaxBillingServer",
+		url: "http://115.90.212.22:8081/ajaxBillingServer",
 		type: "POST",
 		data: { card_number: card_number,
 				expiry: expiry,
@@ -652,7 +652,7 @@ function ajaxCustomerUid(uid) {
 function ajaxDeleteBillingKey(num){
     var oldBKey = "${ rsv.bKey }";
     $.ajax({
-        url: "http://192.168.10.57:8081/deleteBKey",
+        url: "http://115.90.212.22:8081/deleteBKey",
         type: "POST",
         data: { customer_uid: oldBKey },
         error: function(e) { console.log(e); 
