@@ -295,7 +295,14 @@
                        ${project.pSummaryText}
                     </p>
                     <div id="profile">
+                    	<c:choose>
+                    	<c:when test=" ${fn:contains(project.pArtistPFImage,'_artist')}">
                     	<img src="resources/images/projectImg/artistImg/${project.pArtistPFImage}" id="profileimg" width="60px" height="60px">
+                    	</c:when>
+                    	<c:otherwise>
+                   		<img src="resources/images/projectImg/artistImg/talent.png" id="profileimg" width="60px" height="60px">
+                   		</c:otherwise>
+                   		</c:choose>
                         <p id="text2">${project.pArtistName }님 </p>
                     </div>
                     

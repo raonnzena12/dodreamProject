@@ -318,6 +318,7 @@
                 margin: 15px 0 10px 7px;
                 background-color: #8E44AD;
                 border-color: #8E44AD;
+                
            }
            
             #asideReward > .rewardBtn2{
@@ -470,6 +471,7 @@
 		                            </div>
 		                            <script>
 		                            	$(function(){
+		                            		
 		                            		$(".reCount").on("input", function(){
 		                            			var max = $(this).attr("max")*1;
 		                            			var num = $(this).val()*1;
