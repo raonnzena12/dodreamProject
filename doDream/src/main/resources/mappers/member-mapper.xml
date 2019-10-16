@@ -82,14 +82,16 @@
 		UPDATE USER_TB SET USER_PWD = #{userPwd}, USER_MF_DT = SYSDATE
 		WHERE USER_EMAIL = #{userEmail}
 	</update>
-
+	
+	<!-- 로그인 시 방문자수 count -->
 	<insert id="countVisitToday" parameterType="_int">
 		INSERT INTO DAYCOUNT
 		VALUES(
 		TO_CHAR(SYSDATE), #{userNo}
 		)
 	</insert>
-  
+
+	 <!-- 오늘 방문여부 check -->
 	<select id="checkVisitToday" parameterType="_int" resultType="_int">
 		SELECT COUNT(*) FROM DAYCOUNT
 		WHERE USER_NO = #{userNo}		
