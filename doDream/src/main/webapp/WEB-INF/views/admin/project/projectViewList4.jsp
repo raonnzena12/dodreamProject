@@ -98,6 +98,9 @@ tbody tr:hover{
 															aria-label="Name: activate to sort column descending">프로젝트 번호</th>
 														<th class="sorting" tabindex="0" aria-controls="dataTable"
 															rowspan="1" colspan="1"
+															aria-label="Office: activate to sort column ascending">카테고리</th>
+														<th class="sorting" tabindex="0" aria-controls="dataTable"
+															rowspan="1" colspan="1"
 															aria-label="Office: activate to sort column ascending">프로젝트 제목</th>
 														<th class="sorting" tabindex="0" aria-controls="dataTable"
 															rowspan="1" colspan="1"
@@ -122,6 +125,7 @@ tbody tr:hover{
 												<tfoot>
 													<tr>
 														<th rowspan="1" colspan="1">프로젝트 번호</th>
+														<th rowspan="1" colspan="1">카테고리</th>
 														<th rowspan="1" colspan="1">프로젝트 제목</th>
 														<th rowspan="1" colspan="1">목표 금액</th>
 														<th rowspan="1" colspan="1">프로젝트 시작일</th>
@@ -135,6 +139,7 @@ tbody tr:hover{
 													<c:forEach var="p" items="${ list }">
 														<tr role="row" class="odd">
 															<td class="sorting_1">${ p.pNo }</td>
+															<td class="sorting_1">${ p.pCategoryName }</td>
 															<td><a href="detailSt.dr?pNo=${p.pNo}" target="_blank" style="text-decoration:none; color: gray;">${ p.pTitle }</a></td>
 															<td>${ p.pGoal}</td>
 															<td>${ p.pStartDate}</td>
