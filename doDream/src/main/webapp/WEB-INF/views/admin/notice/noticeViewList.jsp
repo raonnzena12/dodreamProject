@@ -95,7 +95,8 @@ tbody tr:hover{
 														<th class="sorting_asc" tabindex="0"
 															aria-controls="dataTable" rowspan="1" colspan="1"
 															aria-sort="ascending"
-															aria-label="Name: activate to sort column descending">공지사항 번호</th>
+															aria-label="Name: activate to sort column descending"
+															style="width: 50px;">공지사항 번호</th>
 														<th class="sorting" tabindex="0" aria-controls="dataTable"
 															rowspan="1" colspan="1"
 															aria-label="Office: activate to sort column ascending">공지사항 제목</th>

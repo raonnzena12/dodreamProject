@@ -97,7 +97,7 @@ public class SummerNoteController {
 		System.out.println(notice.getnNo());
 		
 		if(result > 0) {
-			mv.setViewName("redirect:adminNoticeList.dr?nNo="+ notice.getnNo()); 
+			mv.setViewName("redirect:nDetail.dr?nNo="+ notice.getnNo()); 
 		} else {
 			mv.addObject("msg","공지사항 수정 실패하였습니다.").setViewName("redirect:adminNoticeList.dr?nNo="+ notice.getnNo()); 
 		}
@@ -141,7 +141,7 @@ public class SummerNoteController {
 		int result = sService.updateReview(review, reloadFile, request);
 		
 		if(result > 0) {
-			mv.setViewName("redirect:adminReviewList.dr?revNo="+ review.getRevNo()); 
+			mv.setViewName("redirect:rDetail.dr?revNo="+ review.getRevNo()); 
 		} else {
 			mv.addObject("msg", "리뷰 수정을 실패하였습니다.").setViewName("redirect:adminReviewList.dr?revNo=" + review.getRevNo());
 		}

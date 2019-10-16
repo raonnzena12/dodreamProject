@@ -94,11 +94,11 @@
 													<tr>
 														<!-- summnote 에디터 출력 -->
 														<th>공지사항 제목 : </th>
-														<td><input type="text" name="nTitle" size="97" placeholder="제목을 입력해주세요."></th>
+														<td><input type="text" name="nTitle" size="97" placeholder="제목을 입력해주세요." value="${notice.nTitle }"></th>
 													</tr>
 													<tr>
 														<th style="padding-bottom: 55%;">공지사항 내용 : </th>
-														<td><textarea id="summernote" name="nContent"></textarea><td>
+														<td><textarea id="summernote" name="nContent">${notice.nContent }</textarea><td>
 													</tr> 
 													<!-- 등록된 이미지 목록 -->
 													<input type="hidden" name="nNo" value="${notice.nNo }"> 

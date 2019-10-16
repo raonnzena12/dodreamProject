@@ -121,6 +121,10 @@
 													<td>${ review.revTitle }</td>
 												</tr>
 												<tr>
+													<th class="th">부제목</th>
+													<td>${ review.revSubTitle }</td>
+												</tr>		
+												<tr>
 													<th class="th">작성자</th>
 													<td>${ review.userNickname }</td>
 												</tr>		

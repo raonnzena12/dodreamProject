@@ -91,7 +91,7 @@ tbody tr:hover{
 															aria-controls="dataTable" rowspan="1" colspan="1"
 															aria-sort="ascending"
 															aria-label="Name: activate to sort column descending"
-															style="width: 29px;">회원번호</th>
+															style="width: 10px;">회원번호</th>
 														<th class="sorting" tabindex="0" aria-controls="dataTable"
 															rowspan="1" colspan="1"
 															aria-label="Office: activate to sort column ascending"
