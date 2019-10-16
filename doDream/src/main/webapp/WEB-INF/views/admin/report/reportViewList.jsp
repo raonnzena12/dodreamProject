@@ -152,7 +152,7 @@ tbody tr:hover{
 																          </div>
 																          <div class="form-group">
 																            <label for="message-text" class="col-form-label">보낼 내용 :</label>
-																            <textarea name="reportRpContent" class="form-control" id="message-text"></textarea>
+																            <textarea name="reportRpContent" class="form-control" id="message-text">해당 신고 내용 " ${ r.repContent} "에 대해 답변드립니다.</textarea>
 																          </div>
 																      </div>
 																      <div class="modal-footer">

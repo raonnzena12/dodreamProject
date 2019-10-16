@@ -57,6 +57,13 @@ public class FReviewServiceImpl implements FReviewService {
       // 2) 게시글 상세 조회
       return frDao.selectReview(revNo);
    }
+
+
+	@Override
+	public int projectCount() {
+		
+		return frDao.projectCount();
+	}
    
 }
  

@@ -23,6 +23,10 @@ public interface FReviewService {
  
    Review selectReview(int revNo);
 
+
+   int projectCount();
+
+
   
    
 }

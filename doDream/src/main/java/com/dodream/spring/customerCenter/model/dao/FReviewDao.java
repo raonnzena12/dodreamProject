@@ -90,4 +90,9 @@ public class FReviewDao {
       
       return sqlSession.selectOne("centerMapper.countList");
    }
+   
+   // 프로젝트 개수 
+	public int projectCount() {
+		return sqlSession.selectOne("centerMapper.projectCount");
+	}
 }
