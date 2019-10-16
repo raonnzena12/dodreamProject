@@ -152,14 +152,29 @@
     /* background-color: #F39C12; */
     margin: 20px auto;
 }
-.areaarea{
+.ggArea>div {
+    display: inline-block;
+}
+.areaarea, .areaarea2{
     border-radius: 5px;
     position: relative; 
-    padding-top: 56.25%; 
     overflow: hidden;
     /* height: 300px; */
+    border: 1px solid #eee;
 }
-.areaarea img {
+.areaarea-w {
+    width: 69%;
+}
+.areaarea2-w {
+    width: 29%;
+}
+.areaarea {
+    padding-top: 39.85%; 
+}
+.areaarea2 {
+    padding-top: 95%; 
+}
+.ggArea img {
     position: absolute; 
     top: 0; 
     left: 0; 
@@ -167,8 +182,9 @@
     bottom: 0; 
     min-width: 100%; 
     max-width: 100%; 
-    height: auto;
-    margin-top: 0%;
+    object-fit: cover;
+    cursor: pointer;
+    /* margin-top: 0%; */
 }
 .carousel-item h4, .carousel-item p {
     text-shadow: 1px 1px 5px #666;
@@ -309,8 +325,43 @@
             </div>
         </div>
         <div class="my-4 ggArea">
-            <div class="areaarea">
-                <img src="resources/images/tvxq.jpg">
+            <div class="areaarea-w">
+            <div class="areaarea mx-1">
+                <c:set var="ran1"><%= ((int)(java.lang.Math.random() * 3) + 1) %></c:set>
+                <c:choose>
+                <c:when test="${ ran1 == 1 }" >
+                <a href="https://www.jejuair.net/jejuair/kr/com/jeju/ibe/company/brandgallery.do" target="_blank"><img src="resources/images/ad_lsq1.jpg"></a>
+                </c:when>
+                <c:when test="${ ran1 == 2 }" >
+                <a href="http://ohmy-girl.com/omg_official/" target="_blank"><img src="resources/images/ad_lsq3.jpg"></a>
+                </c:when>
+                <c:when test="${ ran1 == 3 }" >
+                <a href="http://www.shilladfs.com/comm/kr/ja/storyStarGallVid?shilla_story_id=465&cPage=1" target="_blank"><img src="resources/images/ad_lsq2.jpg"></a>  
+                </c:when>
+                </c:choose>
+            </div>
+            </div>
+            <div class="areaarea2-w">
+            <div class="areaarea2 mx-1">
+                <c:set var="ran2"><%= ((int)(java.lang.Math.random() * 5) + 1) %></c:set>
+                <c:choose>
+                <c:when test="${ ran2 == 1 }" >
+                <a href="https://www.dongsuh.co.kr/2017/03_mediaCenter/04_tvcf_view.asp?idx=249" target="_blank"><img src="resources/images/ad_sq2.jpg"></a>
+                </c:when>
+                <c:when test="${ ran2 == 2 }" >
+                <a href="https://www.youtube.com/watch?v=1FiD9V5BLew" target="_blank"><img src="resources/images/ad_sq1.jpg"></a>
+                </c:when>
+                <c:when test="${ ran2 == 3 }" >
+                <a href="https://www.jejuair.net/jejuair/kr/com/jeju/ibe/company/brandgallery.do" target="_blank"><img src="resources/images/ad_sq3.jpg"></a>
+                </c:when>
+                <c:when test="${ ran2 == 4 }" >
+                <a href="https://blog.naver.com/trouvere_/221667722327" target="_blank"><img src="resources/images/ad_sq4.jpg"></a>
+                </c:when>
+                <c:when test="${ ran2 == 5 }" >
+                <a href="https://www.youtube.com/watch?v=uTqtO--Zya0" target="_blank"><img src="resources/images/ad_sq5.jpg"></a>
+                </c:when>
+                </c:choose>
+            </div>
             </div>
         </div>
         <div class="newest">
