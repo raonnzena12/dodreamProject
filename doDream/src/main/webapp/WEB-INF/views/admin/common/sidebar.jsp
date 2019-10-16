@@ -16,7 +16,7 @@
 		<!-- Sidebar - Brand -->
 		<a
 			class="sidebar-brand d-flex align-items-center justify-content-center"
-			href="home.dr">
+			href="main.dr">
 			<div class="sidebar-brand-icon rotate-n-15" style="color: #FFCD01;">
 				<i class="fas fa-laugh-wink"></i>
 			</div>

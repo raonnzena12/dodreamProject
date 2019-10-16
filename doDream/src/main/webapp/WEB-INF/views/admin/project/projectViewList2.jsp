@@ -140,7 +140,7 @@ tbody tr:hover{
 														<tr role="row" class="odd">
 															<td class="sorting_1">${ p.pNo }</td>
 															<td>
-																<a href="goPreview.dr?pNo=${p.pNo}" style="text-decoration:none; color: gray;">${ p.pTitle }</a>
+																<a href="goPreview.dr?pNo=${p.pNo}"  target="_blank" style="text-decoration:none; color: gray;">${ p.pTitle }</a>
 															</td>
 															<td>${ p.pGoal}</td>
 															<td>${ p.pStartDate}
