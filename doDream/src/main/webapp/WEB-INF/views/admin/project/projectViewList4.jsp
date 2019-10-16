@@ -92,10 +92,10 @@ tbody tr:hover{
 												aria-describedby="dataTable_info" style="width: 100%;">
 												<thead>
 													<tr role="row">
-														<th class="sorting_asc" tabindex="0"
+														<th class="sorting_desc" tabindex="0"
 															aria-controls="dataTable" rowspan="1" colspan="1"
-															aria-sort="ascending"
-															aria-label="Name: activate to sort column descending">프로젝트 번호</th>
+															aria-sort="descending"
+															aria-label="Name: activate to sort column ascending">프로젝트 번호</th>
 														<th class="sorting" tabindex="0" aria-controls="dataTable"
 															rowspan="1" colspan="1"
 															aria-label="Office: activate to sort column ascending">카테고리</th>
