@@ -334,7 +334,7 @@
                     <div class="container-fluid" id="detailnav">
                         <div id="story" onclick="location.href='cCenter.dr'" >공지사항</div>
                         <div id="guide" onclick="location.href='T_O_Service.dr'">이용약관</div>
-                        <div id="community" onclick="location.href='fReview.dr'" style="color: rgb(142, 68, 173);">프로젝트 후기</div>
+                        <div id="community" onclick="location.href='fReview.dr'" style="color: rgb(142, 68, 173);"></div>
                         <div id="reward" onclick="location.href='faq.dr'">FAQ</div>
                     </div>
                 </nav>
@@ -346,7 +346,7 @@
 	   <div class="row" id="Review_table">
 	      <div class="col-md-12"></div>
 	   </div>
-	   <h3>프로젝트 후기</h3>
+	   <h3 id="projectCount"></h3>
 	   <hr id=Review_bar>
 	   <div class="container-fluid clearfix" id="categoryTop">
 	      <div class="row">
@@ -496,6 +496,24 @@ $(function(){
 
 })
 
+$(function(){
+	
+	$.ajax({ 
+		url : "projectCount.dr",
+		success : function(result){
+			console.log(result);
+			$("#projectCount").text("프로젝트 후기 ("+result+ ")");
+		}
+	});
+
+	$.ajax({ 
+		url : "projectCount.dr",
+		success : function(result){
+			console.log(result);
+			$("#community").text("프로젝트 후기 ("+result+ ")");
+		}
+	});
+});
 </script>
 
 <!-- <script>

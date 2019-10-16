@@ -132,6 +132,13 @@
       AND
       REVIEW_STATUS = 'Y'
    </select>
+   
+  <!-- 전체 후기 수 조회 쿼리 -->
+   <select id="projectCount" resultType="_int">
+      SELECT COUNT(*)
+      FROM REVIEW       
+      WHERE REVIEW_STATUS = 'Y'
+   </select>
 
    <!-- ========== FAQ ==================== -->
 	

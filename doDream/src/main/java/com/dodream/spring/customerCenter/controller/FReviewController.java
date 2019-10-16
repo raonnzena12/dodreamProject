@@ -57,6 +57,15 @@ public class FReviewController {
 		
 		return revList;
 	}
+   
+   // 프로텍트 후기 전체 개수 출력
+   @ResponseBody
+   @RequestMapping("projectCount.dr")
+   public int projectCount() {
+	   int result = frService.projectCount();
+	   System.out.println("result : " +  result);
+	   return result;
+   }
  
 
    // 후기 상세 페이지 불러오는 코드
