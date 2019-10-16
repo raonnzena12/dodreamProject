@@ -621,8 +621,8 @@ public class MemberController {
 
 		if (loginUser == null) {
 			int result = mService.insertSNS(member);
-			if (result > 0) {
-				loginUser = member;
+			if (result > 0) { 
+				loginUser = mService.naverLogin(member.getUserEmail());
 			}
 		}
 		model.addAttribute("loginUser", loginUser);
