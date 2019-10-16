@@ -14,10 +14,6 @@ app.use(bodyParser.json());
 
 // 빌링키 발급받는 코드
 app.post("/ajaxBillingServer", async (req, res) => {
-console.log("im start!");
-console.log(req);
-console.log(req.body);
-// console.log(req.body);
 try {
   const {
     card_number, // 카드 번호
@@ -26,11 +22,7 @@ try {
     pwd_2digit, // 카드 비밀번호 앞 두자리,
     customer_uid, // 카드(빌링키)와 1:1로 대응하는 값
   } = req.body; // req의 body에서 카드정보 추출
-  console.log(card_number);
-  console.log(expiry);
-  console.log(birth);
-  console.log(pwd_2digit);
-  console.log(customer_uid);
+  console.log(card_number+"/"+expiry+"/"+birth+"/"+pwd_2digit+"/"+customer_uid);
   // 인증 토큰 발급 받기
   const getToken = await axios({
     url: "https://api.iamport.kr/users/getToken",
@@ -57,11 +49,9 @@ try {
     }
   });
 
-  // const { code, message } = issueBilling;
-  console.log(issueBilling);
+  // console.log(issueBilling);
   var code = issueBilling.data.code;
-  console.log(issueBilling.data.code);
-  console.log("code : " + JSON.stringify(issueBilling.data));
+  console.log("성공 코드(0일시 성공) : " + issueBilling.data.code);
 
   if (code == 0) { // 빌링키 발급 성공
     res.send({ status: "success", message: "Billing has successfully issued", code: code });
@@ -70,7 +60,6 @@ try {
   }
 
 } catch (e) {
-  console.log("error");
   console.log(e);
   res.status(400).send(e);
 }

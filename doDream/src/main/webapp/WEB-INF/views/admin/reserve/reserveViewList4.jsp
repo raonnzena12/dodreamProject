@@ -210,6 +210,9 @@ tbody tr:hover{
 
 	<!-- Demo scripts for this page-->
 	<script src="resources/js/demo/datatables-demo.js"></script>
+  
+  <!-- ajax cors 관련 -->
+	<script type="text/javascript" src="resources/js/jquery.ajax-cross-origin.min.js"></script>
 <script>
 $(function(){
 	$(".billingProject").on("click", function(){
@@ -250,7 +253,7 @@ $(function(){
 	
 	function submitBilling(customerUid, amount){
 		$.ajax({
-			url : "http://localhost:8081/billings",
+			url : "http://192.168.10.57:8081/billings",
 			data : {customer_uid : customerUid, amount : amount},
 			type : "post",
 			success : function(result){
@@ -269,4 +272,3 @@ $(function(){
 </body>
 
 </html>
-

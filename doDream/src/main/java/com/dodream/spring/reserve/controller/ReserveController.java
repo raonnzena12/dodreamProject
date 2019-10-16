@@ -40,7 +40,7 @@ public class ReserveController {
 		
 		// uNo 검사
 		if ( uNo != rsv.getResUser() && adminYn.equals("N")  ) {
-			return "redirect:home.dr";
+			return "redirect:main.dr";
 			// 자신의 예약조회가 아닐경우 홈으로 넘김
 		}
 		

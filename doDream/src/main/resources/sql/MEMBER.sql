@@ -21,3 +21,6 @@ SELECT U.*, (SELECT COUNT(*) FROM FOLLOW_TB F WHERE F.FOLLOWER = U.USER_NO) AS F
 ORDER BY USER_NO ASC;
 
 SELECT * FROM USER_FF_VIEW;
+
+delete from like_tb where like_prj < 50;
+commit;
