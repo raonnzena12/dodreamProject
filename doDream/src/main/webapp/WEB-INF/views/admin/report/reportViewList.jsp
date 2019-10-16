@@ -127,7 +127,7 @@ tbody tr:hover{
 															<td class="sorting_1">${ r.repNo }</td>
 															<td>${ r.userNickname}</td>
 															<td>${ r.repContent}</td>
-															<td><a href="detailSt.dr?pNo=${r.repNo}" style="text-decoration:none; color: gray;">${ r.pTitle}</a></td>
+															<td><a href="detailSt.dr?pNo=${r.repRefPno}" target="_blank" style="text-decoration:none; color: gray;">${ r.pTitle}</a></td>
 															<td>${ r.repDate}</td>
 															<td>
 																<button type="button" data-toggle="modal" data-target="#exampleModal${ status.index }" data-whatever="답변하기"

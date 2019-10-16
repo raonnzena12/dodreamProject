@@ -125,7 +125,7 @@ tbody tr:hover{
 													<c:forEach var="p" items="${ pList }">
 														<tr role="row" class="odd">
 															<td class="sorting_1">${ p.pNo }</td>
-															<td><a href="myFundingInfo.dr?rsvNo=${r.resNo}" style="text-decoration:none; color: gray;">${ p.pTitle}</a></td>
+															<td><a href="myFundingInfo.dr?rsvNo=${r.resNo}" target="_blank" style="text-decoration:none; color: gray;">${ p.pTitle}</a></td>
 															<td>${ p.pCloseDate}</td>
 															<td>${ p.pGoal}</td>
 															<td>${ p.pCurrentFunding}</td>
@@ -210,8 +210,8 @@ tbody tr:hover{
 
 	<!-- Demo scripts for this page-->
 	<script src="resources/js/demo/datatables-demo.js"></script>
-	
-	<!-- ajax cors 관련 -->
+  
+  <!-- ajax cors 관련 -->
 	<script type="text/javascript" src="resources/js/jquery.ajax-cross-origin.min.js"></script>
 <script>
 $(function(){
@@ -272,4 +272,3 @@ $(function(){
 </body>
 
 </html>
-

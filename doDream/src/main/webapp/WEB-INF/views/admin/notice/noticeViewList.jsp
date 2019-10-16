@@ -128,7 +128,7 @@ tbody tr:hover{
 														<tr role="row" class="odd">
 															<td class="sorting_1">${ n.nNo }</td>
 															<td>
-																<a href="cCenter.dr?nNo=${n.nNo}" style="text-decoration:none; color: gray;">${ n.nTitle}</a>
+																<a href="cCenter.dr?nNo=${n.nNo}" target="_blank" style="text-decoration:none; color: gray;">${ n.nTitle}</a>
 															</td>
 															<td>${ n.nEnrollDate}</td>
 															<td>${ n.nModifyDate}</td>

@@ -134,7 +134,7 @@ tbody tr:hover{
 													<c:forEach var="r" items="${ list }">
 														<tr role="row" class="odd">
 															<td class="sorting_1">${ r.revNo }</td>
-															<td><a href="fReviewDetail.dr?revNo=${r.revNo}" style="text-decoration:none; color: gray;">${ r.revTitle}</a></td>
+															<td><a href="fReviewDetail.dr?revNo=${r.revNo}" target="_blank" style="text-decoration:none; color: gray;">${ r.revTitle}</a></td>
 															<td>${ r.revSubTitle}</td>
 															<td>${ r.revEnrollDate}</td>
 															<td>${ r.revRefPname}</td>
