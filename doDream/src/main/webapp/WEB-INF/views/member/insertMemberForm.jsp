@@ -161,7 +161,7 @@
 		var userNickname = $("#userNickname").val().trim();
 		if(userNickname.length > $("#userNickname").attr("maxlength")){
 			alert("닉네임은 20자 이내로 작성해주세요!^_^");
-			$("#userNickname").focus();
+			return false;
 		}else{
 			$.ajax({
 				type : "post",
@@ -170,7 +170,7 @@
 				success: function(data) {
 					if(data == "1"){
 						$("#nicknameAlert").show().text("이미 사용 중인 닉네임입니다.").css("color", "#8E44AD");
-						$("#userNickname").val("").focus();
+						$("#userNickname").val("");
 					}else{
 						$("#nicknameAlert").show().text("사용 가능한 닉네임입니다.").css("color", "#F39C12");
 						
@@ -191,7 +191,7 @@
 		var pwdRegex = /^[a-zA-Z0-9]{6,14}$/;
 		if(!pwdRegex.test(userPwd)){
 			alert("비밀번호는 숫자와 문자 포함 6이상 14자리 이내로 작성해주세요.");
-			$("#userPwdInsert").val("").focus();
+			$("#userPwdInsert").val("");
 			return false;
 		}else{
 			$("#userPwdCk").focus();
