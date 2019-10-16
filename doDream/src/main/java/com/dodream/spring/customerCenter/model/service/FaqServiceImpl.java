@@ -22,6 +22,7 @@ public class FaqServiceImpl implements FaqService {
 
 	@Override
 	public ArrayList<Faq> selectList(int currentPage) {
+		
 		int listCount = faqDao.faqListCount();
 		PageInfo pi = centerpageInfo.getcenterpageInfo(currentPage, listCount);
 		

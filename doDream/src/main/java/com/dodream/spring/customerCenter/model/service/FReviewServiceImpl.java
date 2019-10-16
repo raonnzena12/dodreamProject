@@ -37,6 +37,9 @@ public class FReviewServiceImpl implements FReviewService {
    
    @Override
    public ArrayList<Review> selectfrevList(revKategorie kategorie, int currentPage) {
+	 
+	   
+	   
 	   int listCount = frDao.getListCount();
 	   PageInfo pi = Pagination.getPageInfo(currentPage, listCount);
 	  
@@ -61,7 +64,7 @@ public class FReviewServiceImpl implements FReviewService {
 
 	@Override
 	public int projectCount() {
-		
+	
 		return frDao.projectCount();
 	}
    
