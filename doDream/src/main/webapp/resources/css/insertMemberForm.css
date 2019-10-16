@@ -31,3 +31,10 @@
 #joinFormOuter ::placeholder {
   font-size: 13px;
 }
+
+/* 커스텀 체크박스 색 변경하는 CSS */
+#joinFormOuter .custom-control-input:checked~.custom-control-label::before {
+	color: #fff;
+	border-color: #8E44AD;
+	background-color: #8E44AD;
+}

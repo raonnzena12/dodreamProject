@@ -256,6 +256,7 @@
 	</nav>
 	<a id="top_btn"><img src="resources/images/up_button_p.png" alt="탑 버튼"></a>
 	</section>
+	
 <c:if test="${ empty loginUser }" >
 <script>
 
@@ -303,6 +304,7 @@ function loginWithNaver(email, nickName, profileImg, unqId) {
 }
 </script>
 </c:if>
+
 <script>
 	/* 로그인폼 submit */
 	function beforeLogin(){
@@ -314,11 +316,15 @@ function loginWithNaver(email, nickName, profileImg, unqId) {
 	};
 	
 	
-	$("#loginBtn").click(function() {
-		var useCookie = $("input[name=useCookie]").is(":checked");
+	/* 자동로그인 클릭 시 안내 */
+	$("#useCookie").click(function() {
+		var useCookie = $("#useCookie").is(":checked");
 		console.log(useCookie); 
-		/* true */
+		if(useCookie == true){
+			alert("개인 PC에서만 사용해주세요.");
+		}
 	});
+		
 	
 	/* 카카오 로그인 */
 	function loginWithKakao() {
@@ -350,8 +356,7 @@ function loginWithNaver(email, nickName, profileImg, unqId) {
 								if(result == "0"){//email이 없을경우
 									location.href="insertSNS.dr?userEmail="+userEmail+"&userNickname="+userNickname+"&userProfileImage="+userProfileImage+"&userPwd="+userPwd;
 								}else if(result == "1"){
-									snsLoginFrm("login.dr", userEmail, userPwd);
-									/* location.href="login.dr?userEmail="+userEmail+"&userPwd="+userPwd; */
+									loginWithNaver(userEmail, userNickname, userProfileImage, userPwd);
 								}
 							}
 						});
@@ -364,35 +369,6 @@ function loginWithNaver(email, nickName, profileImg, unqId) {
 		});
 	};
 	
-	
-	/* SNS로그인 시 가상 로그인 폼 생성 후 submit */
-	function snsLoginFrm(url, userEmail, userPwd){
-		var form = document.createElement("form");
-		var param = new Array();
-		var input = new Array();
-
-		var path = window.location.href;
-		var arr = path.split("/");
-		var prevPage = arr[4].replace("#","");
-		
-		form.action = url;
-		form.method = "post";
-		
-		param.push(["userEmail",userEmail]);
-		param.push(["userPwd",userPwd]);
-		param.push(["prevPage",prevPage]);
-		
-		for(var i=0; i<param.length; i++){
-			input[i] = document.createElement("input");
-			input[i].setAttribute("type", "hidden");
-			input[i].setAttribute('name', param[i][0]);
-			input[i].setAttribute("value", param[i][1]);
-			form.appendChild(input[i]);
-		}
-		document.body.appendChild(form);
-					
-		form.submit();
-	}
 
 	/* 쿠키생성 */
 	function setCookie(cookieName, value, exdays) {
@@ -462,6 +438,7 @@ function loginWithNaver(email, nickName, profileImg, unqId) {
 		
 	});
 	
+	/* 로그아웃 시 쿠키 삭제 */
 	$("#logoutbtn").click(function(){
 		deleteCookie("userEmail");
 		deleteCookie("userPwd");
@@ -469,11 +446,13 @@ function loginWithNaver(email, nickName, profileImg, unqId) {
 		location.href='${logout}';
 	});
 	
+	/* 로그인 enterkey */
 	$(document).on("keydown","#userPwd",function(event){
 		if(event.keyCode=='13'){
 			beforeLogin();
 		}
 	});
+	
 </script>
 	
 

@@ -72,7 +72,7 @@
 									<div class="custom-control custom-checkbox my-1">
 										<input type="checkbox" id="agree" name="agree" class="custom-control-input" required>
 										<label class="custom-control-label" for="agree">
-											두드림의 <a	href="#" id="agreement" class="emp blue" target="_blank">이용약관</a>에 동의합니다.
+											두드림의 <a	href="T_O_Service.dr" id="agreement" target="_blank">이용약관</a>에 동의합니다.
 											<!-- href="agreement.dr" -->
 										</label>
 									</div>
