@@ -577,9 +577,9 @@
 							<div class="edit-box">
 								<p style="font-family: 'Jua'; font-size: 16px; letter-spacing: 1px; color: #F39C12;">프로젝트 번호 : ${project.pNo}</p>
 								<br>
-								<textarea style="position: absolute; top:0; left:0; width: 1px; height: 1px; margin: 0; padding: 0; border: 0; opacity: 0;" id="urltarget">https://dodream.com/web/campaign/detail/${project.pNo}</textarea>
+								<textarea style="position: absolute; top:0; left:0; width: 1px; height: 1px; margin: 0; padding: 0; border: 0; opacity: 0;" id="urltarget">http://localhost:8079/spring/detailSt.dr?pNo=${project.pNo}</textarea>
 								<p style="font-size: 12px;">
-									https://dodream.com/web/campaign/detail/${project.pNo} 로 프로젝트가 오픈되며, <br>
+									http://localhost:8079/spring/detailSt.dr?pNo=${project.pNo} 로 프로젝트가 오픈되며, <br>
 									프로젝트 오픈 이후 진입 가능합니다.
 								</p>
 								<div class="form-length-chk" id="urlbox">
@@ -607,6 +607,7 @@
 									<option value="2">영화</option>
 									<option value="3">연극</option>
 									<option value="4">미술</option>
+									<option value="5">공연</option>
 									<option value="9">ETC</option>
 								</select>
 							</div>
@@ -927,7 +928,7 @@
 							<div class="rewardContent">
 								<div class="rewardContentLeft">금액</div>
 								<div class="rewardContentRight">
-									<input type="hidden" name="rList[0].rPrice" id="reward0Price">
+									<input type="hidden" name="rList[0].rPrice" id="reward0Price" value="0">
 									<input type="text" class="form-control form-control-sm rpriceregexp" id="rpriceregexpinput0" onchange="rpriceregexp(0)" 
 										style="width: 30%; display: inline-block;" min="0" value="0" autocomplete="off"><label
 										style="padding: 5px;">원</label>
@@ -1368,9 +1369,11 @@
 		}
 	};
 	// 검토요청하기 메소드입니다. pStatusNum = 2
+	var leavecheck = false;
 	function submitToAdmin(){
 		$("#pStatusNum").val(2);
 		var formData = new FormData(document.getElementById("insertFrm"));
+		leavecheck = true;
 		Swal.fire({
 			title : '정말로 제출하시겠어요?',
 			html : '한 번 제출하시면 수정하실 수 없습니다. <br> 신중히 검토후 제출해 주세요',
@@ -1428,6 +1431,12 @@
 			}
 		});
 	}
+	// 페이지 이탈 방지 메소드입니다. 관리자에게 검토할때에는 작동되지 않습니다.
+	$(window).on('beforeunload', function(){
+		if($("#agreementForm").css('display') == 'none'){
+			if(leavecheck==false) return "페이지에서 벗어나시겠어요?";
+		}
+	}); 
 	// 임시저장하는 메소드입니다. pStatusNum = 1 으로 세팅합니다. 
 	function temporarySave() {
 		$("#pStatusNum").val(1);
@@ -2289,6 +2298,7 @@
 			if(pCategoryNum==3) $("#pCategoryNum option:eq(3)").prop("selected",true);
 			if(pCategoryNum==4) $("#pCategoryNum option:eq(4)").prop("selected",true);
 			if(pCategoryNum==5) $("#pCategoryNum option:eq(5)").prop("selected",true);
+			if(pCategoryNum==9) $("#pCategoryNum option:eq(6)").prop("selected",true);
 			// 길이체크 채워넣기
 			$("#pTitleLengthChk").text($("input[name='pTitle']").val().length);
 			$("#pSTitleLengthChk").text($("input[name='pSTitle']").val().length);
@@ -2521,8 +2531,7 @@
 		}
 	});
 	
-	
-	
+
 </script>
 </body>
 </html>
