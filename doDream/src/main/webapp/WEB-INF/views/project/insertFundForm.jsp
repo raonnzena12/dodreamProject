@@ -399,6 +399,9 @@
     font-weight: bold;
     line-height: 37px;
     color: #6f6f6f;
+    display: block;
+    width: 100%;
+    height: 100%;
 }
 .menubarinner span:hover{
     font-size:15px;
@@ -1208,7 +1211,7 @@
 						                    <div class="emailphoneinput">
 						                        <input type="text" class="artistinput2" name="pArtistEmail" placeholder="이메일 주소" value="${project.pArtistEmail}" autocomplete="off">
 						                        <input type="text" class="artistinput2" name="pArtistPhone" placeholder="전화번호" value="${project.pArtistPhone}" maxlength="14;"
-						                        style="letter-spacing: 5px; font-size: 17px;" oninput="this.value=this.value.replace(/[^0-9]/g,'');inputPhoneNumber(this);"  autocomplete="off">
+						                        style="letter-spacing: 5px; font-size: 17px;" oninput="this.value=this.value.replace(/[^0-9\\-]/g,'');"  autocomplete="off">
 						                        <label>https://facebook.com/</label>
 						                        <input type="text" class="artistinput2" name="pArtistSns1" placeholder="페이스북" style="height: 32px; width: 129px; display: inline; letter-spacing: 0; font-size: 16px; font-family: 'Do Hyeon';" value="${project.pArtistSns1}" autocomplete="off">
 						                        <label>https://instagram.com/</label>
@@ -2188,30 +2191,6 @@
 
 <!-- 아티스트 폼 관련  -->
 <script>
-	function inputPhoneNumber(obj) {
-	    var number = obj.value.replace(/[^0-9]/g, "");
-	    var phone = "";
-	    if(number.length < 4) {
-	        return number;
-	    } else if(number.length < 7) {
-	        phone += number.substr(0, 3);
-	        phone += "-";
-	        phone += number.substr(3);
-	    } else if(number.length < 11) {
-	        phone += number.substr(0, 3);
-	        phone += "-";
-	        phone += number.substr(3, 3);
-	        phone += "-";
-	        phone += number.substr(6);
-	    } else {
-	        phone += number.substr(0, 3);
-	        phone += "-";
-	        phone += number.substr(3, 4);
-	        phone += "-";
-	        phone += number.substr(7);
-	    }
-	    obj.value = phone;
-	}
 	$('#pArtistIntroduction').on("input",function(){
 	    var rows = $('#pArtistIntroduction').val().split('\n').length;
 	    var maxRows = 2;
