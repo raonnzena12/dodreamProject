@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="adminFaqMapper">
+	
+	<!-- FAQ -->
+   <resultMap id="FaqResultSet" type="Faq">
+      <id property="fNo" column="FAQ_NO" />
+      <result property="fTitle" column="FAQ_TITLE" />
+      <result property="fContent" column="FAQ_CONTENT" />
+      <result property="fEnrollDate" column="FAQ_ENROLL_DATE" />
+      <result property="fModifyDate" column="FAQ_MODIFY_DATE" />
+      <result property="fStatus" column="FAQ_STATUS" />
+      <result property="fWriter" column="FAQ_WRITER" />
+      <result property="userNickname" column="USER_NICKNAME"/>
+   </resultMap>
+	
+	<!-- 공지사항 목록 -->
+	<select id="selectFaqList" resultMap="FaqResultSet">
+		SELECT F.*, USER_NICKNAME FROM FAQ F
+		JOIN USER_TB ON(USER_NO= FAQ_WRITER)
+		WHERE FAQ_STATUS = 'Y'
+		ORDER BY FAQ_NO DESC
+	</select>
+	
+	<!-- 공지사항 수정하기 -->
+	<update id="updateFaq" parameterType="Faq">
+		UPDATE FAQ SET
+		FAQ_TITLE = #{fTitle} ,FAQ_CONTENT = #{fContent}, FAQ_MODIFY_DATE = SYSDATE
+		WHERE FAQ_NO = #{fNo}
+	</update>
+	  
+	<!-- 공지사항 삭제 -->
+	<update id="removeFaq" parameterType="_int">
+		UPDATE FAQ SET
+		FAQ_STATUS = 'N'
+		WHERE FAQ_NO = #{fNo}
+	</update>
+	
+	<!-- 공지사항 등록 써머노트 -->
+	<insert id="insertFaq" parameterType="Faq">
+		INSERT INTO FAQ VALUES(
+			SEQ_FAQ_NO.NEXTVAL,#{fTitle},#{fContent},SYSDATE,SYSDATE,'Y',#{fWriter}
+		)
+	</insert>
+	
+	<!-- 해당 공지사항 조회 쿼리 -->
+	<select id="selectFaq" resultMap="FaqResultSet" parameterType="_int">
+		SELECT F.*, USER_NICKNAME FROM FAQ F
+		JOIN USER_TB ON(USER_NO= FAQ_WRITER)
+		WHERE FAQ_NO = #{fNo}
+		AND FAQ_STATUS = 'Y'
+		ORDER BY FAQ_NO DESC
+	</select>
+	
+	
+	
+</mapper>

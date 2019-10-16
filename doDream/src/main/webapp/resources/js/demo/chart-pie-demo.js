@@ -29,7 +29,7 @@ var myPieChart = new Chart(ctx, {
   data: {
     labels: ["음악", "영화", "연극", "미술 ", "공연", "기타"],
     datasets: [{
-      data: [cat1, cat2, cat3, cat4, cat5],
+      data: [cat1, cat2, cat3, cat4, cat5, cat6],
       backgroundColor: ['#8E44AD', '#F39C12', '#FFCD01', '#F39C12', '#FFCD01', '#F39C12'],
       hoverBackgroundColor: ['#8E44AD', '#F39C12', '#FFCD01',  '#F39C12', '#FFCD01', '#F39C12'],
       hoverBorderColor: "rgba(234, 236, 244, 1)",

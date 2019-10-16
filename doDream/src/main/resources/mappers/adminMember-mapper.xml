@@ -19,6 +19,12 @@
 		<result property="userSelf" column="USER_SELF" />
 	</resultMap>
 
+	<!-- 전체 회원 관련 쿼리 -->
+	<select id="countAllMember" resultType="_int">
+		SELECT COUNT(*) FROM USER_TB
+		WHERE USER_STATUS = 'Y'
+	</select>
+
 	<!-- 신규 회원 관련 쿼리 -->
 	<select id="countNewMember" resultType="_int">
 		SELECT COUNT(*) FROM USER_TB

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 
 import com.dodream.spring.admin.model.vo.Alarm;
+import com.dodream.spring.customerCenter.model.vo.Faq;
 import com.dodream.spring.customerCenter.model.vo.Notice;
 import com.dodream.spring.customerCenter.model.vo.Review;
 import com.dodream.spring.member.model.vo.Member;
@@ -23,6 +24,11 @@ import com.dodream.spring.reserve.model.vo.Reserve;
  *
  */
 public interface AdminService {
+
+	/** 관리자페이지에서 전체회원의 수를 세주는 Service
+	 * @return result
+	 */
+	public abstract int countAllMember();
 
 	/** 관리자페이지에서 신규회원의 수를 세주는 Service
 	 * @return result
@@ -281,6 +287,12 @@ public interface AdminService {
 	public abstract int allCountAlarm();
 
 	public abstract int confirmAlarm(int alNo);
+
+	public abstract ArrayList<Faq> selectFaqList();
+
+	public abstract Faq selectFaq(int fNo);
+
+	public abstract int removeFaq(int fNo);
 
 
 

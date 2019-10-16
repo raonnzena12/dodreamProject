@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.dodream.spring.customerCenter.model.vo.Faq;
 import com.dodream.spring.customerCenter.model.vo.Notice;
 import com.dodream.spring.customerCenter.model.vo.Review;
 import com.dodream.spring.summernote.model.SummerService;
@@ -60,6 +61,18 @@ public class SummerNoteController {
 		System.out.println(Arrays.toString(imgArr));
 		sService.cancleImage(request,imgArr);
 		return "redirect:adminReviewList.dr";
+	}
+	/** 관리자 FAQ 후기 이미지 삭제 
+	 * @param request
+	 * @param imgList
+	 * @return 
+	 */
+	@RequestMapping(value="cancleFaq.dr", method = RequestMethod.POST)
+	public String cancleFaqImage(HttpServletRequest request, String imgList) {
+		String[] imgArr = imgList.split(",");
+		System.out.println(Arrays.toString(imgArr));
+		sService.cancleImage(request,imgArr);
+		return "redirect:adminFaqList.dr";
 	}
 	
 	
@@ -163,7 +176,48 @@ public class SummerNoteController {
 		return mv;
 	}
 	
+	/** 관리자 FAQ 등록 
+	 * @param Faq
+	 * @param model
+	 * @return path
+	 */
+	@RequestMapping("insertFaq.dr")
+	public String insertFaq(Faq faq, Model model) {
+		
+		int result = sService.insertFaq(faq);
+
+		String path = null;
+		if(result > 0) {
+			path = "redirect:adminFaqList.dr";
+		} else {
+			model.addAttribute("msg", "공지사항 등록 실패");
+			path = "redirect:adminFaqList.dr";
+		}
+		
+		return path;
+	}
 	
+	/**  관리자 FAQ 수정
+	 * @param Faq
+	 * @param model
+	 * @return result
+	 */
+	@RequestMapping("updateFaq.dr")
+	public ModelAndView updateFaq(Faq faq, ModelAndView mv) {
+		  
+		int result = sService.updateFaq(faq);
+		
+		System.out.println("result : " + result + "fNo : " + faq.getfNo());
+		
+		if(result > 0) {
+			mv.setViewName("redirect:fDetail.dr?fNo="+ faq.getfNo()); 
+		} else {
+			mv.addObject("msg","공지사항 수정 실패하였습니다.").setViewName("redirect:fDetail.dr?fNo="+ faq.getfNo()); 
+		}
+
+		return mv;
+
+	}
 	
 	
 	
