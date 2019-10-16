@@ -57,6 +57,7 @@
    <select id="noticeSelect" resultMap="NoticeResultSet">
       SELECT * 
       FROM NOTICE
+      WHERE NOTICE_STATUS = 'Y'
       ORDER BY NOTICE_NO DESC
    </select>
 
