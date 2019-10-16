@@ -454,8 +454,9 @@
 
 	<!-- 회원이 펀딩한 프로젝트 리스트 조회 -->
 	<select id="myFundingList" resultMap="projectResultSet" parameterType="_int">
-		SELECT * FROM PROJECT_LIST_VIEW WHERE PROJECT_NO
+		SELECT * FROM PROJECT_LIST_VIEW_2ND WHERE PROJECT_NO
 		IN(SELECT DISTINCT(RESERVE_REF_PNO) FROM RESERVE WHERE RESERVE_USER = #{userNo})
+		ORDER BY CLOSING DESC NULLS LAST
 	</select>
 	
 	<!-- 회원이 오픈한 프로젝트 리스트 조회  -->
@@ -463,6 +464,7 @@
 		SELECT P.*,(ROUND(PROJECT_CLOSE_DT - PROJECT_START_DT))AS TERM_DATE FROM PROJECT_MYLIST_VIEW P
 		JOIN USER_TB U ON(U.USER_NO = P.PROJECT_WRITER)
 		WHERE PROJECT_WRITER= #{userNo} AND PROJECT_ST_NO IN(1,2,3,4,5,6,7)
+		ORDER BY PROJECT_CLOSE_DT DESC
 	</select>
 	
 	<!-- 회원이 좋아요한 프로젝트 리스트 조회 -->
@@ -499,7 +501,6 @@
 	</select>
 	
 	<!-- ====================== mainPage =========================== -->
-	<!--  -->
 	<select id="selectMainList" parameterType="_int" resultMap="projectResultSet">
 		SELECT ROWNUM, C.* FROM
 		(SELECT P.*, (CASE WHEN PROJECT_NO IN (SELECT LIKE_PRJ FROM LIKE_TB WHERE LIKE_USER = #{ userNo }) THEN 1 ELSE 0 END) AS ILIKE
