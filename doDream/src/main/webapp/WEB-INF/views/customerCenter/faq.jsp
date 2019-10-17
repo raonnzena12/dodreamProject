@@ -96,6 +96,11 @@ color : #8E44AD;
 .faqbtn{
 	background-color: #F39C12;
 }
+#loadingImg {
+   width: 40px;
+   height: auto;
+   opacity: 0;
+}
 </STYLE>
 </head>
 <body>
@@ -194,6 +199,9 @@ color : #8E44AD;
 				</div>
 			</div>
 		</div>
+		<div class="text-center">
+	            <img src="resources/images/loadingSpin.gif" id="loadingImg">
+	         </div>
 	</div>
 </section>
 <script>
