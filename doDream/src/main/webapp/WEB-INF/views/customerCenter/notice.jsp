@@ -142,7 +142,7 @@ color : #8E44AD;
 	<div class="container-fluid" id="ReviewCon1">
 		<div class="row" id="notice_table">
 			<div class="col-md-12" id="cCenter_menu">
-				<h3>공지사항</h3>
+				<h3 id="nProjectCount"></h3>
 				<hr id=notice_bar>
 				<!-- 공지사항 제목, 내용부분 / 악코디언 부분 -->
 				<div id="card-611390" class="resultPrint"><!-- 내용을 묶는 틀 -->
@@ -161,7 +161,6 @@ color : #8E44AD;
 						
 					</c:forEach>
 				</div>
-				<button id="" type="button" class"" onclick="" > 더보기 + </button>
 				<div class="text-center">
                         <img src="resources/images/loadingSpin.gif" id="loadingImg">
                 </div>
@@ -264,6 +263,24 @@ $(function() {
 			scrollTop : scrollPosition
 		});
 	});
+});
+$(function(){
+	
+	$.ajax({ 
+		url : "nProjectCount.dr",
+		success : function(result){
+			console.log(result);
+			$("#projectCount").text("공지사항 ( 총 게시글 수 : "+result+ ")");
+		}
+	});
+
+	/* $.ajax({ 
+		url : "projectCount.dr",
+		success : function(result){
+			console.log(result);
+			$("#community").text("프로젝트 후기 ( 총 게시글 수 : "+result+ ")");
+		}
+	}); */
 });
 </script>
 </body>
