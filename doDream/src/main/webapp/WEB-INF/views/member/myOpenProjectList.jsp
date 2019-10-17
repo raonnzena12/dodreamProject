@@ -271,7 +271,7 @@
 											</c:when>
 											<c:when test="${pList.pStatusNum eq 3 }">
 												<div>
-												<button class="btn-sm btn-warning" id="openPRJ" project = "${pList.pNo}" termdate="${pList.termDate }">프로젝트오픈하기</button>
+												<button class="btn-sm btn-warning openPRJ" project = "${pList.pNo}" termdate="${pList.termDate }">프로젝트오픈하기</button>
 												</div>
 											</c:when>
 											<c:when test="${ ((pList.pCurrentFunding / pList.pGoal) * 100) < 100 }">
@@ -304,6 +304,7 @@
 							</div>
 						</c:forEach>
 						</c:when>
+						
 						<c:otherwise>
 							<c:forEach var="pList" items="${ pList }">
 							<c:if test="${ pList.pStatusNum eq 4 || pList.pStatusNum eq 5 || pList.pStatusNum eq 7 }" >
@@ -379,7 +380,7 @@
 											</c:when>
 											<c:when test="${pList.pStatusNum eq 3 }">
 												<div>
-												<button class="btn-sm btn-warning" id="openPRJ" project = "${pList.pNo}" termdate="${pList.termDate }">프로젝트오픈하기</button>
+												<%-- <button class="btn-sm btn-warning" project = "${pList.pNo}" termdate="${pList.termDate }">프로젝트오픈하기</button> --%>
 												</div>
 											</c:when>
 											<c:when test="${ ((pList.pCurrentFunding / pList.pGoal) * 100) < 100 }">
@@ -494,10 +495,14 @@
 			}
 		});
 	    
-		//심사완료 시 프로젝트 오픈
-	    $("#openPRJ").click(function(){
+		//심사완료시 프로젝트 오픈
+	    $(".openPRJ").click(function(){
 	    	var pNo = $(this).attr("project");
 	    	var termDate = $(this).attr("termdate");
+	    	
+	    	console.log(pNo);
+	    	console.log(termDate);
+	    	
 			var ck = confirm("해당 프로젝트를 오픈합니다.");
 			if(ck == true){
 				$.ajax({
@@ -505,6 +510,7 @@
 					type: "post",
 					data: {pNo:pNo, termDate:termDate},
 					success:function(result){
+						console.log("통신됨?");
 						if(result>0){
 							alert("프로젝트가 오픈되었습니다.");
 							location.reload();
