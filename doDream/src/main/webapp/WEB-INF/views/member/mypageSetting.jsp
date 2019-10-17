@@ -71,13 +71,13 @@
                            <div class="text-center">
                               <c:choose>
 								<c:when test="${empty loginUser.userProfileImage}">
-								<img alt="프로필사진" src="resources/images/talent.png" class="rounded-circle float-sm ml-3" style="width: 150px; height: 150px;"/>
+								<img alt="프로필사진" src="resources/images/talent.png" class="rounded-circle float-sm ml-3 userProfileImage" style="width: 150px; height: 150px;"/>
 								</c:when>
 								<c:when test= "${fn:contains(loginUser.userProfileImage,'http://')}">
-								<img alt="프로필사진" src="${loginUser.userProfileImage}" class="rounded-circle float-sm" style="width: 150px; height: 150px;"/>
+								<img alt="프로필사진" src="${loginUser.userProfileImage}" class="rounded-circle float-sm userProfileImage" style="width: 150px; height: 150px;"/>
 								</c:when>
 								<c:otherwise>
-								<img alt="프로필사진" src="resources/images/userProfileImage/${loginUser.userProfileImage}" class="rounded-circle float-sm" style="width: 150px; height: 150px;"/>
+								<img alt="프로필사진" src="resources/images/userProfileImage/${loginUser.userProfileImage}" class="rounded-circle float-sm userProfileImage" style="width: 150px; height: 150px;"/>
 								</c:otherwise>
 								</c:choose>
                            </div>
