@@ -57,7 +57,8 @@ public class FaqController {
 		int currentPage = ( page == null ) ? 1 : page;
 		
 		ArrayList<Faq> fList = faqService.selectList(currentPage);
-		
+		System.out.println("FAQ AJAX 작동");
+		System.out.println(fList);
 		return fList;
 	}
 	
