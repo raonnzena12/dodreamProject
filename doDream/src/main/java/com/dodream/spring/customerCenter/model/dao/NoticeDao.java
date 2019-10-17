@@ -31,5 +31,10 @@ public class NoticeDao {
 		
 		return sqlSession.selectOne("centerMapper.noticeListCount");
 	}
+
+	public int nProjectCount() {
+		
+		return sqlSession.selectOne("centerMapper.nProjectCount");
+	}
 } 
  

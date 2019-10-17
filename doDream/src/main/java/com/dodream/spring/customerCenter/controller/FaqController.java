@@ -75,6 +75,14 @@ public class FaqController {
 		model.addAttribute("search", search);
 		return "customerCenter/faq";
 	}
-	
+	// 프로젝트 후기 전체 개수 출력
+   @ResponseBody
+   @RequestMapping("fProjectCount.dr")
+   public int fProjectCount() {
+	   
+	   int result = faqService.fProjectCount();
+	   System.out.println("result : " +  result);
+	   return result;
+   }
 
 }

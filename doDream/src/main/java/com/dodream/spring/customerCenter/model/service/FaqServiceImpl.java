@@ -35,5 +35,11 @@ public class FaqServiceImpl implements FaqService {
 	public ArrayList<Faq> searchList(Search search) {
 		
 		return faqDao.searchList(search);
+	}
+
+	@Override
+	public int fProjectCount() {
+		
+		return faqDao.fProjectCount();
 	} 
 }

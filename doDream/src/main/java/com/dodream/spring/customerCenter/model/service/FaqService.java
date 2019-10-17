@@ -10,6 +10,8 @@ public interface FaqService {
 	ArrayList<Faq> selectList(int currentPage);
 
 	public abstract ArrayList<Faq> searchList(Search search);
+
+	int fProjectCount();
  
  
 }

@@ -130,7 +130,7 @@
         </div>
 	</div>
 	<div class="container-fluid" id="ReviewCon1">
-		<hr style="background-color: black;">
+		<!-- <hr style="background-color: black;"> -->
 		<div id="Terms_table">
 			<h3>이용약관</h3>
 			<hr id=Terms_bar>

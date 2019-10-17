@@ -58,12 +58,12 @@ public class FReviewController {
 		return revList;
 	}
    
-   // 프로텍트 후기 전체 개수 출력
+   // 프로젝트 후기 전체 개수 출력
    @ResponseBody
    @RequestMapping("revProjectCount.dr")
-   public int projectCount() {
+   public int revProjectCount() {
 	   
-	   int result = frService.projectCount();
+	   int result = frService.revProjectCount();
 	   System.out.println("result : " +  result);
 	   return result;
    }
