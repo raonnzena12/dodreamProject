@@ -530,7 +530,12 @@
 				
 				
 				if(${empty sessionScope.loginUser}) {
-					alert("로그인이 필요합니다.");
+					//alert("로그인이 필요합니다.");
+					Swal.fire(
+							  '로그인',
+							  '로그인이 필요합니다.',
+							  'success'
+							)
 					return false;
 				}else{
 					if($(this).css("color") == "rgb(142, 68, 173)"){
@@ -547,10 +552,21 @@
 				
 				//console.log("report : " + ${report.repWriter});
 				if(${empty sessionScope.loginUser}) {
-					alert("로그인이 필요합니다.");
+					//alert("로그인이 필요합니다.");
+					Swal.fire(
+							  '로그인',
+							  '로그인이 필요합니다.',
+							  'success'
+							)
 					return false;
 				}else if(${loginUser.userNo eq report.repWriter}){
-					alert("이미 신고한 프로젝트 입니다.");
+					//alert("이미 신고한 프로젝트 입니다.");
+					Swal.fire(
+							  '신고',
+							  '이미 신고한 프로젝트 입니다.',
+							  'success'
+							)
+					
 					return false;
 				}else{
 					$(".modal").css("display","block");
@@ -569,7 +585,45 @@
 				var uNo= "${loginUser.userNo}";
 				var repContent = $("#reportContent").val();
 				
-				if(confirm("프로젝트를 정말 신고하시겠습니까?")){
+				Swal.fire({
+					  title: '정말 신고?',
+					  text: "프로젝트를 정말 신고하시겠습니까?",
+					  type: 'warning',
+					  showCancelButton: true,
+					  confirmButtonColor: '#3085d6',
+					  cancelButtonColor: '#d33',
+					  confirmButtonText: 'Yes'
+					}).then((result) => {
+					  if (result.value) {
+						  $.ajax({
+								url:"detailReport.dr",
+								data:{pNo:pNo, uNo:uNo, repContent:repContent},
+								type:"post",
+								success: function(result){
+									if(result == 1){
+										$("#reportContent").val("");
+										$(".modal").css("display","none");
+										$(".reportBtn").css("background-color","gray");
+										/* alert("신고가 완료 되었습니다."); */
+										Swal.fire(
+									      '신고 완료!',
+									      '신고가 정상적으로 접수 되었습니다.',
+									      'success'
+									    )
+									}else{
+										alert("프로젝트 신고 실패");
+									}
+								},
+								error: function(e){ 
+									console.log(e);
+								}
+							});
+					    
+					  }
+					})
+				
+				
+				/* if(confirm("프로젝트를 정말 신고하시겠습니까?")){
 					
 					$.ajax({
 						url:"detailReport.dr",
@@ -589,7 +643,7 @@
 							console.log(e);
 						}
 					});
-				}
+				} */
 				
 			});
 			
@@ -611,7 +665,12 @@
 					success: function(result){
 						if(result == 1){
 							$("#asideFavorite").css("color", "#8E44AD");
-							alert("팔로우를 성공했습니다.");
+							//alert("팔로우를 성공했습니다.");
+							Swal.fire(
+							  '팔로우 성공!',
+							  '성공적으로 팔로우를 완료했습니다.',
+							  'success'
+							)
 							
 						}else{
 							alert("팔로우 실패");
@@ -639,7 +698,12 @@
 				success: function(result){
 					if(result == 1){
 						$("#asideFavorite").css("color","#F39C12");
-						alert("팔로우가 취소되었습니다.");
+						//alert("팔로우가 취소되었습니다.");
+						Swal.fire(
+							  '팔로우 취소!',
+							  '성공적으로 팔로우를 취소했습니다.',
+							  'success'
+							)
 						
 					}else{
 						alert("팔로우 취소 실패");

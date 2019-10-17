@@ -558,7 +558,12 @@
    			
    				$(".rewardBtn").on("click", function(){
    					if(${empty sessionScope.loginUser}){
-   						alert("로그인이 필요합니다.");
+   						//alert("로그인이 필요합니다.");
+   						Swal.fire(
+  							  '로그인!',
+  							  '로그인이 필요합니다.',
+  							  'success'
+  							)
    					}else{
    						goReserve();
    					}
@@ -573,7 +578,12 @@
    				$(".rewardBtn").css("display","none");
    				
    				$(".rewardBtn2").click(function(){
-   					alert("종료된 프로젝트 입니다.");
+   					//alert("종료된 프로젝트 입니다.");
+   					Swal.fire(
+  							  '종료!',
+  							  '종료된 프로젝트 입니다.',
+  							  'success'
+  							)
    				});
    				
    			}
@@ -725,7 +735,12 @@
    				var input="";
    				
    				if($("input:checkbox[name='reCheck']:checked").length == 0){
-   					alert("리워드를 선택해주세요.");
+   					//alert("리워드를 선택해주세요.");
+   					Swal.fire(
+  							  '리워드!',
+  							  '리워드를 선택해주세요.',
+  							  'success'
+  							)
    				}else{
    					
    				$("input:checkbox[name='reCheck']:checked").each(function(){
