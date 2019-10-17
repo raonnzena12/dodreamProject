@@ -2253,7 +2253,7 @@
 </script>
 <script>
 
-	// 수정하는 페이지를 로그인 안하거나 작성자가 아닐시, 상태값이 다를시 튕구는 메소드입니다.
+	// 수정하는 페이지를 로그인 안하거나 작성자가 아닐시 튕구는 메소드입니다.
 	$(function(){
 		var value = "${project.pStatusNum}";
 		if(value!=0){
@@ -2262,7 +2262,7 @@
 			if(loginUser==null || loginUser=="" || loginUser != pWriter){
 				history.back();
 			}
-		}				
+		}
 	});
 
 	$(function(){
@@ -2510,7 +2510,7 @@
 		if(!$("#remotesubmit").hasClass("notouch")){
 			submitToAdmin();
 		}
-	});
+	})
 	
 
 </script>

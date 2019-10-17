@@ -99,6 +99,7 @@ public class ProjectController {
 		// 기존에 있던 리워드를 전부 삭제시킵니다.
 		result = pService.deleteRewards(project.getpNo());
 		if(result<0) return "error";
+		result = 1;
 		// 체크된 reward의 개수만큼 DB에 insert시킵니다.
 		for (Reward reward : rewardList) {
 			
@@ -120,6 +121,7 @@ public class ProjectController {
 			// DB연결을 수행합니다.
 			result = pService.insertReward(reward);
 			System.out.println(reward);
+			System.out.println("리워드 후 result : " + result);
 			// 오류가 있을 경우에만 콘솔창에 해당 리워드를 출력합니다.
 			if(result==0) System.out.println("리워드 DB 저장 실패, 리워드 정보 : \n"+reward.toString());
 		}
@@ -170,9 +172,9 @@ public class ProjectController {
 	}
 	
 	@RequestMapping("goPreview.dr")
-	public String prjDetailView(Integer pNo, Model model) {
-		Project prj = pService.selectProject(pNo);
-		ArrayList<Reward> rw = pService2.selectReward(pNo);
+	public String prjDetailView(Project project, Model model) {
+		Project prj = pService.selectProject(project.getpNo());
+		ArrayList<Reward> rw = pService2.selectReward(project.getpNo());
 		model.addAttribute("reward", rw);
 		model.addAttribute("project", prj);
 		return "project/projectDetailPreview";
