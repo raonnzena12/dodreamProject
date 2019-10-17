@@ -1334,6 +1334,9 @@
 			doLogin();
 		}
 	}
+	function gonaver(){
+		alert("옆에 카카오 누르세요ㅎㅎ");
+	}
 	function goLogin(){
 		Swal.fire({
 			showConfirmButton: false,
