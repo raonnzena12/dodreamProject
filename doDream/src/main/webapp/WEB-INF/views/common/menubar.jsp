@@ -404,7 +404,6 @@ function loginWithNaver(email, nickName, profileImg, unqId) {
 	
 	/* 쿠키저장 */
 	$(document).ready(function() {
-		
 		if(getCookie("userEmail") && getCookie("userPwd")){
 			$("#userEmail").val(getCookie("userEmail"));
 			$("#userPwd").val(getCookie("userPwd"));
@@ -416,7 +415,6 @@ function loginWithNaver(email, nickName, profileImg, unqId) {
 			
 			$("#loginFrm").submit();
 		}
-					
 		var userEmail = getCookie("userEmail");
 		//$("#userEmail").val(userEmail);
 		
@@ -433,10 +431,7 @@ function loginWithNaver(email, nickName, profileImg, unqId) {
 				deleteCookie("userEmail");
 				deleteCookie("userPwd");
 			}	
-		
 		});
-		
-		
 	});
 	
 	/* 로그아웃 시 쿠키 삭제 */
