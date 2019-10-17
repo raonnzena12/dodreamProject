@@ -185,11 +185,11 @@ tbody tr:hover{
 																</form>
 															</td>
 															<td>
-																<button type="button" data-toggle="modal" data-target="#exampleModal${ status.index }" data-whatever="심사 탈락"
+																<button type="button" data-toggle="modal" data-target="#exampleModalt${ status.index }" data-whatever="심사 탈락"
  																 id="dropOutProjectBtn" class="btn btn-primary btn-lg btn-block rewardBtn">심사 탈락</button>
  																 <!-- Modal -->
  																<form action ="dropOutProjectBtn.dr" method="post">
-																<div class="modal fade" id="exampleModal${ status.index }" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+																<div class="modal fade" id="exampleModalt${ status.index }" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 																  <div class="modal-dialog" role="document">
 																    <div class="modal-content">
 																      <div class="modal-header">

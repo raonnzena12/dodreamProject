@@ -146,8 +146,8 @@
 														<img src="resources/images/summernoteimg/${ review.reviewTnImg}" style="height: 300px; width: 300px;">
 													</td>
 												</tr>		
-												<tr height="300" >
-													<th class="th">내용</th>
+												<tr>
+													<th class="th" height="100%;">내용</th>
 													<td>${ review.revContent }</td>
 												</tr>
 											</table>
