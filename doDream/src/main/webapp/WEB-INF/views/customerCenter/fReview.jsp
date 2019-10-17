@@ -501,7 +501,7 @@ $(function(){
 		url : "revProjectCount.dr",
 		success : function(result){
 			console.log(result);
-			$("#projectCount").text("프로젝트 후기 ( 총 게시글 수 : "+result+ ")");
+			$("#projectCount").text("프로젝트 후기 ( "+result+ " )");
 		}
 	});
 

@@ -285,7 +285,7 @@ $(function(){
 		url : "fProjectCount.dr",
 		success : function(result){
 			console.log(result);
-			$("#fProjectCount").text("FAQ ( 총 게시글 수 : "+result+ ")");
+			$("#fProjectCount").text("FAQ ( "+result+ " )");
 		}
 	});
 
