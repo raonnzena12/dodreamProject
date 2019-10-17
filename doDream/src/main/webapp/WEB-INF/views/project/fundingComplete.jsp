@@ -104,8 +104,8 @@ function sendKakaoLink() {
     Kakao.Link.sendDefault({
         objectType: 'feed',
         content: {
-          title: '두드림 테스트',
-          description: '#두드림 #테스트 #두드림 #두드림',
+          title: '${ prj.pTitle }',
+          description: "#" + 'prj.pHashTag'.replace(/,/gi," #"),
           imageUrl: 'https://i.imgur.com/rA4AbTP.png',
           link: {
             mobileWebUrl: 'https://www.google.com',
