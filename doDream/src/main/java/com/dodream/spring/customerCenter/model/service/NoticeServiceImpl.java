@@ -28,4 +28,10 @@ public class NoticeServiceImpl implements NoticeService {
 		return noticeList;
 		
 	}
+
+	@Override
+	public int nProjectCount() {
+		
+		return noticeDao.nProjectCount();
+	}
 }

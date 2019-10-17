@@ -133,7 +133,7 @@ color : #8E44AD;
 			<div class="col-md-12" style="padding: 0;">
 				<div>
 					<div class="col-md-12" id="faqTitle">
-						<h3>FAQ</h3>
+						<h3 id="fProjectCount"></h3>
 					</div>
 					<!-- 검색 창 -->
 					<div id="faqSearch">	
@@ -278,6 +278,25 @@ $.ajax({
    }  
 });
 }
+
+$(function(){
+	
+	$.ajax({ 
+		url : "fProjectCount.dr",
+		success : function(result){
+			console.log(result);
+			$("#fProjectCount").text("FAQ ( 총 게시글 수 : "+result+ ")");
+		}
+	});
+
+	/* $.ajax({ 
+		url : "projectCount.dr",
+		success : function(result){
+			console.log(result);
+			$("#community").text("프로젝트 후기 ( 총 게시글 수 : "+result+ ")");
+		}
+	}); */
+});
 </script>
 <script>
 	// 아코디언과 관련된 스크립트입니다.

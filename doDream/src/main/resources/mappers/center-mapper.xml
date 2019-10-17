@@ -61,6 +61,12 @@
       ORDER BY NOTICE_NO DESC
    </select>
 
+   <!-- 전체 공지사항 수 조회 쿼리 -->
+   <select id="nProjectCount" resultType="_int">
+      SELECT COUNT(*)
+      FROM NOTICE   
+      WHERE NOTICE_STATUS = 'Y'
+   </select>
 
    <!-- ========== 프로젝트 후기 ==================== -->
    <!-- 전체 후기 수 조회 쿼리 -->
@@ -69,16 +75,7 @@
       FROM REVIEW       
       WHERE REVIEW_STATUS = 'Y'
    </select>
-   
-   <!-- 후기 목록 조회 쿼리 -->
-   <!-- 
-   <select id="selectfrList" resultMap="ReviewResultSet">
-      SELECT *
-      FROM REVIEW
-      JOIN PROJECT_CG ON(REVIEW_CNO = PROJECT_CT_NO)
-      ORDER BY REVIEW_NO DESC
-   </select>
--->
+  
    <!-- 조회수 증가 쿼리 -->
    <update id="updateCount" parameterType="_int">
       UPDATE REVIEW
@@ -93,7 +90,6 @@
       WHERE PROJECT_ST_NO IN ( 4, 5 )
    </select>
    
-  
    	<!-- 카테고리 필터링하여 리스트 받아오는 쿼리 -->
 	 
 	<select id="selectfrList" resultMap="ReviewResultSet" parameterType="revKategorie">
@@ -138,7 +134,7 @@
    </select>
    
   <!-- 전체 후기 수 조회 쿼리 -->
-   <select id="projectCount" resultType="_int">
+   <select id="revProjectCount" resultType="_int">
       SELECT COUNT(*)
       FROM REVIEW    
       WHERE REVIEW_STATUS = 'Y'
@@ -183,7 +179,13 @@
       ORDER BY FAQ_ENROLL_DATE DESC
 
    </select>
-
+	
+	<!-- 전체 FAQ 수 조회 쿼리 -->
+   <select id="fProjectCount" resultType="_int">
+      SELECT COUNT(*)
+      FROM FAQ   
+      WHERE FAQ_STATUS = 'Y'
+   </select>
 
 
 </mapper>

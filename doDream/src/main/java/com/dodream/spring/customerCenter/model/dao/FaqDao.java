@@ -47,5 +47,10 @@ public class FaqDao {
       return sqlSession.selectOne("centerMapper.faqListCount");
 
    }
+
+	public int fProjectCount() {
+		
+		return sqlSession.selectOne("centerMapper.fProjectCount");
+	}
 }
  

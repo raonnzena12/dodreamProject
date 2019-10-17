@@ -57,4 +57,14 @@ public class NoticeController {
 		
 		return nList;
 	}
+   
+   // 공지사항 전체 개시글수 출력
+   @ResponseBody
+   @RequestMapping("nProjectCount.dr")
+   public int nProjectCount() {
+	   
+	   int result = noticeService.nProjectCount();
+	   System.out.println("result : " +  result);
+	   return result;
+   }
 }

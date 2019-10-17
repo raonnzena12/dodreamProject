@@ -12,6 +12,8 @@ public interface NoticeService {
 	 */
 	public abstract ArrayList<Notice> selectList(int currentPage);
 
+	public abstract int nProjectCount();
+
 	
 
  

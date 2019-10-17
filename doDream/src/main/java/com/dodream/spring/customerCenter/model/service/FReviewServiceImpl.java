@@ -63,9 +63,9 @@ public class FReviewServiceImpl implements FReviewService {
 
 
 	@Override
-	public int projectCount() {
+	public int revProjectCount() {
 	
-		return frDao.projectCount();
+		return frDao.revProjectCount();
 	}
    
 }
