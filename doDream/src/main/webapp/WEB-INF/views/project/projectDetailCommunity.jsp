@@ -544,8 +544,13 @@
 						if(result == "1"){
 							$("#subUpdateContent").val("");
 							$(".subModal").css("display","none");
-							console.log("으아아악");
-							alert("댓글 수정 완료");
+							//console.log("으아아악");
+							//alert("댓글 수정 완료");
+							Swal.fire(
+							  '댓글 수정 완료!',
+							  '댓글이 성공적으로 수정 되었습니다.',
+							  'success'
+							)
 							replyList();
 						}else{
 							alert("댓글 수정 실패");
@@ -572,7 +577,12 @@
 				
 				if(${empty sessionScope.loginUser}){
 					
-					alert("로그인이 필요합니다.");
+					//alert("로그인이 필요합니다.");
+					Swal.fire(
+							  '로그인!',
+							  '로그인이 필요합니다.',
+							  'success'
+							)
 					$("#comSelect").val("category");
 					$("#exampleTextarea").val("");
 				
@@ -583,11 +593,21 @@
 					var reRefPNo = ${project.pNo};
 					
 					if(reCGNo == "category"){
-						alert("카테고리를 선택해주세요");
+						//alert("카테고리를 선택해주세요");
+						Swal.fire(
+							  '카테고리!',
+							  '카테고리를 선택해주세요.',
+							  'success'
+							)
 						return false;
 					}else{
 						if(reContent == ""){
-							alert("내용을 입력해주세요.");
+							//alert("내용을 입력해주세요.");
+							Swal.fire(
+							  '내용!',
+							  '내용을 입력해주세요.',
+							  'success'
+							)
 							return false;
 						}
 						
@@ -888,7 +908,12 @@
 			
 			if(${empty sessionScope.loginUser}){
 				
-				alert("로그인이 필요합니다.");
+				//alert("로그인이 필요합니다.");
+				Swal.fire(
+							  '로그인!',
+							  '로그인이 필요합니다.',
+							  'success'
+							)
 				//$("#comSelect").val("category");
 				$(".subTextarea").val("");
 			
@@ -903,7 +928,12 @@
 					console.log("서브내용 : "+subContent);
 					
 					if(subContent == ""){
-						alert("내용을 입력해주세요.");
+						//alert("내용을 입력해주세요.");
+						Swal.fire(
+							  '내용!',
+							  '내용을 입력해주세요.',
+							  'success'
+							)
 						return false;
 					}
 					
@@ -952,7 +982,12 @@
 						if(result == "1"){
 							$("#updateContent").val("");
 							$(".reModal").css("display","none");
-							alert("댓글 수정 완료");
+							//alert("댓글 수정 완료");
+							Swal.fire(
+							  '수정완료!',
+							  '댓글이 성공적으로 수정되었습니다.',
+							  'success'
+							)
 							replyList();
 						}else{
 							alert("댓글 수정 실패");
@@ -971,7 +1006,52 @@
 		//댓글 삭제
 		function deleteRe(){
 			
-			if(confirm("정말 삭제하시겠습니까?")){
+			var rNo = $(".input").attr("id");
+			
+			Swal.fire({
+				  title: '정말 삭제?',
+				  text: "댓글을 정말 삭제하시겠습니까?",
+				  type: 'warning',
+				  showCancelButton: true,
+				  confirmButtonColor: '#3085d6',
+				  cancelButtonColor: '#d33',
+				  confirmButtonText: 'Yes'
+				}).then((result) => {
+				  if (result.value) {
+					  
+					  $.ajax({
+							url:"deleteReply.dr",
+							data:{rNo:rNo},
+							type:"post",
+							success: function(result){
+								if(result == "1"){
+									//alert("댓글 삭제 완료");
+									Swal.fire(
+				      '삭제 완료!',
+				      '정상적으로 삭제되었습니다.',
+				      'success'
+				    )
+									replyList();
+								}else{
+									alert("댓글 삭제 실패");
+								}
+								
+							},
+							error: function(e){
+								console.log(e);
+							}
+						});
+					  
+					  
+				    
+				  }
+				})
+			
+			
+			
+			
+			
+			/* if(confirm("정말 삭제하시겠습니까?")){
 				
 				var rNo = $(".input").attr("id");// 댓글 번호
 				
@@ -992,7 +1072,7 @@
 						console.log(e);
 					}
 				});
-			}
+			} */
 		}
 		
 		//서브댓글 수정
@@ -1024,7 +1104,12 @@
 							$("#subUpdateContent").val("");
 							$(".subModal").css("display","none");
 							console.log("으아아악");
-							alert("댓글 수정 완료");
+							//alert("댓글 수정 완료");
+							Swal.fire(
+							  '수정완료!',
+							  '댓글이 성공적으로 수정되었습니다.',
+							  'success'
+							)
 							replyList();
 						}else{
 							alert("댓글 수정 실패");
@@ -1045,7 +1130,53 @@
 		//대댓글 삭제
 		function deleteSubRe(e){
 			
-			if(confirm("정말 삭제하시겠습니까?")){
+			var subNo = e.parent().parent().find(".subCom").attr("id");//서브 댓글 번호
+			
+			console.log(subNo);
+			
+			Swal.fire({
+				  title: '정말 삭제?',
+				  text: "댓글을 정말 삭제하시겠습니까?",
+				  type: 'warning',
+				  showCancelButton: true,
+				  confirmButtonColor: '#3085d6',
+				  cancelButtonColor: '#d33',
+				  confirmButtonText: 'Yes'
+				}).then((result) => {
+				  if (result.value) {
+					  
+					  $.ajax({
+							url:"deleteSubRe.dr",
+							data:{subNo:subNo},
+							type:"post",
+							success: function(result){
+								if(result == "1"){
+									Swal.fire(
+										      '삭제 완료!',
+										      '정상적으로 삭제되었습니다.',
+										      'success'
+										    )
+
+									//alert("댓글 삭제 완료");
+									replyList();
+								}else{
+									alert("댓글 삭제 실패");
+									/* Swal.fire(
+										      '삭제 실패!',
+										      '삭제를 실패했습니다.',
+										      'success'
+										    ) */
+								}
+							},
+							error: function(e){
+								console.log(e);
+							}
+						});
+					  
+					  
+				    				  }
+				})
+			/* if(confirm("정말 삭제하시겠습니까?")){
 				var subNo = e.parent().parent().find(".subCom").attr("id");//서브 댓글 번호
 				
 				console.log(subNo);
@@ -1066,7 +1197,7 @@
 						console.log(e);
 					}
 				});
-			}
+			} */
 		}
 		
 		

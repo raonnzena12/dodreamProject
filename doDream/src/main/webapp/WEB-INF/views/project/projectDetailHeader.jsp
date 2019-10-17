@@ -502,7 +502,12 @@
 		$("#favorite").on("click", function(){
 			console.log("121212");
 			if(${empty sessionScope.loginUser}) {
-				alert("로그인이 필요합니다.");
+				//alert("로그인이 필요합니다.");
+				Swal.fire(
+					  '로그인!',
+					  '로그인이 필요합니다.',
+					  'success'
+					)
 				return false;
 			} else {
 				if($(this).css("color") == "rgb(142, 68, 173)"){
@@ -530,9 +535,48 @@
 				
 				//console.log(uno);
 				//console.log(pNo);
+				Swal.fire({
+				  title: '좋아요 취소?',
+				  text: "프로젝트 좋아요를 취소하시겠습니까?",
+				  type: 'warning',
+				  showCancelButton: true,
+				  confirmButtonColor: '#3085d6',
+				  cancelButtonColor: '#d33',
+				  confirmButtonText: 'Yes'
+				}).then((result) => {
+				  if (result.value) {
+					  
+					  $.ajax({
+							url:"detailLikeDelete.dr",
+							data:{pNo:pNo, userNo:uno},
+							type: "post",
+							success: function(result){
+								if(result == 1){
+									$("#favorite").css("color","#F39C12");
+									$("#favorite").text("favorite_border");
+									//alert("좋아요가 취소되었습니다.");
+									Swal.fire(
+									  '취소 완료!',
+									  '정상적으로 취소가 완료되었습니다.',
+									  'success'
+									)
+									
+								}else{
+									alert("좋아요 취소 실패");
+								}
+								
+							},
+							error: function(e){
+								console.log(e);
+							}
+						});
+					  
+				  
+				    
+				  }
+				})
 				
-				
-					if(confirm("프로젝트 좋아요를 취소하시겠습니까?")){
+					/* if(confirm("프로젝트 좋아요를 취소하시겠습니까?")){
 					
 					$.ajax({
 						url:"detailLikeDelete.dr",
@@ -542,7 +586,12 @@
 							if(result == 1){
 								$("#favorite").css("color","#F39C12");
 								$("#favorite").text("favorite_border");
-								alert("좋아요가 취소되었습니다.");
+								//alert("좋아요가 취소되었습니다.");
+								Swal.fire(
+								  '취소 완료!',
+								  '정상적으로 취소가 완료되었습니다.',
+								  'success'
+								)
 								
 							}else{
 								alert("좋아요 취소 실패");
@@ -554,7 +603,7 @@
 						}
 					});
 				
-			}
+			} */
 		}	
 	
 		/* ===========================좋아요 버튼=========================== */
@@ -572,8 +621,12 @@
 							if(result == 1){
 								$("#favorite").css("color", "#8E44AD");
 								$("#favorite").text("favorite");
-								alert("좋아요를 성공했습니다.");
-								
+								//alert("좋아요를 성공했습니다.");
+								Swal.fire(
+								  '좋아요 성공!',
+								  '정상적으로 좋아요가 완료됬습니다.',
+								  'success'
+								)
 							}else{
 								alert("좋아요 실패");
 							}
