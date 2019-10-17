@@ -586,6 +586,10 @@
 						alert("카테고리를 선택해주세요");
 						return false;
 					}else{
+						if(reContent == ""){
+							alert("내용을 입력해주세요.");
+							return false;
+						}
 						
 						$.ajax({
 							url:"detailReply.dr",
@@ -593,7 +597,8 @@
 							type:"post",
 							success: function(result){
 								if(result == "success"){
-									console.log("1111111");
+									
+									//console.log("1111111");
 									$("#exampleTextarea").val("");
 									$("#comSelect").val("category");
 									replyList();
@@ -747,7 +752,7 @@
 							$subInputBox = $("<div>").addClass("subInputBox");// 서브댓글 등록박스
 							
 							
-							$subArtImg = $("<img>").addClass("subArtImg").attr("src","resources/images/userProfileImage/"+result.reList[i].reWriImg);//서브 댓글 작성한 유저 이미지
+							$subArtImg = $("<img>").addClass("subArtImg").attr("src","resources/images/userProfileImage/"+ "${loginUser.userProfileImage}");//서브 댓글 작성한 유저 이미지 result.reList[i].reWriImg
 							
 							$subTextarea = $("<textarea>").addClass("subTextarea").attr({"rows":"3", "placeholder":"댓글을 입력해주세요."}).
 									 		css("resize", "none");// 서브댓글 입력
@@ -897,16 +902,20 @@
 					console.log("서브번호 : " + subRefRNo);
 					console.log("서브내용 : "+subContent);
 					
-					
+					if(subContent == ""){
+						alert("내용을 입력해주세요.");
+						return false;
+					}
 					
 					$.ajax({
 						url:"insertSubRe.dr",
 						data:{subRefRNo:subRefRNo, subContent:subContent},
 						type:"post",
 						success:function(result){
-							
-							$(this).parent().find(".subTextarea").val("");
-							replyList();
+							if(result == "success"){
+								$(this).parent().find(".subTextarea").val("");
+								replyList();
+							}
 						},
 						error: function(e){
 							console.log(e);
