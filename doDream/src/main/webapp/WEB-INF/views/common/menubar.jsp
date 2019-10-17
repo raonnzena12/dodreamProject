@@ -68,7 +68,7 @@
 			<li class="nav-item dropdown active">
 				<a class="nav-link dropdown" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					<i class="material-icons" id="menuIcon">menu</i>
-					<span id="menuText">메뉴</span>
+					<span id="menuText" style="font-weight: 600; color: #444;">메뉴</span>
 				</a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 					<a class="dropdown-item" href="main.dr">홈</a>
@@ -84,7 +84,7 @@
 				</div>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link active" href="insertFundForm.dr">프로젝트 등록</a>
+				<a class="nav-link active" href="insertFundForm.dr" style="font-weight: 600; color: #444;">프로젝트 등록</a>
 			</li>
 			<li class="nav-item dropdown">
 				<!-- <a class="nav-link dropdown" href="#" id="nbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
