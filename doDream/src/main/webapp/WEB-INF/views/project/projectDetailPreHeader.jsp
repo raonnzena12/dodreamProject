@@ -296,7 +296,7 @@
                     </p>
                     <div id="profile">
                     	<c:choose>
-                    	<c:when test=" ${fn:contains(project.pArtistPFImage,'_artist')}">
+                    	<c:when test="${fn:contains(project.pArtistPFImage,'_artist')}">
                     	<img src="resources/images/projectImg/artistImg/${project.pArtistPFImage}" id="profileimg" width="60px" height="60px">
                     	</c:when>
                     	<c:otherwise>
@@ -322,6 +322,9 @@
                         </div>
                         
                          <script>
+                         console.log("프로필 :"+"${project.pArtistPFImage}");
+                         
+                         
                         	var closeDate = "${project.pCloseDate }";
                         	var goal = "${project.pCommaGoal}";
                         	/* var noGoal = "${project.pGoal}";

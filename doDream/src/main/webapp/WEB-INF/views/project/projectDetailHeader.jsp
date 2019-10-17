@@ -11,8 +11,8 @@
        <style>
            #HeaderSection{
                width: 1000px;
-              /*  height: auto; */
-              /*  min-height:1000px; */
+              height: auto;
+              min-height:300px;
                margin: auto;
                 
            }
@@ -324,6 +324,7 @@
             border-bottom: 1px solid #ced4da;
             background-color: rgba(255,255,255,0.9);
             padding-top: 5px;
+            margin-top:20px;
           }
            
        </style>
