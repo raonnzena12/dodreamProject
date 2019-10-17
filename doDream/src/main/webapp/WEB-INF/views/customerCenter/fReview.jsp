@@ -148,6 +148,11 @@
    font-size: 18px;
 }
 
+.fundSubName{
+
+	font-size: 16px;
+} 
+
 #category .detailText {
    font-size: 14px;
    color: #777;
@@ -382,7 +387,7 @@
 	                           </p>
 	
 	                           <!-- 부제목 -->
-	                           <span class="fundName">${ rev.revSubTitle }</span>
+	                           <span class="fundSubName">${ rev.revSubTitle }</span>
 	                        </div>
 	                        <div class="detailArea my-1"></div>
 	                     </div>
