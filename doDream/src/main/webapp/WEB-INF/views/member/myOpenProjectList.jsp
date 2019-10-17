@@ -160,6 +160,13 @@
 	height: auto;
 }
 
+.openPRJ{
+	border-right: unset;
+	border-bottom: unset;
+	font-weight: 800;
+	color: #fff;
+}
+
 </style>
 </head>
 <body>
