@@ -550,7 +550,7 @@
 				<input type="hidden" name="pNo" value="${project.pNo }">
 				<input type="hidden" name="pStatusNum" id="pStatusNum" value="${project.pStatusNum}">
 				<input type="hidden" name="pWriter" value="${loginUser.userNo}">
-				<div class="accBtn active">
+				<div class="accBtn" id="startmenu">
 					<span>기본정보</span>
 				</div>
 				<div class="accContainer" id="m1">
@@ -1335,12 +1335,15 @@
 		}
 	}
 	function gonaver(){
-		alert("옆에 카카오 누르세요ㅎㅎ");
+		alert("소셜로그인은 메뉴바에 있는 로그인으로 해주세요 데헷 ㅎㅎ");
+	}
+	function gokakao(){
+		alert("소셜로그인은 메뉴바에 있는 로그인으로 해주세요 데헷 ㅎㅎ");
 	}
 	function goLogin(){
 		Swal.fire({
 			showConfirmButton: false,
-			html: '<div id="login-menu" class="loginmenu text-center" style="display: block; position: relative; width:375px; padding: 10px; margin-left: 59px;"><div style="text-align:center;" class="mb-2"> LOGIN </div><form action="loginmodal.dr" method="POST" id="modal-loginfrm"><input type="hidden" value="" name="prevPage" id="modal-prevPage"><table id="login-table" class="form-group"><tr><td><input class="form-control" type="email" name="userEmail" id="modal-user-email" placeholder="이메일 주소" autocomplete="off" required></td></tr><tr><td><input class="form-control" type="password" name="userPwd" id="modal-user-pwd" placeholder="비밀번호" onKeyDown="modalenter(event);" required></td></tr><tr><td class="loginmenuText custom-control custom-checkbox my-1"></td></tr><tr><td><button type="button" class="btn btn-warning btn-block mb-2" id="modal-loginBtn">L O G I N</button></td></tr><tr><td class="text-center naverKakaoArea"><a href="javascript: gonaver();"><img src="resources/images/naver_sns_icon.png" data-toggle="tooltip" data-placement="left" title="NAVER ID로 로그인" class="mx-2" style="width:40px; height:auto;"></a><a href="javascript:loginWithKakao()"><img src="resources/images/kakao_sns_icon.png" data-toggle="tooltip" data-placement="left" title="KAKAO ID로 로그인" class="mx-2" style="width:40px; height:auto;"></a></td></tr><tr><td class="loginmenuText text-center"><hr>회원이 아니신가요?<br> <a href="insertForm.dr" class="emp blue">가입하기</a></td></tr></table></form></div>'
+			html: '<div id="login-menu" class="loginmenu text-center" style="display: block; position: relative; width:375px; padding: 10px; margin-left: 59px;"><div style="text-align:center;" class="mb-2"> LOGIN </div><form action="loginmodal.dr" method="POST" id="modal-loginfrm"><input type="hidden" value="" name="prevPage" id="modal-prevPage"><table id="login-table" class="form-group"><tr><td><input class="form-control" type="email" name="userEmail" id="modal-user-email" placeholder="이메일 주소" autocomplete="off" required></td></tr><tr><td><input class="form-control" type="password" name="userPwd" id="modal-user-pwd" placeholder="비밀번호" onKeyDown="modalenter(event);" required></td></tr><tr><td class="loginmenuText custom-control custom-checkbox my-1"></td></tr><tr><td><button type="button" class="btn btn-warning btn-block mb-2" id="modal-loginBtn">L O G I N</button></td></tr><tr><td class="text-center naverKakaoArea"><a href="javascript: gonaver();"><img src="resources/images/naver_sns_icon.png" data-toggle="tooltip" data-placement="left" title="NAVER ID로 로그인" class="mx-2" style="width:40px; height:auto;"></a><a href="javascript:gokakao()"><img src="resources/images/kakao_sns_icon.png" data-toggle="tooltip" data-placement="left" title="KAKAO ID로 로그인" class="mx-2" style="width:40px; height:auto;"></a></td></tr><tr><td class="loginmenuText text-center"><hr>회원이 아니신가요?<br> <a href="insertForm.dr" class="emp blue">가입하기</a></td></tr></table></form></div>'
 		});
 	};
 	
@@ -1371,6 +1374,7 @@
 			$("#agreementForm").hide();
 			$("#insertFundForm").show();
 			$("#remotecontrollerarea").fadeIn(3000);
+			$("#startmenu").click();
 			$('html').animate({
 				scrollTop : 0
 			}, 300);
@@ -2273,7 +2277,10 @@
 		var isUpdate = $("#isUpdate").val();
 		if(isUpdate=="true"){
 			// 수정하기로 들어왔을시 초기값 세팅입니다.
-			
+			$("#startmenu").click();
+			$('html').animate({
+				scrollTop : 0
+			}, 300);
 			// 프로젝트부분
 			// 카테고리 선택해놓기
 			var pCategoryNum = "${project.pCategoryNum}";
@@ -2513,9 +2520,8 @@
 		if(!$("#remotesubmit").hasClass("notouch")){
 			submitToAdmin();
 		}
-	})
-	
-
+	});
 </script>
+
 </body>
 </html>
