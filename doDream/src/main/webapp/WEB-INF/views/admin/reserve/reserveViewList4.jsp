@@ -220,6 +220,7 @@ $(function(){
 		$.ajax({
 			url : "selectReserveListTarget.dr",
 			data : {pNo : pNo},
+			async: false,
 			success : function(result){
 				var success = "";
 				var fail = ""; 
@@ -227,6 +228,7 @@ $(function(){
 					var customerUid = result[i].bKey;
 					var amount = result[i].addi + result[i].resRwdPriceSum;
 					var billingResult = submitBilling(customerUid, amount);
+					console.log(billingResult + " / " + i);
 					if(billingResult==1){
 						success += result[i].resNo + ",";
 					}else{
@@ -252,20 +254,25 @@ $(function(){
 	}
 	
 	function submitBilling(customerUid, amount){
+		var returnvar=0;
+		
 		$.ajax({
 			url : "http://192.168.10.57:8081/billings",
 			data : {customer_uid : customerUid, amount : amount},
 			type : "post",
+			async: false,
 			success : function(result){
 				var value = result.code;
 				console.log(value);
 				if(value==0){
-					return 1;
+					returnvar=  1;
 				}else{
-					return 0;
+					returnvar= 0;
 				}
 			}
+			
 		});
+			return returnvar;
 	};
 });
 </script>
