@@ -67,7 +67,7 @@
 }
 #detailnavpadding 
 {
-    padding-left: 80px;
+    padding-left: 250px;
     width: 1000px;
 }
 #detailnav
