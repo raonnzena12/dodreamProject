@@ -270,7 +270,7 @@ $(function(){
 		url : "nProjectCount.dr",
 		success : function(result){
 			console.log(result);
-			$("#nProjectCount").text("공지사항 ( 총 게시글 수 : "+result+ ")");
+			$("#nProjectCount").text("공지사항 ( "+result+ " )");
 		}
 	});
 
