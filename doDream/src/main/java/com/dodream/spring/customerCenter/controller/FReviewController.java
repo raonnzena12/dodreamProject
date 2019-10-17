@@ -60,7 +60,7 @@ public class FReviewController {
    
    // 프로텍트 후기 전체 개수 출력
    @ResponseBody
-   @RequestMapping("projectCount.dr")
+   @RequestMapping("revProjectCount.dr")
    public int projectCount() {
 	   
 	   int result = frService.projectCount();
