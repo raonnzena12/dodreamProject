@@ -36,7 +36,7 @@ try {
     }
   });
   const { access_token } = getToken.data.response; // 인증 토큰
-  console.log(access_token);
+  console.log("인증 토큰 : "+access_token);
 
   // 빌링키 발급 요청
   const issueBilling = await axios({
@@ -51,7 +51,7 @@ try {
     }
   });
 
-  // console.log(issueBilling);
+  console.log(issueBilling);
   var code = issueBilling.data.code;
   console.log("성공 코드(0일시 성공) : " + issueBilling.data.code);
 
