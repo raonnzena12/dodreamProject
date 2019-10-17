@@ -129,7 +129,7 @@ tbody tr:hover{
 														<tr role="row" class="odd">
 															<td class="sorting_1">${ f.fNo }</td>
 															<td>
-																<a href="faq.dr" target="_blank" style="text-decoration:none; color: gray;">${ f.fTitle}</a>
+																<a href="#" target="_blank" style="text-decoration:none; color: gray;">${ f.fTitle}</a>
 															</td>
 															<td>${ f.fEnrollDate}</td>
 															<td>${ f.fModifyDate}</td>

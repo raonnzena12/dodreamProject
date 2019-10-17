@@ -206,7 +206,7 @@ public class AdminDao {
 	 * @return result
 	 */
 	public int dropOutProject(int pNo) {
-		return sqlSession.delete("adminProjectMapper.dropOutProject", pNo);
+		return sqlSession.update("adminProjectMapper.dropOutProject", pNo);
 	}
 
 	/** 심사 완료 > 프로젝트 오픈

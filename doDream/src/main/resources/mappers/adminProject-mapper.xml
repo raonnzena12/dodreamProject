@@ -97,10 +97,11 @@
 	</update>
 	
 	<!-- 심사 대기중 > 심사 탈락 -->
-	<delete id="dropOutProject" parameterType="_int">
-		DELETE FROM PROJECT_TB
+	<update id="dropOutProject" parameterType="_int">
+		UPDATE PROJECT_TB SET
+		PROJECT_ST_NO = 6
 		WHERE PROJECT_NO = #{pNo}
-	</delete>
+	</update>
 	
 	<!-- 심사 완료 > 프로젝트 오픈 -->	
 	<update id="openProject" parameterType="Project">
