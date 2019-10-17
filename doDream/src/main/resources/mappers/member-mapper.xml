@@ -28,7 +28,7 @@
 		SELECT * FROM USER_TB
 		WHERE USER_EMAIL = #{userEmail}
 		AND USER_PWD = #{userPwd}
-		AND USER_STATUS = 'Y'
+		AND USER_STATUS IN('Y', 'B') 
 	</select>
 	
 	<!-- 로그인 아이디/비번 확인용 쿼리 -->

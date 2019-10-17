@@ -94,7 +94,7 @@
 	<!-- 회원이 신고한 목록 조회 -->
 	<select id="myReportList" resultMap="myPageReportResultSet" parameterType="_int">
 		SELECT * FROM REPORT_TB
-		JOIN REPORT_REPLY ON (REPORT_NO = REPORT_RP_REF_RNO)
+		LEFT JOIN REPORT_REPLY ON (REPORT_NO = REPORT_RP_REF_RNO)
 		JOIN USER_TB ON (REPORT_WRITER = USER_NO)
 		JOIN PROJECT_TB ON (REPORT_REF_PNO = PROJECT_NO)
 		WHERE REPORT_WRITER = #{userNo}

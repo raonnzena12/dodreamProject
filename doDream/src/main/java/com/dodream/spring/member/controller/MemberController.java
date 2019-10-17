@@ -47,21 +47,28 @@ public class MemberController {
 		System.out.println("로그인전" + member);
 
 		if (loginUser != null) {
-			session.setAttribute("loginUser", loginUser);
-			System.out.println("로그인후" + loginUser);
-
-			// 로그인 카운트 해주는 함수 호출;
-			int result = mService.checkVisitToday(loginUser.getUserNo());
-			if (result == 0) {
-				result = mService.countVisitToday(loginUser.getUserNo());
-				if (result > 0)
-					System.out.println("userNo : " + loginUser.getUserNo() + "번 회원이 DAYCOUNT 테이블에 삽입됨");
-			}
 			
-			System.out.println("redirect:" + prevPage);
-			return "redirect:" + prevPage;
+			if(loginUser.getUserStatus().equals("B")) {
+				ra.addFlashAttribute("msg", "블랙리스트입니다. 로그인할 수 없습니다.");
+				return "redirect:" + prevPage;
+			} else {
+				
+				session.setAttribute("loginUser", loginUser);
+				System.out.println("로그인후" + loginUser);
+				
+				// 로그인 카운트 해주는 함수 호출;
+				int result = mService.checkVisitToday(loginUser.getUserNo());
+				if (result == 0) {
+					result = mService.countVisitToday(loginUser.getUserNo());
+					if (result > 0)
+						System.out.println("userNo : " + loginUser.getUserNo() + "번 회원이 DAYCOUNT 테이블에 삽입됨");
+				}
+				
+				System.out.println("redirect:" + prevPage);
+				return "redirect:" + prevPage;
+			}	
 
-		} else {
+		}else {
 			ra.addFlashAttribute("msg", "이메일과 비밀번호를 다시 확인해주세요.");
 			System.out.println("redirect:" + prevPage);
 			return "redirect:" + prevPage;
