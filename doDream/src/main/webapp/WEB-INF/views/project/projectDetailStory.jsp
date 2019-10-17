@@ -75,7 +75,7 @@
            }
            #storyContent *{
            		max-width: 100%;
-                height: auto;
+                /* height: auto; */
            }
           /*  #projectInformation{
            		width: 680px;
