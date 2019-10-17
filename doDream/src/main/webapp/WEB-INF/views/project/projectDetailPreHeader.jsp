@@ -12,6 +12,8 @@
            #HeaderSection{
                width: 1000px;
                margin: auto;
+               height: auto;
+              min-height:300px;
            }
            
            #cgbox{
@@ -246,6 +248,9 @@
                text-align:center;
                padding-top:160px;
            }
+           .pre{
+           		margin-top:20px;
+           }
            
           
            
@@ -365,7 +370,7 @@
             </section>
     
             
-            <div class="row sticky-top">
+            <div class="row sticky-top pre">
             	<div class="col-md-12">
                 <nav class="nav">
                     <div class="container-fluid" id="detailnav">

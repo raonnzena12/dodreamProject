@@ -52,7 +52,7 @@
            		bottom: 0;
            		right: 10px;
            }
-           #artProfileImg{
+           .artProfileImg{
            		border: 1px solid #495057;
            		width: 60px;
            		height: 60px;
@@ -276,7 +276,14 @@
 			<div id="artProfile" class="clearfix">
 				 <div id="artistText1">창작자 소개</div>
 				 <div id="artistImg">
-                 	<img src="resources/images/projectImg/artistImg/${project.pArtistPFImage}" id="artProfileImg">
+				 	<c:choose>
+                    	<c:when test="${fn:contains(project.pArtistPFImage,'_artist')}">
+                    	<img src="resources/images/projectImg/artistImg/${project.pArtistPFImage}" class="artProfileImg">
+                    	</c:when>
+                    	<c:otherwise>
+                   		<img src="resources/images/projectImg/artistImg/talent.png" class="artProfileImg" width="60px" height="60px">
+                   		</c:otherwise>
+                   	</c:choose>
                  </div>
                  <div id="artistName">
 		                 <div id="artistText2">${project.pArtistName }님
