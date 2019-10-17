@@ -143,7 +143,7 @@ public class ProjectController {
 	public ModelAndView selectCurrentProject(int pNo, HttpServletRequest request, ModelAndView mv) {
 		Project project = pService.selectCurrentProject(pNo);
 		Member loginUser = (Member)request.getSession().getAttribute("loginUser");
-		if(loginUser==null || loginUser.getUserNo() != project.getpWriter()) {
+		if(loginUser==null || loginUser.getUserNo() != project.getpWriter() || project.getpStatusNum()!=1) {
 			mv.addObject("msg","비정상적인 접근입니다.").setViewName("common/errorPage");
 			return mv;
 		}
