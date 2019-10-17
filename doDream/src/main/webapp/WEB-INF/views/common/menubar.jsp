@@ -84,7 +84,7 @@
 				</div>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link active" href="insertFundForm.dr">펀딩 등록하기</a>
+				<a class="nav-link active" href="insertFundForm.dr">프로젝트 등록</a>
 			</li>
 			<li class="nav-item dropdown">
 				<!-- <a class="nav-link dropdown" href="#" id="nbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
