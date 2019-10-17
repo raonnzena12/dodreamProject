@@ -597,12 +597,12 @@
 		    Kakao.Link.sendDefault({
 		        objectType: 'feed',
 		        content: {
-		          title: '프로젝트 테스트',
+		          title: '${project.pTitle}',
 		          description: hashTag,
 		          imageUrl: 'https://i.imgur.com/rA4AbTP.png',
 		          link: {
-		            mobileWebUrl: 'https://www.google.com',
-		            webUrl: 'https://www.google.com'
+		            mobileWebUrl: 'http:localhost:8080',
+		            webUrl: 'http:localhost:8080'
 		          }
 		        },
 		        social: {
@@ -613,8 +613,8 @@
 		          {
 		            title: '웹으로 보기',
 		            link: {
-		              mobileWebUrl: 'https://www.google.com',
-		              webUrl: 'https://www.google.com'
+		              mobileWebUrl: 'http:localhost:8080',
+		              webUrl: 'http:localhost:8080'
 		            }
 		          }
 		        ]
