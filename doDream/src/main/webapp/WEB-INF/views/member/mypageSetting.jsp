@@ -113,7 +113,7 @@
                      <tr>
                         <td class="text-center">전화번호</td>
                         <td class="pr-2"><input type="tel" class="form-control" name="userPhone" placeholder="전화번호를 입력해주세요" value="${loginUser.userPhone}"></td>
-                        <td class="text-center"><button class="btn btn-warning btn-sm mb-2 text-right" type="button">인증하기</button></td>
+                        <td class="text-center"><!-- <button class="btn btn-warning btn-sm mb-2 text-right" type="button">인증하기</button> --></td>
                      </tr>
                      <tr>
                         <td></td>
