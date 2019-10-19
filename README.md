@@ -50,6 +50,20 @@ KH정보교육원 - 디지털컨버전스 융합SW개발자 양성과정 5회차
 - node.js 서버로 billingKey 발급 및 폐기 구현
 - 카카오 / 트위터 / 페이스북 공유하기 구현
 
+![customerCenter page](doDream/src/main/resources/readmeImg/dodream5.png)
+- AJAX 리스트 로딩 구현
+- FAQ검색 기능 구현
+- 카테고리로 후기 리스트 필터링 구현
+
+![admin page](doDream/src/main/resources/readmeImg/dodream6.png)
+- 인덱스 페이지 각종 정보 로딩
+- chart.js API 구현
+- 정보 알림/알림 확인 구현
+- 유저 정보 확인 및 블랙리스트 처리 구현
+- 프로젝트 검토 및 심사 통과/탈락 구현
+- 성공 펀딩 결제 구현
+- 공지사항/프로젝트 후기/FAQ 등록 
+
 ## 업데이트 내역
 
 * 0.1.0
