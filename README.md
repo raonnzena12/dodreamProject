@@ -20,19 +20,37 @@ KH정보교육원 - 디지털컨버전스 융합SW개발자 양성과정 5회차
 
 
 ## 프로젝트 화면
+### 메인화면
 ![main page](doDream/src/main/resources/readmeImg/dodream1.png)
 - 로그인/로그아웃/쿠키를 이용한 자동 로그인 구현
 - 네아로 로그인/카카오로그인 구현
 - 회원가입 구현
 - 인기순/최신순/달성임박순으로 프로젝트 리스트 로딩
 
+
+
+### 회원 마이페이지 화면
+![user myPage](doDream/src/main/resources/readmeImg/dodream7.png)
+- 펀딩한 프로젝트/오픈한 프로젝트/좋아요한 프로젝트 확인 구현
+- 팔로우/팔로워 구현
+- 프로젝트 신고 내역 확인 및 신고답변 확인 구현
+- 프로젝트 펀딩 내역 및 오픈한 펀딩 결제내역 확인 구현
+- 정보수정 구현
+
+
+
+### 프로젝트 상세 화면
 ![detail page](doDream/src/main/resources/readmeImg/dodream2.png)
 - 해시태그 구현
 - 상태값에 따른 펀딩상태 구분
 - 리워드 선택 및 수량변경/ 펀딩 가격 자동계산 구현
 - 커뮤니티 댓글 및 대댓글 기능 구현
 - 프로젝트 좋아요 / 아티스트 팔로우 기능 구현
+- 프로젝트 신고 구현
 
+
+
+### 프로젝트 등록 화면
 ![projectImport page](doDream/src/main/resources/readmeImg/dodream3.png)
 - 유저 친화적인 프로젝트 등록 페이지 구현
 - 등록 사이드 리모컨 구현
@@ -41,6 +59,9 @@ KH정보교육원 - 디지털컨버전스 융합SW개발자 양성과정 5회차
 - 미리보기 / 임시저장 구현 
 - 페이지에서 벗어날 시 주의알림 출력 구현
 
+
+
+### 프로젝트 예약 화면
 ![reserve page](doDream/src/main/resources/readmeImg/dodream4.png)
 - 예약 내역 확인 구현
 - 총 펀딩금액 계산 구현
@@ -50,11 +71,17 @@ KH정보교육원 - 디지털컨버전스 융합SW개발자 양성과정 5회차
 - node.js 서버로 billingKey 발급 및 폐기 구현
 - 카카오 / 트위터 / 페이스북 공유하기 구현
 
+
+
+### 고객센터 화면
 ![customerCenter page](doDream/src/main/resources/readmeImg/dodream5.png)
 - AJAX 리스트 로딩 구현
 - FAQ검색 기능 구현
 - 카테고리로 후기 리스트 필터링 구현
 
+
+
+### 관리자 화면
 ![admin page](doDream/src/main/resources/readmeImg/dodream6.png)
 - 인덱스 페이지 각종 정보 로딩
 - chart.js API 구현
@@ -62,7 +89,14 @@ KH정보교육원 - 디지털컨버전스 융합SW개발자 양성과정 5회차
 - 유저 정보 확인 및 블랙리스트 처리 구현
 - 프로젝트 검토 및 심사 통과/탈락 구현
 - 성공 펀딩 결제 구현
-- 공지사항/프로젝트 후기/FAQ 등록 
+- 신고 처리 및 답변 구현
+- 공지사항/프로젝트 후기/FAQ 등록 구현
+
+
+
+## 두드림 프로젝트 ERD
+![dodream erd](doDream/src/main/resources/readmeImg/dodreamERD.png)
+
 
 ## 업데이트 내역
 
