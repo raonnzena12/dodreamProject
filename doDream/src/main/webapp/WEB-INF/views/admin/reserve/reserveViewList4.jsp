@@ -257,7 +257,7 @@ $(function(){
 		var returnvar=0;
 		
 		$.ajax({
-			url : "http://192.168.10.57:8081/billings",
+			url : "http://localhost:8081/billings",
 			data : {customer_uid : customerUid, amount : amount},
 			type : "post",
 			async: false,
