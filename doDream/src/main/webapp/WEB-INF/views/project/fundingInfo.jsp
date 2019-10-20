@@ -411,7 +411,7 @@ function ajaxBilling() {
 	$( "input[name=bKey]" ).val("${ prj.pNo }" + "_" + "${ loginUser.userNo }" + "_"+ result+ "_" + $("#cardNo4").val() );
 	var customer_uid = $("input[name=bKey]").val();
 	$.ajax({
-		url: "http://115.90.212.22:8081/ajaxBillingServer",
+		url: "http://localhost:8081/ajaxBillingServer",
 		type: "POST",
 		data: { card_number: card_number,
 				expiry: expiry,
